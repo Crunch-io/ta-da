@@ -67,7 +67,7 @@ for testname in timings.keys():
     outfile = '%s%s.svg' % (testname, suffix)
     p = os.popen('dot -Tsvg -o%s' % outfile, 'w')
     p.write('digraph %s {\n' % testname)
-    p.write('label="%s\\n%s\\nPython %s\\n%s: %s\nlabelloc=top\n' %
+    p.write('label="%s\\n%s\\nPython %s\\n%s: %s"\nlabelloc=top\n' %
             (testname,
              time.ctime(),
              platform.python_version(),
