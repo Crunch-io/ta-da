@@ -14,8 +14,8 @@ def new_id():
 def colorcode(t):
     if t < COLOR_MIN:
         return None
-    f = min((t-COLOR_MIN)/(100.-COLOR_MIN), 100.)
-    f = sqrt(f)
+    f = min((t-COLOR_MIN)/(100.-COLOR_MIN), 1.0)
+    f = sqrt(f) # non-linear emphasis
     h = f*0 + (1-f)*0.15 # Yellow-orange
     s = max(f, 0.1)
     v = 1
