@@ -213,7 +213,8 @@ class Trace(_threadlocal):
                     elif isinstance(a[k], dict):
                         update_accum(a[k], b[k])
                     else:
-                        raise TypeError, "key=%s, type=%s" % (k, type(a[k]))
+                        pass
+                        #raise TypeError, "key=%s, type=%s" % (k, type(a[k]))
 
         def collapse_children(children):
             result = []
