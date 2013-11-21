@@ -76,7 +76,7 @@ class Context(object):
 
         if trace.logger:
             # Log any extension attributes first
-            for k, v in trace.callpoint.iteritems():
+            for k, v in self.callpoint.iteritems():
                 if k in ("__time__", "__call__", "{calls}"):
                     continue
                 v = repr(v)[:80]
