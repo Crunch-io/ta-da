@@ -175,7 +175,7 @@ class Trace(_threadlocal):
         stream.write("\n===================================================\n")
         stream.flush()
 
-    def write_dot(self, name, path, cutoff=0.5, color_min=2):
+    def write_dot(self, name, path, cutoff=0.5, color_min=2, collapse=False):
         """Write the trace as an SVG to the given path.
 
         You must have the Graphviz 'dot' utility installed for this to work.
@@ -197,11 +197,46 @@ class Trace(_threadlocal):
 
         node_id = [0]
 
+        def update_accum(a,b):
+            for k in b.keys():
+                if k == "__call__":
+                    continue
+                if not a.has_key(k):
+                    a[k] = b[k]
+                else:
+                    if isinstance(a[k], (int, float, list)):
+                        a[k] += b[k]
+                    elif isinstance(a[k], basestring):
+                        a[k] = '%s, %s' % (a[k], b[k])
+                    elif isinstance(a[k], tuple):
+                        a[k] = tuple(a[k]+n[k])
+                    elif isinstance(a[k], dict):
+                        update_accum(a[k], b[k])
+                    else:
+                        raise TypeError, "key=%s, type=%s" % (k, type(a[k]))
+
+        def collapse_children(children):
+            result = []
+            for c in children:
+                c['__ncalls__'] = 1
+                found = False
+                for r in result:
+                    if r['__call__'] == c['__call__']:
+                        found = True
+                        break
+                if not found:
+                    result.append(c)
+                else:
+                    update_accum(r, c)
+            return result
+
+
         def recurse(d, parent=None):
             node_id[0] = node_id[0] + 1
             me = node_id[0]
 
             call = d['__call__']
+            ncalls = d.get('__ncalls__', 1)
             cumtime = d.get('__time__', None)
             if cumtime is None:
                 return
@@ -225,12 +260,14 @@ class Trace(_threadlocal):
 
             out.write('N%d\n' % me)
             color = colorcode(cumtime_pct)
+            if ncalls != 1:
+                call = '%s [%d X]' % (call, ncalls)
             out.write(
-                '[label="%s\\n%.3fms (%.2f%%) self\\n%.3fms (%.2f%%) cumulative"' %
+                '[label="%s\\n%.2fms (%.2f%%) self\\n%.2fms (%.2f%%) cumulative"' %
                 (
                     call,
-                    selftime * 100, selftime_pct,
-                    cumtime * 100, cumtime_pct,
+                    selftime * 1000, selftime_pct,
+                    cumtime * 1000, cumtime_pct,
                 )
             )
             if color:
@@ -238,7 +275,12 @@ class Trace(_threadlocal):
             out.write('];\n')
             if parent:
                 out.write('N%d -> N%d;\n' % (parent, me))
-            for child in d['{calls}']:
+
+            children = d['{calls}']
+            if collapse:
+                children = collapse_children(children)
+
+            for child in children:
                 recurse(child, me)
 
         total = sum([c.get("__time__", 0.0) for c in self.execution] + [0.0])
