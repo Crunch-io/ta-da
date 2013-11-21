@@ -229,8 +229,8 @@ class Trace(_threadlocal):
                 '[label="%s\\n%.3fms (%.2f%%) self\\n%.3fms (%.2f%%) cumulative"' %
                 (
                     call,
-                    selftime * 100, selftime_pct,
-                    cumtime * 100, cumtime_pct,
+                    selftime * 1000, selftime_pct,
+                    cumtime * 1000, cumtime_pct,
                 )
             )
             if color:
