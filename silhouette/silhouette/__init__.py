@@ -175,6 +175,11 @@ class Trace(_threadlocal):
         stream.write("\n===================================================\n")
         stream.flush()
 
+    def save(self, file):
+        """Write trace (as python pickle) for post-processing by other programs"""
+        import cPickle
+        cPickle.dump(self.execution, file)
+
     def write_dot(self, name, path, cutoff=0.5, color_min=2, collapse=False):
         """Write the trace as an SVG to the given path.
 
