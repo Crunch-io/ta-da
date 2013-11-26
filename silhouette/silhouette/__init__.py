@@ -227,7 +227,7 @@ class Trace(_threadlocal):
                 c['__ncalls__'] = 1
                 found = False
                 for r in result:
-                    if r['__call__'] == c['__call__']:
+                    if all(r.get(k) == c.get(k) for k in ('__call__', 'expr')):
                         found = True
                         break
                 if not found:
@@ -268,14 +268,27 @@ class Trace(_threadlocal):
             color = colorcode(cumtime_pct)
             if ncalls != 1:
                 call = '%s [%d X]' % (call, ncalls)
+
+
+            def fmt_time(t):
+                return ('%.2fs' % t) if t > 1 else '%.2fms' % (t*1000)
+
+            out.write(r'[label="%s\n' % call)
+
+            # Extra annotation
+            expr = d.get('expr').replace('"', '') # no quotes in quoted string
+            # Additional escaping of expr?  backslashes?
+            if expr:
+                out.write(r'{%s}\n' % expr)
+
             out.write(
-                '[label="%s\\n%.2fms (%.2f%%) self\\n%.2fms (%.2f%%) cumulative"' %
+                r'%s (%s%%) self\n%s (%s%%) cumulative"' % # ends " started in label=
                 (
-                    call,
-                    selftime * 1000, selftime_pct,
-                    cumtime * 1000, cumtime_pct,
+                    fmt_time(selftime), selftime_pct,
+                    fmt_time(cumtime), cumtime_pct,
                 )
             )
+
             if color:
                 out.write('style=filled,fillcolor="%s"' % color)
             out.write('];\n')
