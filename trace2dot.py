@@ -160,13 +160,22 @@ def recurse(d, parent=None):
 def header(testname):
     # This will be wrong if trace2dot runs on a different host than the
     # data was captured on.  Perhaps we should include this info in trace
+    meminfo = open('/proc/meminfo').readline().split()
+    if meminfo[0] == 'MemTotal:' and meminfo[2] == 'kB':
+        meminfo = int(meminfo[1]) / (1048576.) # Convert to GB
+    else:
+        meminfo = None
     out.write('digraph "%s" {\n' % testname)
-    out.write('label="%s\\n%s\\nPython %s\\n%s: %s"\nlabelloc=top\n' %
+    out.write('label="%s\\n%s\\nPython %s\\n%s: %s' % # Open quote
           (testname,
-           time.ctime(),
+           time.ctime(timestamp),
            platform.python_version(),
            platform.node(),
            platform.processor()))
+    if meminfo:
+        out.write(r'\n%.1fGB' % meminfo)
+
+    out.write('"\nlabelloc=top\n') # Close quotes in label
 
 def footer():
     out.write('}')
@@ -188,6 +197,7 @@ while args:
 infile = open(filename, 'r')
 data = cPickle.load(infile)
 infile.close()
+timestamp = os.stat(filename).st_ctime
 
 total = sum([c.get("__time__", 0.0) for c in data] + [0.0])
 
