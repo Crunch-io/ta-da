@@ -176,16 +176,16 @@ def recurse(d, parent=None):
         outfile.write(r'%s\n' % str(tuple(t['class'] for t in types)))
 
     outfile.write(
-        r'%s (%.2f%%) cumulative\n%s (%.2f%%) self"' % # ends " started in label=
+        r'%s (%.2f%%) self\n%s (%.2f%%) cumulative"' % # ends " started in label=
         (
-            fmt_time(cumtime), cumtime_pct,
             fmt_time(selftime), selftime_pct,
-
+            fmt_time(cumtime), cumtime_pct,
         )
     )
 
     if self_color or cum_color:
-        outfile.write(',style=filled,gradientangle=90,fillcolor="%s;0.5:%s"' % (self_color, cum_color))
+        outfile.write(',style=filled,gradientangle=90,fillcolor="%s;0.5:%s"' % (cum_color, self_color))
+        # NB - gradient is bottom-to-top
     outfile.write('];\n')
     if parent:
         outfile.write('N%d -> N%d;\n' % (parent, me))
