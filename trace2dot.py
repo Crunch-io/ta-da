@@ -1,13 +1,51 @@
 #!/usr/bin/env python
-import sys, os, time, platform, re
+import sys
+import os
+import time
+import platform
+import re
+import argparse
 import cPickle
 from math import sqrt
 
 # TODO: make these command-line args
-cutoff = 0.5
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-c', '--cutoff', default=0.1)
+parser.add_argument('-nc' '--no-collapse', action='store_true')
+parser.add_argument('-t', '--title', default='trace2dot')
+parser.add_argument('infile', nargs='?', type=argparse.FileType('r'),
+                    default=sys.stdin)
+parser.add_argument('outfile', nargs='?', type=argparse.FileType('w'),
+                    default=sys.stdout)
+
+# Args to add:
+# control coloring by self vs cumulative
+# color choices
+
+args = parser.parse_args()
+cutoff = args.cutoff
+title = args.title
+collapse = not args.no_collapse
+infile = args.infile
+outfile = args.outfile
+
+timestamp = os.fstat(infile.fileno()).st_ctime
+data = cPickle.load(infile)
+infile.close()
+
+total = sum([c.get("__time__", 0.0) for c in data] + [0.0])
+
+try:
+    meminfo = open('/proc/meminfo').readline().split()
+    if meminfo[0] == 'MemTotal:' and meminfo[2] == 'kB':
+        meminfo = int(meminfo[1]) / (1048576.) # Convert kB to GB
+    else:
+        meminfo = None
+except:
+    meminfo = None
+
 color_min=2
-collapse=True
-out = sys.stdout
 
 def colorcode(pct):
     if pct < color_min:
@@ -113,7 +151,7 @@ def recurse(d, parent=None):
     else:
         selftime_pct = 0
 
-    out.write('N%d\n' % me)
+    outfile.write('N%d\n' % me)
     color = colorcode(selftime_pct)
     if ncalls != 1:
         call = '%s [%d X]' % (call, ncalls)
@@ -122,20 +160,20 @@ def recurse(d, parent=None):
     def fmt_time(t):
         return ('%.2fs' % t) if t > 1 else '%.2fms' % (t*1000)
 
-    out.write(r'[label="%s\n' % call)
+    outfile.write(r'[label="%s\n' % call)
 
     # Extra annotation
     expr = d.get('expr')
     # Additional escaping of expr?  backslashes?
     if expr:
-        out.write(fixup_expr(expr))
-        out.write(r'\n')
+        outfile.write(fixup_expr(expr))
+        outfile.write(r'\n')
 
     types = d.get('types')
     if types:
-        out.write(r'%s\n' % str(tuple(t['class'] for t in types)))
+        outfile.write(r'%s\n' % str(tuple(t['class'] for t in types)))
 
-    out.write(
+    outfile.write(
         r'%s (%.2f%%) self\n%s (%.2f%%) cumulative"' % # ends " started in label=
         (
             fmt_time(selftime), selftime_pct,
@@ -144,10 +182,10 @@ def recurse(d, parent=None):
     )
 
     if color:
-        out.write('style=filled,fillcolor="%s"' % color)
-    out.write('];\n')
+        outfile.write('style=filled,fillcolor="%s"' % color)
+    outfile.write('];\n')
     if parent:
-        out.write('N%d -> N%d;\n' % (parent, me))
+        outfile.write('N%d -> N%d;\n' % (parent, me))
 
     children = d['{calls}']
     if collapse:
@@ -157,54 +195,34 @@ def recurse(d, parent=None):
     for child in children:
         recurse(child, me)
 
-def header(testname):
-    # This will be wrong if trace2dot runs on a different host than the
-    # data was captured on.  Perhaps we should include this info in trace
-    meminfo = open('/proc/meminfo').readline().split()
-    if meminfo[0] == 'MemTotal:' and meminfo[2] == 'kB':
-        meminfo = int(meminfo[1]) / (1048576.) # Convert to GB
-    else:
-        meminfo = None
-    out.write('digraph "%s" {\n' % testname)
-    out.write('label="%s\\n%s\\nPython %s\\n%s: %s' % # Open quote
-          (testname,
+def header():
+    # Header data will be wrong if trace2dot runs on a different host than
+    # the data was captured on.  Perhaps we should include this info in trace
+    outfile.write('digraph "%s" {\n' % title)
+    outfile.write('label="%s\\n%s\\nPython %s\\n%s: %s' % # Open quote
+          (title,
            time.ctime(timestamp),
            platform.python_version(),
            platform.node(),
            platform.processor()))
     if meminfo:
-        out.write(r'\n%.1fGB' % meminfo)
+        outfile.write(r'\n%.1fGB' % meminfo)
 
-    out.write('"\nlabelloc=top\n') # Close quotes in label
+    outfile.write('"\nlabelloc=top\n') # Close quotes in label
 
 def footer():
-    out.write('}')
+    outfile.write('}')
 
-filename = 'trace.pickle'
-testname = 'Silhouette'
 
-args = sys.argv[1:]
-while args:
-    a = args.pop(0)
-    if a.startswith('-t'):
-        testname = args.pop(0)
-    elif a.startswith('-'):
-        sys.stderr.write("Unknown flag %s\n" % a)
-        sys.exit(-1)
-    else:
-        filename = a
+def main():
+    header()
+    recurse({
+        "__call__": title,
+        "__time__": total,
+        "{calls}": data,
+    })
+    footer()
 
-infile = open(filename, 'r')
-data = cPickle.load(infile)
-infile.close()
-timestamp = os.stat(filename).st_ctime
 
-total = sum([c.get("__time__", 0.0) for c in data] + [0.0])
-
-header(testname)
-recurse({
-    "__call__": testname,
-    "__time__": total,
-    "{calls}": data,
-})
-footer()
+if __name__ == '__main__':
+    main()
