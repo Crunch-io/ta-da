@@ -11,17 +11,18 @@ from math import sqrt
 # TODO: make these command-line args
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-c', '--cutoff', default=0.1)
-parser.add_argument('-nc' '--no-collapse', action='store_true')
-parser.add_argument('-t', '--title', default='trace2dot')
+parser.add_argument('-c', '--cutoff', default=0.1,
+                    help='omit nodes with less than this percent of total time')
+parser.add_argument('-nc', '--no-collapse', action='store_true',
+                    help='do not combine repeated calls (graph will be huge!)')
+parser.add_argument('-t', '--title', default='trace2dot',
+                    help='title for graph')
 parser.add_argument('infile', nargs='?', type=argparse.FileType('r'),
                     default=sys.stdin)
 parser.add_argument('outfile', nargs='?', type=argparse.FileType('w'),
                     default=sys.stdout)
 
-# Args to add:
-# control coloring by self vs cumulative
-# color choices
+# Add flag for 2-color operation (requires graphviz 2.34)
 
 args = parser.parse_args()
 cutoff = args.cutoff
@@ -32,7 +33,7 @@ outfile = args.outfile
 
 timestamp = os.fstat(infile.fileno()).st_ctime
 data = cPickle.load(infile)
-infile.close()
+#infile.close()
 
 total = sum([c.get("__time__", 0.0) for c in data] + [0.0])
 
@@ -45,11 +46,11 @@ try:
 except:
     meminfo = None
 
-color_min=2
+color_min=1
 
 def colorcode(pct):
     if pct < color_min:
-        return None
+        return "white"
     f = min((pct - color_min) / (100.0 - color_min), 1.0)
     f = sqrt(f)
     h = f * 0 + (1 - f) * 0.15  # Yellow-orange
@@ -152,10 +153,11 @@ def recurse(d, parent=None):
         selftime_pct = 0
 
     outfile.write('N%d\n' % me)
-    color = colorcode(selftime_pct)
-    if ncalls != 1:
-        call = '%s [%d X]' % (call, ncalls)
+    self_color = colorcode(selftime_pct)
+    cum_color = colorcode(cumtime_pct)
 
+    if ncalls != 1: # Use stacked polygons?
+        call = '%s [%d X]' % (call, ncalls)
 
     def fmt_time(t):
         return ('%.2fs' % t) if t > 1 else '%.2fms' % (t*1000)
@@ -174,15 +176,16 @@ def recurse(d, parent=None):
         outfile.write(r'%s\n' % str(tuple(t['class'] for t in types)))
 
     outfile.write(
-        r'%s (%.2f%%) self\n%s (%.2f%%) cumulative"' % # ends " started in label=
+        r'%s (%.2f%%) cumulative\n%s (%.2f%%) self"' % # ends " started in label=
         (
-            fmt_time(selftime), selftime_pct,
             fmt_time(cumtime), cumtime_pct,
+            fmt_time(selftime), selftime_pct,
+
         )
     )
 
-    if color:
-        outfile.write('style=filled,fillcolor="%s"' % color)
+    if self_color or cum_color:
+        outfile.write(',style=filled,gradientangle=90,fillcolor="%s;0.5:%s"' % (self_color, cum_color))
     outfile.write('];\n')
     if parent:
         outfile.write('N%d -> N%d;\n' % (parent, me))
