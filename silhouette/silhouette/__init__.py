@@ -29,8 +29,7 @@ try:
 except ImportError:
     import json
 
-IS_ON = (os.environ.get("SILHOUETTE_ON", "True").lower().startswith("t"))
-
+IS_ON = (os.environ.get("SILHOUETTE_ENABLE") is not None)
 
 class Context(object):
     """A call context for tracing execution.
@@ -85,6 +84,9 @@ class Context(object):
             trace.logger.debug("tracing %s: done in %0.3f" %
                                (self.callpoint["__call__"], elapsed))
 
+class Noop:
+    def __setitem__(self, key, val):
+        pass
 
 class Trace(_threadlocal):
     """A thread-local stack for tracing execution."""
@@ -96,13 +98,14 @@ class Trace(_threadlocal):
 
     def __init__(self):
         self.execution = []
-        self.callpoint = None
+        self.callpoint = None if IS_ON else Noop()
+
 
     def clear(self):
         """Remove all attributes of self."""
         self.__dict__.clear()
         self.execution = []
-        self.callpoint = None
+        self.callpoint = None if IS_ON else Noop()
 
     def execute(self, call=None):
         """Return a function decorator with timing/execution recording.
