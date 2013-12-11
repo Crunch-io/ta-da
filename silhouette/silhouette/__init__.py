@@ -6,14 +6,19 @@ allow certain functions or modules to be ignored. The forest is often
 lost for the trees. Silhouette operates selectively instead, allowing
 you to focus on the important concepts in your domain. You can:
 
- * Add lightweight function decorators or context managers to your
-   code to get a context-rich call graph, complete with timings.
+ * Add function decorators or context managers to your code to get a
+   context-rich call graph, complete with timings.
  * Annotate any call node with arbitrary metadata, to help explain
    why you received the results you did.
  * Print calls as they execute and/or collect them for later analysis.
  * Return silhouette call graphs from other services and integrate
    them into your local graph. Distributed tracing ftw!
 
+Due to overhead, silhouette is disabled by default.
+To enable, the environment variable SILHOUETTE_ENABLE must be set.
+
+See the script 'trace2dot.py' in the tools repo for a post-processor
+which creates a graphical representation.
 """
 
 from copy import deepcopy
@@ -29,7 +34,7 @@ try:
 except ImportError:
     import json
 
-IS_ON = (os.environ.get("SILHOUETTE_ENABLE") is not None)
+enable = (os.environ.get("SILHOUETTE_ENABLE") is not None)
 
 class Context(object):
     """A call context for tracing execution.
@@ -98,14 +103,14 @@ class Trace(_threadlocal):
 
     def __init__(self):
         self.execution = []
-        self.callpoint = None if IS_ON else Noop()
+        self.callpoint = None if enable else Noop()
 
 
     def clear(self):
         """Remove all attributes of self."""
         self.__dict__.clear()
         self.execution = []
-        self.callpoint = None if IS_ON else Noop()
+        self.callpoint = None if enable else Noop()
 
     def execute(self, call=None):
         """Return a function decorator with timing/execution recording.
@@ -123,7 +128,7 @@ class Trace(_threadlocal):
         the decorated function will be used as the name of the call.
         """
         def decorator(func):
-            if not IS_ON:
+            if not enable:
                 return func
 
             def execute_wrapper(*args, **kwargs):
@@ -178,7 +183,7 @@ class Trace(_threadlocal):
         stream.flush()
 
     def save(self, file):
-        """Write trace (as python pickle) for post-processing by other programs"""
+        """Write trace (as python pickle) for post-processing by other programs (e.g. trace2dot)"""
         import cPickle
         cPickle.dump(self.execution, file)
 
