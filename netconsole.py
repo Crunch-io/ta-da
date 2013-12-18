@@ -5,6 +5,8 @@ import socket
 import code
 import threading
 
+# TODO: readline support
+
 _stdout, _stderr = sys.stdout, sys.stderr
 _ps1, _ps2 = '>>>', '...'
 
@@ -19,9 +21,11 @@ class Diverter:
             print >> _stderr, e
             print >> _stdout, line
 
-class NetworkConsole(code.InteractiveConsole, threading.Thread):
+class NetConsole(code.InteractiveConsole, threading.Thread):
 
-    def __init__(self, port=13013):
+    def __init__(self, prompt_prefix='', banner=None, port=13013):
+        self.prompt_prefix = prompt_prefix
+        self.banner = banner
         self.port = port
         code.InteractiveConsole.__init__(self)
         threading.Thread.__init__(self)
@@ -38,9 +42,9 @@ class NetworkConsole(code.InteractiveConsole, threading.Thread):
                 self.conn, self.remote_addr = self.sock.accept()
                 #self.f = self.conn.makefile()
                 sys.stdout = Diverter(self.conn) # Yikes, is this the only way to capture output?
-                sys.ps1 = 'zz9'+_ps1
-                sys.ps2 = 'zz9'+_ps2
-                self.interact("You are connected to a running zz9 instance, so be careful!")
+                sys.ps1 = self.prompt_prefix+_ps1
+                sys.ps2 = self.prompt_prefix+_ps2
+                self.interact(self.banner)
             except Exception, e:
                 print >> _stderr, e
             finally:
@@ -80,7 +84,6 @@ class NetworkConsole(code.InteractiveConsole, threading.Thread):
             lines = data.split('\r\n') # telnet
             self.partial_line = lines.pop() # if data ends with \n this is empty
             self.lines.extend(lines)
-
         line = self.lines.pop(0)
         if any(line.startswith(x) for x in ('\004', 'quit', 'sys.exit', 'exit')):
             # Don't quit the interpreter!
@@ -97,5 +100,5 @@ class NetworkConsole(code.InteractiveConsole, threading.Thread):
 
 
 if __name__=='__main__':
-    nc = NetworkConsole()
+    nc = NetConsole(prompt_prefix="test", banner="Testing NetConsole")
     nc.start()
