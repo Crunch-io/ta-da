@@ -73,14 +73,14 @@ def update_accum(a,b):
             continue
         if k == "expr":
             if fixup_expr(a.get(k,'')) != fixup_expr(b.get(k, '')):
-                raise ValueError, "cannot combine %s and %s" % (a.get(k), b.get(k))
+                raise ValueError, "Cannot combine %s and %s" % (a.get(k), b.get(k))
             else:
                 continue
         if k == 'types':
             a_types = [x['class'] for x in a['types']]
             b_types = [x['class'] for x in b['types']]
             if a_types != b_types:
-                raise ValueError, "cannot combine %s and %s" % (a_types, b_types)
+                raise ValueError, "Cannot combine %s and %s" % (a_types, b_types)
             else:
                 continue
 
@@ -111,7 +111,8 @@ def collapse_children(children):
         for r in result:
             exp = fixup_expr(r.get('expr', ''))
             if (r['__call__'] == c['__call__'] and
-                fixup_expr(c.get('expr', '')) == exp):
+                fixup_expr(c.get('expr', '')) == exp and
+                c.get('types') == r.get('types')):
                 found = True
                 break
         if not found:
