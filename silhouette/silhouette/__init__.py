@@ -152,6 +152,8 @@ class Trace(_threadlocal):
 
     def click(self, call):
         """Add a callpoint with the time since the last callpoint (or 0)."""
+        if not enable:
+            return
         c = time.time()
         try:
             t = c - self.execution[-1]["click"]
@@ -166,14 +168,20 @@ class Trace(_threadlocal):
 
     def prune(self, threshold=1.0):
         """Remove any calls from self less than the given time (in seconds)."""
+        if not enable:
+            return
         self.execution = prune_calls(self.execution, threshold)
 
     def format(self, indent='  ', pct=False):
         """Return self.execution in a pretty format."""
+        if not enable:
+            return
         return format_calls(self.execution, indent=indent, pct=pct)
 
     def report(self, indent='  ', pct=False, stream=sys.stdout):
         """Write the trace as JSON to the given stream."""
+        if not enable:
+            return
         stream.write("\nExecution trace ===================================\n")
         stream.flush()
         stream.write(self.format(indent, pct))
@@ -183,12 +191,16 @@ class Trace(_threadlocal):
 
     def save(self, file):
         """Write trace (as python pickle) for post-processing by other programs (e.g. trace2dot)"""
+        if not enable:
+            return
         import cPickle
         cPickle.dump(self.execution, file)
 
 
 def prune_calls(calls, threshold=1.0):
     """Remove any calls less than the given time (in seconds)."""
+    if not enable:
+        return
     calls = [c for c in calls if c.get("__time__", 0) >= threshold]
     for c in calls:
         if "{calls}" in c:
@@ -203,6 +215,8 @@ def format_calls(calls, indent='  ', pct=False):
     If the 'pct' argument is True, all "__time__" members (which are
     floating-point seconds) will be replaced with percent strings.
     """
+    if not enable:
+        return
     if pct:
         total = sum([c.get("__time__", 0.0) for c in calls] + [0.0])
         if total:
