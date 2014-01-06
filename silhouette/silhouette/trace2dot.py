@@ -253,4 +253,4 @@ if __name__ == '__main__':
 
     c = Converter(title, cutoff, collapse)
     c.read_trace_file(infile)
-    c.write_svg(outfile)
+    c.write_dot(outfile)
