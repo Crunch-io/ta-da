@@ -25,7 +25,7 @@ parser.add_argument('outfile', nargs='?', type=argparse.FileType('w'),
 # Add flag for 2-color operation (requires graphviz 2.34)
 
 args = parser.parse_args()
-cutoff = args.cutoff
+cutoff = float(args.cutoff)
 title = args.title
 collapse = not args.no_collapse
 infile = args.infile
