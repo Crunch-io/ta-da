@@ -23,7 +23,6 @@ which creates a graphical representation.
 
 from copy import deepcopy
 import os
-import platform
 import sys
 from threading import local as _threadlocal
 import time
@@ -34,6 +33,7 @@ except ImportError:
     import json
 
 enable = (os.environ.get("SILHOUETTE_ENABLE") is not None)
+
 
 class Context(object):
     """A call context for tracing execution.
@@ -195,6 +195,13 @@ class Trace(_threadlocal):
             return
         import cPickle
         cPickle.dump(self.execution, file)
+
+    def write_svg(self, title, path):
+        from silhouette import trace2dot
+
+        c = trace2dot.Converter(title)
+        c.data = self.execution
+        c.write_svg(path)
 
 
 def prune_calls(calls, threshold=1.0):
