@@ -28,7 +28,7 @@ class Converter(object):
 
     @property
     def total(self):
-        return sum([c.get("__time__", 0.0) for c in self.data] + [0.0])
+        return sum([float(c.get("__time__", 0.0)) for c in self.data] + [0.0])
 
     def write_dot(self, outfile):
         self.node_id = 0
@@ -83,7 +83,11 @@ class Converter(object):
                     raise ValueError("Cannot combine %s and %s" % (a_types, b_types))
                 else:
                     continue
-
+            if k == '__time__': # Hack b/c serialize times can be reported as string type
+                if isinstance(b[k], basestring):
+                    b[k] = float(b[k])
+                if k in a and isinstance(a[k], basestring):
+                    a[k] = float(a[k])
             if k not in a:
                 a[k] = b[k]
             else:
@@ -135,8 +139,10 @@ class Converter(object):
         call = d['__call__']
         ncalls = d.get('__ncalls__', 1)
         cumtime = d.get('__time__', None)
-        if cumtime is None or not isinstance(cumtime, float):
+        if cumtime is None:
             return
+        if not isinstance(cumtime, float):
+            cumtime = float(cumtime)
         if self.total:
             cumtime_pct = (cumtime / self.total) * 100
             if cumtime_pct < self.cutoff:
@@ -148,8 +154,8 @@ class Converter(object):
         selftime = cumtime
         for child in d['{calls}']:
             childtime = child.get('__time__', None)
-            if childtime and isinstance(childtime, float):
-                selftime -= childtime
+            if childtime:
+                selftime -= float(childtime)
         if self.total:
             selftime_pct = (selftime / self.total) * 100
         else:
