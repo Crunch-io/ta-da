@@ -194,7 +194,7 @@ class Trace(_threadlocal):
         if not enable:
             return
         import cPickle
-        cPickle.dump(self.execution, file)
+        cPickle.dump(self.execution, file, protocol=2)
 
     def write_svg(self, title, path):
         from silhouette import trace2dot
