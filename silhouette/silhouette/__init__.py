@@ -104,6 +104,9 @@ class Trace(_threadlocal):
         self.execution = []
         self.callpoint = None if enable else Noop()
 
+    def __nonzero__(self):
+        # Allows clients to test 'if trace'
+        return enable
 
     def clear(self):
         """Remove all attributes of self."""
