@@ -12,14 +12,12 @@ from cr.lib.entities.users import User
 from silhouette import trace
 
 
-ZZ9_ENDPOINT = os.environ.get("ZZ9_ENDPOINT", "inproc://zz9_crunch-lib-tests")
-
 TEST_SETTINGS = {
     'APP_STORE': {
         'HOST': 'localhost',
         'PORT': 27017,
         'NAME': 'test_crunch_app',
-        'ZZ9': {'host': ZZ9_ENDPOINT,
+        'ZZ9': {#'host': ZZ9_ENDPOINT,
                 'map':  "file:///tmp/zz9.map"},
         'UPLOADS_PATH': os.environ.get('UPLOADS_PATH', '/tmp'),
     },
@@ -33,7 +31,7 @@ TEST_SETTINGS = {
         'PORT': 27017,
         'NAME': 'test_crunch_tokens',
         'SALT': 'random-string!!@@@',
-        'MAX_SESSION_KEY': 18446744073709551616L,  # 2 << 63
+        'MAX_SESSION_KEY': 1<<63,
     },
     'AUTH_STORE': {
         'HOST': 'localhost',
