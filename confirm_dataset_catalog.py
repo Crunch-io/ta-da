@@ -15,7 +15,7 @@ TEST_SETTINGS = {
         'HOST': 'localhost',
         'PORT': 27017,
         'NAME': 'test_crunch_app',
-        'ZZ9': {'host': ZZ9_ENDPOINT, 'map': 'file:///tmp/zz9.map'},
+        'ZZ9': {'map': 'file:///tmp/zz9.map'},
         'UPLOADS_PATH': os.environ.get('UPLOADS_PATH', '/tmp'),
     },
     'USER_STORE': {
