@@ -1,4 +1,6 @@
 from collections import defaultdict
+import os
+thisdir = os.path.abspath(os.path.dirname(__file__))
 from threading import local as _threadlocal
 import time
 
@@ -71,31 +73,3 @@ class Tagger(_threadlocal):
             execute_wrapper.__name__ = func.__name__
             return execute_wrapper
         return decorator
-
-
-from cProfile import Profile
-import pstats
-
-
-def cprofile(stream=None, filename=None, *restrictions):
-    """A decorator to profile a function and optionally save its stats."""
-    def decorator(f):
-        f._silhouette_profile = p = Profile()
-
-        def profiled(*args, **kwargs):
-            p.enable()
-            try:
-                return f(*args, **kwargs)
-            finally:
-                p.disable()
-                if stream is not None:
-                    s = pstats.Stats(p, stream=stream)
-                    s.sort_stats("cumulative").print_stats(*restrictions)
-                if filename is not None:
-                    fname = filename % {"function": f.__name__, "time": time.time()}
-                    p.dump_stats(fname)
-
-        profiled.__name__ = f.__name__
-        return profiled
-
-    return decorator
