@@ -2,61 +2,39 @@
 import sys
 import os
 import time
-import platform
 import re
 import argparse
 import cPickle
-from math import sqrt
+
+from . import dotfile
 
 
-class Converter(object):
+class Converter(dotfile.DotGraph):
 
     def __init__(self, title='trace2dot', cutoff=0.1, collapse=False):
-        self.title = title
         self.cutoff = cutoff
         self.collapse = collapse
-
-        self.color_min = 1
-
-        self.timestamp = None
         self.data = None
 
+        dotfile.DotGraph.__init__(self, title)
+
     def read_trace_file(self, infile):
-        self.timestamp = os.fstat(infile.fileno()).st_ctime
+        timestamp = time.ctime(os.fstat(infile.fileno()).st_ctime)
+        self.header = "%(title)s\\n" + timestamp + "\\nPython %(pyversion)s\\n%(node)s: %(processor)s"
         self.data = cPickle.load(infile)
+        self.total = self.get_total()
         #infile.close()
 
-    @property
-    def total(self):
+    def get_total(self):
         return sum([float(c.get("__time__", 0.0)) for c in self.data] + [0.0])
 
     def write_dot(self, outfile):
-        self.node_id = 0
-
-        self.write_header(outfile)
-        self.recurse(outfile, {
+        head_node = {
             "__call__": self.title,
             "__time__": self.total,
             "{calls}": self.data,
-        })
-        self.write_footer(outfile)
-
-    def write_svg(self, path):
-        outfile = os.popen('dot -Tsvg -o%s' % path, 'w')
-        self.write_dot(outfile)
-        exitcode = outfile.close()
-        if exitcode:
-            raise IOError("dot did not succeed. Got exitcode %s" % exitcode)
-
-    def colorcode(self, pct):
-        if pct < self.color_min:
-            return "0 0 1"
-        f = min((pct - self.color_min) / (100.0 - self.color_min), 1.0)
-        f = sqrt(f)
-        h = f * 0 + (1 - f) * 0.15  # Yellow-orange
-        s = max(f, 0.1)
-        v = 1
-        return "%.3f %.3f %.3f" % (h, s, v)
+        }
+        dotfile.DotGraph.write_dot(self, outfile, head_node)
 
     fixup_pattern = re.compile("'[0-9a-f]{32}'")
 
@@ -83,11 +61,13 @@ class Converter(object):
                     raise ValueError("Cannot combine %s and %s" % (a_types, b_types))
                 else:
                     continue
-            if k == '__time__': # Hack b/c serialize times can be reported as string type
+
+            if k == '__time__':  # Hack b/c serialize times can be reported as string type
                 if isinstance(b[k], basestring):
                     b[k] = float(b[k])
                 if k in a and isinstance(a[k], basestring):
                     a[k] = float(a[k])
+
             if k not in a:
                 a[k] = b[k]
             else:
@@ -116,9 +96,11 @@ class Converter(object):
             found = False
             for r in result:
                 r_expr = self.fixup_expr(r.get('expr', ''))
-                if (r['__call__'] == c['__call__'] and
+                if (
+                    r['__call__'] == c['__call__'] and
                     c_expr == r_expr and
-                    c.get('types') == r.get('types')):
+                    c.get('types') == r.get('types')
+                ):
                     found = True
                     break
 
@@ -127,24 +109,26 @@ class Converter(object):
             else:
                 try:
                     self.update_accum(r, c)
-                except ValueError: # Cannot merge
+                except ValueError:  # Cannot merge
                     result.append(c)
 
         return result
 
-    def recurse(self, outfile, d, parent=None):
-        self.node_id += 1
-        me = self.node_id
+    def node_params(self, node):
+        """Return a dictionary of .dot params for the given node."""
+        params = {}
 
-        call = d['__call__']
-        ncalls = d.get('__ncalls__', 1)
-        cumtime = d.get('__time__', None)
+        # ---------------------------- Fillcolor ---------------------------- #
+
+        cumtime = node.get('__time__', None)
         if cumtime is None:
             return
         if not isinstance(cumtime, float):
             cumtime = float(cumtime)
-        if self.total:
-            cumtime_pct = (cumtime / self.total) * 100
+
+        total = self.total
+        if total:
+            cumtime_pct = (cumtime / total) * 100
             if cumtime_pct < self.cutoff:
                 return
         else:
@@ -152,39 +136,43 @@ class Converter(object):
 
         # Calculate individual time by subtracting child times
         selftime = cumtime
-        for child in d['{calls}']:
+        for child in node['{calls}']:
             childtime = child.get('__time__', None)
             if childtime:
                 selftime -= float(childtime)
-        if self.total:
-            selftime_pct = (selftime / self.total) * 100
+        if total:
+            selftime_pct = (selftime / total) * 100
         else:
             selftime_pct = 0
 
-        outfile.write('N%d\n' % me)
         self_color = self.colorcode(selftime_pct)
         cum_color = self.colorcode(cumtime_pct)
 
+        if self_color or cum_color:
+            params["fillcolor"] = "%s;0.5:%s" % (cum_color, self_color)
+
+        # --------------------------- Node Label --------------------------- #
+
+        call = node['__call__']
+        ncalls = node.get('__ncalls__', 1)
         if ncalls != 1:  # Use stacked polygons?
             call = '%s [%d X]' % (call, ncalls)
+        label = '"%s\n' % call
+
+        # Extra annotation
+        expr = node.get('expr')
+        # Additional escaping of expr?  backslashes?
+        if expr:
+            label += self.fixup_expr(expr) + r'\n'
+
+        types = node.get('types')
+        if types:
+            label += r'%s\n' % str(tuple(t['class'] for t in types))
 
         def fmt_time(t):
             return ('%.2fs' % t) if t > 1 else '%.2fms' % (t*1000)
 
-        outfile.write(r'[label="%s\n' % call)
-
-        # Extra annotation
-        expr = d.get('expr')
-        # Additional escaping of expr?  backslashes?
-        if expr:
-            outfile.write(self.fixup_expr(expr))
-            outfile.write(r'\n')
-
-        types = d.get('types')
-        if types:
-            outfile.write(r'%s\n' % str(tuple(t['class'] for t in types)))
-
-        outfile.write(
+        label += (
             r'%s (%.2f%%) self\n%s (%.2f%%) cumulative"' %  # ends " started in label=
             (
                 fmt_time(selftime), selftime_pct,
@@ -192,47 +180,17 @@ class Converter(object):
             )
         )
 
-        if self_color or cum_color:
-            outfile.write(',style=filled,gradientangle=90,fillcolor="%s;0.5:%s"' % (cum_color, self_color))
-            # NB - gradient is bottom-to-top
-        outfile.write('];\n')
-        if parent:
-            outfile.write('N%d -> N%d;\n' % (parent, me))
+        params["label"] = label
 
-        children = d['{calls}']
+        return params
+
+    def node_children(self, node):
+        """Return an iterable of child nodes for the given node."""
+        children = node['{calls}']
         if self.collapse:
             children = self.collapse_children(children)
-            d['{calls}'] = children
-
-        for child in children:
-            self.recurse(outfile, child, me)
-
-    def write_header(self, outfile):
-        try:
-            meminfo = open('/proc/meminfo').readline().split()
-            if meminfo[0] == 'MemTotal:' and meminfo[2] == 'kB':
-                meminfo = int(meminfo[1]) / (1048576.)  # Convert kB to GB
-            else:
-                meminfo = None
-        except:
-            meminfo = None
-
-        # Header data will be wrong if trace2dot runs on a different host than
-        # the data was captured on.  Perhaps we should include this info in trace
-        outfile.write('digraph "%s" {\n' % self.title)
-        outfile.write('label="%s\\n%s\\nPython %s\\n%s: %s' %  # Open quote
-              (self.title,
-               time.ctime(self.timestamp),
-               platform.python_version(),
-               platform.node(),
-               platform.processor()))
-        if meminfo:
-            outfile.write(r'\n%.1fGB' % meminfo)
-
-        outfile.write('"\nlabelloc=top\n')  # Close quotes in label
-
-    def write_footer(self, outfile):
-        outfile.write('}')
+            node['{calls}'] = children
+        return children
 
 
 if __name__ == '__main__':

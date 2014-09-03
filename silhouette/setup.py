@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='silhouette',
-    version='0.2.1',
+    version='0.2.2',
     author="Robert Brewer, JJ Del Carpio, Charles G Waldman",
     author_email="dev@crunch.io",
     packages=find_packages('.'),
