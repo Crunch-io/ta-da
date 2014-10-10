@@ -45,7 +45,7 @@ Options:
 """ % {"cpu_count": cpu_count, "memtotal": proc_meminfo['MemTotal']}
     arguments = docopt(helpstr)
 
-    processes = int(arguments['--processes'])
+    processes = int(arguments['--processes'] or cpu_count)
     procs = []
     memory_pct = float(arguments['--memory'] or 100.0)
 
