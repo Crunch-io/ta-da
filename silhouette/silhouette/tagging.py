@@ -4,7 +4,7 @@ thisdir = os.path.abspath(os.path.dirname(__file__))
 from threading import local as _threadlocal
 import time
 
-silhouette_enable = os.environ.get("SILHOUETTE_ENABLE") is not None
+enabled = os.environ.get("SILHOUETTE_ENABLE") is not None
 
 class Tagger(_threadlocal):
     """A thread-local object for selectively recording times in groups.
@@ -49,7 +49,7 @@ class Tagger(_threadlocal):
         the outermost time includes any inner times.
         """
 
-        if not tagging_on:
+        if not enabled:
             def noop(func):
                 return func
             return noop
