@@ -20,6 +20,7 @@ class Tagger(_threadlocal):
 
     def __init__(self):
         self.clear()
+        self.enabled = enabled
 
     def clear(self):
         """Remove all attributes of self."""
