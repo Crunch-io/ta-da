@@ -30,6 +30,33 @@ with open("/proc/meminfo", "rb") as lines:
         proc_meminfo[k] = amt
 
 
+def make_memory_process(memory_pct):
+    # Approximate. Sue me.
+    rng = (proc_meminfo['MemTotal'] * (memory_pct / 100.0)) / 32
+    code = "a = range(%d);raw_input()" % rng
+    args = [
+        # 'exec' causes the command to inherit the shell process.
+        # Without it, the shell would start a child process with a
+        # different PID and which we could not .kill()
+        "exec",
+        sys.executable, '-c', '"%s"' % code
+    ]
+    return subprocess.Popen(" ".join(args), shell=True)
+
+
+def make_cpu_process(which_cpu):
+    args = [
+        # 'exec' causes the command to inherit the shell process.
+        # Without it, the shell would start a child process with a
+        # different PID and which we could not .kill()
+        "exec",
+        'taskset',
+        '-c', str(which_cpu),
+        sys.executable, '-c', '"while True: pass"'
+    ]
+    return subprocess.Popen(" ".join(args), shell=True)
+
+
 def main():
     """The entry point for loadit."""
     helpstr = """Load CPUs and memory.
@@ -53,17 +80,7 @@ Options:
         # Start a memory-load process.
         if memory_pct > 0:
             print ("Starting a process to load %s%% of memory. PID:" % memory_pct),
-            # Approximate. Sue me.
-            rng = (proc_meminfo['MemTotal'] * (memory_pct / 100.0)) / 32
-            code = "a = range(%d);raw_input()" % rng
-            args = [
-                # 'exec' causes the command to inherit the shell process.
-                # Without it, the shell would start a child process with a
-                # different PID and which we could not .kill()
-                "exec",
-                sys.executable, '-c', '"%s"' % code
-            ]
-            proc = subprocess.Popen(" ".join(args), shell=True)
+            proc = make_memory_process(memory_pct)
             procs.append(proc)
             print proc.pid, "loaded."
 
@@ -73,16 +90,7 @@ Options:
             for p in xrange(processes):
                 which_cpu = p % cpu_count
                 print ("Starting a process to load processor %d. PID:" % which_cpu),
-                args = [
-                    # 'exec' causes the command to inherit the shell process.
-                    # Without it, the shell would start a child process with a
-                    # different PID and which we could not .kill()
-                    "exec",
-                    'taskset',
-                    '-c', str(which_cpu),
-                    sys.executable, '-c', '"while True: pass"'
-                ]
-                proc = subprocess.Popen(" ".join(args), shell=True)
+                proc = make_cpu_process(which_cpu)
                 procs.append(proc)
                 print ("%d," % proc.pid),
                 print "loaded."
