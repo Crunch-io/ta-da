@@ -3265,15 +3265,34 @@ import pstats
 import time
 
 
-def cprofile(stream=None, restrictions=None, filename=None, write_svg=True):
+pid = os.getpid()
+statm = "/proc/%s/statm" % pid
+PAGESIZE = 4096
+
+
+def get_my_rss():
+    """Return current RSS (in bytes)"""
+    vsz, rss, shared, trs, lib, data, dirty = open(statm, 'rb').read().split(" ")
+    return int(rss) * PAGESIZE
+
+
+def cprofile(stream=None, restrictions=None, filename=None, write_svg=True, rss=False):
     """A decorator to profile a function and output its stats."""
     if restrictions is None:
         restrictions = []
 
     def decorator(f):
-        f._silhouette_profile = p = cProfile()
-
         def profiled(*args, **kwargs):
+            if rss:
+                # Record RSS instead of time
+                p = cProfile(
+                    get_my_rss,
+                    # Record usage in KB
+                    1.0 / 1024
+                )
+            else:
+                p = cProfile()
+
             p.enable()
             try:
                 return f(*args, **kwargs)
