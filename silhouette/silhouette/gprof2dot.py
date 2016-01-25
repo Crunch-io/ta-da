@@ -3260,6 +3260,7 @@ class Main:
 
 
 import os
+import resource
 from cProfile import Profile as cProfile
 import pstats
 import time
@@ -3267,7 +3268,7 @@ import time
 
 pid = os.getpid()
 statm = "/proc/%s/statm" % pid
-PAGESIZE = 4096
+PAGESIZE = resource.getpagesize()
 
 
 def get_my_rss():
