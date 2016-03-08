@@ -1,2 +1,0 @@
-2016-01-03T21:29:24.837017Z eu-vpc 180.76.15.34:46926 10.30.0.5:80 0.000037 0.000502 0.000019 301 301 0 185 "GET http://beta.crunch.io:80/robots.txt HTTP/1.1" "Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2" - -
-2016-01-03T21:29:25.885535Z eu-vpc 180.76.15.147:27506 10.30.0.5:443 0.000044 0.000527 0.000021 200 200 0 2935 "GET https://beta.crunch.io:443/robots.txt HTTP/1.1" "Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2" DHE-RSA-AES128-SHA TLSv1

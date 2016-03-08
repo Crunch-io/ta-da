@@ -19,8 +19,8 @@ def test_file_in_date_range():
     assert not file_in_date_range(f1, 20151101, 20151101, 2130, 2259)
 
 def test_find_dot():
-    paths = ["2015/12/30", "2015/12/31", "2016/01/01", "2016/01/02", "2016/01/03", "2016/01/04", "2016/01/05"]
-    nlogs = [48, 46, 46, 45, 45, 48, 48]  # Apparently they aren't all 24*2, but that's ok
+    paths = ["2015/12/30", "2015/12/31", "2016/01/01", "2016/01/02", "2016/01/03"]
+    nlogs = [48, 46, 46, 45, 0]  # Apparently they aren't all 24*2, but that's ok
     for i, p in enumerate(paths):
         dir1 = find_dot(path=os.path.join(FIXTURES_DIR, p))
         assert len(dir1) == nlogs[i], len(dir1)
