@@ -1,13 +1,34 @@
+import contextlib
 import os
-import unittest
+import shutil
+import subprocess
 
-from elblogs.files import find_dot, file_in_date_range, extract_dataset_id
+from tempfile import mkdtemp
+from unittest import TestCase
+
+from elblogs.files import find_dot, file_in_date_range, extract_dataset_id, logfile_to_datasets
 
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FIXTURES_DIR = os.path.join(HERE, "fixtures")
 
-class TestFiles(unittest.TestCase):
+def file_line_count(filename):
+    with open(filename) as f:
+        count = sum(1 for line in f)
+    return count
+
+
+@contextlib.contextmanager
+def tempdir(cleanup=True, **kwargs):
+    tmpdir = mkdtemp(**kwargs)
+    try:
+        yield tmpdir
+    finally:
+        if cleanup:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+
+class TestFiles(TestCase):
 
     def assertLength(self, obj, expected):
         self.assertEqual(len(obj), expected)
@@ -51,4 +72,44 @@ class TestFiles(unittest.TestCase):
             '__none__')
 
     def test_reshape_datasets(self):
-        pass
+        with tempdir() as testdir:
+            lfile = '2015/12/30/910774676937_elasticloadbalancing_eu-west-1_eu-vpc_20151230T0000Z_46.51.204.253_5kghxkum.log'
+            lfile = os.path.join(FIXTURES_DIR, lfile)
+            logfile_to_datasets(lfile, testdir)
+
+            outfiles = find_dot(path=testdir)
+            filelengths = [file_line_count(f) for f in outfiles]
+            print filelengths
+            self.assertEqual(sum(filelengths), file_line_count(lfile))
+
+    def test_reshape_many_files(self):
+        with tempdir() as testdir:
+            lfiles = find_dot(path=os.path.join(FIXTURES_DIR, "2015/12/30"))
+            logfile_to_datasets(lfiles, testdir)
+
+            outfiles = find_dot(path=testdir)
+            filelengths = [file_line_count(f) for f in outfiles]
+            originallengths = [file_line_count(f) for f in lfiles]
+            self.assertEqual(sum(filelengths), sum(originallengths))
+
+            # Now assert that a dataset file is all that dataset
+            onefile = os.path.join(testdir, "1bf3f15e070541b88dc71f4dc5637819.log")
+            with open(onefile) as onebf3f:
+                for line in onebf3f:
+                    self.assertEqual(extract_dataset_id(line),
+                        "1bf3f15e070541b88dc71f4dc5637819")
+
+    def test_reshape_script(self):
+        with tempdir() as testdir:
+            out = subprocess.call(["elb.ds", "20151231", "20151231", testdir])
+            lfiles = find_dot(path=os.path.join(FIXTURES_DIR, "2015/12/31"))
+
+            outfiles = find_dot(path=testdir)
+            filelengths = [file_line_count(f) for f in outfiles]
+            originallengths = [file_line_count(f) for f in lfiles]
+            self.assertEqual(sum(filelengths), sum(originallengths))
+
+            # Now test that if I run it again, we won't get dupes
+            out = subprocess.call(["elb.ds", "20151231", "20151231", testdir])
+            filelengths = [file_line_count(f) for f in find_dot(path=testdir)]
+            self.assertEqual(sum(filelengths), sum(originallengths))

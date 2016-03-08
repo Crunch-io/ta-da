@@ -1,6 +1,6 @@
 import os
 import re
-
+import subprocess
 
 FIELDS = 'timestamp elb client:port backend:port request_processing_time backend_processing_time response_processing_time elb_status_code backend_status_code received_bytes sent_bytes request_verb request_url request_protocol user_agent ssl_cipher ssl_protocol'.split(' ')
 NUMERIC_FIELDS = 'request_processing_time backend_processing_time response_processing_time elb_status_code backend_status_code received_bytes sent_bytes'.split(' ')
@@ -64,25 +64,31 @@ def load_log(filename):
         out[i] = [float(x) for x in out[i]]
     return out
 
-def logfile_to_datasets(filename, destination):
-    ''' Take an ELB file, split its entries by which dataset, and append
-        to the appropriate dataset-specific file
+def logfile_to_datasets(filenames, destination):
+    ''' Take an ELB file or list of files, split its entries by which dataset,
+        and append to the appropriate dataset-specific file
     '''
 
+    if isinstance(filenames, basestring):
+        filenames = [filenames]
     destfiles = {}
-    with open(filename) as elb:
-        for entry in elb:
-            dsid = extract_dataset_id(entry)
-            if dsid not in destfiles:
-                # Open file in append mode (also create if doesn't exist yet)
-                destfiles[dsid] = open(os.path.join(destination, dsid), "a")
-            destfiles[dsid].write(entry + '\n')
+    for filename in filenames:
+        with open(filename) as elb:
+            for entry in elb:
+                dsid = extract_dataset_id(entry)
+                if dsid not in destfiles:
+                    # Open file in append mode (also create if doesn't exist yet)
+                    destfiles[dsid] = open(os.path.join(destination, dsid + ".log"), "a")
+                destfiles[dsid].write(entry)
 
     # Close the file connections
-    for f in destfiles.values():
+    for dsid, f in destfiles.iteritems():
         f.close()
-
-## Dedupe with bash `sort -u` in case it runs more than once?
+        dsfile = os.path.join(destination, dsid + ".log")
+        # Dedupe with bash `sort -u` in case it runs more than once
+        # TODO: evaluate whether this is too expensive to run often.
+        # Could defer until analysis time.
+        subprocess.call(["sort", "-u", dsfile, "-o", dsfile])
 
 def extract_dataset_id(log_entry):
     '''Given an ELB log entry, search for a dataset id in the request URL'''
