@@ -86,9 +86,8 @@ def logfile_to_datasets(filenames, destination):
         f.close()
         dsfile = os.path.join(destination, dsid + ".log")
         # Dedupe with bash `sort -u` in case it runs more than once
-        # TODO: evaluate whether this is too expensive to run often.
-        # Could defer until analysis time.
-        subprocess.call(["sort", "-u", dsfile, "-o", dsfile])
+        # TODO: move this to analysis time
+        # subprocess.call(["sort", "-u", dsfile, "-o", dsfile])
 
 def extract_dataset_id(log_entry):
     '''Given an ELB log entry, search for a dataset id in the request URL'''

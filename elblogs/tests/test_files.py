@@ -101,7 +101,7 @@ class TestFiles(TestCase):
 
     def test_reshape_script(self):
         with tempdir() as testdir:
-            out = subprocess.call(["elb.ds", "20151231", "20151231", testdir])
+            out = subprocess.call(["elb.ds", testdir, "20151231", "20151231"])
             lfiles = find_dot(path=os.path.join(FIXTURES_DIR, "2015/12/31"))
 
             outfiles = find_dot(path=testdir)
@@ -109,7 +109,19 @@ class TestFiles(TestCase):
             originallengths = [file_line_count(f) for f in lfiles]
             self.assertEqual(sum(filelengths), sum(originallengths))
 
-            # Now test that if I run it again, we won't get dupes
-            out = subprocess.call(["elb.ds", "20151231", "20151231", testdir])
-            filelengths = [file_line_count(f) for f in find_dot(path=testdir)]
+            # Defer this deduping to the analysis step. Will get increasingly expensive to append
+            #
+            # # Now test that if I run it again, we won't get dupes
+            # out = subprocess.call(["elb.ds", "20151231", "20151231", testdir])
+            # filelengths = [file_line_count(f) for f in find_dot(path=testdir)]
+            # self.assertEqual(sum(filelengths), sum(originallengths))
+
+    def test_reshape_script_no_end(self):
+        with tempdir() as testdir:
+            out = subprocess.call(["elb.ds", testdir, "20160102"])
+            lfiles = find_dot(path=os.path.join(FIXTURES_DIR, "2016/01/02"))
+
+            outfiles = find_dot(path=testdir)
+            filelengths = [file_line_count(f) for f in outfiles]
+            originallengths = [file_line_count(f) for f in lfiles]
             self.assertEqual(sum(filelengths), sum(originallengths))

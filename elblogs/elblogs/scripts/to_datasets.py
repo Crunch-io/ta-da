@@ -2,12 +2,15 @@
 # x Add time check to find_dot
 # x Test reshape_datasets
 # * Set up reshape cron job
+    # cd /path/to/logs && ~/tools/elblogs/venv/bin/elb.ds
+    # date -r dest +%Y%m%dT%H%M
 # * Determine what to summarize for a dataset
 # * Determine how to summarize across datasets
 # * Determine how to integrate with app data (e.g. dataset size)
 # * Automate the 500/504 weekly summary
 # * Make daily 504 report to slack
 
+from datetime import datetime
 import os
 from os.path import basename
 import sys
@@ -20,7 +23,7 @@ def main():
     helpstr = """Split and combine logfiles by dataset id
 
     Usage:
-      %(script)s [<start>] [<end>] [<dest>] [--ipdb]
+      %(script)s [<dest>] [<start>] [<end>] [--ipdb]
 
     Options:
       -h --help                     Show this screen.
@@ -34,9 +37,13 @@ def main():
     print args
 
     use_ipdb = args['--ipdb']
+    dest = args.get('<dest>', ".")
     start = args['<start>']
     end = args['<end>']
-    dest = args.get('<dest>', ".")
+
+    if not start:
+        start = datetime.strftime(datetime.fromtimestamp(os.path.getmtime(dest)),
+            "%Y%m%dT%H%M")
 
     if use_ipdb:
         from ipdb import launch_ipdb_on_exception
@@ -45,6 +52,7 @@ def main():
             return
 
     out = reshape_datasets(start, end, dest)
+
     return
 
 def reshape_datasets(start=None, end=None, destination="."):
