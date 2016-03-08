@@ -1,0 +1,2 @@
+2015-12-31T14:04:06.458047Z eu-vpc 207.46.13.35:13251 10.30.0.5:443 0.000056 0.002501 0.00002 200 200 0 1273 "GET https://beta.crunch.io:443/ HTTP/1.1" "Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)" ECDHE-RSA-AES128-SHA256 TLSv1.2
+2015-12-31T14:38:13.954900Z eu-vpc 180.76.15.10:59135 10.30.0.5:80 0.000037 0.000757 0.000019 301 301 0 185 "GET http://beta.crunch.io:80/ HTTP/1.1" "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)" - -

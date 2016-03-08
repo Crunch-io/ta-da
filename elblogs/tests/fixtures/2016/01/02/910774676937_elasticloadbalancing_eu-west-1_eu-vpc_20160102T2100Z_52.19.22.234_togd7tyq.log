@@ -1,0 +1,2 @@
+2016-01-02T20:11:32.678424Z eu-vpc 180.76.15.150:16813 10.30.0.5:443 0.000045 0.000602 0.000027 200 200 0 400479 "GET https://beta.crunch.io:443/whaam-2.2.3-rc-2368-67b8366/styles.css HTTP/1.1" "Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)" DHE-RSA-AES128-SHA TLSv1
+2016-01-02T20:24:40.554609Z eu-vpc 66.249.93.90:50753 10.30.0.5:443 0.000042 0.000556 0.000021 200 200 0 1273 "GET https://beta.crunch.io:443/ HTTP/1.1" "Mozilla/5.0 (Windows NT 6.1; rv:6.0) Gecko/20110814 Firefox/6.0 Google Favicon" ECDHE-RSA-AES128-GCM-SHA256 TLSv1.2
