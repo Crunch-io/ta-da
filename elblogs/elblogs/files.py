@@ -29,6 +29,7 @@ def find_dot(start=None, end=None, path="."):
         files.extend([os.path.join(dirpath, name) for name in filenames
             if name[-4:] == ".log" and
             file_in_date_range(name, startdate, enddate, starttime, endtime)])
+    files.sort()
     return files
 
 def file_in_date_range(filename, startdate=None, enddate=None, starttime=None, endtime=None):
@@ -72,14 +73,24 @@ def logfile_to_datasets(filenames, destination):
     if isinstance(filenames, basestring):
         filenames = [filenames]
     destfiles = {}
-    for filename in filenames:
-        with open(filename) as elb:
-            for entry in elb:
-                dsid = extract_dataset_id(entry)
-                if dsid not in destfiles:
-                    # Open file in append mode (also create if doesn't exist yet)
-                    destfiles[dsid] = open(os.path.join(destination, dsid + ".log"), "a")
-                destfiles[dsid].write(entry)
+    processed_filename = os.path.join(destination, "processed_logs")
+    if os.path.isfile(processed_filename):
+        with open(processed_filename) as f:
+            already_done = set(line.strip() for line in f.readlines())
+    else:
+        already_done = set([])
+    with open(processed_filename, "a") as processed:
+        for filename in filenames:
+            if filename in already_done:
+                continue
+            with open(filename) as elb:
+                for entry in elb:
+                    dsid = extract_dataset_id(entry)
+                    if dsid not in destfiles:
+                        # Open file in append mode (also create if doesn't exist yet)
+                        destfiles[dsid] = open(os.path.join(destination, dsid + ".log"), "a")
+                    destfiles[dsid].write(entry)
+            processed.write(filename + "\n")
 
     # Close the file connections
     for dsid, f in destfiles.iteritems():

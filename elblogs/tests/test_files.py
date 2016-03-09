@@ -109,12 +109,17 @@ class TestFiles(TestCase):
             originallengths = [file_line_count(f) for f in lfiles]
             self.assertEqual(sum(filelengths), sum(originallengths))
 
-            # Defer this deduping to the analysis step. Will get increasingly expensive to append
-            #
-            # # Now test that if I run it again, we won't get dupes
-            # out = subprocess.call(["elb.ds", "20151231", "20151231", testdir])
-            # filelengths = [file_line_count(f) for f in find_dot(path=testdir)]
-            # self.assertEqual(sum(filelengths), sum(originallengths))
+            # Check our file that tracks what log files have been processed
+            self.assertEqual(file_line_count(os.path.join(testdir, "processed_logs")),
+                len(lfiles))
+
+            # Now test that if I run it again, we won't get dupes
+            out = subprocess.call(["elb.ds", testdir, "20151231", "20151231"])
+            filelengths = [file_line_count(f) for f in find_dot(path=testdir)]
+            self.assertEqual(sum(filelengths), sum(originallengths))
+            # Check that processed_logs is unchanged
+            self.assertEqual(file_line_count(os.path.join(testdir, "processed_logs")),
+                len(lfiles))
 
     def test_reshape_script_no_end(self):
         with tempdir() as testdir:

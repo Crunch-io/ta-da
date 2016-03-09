@@ -2,8 +2,7 @@
 # x Add time check to find_dot
 # x Test reshape_datasets
 # * Set up reshape cron job
-    # cd /path/to/logs && ~/tools/elblogs/venv/bin/elb.ds
-    # date -r dest +%Y%m%dT%H%M
+    # cd /var/www/logs/AWSLogs/910774676937/elasticloadbalancing/ && ~/tools/elblogs/venv/bin/elb.ds ../by_dataset
 # * Determine what to summarize for a dataset
 # * Determine how to summarize across datasets
 # * Determine how to integrate with app data (e.g. dataset size)
