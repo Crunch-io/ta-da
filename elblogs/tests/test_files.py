@@ -121,6 +121,18 @@ class TestFiles(TestCase):
             self.assertEqual(file_line_count(os.path.join(testdir, "processed_logs")),
                 len(lfiles))
 
+            # And it will add but not duplicate if the range overlaps
+            lfiles2 = find_dot("20151231", "20160101",
+                path=os.path.join(FIXTURES_DIR))
+            out = subprocess.call(["elb.ds", testdir, "20151231", "20160101"])
+            filelengths = [file_line_count(f) for f in find_dot(path=testdir)]
+            neworiginallen = [file_line_count(f) for f in lfiles2]
+
+            self.assertEqual(sum(filelengths), sum(neworiginallen))
+            # Check that processed_logs is unchanged
+            self.assertEqual(file_line_count(os.path.join(testdir, "processed_logs")),
+                len(lfiles2))
+
     def test_reshape_script_no_end(self):
         with tempdir() as testdir:
             out = subprocess.call(["elb.ds", testdir, "20160102"])
