@@ -101,7 +101,7 @@ class TestFiles(TestCase):
 
     def test_reshape_script(self):
         with tempdir() as testdir:
-            out = subprocess.call(["elb.ds", testdir, "20151231", "20151231"])
+            out = subprocess.call(["elb.ds", ".", testdir, "20151231", "20151231"])
             lfiles = find_dot(path=os.path.join(FIXTURES_DIR, "2015/12/31"))
 
             outfiles = find_dot(path=testdir)
@@ -114,7 +114,7 @@ class TestFiles(TestCase):
                 len(lfiles))
 
             # Now test that if I run it again, we won't get dupes
-            out = subprocess.call(["elb.ds", testdir, "20151231", "20151231"])
+            out = subprocess.call(["elb.ds", FIXTURES_DIR, testdir, "20151231", "20151231"])
             filelengths = [file_line_count(f) for f in find_dot(path=testdir)]
             self.assertEqual(sum(filelengths), sum(originallengths))
             # Check that processed_logs is unchanged
@@ -124,7 +124,7 @@ class TestFiles(TestCase):
             # And it will add but not duplicate if the range overlaps
             lfiles2 = find_dot("20151231", "20160101",
                 path=os.path.join(FIXTURES_DIR))
-            out = subprocess.call(["elb.ds", testdir, "20151231", "20160101"])
+            out = subprocess.call(["elb.ds", FIXTURES_DIR, testdir, "20151231T1200", "20160101"])
             filelengths = [file_line_count(f) for f in find_dot(path=testdir)]
             neworiginallen = [file_line_count(f) for f in lfiles2]
 
@@ -135,7 +135,7 @@ class TestFiles(TestCase):
 
     def test_reshape_script_no_end(self):
         with tempdir() as testdir:
-            out = subprocess.call(["elb.ds", testdir, "20160102"])
+            out = subprocess.call(["elb.ds", FIXTURES_DIR, testdir, "20160102"])
             lfiles = find_dot(path=os.path.join(FIXTURES_DIR, "2016/01/02"))
 
             outfiles = find_dot(path=testdir)

@@ -2,7 +2,7 @@
 # x Add time check to find_dot
 # x Test reshape_datasets
 # * Set up reshape cron job
-    # cd /var/www/logs/AWSLogs/910774676937/elasticloadbalancing/ && ~/tools/elblogs/venv/bin/elb.ds ../by_dataset
+    # 30 * * * * cd /var/www/logs/AWSLogs/910774676937/elasticloadbalancing/ && $HOME/tools/elblogs/venv/bin/elb.ds ../by_dataset >> $HOME/elbds.out 2>&1
 # * Determine what to summarize for a dataset
 # * Determine how to summarize across datasets
 # * Determine how to integrate with app data (e.g. dataset size)
@@ -22,7 +22,7 @@ def main():
     helpstr = """Split and combine logfiles by dataset id
 
     Usage:
-      %(script)s [<dest>] [<start>] [<end>] [--ipdb]
+      %(script)s [<source>] [<dest>] [<start>] [<end>] [--ipdb]
 
     Options:
       -h --help                     Show this screen.
@@ -36,6 +36,7 @@ def main():
     print args
 
     use_ipdb = args['--ipdb']
+    source_dir = args.get('<source>', "..")
     dest = args.get('<dest>', ".")
     start = args['<start>']
     end = args['<end>']
@@ -54,10 +55,10 @@ def main():
 
     return
 
-def reshape_datasets(start=None, end=None, destination="."):
+def reshape_datasets(start=None, end=None, destination="..", source_dir="."):
     ''' Find log files, possibly for a time range, and copy their entries to
         files organized by dataset.
     '''
-    files = find_dot(start, end)
+    files = find_dot(start, end, path=source_dir)
     out = logfile_to_datasets(files, destination)
     return out
