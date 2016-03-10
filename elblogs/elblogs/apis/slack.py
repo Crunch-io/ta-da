@@ -1,3 +1,4 @@
+import contextlib
 import json
 
 import requests
@@ -20,3 +21,23 @@ def message(**kwargs):
     payload = {"payload": json.dumps(kwargs)}
     r = requests.post(u, data=payload)
     return r
+
+@contextlib.contextmanager
+def errors_to_slack(channel="systems", username="crunchbot", icon_emoji=":cry:", **kwargs):
+    '''Catch any errors that happen and send them to slack'''
+    try:
+        yield
+    except Exception, e:
+        kwargs['channel'] = channel
+        kwargs['username'] = username
+        kwargs['icon_emoji'] = icon_emoji
+        if 'text' in kwargs:
+            kwargs['text'] += '\n%s' % e.message
+        else:
+            kwargs['text'] = e.message
+        try:
+            message(**kwargs)
+        except Exception, e:
+            print e
+    finally:
+        pass
