@@ -76,12 +76,13 @@ def logfile_to_datasets(filenames, destination):
     processed_filename = os.path.join(destination, "processed_logs")
     if os.path.isfile(processed_filename):
         with open(processed_filename) as f:
-            already_done = set(line.strip() for line in f.readlines())
+            already_done = set(os.path.basename(line.strip()) for line in f.readlines())
     else:
         already_done = set([])
     with open(processed_filename, "a") as processed:
         for filename in filenames:
-            if filename in already_done:
+            filebasename = os.path.basename(filename)
+            if filebasename in already_done:
                 continue
             with open(filename) as elb:
                 for entry in elb:
@@ -90,7 +91,7 @@ def logfile_to_datasets(filenames, destination):
                         # Open file in append mode (also create if doesn't exist yet)
                         destfiles[dsid] = open(os.path.join(destination, dsid + ".log"), "a")
                     destfiles[dsid].write(entry)
-            processed.write(filename + "\n")
+            processed.write(filebasename + "\n")
 
     # Close the file connections
     for dsid, f in destfiles.iteritems():

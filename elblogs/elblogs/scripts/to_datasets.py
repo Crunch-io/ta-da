@@ -1,8 +1,8 @@
 # TODO:
 # x Add time check to find_dot
 # x Test reshape_datasets
-# * Set up reshape cron job
-    # 30 * * * * cd /var/www/logs/AWSLogs/910774676937/elasticloadbalancing/ && $HOME/tools/elblogs/venv/bin/elb.ds ../by_dataset >> $HOME/elbds.out 2>&1
+# x Set up reshape cron job
+    # 30 * * * * $HOME/tools/elblogs/venv/bin/elb.ds /var/www/logs/AWSLogs/910774676937/elasticloadbalancing/ /var/www/logs/AWSLogs/910774676937/by_dataset >> $HOME/elbds.out 2>&1
 # * Determine what to summarize for a dataset
 # * Determine how to summarize across datasets
 # * Determine how to integrate with app data (e.g. dataset size)
@@ -36,8 +36,8 @@ def main():
     print args
 
     use_ipdb = args['--ipdb']
-    source_dir = args.get('<source>', "..")
-    dest = args.get('<dest>', ".")
+    source_dir = args.get('<source>', ".")
+    dest = args.get('<dest>', "..")
     start = args['<start>']
     end = args['<end>']
 
@@ -48,10 +48,10 @@ def main():
     if use_ipdb:
         from ipdb import launch_ipdb_on_exception
         with launch_ipdb_on_exception():
-            out = reshape_datasets(start, end, dest)
+            out = reshape_datasets(start, end, dest, source_dir)
             return
 
-    out = reshape_datasets(start, end, dest)
+    out = reshape_datasets(start, end, dest, source_dir)
 
     return
 
