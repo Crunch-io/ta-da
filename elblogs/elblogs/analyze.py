@@ -30,6 +30,37 @@ def summarize(data):
         out['mean_req_time'] = dot(df.get('count_requests', []), df.get('mean_time', [])) / out['sum_reqs']
     return out
 
+def format_summary(summary):
+    beautifiers = {
+        'mean_req_time': {
+            'name': "Mean request time",
+            'formatter': lambda x: round(x, 3)
+        },
+        'pct_500s': {
+            'name': "5XX error rate (%)",
+            'formatter': lambda x: round(x, 4)
+        },
+        'sum_500s': {
+            'name': "Number of 5XX responses",
+            'formatter': lambda x: "{:,}".format(x)
+        },
+        'sum_504s': {
+            'name': "Number of 504 responses",
+            'formatter': lambda x: "{:,}".format(x)
+        },
+        'max_req_time': {
+            'name': "Max request time",
+            'formatter': lambda x: round(x, 3)
+        },
+        'sum_reqs': {
+            'name': "Total request count",
+            'formatter': lambda x: "{:,}".format(x)
+        }
+    }
+    return {beautifiers[k]['name']: beautifiers[k]['formatter'](v)
+        for k, v in summary.iteritems()}
+
+
 ## Basic math
 
 def mean(x):

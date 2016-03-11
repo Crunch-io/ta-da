@@ -3,6 +3,7 @@ import subprocess
 
 from unittest import TestCase
 
+from elblogs.analyze import format_summary
 from elblogs.scripts.summary import elb_summary_stats
 
 
@@ -21,6 +22,17 @@ summary_for_Jan1 = {
 
 
 class TestSummary(TestCase):
+
+    def test_format_summary(self):
+        self.assertEqual(format_summary(summary_for_Jan1),
+             {
+                "Mean request time": 0.069,
+                "5XX error rate (%)": 0.0085,
+                "Number of 5XX responses": "1",
+                "Number of 504 responses": "0",
+                "Max request time": 4.200,
+                "Total request count": "11,721"
+            })
 
     def test_e2e_function(self):
         out = elb_summary_stats("20160101", "20160101", path=FIXTURES_DIR)

@@ -6,8 +6,10 @@
 # * Determine what to summarize for a dataset
 # * Determine how to summarize across datasets
 # * Determine how to integrate with app data (e.g. dataset size)
-# * Automate the 500/504 weekly summary
-# * Make daily 504 report to slack
+# x Automate the 500/504 weekly summary
+    # 10 15 * * 1 $HOME/tools/elblogs/venv/bin/elb.summary /var/www/logs/AWSLogs/910774676937/elasticloadbalancing/ 7 --slack >> $HOME/elbsummary.out 2>&1
+# x Make daily 504 report to slack
+    # 0 15 * * * $HOME/tools/elblogs/venv/bin/elb.summary /var/www/logs/AWSLogs/910774676937/elasticloadbalancing/ 1 --slack >> $HOME/elbsummary.out 2>&1
 
 from datetime import datetime
 import os

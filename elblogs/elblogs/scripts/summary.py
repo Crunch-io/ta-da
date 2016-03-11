@@ -7,7 +7,7 @@ import sys
 from docopt import docopt
 
 from ..files import find_dot, load_log
-from ..analyze import analyze_log, summarize
+from ..analyze import analyze_log, summarize, format_summary
 from ..apis.slack import errors_to_slack, message
 
 
@@ -40,8 +40,14 @@ def main():
     else:
         before_date = datetime.utcnow()
 
-    start = datetime.strftime(before_date - timedelta(days=days),"%Y%m%d")
-    end = datetime.strftime(before_date - timedelta(days=1),"%Y%m%d")
+    start = before_date - timedelta(days=days)
+    end = before_date - timedelta(days=1)
+
+    daterange = datetime.strftime(start, "%B %d")
+    if start != end:
+        daterange += " to " + datetime.strftime(end, "%B %d")
+    start = datetime.strftime(start, "%Y%m%d")
+    end = datetime.strftime(end, "%Y%m%d")
 
     print "start", start
     print "end", end
@@ -60,7 +66,7 @@ def main():
         ## Send the output there too!
         if out['sum_reqs'] == 0:
             message(channel="systems", username="crunchbot", icon_emoji=":interrobang:",
-                text="@npr: elb.summary reports no requests in the %s day(s) prior to %s" % (days, before_date))
+                text="@npr: elb.summary reports no requests for %s" % (daterange))
         else:
             if out['pct_500s'] < 0.01:
                 ## Four nines
@@ -74,14 +80,15 @@ def main():
                 color = "danger"
                 icon_emoji = ":scream_cat:"
             body = {
-                "text": "ELB summary for the %s day(s) prior to %s" % (days, before_date),
+                "text": "ELB summary for %s" % (daterange),
                 "fallback": "ELB summary: "+ color,
-                "fields": [{"title": k, "value": v, "short": True} for k, v in out.iteritems()],
+                "fields": [{"title": k, "value": v, "short": True}
+                    for k, v in format_summary(out).iteritems()],
                 "color": color
             }
             r = message(channel="systems", username="crunchbot",
                 icon_emoji=icon_emoji, attachments=[body])
-            print r.raise_for_status()
+            r.raise_for_status()
     else:
         print out
 
