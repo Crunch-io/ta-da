@@ -91,7 +91,7 @@ def elb_summary_stats(start=None, end=None, path="."):
     ''' Find log files, possibly for a time range, read them, and return the
         indicated quantities for all.
     '''
-    files = find_dot(start, end)
+    files = find_dot(start, end, path=path)
     results = {}
     for f in files:
         results[f] = analyze_log(load_log(f))
