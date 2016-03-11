@@ -79,7 +79,8 @@ def main():
                 "fields": [{"title": k, "value": v, "short": True} for k, v in out.iteritems()],
                 "color": color
             }
-            r = message(attachments=[body])
+            r = message(channel="systems", username="crunchbot",
+                icon_emoji=icon_emoji, attachments=[body])
             print r.raise_for_status()
     else:
         print out
