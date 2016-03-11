@@ -20,13 +20,14 @@ def summarize(data):
     df = dict(zip(quantities, zip(*([v[i] for i in quantities] for v in data.values()))))
 
     out = {
-        "sum_reqs": sum(df['count_requests']),
-        "sum_500s": sum(df['count_500s']),
-        "sum_504s": sum(df['count_504s']),
-        "max_req_time": max(df['max_time']),
+        "sum_reqs": sum(df.get('count_requests', [])),
+        "sum_500s": sum(df.get('count_500s', [])),
+        "sum_504s": sum(df.get('count_504s', [])),
     }
-    out['pct_500s'] = 100.0 * out['sum_500s'] / out['sum_reqs']
-    out['mean_req_time'] = dot(df['count_requests'], df['mean_time']) / out['sum_reqs']
+    if out['sum_reqs']:
+        out["max_req_time"] = max(df.get('max_time', [-1]))
+        out['pct_500s'] = 100.0 * out['sum_500s'] / out['sum_reqs']
+        out['mean_req_time'] = dot(df.get('count_requests', []), df.get('mean_time', [])) / out['sum_reqs']
     return out
 
 ## Basic math

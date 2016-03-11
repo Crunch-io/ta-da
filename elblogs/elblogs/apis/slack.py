@@ -15,10 +15,15 @@ def message(**kwargs):
         * `icon_emoji` to use for username
     '''
     u = "https://hooks.slack.com/services/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"
-    if kwargs['channel'][0] not in ["#", "@"]:
-        kwargs['channel'] = "#" + kwargs['channel']
-    kwargs['parse'] = "full"
+
+    if "attachments" not in kwargs:
+        ## "attachments" have to go to where the hook points (#systems, as "jenkins")
+        ## if not, can post anywhere
+        if kwargs['channel'][0] not in ["#", "@"]:
+            kwargs['channel'] = "#" + kwargs['channel']
+        kwargs['parse'] = "full"
     payload = {"payload": json.dumps(kwargs)}
+    print payload
     r = requests.post(u, data=payload)
     return r
 
