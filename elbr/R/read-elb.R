@@ -17,3 +17,32 @@ read.elb <- function (file, stringsAsFactors=FALSE, ...) {
                     "request", "user_agent", "ssl_cipher", "ssl_protocol"),
         ...)
 }
+
+##' Do some general cleaning
+##'
+##' Delete some columns we don't care about ever, parse the timestamp,
+##' add up response times, separate request verb from URL, etc.
+##' @param logdf a \code{data.frame} as returned from \code{\link{read.elb}}
+##' @return A \code{data.frame} cleaned up a bit.
+##' @export
+##' @importFrom lubridate ymd_hms
+cleanLog <- function (logdf) {
+    op <- options(digits.secs=6)
+    on.exit(options(op))
+
+    ua <- ifelse(grepl("rcrunch", logdf$user_agent), "R", "web")
+    ua[logdf$user_agent == "-" | grepl("pycrunch", logdf$user_agent)] <- "python"
+
+    reqs <- as.data.frame(do.call(rbind, strsplit(logdf$request, " ")),
+        stringsAsFactors=FALSE)[,1:2]
+    names(reqs) <- c("request_verb", "request_url")
+
+    return(cbind(
+        timestamp=ymd_hms(logdf$timestamp),
+        reqs,
+        status_code=logdf$elb_status_code,
+        logdf[c("received_bytes", "sent_bytes")],
+        response_time=with(logdf, request_processing_time +
+            backend_processing_time + response_processing_time),
+        user_agent=ua))
+}
