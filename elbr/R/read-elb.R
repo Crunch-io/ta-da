@@ -37,12 +37,15 @@ cleanLog <- function (logdf) {
         stringsAsFactors=FALSE)[,1:2]
     names(reqs) <- c("request_verb", "request_url")
 
-    return(cbind(
+    out <- cbind(
         timestamp=ymd_hms(logdf$timestamp),
         reqs,
         status_code=logdf$elb_status_code,
         logdf[c("received_bytes", "sent_bytes")],
         response_time=with(logdf, request_processing_time +
             backend_processing_time + response_processing_time),
-        user_agent=ua))
+        user_agent=ua)
+
+    out$response_time[out$status_code == 504] <- NA
+    return(out)
 }
