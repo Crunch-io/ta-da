@@ -27,16 +27,20 @@ read.elb <- function (file, stringsAsFactors=FALSE, ...) {
 ##' @export
 ##' @importFrom lubridate ymd_hms
 cleanLog <- function (logdf) {
+    ## ELB log timestamps are in microseconds
     op <- options(digits.secs=6)
     on.exit(options(op))
 
+    ## Simplify the user-agent string to either web, R, or python
     ua <- ifelse(grepl("rcrunch", logdf$user_agent), "R", "web")
     ua[logdf$user_agent == "-" | grepl("pycrunch", logdf$user_agent)] <- "python"
 
+    ## Split the 'request' into verb, url, protocol, and keep the first two
     reqs <- as.data.frame(do.call(rbind, strsplit(logdf$request, " ")),
         stringsAsFactors=FALSE)[,1:2]
     names(reqs) <- c("request_verb", "request_url")
 
+    ## Collect the things we want to keep
     out <- cbind(
         timestamp=ymd_hms(logdf$timestamp),
         reqs,
@@ -46,6 +50,7 @@ cleanLog <- function (logdf) {
             backend_processing_time + response_processing_time),
         user_agent=ua)
 
-    out$response_time[out$status_code == 504] <- NA
+    ## -1 response time means the request didn't respond
+    out$response_time[out$response_time < 0] <- NA
     return(out)
 }
