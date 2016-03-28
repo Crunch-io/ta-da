@@ -68,7 +68,11 @@ def main():
             message(channel="systems", username="crunchbot", icon_emoji=":interrobang:",
                 text="@npr: elb.summary reports no requests for %s" % (daterange))
         else:
-            if out['pct_500s'] < 0.01:
+            if out['pct_500s'] < 0.001:
+                ## Five nines!
+                color = "good"
+                icon_emoji = ":parrot:"
+            elif out['pct_500s'] < 0.01:
                 ## Four nines
                 color = "good"
                 icon_emoji = ":grinning:"
