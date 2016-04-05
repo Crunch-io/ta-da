@@ -6,7 +6,7 @@ import sys
 
 from docopt import docopt
 
-from ..files import find_dot, load_log
+from ..files import find_dot, load_log, get_error_entries
 from ..analyze import analyze_log, summarize, format_summary
 from ..apis.slack import errors_to_slack, message
 
@@ -55,46 +55,53 @@ def main():
     if use_ipdb:
         from ipdb import launch_ipdb_on_exception
         with launch_ipdb_on_exception():
-            out = elb_summary_stats(start, end, source_dir)
+            summary, errors = elb_summary_stats(start, end, source_dir)
     elif send_to_slack:
         with errors_to_slack(channel="systems", text="Oops! Error running elb.summary on ahsoka:"):
-            out = elb_summary_stats(start, end, source_dir)
+            summary, errors = elb_summary_stats(start, end, source_dir)
     else:
-        out = elb_summary_stats(start, end, source_dir)
+        summary, errors = elb_summary_stats(start, end, source_dir)
 
     if send_to_slack:
         ## Send the output there too!
-        if out['sum_reqs'] == 0:
+        if summary['sum_reqs'] == 0:
             message(channel="systems", username="crunchbot", icon_emoji=":interrobang:",
                 text="@npr: elb.summary reports no requests for %s" % (daterange))
         else:
-            if out['pct_500s'] < 0.001:
+            if summary['pct_500s'] < 0.001:
                 ## Five nines!
                 color = "good"
                 icon_emoji = ":parrot:"
-            elif out['pct_500s'] < 0.01:
+            elif summary['pct_500s'] < 0.01:
                 ## Four nines
                 color = "good"
                 icon_emoji = ":grinning:"
-            elif out['pct_500s'] < 0.1:
+            elif summary['pct_500s'] < 0.1:
                 ## Three nines
                 color = "warning"
                 icon_emoji = ":worried:"
             else:
                 color = "danger"
                 icon_emoji = ":scream_cat:"
-            body = {
-                "text": "ELB summary for %s" % (daterange),
+            body = [{
+                "title": "ELB summary for %s" % (daterange),
                 "fallback": "ELB summary: "+ color,
                 "fields": [{"title": k, "value": v, "short": True}
-                    for k, v in format_summary(out).iteritems()],
+                    for k, v in format_summary(summary).iteritems()],
                 "color": color
-            }
+            }]
+            if len(errors):
+                body += [{
+                    "title": "502s, 503s, and 504s",
+                    "text": ''.join(errors),
+                    "fallback": "Log entries for >500 status requests",
+                    "color": color
+                }]
             r = message(channel="systems", username="crunchbot",
-                icon_emoji=icon_emoji, attachments=[body])
+                icon_emoji=icon_emoji, attachments=body)
             r.raise_for_status()
     else:
-        print out
+        print summary, errors
 
     return
 
@@ -105,6 +112,8 @@ def elb_summary_stats(start=None, end=None, path="."):
     '''
     files = find_dot(start, end, path=path)
     results = {}
+    errs = []
     for f in files:
         results[f] = analyze_log(load_log(f))
-    return summarize(results)
+        errs += get_error_entries(f)
+    return summarize(results), errs

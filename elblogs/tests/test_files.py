@@ -6,7 +6,7 @@ import subprocess
 from tempfile import mkdtemp
 from unittest import TestCase
 
-from elblogs.files import find_dot, file_in_date_range, extract_dataset_id, logfile_to_datasets
+from elblogs.files import find_dot, file_in_date_range, extract_dataset_id, logfile_to_datasets, get_error_entries
 
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -142,3 +142,10 @@ class TestFiles(TestCase):
             filelengths = [file_line_count(f) for f in outfiles]
             originallengths = [file_line_count(f) for f in lfiles]
             self.assertEqual(sum(filelengths), sum(originallengths))
+
+    def test_find_error_entries(self):
+        jan2 = find_dot("20160102")
+        errs = []
+        for f in jan2:
+            errs += get_error_entries(f)
+        self.assertLength(errs, 3)

@@ -35,8 +35,8 @@ class TestSummary(TestCase):
             })
 
     def test_e2e_function(self):
-        out = elb_summary_stats("20160101", "20160101", path=FIXTURES_DIR)
-        self.assertEqual(out, summary_for_Jan1)
+        summary, errs = elb_summary_stats("20160101", "20160101", path=FIXTURES_DIR)
+        self.assertEqual(summary, summary_for_Jan1)
 
     def test_e2e_script(self):
         out = subprocess.call(["elb.summary", FIXTURES_DIR, "1", "20160102"])

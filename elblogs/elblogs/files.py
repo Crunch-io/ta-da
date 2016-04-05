@@ -108,3 +108,8 @@ def extract_dataset_id(log_entry):
         return m.expand(r"\1")
     else:
         return "__none__"
+
+def get_error_entries(logfile):
+    with open(logfile) as f:
+        out = [line for line in f if " -1 -1 -1 " in line]
+    return out
