@@ -1,11 +1,7 @@
 from collections import defaultdict
 from contextlib import contextmanager
-import os
-thisdir = os.path.abspath(os.path.dirname(__file__))
 from threading import local as _threadlocal
 import time
-
-enabled = os.environ.get("SILHOUETTE_ENABLE") is not None
 
 
 class Tagger(_threadlocal):
@@ -19,6 +15,9 @@ class Tagger(_threadlocal):
     """
 
     tags = set()
+    # Note this is a class-level variable, so while each thread will get
+    # its own instance of the class they can share this until overridden.
+    enabled = True
 
     def __init__(self):
         self.clear()
@@ -49,9 +48,12 @@ class Tagger(_threadlocal):
 
         Nested calls with the same tag are ignored, on the assumption that
         the outermost time includes any inner times.
+
+        Note that you must set self.enabled *before* using this as a decorator,
+        since it wraps (or not) the function up front.
         """
 
-        if not enabled:
+        if not self.enabled:
             def noop(func):
                 return func
             return noop
@@ -87,7 +89,7 @@ class Tagger(_threadlocal):
     @contextmanager
     def tag(self, *tags):
         tags = set(tags)
-        if enabled and not self.tags.isdisjoint(tags):
+        if self.enabled and not self.tags.isdisjoint(tags):
             new_tags = tags - self.seen_tags
             self.seen_tags |= new_tags
 
