@@ -3263,7 +3263,8 @@ import os
 import resource
 from cProfile import Profile as cProfile
 import pstats
-import time
+import threading
+import datetime
 
 
 pid = os.getpid()
@@ -3277,13 +3278,17 @@ def get_my_rss():
     return int(rss) * PAGESIZE
 
 
-def cprofile(stream=None, restrictions=None, filename=None, write_svg=True, rss=False):
+def cprofile(stream=None, restrictions=None, filename=None, write_svg=True, rss=False, envvar=None):
     """A decorator to profile a function and output its stats."""
     if restrictions is None:
         restrictions = []
 
     def decorator(f):
         def profiled(*args, **kwargs):
+            if envvar is not None:
+                if not os.environ.get(envvar):
+                    return f(*args, **kwargs)
+
             if rss:
                 # Record RSS instead of time
                 p = cProfile(
@@ -3305,7 +3310,11 @@ def cprofile(stream=None, restrictions=None, filename=None, write_svg=True, rss=
                     s.sort_stats("cumulative").print_stats(*restrictions)
 
                 if filename is not None:
-                    fname = filename % {"function": f.__name__, "time": time.time()}
+                    fname = filename % {
+                        "function": f.__name__,
+                        "time": datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"),
+                        "thread": hex(threading._get_ident())[-6:]
+                    }
                     p.dump_stats(fname)
                     if write_svg:
                         os.system(
