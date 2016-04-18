@@ -1,10 +1,8 @@
 from collections import defaultdict
-import os
-thisdir = os.path.abspath(os.path.dirname(__file__))
+from contextlib import contextmanager
 from threading import local as _threadlocal
 import time
 
-enabled = os.environ.get("SILHOUETTE_ENABLE") is not None
 
 class Tagger(_threadlocal):
     """A thread-local object for selectively recording times in groups.
@@ -17,10 +15,12 @@ class Tagger(_threadlocal):
     """
 
     tags = set()
+    # Note this is a class-level variable, so while each thread will get
+    # its own instance of the class they can share this until overridden.
+    enabled = True
 
     def __init__(self):
         self.clear()
-        self.enabled = enabled
 
     def clear(self):
         """Remove all attributes of self."""
@@ -48,9 +48,12 @@ class Tagger(_threadlocal):
 
         Nested calls with the same tag are ignored, on the assumption that
         the outermost time includes any inner times.
+
+        Note that you must set self.enabled *before* using this as a decorator,
+        since it wraps (or not) the function up front.
         """
 
-        if not enabled:
+        if not self.enabled:
             def noop(func):
                 return func
             return noop
@@ -82,3 +85,49 @@ class Tagger(_threadlocal):
             execute_wrapper.__name__ = func.__name__
             return execute_wrapper
         return decorator
+
+    @contextmanager
+    def tag(self, *tags):
+        tags = set(tags)
+        if self.enabled and not self.tags.isdisjoint(tags):
+            new_tags = tags - self.seen_tags
+            self.seen_tags |= new_tags
+
+            start = time.time()
+            try:
+                yield
+            finally:
+                elapsed = time.time() - start
+
+                self.seen_tags -= new_tags
+
+                # Note that we emit all tags even if not in self.tags
+                for tag in tags - self.seen_tags:
+                    self.tag_times[tag].append(elapsed)
+        else:
+            yield
+
+    def pretty(self, total_time=None):
+        """Return a list of lines of pretty output."""
+        fmt = "  ".join([
+            "%(pct)6.2f", "%(total)8.6f", "%(count)6d",
+            "%(min)8.6f", "%(avg)8.6f", "%(max)8.6f",
+            "%(tag)s"])
+
+        dsu = [(sum(ts), ts, tag) for tag, ts in self.tag_times.iteritems()]
+        if total_time is None:
+            total_time = max([ttl for ttl, times, atag in dsu] + [0.0])
+
+        lines = []
+        for ttl, times, atag in sorted(dsu):
+            lines.append(fmt % {
+                "tag": atag, "total": ttl, "count": len(times),
+                "min": min(times), "max": max(times),
+                "avg": (ttl / len(times)),
+                "pct": ((ttl / total_time) * 100) if total_time else 0.0
+            })
+
+        lines.append("   Pct  Total      Count  Min       Avg       Max       Tag")
+        lines.reverse()
+
+        return lines
