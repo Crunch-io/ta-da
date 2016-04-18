@@ -1,3 +1,4 @@
+#' @importFrom stats median quantile
 summarizeLog <- function (logdf) {
     list(
         requests=nrow(logdf),

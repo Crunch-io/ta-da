@@ -1,10 +1,12 @@
-##' Load an ELB log file
-##'
-##' @param file A file name or connection. See \code{\link[utils]{read.table}}
-##' @param stringsAsFactors The standard \code{data.frame} argument, but
-##' defaulted to \code{TRUE}.
-##' @return A \code{data.frame}.
-##' @export
+#' Load an ELB log file
+#'
+#' @param file A file name or connection. See \code{\link[utils]{read.table}}
+#' @param stringsAsFactors The standard \code{data.frame} argument, but
+#' defaulted to \code{TRUE}.
+#' @param ... Additional arguments passed to \code{read.delim}
+#' @return A \code{data.frame}.
+#' @export
+#' @importFrom utils read.delim
 read.elb <- function (file, stringsAsFactors=FALSE, ...) {
     read.delim(file,
         sep=" ",
@@ -18,14 +20,14 @@ read.elb <- function (file, stringsAsFactors=FALSE, ...) {
         ...)
 }
 
-##' Do some general cleaning
-##'
-##' Delete some columns we don't care about ever, parse the timestamp,
-##' add up response times, separate request verb from URL, etc.
-##' @param logdf a \code{data.frame} as returned from \code{\link{read.elb}}
-##' @return A \code{data.frame} cleaned up a bit.
-##' @export
-##' @importFrom lubridate ymd_hms
+#' Do some general cleaning
+#'
+#' Delete some columns we don't care about ever, parse the timestamp,
+#' add up response times, separate request verb from URL, etc.
+#' @param logdf a \code{data.frame} as returned from \code{\link{read.elb}}
+#' @return A \code{data.frame} cleaned up a bit.
+#' @export
+#' @importFrom lubridate ymd_hms
 cleanLog <- function (logdf) {
     ## ELB log timestamps are in microseconds
     op <- options(digits.secs=6)

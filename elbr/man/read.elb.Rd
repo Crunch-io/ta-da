@@ -11,6 +11,8 @@ read.elb(file, stringsAsFactors = FALSE, ...)
 
 \item{stringsAsFactors}{The standard \code{data.frame} argument, but
 defaulted to \code{TRUE}.}
+
+\item{...}{Additional arguments passed to \code{read.delim}}
 }
 \value{
 A \code{data.frame}.
