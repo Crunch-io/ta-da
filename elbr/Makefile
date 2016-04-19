@@ -15,7 +15,7 @@ build: doc
 	R CMD build .
 
 check: build
-	-R CMD CHECK --as-cran elbr_$(VERSION).tar.gz
+	-R CMD CHECK elbr_$(VERSION).tar.gz
     # cd elbr.Rcheck/elbr/doc/ && ls | grep .html | xargs -n 1 egrep "<pre><code>.. NULL" >> ../../../vignette-errors.log
 	rm -rf elbr.Rcheck/
     # cat vignette-errors.log

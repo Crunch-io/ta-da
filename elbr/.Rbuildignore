@@ -6,6 +6,5 @@
 ^.*\.tar\.gz$
 ^.*\.Rcheck$
 ^\.travis\.yml$
-^.*\.log$
 ^.*\.Rproj$
 ^\.Rproj\.user$
