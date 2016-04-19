@@ -2931,6 +2931,8 @@ class DotWriter:
 
     show_function_events = [TOTAL_TIME_RATIO, TIME_RATIO]
     show_edge_events = [TOTAL_TIME_RATIO, CALLS]
+    # show_function_events = [TOTAL_TIME, TIME]
+    # show_edge_events = [TOTAL_TIME, CALLS]
 
     def graph(self, profile, theme):
         self.begin_graph()
