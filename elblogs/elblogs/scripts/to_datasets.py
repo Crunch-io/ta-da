@@ -1,16 +1,3 @@
-# TODO:
-# x Add time check to find_dot
-# x Test reshape_datasets
-# x Set up reshape cron job
-    # 30 * * * * $HOME/tools/elblogs/venv/bin/elb.ds /var/www/logs/AWSLogs/910774676937/elasticloadbalancing/ /var/www/logs/AWSLogs/910774676937/by_dataset >> $HOME/elbds.out 2>&1
-# * Determine what to summarize for a dataset
-# * Determine how to summarize across datasets
-# * Determine how to integrate with app data (e.g. dataset size)
-# x Automate the 500/504 weekly summary
-    # 10 15 * * 1 $HOME/tools/elblogs/venv/bin/elb.summary /var/www/logs/AWSLogs/910774676937/elasticloadbalancing/ 7 --slack >> $HOME/elbsummary.out 2>&1
-# x Make daily 504 report to slack
-    # 0 15 * * * $HOME/tools/elblogs/venv/bin/elb.summary /var/www/logs/AWSLogs/910774676937/elasticloadbalancing/ 1 --slack >> $HOME/elbsummary.out 2>&1
-
 from datetime import datetime
 import os
 from os.path import basename
