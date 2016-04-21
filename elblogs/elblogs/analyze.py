@@ -4,7 +4,8 @@ def analyze_log(data):
     results['count_requests'] = len(data['elb'])
     times = zip(data['request_processing_time'], data['backend_processing_time'], data['response_processing_time'])
     total_time = [sum(list(x)) for x in times]
-    results['mean_time'] = mean(total_time)
+    results['mean_time'] = mean([x for x in total_time if x > 0])
+    results['under_200ms'] = len([x for x in total_time if x > 0 and x <= .2])
     results['max_time'] = max(total_time)
     results['count_500s'] = len([x for x in data['elb_status_code']
         if x >= 500.0])
@@ -15,7 +16,7 @@ def analyze_log(data):
 def summarize(data):
     '''Compute some aggregates'''
     quantities = ['count_requests', 'mean_time', 'max_time', 'count_500s',
-        'count_504s']
+        'count_504s', 'under_200ms']
     ## First, reshape the data into something useful
     df = dict(zip(quantities, zip(*([v[i] for i in quantities] for v in data.values()))))
 
@@ -27,6 +28,7 @@ def summarize(data):
     if out['sum_reqs']:
         out["max_req_time"] = max(df.get('max_time', [-1]))
         out['pct_500s'] = 100.0 * out['sum_500s'] / out['sum_reqs']
+        out['pct_under_200ms'] = 100.0 *  sum(df.get('under_200ms', [])) / out['sum_reqs']
         out['mean_req_time'] = dot(df.get('count_requests', []), df.get('mean_time', [])) / out['sum_reqs']
     return out
 
@@ -55,6 +57,10 @@ def format_summary(summary):
         'sum_reqs': {
             'name': "Total request count",
             'formatter': lambda x: "{:,}".format(x)
+        },
+        'pct_under_200ms': {
+            'name': "Requests under 200ms (%)",
+            'formatter': lambda x: round(x, 1)
         }
     }
     return {beautifiers[k]['name']: beautifiers[k]['formatter'](v)
