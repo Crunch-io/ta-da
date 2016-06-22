@@ -26880,7 +26880,6 @@ li[class*=" icon-"].icon-large:before {
 }
 
 .tagline-font {
-    font-family: Arial, sans-serif;
     font-size: 18px;
     font-weight: normal;
     font-style: normal;
@@ -26899,7 +26898,6 @@ li[class*=" icon-"].icon-large:before {
 }
 
 .nav-font {
-    font-family: Arial, sans-serif;
     font-size: 14px;
     font-weight: normal;
     font-style: normal;
@@ -36906,16 +36904,12 @@ blockquote p,
 
 #page-header nav ul a,
 #page-header nav ul .delimiter {
-    font-family: Arial, sans-serif;
     font-size: 14px;
-    font-weight: normal;
     letter-spacing: 0px;
     font-family: "AvenirLTStd";
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-weight: 400;
-    font-style: normal
 }
 
 .site-subtitle,
