@@ -39927,19 +39927,16 @@ meta {
 .sqs-block-markdown .purple-text,
 .sqs-block-code .purple-text {
     color: #732082;
-    font-weight: 500
 }
 
 .sqs-block-markdown .green-text,
 .sqs-block-code .green-text {
     color: #107f65;
-    font-weight: 500
 }
 
 .sqs-block-markdown .blue-text,
 .sqs-block-code .blue-text {
     color: #0062a6;
-    font-weight: 500
 }
 
 .sqs-layout:not(.sqs-editing)>.sqs-row:first-child>[class*=sqs-col]:first-child>.sqs-block:last-child,
