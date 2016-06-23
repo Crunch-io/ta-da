@@ -36892,7 +36892,7 @@ blockquote p,
 #page-header nav ul .delimiter {
     font-size: 14px;
     letter-spacing: 0px;
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -39189,7 +39189,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .site-title-font {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 48px;
     line-height: 1.25em;
     text-transform: uppercase;
@@ -39199,7 +39199,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .page-title-font {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 62px;
     line-height: 1.25em;
     text-transform: none;
@@ -39209,7 +39209,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .tagline-font {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 12px;
     line-height: 1.6em;
     text-transform: uppercase;
@@ -39219,7 +39219,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .site-name-font {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 28px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -39228,7 +39228,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .nav-font {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -39245,7 +39245,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .heading1 {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 36px;
     line-height: 1.1em;
     text-transform: none;
@@ -39255,7 +39255,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .heading2 {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 24px;
     line-height: 1.2em;
     text-transform: none;
@@ -39265,7 +39265,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .heading3 {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 16px;
     line-height: 1.2em;
     text-transform: none;
@@ -39275,7 +39275,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .body-font {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 16px;
     line-height: 1.6em;
     letter-spacing: 0px;
@@ -39293,7 +39293,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .site-desc-font {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 18px;
     line-height: 1.8em;
     text-transform: none;
@@ -39303,7 +39303,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .footer-font {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 14px;
     line-height: 1.8em;
     letter-spacing: 0px;
@@ -39312,7 +39312,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .meta-font {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 13px;
     line-height: 1.8em;
     letter-spacing: 0px;
@@ -39321,7 +39321,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .pagination-font {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0px;
@@ -39357,7 +39357,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .system-button-font {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 300;
@@ -39405,13 +39405,13 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 h1:not(#site-title):not(#page-title) {
-    font-family: AvenirLTStd;
+    font-family: AvenirLTStd, Arial, non-serif;
     font-weight: 200;
     font-size: 36px
 }
 
 h1 {
-    font-family: 'AvenirLTStd';
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 40px;
     max-width: 1280px;
     padding: 0 30px;
@@ -39420,14 +39420,14 @@ h1 {
 }
 
 h2 {
-    font-family: 'AvenirLTStd';
+    font-family: AvenirLTStd, Arial, non-serif;
     font-weight: 200;
     font-size: 20px;
     letter-spacing: .6px
 }
 
 h3 {
-    font-family: 'AvenirLTStd';
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 20px;
     line-height: 1.4;
     font-weight: 200;
@@ -39443,17 +39443,17 @@ p {
 }
 
 page-desc {
-    font-family: "AvenirLTStd";
+    font-family: AvenirLTStd, Arial, non-serif;
     font-weight: 300
 }
 
 meta {
-    font-family: 'AvenirLTStd';
+    font-family: AvenirLTStd, Arial, non-serif;
     font-weight: 300
 }
 
 .sqs-block-button .sqs-block-button-element {
-    font-family: 'AvenirLTStd';
+    font-family: AvenirLTStd, Arial, non-serif;
     font-weight: 400
 }
 
@@ -39620,7 +39620,7 @@ meta {
     margin-left: auto;
     margin-right: auto;
     font-size: 18px;
-    font-family: AvenirLTStd;
+    font-family: AvenirLTStd, Arial, non-serif;
     font-weight: 200;
     display: flex;
     line-height: 40px
@@ -39724,7 +39724,7 @@ meta {
 
 .sqs-block-markdown .expandable-section-content li,
 .sqs-block-code .expandable-section-content li {
-    font-family: AvenirLTStd;
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 18px;
     font-weight: 300
 }
@@ -39783,7 +39783,7 @@ meta {
 
 .sqs-block-markdown .header-section-content li,
 .sqs-block-code .header-section-content li {
-    font-family: AvenirLTStd;
+    font-family: AvenirLTStd, Arial, non-serif;
     font-size: 18px;
     font-weight: 300
 }
