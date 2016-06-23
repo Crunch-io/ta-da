@@ -2,21 +2,21 @@
 
 @font-face {
     font-family: 'AvenirLTStd';
-    src: url(/AvenirLTPro-Heavy.ttf) format('truetype'), url(/AvenirLTPro-Heavy.eot) format('embedded-opentype');
+    src: url(https://beta.crunch.io/AvenirLTPro-Heavy.ttf) format('truetype'), url(https://beta.crunch.io/AvenirLTPro-Heavy.eot) format('embedded-opentype');
     font-weight: font-weight-heavy;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'AvenirLTStd';
-    src: url(/AvenirLTPro-Roman.ttf) format('truetype'), url(/AvenirLTPro-Roman.eot) format('embedded-opentype');
+    src: url(https://beta.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'), url(https://beta.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
     font-weight: font-weight-normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'AvenirLTStd';
-    src: url(/AvenirLTPro-Roman.ttf) format('truetype'), url(/AvenirLTPro-Roman.eot) format('embedded-opentype');
+    src: url(https://beta.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'), url(https://beta.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
     font-weight: font-weight-light;
     font-style: normal;
 }
@@ -25036,9 +25036,8 @@ body:not(.button-style-default) .sqs-alternate-block-style-container .sqs-editab
 
 body:not(.button-style-default) .sqs-editable-button,
 body:not(.button-style-default) .sqs-editable-button-font {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: AvenirLTStd, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 600;
-    font-family: "AvenirLTStd";
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 300;
@@ -25222,9 +25221,8 @@ body:not(.button-style-default).button-style-raised .sqs-alternate-block-style-c
 }
 
 body:not(.button-style-default) .opentable-block .OT_Find_a_Table {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: AvenirLTStd, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 600;
-    font-family: "AvenirLTStd";
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 300;
@@ -25272,8 +25270,7 @@ body:not(.button-style-default).button-corner-style-pill .opentable-block .OT_Fi
 
 .sqs-announcement-bar-text {
     padding: .8em 3em;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-family: 'AvenirLTStd', arial, sans-serif;
+    font-family: AvenirLTStd, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 13px;
     text-transform: none;
     letter-spacing: 1px;
@@ -25285,8 +25282,7 @@ body:not(.button-style-default).button-corner-style-pill .opentable-block .OT_Fi
 .sqs-announcement-bar-text p {
     color: #fff;
     margin: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-family: 'AvenirLTStd', arial, sans-serif;
+    font-family: AvenirLTStd, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 13px;
     text-transform: none;
     letter-spacing: 1px;
@@ -36719,12 +36715,10 @@ a:active {
 }
 
 #site-title a {
-    font-family: Georgia, Times, serif;
-    font-size: 72px;
-    
+    font-family: AvenirLTStd, Georgia, Times, serif;
+    font-size: 72px;    
     letter-spacing: 2px;
     text-transform: none;
-    font-family: "AvenirLTStd";
     font-size: 48px;
     line-height: 1.25em;
     text-transform: uppercase;
@@ -36739,12 +36733,10 @@ a:active {
 }
 
 #page-title {
-    font-family: Georgia, Times, serif;
+    font-family: AvenirLTStd, Georgia, Times, serif;
     font-size: 55px;
-    
     font-style: italic;
     letter-spacing: 2px;
-    font-family: "AvenirLTStd";
     font-size: 62px;
     line-height: 1.25em;
     text-transform: none;
@@ -36783,11 +36775,10 @@ button,
 input,
 select,
 textarea {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 14px;
     font-weight: normal;
     line-height: 1.8em;
-    font-family: "AvenirLTStd";
     font-size: 16px;
     line-height: 1.6em;
     letter-spacing: 0px;
@@ -36796,11 +36787,10 @@ textarea {
 }
 
 h1:not(#site-title):not(#page-title) {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 30px;
     font-weight: normal;
     line-height: 1.8em;
-    font-family: "AvenirLTStd";
     font-size: 36px;
     line-height: 1.1em;
     text-transform: none;
@@ -36810,12 +36800,11 @@ h1:not(#site-title):not(#page-title) {
 }
 
 h2 {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 21px;
     font-weight: normal;
     letter-spacing: 0px;
     line-height: 1.35em;
-    font-family: "AvenirLTStd";
     font-size: 24px;
     line-height: 1.2em;
     text-transform: none;
@@ -36825,12 +36814,11 @@ h2 {
 }
 
 h3 {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 17px;
     font-weight: normal;
     text-transform: uppercase;
     line-height: 1.35em;
-    font-family: "AvenirLTStd";
     font-size: 16px;
     line-height: 1.2em;
     text-transform: none;
@@ -36891,10 +36879,9 @@ blockquote p,
 #page-footer p,
 #page-footer ul,
 #page-footer ol {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 12px;
     font-weight: normal;
-    font-family: "AvenirLTStd";
     font-size: 14px;
     line-height: 1.8em;
     letter-spacing: 0px;
@@ -36914,11 +36901,10 @@ blockquote p,
 .site-subtitle,
 .page-description p,
 .logo-subtitle {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 18px;
     font-weight: normal;
     line-height: 1.8em;
-    font-family: "AvenirLTStd";
     font-size: 12px;
     line-height: 1.6em;
     text-transform: uppercase;
@@ -37106,11 +37092,10 @@ nav ol {
 }
 
 .vertical-navigation-bar nav ul {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 0px;
-    font-family: "AvenirLTStd";
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -37129,9 +37114,8 @@ nav ol {
 }
 
 .pagination ul {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-weight: normal;
-    font-family: "AvenirLTStd";
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0px;
@@ -37520,11 +37504,10 @@ article .post {
 }
 
 article .post span.inline-action {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 0px;
-    font-family: "AvenirLTStd";
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -37543,10 +37526,9 @@ article .post .read-more {
 }
 
 article .post .article-meta {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 11px;
     font-weight: normal;
-    font-family: "AvenirLTStd";
     font-size: 13px;
     line-height: 1.8em;
     letter-spacing: 0px;
@@ -37845,11 +37827,10 @@ body.top-navigation-position-none .vertical-navigation-bar #main-navigation {
 }
 
 body.top-navigation-position-none .vertical-navigation-bar #main-navigation ul {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 0px;
-    font-family: "AvenirLTStd";
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -37994,12 +37975,11 @@ body.banner-content-empty .horizontal-navigation-bar #site-title-wrapper a {
 
 body.banner-content-page-title-description .horizontal-navigation-bar #site-title a,
 body.banner-content-empty .horizontal-navigation-bar #site-title a {
-    font-family: Georgia, Times, serif;
+    font-family: AvenirLTStd, Georgia, Times, serif;
     font-size: 21px;
     
     font-style: italic;
     letter-spacing: 2px;
-    font-family: "AvenirLTStd";
     font-size: 28px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -38470,10 +38450,9 @@ body.site-description-in-sidebar #sidebar-one .site-info {
 }
 
 body.site-description-in-sidebar #sidebar-one .site-description p {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 12px;
     font-weight: normal;
-    font-family: "AvenirLTStd";
     font-size: 18px;
     line-height: 1.8em;
     text-transform: none;
@@ -38679,11 +38658,10 @@ div[data-src="v5"] img {
 }
 
 #mobile-navigation {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 0px;
-    font-family: "AvenirLTStd";
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -38700,15 +38678,13 @@ div[data-src="v5"] img {
 
 #mobile-navigation ul li a,
 #mobile-navigation ul li label {
-    font-family: Arial, sans-serif;
+    font-family: AvenirLTStd, Arial, sans-serif;
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 0px;
-    font-family: "AvenirLTStd";
     font-size: 13px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    
+    letter-spacing: 1px;    
     font-style: normal;
     display: block;
     padding: .5em 0;
@@ -38746,12 +38722,11 @@ div[data-src="v5"] img {
 #mobile-navigation-title a {
     color: #000;
     vertical-align: middle;
-    font-family: Georgia, Times, serif;
+    font-family: AvenirLTStd, Georgia, Times, serif;
     font-size: 21px;
     
     font-style: italic;
     letter-spacing: 2px;
-    font-family: "AvenirLTStd";
     font-size: 28px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -39409,18 +39384,6 @@ body.canvas-setting-site-width #canvas-wrapper {
 
 
 /*! Squarespace LESS Compiler  (less.js language v1.3.3)  */
-
-@font-face {
-    font-family: 'AvenirLTStd';
-    src: url('//static1.squarespace.com/static/5680a5661115e03a973f0d6b/t/568201f8e0327c1884fd1827/1451360760172/AvenirLTStd-300.WOFF');
-    font-weight: 300
-}
-
-@font-face {
-    font-family: 'AvenirLTStd';
-    src: url('//static1.squarespace.com/static/5680a5661115e03a973f0d6b/t/568201f5e0327c1884fd1823/1451360757143/AvenirLTStd-200.WOFF');
-    font-weight: 200
-}
 
 .sqs-layout>.sqs-row {
     margin-left: 0;
