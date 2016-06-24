@@ -36679,14 +36679,15 @@ a:active {
 #page-footer-wrapper h2 a:link,
 #page-body-wrapper h2 a:visited,
 #page-footer-wrapper h2 a:visited {
-    color: #565656
+    color: #fff;
+    text-decoration: underline;
 }
 
 #page-body-wrapper h2 a:hover,
 #page-footer-wrapper h2 a:hover,
 #page-body-wrapper h2 a:active,
 #page-footer-wrapper h2 a:active {
-    color: #121212
+    color: #ccc
 }
 
 #page-body-wrapper h3,
@@ -37390,7 +37391,7 @@ body:not(.page-thumbnail-as-banner) #page-header-wrapper {
 }
 
 #page-footer {
-    padding: 24px 0
+    padding: 60px 0
 }
 
 .view-list article .excerpt-thumb {
@@ -39648,7 +39649,6 @@ meta {
 .sqs-block-code p,
 .sqs-block-markdown .BA-container,
 .sqs-block-code .BA-container {
-    padding: 0 0 15px 0;
     margin: 0;
     line-height: 28px;
     margin-left: auto;
@@ -39911,8 +39911,10 @@ meta {
 }
 
 #page-footer-wrapper h2 {
-    color: #fff
+    color: #fff;
 }
+
+
 
 #navigation-top {
     position: fixed;
