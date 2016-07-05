@@ -29,11 +29,12 @@ def errors_to_slack(channel="systems", username="crunchbot", icon_emoji=":cry:",
     try:
         yield
     except Exception, e:
+        print e
         kwargs['channel'] = channel
         kwargs['username'] = username
         kwargs['icon_emoji'] = icon_emoji
         if 'text' in kwargs:
-            kwargs['text'] += '\n%s' % e.message
+            kwargs['text'] += ' "%s"' % e.message
         else:
             kwargs['text'] = e.message
         try:
