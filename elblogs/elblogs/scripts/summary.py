@@ -101,7 +101,7 @@ def main():
                 icon_emoji=icon_emoji, attachments=body)
             r.raise_for_status()
     else:
-        print summary, errors
+        print summary
 
     return
 
