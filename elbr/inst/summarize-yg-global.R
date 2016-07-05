@@ -8,7 +8,7 @@ login("neal+yougov@crunch.io")
 
 yg <- getTeams()[["YouGov Global"]]
 u <- urls(datasets(yg))
-length(u) ## 415
+length(u) ## 506
 ids <- vapply(u,
     function (x) tail(unlist(strsplit(x, "/")), 1),
     character(1),
@@ -16,7 +16,7 @@ ids <- vapply(u,
 logs <- paste0(ids, ".log")
 
 since_october <- intersect(logs, dir())
-length(since_october) ## 410, so 5 haven't been touched since
+length(since_october) ## 500, so 6 haven't been touched since
 
 summarize.elb <- function (filename) {
     df <- read.elb(filename)
@@ -27,7 +27,7 @@ summarize.elb <- function (filename) {
     ))
 }
 
-sums <- do.call(rbind, lapply(since_october, summarize.elb))
+sumdf <- do.call(rbind, lapply(since_october, summarize.elb))
 summary(sumdf)
 head(sumdf)
 quantile(sumdf$cubes, seq(0, 1, .05))
@@ -43,3 +43,18 @@ summary(last)
 summary(last[sumdf$cubes>0])
 summary(last[sumdf$cubes>20])
 sort(last[sumdf$cubes>100])
+
+table(last > ymd("2016-05-20")) ## Two weeks ago
+#
+# FALSE  TRUE
+#   446    54
+
+archive.these <- c(setdiff(logs, dir()), ## Those from before october
+    since_october[last <= ymd("2016-05-20")])
+these.urls <- paste0("https://beta.crunch.io/api/datasets/", substr(archive.these, 1, 32), "/")
+to.archive <- datasets(yg)[these.urls]
+myself <- self(me())
+
+for (u in urls(to.archive)) crPATCH(u, body=toJSON(list(current_editor=myself)))
+
+is.archived(to.archive) <- TRUE
