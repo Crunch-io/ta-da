@@ -19,6 +19,7 @@ summary_for_Jan1 = {
     'sum_504s': 0,
     'max_req_time': 4.1998690000000005,
     'pct_under_200ms': 99.889087961778,
+    'stream_reqs': 3,
     'sum_reqs': 11721
 }
 
@@ -33,6 +34,7 @@ class TestSummary(TestCase):
             {
                 'count_504s': 0,
                 'count_requests': 279,
+                'stream_requests': 0,
                 'under_200ms': 279,
                 'mean_time': 0.09160322580645158,
                 'max_time': 0.15662500000000001,
@@ -48,7 +50,8 @@ class TestSummary(TestCase):
                 "Number of 504 responses": "0",
                 "Max request time": 4.200,
                 "Requests under 200ms (%)": 99.9,
-                "Total request count": "11,721"
+                "Total request count": "11,721",
+                "Streaming request count": "3"
             })
 
     def test_e2e_function(self):
