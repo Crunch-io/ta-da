@@ -1,4 +1,3 @@
-from datetime import datetime, timedelta
 import json
 import os
 from os.path import basename
@@ -6,9 +5,10 @@ import sys
 
 from docopt import docopt
 
-from ..files import find_dot, load_log, get_error_entries
 from ..analyze import analyze_log, summarize, format_summary
 from ..apis.slack import errors_to_slack, message
+from ..dates import start_and_end, date_range_label
+from ..files import find_dot, load_log, get_error_entries
 
 
 def main():
@@ -35,19 +35,11 @@ def main():
     days = int(args.get('<days>', 1))
     before_date = args['<before_date>']
 
-    if before_date:
-        before_date = datetime.strptime(before_date, "%Y%m%d")
-    else:
-        before_date = datetime.utcnow()
+    start_date, end_date = start_and_end(before_date, days)
+    daterange = date_range_label(start_date, end_date)
 
-    start = before_date - timedelta(days=days)
-    end = before_date - timedelta(days=1)
-
-    daterange = datetime.strftime(start, "%B %d")
-    if start != end:
-        daterange += " to " + datetime.strftime(end, "%B %d")
-    start = datetime.strftime(start, "%Y%m%d")
-    end = datetime.strftime(end, "%Y%m%d")
+    start = start_date.strftime("%Y%m%d")
+    end = end_date.strftime("%Y%m%d")
 
     print "start", start
     print "end", end

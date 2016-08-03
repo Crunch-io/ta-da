@@ -7,8 +7,9 @@ setwd("/var/www/logs/AWSLogs/910774676937/by_dataset/")
 login("neal+yougov@crunch.io")
 
 yg <- getTeams()[["YouGov Global"]]
-u <- urls(datasets(yg))
-length(u) ## 506
+globalDatasets <- datasets(yg)
+u <- urls(globalDatasets)
+length(u) ## 506 ## 585
 ids <- vapply(u,
     function (x) tail(unlist(strsplit(x, "/")), 1),
     character(1),
@@ -17,6 +18,7 @@ logs <- paste0(ids, ".log")
 
 since_october <- intersect(logs, dir())
 length(since_october) ## 500, so 6 haven't been touched since
+## Now 585
 
 summarize.elb <- function (filename) {
     df <- read.elb(filename)
@@ -32,10 +34,8 @@ summary(sumdf)
 head(sumdf)
 quantile(sumdf$cubes, seq(0, 1, .05))
 table(sumdf$cubes==0)
-table(sumdf$cubes==0)/410
-table(sumdf$cubes==0)/415
-table(sumdf$cubes==20)/415
-table(sumdf$cubes>20)/415
+table(sumdf$cubes==0)/nrow(sumdf)
+table(sumdf$cubes<20)/nrow(sumdf)
 quantile(sumdf$cubes, seq(.90, 1, .01))
 
 last <- ymd_hms(sumdf$last)
@@ -44,7 +44,7 @@ summary(last[sumdf$cubes>0])
 summary(last[sumdf$cubes>20])
 sort(last[sumdf$cubes>100])
 
-table(last > ymd("2016-05-20")) ## Two weeks ago
+table(last > ymd("2016-07-12")) ## Two weeks ago
 #
 # FALSE  TRUE
 #   446    54

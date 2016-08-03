@@ -79,7 +79,7 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['requests', 'docopt'],
+    install_requires=['requests', 'docopt', 'datadog'],
 
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
@@ -109,6 +109,7 @@ setup(
         'console_scripts': [
             'elb.summary=elblogs.scripts.summary:main',
             'elb.ds=elblogs.scripts.to_datasets:main',
+            'dog.summary=elblogs.scripts.dogsummary:main'
         ],
     },
 )
