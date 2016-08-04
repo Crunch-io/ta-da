@@ -15,7 +15,7 @@ def dog_count(metric, start, end, scope=None):
         scope = 'autoscaling_group:eu-zz9' if metric[:3] == 'zz9' else 'host:eu-backend.priveu.crunch.io'
     q = 'sum:%s{%s}.as_count()' % (metric, scope)
     response = api.Metric.query(start=start, end=end, query=q)
-    if 'series' in response:
+    if 'series' in response and len(response['series']):
         # We have data. Sum the points.
         return sum(int(val[1]) for val in response['series'][0]['pointlist'])
     else:
