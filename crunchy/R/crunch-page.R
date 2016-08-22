@@ -7,7 +7,7 @@
 #' @param ... arguments passed to \code{fluidPage}
 #' @return The result of \code{fluidPage}
 #' @export
-#' @importFrom shiny fluidPage includeCSS includeScript tags
+#' @importFrom shiny fluidPage includeCSS includeScript tags div
 crunchPage <- function (...) {
     fluidPage(
         tags$head(
@@ -16,6 +16,9 @@ crunchPage <- function (...) {
             includeCSS(system.file("extra.css", package="crunchy")),
             includeScript(system.file("extra.js", package="crunchy"))
         ),
+        div(class = "form-group shiny-input-container",
+            style = "display: none;",
+            tags$input(id = "token", type = "text", class = "form-control", value = "")),
         ...
     )
 }

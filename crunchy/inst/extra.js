@@ -9,12 +9,12 @@ function getToken() {
     return null
 }
 
-function setToken() {
-    var token = getToken()
-    Shiny.onInputChange('token', token)
-    console.log("Token set")
-}
+$(document).ready(function() {
+    $("#token").val(getToken())
+})
 
-$(document).on('shiny:connected', function(event) {
-    setToken()
-  })
+// $(document).on('shiny:connected', function(event) {
+//     var token = getToken()
+//     Shiny.onInputChange('token', token)
+//     console.log("Token set")
+// })
