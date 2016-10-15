@@ -46,9 +46,8 @@
 <script>
     (function(win, doc) {
         doc.querySelectorAll('.main-nav li:not(.external-link) > a').forEach(function(el) {
-            if (win.location.pathname.indexOf(el.getAttribute('href')) > -1) {
-                el.parentElement.classList.add('active-link')
-            }
+            el.parentNode.classList.toggle('active-link',
+                win.location.pathname.indexOf(el.getAttribute('href')) > -1)
         })
     })(window, document)
 </script>
