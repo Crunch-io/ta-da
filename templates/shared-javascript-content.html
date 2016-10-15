@@ -1,0 +1,32 @@
+<script>
+    var bannerheight = 10; // number of pixels to scroll before applying classes
+
+    $(window).bind('scroll', function() {
+        if ($(window).scrollTop() > bannerheight) {
+            $('#navigation-bottom').addClass('sticky-nav');
+            $('#content-wrapper').addClass('sticky-nav-gap');
+        } else {
+            $('#navigation-bottom').removeClass('sticky-nav');
+            $('#content-wrapper').removeClass('sticky-nav-gap');
+        }
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $("#mobile-navigation-label").click(function() {
+            $("#mobile-navigation").toggleClass('sqs-mobile-nav-open')
+        })
+    })
+</script>
+<script>
+    var logo = $('#banner-wrapper').clone();
+    $('#mobile-navigation-title').html(logo);
+</script>
+<script type="text/javascript" data-sqs-type="imageloader-bootstraper">
+    (function() {
+        if (window.ImageLoader) {
+            window.ImageLoader.bootstrap();
+        }
+    })();
+</script>
+<script src="/js/analytics-snippet.js"></script>
