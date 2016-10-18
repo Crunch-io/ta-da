@@ -10,22 +10,34 @@
     <link rel="stylesheet" type="text/css" href="site.css" />
 </head>
 
-<body class="canvas-setting-full-width hide-delimiter  banner-content-page-title-description banner-alignment-center page-thumbnail-as-banner  top-navigation-position-above-banner top-navigation-alignment-left disable-navigation-border  sidebar-position-right underline-sidebar-h3  footer-alignment-center disable-footer-border social-icon-style-normal social-icon-placement-top-only  blog-list-display-full blog-byline-bottom blog-dateline-top disable-pagination-border    show-products-category-navigation gallery-design-slideshow aspect-ratio-auto lightbox-style-dark gallery-navigation-thumbnails gallery-info-overlay-always-show gallery-aspect-ratio-32-standard gallery-arrow-style-round-corners gallery-transitions-fade gallery-show-arrows gallery-auto-crop   product-list-titles-under product-list-alignment-center product-item-size-43-four-thirds product-image-auto-crop product-gallery-size-32-standard product-gallery-auto-crop show-product-price show-product-item-nav product-social-sharing  event-show-past-events event-thumbnails event-thumbnail-size-32-standard event-date-label  event-list-show-cats event-list-date event-list-time event-list-address   event-icalgcal-links  event-excerpts      hide-album-share-link hide-opentable-icons opentable-style-dark newsletter-style-dark small-button-style-solid small-button-shape-square medium-button-style-solid medium-button-shape-square large-button-style-solid large-button-shape-square button-style-solid button-corner-style-square tweak-product-quick-view-button-style-floating tweak-product-quick-view-button-position-bottom tweak-product-quick-view-lightbox-excerpt-display-truncate tweak-product-quick-view-lightbox-show-arrows tweak-product-quick-view-lightbox-show-close-button tweak-product-quick-view-lightbox-controls-weight-light native-currency-code-usd collection-type-blog collection-layout-full-width collection-569c1f652399a3500662276e homepage view-list mobile-style-available has-logo-image has-page-thumbnail"
+<body class="crunchbox canvas-setting-full-width hide-delimiter  banner-content-page-title-description banner-alignment-center page-thumbnail-as-banner  top-navigation-position-above-banner top-navigation-alignment-left disable-navigation-border  sidebar-position-right underline-sidebar-h3  footer-alignment-center disable-footer-border social-icon-style-normal social-icon-placement-top-only  blog-list-display-full blog-byline-bottom blog-dateline-top disable-pagination-border    show-products-category-navigation gallery-design-slideshow aspect-ratio-auto lightbox-style-dark gallery-navigation-thumbnails gallery-info-overlay-always-show gallery-aspect-ratio-32-standard gallery-arrow-style-round-corners gallery-transitions-fade gallery-show-arrows gallery-auto-crop   product-list-titles-under product-list-alignment-center product-item-size-43-four-thirds product-image-auto-crop product-gallery-size-32-standard product-gallery-auto-crop show-product-price show-product-item-nav product-social-sharing  event-show-past-events event-thumbnails event-thumbnail-size-32-standard event-date-label  event-list-show-cats event-list-date event-list-time event-list-address   event-icalgcal-links  event-excerpts      hide-album-share-link hide-opentable-icons opentable-style-dark newsletter-style-dark small-button-style-solid small-button-shape-square medium-button-style-solid medium-button-shape-square large-button-style-solid large-button-shape-square button-style-solid button-corner-style-square tweak-product-quick-view-button-style-floating tweak-product-quick-view-button-position-bottom tweak-product-quick-view-lightbox-excerpt-display-truncate tweak-product-quick-view-lightbox-show-arrows tweak-product-quick-view-lightbox-show-close-button tweak-product-quick-view-lightbox-controls-weight-light native-currency-code-usd collection-type-blog collection-layout-full-width collection-569c1f652399a3500662276e homepage view-list mobile-style-available has-logo-image has-page-thumbnail"
     id="collection-569c1f652399a3500662276e" ontouchstart="">
 
     <!--MOBILE NAV-->
     <!--<nav id="mobile-navigation" data-template="/templates/mobile-navigation.html"></nav>-->
     <!-- END MOBILE NAV -->
 
-    <!--<div id="page-header-wrapper" data-template="/templates/page-header-wrapper.html"></div>-->
+    <!-- <div id="page-header-wrapper" data-template="/templates/page-header.html"></div> -->
     <!-- page-header-wrapper -->
+
+    <div id="page-header-wrapper" class="">
+        <div id="embed-banner-wrapper" data-content-field="site-title">
+            <a href="/"><img id="banner" src="/crunch_logo.png" alt="Crunch" /></a>
+        </div>
+    </div>
 
     <div id="page-body-wrapper" class="full-width">
         <div id="page-body">
             <div id="content-wrapper">
                 <div id="content">
+                    <div id="referrer">
+                        Shared from
+                        <a id="referrer-link" class="hidden">
+                            <span id="referrer-link-text"></span>
+                        </a>
+                    </div>
+
                     <iframe id="embed" width="600" height="480" style="border: 1px solid #d3d3d3;"></iframe>
-                    <a id="referrer-link" class="hidden">Back to original page</a>
                 </div>
             </div> <!-- content-wrapper -->
 
@@ -68,6 +80,8 @@
             referrerEl = document.querySelector('#referrer-link')
             referrerEl.href = props.ref
             referrerEl.classList.remove('hidden')
+
+            referrerEl.querySelector('span').innerText = props.ref
 
             src += `?ref=${props.ref}`
         }

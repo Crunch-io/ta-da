@@ -40284,3 +40284,20 @@ body {
 .hidden {
     display: none;
 }
+
+.crunchbox #page-header-wrapper {
+    padding: 10px 40px;
+}
+.crunchbox #content {
+    padding-left: 40px;
+}
+.crunchbox #referrer {
+    padding: 10px 0;
+}
+
+.crunchbox a:hover,
+.crunchbox a:visited,
+.crunchbox a:active,
+.crunchbox a:link {
+    color: #0085bd;
+}
