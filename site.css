@@ -40281,3 +40281,6 @@ body {
 #shared-javascript-content {
     visibility: hidden;
 }
+.hidden {
+    display: none;
+}
