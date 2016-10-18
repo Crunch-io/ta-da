@@ -40,13 +40,17 @@
         var iframe = document.querySelector('#embed'),
             search = window.location.search ?
                 window.location.search.substr(1) + window.location.hash : '',
-            parts = search.split(/(?:&|%26)/),
+            parts = search.split(/(?:\?|&)/),
             props = {},
-            referrerEl
+            referrerEl,
+            src = ''
 
         parts.forEach(function(part) {
-            var pair = part.split(/(?:\=|%3D)/)
-            props[pair[0]] = pair[1]
+            var pair = part.split('=')
+
+            if (!props.hasOwnProperty(pair[0])) {
+                props[pair[0]] = pair[1]
+            }
         })
 
         //"//d27smwjmpxcjmb.cloudfront.net/test01/widget/index.html#/ds/bc101c5d832568b88ab44a9378915846/row/000028/column/000367"
@@ -58,13 +62,17 @@
         //     iframe.setAttribute('height', props.height)
         // }
 
+        src = props.data
+
         if (props.ref) {
             referrerEl = document.querySelector('#referrer-link')
             referrerEl.href = props.ref
             referrerEl.classList.remove('hidden')
+
+            src += `?ref=${props.ref}`
         }
 
-        iframe.setAttribute('src', props.data)
+        iframe.setAttribute('src', src)
     </script>
 <!--
     <div id="shared-javascript-content" data-template="/templates/shared-javascript-content.html"></div>
