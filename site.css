@@ -2,21 +2,21 @@
 
 @font-face {
     font-family: 'AvenirLTStd';
-    src: url(https://beta.crunch.io/AvenirLTPro-Heavy.ttf) format('truetype'), url(https://beta.crunch.io/AvenirLTPro-Heavy.eot) format('embedded-opentype');
+    src: url(//beta.crunch.io/AvenirLTPro-Heavy.ttf) format('truetype'), url(//beta.crunch.io/AvenirLTPro-Heavy.eot) format('embedded-opentype');
     font-weight: font-weight-heavy;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'AvenirLTStd';
-    src: url(https://beta.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'), url(https://beta.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
+    src: url(//beta.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'), url(//beta.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
     font-weight: font-weight-normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'AvenirLTStd';
-    src: url(https://beta.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'), url(https://beta.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
+    src: url(//beta.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'), url(//beta.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
     font-weight: font-weight-light;
     font-style: normal;
 }
@@ -40317,7 +40317,10 @@ body {
 #referrer-link-img {
     height: 16px;
     width: 16px;
+    image-rendering: pixelated;
 }
 #referrer-link-text {
+    font-size: 13px;
     margin-left: 5px;
+    line-height: 1;
 }
