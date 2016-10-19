@@ -96,9 +96,12 @@
             referrerEl.href = props.ref
             referrerEl.classList.remove('hidden')
 
-            var indexes = []
-            var startIndex = props.ref.indexOf('//')
-            var endIndex = props.ref.indexOf('/', startIndex + 2)
+            var imgEl = document.querySelector('#referrer-link-img'),
+                indexes = [],
+                startIndex = props.ref.indexOf('//'),
+                endIndex = props.ref.indexOf('/', startIndex + 2),
+                origin,
+                faviconUrl
             
             indexes[0] = 0
 
@@ -106,9 +109,19 @@
                 indexes[1] = endIndex
             }
 
-            var origin = String.prototype.substr.apply(props.ref, indexes)
+            origin = String.prototype.substr.apply(props.ref, indexes)
 
-            document.querySelector('#referrer-link-img').src = `http://www.google.com/s2/favicons?domain=${origin}`
+            faviconUrl = `http://www.google.com/s2/favicons?domain=${origin}`
+            imgEl.src = faviconUrl
+
+            if (!window.location.origin.includes('localhost')) {
+                $.get(faviconUrl)
+                .fail(function() {
+                    console.log('fail')
+                    imgEl.classList.add('hidden')
+                })
+            }
+
             document.querySelector('#referrer-link-text').innerText = props.ref
 
             src += `?ref=${props.ref}`
