@@ -40305,8 +40305,19 @@ body {
     color: #0085bd;
     font-family: AvenirLTStd, Helvetica, sans-serif;
 }
-
-#referrer-arrow {
-    font-size: 16px;
+#referrer-link {
+    display: flex;
+    align-items: center;
+}
+#referrer-link-arrow {
+    color: #777;
+    font-size: 24px !important;
     margin-right: 5px;
+}
+#referrer-link-img {
+    height: 16px;
+    width: 16px;
+}
+#referrer-link-text {
+    margin-left: 5px;
 }
