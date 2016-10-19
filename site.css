@@ -40294,6 +40294,10 @@ body {
     padding: 10px 0;
 }
 
+.crunchbox #banner {
+    width: 90px;
+}
+
 .crunchbox a:hover,
 .crunchbox a:visited,
 .crunchbox a:active,
