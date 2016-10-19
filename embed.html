@@ -31,8 +31,10 @@
             <div id="content-wrapper">
                 <div id="content">
                     <div id="referrer">
-                        Shared from
+                        <span id="referrer-arrow">&lsaquo;</span>
+
                         <a id="referrer-link" class="hidden">
+                            <img id="referrer-link-img" alt="Referrer favicon" />
                             <span id="referrer-link-text"></span>
                         </a>
                     </div>
@@ -47,6 +49,19 @@
     
     <!-- BEGIN FOOTER TEMPLATING CUSTOM CODE -->
 
+<!--
+    <div id="shared-javascript-content" data-template="/templates/shared-javascript-content.html"></div>
+-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<!--
+    <script>
+        (function(doc) {
+            doc.querySelectorAll('[data-template]').forEach(function(el) {
+                $(el).load(el.dataset['template']);
+            });
+        })(document)
+    </script>
+-->
     <script>
         // Because of the way we for the widget url, it will be stuck into the hash portion of the path
         var iframe = document.querySelector('#embed'),
@@ -81,24 +96,27 @@
             referrerEl.href = props.ref
             referrerEl.classList.remove('hidden')
 
-            referrerEl.querySelector('span').innerText = props.ref
+            var indexes = []
+            var startIndex = props.ref.indexOf('//')
+            var endIndex = props.ref.indexOf('/', startIndex + 2)
+            
+            indexes[0] = 0
+
+            if (endIndex > -1) {
+                indexes[1] = endIndex
+            }
+
+            var origin = String.prototype.substr.apply(props.ref, indexes)
+
+            document.querySelector('#referrer-link-img').src = `http://www.google.com/s2/favicons?domain=${origin}`
+            document.querySelector('#referrer-link-text').innerText = props.ref
 
             src += `?ref=${props.ref}`
         }
 
         iframe.setAttribute('src', src)
     </script>
-<!--
-    <div id="shared-javascript-content" data-template="/templates/shared-javascript-content.html"></div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script>
-        (function(doc) {
-            doc.querySelectorAll('[data-template]').forEach(function(el) {
-                $(el).load(el.dataset['template']);
-            });
-        })(document)
-    </script>
--->
+
     <!-- END FOOTER TEMPLATING CUSTOM CODE -->
 </body>
 </html>
