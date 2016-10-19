@@ -59,11 +59,10 @@ html {
 body {
     margin: 0;
     font-size: 13px;
-    line-height: 1.6em
-    font-family: AvenirLTStd, Helvetica, sans-serif
+    line-height: 1.6em;
+    font-family: AvenirLTStd, Helvetica, sans-serif;
 }
 
-body,
 button,
 input,
 select,
@@ -40300,4 +40299,10 @@ body {
 .crunchbox a:active,
 .crunchbox a:link {
     color: #0085bd;
+    font-family: AvenirLTStd, Helvetica, sans-serif;
+}
+
+#referrer-arrow {
+    font-size: 16px;
+    margin-right: 5px;
 }
