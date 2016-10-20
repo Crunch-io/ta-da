@@ -40310,6 +40310,7 @@ body {
     align-items: center;
 }
 #referrer-link-arrow {
+    font-family: Helvetica, sans-serif;
     color: #777;
     font-size: 24px !important;
     margin-right: 5px;
