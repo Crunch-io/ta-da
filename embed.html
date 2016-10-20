@@ -70,7 +70,6 @@
 
                     script.addEventListener('error', function() {
                         reject(script);
-                        console.log('was rej');
                     }, false);
 
                     document.body.appendChild(script);
@@ -109,7 +108,7 @@
             var processReferrerElement = function(refUrl) {
                 var referrerEl = document.querySelector('#referrer-link')
                 referrerEl.href = refUrl
-                referrerEl.classList.toggle('hidden', !!refUrl);
+                referrerEl.classList.toggle('hidden', !refUrl);
 
                 if (!refUrl) {
                     return
@@ -171,9 +170,9 @@
                 src = (props.data.match(protocolRegExp) ? '' : '//') + props.data
 
                 if (props.ref) {
-                    processReferrerElement(props.ref)
                     src += '?ref=' + props.ref
                 }
+                processReferrerElement(props.ref)
 
                 iframe.setAttribute('src', src)
             };
