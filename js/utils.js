@@ -1,12 +1,12 @@
 (function(window) {
     'use strict';
 
-    window.crunchIO.testImage = function(url) {
-        // Define the promise
-        const imgPromise = new Promise(function(resolve, reject) {
+    var document = window.document;
 
+    window.crunchIO.testImage = function(url) {
+        var imgPromise = new Promise(function(resolve, reject) {
             // Create the image
-            const imgElement = new Image();
+            var imgElement = document.createElement('img');
 
             // When image is loaded, resolve the promise
             imgElement.addEventListener('load', function imgOnLoad() {
@@ -15,8 +15,11 @@
 
             // When there's an error during load, reject the promise
             imgElement.addEventListener('error', function imgOnError() {
+                console.log('Source image was not found:', img);
                 reject();
             });
+
+            imgElement.src = url;
         });
 
         return imgPromise

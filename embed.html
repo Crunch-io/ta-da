@@ -141,16 +141,14 @@
                     domain = String.prototype.substring.apply(refUrl, indexes)
 
                     faviconUrl = window.crunchIO.getFaviconUrl(domain)
-                    imgEl.src = faviconUrl
 
                     window.crunchIO.testImage(faviconUrl).then(
                         function fulfilled(img) {
-                            console.log('Image was found and loaded:', img)
+                            imgEl.src = faviconUrl;
                         },
 
                         function rejected(err) {
-                            imgEl.classList.add('hidden')
-                            console.log('Image not found:', err);
+                            imgEl.classList.add('hidden');
                         }
                     )
 
@@ -169,7 +167,7 @@
 
                 if (props.ref) {
                     processReferrerElement(props.ref)
-                    src += `?ref=${props.ref}`
+                    src += '?ref=' + props.ref
                 }
 
                 iframe.setAttribute('src', src)
