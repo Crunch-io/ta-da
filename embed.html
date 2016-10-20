@@ -109,16 +109,8 @@
             var initPage = function() {
                 //"//d27smwjmpxcjmb.cloudfront.net/test01/widget/index.html#/ds/bc101c5d832568b88ab44a9378915846/row/000028/column/000367"
 
-                var iframe = document.querySelector('#embed'),
-                    search = window.location.search ?
-                        window.location.search.substr(1) + window.location.hash : '', // Because of the way we form the widget url (html5mode off), it will be stuck into the hash portion of the path
-                    parts = search.split(/(?:\?|&)/),
-                    props = {},
-                    referrerEl,
-                    src = '';
-
                 var processReferrerElement = function(refUrl) {
-                    referrerEl = document.querySelector('#referrer-link')
+                    var referrerEl = document.querySelector('#referrer-link')
                     referrerEl.href = refUrl
                     referrerEl.classList.remove('hidden')
 
@@ -155,6 +147,14 @@
                     document.querySelector('#referrer-link-text').innerText = refUrl
                 }
 
+                var iframe = document.querySelector('#embed'),
+                    search = window.location.search ?
+                        window.location.search.substr(1) + window.location.hash : '', // Because of the way we form the widget url (html5mode off), it will be stuck into the hash portion of the path
+                    parts = search.split(/(?:\?|&)/),
+                    props = {},
+                    src = '',
+                    protocolRegExp = /^(http(s?):)?\/{2}/;
+
                 parts.forEach(function(part) {
                     var pair = part.split('=')
 
@@ -163,7 +163,8 @@
                     }
                 })
 
-                src = props.data
+                // Add protocol if needed
+                src = (props.data.match(protocolRegExp) ? '' : '//') + props.data
 
                 if (props.ref) {
                     processReferrerElement(props.ref)
