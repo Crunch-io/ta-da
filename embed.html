@@ -70,7 +70,6 @@
 
                     script.addEventListener('error', function() {
                         reject(script);
-                        console.log('was rej');
                     }, false);
 
                     document.body.appendChild(script);
@@ -106,46 +105,50 @@
                 return Promise.all(promises);
             }
 
+            var processReferrerElement = function(refUrl) {
+                var referrerEl = document.querySelector('#referrer-link')
+                referrerEl.href = refUrl
+                referrerEl.classList.toggle('hidden', !refUrl);
+
+                if (!refUrl) {
+                    return
+                }
+
+                var imgEl = document.querySelector('#referrer-link-img'),
+                    indexes = [],
+                    startIndex = refUrl.indexOf('//'),
+                    endIndex,
+                    domain,
+                    faviconUrl
+
+                startIndex += startIndex === -1 ? 0 : 2
+                endIndex = refUrl.indexOf('/', startIndex)
+                
+                indexes[0] = startIndex
+
+                if (endIndex > -1) {
+                    indexes[1] = endIndex
+                }
+
+                domain = String.prototype.substring.apply(refUrl, indexes)
+
+                faviconUrl = window.crunchIO.getFaviconUrl(domain)
+
+                window.crunchIO.testImage(faviconUrl).then(
+                    function fulfilled(img) {
+                        imgEl.src = faviconUrl;
+                    },
+
+                    function rejected(err) {
+                        imgEl.classList.add('hidden');
+                    }
+                )
+
+                document.querySelector('#referrer-link-text').innerText = refUrl
+            };
+
             var initPage = function() {
                 //"//d27smwjmpxcjmb.cloudfront.net/test01/widget/index.html#/ds/bc101c5d832568b88ab44a9378915846/row/000028/column/000367"
-
-                var processReferrerElement = function(refUrl) {
-                    var referrerEl = document.querySelector('#referrer-link')
-                    referrerEl.href = refUrl
-                    referrerEl.classList.remove('hidden')
-
-                    var imgEl = document.querySelector('#referrer-link-img'),
-                        indexes = [],
-                        startIndex = refUrl.indexOf('//'),
-                        endIndex,
-                        domain,
-                        faviconUrl
-
-                    startIndex += startIndex === -1 ? 0 : 2
-                    endIndex = refUrl.indexOf('/', startIndex)
-                    
-                    indexes[0] = startIndex
-
-                    if (endIndex > -1) {
-                        indexes[1] = endIndex
-                    }
-
-                    domain = String.prototype.substring.apply(refUrl, indexes)
-
-                    faviconUrl = window.crunchIO.getFaviconUrl(domain)
-
-                    window.crunchIO.testImage(faviconUrl).then(
-                        function fulfilled(img) {
-                            imgEl.src = faviconUrl;
-                        },
-
-                        function rejected(err) {
-                            imgEl.classList.add('hidden');
-                        }
-                    )
-
-                    document.querySelector('#referrer-link-text').innerText = refUrl
-                }
 
                 var iframe = document.querySelector('#embed'),
                     search = window.location.search ?
@@ -167,12 +170,12 @@
                 src = (props.data.match(protocolRegExp) ? '' : '//') + props.data
 
                 if (props.ref) {
-                    processReferrerElement(props.ref)
                     src += '?ref=' + props.ref
                 }
+                processReferrerElement(props.ref)
 
                 iframe.setAttribute('src', src)
-            }
+            };
 
             loadScripts(scripts)
             .then(loadTemplates)

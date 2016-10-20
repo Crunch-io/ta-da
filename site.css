@@ -40280,8 +40280,9 @@ body {
 #shared-javascript-content {
     visibility: hidden;
 }
+
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .crunchbox #page-header-wrapper {
@@ -40297,7 +40298,6 @@ body {
 .crunchbox #banner {
     width: 90px;
 }
-
 .crunchbox a:hover,
 .crunchbox a:visited,
 .crunchbox a:active,
