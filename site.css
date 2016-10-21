@@ -2,22 +2,36 @@
 
 @font-face {
     font-family: 'AvenirLTStd';
-    src: url(//beta.crunch.io/AvenirLTPro-Heavy.ttf) format('truetype'), url(//beta.crunch.io/AvenirLTPro-Heavy.eot) format('embedded-opentype');
-    font-weight: font-weight-heavy;
+    src: url(//beta.crunch.io/AvenirLTPro-Heavy.ttf) format('truetype'),
+        url(//beta.crunch.io/AvenirLTPro-Heavy.eot) format('embedded-opentype');
+    font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'AvenirLTStd';
-    src: url(//beta.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'), url(//beta.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
-    font-weight: font-weight-normal;
+    src: url(//beta.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'),
+        url(//beta.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
+    font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'AvenirLTStd';
-    src: url(//beta.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'), url(//beta.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
-    font-weight: font-weight-light;
+    src: url(//beta.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'),
+        url(//beta.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'crunch';
+    src: url(/fonts/crunch.eot?-12vsw0);
+    src: url(/fonts/crunch.eot?#iefix-12vsw0) format('embedded-opentype'),
+            url(/fonts/crunch.ttf?-12vsw0) format('truetype'),
+            url(/fonts/crunch.woff?-12vsw0) format('woff'),
+            url(/fonts/crunch.svg?-12vsw0#crunch) format('svg');
+    font-weight: normal;
     font-style: normal;
 }
 
@@ -40296,7 +40310,7 @@ body {
 }
 
 .crunchbox #banner {
-    width: 90px;
+    width: 82px;
 }
 .crunchbox a:hover,
 .crunchbox a:visited,
@@ -40309,10 +40323,12 @@ body {
     display: flex;
     align-items: center;
 }
+#referrer-link > * {
+    line-height: 1;
+}
 #referrer-link-arrow {
-    font-family: Helvetica, sans-serif;
     color: #777;
-    font-size: 24px !important;
+    font-size: 10px !important;
     margin-right: 5px;
 }
 #referrer-link-img {
@@ -40323,5 +40339,9 @@ body {
 #referrer-link-text {
     font-size: 13px;
     margin-left: 5px;
-    line-height: 1;
+}
+
+.icon-angle-left:before {
+    font-family: 'crunch' !important;
+    content: "\f104";
 }
