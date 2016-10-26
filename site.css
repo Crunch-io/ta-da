@@ -35,6 +35,24 @@
     font-style: normal;
 }
 
+.crunch-wordmark {
+    background-image: url(img/crunch_logo_rgb.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 82px auto;
+    display: block;
+    width: 82px;
+    height: 16px;
+}
+
+@media  only screen and (min-device-pixel-ratio: 2), 
+    only screen and (min-resolution: 192dpi) {
+    
+    .crunch-wordmark {
+        background-image: url(img/crunch_logo_rgb@2x.png);
+    }
+}
+
 article,
 aside,
 details,
