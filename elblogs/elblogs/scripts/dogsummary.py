@@ -52,24 +52,7 @@ def main():
 
     if send_to_slack:
         ## Send the output there too!
-        if summary['append']['bad'] + summary['merge']['bad'] == 0:
-            color = "good"
-            icon_emoji = ":grinning:"
-        else:
-            color = "warning"
-            icon_emoji = ":worried:"
-        body = [{
-            "title": "Append/merge summary for %s" % (daterange),
-            "fallback": "Append/merge summary: "+ color,
-            "fields": [
-                {
-                    "title": "%ss: failed/total (%% success)" % k,
-                    "value": "%s/%s (%s%%)" % (v['bad'], v['total'], round(100*v['good']/v['total'])),
-                    "short": True
-                }
-                for k, v in summary.iteritems()],
-            "color": color
-        }]
+        body, icon_emoji = slackify_dog_summary(summary, daterange)
         r = message(channel="systems", username="crunchbot",
             icon_emoji=icon_emoji, attachments=body)
         r.raise_for_status()
@@ -89,6 +72,10 @@ def dog_summary_stats(start, end):
     merge_bad = dog_count("cr.server.merges.failed", start, end)
     merge_good = merge_total - merge_bad
 
+    ## Query Timeouts:
+    qt_total = dog_count("zz9.client.timeouts", start, end,
+        scope="host:eu-backend.priveu.crunch.io")
+
     return {
         "append": {
             "total": append_total,
@@ -100,4 +87,36 @@ def dog_summary_stats(start, end):
             "good": merge_good,
             "bad": merge_bad
         },
+        "timeout": {
+            "total": qt_total,
+        },
     }
+
+def slackify_dog_summary(summary, daterange):
+    if summary['append']['bad'] + summary['merge']['bad'] == 0:
+        color = "good"
+        icon_emoji = ":grinning:"
+    else:
+        color = "warning"
+        icon_emoji = ":worried:"
+    query_timeouts = summary.pop("timeout")
+    print(summary)
+    body = [{
+        "title": "Query summary for %s" % (daterange),
+        "fallback": "Query summary: "+ color,
+        "fields": [
+            {
+                "title": "%ss: failed/total (%% success)" % k,
+                "value": "%s/%s (%s%%)" % (v['bad'], v['total'], round(100*v['good']/v['total']) if v['total'] else "-"),
+                "short": True
+            }
+            for k, v in summary.iteritems()],
+        "color": color
+    }]
+    ## Add in the query timeouts, which don't follow that pattern
+    body[0]["fields"] += [{
+        "title": "ZZ9 Query Timeouts",
+        "value": query_timeouts["total"],
+        "short": True
+    }]
+    return body, icon_emoji
