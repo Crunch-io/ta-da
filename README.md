@@ -7,7 +7,7 @@ This method uses the python simple server. To use this, you need to have `python
 
 If you have python installed, next navigate to the root directory of this repo in your terminal and execute:
 
-Once in the root directory of this repo, start the local server by executing the following comman:
+Once in the root directory of this repo, start the local server by executing the following command:
 
 `python -m SimpleHTTPServer 8080` (You may change the port (8080) to whatever you wish to use, but you need to include a port, or all you will see is "It works!")
 
