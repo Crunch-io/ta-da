@@ -2,24 +2,24 @@
 
 @font-face {
     font-family: 'AvenirLTStd';
-    src: url(//beta.crunch.io/AvenirLTPro-Heavy.ttf) format('truetype'),
-        url(//beta.crunch.io/AvenirLTPro-Heavy.eot) format('embedded-opentype');
+    src: url(https://app.crunch.io/AvenirLTPro-Heavy.ttf) format('truetype'),
+        url(https://app.crunch.io/AvenirLTPro-Heavy.eot) format('embedded-opentype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'AvenirLTStd';
-    src: url(//beta.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'),
-        url(//beta.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
+    src: url(https://app.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'),
+        url(https://app.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'AvenirLTStd';
-    src: url(//beta.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'),
-        url(//beta.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
+    src: url(https://app.crunch.io/AvenirLTPro-Roman.ttf) format('truetype'),
+        url(https://app.crunch.io/AvenirLTPro-Roman.eot) format('embedded-opentype');
     font-weight: 700;
     font-style: normal;
 }
@@ -45,9 +45,9 @@
     height: 16px;
 }
 
-@media  only screen and (min-device-pixel-ratio: 2), 
+@media  only screen and (min-device-pixel-ratio: 2),
     only screen and (min-resolution: 192dpi) {
-    
+
     .crunch-wordmark {
         background-image: url(img/crunch_logo_rgb@2x.png);
     }
@@ -2325,13 +2325,13 @@ body.sqs-search-ui-fullscreen .sqs-search-ui-item .sqs-title .edit:hover {
 
 .sqs-search-container-item .sqs-title {
     font-size: 1.5em;
-    
+
     line-height: 1.3em;
     margin-bottom: .5em
 }
 
 .sqs-search-container-item .sqs-content {
-    
+
     font-size: 1em;
     line-height: 1.4em
 }
@@ -26889,7 +26889,7 @@ li[class*=" icon-"].icon-large:before {
 .site-title-font {
     font-family: Georgia, Times, serif;
     font-size: 72px;
-    
+
     font-style: normal;
     letter-spacing: 2px;
     text-transform: none;
@@ -26899,7 +26899,7 @@ li[class*=" icon-"].icon-large:before {
 .page-title-font {
     font-family: Georgia, Times, serif;
     font-size: 55px;
-    
+
     font-style: italic;
     letter-spacing: 2px;
     text-transform: none;
@@ -26918,7 +26918,7 @@ li[class*=" icon-"].icon-large:before {
 .site-name-font {
     font-family: Georgia, Times, serif;
     font-size: 21px;
-    
+
     font-style: italic;
     letter-spacing: 2px;
     text-transform: uppercase
@@ -36748,7 +36748,7 @@ a:active {
 
 #site-title a {
     font-family: AvenirLTStd, Georgia, Times, serif;
-    font-size: 72px;    
+    font-size: 72px;
     letter-spacing: 2px;
     text-transform: none;
     font-size: 48px;
@@ -36828,7 +36828,8 @@ h1:not(#site-title):not(#page-title) {
     text-transform: none;
     letter-spacing: 0px;
     font-weight: 100;
-    font-style: normal
+    font-style: normal;
+    margin-left: 0px; padding-left: 0px;
 }
 
 h2 {
@@ -36871,7 +36872,7 @@ blockquote p,
     font-size: 16px;
     line-height: 1.6em;
     letter-spacing: 0px;
-    
+
     font-style: italic
 }
 
@@ -36941,7 +36942,7 @@ blockquote p,
     line-height: 1.6em;
     text-transform: uppercase;
     letter-spacing: 3px;
-    
+
     font-style: normal;
     color: #cfcfcf;
     width: 50%;
@@ -37131,7 +37132,7 @@ nav ol {
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
+
     font-style: normal
 }
 
@@ -37151,7 +37152,7 @@ nav ol {
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0px;
-    
+
     font-style: normal;
     display: block;
     width: auto;
@@ -37543,7 +37544,7 @@ article .post span.inline-action {
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
+
     font-style: normal;
     text-align: left;
     display: block
@@ -37866,7 +37867,7 @@ body.top-navigation-position-none .vertical-navigation-bar #main-navigation ul {
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
+
     font-style: normal
 }
 
@@ -38009,7 +38010,7 @@ body.banner-content-page-title-description .horizontal-navigation-bar #site-titl
 body.banner-content-empty .horizontal-navigation-bar #site-title a {
     font-family: AvenirLTStd, Georgia, Times, serif;
     font-size: 21px;
-    
+
     font-style: italic;
     letter-spacing: 2px;
     font-size: 28px;
@@ -38697,7 +38698,7 @@ div[data-src="v5"] img {
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
+
     font-style: normal
 }
 
@@ -38716,7 +38717,7 @@ div[data-src="v5"] img {
     letter-spacing: 0px;
     font-size: 13px;
     text-transform: uppercase;
-    letter-spacing: 1px;    
+    letter-spacing: 1px;
     font-style: normal;
     display: block;
     padding: .5em 0;
@@ -38756,7 +38757,7 @@ div[data-src="v5"] img {
     vertical-align: middle;
     font-family: AvenirLTStd, Georgia, Times, serif;
     font-size: 21px;
-    
+
     font-style: italic;
     letter-spacing: 2px;
     font-size: 28px;
@@ -39246,7 +39247,7 @@ body.canvas-setting-site-width #canvas-wrapper {
     line-height: 1.6em;
     text-transform: uppercase;
     letter-spacing: 3px;
-    
+
     font-style: normal
 }
 
@@ -39264,7 +39265,7 @@ body.canvas-setting-site-width #canvas-wrapper {
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
+
     font-style: normal
 }
 
@@ -39320,7 +39321,7 @@ body.canvas-setting-site-width #canvas-wrapper {
     font-size: 16px;
     line-height: 1.6em;
     letter-spacing: 0px;
-    
+
     font-style: italic
 }
 
@@ -39339,7 +39340,7 @@ body.canvas-setting-site-width #canvas-wrapper {
     font-size: 14px;
     line-height: 1.8em;
     letter-spacing: 0px;
-    
+
     font-style: normal
 }
 
@@ -39357,7 +39358,7 @@ body.canvas-setting-site-width #canvas-wrapper {
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0px;
-    
+
     font-style: normal
 }
 

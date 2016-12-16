@@ -196,7 +196,7 @@ a[b].attributes["data-load"])+""&&ImageLoader.load(a[b])}};window.ImageLoader=Im
         
           
           
-            <a href="http://beta.crunch.io" target="_blank">Sign in</a>
+            <a href="http://app.crunch.io" target="_blank">Sign in</a>
           
         
       </li>
@@ -247,7 +247,7 @@ a[b].attributes["data-load"])+""&&ImageLoader.load(a[b])}};window.ImageLoader=Im
 
     
 
-    <li class="external-link"><a href="http://beta.crunch.io" target="_blank">Sign in</a><span class="delimiter">/</span></li>
+    <li class="external-link"><a href="http://app.crunch.io" target="_blank">Sign in</a><span class="delimiter">/</span></li>
   
   </ul>
 </nav>
@@ -325,7 +325,7 @@ a[b].attributes["data-load"])+""&&ImageLoader.load(a[b])}};window.ImageLoader=Im
 
     
 
-    <li class="external-link"><a href="http://beta.crunch.io" target="_blank">Sign in</a><span class="delimiter">/</span></li>
+    <li class="external-link"><a href="http://app.crunch.io" target="_blank">Sign in</a><span class="delimiter">/</span></li>
   
   </ul>
 </nav>
