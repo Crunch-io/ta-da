@@ -58,12 +58,23 @@ def file_in_date_range(filename, startdate=None, enddate=None, starttime=None, e
 def load_log(filename):
     '''Take an ELB file and return a data.frame-like dict of columns'''
     with open(filename) as f:
-        cols = zip(*(line.split(' ') for line in f))
+        ## Filter out lines that are invalid. Valid lines start with a timestamp
+        cols = zip(*(line.split(' ') for line in f
+                    if len(line) > 2 and line[:2] == "20"))
     out = dict(zip(FIELDS, cols))
     for i in NUMERIC_FIELDS:
         ## Make these numeric so we can do math on them
         out[i] = [float(x) for x in out[i]]
     return out
+
+def debugfloat(x, i):
+    '''Not currently used, but function to debug parsing of floats in load_log'''
+    try:
+        x = float(x)
+    except:
+        x = -99
+        print i
+    return x
 
 def logfile_to_datasets(filenames, destination):
     ''' Take an ELB file or list of files, split its entries by which dataset,
