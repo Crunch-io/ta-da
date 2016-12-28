@@ -14,5 +14,5 @@ Depends:
 Imports:
     httr
 Suggests:
-    testthat
+    httptest
 RoxygenNote: 5.0.1

@@ -6,7 +6,3 @@ options(
 )
 
 public <- function (...) with(globalenv(), ...)
-
-public({
-    source("helper-mocks.R")
-})
