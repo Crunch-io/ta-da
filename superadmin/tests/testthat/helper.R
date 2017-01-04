@@ -4,5 +4,3 @@ options(
     warn=1,
     superadmin.api="http://localhost:28081/"
 )
-
-public <- function (...) with(globalenv(), ...)
