@@ -14,5 +14,5 @@ Depends:
 Imports:
     httr
 Suggests:
-    httptest
+    httptest (>= 1.0.1)
 RoxygenNote: 5.0.1

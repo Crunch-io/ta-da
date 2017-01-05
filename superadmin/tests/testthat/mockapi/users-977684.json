@@ -1,0 +1,19 @@
+{
+	"query": "rees",
+	"users": [{
+		"name": "idreeskahloon@economist.com",
+		"email": "idreeskahloon@economist.com",
+		"account_id": "xxxx",
+		"id": "c20136"
+	}, {
+		"name": "Nicolas Treese",
+		"email": "nicolas.treese@yougov.com",
+		"account_id": "aaaa",
+		"id": "32e14f"
+	}, {
+		"name": "Tom Rees",
+		"email": "tom.rees@yougov.com",
+		"account_id": "aaaa",
+		"id": "8cd89c"
+	}]
+}
