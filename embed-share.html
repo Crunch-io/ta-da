@@ -105,7 +105,7 @@
             }, {});
 
         var boxUrl = [
-            searchParams.data.match(/^https?:\/\/[\w\.]+\//)[0],
+            searchParams.data.match(/^https?:\/\/[\w\.]+/)[0],
             window.crunchIO.prod ? '' : '/test01',
             '/snapshots/cubes/',
             window.location.hash.match(/ds\/(\w+)\W?/)[1],
