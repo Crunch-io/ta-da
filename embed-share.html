@@ -1,0 +1,287 @@
+<!doctype html>
+<html xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:website="http://ogp.me/ns/website" lang="en-US" itemscope itemtype="http://schema.org/WebPage">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Crunch.io</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="canonical" href="http://www.crunch.io/" />
+    <link rel="stylesheet" type="text/css" href="site.css" />
+</head>
+
+<body class="crunchbox canvas-setting-full-width hide-delimiter  banner-content-page-title-description banner-alignment-center page-thumbnail-as-banner  top-navigation-position-above-banner top-navigation-alignment-left disable-navigation-border  sidebar-position-right underline-sidebar-h3  footer-alignment-center disable-footer-border social-icon-style-normal social-icon-placement-top-only  blog-list-display-full blog-byline-bottom blog-dateline-top disable-pagination-border    show-products-category-navigation gallery-design-slideshow aspect-ratio-auto lightbox-style-dark gallery-navigation-thumbnails gallery-info-overlay-always-show gallery-aspect-ratio-32-standard gallery-arrow-style-round-corners gallery-transitions-fade gallery-show-arrows gallery-auto-crop   product-list-titles-under product-list-alignment-center product-item-size-43-four-thirds product-image-auto-crop product-gallery-size-32-standard product-gallery-auto-crop show-product-price show-product-item-nav product-social-sharing  event-show-past-events event-thumbnails event-thumbnail-size-32-standard event-date-label  event-list-show-cats event-list-date event-list-time event-list-address   event-icalgcal-links  event-excerpts      hide-album-share-link hide-opentable-icons opentable-style-dark newsletter-style-dark small-button-style-solid small-button-shape-square medium-button-style-solid medium-button-shape-square large-button-style-solid large-button-shape-square button-style-solid button-corner-style-square tweak-product-quick-view-button-style-floating tweak-product-quick-view-button-position-bottom tweak-product-quick-view-lightbox-excerpt-display-truncate tweak-product-quick-view-lightbox-show-arrows tweak-product-quick-view-lightbox-show-close-button tweak-product-quick-view-lightbox-controls-weight-light native-currency-code-usd collection-type-blog collection-layout-full-width collection-569c1f652399a3500662276e homepage view-list mobile-style-available has-logo-image has-page-thumbnail"
+    id="collection-569c1f652399a3500662276e" ontouchstart="">
+
+    <script>
+        window.crunchIO = {
+            prod: window.location.host === 'crunch.io'
+        };
+
+        var crunchboxId = window.location.hash.match(/\/ds\/()/)[1];
+        var shareUrl = [
+            window.location.origin,
+            window.location.pathname,
+            '?share=true&',
+            window.location.search.substr(1),
+            window.location.hash
+        ].join('')
+
+        console.log('shareUrl:', shareUrl)
+
+        function getJSON(url) {
+            var request = new XMLHttpRequest();
+            var promise = new Promise(function(resolve, reject) {
+                request.onload = function() {
+                    if (request.status >= 200 && request.status < 400) {
+                        resolve(JSON.parse(request.responseText));
+                    }
+                    else {
+                        // We reached our target server, but it returned an error
+                        reject(request);
+                    }
+                };
+
+                request.onerror = reject;
+            });
+
+            request.open('GET', url, true);
+            request.send();
+
+            return promise;
+        };
+
+        function addShareMetaTags(data) {
+            var shareMeta = [
+                {
+                    property: 'og:url',
+                    content:  window.location.href
+                },
+                {
+                    property: 'og:type',
+                    content:  'article'
+                },
+                {
+                    property: 'og:title',
+                    content:  data.title
+                },
+                {
+                    property: 'og:description',
+                    content:  data.notes
+                },
+                {
+                    property: 'og:image',
+                    content: 'http://placehold.it/1200x1200'
+                }
+            ];
+
+            var headEl = document.querySelector('head');
+
+            shareMeta.forEach(function(def) {
+                var metaEl = document.createElement('meta');
+
+                Object.keys(def).forEach(function(key) {
+                    metaEl.setAttribute(key, def[key]);
+                });
+
+                headEl.appendChild(metaEl);
+            });
+        }
+
+        var boxUrl = [
+            'https://d27smwjmpxcjmb.cloudfront.net',
+            window.crunchIO.prod ? '' : '/test01',
+            '/snapshots/cubes/',
+            window.location.hash.match(/ds\/(\w+)\W?/)[1],
+            '/dataset.json'
+        ].join('');
+
+        var searchParams = window.location.search.substr(1).split('&')
+            .reduce(function(accum, part) {
+                var parts = part.split('='),
+                    name = parts[0],
+                    value = parts[1];
+
+                accum[name] = value;
+
+                return accum;
+            }, {});
+
+        if (searchParams.share) {
+            getJSON(boxUrl).then(function(data) {
+                addShareMetaTags(data.body);
+            });
+        }
+    </script>
+
+    <!--MOBILE NAV-->
+    <!--<nav id="mobile-navigation" data-template="/templates/mobile-navigation.html"></nav>-->
+    <!-- END MOBILE NAV -->
+
+    <!-- <div id="page-header-wrapper" data-template="/templates/page-header.html"></div> -->
+    <!-- page-header-wrapper -->
+
+    <div id="page-header-wrapper" class="">
+        <div id="embed-banner-wrapper" data-content-field="site-title">
+            <a href="/"><span class="crunch-wordmark"></span></a>
+        </div>
+    </div>
+
+    <div id="page-body-wrapper" class="full-width">
+        <div id="page-body">
+            <div id="content-wrapper">
+                <div id="content">
+                    <div id="referrer">
+                        <a id="referrer-link" class="hidden">
+                            <span id="referrer-link-arrow" class="icon-angle-left"></span>
+                            <img id="referrer-link-img" alt="Referrer favicon" />
+                            <span id="referrer-link-text"></span>
+                        </a>
+                    </div>
+
+                    <iframe id="embed" width="600" height="480" style="border: 1px solid #d3d3d3;"></iframe>
+                </div>
+            </div> <!-- content-wrapper -->
+
+            <!--<div id="page-footer-wrapper" data-template="/templates/page-footer.html"></div>-->
+        </div>
+    </div> <!-- page-body-wrapper -->
+
+    <div id="shared-javascript-content" data-template="/templates/shared-javascript-content.html"></div>
+
+    <!-- BEGIN FOOTER TEMPLATING CUSTOM CODE -->
+
+    <script>
+        (function(window) {
+            var document = window.document,
+                Promise = window.Promise,
+                String = window.String,
+                console = window.console;
+
+            var loadScript = function(url) {
+                var promise = new Promise(function(resolve, reject) {
+                    var script = document.createElement('script');
+                    script.src = url;
+
+                    script.addEventListener('load', function() {
+                        resolve(script);
+                    }, false);
+
+                    script.addEventListener('error', function() {
+                        reject(script);
+                    }, false);
+
+                    document.body.appendChild(script);
+                });
+
+                return promise;
+            };
+
+            var loadScripts = function(urls) {
+                return Promise.all(urls.map(function(url) {
+                    return loadScript(url);
+                }))
+            };
+
+            var scripts = [
+                'https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js',
+                '/js/utils.js'
+            ];
+
+            var loadTemplates = function() {
+                var transformer = function(el) {
+                    var promise = new Promise(function(resolve, reject) {
+                        $(el).load(el.dataset['template'], function() {
+                            resolve();
+                        });
+                    })
+
+                    return promise
+                },
+                promises = [] = Array.prototype.map.call(
+                    document.querySelectorAll('[data-template]'), transformer)
+
+                return Promise.all(promises);
+            }
+
+            var processReferrerElement = function(refUrl) {
+                var referrerEl = document.querySelector('#referrer-link')
+                referrerEl.href = refUrl
+                referrerEl.classList.toggle('hidden', !refUrl);
+
+                if (!refUrl) {
+                    return
+                }
+
+                var imgEl = document.querySelector('#referrer-link-img'),
+                    indexes = [],
+                    startIndex = refUrl.indexOf('//'),
+                    endIndex,
+                    domain,
+                    faviconUrl
+
+                startIndex += startIndex === -1 ? 0 : 2
+                endIndex = refUrl.indexOf('/', startIndex)
+
+                indexes[0] = startIndex
+
+                if (endIndex > -1) {
+                    indexes[1] = endIndex
+                }
+
+                domain = String.prototype.substring.apply(refUrl, indexes)
+
+                faviconUrl = window.crunchIO.getFaviconUrl(domain)
+
+                window.crunchIO.testImage(faviconUrl).then(
+                    function fulfilled(img) {
+                        imgEl.src = faviconUrl;
+                    },
+
+                    function rejected(err) {
+                        imgEl.classList.add('hidden');
+                    }
+                )
+
+                document.querySelector('#referrer-link-text').innerText = refUrl
+            };
+
+            var initPage = function() {
+                //"//d27smwjmpxcjmb.cloudfront.net/test01/widget/index.html#/ds/bc101c5d832568b88ab44a9378915846/row/000028/column/000367"
+
+                var iframe = document.querySelector('#embed'),
+                    search = window.location.search ?
+                        window.location.search.substr(1) + window.location.hash : '', // Because of the way we form the widget url (html5mode off), it will be stuck into the hash portion of the path
+                    parts = search.split(/(?:\?|&)/),
+                    props = {},
+                    src = '',
+                    protocolRegExp = /^(http(s?):)?\/{2}/;
+
+                parts.forEach(function(part) {
+                    var pair = part.split('=')
+
+                    if (!props.hasOwnProperty(pair[0])) {
+                        props[pair[0]] = pair[1]
+                    }
+                })
+
+                // Add protocol if needed
+                src = (props.data.match(protocolRegExp) ? '' : '//') + props.data
+
+                if (props.ref) {
+                    src += '?ref=' + props.ref
+                }
+                processReferrerElement(props.ref)
+
+                iframe.setAttribute('src', src)
+            };
+
+            loadScripts(scripts)
+            .then(loadTemplates)
+            .then(initPage);
+        }(window))
+    </script>
+
+    <!-- END FOOTER TEMPLATING CUSTOM CODE -->
+</body>
+</html>
