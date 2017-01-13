@@ -18,7 +18,7 @@
             prod: window.location.host === 'crunch.io'
         };
 
-        var crunchboxId = window.location.hash.match(/\/ds\/()/)[1];
+        var crunchboxId = window.location.hash.match(/\/ds\/(\w{1,})/)[1];
         var shareUrl = [
             window.location.origin,
             window.location.pathname,
