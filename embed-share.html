@@ -88,15 +88,12 @@
             });
         }
 
-        var boxUrl = [
-            'https://d27smwjmpxcjmb.cloudfront.net',
-            window.crunchIO.prod ? '' : '/test01',
-            '/snapshots/cubes/',
-            window.location.hash.match(/ds\/(\w+)\W?/)[1],
-            '/dataset.json'
-        ].join('');
+        // function getBoxHost(dataUrl) {
+        //     switch(dataUrl)
+        // }
 
-        var searchParams = window.location.search.substr(1).split('&')
+        var searchParams = (window.location.search + window.location.hash)
+            .substr(1).split('&')
             .reduce(function(accum, part) {
                 var parts = part.split('='),
                     name = parts[0],
@@ -106,6 +103,14 @@
 
                 return accum;
             }, {});
+
+        var boxUrl = [
+            searchParams.data.match(/^https?:\/\/[\w\.]+/)[0],
+            window.crunchIO.prod ? '' : '/test01',
+            '/snapshots/cubes/',
+            window.location.hash.match(/ds\/(\w+)\W?/)[1],
+            '/dataset.json'
+        ].join('');
 
         if (searchParams.share) {
             getJSON(boxUrl).then(function(data) {
