@@ -47,7 +47,7 @@
     </div> <!-- page-body-wrapper -->
 
     <div id="shared-javascript-content" data-template="/templates/shared-javascript-content.html"></div>
-    
+
     <!-- BEGIN FOOTER TEMPLATING CUSTOM CODE -->
 
     <script>
@@ -123,7 +123,7 @@
 
                 startIndex += startIndex === -1 ? 0 : 2
                 endIndex = refUrl.indexOf('/', startIndex)
-                
+
                 indexes[0] = startIndex
 
                 if (endIndex > -1) {
@@ -148,14 +148,14 @@
             };
 
             var initPage = function() {
+                console.log('referrer:', document.referrer)
                 //"//d27smwjmpxcjmb.cloudfront.net/test01/widget/index.html#/ds/bc101c5d832568b88ab44a9378915846/row/000028/column/000367"
 
                 var iframe = document.querySelector('#embed'),
                     search = window.location.search ?
-                        window.location.search.substr(1) + window.location.hash : '', // Because of the way we form the widget url (html5mode off), it will be stuck into the hash portion of the path
+                        window.location.search.substr(1) : '',
                     parts = search.split(/(?:\?|&)/),
                     props = {},
-                    src = '',
                     protocolRegExp = /^(http(s?):)?\/{2}/;
 
                 parts.forEach(function(part) {
@@ -164,18 +164,39 @@
                     if (!props.hasOwnProperty(pair[0])) {
                         props[pair[0]] = pair[1]
                     }
-                })
+                });
 
+                // Embed will receive the data url from the widget as an encoded param
+                var dataUrl = decodeURIComponent(props.data);
                 // Add protocol if needed
-                src = (props.data.match(protocolRegExp) ? '' : '//') + props.data
+                var src = `${dataUrl.match(protocolRegExp) ? '' : '//'}${dataUrl}`;
+                var refUrl = props.ref ? decodeURIComponent(props.ref) : '';
 
-                if (props.ref) {
-                    src += '?ref=' + props.ref
-                }
-                processReferrerElement(props.ref)
+                iframe.setAttribute('src', src);
 
-                iframe.setAttribute('src', src)
+                processReferrerElement(refUrl);
+
+                console.log('share platform url:', getSharePlatformUrl(dataUrl.match(/ds\/(\w+)/)[1], window.location.href))
             };
+
+            function getSharePlatformUrl(boxId, shareUrl) {
+                // e.g. "#/ds/<boxId>/row/<varId>/column/<colId>/filter/<filterId>?viz=table&cp=percent&dp=0&grp=stack"
+                // const boxConfig = url.substr(url.indexOf('#/ds/') + 2);
+                // const boxId = url.match(/ds\/(\w+)/)[1]
+                // const parts = boxConfig.split('?');
+                // // e.g. ['ds/<boxId>', 'row/<varId>', column/<colId>, filter/<filterId>]
+                // const paramArray = parts[0].match(/\w+\/\w+/g)
+
+                // if (parts.length > 1) {
+                //     // format the query like the rest of the params
+                //     paramArray = paramArray.concat(parts[1].replace(/(\w+)=(\w+)/g, '$1/$2').split('&'))
+                // }
+
+                // // e.g. ds/<boxId>/row/<varId>/column/<colId>/filter/<filterId>/viz/table/cp/percent/dp/0/grp/stack
+                // const uniqueBoxConfigString = paramArray.sort().join('')
+
+                return `https://localhost:3030/share/${boxId}?url=${encodeURIComponent(shareUrl)}`
+            }
 
             loadScripts(scripts)
             .then(loadTemplates)
