@@ -39,6 +39,12 @@
                     </div>
 
                     <iframe id="embed" width="600" height="480" style="border: 1px solid #d3d3d3;"></iframe>
+
+                    <footer>
+                        <button id="displayShareUrl">Generate share url</button>
+                        <input id="shareUrl" type="text" style="margin-left: 10px; width: 400px;" />
+                        <iframe id="sharePreview" style="display: none;"></iframe>
+                    </footer>
                 </div>
             </div> <!-- content-wrapper -->
 
@@ -169,34 +175,24 @@
                 // Embed will receive the data url from the widget as an encoded param
                 var dataUrl = decodeURIComponent(props.data);
                 // Add protocol if needed
-                var src = `${dataUrl.match(protocolRegExp) ? '' : '//'}${dataUrl}`;
+                var src = `${dataUrl.match(protocolRegExp) ? '' : 'http://'}${dataUrl}`;
                 var refUrl = props.ref ? decodeURIComponent(props.ref) : '';
 
                 iframe.setAttribute('src', src);
 
                 processReferrerElement(refUrl);
 
-                console.log('share platform url:', getSharePlatformUrl(dataUrl.match(/ds\/(\w+)/)[1], window.location.href))
+                console.log('dataUrl:', dataUrl)
+
+                var boxId = dataUrl.match(/\/ds\/(\w+)\/?/)[1];
+
+                document.getElementById('displayShareUrl').addEventListener('click', function(event) {
+                    var url = `https://dev.crunch.io/social/share/${boxId}?url=${window.location.href}`
+
+                    document.getElementById('shareUrl').value = url
+                    document.getElementById('sharePreview').setAttribute('src', url)
+                });
             };
-
-            function getSharePlatformUrl(boxId, shareUrl) {
-                // e.g. "#/ds/<boxId>/row/<varId>/column/<colId>/filter/<filterId>?viz=table&cp=percent&dp=0&grp=stack"
-                // const boxConfig = url.substr(url.indexOf('#/ds/') + 2);
-                // const boxId = url.match(/ds\/(\w+)/)[1]
-                // const parts = boxConfig.split('?');
-                // // e.g. ['ds/<boxId>', 'row/<varId>', column/<colId>, filter/<filterId>]
-                // const paramArray = parts[0].match(/\w+\/\w+/g)
-
-                // if (parts.length > 1) {
-                //     // format the query like the rest of the params
-                //     paramArray = paramArray.concat(parts[1].replace(/(\w+)=(\w+)/g, '$1/$2').split('&'))
-                // }
-
-                // // e.g. ds/<boxId>/row/<varId>/column/<colId>/filter/<filterId>/viz/table/cp/percent/dp/0/grp/stack
-                // const uniqueBoxConfigString = paramArray.sort().join('')
-
-                return `https://localhost:3030/share/${boxId}?url=${encodeURIComponent(shareUrl)}`
-            }
 
             loadScripts(scripts)
             .then(loadTemplates)
