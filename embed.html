@@ -56,147 +56,21 @@
 
     <!-- BEGIN FOOTER TEMPLATING CUSTOM CODE -->
 
+    <script src="/js/utils.js"></script>
     <script>
         (function(window) {
-            var document = window.document,
-                Promise = window.Promise,
-                String = window.String,
-                console = window.console;
+            'use strict';
 
-            window.crunchIO = {}
-
-            var loadScript = function(url) {
-                var promise = new Promise(function(resolve, reject) {
-                    var script = document.createElement('script');
-                    script.src = url;
-
-                    script.addEventListener('load', function() {
-                        resolve(script);
-                    }, false);
-
-                    script.addEventListener('error', function() {
-                        reject(script);
-                    }, false);
-
-                    document.body.appendChild(script);
-                });
-
-                return promise;
-            };
-
-            var loadScripts = function(urls) {
-                return Promise.all(urls.map(function(url) {
-                    return loadScript(url);
-                }))
-            };
-
-            var scripts = [
+            const scripts = [
                 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js',
-                '/js/utils.js'
+                '/js/embed.js'
             ];
 
-            var loadTemplates = function() {
-                var transformer = function(el) {
-                    var promise = new Promise(function(resolve, reject) {
-                        $(el).load(el.dataset['template'], function() {
-                            resolve();
-                        });
-                    })
-
-                    return promise
-                },
-                promises = [] = Array.prototype.map.call(
-                    document.querySelectorAll('[data-template]'), transformer)
-
-                return Promise.all(promises);
-            }
-
-            var processReferrerElement = function(refUrl) {
-                var referrerEl = document.querySelector('#referrer-link')
-                referrerEl.href = refUrl
-                referrerEl.classList.toggle('hidden', !refUrl);
-
-                if (!refUrl) {
-                    return
-                }
-
-                var imgEl = document.querySelector('#referrer-link-img'),
-                    indexes = [],
-                    startIndex = refUrl.indexOf('//'),
-                    endIndex,
-                    domain,
-                    faviconUrl
-
-                startIndex += startIndex === -1 ? 0 : 2
-                endIndex = refUrl.indexOf('/', startIndex)
-
-                indexes[0] = startIndex
-
-                if (endIndex > -1) {
-                    indexes[1] = endIndex
-                }
-
-                domain = String.prototype.substring.apply(refUrl, indexes)
-
-                faviconUrl = window.crunchIO.getFaviconUrl(domain)
-
-                window.crunchIO.testImage(faviconUrl).then(
-                    function fulfilled(img) {
-                        imgEl.src = faviconUrl;
-                    },
-
-                    function rejected(err) {
-                        imgEl.classList.add('hidden');
-                    }
-                )
-
-                document.querySelector('#referrer-link-text').innerText = refUrl
-            };
-
-            var initPage = function() {
-                console.log('referrer:', document.referrer)
-                //"//d27smwjmpxcjmb.cloudfront.net/test01/widget/index.html#/ds/bc101c5d832568b88ab44a9378915846/row/000028/column/000367"
-
-                var iframe = document.querySelector('#embed'),
-                    search = window.location.search ?
-                        window.location.search.substr(1) : '',
-                    parts = search.split(/(?:\?|&)/),
-                    props = {},
-                    protocolRegExp = /^(http(s?):)?\/{2}/;
-
-                parts.forEach(function(part) {
-                    var pair = part.split('=')
-
-                    if (!props.hasOwnProperty(pair[0])) {
-                        props[pair[0]] = pair[1]
-                    }
-                });
-
-                // Embed will receive the data url from the widget as an encoded param
-                var dataUrl = decodeURIComponent(props.data);
-                // Add protocol if needed
-                var src = `${dataUrl.match(protocolRegExp) ? '' : 'http://'}${dataUrl}`;
-                var refUrl = props.ref ? decodeURIComponent(props.ref) : '';
-
-                iframe.setAttribute('src', src);
-
-                processReferrerElement(refUrl);
-
-                console.log('dataUrl:', dataUrl)
-
-                var boxId = dataUrl.match(/\/ds\/(\w+)\/?/)[1];
-
-                document.getElementById('displayShareUrl').addEventListener('click', function(event) {
-                    var url = `https://dev.crunch.io/social/share/${boxId}?url=${window.location.href}`
-
-                    document.getElementById('shareUrl').value = url
-                    document.getElementById('sharePreview').setAttribute('src', url)
-                });
-            };
-
-            loadScripts(scripts)
-            .then(loadTemplates)
-            .then(initPage);
+            window.crunchIO.utils.loadScriptsAsync(scripts)
+                .catch((err) => {console.error('There was a problem loading page scripts:', err)})
+                .then(window.crunchIO.utils.loadTemplatesAsync)
+                .catch((err) => {console.error('There was a problem loading templates:', err)})
+                .then(() => window.crunchIO.initPage())
         }(window))
     </script>
 
