@@ -51,30 +51,33 @@
         document.querySelector('#referrer-link-text').innerText = refUrl
     };
 
+    function getParamsFromUrl() {
+        // Legacy url is plain, new url has encoded parts
+        const query = (window.location.search + window.location.hash).substr(1)
+        const parts = []
+
+        return query.match(/((?![\?&](data|ref)=).)+/g).reduce((accum, part) => {
+            const match = part.match(/^(\w+)=(.*)/)
+
+            if (match) {
+                accum[match[1]] = decodeURIComponent(match[2])
+            }
+
+            return accum
+        }, {})
+    }
+
     function initPage() {
         console.log('referrer:', document.referrer)
-        //"//d27smwjmpxcjmb.cloudfront.net/test01/widget/index.html#/ds/bc101c5d832568b88ab44a9378915846/row/000028/column/000367"
 
-        const iframe = document.querySelector('#embed'),
-            search = window.location.search ?
-                window.location.search.substr(1) : '',
-            parts = search.split(/(?:\?|&)/),
-            props = {},
-            protocolRegExp = /^(http(s?):)?\/{2}/;
-
-        parts.forEach(function(part) {
-            const pair = part.split('=')
-
-            if (!props.hasOwnProperty(pair[0])) {
-                props[pair[0]] = pair[1]
-            }
-        });
-
+        const iframe = document.querySelector('#embed')
+        const params = getParamsFromUrl()
+        const protocolRegExp = /^(http(s?):)?\/{2}/;
         // Embed will receive the data url from the widget as an encoded param
-        const dataUrl = decodeURIComponent(props.data);
+        const dataUrl = params.data;
         // Add protocol if needed
         const src = `${dataUrl.match(protocolRegExp) ? '' : 'http://'}${dataUrl}`;
-        const refUrl = props.ref ? decodeURIComponent(props.ref) : '';
+        const refUrl = params.ref ? params.ref : '';
 
         iframe.setAttribute('src', src);
 
