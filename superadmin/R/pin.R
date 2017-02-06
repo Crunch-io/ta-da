@@ -5,7 +5,7 @@
 #' @importFrom httr POST
 #' @export
 pin <- function (dataset_id) {
-    POST(superadminURL("/datasets/pin"),
+    superPOST(superadminURL("/datasets/pin"),
         query=list(dsid=datasetURLToId(dataset_id)))
     invisible(dataset_id)
 }
@@ -13,7 +13,7 @@ pin <- function (dataset_id) {
 #' @rdname pin
 #' @export
 unpin <- function (dataset_id) {
-    POST(superadminURL("/datasets/unpin"),
+    superPOST(superadminURL("/datasets/unpin"),
         query=list(dsid=datasetURLToId(dataset_id)))
     invisible(dataset_id)
 }

@@ -8,9 +8,9 @@
 #' @export
 getUsers <- function (query=NULL) {
     if (is.null(query)) {
-        out <- GET(superadminURL("/users"))
+        out <- superGET(superadminURL("/users"))
     } else {
-        out <- GET(superadminURL("/users"), query=list(query=query))
+        out <- superGET(superadminURL("/users"), query=list(query=query))
     }
     out <- content(out)$users
     if (length(out)) {
