@@ -1,3 +1,8 @@
+## superadmin 0.2.0
+
+* Automatically set up a tunnel to the superadmin port if one is not already set
+* Functions for getting info on users and datasets
+
 ## superadmin 0.1.0
 
 * Initial addition of functions and tests

@@ -1,0 +1,8 @@
+{
+	"show_visible": false,
+	"datasets": {},
+	"fields": ["name", "description", "owner_id", "owner_type", "id", "archived"],
+	"show_pinned": false,
+	"ds_name": "",
+	"ds_user_email": ""
+}

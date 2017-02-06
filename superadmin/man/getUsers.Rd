@@ -17,4 +17,3 @@ A data.frame with 4 columns: name, email, account_id, and id.
 \description{
 Query the users
 }
-

@@ -1,0 +1,24 @@
+{
+	"show_visible": false,
+	"datasets": [{
+		"archived": false,
+		"name": "YouGov/Economist Weekly Survey #235",
+		"pinned": false,
+		"owner": {
+			"description": "",
+			"icon_url": "//s.crunch.io/project_icons/80c51523fc31446396f6c915a02c77de-wtqnpf.png",
+			"user_icon": false,
+			"name": "Crunch.io Devs",
+			"id": "80c51523fc31446396f6c915a02c77de",
+			"owner_id": "518278c707a7d8253b685722"
+		},
+		"owner_type": "Project",
+		"owner_id": "80c51523fc31446396f6c915a02c77de",
+		"id": "a2250e623c2a40d988ab7221d078034f",
+		"description": ""
+	}],
+	"fields": ["name", "description", "owner_id", "owner_type", "id", "archived"],
+	"show_pinned": false,
+	"ds_name": "",
+	"ds_user_email": ""
+}

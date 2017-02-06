@@ -18,4 +18,3 @@ invisibly, the id of the dataset pinned or unpinned
 \description{
 Pin or unpin a dataset
 }
-
