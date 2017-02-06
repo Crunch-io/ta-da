@@ -16,4 +16,3 @@ A \code{data.frame} cleaned up a bit.
 Delete some columns we don't care about ever, parse the timestamp,
 add up response times, separate request verb from URL, etc.
 }
-

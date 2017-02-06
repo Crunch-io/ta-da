@@ -23,4 +23,3 @@ A data.frame with the time values as the rownames.
 \description{
 Aggregate over a log data.frame by a unit of time
 }
-

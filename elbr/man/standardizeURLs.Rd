@@ -20,4 +20,3 @@ generally behave a certain way.
 \examples{
 standardizeURLs("https://crunch.io/api/datasets/000001/") == standardizeURLs("https://crunch.io/api/datasets/999999/")
 }
-

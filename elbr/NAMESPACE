@@ -3,6 +3,8 @@
 export(byRollup)
 export(cleanLog)
 export(extractDatasetID)
+export(filterLogs)
+export(find504s)
 export(read.elb)
 export(standardizeURLs)
 export(summarizeLog)

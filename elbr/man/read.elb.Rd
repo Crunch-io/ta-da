@@ -20,4 +20,3 @@ A \code{data.frame}.
 \description{
 Load an ELB log file
 }
-

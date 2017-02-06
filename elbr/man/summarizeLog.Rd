@@ -15,4 +15,3 @@ A data.frame with one row.
 \description{
 Basic summary statistics from a log
 }
-

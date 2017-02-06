@@ -20,4 +20,3 @@ Get the dataset ID from a URL
 extractDatasetID("http://crunch.io/datasets/8159d0c4e26fef8ea371a2d9338ceb91/")
 is.na(extractDatasetID("http://crunch.io/users/"))
 }
-
