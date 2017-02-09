@@ -12,7 +12,7 @@
 filterLogs <- function (pattern="", date="", base.dir=getOption("elbr.dir")) {
     ## Date is YYYY/MM/DD, or any segment of that (e.g. YYYY/MM)
     in.dir <- file.path(base.dir, date)
-    logs <- system(paste0('cd ', in.dir, ' && find . -name *.log | xargs -n 1 egrep "',
+    logs <- system(paste0('cd ', in.dir, ' && find . -name "*.log" | xargs -n 1 egrep "',
         pattern, '"'), intern=TRUE)
     return(read.elb(textConnection(logs)))
 }
