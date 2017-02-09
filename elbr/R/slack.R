@@ -1,6 +1,10 @@
-reportToSlack <- function (obj) {
-    slack(channel="systems", username="jenkins", icon_emoji=":timer_clock:",
-        text=md(obj))
+reportToSlack <- function (obj, send=TRUE) {
+    if (send) {
+        slack(channel="systems", username="jenkins", icon_emoji=":timer_clock:",
+            text=md(obj))
+    } else {
+        print(obj)
+    }
 }
 
 #' @importFrom httr POST add_headers
