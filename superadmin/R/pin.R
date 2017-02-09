@@ -19,7 +19,9 @@ unpin <- function (dataset_id) {
 }
 
 #' @importFrom httr parse_url build_url
-superadminURL <- function (path, host=getOption("superadmin.api")) {
+superadminURL <- function (path,
+        host=paste0("http://localhost:", getOption("superadmin.local.port"))) {
+    
     u <- parse_url(host)
     u$path <- path
     return(build_url(u))

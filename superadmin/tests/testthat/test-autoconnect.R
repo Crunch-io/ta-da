@@ -22,4 +22,10 @@ with_mock(
                     "Connecting..."),
             "ssh")
     })
+
+    test_that("superDisconnect", {
+        expect_output(
+            expect_message(superDisconnect(), "Disconnecting..."),
+            "ssh")
+    })
 })

@@ -1,5 +1,5 @@
-mockURL <- function (path, host=getOption("superadmin.api")) {
-    paste0(host, path)
+mockURL <- function (path, host) {
+    paste0("mockapi", path)
 }
 
 with_mock_API <- function (...) {

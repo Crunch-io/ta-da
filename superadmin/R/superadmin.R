@@ -1,6 +1,6 @@
 .onAttach <- function (lib, pkgname="superadmin") {
     setIfNotAlready(
-        superadmin.api="http://localhost:28081/"
+        superadmin.local.port=28081
     )
     invisible()
 }

@@ -8,10 +8,11 @@ summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
         t2 <- as.data.frame(sort(table(extractDatasetID(df$request_url)),
             decreasing=TRUE))
         names(t2) <- "timeouts"
-        rownames(t2) <- sapply(rownames(t2), function (x) {
+        t2$name <- sapply(rownames(t2), function (x) {
             getDatasets(dsid=x)$name
         })
         reportToSlack(t1, send)
         reportToSlack(t2, send)
+        superDisconnect()
     }
 }
