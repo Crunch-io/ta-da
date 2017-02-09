@@ -13,6 +13,6 @@ summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
         })
         reportToSlack(t1, send)
         reportToSlack(t2, send)
-        superDisconnect()
+        superadmin:::superDisconnect()
     }
 }
