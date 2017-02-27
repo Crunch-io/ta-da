@@ -1,0 +1,71 @@
+{
+	"id_method": "yougov",
+	"teams": [{
+		"id": "00319b",
+		"name": "New Team",
+		"owner_id": "498027"
+	}],
+	"total_datasets": 87,
+	"host": "https://app.crunch.io/",
+	"user": {
+		"id_method": "oauth",
+		"preferences": {
+			"openedDeck": "https://app.crunch.io/api/datasets/7bdee5bc096d4f3c944ebf5a58f3a372/decks/df196458c2cb4db584e3b9070da87b6d/",
+			"projectGroupId": "_projectHierarchyRoot",
+			"displaySettings": {
+				"percentageDirection": "colPct",
+				"showEmpty": false,
+				"slicesOrGroups": "slices",
+				"vizType": "table",
+				"countsOrPercents": "percent",
+				"pivot": true,
+				"decimalPlaces": 1,
+				"geoChart": true,
+				"showSignif": true
+			},
+			"dsVisibleProps": {
+				"access_time": true,
+				"name": true,
+				"modification_time": true
+			},
+			"projectId": "personal-project",
+			"projectBrowser": {
+				"sortDirection": "DES",
+				"sortCriteria": "access_time"
+			},
+			"projects": true
+		},
+		"account_id": "e0f59906",
+		"id_provider": "google",
+		"id": "4091a7",
+		"tokens": {},
+		"credentials": {
+			"oauth2_profile": {
+			},
+			"oauth2_sub": "zzz"
+		},
+		"permissions": {
+			"create_users": false,
+			"alter_users": false,
+			"create_datasets": true
+		},
+		"email": "davide.contu@yougov.com",
+		"name": "Davide Contu"
+	},
+	"projects": [{
+		"description": "",
+		"icon_url": "//s.crunch.io/project_icons/orqijc.png",
+		"user_icon": false,
+		"name": "Crunch_Example",
+		"id": "317e8f",
+		"owner_id": "4091a7"
+	}, {
+		"description": "",
+		"icon_url": "//s.crunch.io/project_icons/ffrcyb.png",
+		"user_icon": false,
+		"name": "DATA PRODUCTS",
+		"id": "f8cc23",
+		"owner_id": "4091a7"
+	}],
+	"preferences_json": "{\n  \"projectGroupId\": \"_projectHierarchyRoot\", \n  \"displaySettings\": {\n    \"percentageDirection\": \"colPct\", \n    \"showEmpty\": false, \n    \"slicesOrGroups\": \"slices\", \n    \"vizType\": \"table\", \n    \"countsOrPercents\": \"percent\", \n    \"pivot\": true, \n    \"decimalPlaces\": 1, \n    \"geoChart\": true, \n    \"showSignif\": true\n  }, \n  \"projectId\": \"personal-project\", \n  \"dsVisibleProps\": {\n    \"access_time\": true, \n    \"name\": true, \n    \"modification_time\": true\n  }, \n  \"projectBrowser\": {\n    \"sortDirection\": \"DES\", \n    \"sortCriteria\": \"access_time\"\n  }, \n  \"projects\": true, \n  \"openedDeck\": \"https://app.crunch.io/api/datasets/7bdee5bc096d4f3c944ebf5a58f3a372/decks/df196458c2cb4db584e3b9070da87b6d/\"\n}"
+}

@@ -18,15 +18,6 @@ unpin <- function (dataset_id) {
     invisible(dataset_id)
 }
 
-#' @importFrom httr parse_url build_url
-superadminURL <- function (path,
-        host=paste0("http://localhost:", getOption("superadmin.local.port"))) {
-    
-    u <- parse_url(host)
-    u$path <- path
-    return(build_url(u))
-}
-
 datasetURLToId <- function (url) {
     ## Parses ID from URL, if a URL. Otherwise just returns url
     sub("^.*?datasets/([0-9a-f]+)/.*$", "\\1", url)

@@ -13,5 +13,17 @@ public({
             expect_is(df3, "data.frame")
             expect_identical(dim(df3), c(0L, 4L))
         })
+
+        test_that("getUser by id", {
+            u <- getUser("4091a7")
+            expect_identical(u$user$id, "4091a7")
+        })
+
+        test_that("featureFlags", {
+            u <- getUser("4091a7")
+            expect_identical(featureFlags(u), list(projects=TRUE))
+            expect_POST(featureFlags(u)$something_else <- TRUE,
+                "mockapi/users/4091a7/edit")
+        })
     })
 })

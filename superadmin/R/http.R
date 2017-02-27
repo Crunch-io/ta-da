@@ -1,3 +1,12 @@
+#' HTTP for superadmin
+#'
+#' These functions auto-tunnel to the superadmin host:port if you're not already
+#' connected.
+#'
+#' @param ... Arguments passed to httr VERBs
+#' @return Whatever those HTTP requests return.
+#' @importFrom httr GET POST
+#' @export
 superGET <- function (...) {
     Call <- match.call()
     Call[[1]] <- as.name("GET")
@@ -5,11 +14,28 @@ superGET <- function (...) {
     retryWithNewTunnel(Call, env)
 }
 
+#' @rdname superGET
+#' @export
 superPOST <- function (...) {
     Call <- match.call()
     Call[[1]] <- as.name("POST")
     env <- parent.frame()
     retryWithNewTunnel(Call, env)
+}
+
+#' Construct a superadmin URL
+#'
+#' @param path character relative path
+#' @param host character path that \code{path} is relative to
+#' @return A valid URL.
+#' @importFrom httr parse_url build_url
+#' @export
+superadminURL <- function (path,
+        host=paste0("http://localhost:", getOption("superadmin.local.port"))) {
+
+    u <- parse_url(host)
+    u$path <- path
+    return(build_url(u))
 }
 
 retryWithNewTunnel <- function (call, envir) {
