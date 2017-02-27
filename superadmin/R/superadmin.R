@@ -1,7 +1,15 @@
+bye <- new.env() ## For the finalizer
+
 .onAttach <- function (lib, pkgname="superadmin") {
     setIfNotAlready(
         superadmin.local.port=28081
     )
+
+    reg.finalizer(bye, function (x) {
+        ## Disconnect when R exits
+        superDisconnect()
+    }, onexit=TRUE)
+
     invisible()
 }
 
