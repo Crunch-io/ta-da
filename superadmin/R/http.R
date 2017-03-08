@@ -5,7 +5,7 @@
 #'
 #' @param ... Arguments passed to httr VERBs
 #' @return Whatever those HTTP requests return.
-#' @importFrom httr GET POST
+#' @importFrom httpcache GET POST
 #' @export
 superGET <- function (...) {
     Call <- match.call()

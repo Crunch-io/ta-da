@@ -12,6 +12,7 @@ License: MIT + file LICENSE
 Depends:
     R (>= 3.0.0)
 Imports:
+    httpcache,
     httr
 Suggests:
     httptest (>= 1.0.1)
