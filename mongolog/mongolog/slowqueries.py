@@ -49,7 +49,18 @@ class CrunchMLogFilterTool(MLogFilterTool):
             if self.args['timestamp_format'] == 'none':
                 self.args['timestamp_format'] = logevent.datetime_format
             logevent._reformat_timestamp(self.args['timestamp_format'], force=True)
-        self.LINES.append(json.loads(logevent.to_json()))
+
+        data = json.loads(logevent.to_json())
+        if data['operation'] in ('getmore', ):
+            # In theory we are interested in getmore operations, but they
+            # screw up stats due to migrate host dumps
+            return
+
+        if data['operation'] != 'query':
+            # For now focus on reads, will have to monitor more once reads are sane
+            return
+        
+        self.LINES.append(data)
 
 
 def main():
@@ -62,10 +73,11 @@ def main():
         CrunchMLogFilterTool.LINES = []
         CrunchMLogFilterTool().run()
 
-        text = '\n'.join(' '.join(l['split_tokens']) for l in CrunchMLogFilterTool.LINES)
+        text = '\n\n'.join('%s in %sms -> %s...' % (l['nreturned'], l['duration'], l['line_str'][:384]) for l in CrunchMLogFilterTool.LINES)
         r = slack.message(channel="mongo", username="crunchbot", icon_emoji=':worried:',
-                          attachments=[{'title': 'MongoDB Queries Summary for past 24 Hours',
-                                        'color': "warning", 'text': text}])
+                          attachments=[{'title': 'MongoDB Slow Queries for past 24 Hours',
+                                        'color': "warning", 'text': '```' + text + '```', 
+                                        "mrkdwn_in": ["text", "fallback"]}])
         r.raise_for_status()
     finally:
         os.unlink(tmpf)
