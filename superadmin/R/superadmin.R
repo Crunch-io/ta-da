@@ -7,7 +7,9 @@ bye <- new.env() ## For the finalizer
 
     reg.finalizer(bye, function (x) {
         ## Disconnect when R exits
-        superDisconnect()
+        if (isTRUE(getOption("superadmin.is.connected"))) {
+            superDisconnect()
+        }
     }, onexit=TRUE)
 
     invisible()

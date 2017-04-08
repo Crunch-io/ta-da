@@ -4,7 +4,6 @@
 #' names and emails, and/or make specific queries of Mongo, like
 #' "preferences.labs:true"'
 #' @return A data.frame with 4 columns: name, email, account_id, and id.
-#' @importFrom httr GET content
 #' @export
 getUsers <- function (query=NULL) {
     if (is.null(query)) {
@@ -72,6 +71,6 @@ featureFlags <- function (x) {
 
 #' @importFrom jsonlite toJSON
 toJSON <- function (x, ...) {
-    if (is.null(x)) return(jsonlite::toJSON(emptyObject()))
+    if (is.null(x)) return(structure('{}', class="json"))
     return(jsonlite::toJSON(x, auto_unbox=TRUE, null="null", na="null", force=TRUE, ...))
 }

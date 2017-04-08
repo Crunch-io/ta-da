@@ -3,7 +3,7 @@
 #' @param ... Optional query parameters. Valid fields include "name", "dsid"
 #' (the ID of a dataset), "email" of the owner.
 #' @return A data.frame with 4 columns: name, email, account_id, and id.
-#' @importFrom httr GET content
+#' @importFrom httr content
 #' @export
 getDatasets <- function (...) {
     query <- list(...)

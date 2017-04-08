@@ -15,7 +15,7 @@ build: doc
 	R CMD build .
 
 check: build
-	-R CMD CHECK --as-cran superadmin_$(VERSION).tar.gz
+	-R CMD CHECK superadmin_$(VERSION).tar.gz
 	rm -rf superadmin.Rcheck/
 
 man: doc

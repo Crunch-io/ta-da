@@ -13,7 +13,8 @@ Depends:
     R (>= 3.0.0)
 Imports:
     httpcache,
-    httr
+    httr,
+    jsonlite
 Suggests:
     httptest (>= 1.0.1)
 RoxygenNote: 6.0.0
