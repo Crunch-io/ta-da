@@ -6,10 +6,10 @@ doc:
 
 test:
 	R CMD INSTALL --install-tests .
-	R --slave -e 'library(testthat); setwd(file.path(.libPaths()[1], "elbr", "tests")); system.time(test_check("elbr", filter="${file}", reporter=ifelse(nchar("${r}"), "${r}", "summary")))'
+	R --slave -e 'library(httptest); setwd(file.path(.libPaths()[1], "elbr", "tests")); system.time(test_check("elbr", filter="${file}", reporter=ifelse(nchar("${r}"), "${r}", "summary")))'
 
 deps:
-	R --slave -e 'install.packages(c("codetools", "testthat", "devtools", "roxygen2", "knitr"), repo="http://cran.at.r-project.org", lib=ifelse(nchar(Sys.getenv("R_LIB")), Sys.getenv("R_LIB"), .libPaths()[1]))'
+	R --slave -e 'install.packages(c("codetools", "httptest", "devtools", "roxygen2", "knitr"), repo="http://cran.at.r-project.org", lib=ifelse(nchar(Sys.getenv("R_LIB")), Sys.getenv("R_LIB"), .libPaths()[1]))'
 
 build: doc
 	R CMD build .

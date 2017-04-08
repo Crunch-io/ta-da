@@ -2,8 +2,8 @@ Package: elbr
 Type: Package
 Title: Tools for Analyzing AWS ELB Logs
 Description: Read in ELB log files, compute quantities of interest.
-Version: 0.1.0
-Date: 2016-03-14
+Version: 0.2.0
+Date: 2016-04-08
 Authors@R: c(person("Neal", "Richardson", role = c("aut", "cre"),
     email = "neal@crunch.io"))
 Author: Neal Richardson [aut, cre]
@@ -16,5 +16,5 @@ Depends:
 Imports:
     lubridate
 Suggests:
-    testthat
+    httptest
 RoxygenNote: 6.0.0
