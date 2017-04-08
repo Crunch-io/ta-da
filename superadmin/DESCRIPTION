@@ -2,8 +2,8 @@ Package: superadmin
 Type: Package
 Title: CLI for Crunch Superadmin
 Description: A longer statement about what this does.
-Version: 0.2.1
-Date: 2017-02-08
+Version: 0.3.0
+Date: 2017-04-08
 Authors@R: c(person("Neal", "Richardson", role = c("aut", "cre"),
     email = "neal@crunch.io"))
 Author: Neal Richardson [aut, cre]
@@ -17,3 +17,4 @@ Imports:
 Suggests:
     httptest (>= 1.0.1)
 RoxygenNote: 6.0.0
+Roxygen: list(markdown = TRUE)
