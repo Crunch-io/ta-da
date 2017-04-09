@@ -74,10 +74,15 @@ def main():
         CrunchMLogFilterTool().run()
 
         text = '\n\n'.join('%s in %sms -> %s...' % (l['nreturned'], l['duration'], l['line_str'][:384]) for l in CrunchMLogFilterTool.LINES)
-        r = slack.message(channel="mongo", username="crunchbot", icon_emoji=':worried:',
-                          attachments=[{'title': 'MongoDB Slow Queries for past 24 Hours',
-                                        'color': "warning", 'text': '```' + text + '```', 
-                                        "mrkdwn_in": ["text", "fallback"]}])
+        if text.strip():
+            r = slack.message(channel="mongo", username="crunchbot", icon_emoji=':worried:',
+                              attachments=[{'title': 'MongoDB Slow Queries for past 24 Hours',
+                                            'color': "warning", 'text': '```' + text + '```',
+                                            "mrkdwn_in": ["text", "fallback"]}])
+        else:
+            r = slack.message(channel="mongo", username="crunchbot", icon_emoji=":grinning:",
+                              attachments=[{'title': 'MongoDB Slow Queries for past 24 Hours',
+                                            'text': 'No query over 500ms'}]
         r.raise_for_status()
     finally:
         os.unlink(tmpf)
