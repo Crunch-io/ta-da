@@ -1,3 +1,7 @@
+## superadmin 0.3.0
+
+* There is no more pinning of datasets.
+
 ## superadmin 0.2.0
 
 * Automatically set up a tunnel to the superadmin port if one is not already set

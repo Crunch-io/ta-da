@@ -26,7 +26,7 @@ superPOST <- function (...) {
 #' Construct a superadmin URL
 #'
 #' @param path character relative path
-#' @param host character path that \code{path} is relative to
+#' @param host character path that `path` is relative to
 #' @return A valid URL.
 #' @importFrom httr parse_url build_url
 #' @export

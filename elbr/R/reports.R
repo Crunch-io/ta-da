@@ -1,3 +1,10 @@
+#' Make a summary of Gateway Timeouts
+#'
+#' @param days Integer number of days to aggregate
+#' @param before.date days before this day. Default is today (i.e. with days=1,
+#' give the report for yesterday)
+#' @param send Logical: send messages to Slack?
+#' @export
 summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
     dates <- strftime(rev(before.date - seq_len(days)), "%Y/%m/%d")
     df <- do.call(rbind, lapply(dates, find504s))
@@ -13,6 +20,5 @@ summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
         })
         reportToSlack(t1, send)
         reportToSlack(t2, send)
-        superadmin:::superDisconnect()
     }
 }
