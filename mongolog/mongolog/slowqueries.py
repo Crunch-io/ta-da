@@ -82,7 +82,7 @@ def main():
         else:
             r = slack.message(channel="mongo", username="crunchbot", icon_emoji=":grinning:",
                               attachments=[{'title': 'MongoDB Slow Queries for past 24 Hours',
-                                            'text': 'No query over 500ms'}]
+                                            'text': 'No query over 500ms'}])
         r.raise_for_status()
     finally:
         os.unlink(tmpf)
