@@ -69,7 +69,9 @@ def main():
     tmpf = fetch_logs('/var/log/mongodb/mongod.log')
     try:
         import sys
-        sys.argv = sys.argv[:1] + [tmpf, '--slow', '500', '--from', 'now -24hours']
+        # We need all this to fake MLogFilterTool to think it got called with an input and some arguments
+        sys.stdin = open(tmpf)
+        sys.argv = sys.argv[:1] + ['--slow', '500', '--from', 'now -24hours']
         CrunchMLogFilterTool.LINES = []
         CrunchMLogFilterTool().run()
 
