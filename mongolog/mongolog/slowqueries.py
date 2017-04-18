@@ -72,7 +72,6 @@ def main():
         # We need all this to fake MLogFilterTool to think it got called with an input and some arguments
         sys.stdin = open(tmpf)
         sys.argv = sys.argv[:1] + ['--slow', '500', '--from', 'now -24hours']
-        print('\n\nRun: %s\n\n' % sys.argv)
         CrunchMLogFilterTool.LINES = []
         CrunchMLogFilterTool().run()
 
