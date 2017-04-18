@@ -7,22 +7,24 @@ import docopt
 
 
 class tunnel(object):
-  def __init__(self, target, target_port, local_port):
-      self.target = target
-      self.target_port = target_port
-      self.local_port = local_port
+    def __init__(self, target, target_port, local_port):
+        self.target = target
+        self.target_port = target_port
+        self.local_port = local_port
 
-  def __enter__(self):
-      subprocess.call('ssh -A -f -N -L %s:%s:%s ec2-user@vpc-nat.eu.crunch.io' % (self.local_port, self.target, self.target_port), shell=True)
-      return ('127.0.0.1', self.local_port)
+    def __enter__(self):
+        subprocess.call(
+            'ssh -A -f -N -L %s:%s:%s ec2-user@vpc-nat.eu.crunch.io' % (self.local_port, self.target, self.target_port),
+            shell=True
+        )
+        return '127.0.0.1', self.local_port
 
-  def __exit__(self, *args, **kwargs):
-      subprocess.call('pkill -f "ssh -A -f -N -L %s"' % self.local_port, shell=True)
+    def __exit__(self, *args, **kwargs):
+        subprocess.call('pkill -f "ssh -A -f -N -L %s"' % self.local_port, shell=True)
 
 
 def admin_url(connection, path):
     return dict(url='http://localhost:%s/%s' % (connection[1], path), headers={'Accept': 'application/json'})
-
 
 
 def main():
