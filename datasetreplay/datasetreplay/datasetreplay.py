@@ -13,7 +13,8 @@ ENVIRONS = {
     'unstable': ('localhost', 'ubuntu@unstable-backend.crunch.io'),
     'stable': ('localhost', 'ubuntu@stable-backend.crunch.io'),
     'alpha': ('alpha-backend.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io'),
-    'eu': ('eu-backend.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io')
+    'eu': ('eu-backend.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io'),
+    'vagrant': (None, None)
 }
 
 
@@ -25,6 +26,9 @@ class tunnel(object):
         self.bastion = bastion
 
     def __enter__(self):
+        if self.target is None and self.bastion is None:
+            return '127.0.0.1', self.target_port
+
         print('Tunnel to %s through %s' % (self.target, self.bastion))
         subprocess.call(
             'ssh -A -f -N -L %s:%s:%s %s' % (self.local_port, self.target, self.target_port, self.bastion),
@@ -33,6 +37,9 @@ class tunnel(object):
         return '127.0.0.1', self.local_port
 
     def __exit__(self, *args, **kwargs):
+        if self.target is None and self.bastion is None:
+            return
+
         subprocess.call('pkill -f "ssh -A -f -N -L %s"' % self.local_port, shell=True)
 
 
@@ -56,19 +63,19 @@ def main():
     helpstr = """Test Replayability of a dataset.
 
     Usage:
-      %(script)s <dsid> [--slack] [--env=<crunchenv>]
+      %(script)s <dsid> [--slack] [--env=ENV]
       %(script)s (-h | --help)
 
     Arguments:
       dsid ID of the dataset that should be replayed
 
     Options:
-      -h --help         Show this screen
-      --slack           Send messages to slack
-      --env=<crunchenv> Environment against which to run the commands (default: eu)
+      -h --help    Show this screen
+      --slack      Send messages to slack
+      --env=ENV    Environment against which to run the commands [default: eu]
     """ % dict(script=sys.argv[0])
 
-    arguments = docopt.docopt(helpstr, sys.argv[1:3])
+    arguments = docopt.docopt(helpstr, sys.argv[1:])
     dataset_id = arguments['<dsid>']
     USE_SLACK = arguments['--slack']
     env = arguments['--env']
@@ -104,7 +111,7 @@ def main():
             allow_redirects=False,
             **admin_url(connection, '/datasets/%s/actions/replay' % dataset_id)
         )
-        if resp.status_code == 302:
+        if resp.status_code in (301, 302, 303):
             # On success we get redirected to the new dataset.
             notify(dataset_id, dataset['name'], 'Successfully replayed dataset at: %s' % resp.headers['Location'],
                    success=True)
