@@ -69,15 +69,18 @@ def main():
     tmpf = fetch_logs('/var/log/mongodb/mongod.log')
     try:
         import sys
-        sys.argv = sys.argv[:1] + [tmpf, '--slow', '500', '--from', 'now -24hours']
+        # We need all this to fake MLogFilterTool to think it got called with an input and some arguments
+        sys.stdin = open(tmpf)
+        sys.argv = sys.argv[:1] + ['--slow', '500', '--from', 'now -24hours']
+        print('\n\nRun: %s\n\n' % sys.argv)
         CrunchMLogFilterTool.LINES = []
         CrunchMLogFilterTool().run()
 
-        text = '\n\n'.join('%s in %sms -> %s...' % (l['nreturned'], l['duration'], l['line_str'][:384]) for l in CrunchMLogFilterTool.LINES)
+        text = '\n\n'.join('%s in %sms -> %s...' % (l.get('nreturned', '?'), l['duration'], l['line_str'][:384]) for l in CrunchMLogFilterTool.LINES)
         if text.strip():
             r = slack.message(channel="mongo", username="crunchbot", icon_emoji=':worried:',
                               attachments=[{'title': 'MongoDB Slow Queries for past 24 Hours',
-                                            'color': "warning", 'text': '```' + text + '```',
+                                            'color': "warning", 'text': '```' + text[:8192] + '```',
                                             "mrkdwn_in": ["text", "fallback"]}])
         else:
             r = slack.message(channel="mongo", username="crunchbot", icon_emoji=":grinning:",
