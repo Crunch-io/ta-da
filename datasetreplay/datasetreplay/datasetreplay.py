@@ -1,20 +1,33 @@
 import sys
 import os
+import time
 import tempfile
 import subprocess
 import requests
 import docopt
+from . import slack
+
+REPLAY_USER = 'systems+replay@crunch.io'
+USE_SLACK = False
+ENVIRONS = {
+    'unstable': ('localhost', 'ubuntu@unstable-backend.crunch.io'),
+    'stable': ('localhost', 'ubuntu@stable-backend.crunch.io'),
+    'alpha': ('alpha-backend.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io'),
+    'eu': ('eu-backend.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io')
+}
 
 
 class tunnel(object):
-    def __init__(self, target, target_port, local_port):
+    def __init__(self, target, target_port, local_port, bastion):
         self.target = target
         self.target_port = target_port
         self.local_port = local_port
+        self.bastion = bastion
 
     def __enter__(self):
+        print('Tunnel to %s through %s' % (self.target, self.bastion))
         subprocess.call(
-            'ssh -A -f -N -L %s:%s:%s ec2-user@vpc-nat.eu.crunch.io' % (self.local_port, self.target, self.target_port),
+            'ssh -A -f -N -L %s:%s:%s %s' % (self.local_port, self.target, self.target_port, self.bastion),
             shell=True
         )
         return '127.0.0.1', self.local_port
@@ -27,30 +40,75 @@ def admin_url(connection, path):
     return dict(url='http://localhost:%s/%s' % (connection[1], path), headers={'Accept': 'application/json'})
 
 
+def notify(dataset_id, dataset_name, message, success=True):
+    if USE_SLACK:
+        r = slack.message(channel="sentry", username="crunchbot",
+                          icon_emoji=":grinning:" if success else ':worried:' ,
+                          attachments=[{'title': 'Dataset Replay Check for %s - %s' % (dataset_id, dataset_name),
+                                        'text': message}])
+        r.raise_for_status()
+    else:
+        print(message)
+
+
 def main():
-    replay_user = 'systems+replay@crunch.io'
+    global USE_SLACK
     helpstr = """Test Replayability of a dataset.
 
     Usage:
-      %(script)s <dsid>
+      %(script)s <dsid> [--slack] [--env=<crunchenv>]
       %(script)s (-h | --help)
 
     Arguments:
       dsid ID of the dataset that should be replayed
 
     Options:
-      -h --help     Show this screen
+      -h --help         Show this screen
+      --slack           Send messages to slack
+      --env=<crunchenv> Environment against which to run the commands (default: eu)
     """ % dict(script=sys.argv[0])
 
     arguments = docopt.docopt(helpstr, sys.argv[1:3])
     dataset_id = arguments['<dsid>']
+    USE_SLACK = arguments['--slack']
+    env = arguments['--env']
 
-    from . import slack 
-    with tunnel('eu-backend.priveu.crunch.io', 8081, 2981) as connection:
-        datasets = requests.get(**admin_url(connection, '/datasets/?dsid=' + dataset_id)).json()
+    hosts = ENVIRONS[env]
+    with tunnel(hosts[0], 8081, 29081, hosts[1]) as connection:
+        resp = requests.get(**admin_url(connection, '/datasets/?dsid=' + dataset_id))
+        if resp.status_code != 200:
+            print('ERROR: %s' % resp.text)
+            return
+
+        datasets = resp.json()
         dataset = next(iter(datasets['datasets']), None)
         if not dataset:
             print('Dataset %s not found' % dataset_id)
             return
 
-        
+        print('Fetching Actions for Dataset "%s"' % dataset['name'])
+        resp = requests.get(**admin_url(connection, '/datasets/%s/actions' % dataset_id))
+        if resp.status_code != 200:
+            print('ERROR: %s' % resp.text)
+            return
+
+        resp = resp.json()
+        actions_count = len(resp['actions'])
+
+        print('Replaying %s actions...' % actions_count)
+        resp = requests.post(
+            data={
+                'dataset_name': '%s Replay %s' % (dataset['name'], int(time.time())),
+                'dataset_owner': REPLAY_USER
+            },
+            allow_redirects=False,
+            **admin_url(connection, '/datasets/%s/actions/replay' % dataset_id)
+        )
+        if resp.status_code == 302:
+            # On success we get redirected to the new dataset.
+            notify(dataset_id, dataset['name'], 'Successfully replayed dataset at: %s' % resp.headers['Location'],
+                   success=True)
+        else:
+            notify(dataset_id, dataset['name'], 'Failed to replay dataset: %s' % resp.text,
+                   success=False)
+
