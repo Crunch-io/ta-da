@@ -7,7 +7,7 @@ if [ -z "$skipfile" ]; then
    exit 1
 fi
 
-CRUNCHENV="vagrant"
+CRUNCHENV="eu"
 
 dataset_id=$(dataset.pick --skipfile=$skipfile --env=$CRUNCHENV)
 echo "Picked $dataset_id"
