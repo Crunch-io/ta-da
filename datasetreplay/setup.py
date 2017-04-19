@@ -30,6 +30,7 @@ setup(name='datasetreplay',
       entry_points={
           'console_scripts': [
               'dataset.replay=datasetreplay.datasetreplay:main',
+              'dataset.pick=datasetreplay.datasetpick:main',
          ]
       }
 )
