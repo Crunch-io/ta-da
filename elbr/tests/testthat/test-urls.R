@@ -7,7 +7,9 @@ public({
     "https://beta.crunch.io:443/api/datasets/4b4f77ef52df4e32891ebe85c7723477/batches/",
     "https://beta.crunch.io:443/api/datasets/aa11f912d45e4a45b336576e036f3420/cube/?query=%7B%22dimensions%22:%5B%7B%22function%22:%22selected_array%22",
     "https://beta.crunch.io:443/api/datasets/",
-    "https://beta.crunch.io:443/api/datasets/2159d0c4e26f4f8ea871a2d0338ceb91/permissions/"
+    "https://beta.crunch.io:443/api/datasets/2159d0c4e26f4f8ea871a2d0338ceb91/permissions/",
+    "https://app.crunch.io/api/progress/tabbook%3A2aa29ff38fd9ab380c77744335d0607b/",
+    "https://app.crunch.io:443/dataset/4b4f77ef52df4e32891ebe85c7723477/filter/edit/eyJhcHBTdGF0ZVN0b3JlIjp0cnVlLCJhbmFseXplIjp7fSwidmFyaWFibGVzTmF2aWdhdG9yIjp7Iml0ZW0iOiIvMDAzNzc3LyJ9fQ=="
     )
 
     test_that("extractDatasetID", {
@@ -18,7 +20,9 @@ public({
               "4b4f77ef52df4e32891ebe85c7723477",
               "aa11f912d45e4a45b336576e036f3420",
               NA,
-              "2159d0c4e26f4f8ea871a2d0338ceb91"))
+              "2159d0c4e26f4f8ea871a2d0338ceb91",
+              NA,
+              "4b4f77ef52df4e32891ebe85c7723477"))
     })
 
     test_that("standardizeURLs", {
@@ -29,6 +33,8 @@ public({
               "/datasets/ID/batches/",
               "/datasets/ID/cube/?QUERY",
               "/datasets/",
-              "/datasets/ID/permissions/"))
+              "/datasets/ID/permissions/",
+              "/progress/tabbook/",
+              "/dataset/ID/filter/edit/WHAAM"))
     })
 })

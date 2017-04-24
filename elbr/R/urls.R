@@ -8,7 +8,8 @@
 #' extractDatasetID("http://crunch.io/datasets/8159d0c4e26fef8ea371a2d9338ceb91/")
 #' is.na(extractDatasetID("http://crunch.io/users/"))
 extractDatasetID <- function (url) {
-    dsid <- sub("^.*/datasets/([0-9a-f]{32})/.*$", "\\1", url)
+    # Look for "/datasets/" (API) or "/dataset/" (whaam browser URLs)
+    dsid <- sub("^.*/datasets?/([0-9a-f]{32})/.*$", "\\1", url)
     # If there is no dataset ID, return NA
     is.na(dsid) <- dsid == url
     return(dsid)
@@ -27,10 +28,16 @@ extractDatasetID <- function (url) {
 #' standardizeURLs("https://crunch.io/api/datasets/000001/") == standardizeURLs("https://crunch.io/api/datasets/999999/")
 standardizeURLs <- function (url) {
     # Remove hostname
-    url <- sub("^http.*?/api/", "/", url)
+    url <- sub("^https?://.*?/", "/", url)
+    # Remove leading "api/", if exists
+    url <- sub("^/api", "", url)
     # Substitute queryparam
     url <- sub("(.*/)(\\?.*)$", "\\1?QUERY", url)
     # Substitute ids
     url <- gsub("/[0-9]+/|/[0-9a-f]{32}/", "/ID/", url)
+    # Remove progress hash
+    url <- sub("(.*/progress/.*?)%3.*", "\\1/", url)
+    # Remove whaam state hash
+    url <- sub("(.*/)[0-9a-zA-Z]+==$", "\\1WHAAM", url)
     return(url)
 }
