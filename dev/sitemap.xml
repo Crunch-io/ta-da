@@ -3,18 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/blog/hello-world/</loc>
-    <lastmod>2017-04-24T12:59:58-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/features/tab-book-improvements/</loc>
-    <lastmod>2017-04-20T23:20:47-04:00</lastmod>
+    <lastmod>2017-05-01T23:20:47-04:00</lastmod>
   </url>
   
   <url>
     <loc>/features/welcome/</loc>
-    <lastmod>2017-04-18T10:44:52-07:00</lastmod>
+    <lastmod>2017-05-01T10:44:52-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blog/hello-world/</loc>
+    <lastmod>2017-04-24T12:59:58-04:00</lastmod>
   </url>
   
   <url>
@@ -30,19 +30,19 @@
   
   <url>
     <loc>/tags/export/</loc>
-    <lastmod>2017-04-20T23:20:47-04:00</lastmod>
+    <lastmod>2017-05-01T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/feature/</loc>
-    <lastmod>2017-04-20T23:20:47-04:00</lastmod>
+    <lastmod>2017-05-01T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/features/</loc>
-    <lastmod>2017-04-20T23:20:47-04:00</lastmod>
+    <lastmod>2017-05-01T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -54,19 +54,19 @@
   
   <url>
     <loc>/tags/tabbook/</loc>
-    <lastmod>2017-04-20T23:20:47-04:00</lastmod>
+    <lastmod>2017-05-01T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2017-04-20T23:20:47-04:00</lastmod>
+    <lastmod>2017-05-01T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-04-24T12:59:58-04:00</lastmod>
+    <lastmod>2017-05-01T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   

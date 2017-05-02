@@ -6,7 +6,7 @@
     <description>Recent content in Feature on The Crunch.io Developer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Apr 2017 23:20:47 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 01 May 2017 23:20:47 -0400</lastBuildDate>
     
 	<atom:link href="/categories/feature/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Tab Book Improvements</title>
       <link>/features/tab-book-improvements/</link>
-      <pubDate>Thu, 20 Apr 2017 23:20:47 -0400</pubDate>
+      <pubDate>Mon, 01 May 2017 23:20:47 -0400</pubDate>
       
       <guid>/features/tab-book-improvements/</guid>
       <description>We first released the tab book feature a while back, and since then, we’ve collected a number of great suggestions for how to enrich the feature. Tab books produce a static set of tables out of many variables and put results in an Excel sheet, for offline use when you don’t need interactive features like new filters or different weights. Our recent release includes several of those enhancements, most of which are new options available to you in the “export tab book” panel.</description>
@@ -23,7 +23,7 @@
     <item>
       <title>Welcome to the New Feature Blog</title>
       <link>/features/welcome/</link>
-      <pubDate>Tue, 18 Apr 2017 10:44:52 -0700</pubDate>
+      <pubDate>Mon, 01 May 2017 10:44:52 -0700</pubDate>
       
       <guid>/features/welcome/</guid>
       <description>Our first new feature announcement is&amp;hellip; the feature of announcing new features! Starting now, whenever we do a significant release that adds a new feature or notably enhances an existing one, we&amp;rsquo;ll post details about that here. Stay tuned for more!</description>
