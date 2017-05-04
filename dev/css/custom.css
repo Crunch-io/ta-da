@@ -196,3 +196,11 @@ p+h2, p+h3, p+h4 {
 #top {
     height: 60px;
 }
+
+.post-footer {
+    clear: both;
+}
+
+blockquote {
+    font-style: normal;
+}

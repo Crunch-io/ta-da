@@ -6,10 +6,20 @@
     <description>Recent content in Features on The Crunch.io Developer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 May 2017 23:20:47 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 03 May 2017 23:20:47 -0400</lastBuildDate>
     
 	<atom:link href="/features/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>New labs feature: Sentiment analysis</title>
+      <link>/features/sentiment-analysis/</link>
+      <pubDate>Wed, 03 May 2017 23:20:47 -0400</pubDate>
+      
+      <guid>/features/sentiment-analysis/</guid>
+      <description>A wealth of information can be locked in text data. Our new “sentiment analysis” feature enables you to quantify and analyze just a bit of it: whether the text in question is on balance Positive, Neutral, or Negative — and then crosstab the derived sentiment variable just like any other variable to understand the variations among other groups in the dataset.
+If you are a Crunch labs user, you’ll notice the Classify button in text variable properties.</description>
+    </item>
     
     <item>
       <title>Tab Book Improvements</title>
