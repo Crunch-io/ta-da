@@ -397,32 +397,7 @@ td {
     padding-bottom: 20px
 }
 
-.squarespace-signup-spinner {
-    background: transparent url('//static.squarespace.com/universal/images-v6/big-gear.png') center center no-repeat;
-    width: 300px !important;
-    height: 220px !important;
-    -webkit-animation-duration: 2s;
-    -moz-animation-duration: 2s;
-    -o-animation-duration: 2s;
-    animation-duration: 2s;
-    -webkit-animation-iteration-count: infinite;
-    -moz-animation-iteration-count: infinite;
-    -o-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-    -webkit-animation-name: spin-frames;
-    -moz-animation-name: spin-frames;
-    -o-animation-name: spin-frames;
-    animation-name: spin-frames
-}
-
-.squarespace-signup-spinner.stopped {
-    -webkit-animation-name: stopped;
-    -moz-animation-name: stopped;
-    -o-animation-name: stopped;
-    animation-name: stopped
-}
-
-.sqs-lightbox.light .squarespace-signup-text {
+.squarespace-signup-text {
     font: 12px / 22px 'Gotham SSm A', 'Gotham SSm B', 'AvenirLTStd', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
     background-color: transparent !important;
     letter-spacing: 0 !important;
@@ -435,10 +410,6 @@ td {
     padding: 0 !important;
     text-transform: none !important;
     color: #3e3e3e
-}
-
-.sqs-lightbox.light .squarespace-signup-spinner {
-    background: transparent url('//static.squarespace.com/universal/images-v6/big-gear-dark.png') center center no-repeat
 }
 
 .sqs-g {
@@ -779,72 +750,6 @@ body.native-currency-code-dkk .sqs-money-native:before {
 
 body.native-currency-code-dkk .sqs-money-native:after {
     content: ' kr'
-}
-
-.sqs-system-error {
-    color: #3e3e3e !important;
-    background: transparent url('//static.squarespace.com/universal/images-v6/damask/error-dark.png') center center no-repeat;
-    background-position: 12px 12px
-}
-
-@media (-webkit-min-device-pixel-ratio:2),
-(min-resolution:1.5dppx) {
-    .sqs-system-error {
-        background-image: url('//static.squarespace.com/universal/images-v6/damask/error-dark@2x.png');
-        background-size: 44px
-    }
-}
-
-.sqs-system-error input {
-    cursor: pointer;
-    outline: none;
-    background: #3e3e3e;
-    padding: 11px;
-    text-align: center;
-    -webkit-transition: background-color .1s ease-in-out, opacity .1s ease-in-out;
-    transition: background-color .1s ease-in-out, opacity .1s ease-in-out;
-    line-height: 22px;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    font-family: inherit;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none
-}
-
-.sqs-system-error input,
-.sqs-system-error input>* {
-    color: #fff !important;
-    -webkit-appearance: none;
-    border: 0;
-    text-transform: uppercase;
-    outline: none;
-    font-size: 11px;
-    font-weight: 500
-}
-
-.sqs-system-error input:hover {
-    background-color: #000;
-    box-shadow: none
-}
-
-.sqs-system-error input.disabled {
-    opacity: .3;
-    cursor: default
-}
-
-.sqs-system-error input.disabled>* {
-    opacity: .5
-}
-
-.sqs-system-error input.disabled:hover {
-    background-color: #3e3e3e !important
-}
-
-.sqs-system-error-overlay.dialog-screen-overlay {
-    background: rgba(242, 242, 242, .98)
 }
 
 body.no-scroll {
