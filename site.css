@@ -29,6 +29,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'squarespace-ui-font';
+  src: url('//static.squarespace.com/universal/fonts/squarespace-ui-font.eot');
+  src: url('//static.squarespace.com/universal/fonts/squarespace-ui-font.eot?#iefix') format('embedded-opentype'), url('//static.squarespace.com/universal/fonts/squarespace-ui-font.svg#squarespace-ui-font') format('svg'), url('//static.squarespace.com/universal/fonts/squarespace-ui-font.woff') format('woff'), url('//static.squarespace.com/universal/fonts/squarespace-ui-font.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 article,details,footer,header,nav,section {
   display: block;
 }
@@ -393,16 +401,6 @@ button::-moz-focus-inner {
   margin: 2px 0 7px 0;
 }
 
-.sqs-mobile-info-bar-overlay-content .sqs-mobile-info-bar-address-link {
-  background: url(//static.squarespace.com/universal/images-v6/icons/icon-external-link-18-dark.png) no-repeat;
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  top: 50%;
-  right: 20px;
-  margin-top: -9px;
-}
-
 .sqs-mobile-info-bar-overlay-close {
   cursor: pointer;
   position: fixed;
@@ -447,10 +445,6 @@ button::-moz-focus-inner {
 
 .sqs-mobile-info-bar-dark .sqs-mobile-info-bar-address [data-type="addressTitle"] {
   color: #fff;
-}
-
-.sqs-mobile-info-bar-dark .sqs-mobile-info-bar-address-link {
-  background-image: url(//static.squarespace.com/universal/images-v6/icons/icon-external-link-18-light.png);
 }
 
 .sqs-mobile-info-bar-dark .sqs-mobile-info-bar-overlay-close,.sqs-mobile-info-bar-overlay-close-dark {
@@ -1171,31 +1165,6 @@ html .sqs-block.sqs-block-html .sqs-block-content {
   width: 100%;
 }
 
-@font-face {
-  font-family: 'squarespace-ui-font';
-  src: url('//static.squarespace.com/universal/fonts/squarespace-ui-font.eot');
-  src: url('//static.squarespace.com/universal/fonts/squarespace-ui-font.eot?#iefix') format('embedded-opentype'), url('//static.squarespace.com/universal/fonts/squarespace-ui-font.svg#squarespace-ui-font') format('svg'), url('//static.squarespace.com/universal/fonts/squarespace-ui-font.woff') format('woff'), url('//static.squarespace.com/universal/fonts/squarespace-ui-font.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-[class^="sqs-ui-font-"]:before,[class*=" sqs-ui-font-"]:before {
-  font-family: 'squarespace-ui-font';
-  font-style: normal;
-  speak: none;
-  font-weight: normal;
-  -webkit-font-smoothing: antialiased;
-}
-
-[data-icon]:before {
-  font-family: 'squarespace-ui-font';
-  font-style: normal;
-  speak: none;
-  font-weight: normal;
-  -webkit-font-smoothing: antialiased;
-  content: attr(data-icon);
-}
-
 .like-share {
   float: right;
 }
@@ -1766,24 +1735,6 @@ html .sqs-block.sqs-block-html .sqs-block-content {
 
 .social-icons-style-solid .sqs-use--icon {
   fill: #222;
-}
-
-@font-face {
-  font-family: 'social-icon-font';
-  src: url('//static.squarespace.com/universal/fonts/social-20141119/social-icon-font.eot');
-  src: url('//static.squarespace.com/universal/fonts/social-20141119/social-icon-font.eot?#iefix') format('embedded-opentype'), url('//static.squarespace.com/universal/fonts/social-20141119/social-icon-font.woff') format('woff'), url('//static.squarespace.com/universal/fonts/social-20141119/social-icon-font.ttf') format('truetype'), url('//static.squarespace.com/universal/fonts/social-20141119/social-icon-font.svg#social-icon-font') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-.social-facebook:before,.social-medium:before,.social-squarespace:before,.social-facebook-square:before,.social-medium-square:before,.social-squarespace-square:before,.social-facebook-round:before,.social-medium-round:before,.social-squarespace-round:before {
-  font-family: 'social-icon-font';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .social-facebook:before {
@@ -2742,60 +2693,6 @@ html .sqs-block.sqs-block-html .sqs-block-content {
   letter-spacing: 1px;
 }
 
-@font-face {
-  font-family: 'social-icon-font';
-  src: url('//static.squarespace.com/universal/fonts/social-20141119/social-icon-font.eot');
-  src: url('//static.squarespace.com/universal/fonts/social-20141119/social-icon-font.eot?#iefix') format('embedded-opentype'), url('//static.squarespace.com/universal/fonts/social-20141119/social-icon-font.woff') format('woff'), url('//static.squarespace.com/universal/fonts/social-20141119/social-icon-font.ttf') format('truetype'), url('//static.squarespace.com/universal/fonts/social-20141119/social-icon-font.svg#social-icon-font') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-.social-facebook:before,.social-medium:before,.social-squarespace:before,.social-facebook-square:before,.social-medium-square:before,.social-squarespace-square:before,.social-facebook-round:before,.social-medium-round:before,.social-squarespace-round:before {
-  font-family: 'social-icon-font';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.social-facebook:before {
-  content: "\e624";
-}
-
-.social-icon-style-square .social-facebook:before {
-  content: "\e625";
-}
-
-.social-icon-style-round .social-facebook:before {
-  content: "\e626";
-}
-
-.social-medium:before {
-  content: "\e64b";
-}
-
-.social-icon-style-square .social-medium:before {
-  content: "\e64c";
-}
-
-.social-icon-style-round .social-medium:before {
-  content: "\e64d";
-}
-
-.social-squarespace:before {
-  content: "\e651";
-}
-
-.social-icon-style-square .social-squarespace:before {
-  content: "\e652";
-}
-
-.social-icon-style-round .social-squarespace:before {
-  content: "\e653";
-}
-
 .tweak-product-quick-view-button-font {
   font-family: Helvetica, Arial, sans-serif;
   font-weight: normal;
@@ -2959,38 +2856,11 @@ html .sqs-block.sqs-block-html .sqs-block-content {
   text-align: right;
 }
 
-body:not(.tweak-product-quick-view-lightbox-show-arrows) .sqs-product-quick-view-lightbox-next-button {
-  opacity: 0;
-}
-
 .sqs-product-quick-view-lightbox-close-button {
   top: 25px;
   right: 12.5px;
   width: 25px;
   z-index: 100000000;
-}
-
-body:not(.tweak-product-quick-view-lightbox-show-close-button) .sqs-product-quick-view-lightbox-close-button {
-  opacity: 0;
-}
-
-@font-face {
-  font-family: 'FontAwesome';
-  src: url('https://static1.squarespace.com/static/ta/5016d42984ae3ecc9e018d91/1595/assets/fontawesome-webfont.eot');
-  src: url('https://static1.squarespace.com/static/ta/5016d42984ae3ecc9e018d91/1595/assets/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('https://static1.squarespace.com/static/ta/5016d42984ae3ecc9e018d91/1595/assets/fontawesome-webfont.woff') format('woff'), url('https://static1.squarespace.com/static/ta/5016d42984ae3ecc9e018d91/1595/assets/fontawesome-webfont.ttf') format('truetype'), url('https://static1.squarespace.com/static/ta/5016d42984ae3ecc9e018d91/1595/assets/fontawesome-webfont.svgz#FontAwesomeRegular') format('svg'), url('https://static1.squarespace.com/static/ta/5016d42984ae3ecc9e018d91/1595/assets/fontawesome-webfont.svg#FontAwesomeRegular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-[class^="icon-"],[class*=" icon-"] {
-  display: inline;
-  width: auto;
-  height: auto;
-  line-height: inherit;
-  vertical-align: baseline;
-  background-image: none;
-  background-position: 0% 0%;
-  background-repeat: repeat;
 }
 
 li[class^="icon-"],li[class*=" icon-"] {
@@ -3495,12 +3365,6 @@ li[class^="icon-"].icon-large:before,li[class*=" icon-"].icon-large:before {
 }
 
 body {
-  background-image: url('https://static1.squarespace.com/static/ta/5016d42984ae3ecc9e018d91/1603/assets/groovepaper.png');
-  background-image: none;
-  background-position: top left;
-  background-size: auto;
-  background-attachment: scroll;
-  background-repeat: repeat;
   background-color: #fff;
   color: #777;
 }
@@ -3951,15 +3815,6 @@ span.delimiter {
 
 #page-header-wrapper {
   background-color: #f1f1f1;
-}
-
-body:not(.has-page-thumbnail) #page-header-wrapper,body:not(.page-thumbnail-as-banner) #page-header-wrapper {
-  background-image: url('https://static1.squarespace.com/static/ta/5016d42984ae3ecc9e018d91/1603/assets/extra_clean_paper.png');
-  background-image: none;
-  background-position: center center;
-  background-size: auto;
-  background-attachment: fixed;
-  background-repeat: repeat;
 }
 
 #page-thumb {
@@ -5305,7 +5160,6 @@ meta {
 
 .collection-type-blog.homepage.collection-layout-full-width article:nth-child(1) {
   padding-bottom: 0;
-  padding-top: 60px;
 }
 
 .collection-type-blog.homepage.collection-layout-full-width article:nth-child(1) .content-wrapper {
