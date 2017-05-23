@@ -5637,7 +5637,7 @@ label.title {
   color: #fff;
 }
 
-@media screen and (max-width:1220px) {
+@media screen and (max-width:1030px) {
   .collection-type-blog.homepage.collection-layout-full-width article:nth-child(1) .content-wrapper {
     background: linear-gradient(#fafafa, #e1e1e1);
   }
