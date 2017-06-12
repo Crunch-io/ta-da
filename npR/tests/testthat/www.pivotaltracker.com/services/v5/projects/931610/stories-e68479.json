@@ -1,0 +1,350 @@
+[{
+    "kind": "story",
+    "id": 146710243,
+    "created_at": "2017-06-06T16:47:26Z",
+    "updated_at": "2017-06-06T17:39:09Z",
+    "accepted_at": "2017-06-06T17:36:51Z",
+    "story_type": "bug",
+    "name": "Folders with names that span two lines are out-dented relative to the othe[...]",
+    "description": "*Sender*: chris.jones@yougov.com\n*Comment*: Folders with names that span two lines are out-dented relative to the others in the same list.\n\n*Browser*: Chrome 58 (Windows 10)\n*Referer*: https://app.crunch.io/dataset/ab81c5047d00450eb38ab37017d7efa0/variable/categorical/\n*Screen size*: 1920 x 1200\n*Browser size*: 1920 x 1094\nOpen #579 in Usersnap Dashboard: https://usersnap.com/a/#/crunch-io/p/alpha-and-beta/579\n----\nPowered by http://usersnap.com/\n",
+    "current_state": "accepted",
+    "requested_by_id": 1144452,
+    "url": "https://www.pivotaltracker.com/story/show/146710243",
+    "project_id": 931610,
+    "owner_ids": [1144452],
+    "labels": [{
+        "id": 15842427,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "needs verification",
+        "created_at": "2016-07-19T17:47:56Z",
+        "updated_at": "2016-07-19T17:47:56Z"
+    }, {
+        "id": 18588401,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "rel-3.9.7",
+        "created_at": "2017-06-06T17:03:20Z",
+        "updated_at": "2017-06-06T17:03:20Z"
+    }, {
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }],
+    "owned_by_id": 1144452
+}, {
+    "kind": "story",
+    "id": 146924055,
+    "created_at": "2017-06-09T12:39:05Z",
+    "updated_at": "2017-06-09T12:56:47Z",
+    "story_type": "bug",
+    "name": "Organization manager cannot move another user’s dataset into other user’s project (?)",
+    "description": ">The docs say an _account manager_ is an _implicit_ editor of its users datasets and projects. When I want to move a users dataset into a users project I get a `pycrunch.lemonpy.ClientError` saying `Only project editors can move this dataset to another project.` although I have edit permissions on that project\n\n>on alpha there is a dataset and project named `testing_skr` on which `sebastian.kriems@yougov.de` is the owner and (current) editor. I get both w/o beeing listed as a member/editor in both, I can push rows w/o beeing the `current_editor` of the dataset but I can't move it into the project",
+    "current_state": "unstarted",
+    "requested_by_id": 1144426,
+    "url": "https://www.pivotaltracker.com/story/show/146924055",
+    "project_id": 931610,
+    "owner_ids": [1143396],
+    "labels": [{
+        "id": 11235996,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "dataset admin",
+        "created_at": "2015-03-26T17:16:27Z",
+        "updated_at": "2015-03-26T17:16:27Z"
+    }, {
+        "id": 11293544,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "org admin",
+        "created_at": "2015-04-02T00:04:23Z",
+        "updated_at": "2015-04-02T00:19:59Z"
+    }, {
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }, {
+        "id": 14763183,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "yougov",
+        "created_at": "2016-05-04T16:51:34Z",
+        "updated_at": "2016-05-04T16:51:34Z"
+    }],
+    "owned_by_id": 1143396
+}, {
+    "kind": "story",
+    "id": 146882735,
+    "created_at": "2017-06-08T19:04:04Z",
+    "updated_at": "2017-06-08T19:04:04Z",
+    "story_type": "feature",
+    "name": "Edit names of slides",
+    "description": "Stephen (YouGov Singapore office director) asks: \"Is there any way to change or append the name of the variable when it’s saved to a deck? See attached crunch_deck for example of what I’m talking about. The use case is that we’re starting to use the decks feature a lot more with clients, but we often save slightly different treatments of the same variable to the deck. I noticed the decks do indicate additional variables added as columns or tabs, but not as filters. So If I save 1 variable twice, one with a filter and one without, it still shows the same variable name in the deck. It would be great if the save feature appends a filter label to the variable when saved as well. But even better than that would be the ability to create a custom name for the saved variable.\"",
+    "current_state": "unstarted",
+    "requested_by_id": 1143238,
+    "url": "https://www.pivotaltracker.com/story/show/146882735",
+    "project_id": 931610,
+    "owner_ids": [1322978],
+    "labels": [{
+        "id": 18293335,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "deck",
+        "created_at": "2017-04-26T21:57:28Z",
+        "updated_at": "2017-04-26T21:57:28Z"
+    }, {
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }, {
+        "id": 14763183,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "yougov",
+        "created_at": "2016-05-04T16:51:34Z",
+        "updated_at": "2016-05-04T16:51:34Z"
+    }],
+    "owned_by_id": 1322978
+}, {
+    "kind": "story",
+    "id": 146862865,
+    "created_at": "2017-06-08T15:16:05Z",
+    "updated_at": "2017-06-08T15:16:42Z",
+    "story_type": "bug",
+    "name": "Filtering in search widgets doesn't work if you use any uppercase letters",
+    "description": "See attached.",
+    "current_state": "unstarted",
+    "requested_by_id": 1143238,
+    "url": "https://www.pivotaltracker.com/story/show/146862865",
+    "project_id": 931610,
+    "owner_ids": [1322978],
+    "labels": [{
+        "id": 9215086,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "profiles",
+        "created_at": "2014-08-15T15:23:11Z",
+        "updated_at": "2014-08-15T15:23:11Z"
+    }, {
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }, {
+        "id": 17857227,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "ux details",
+        "created_at": "2017-03-06T16:41:12Z",
+        "updated_at": "2017-03-06T16:41:12Z"
+    }],
+    "owned_by_id": 1322978
+}, {
+    "kind": "story",
+    "id": 146657569,
+    "created_at": "2017-06-05T21:54:00Z",
+    "updated_at": "2017-06-05T21:54:06Z",
+    "story_type": "bug",
+    "name": "accordion changes indent for variables that run onto 2 lines so that it do[...]",
+    "description": "*Sender*: brian.law@yougov.com\n\n*Browser*: Chrome 58 (Mac OS X Yosemite)\n*Referer*: https://app.crunch.io/dataset/395e07a53f7f48e989f5952350f81026/browse/eyJhcHBTdGF0ZVN0b3JlIjp0cnVlLCJhbmFseXplIjp7fSwidmFyaWFibGVzTmF2aWdhdG9yIjp7Iml0ZW0iOiIvMDAxMDI5LyJ9fQ==\n*Screen size*: 2560 x 1440\n*Browser size*: 2437 x 1324\nOpen #577 in Usersnap Dashboard: https://usersnap.com/a/#/crunch-io/p/alpha-and-beta/577\n----\nPowered by http://usersnap.com/\n",
+    "current_state": "unstarted",
+    "requested_by_id": 1144452,
+    "url": "https://www.pivotaltracker.com/story/show/146657569",
+    "project_id": 931610,
+    "owner_ids": [1144452],
+    "labels": [{
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }],
+    "owned_by_id": 1144452
+}, {
+    "kind": "story",
+    "id": 146711015,
+    "created_at": "2017-06-06T16:54:59Z",
+    "updated_at": "2017-06-06T16:55:08Z",
+    "story_type": "bug",
+    "name": "This shows a count of 0 but when I click to open it, it shows a count of 1[...]",
+    "description": "*Sender*: chris.jones@yougov.com\n*Comment*: This shows a count of 0 but when I click to open it, it shows a count of 188. Any subsequent categories I create do the same - they show valid base sizes while I'm building them but once they collapse they show a base of 0. When I save the resultant variable, these answer options have a base of 0 so I can't use them.\n\n*Browser*: Chrome 58 (Windows 10)\n*Referer*: https://app.crunch.io/dataset/ab81c5047d00450eb38ab37017d7efa0/variable/categorical/\n*Screen size*: 1920 x 1200\n*Browser size*: 1920 x 1094\nOpen #581 in Usersnap Dashboard: https://usersnap.com/a/#/crunch-io/p/alpha-and-beta/581\n----\nPowered by http://usersnap.com/\n",
+    "current_state": "unstarted",
+    "requested_by_id": 1144452,
+    "url": "https://www.pivotaltracker.com/story/show/146711015",
+    "project_id": 931610,
+    "owner_ids": [1144452],
+    "labels": [{
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }],
+    "owned_by_id": 1144452
+}, {
+    "kind": "story",
+    "id": 146760031,
+    "created_at": "2017-06-07T09:58:12Z",
+    "updated_at": "2017-06-07T09:58:15Z",
+    "story_type": "bug",
+    "name": "Q4 in variable summary view i dropped in a a demog question, and then went [...]",
+    "description": "*Sender*: michaela.coulton@yougov.com\n*Comment*: Q4 in variable summary view i dropped in a a demog question, and then went to change the table to a graph (now in table and graph view) and the graph option displayed the blank page as shown on screen now \n\n\n*Browser*: Chrome 58 (Windows 8.1)\n*Referer*: https://app.crunch.io/dataset/68e0a41289ab4017bff772584f998f1b/analyze/eyJhcHBTdGF0ZVN0b3JlIjp0cnVlLCJhbmFseXplIjp7InF1ZXJ5Ijoie1wiZGltZW5zaW9uc1wiOlt7XCJmdW5jdGlvblwiOlwic2VsZWN0ZWRfYXJyYXlcIixcImFyZ3NcIjpbe1widmFyaWFibGVcIjpcIi8wMDAyNjEvXCJ9XX0se1wiZWFjaFwiOlwiLzAwMDI2MS9cIn0se1widmFyaWFibGVcIjpcIi8wMDAxNDcvXCJ9XSxcIm1lYXN1cmVzXCI6e1wiY291bnRcIjp7XCJmdW5jdGlvblwiOlwiY3ViZV9jb3VudFwiLFwiYXJnc1wiOltdfX0sXCJ3ZWlnaHRcIjpudWxsfSJ9LCJ2YXJpYWJsZXNOYXZpZ2F0b3IiOnsiaXRlbSI6Ii8wMDAwMDQvIn19\n*Screen size*: 1680 x 1050\n*Browser size*: 1680 x 920\nOpen #582 in Usersnap Dashboard: https://usersnap.com/a/#/crunch-io/p/alpha-and-beta/582\n----\nPowered by http://usersnap.com/\n",
+    "current_state": "unstarted",
+    "requested_by_id": 1144452,
+    "url": "https://www.pivotaltracker.com/story/show/146760031",
+    "project_id": 931610,
+    "owner_ids": [1144452],
+    "labels": [{
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }],
+    "owned_by_id": 1144452
+}, {
+    "kind": "story",
+    "id": 146810329,
+    "created_at": "2017-06-07T18:48:04Z",
+    "updated_at": "2017-06-07T18:48:09Z",
+    "story_type": "bug",
+    "name": "This one isn't easily captured in one screenshot but basically this subvar [...]",
+    "description": "*Sender*: brian.law@yougov.com\n\n*Browser*: Chrome 58 (Mac OS X Yosemite)\n*Referer*: https://app.crunch.io/dataset/395e07a53f7f48e989f5952350f81026/analyze/eyJhcHBTdGF0ZVN0b3JlIjp0cnVlLCJhbmFseXplIjp7InF1ZXJ5Ijoie1wiZGltZW5zaW9uc1wiOlt7XCJ2YXJpYWJsZVwiOlwiL2FiZDJjZWM3ODNiZjQzMWY4NDNmOGJkYzY0MTQ3MjdhL3N1YnZhcmlhYmxlcy8wMDA2L1wifSx7XCJ2YXJpYWJsZVwiOlwiLzAwMDAyMy9cIn1dLFwibWVhc3VyZXNcIjp7XCJjb3VudFwiOntcImZ1bmN0aW9uXCI6XCJjdWJlX2NvdW50XCIsXCJhcmdzXCI6W119fSxcIndlaWdodFwiOm51bGx9In0sInZhcmlhYmxlc05hdmlnYXRvciI6eyJpdGVtIjoiLzAwMDMyNS8ifX0=\n*Screen size*: 2560 x 1440\n*Browser size*: 2554 x 1334\nOpen #584 in Usersnap Dashboard: https://usersnap.com/a/#/crunch-io/p/alpha-and-beta/584\n----\nPowered by http://usersnap.com/\n",
+    "current_state": "unstarted",
+    "requested_by_id": 1144452,
+    "url": "https://www.pivotaltracker.com/story/show/146810329",
+    "project_id": 931610,
+    "owner_ids": [1144452],
+    "labels": [{
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }],
+    "owned_by_id": 1144452
+}, {
+    "kind": "story",
+    "id": 146906913,
+    "created_at": "2017-06-09T03:33:39Z",
+    "updated_at": "2017-06-09T03:33:43Z",
+    "story_type": "bug",
+    "name": "hi, i would like to add other viewers in the dataset, but nothing happened [...]",
+    "description": "*Sender*: mavis.kwan@yougov.com\n*Comment*: hi, i would like to add other viewers in the dataset, but nothing happened after i clicked the \"+\". usually, after i clicked the \"+\", another window will pop-up and i can input the email address there. nothing show up this time. please kindly help\n\n*Browser*: Chrome 58 (Windows 10)\n*Referer*: https://app.crunch.io/dataset/76462f8d96634179b77ec5008c94d32d/properties/dataset-properties/\n*Screen size*: 1366 x 768\n*Browser size*: 1366 x 638\nOpen #597 in Usersnap Dashboard: https://usersnap.com/a/#/crunch-io/p/alpha-and-beta/597\n----\nPowered by http://usersnap.com/\n",
+    "current_state": "unstarted",
+    "requested_by_id": 1144452,
+    "url": "https://www.pivotaltracker.com/story/show/146906913",
+    "project_id": 931610,
+    "owner_ids": [1144452],
+    "labels": [{
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }],
+    "owned_by_id": 1144452
+}, {
+    "kind": "story",
+    "id": 146950019,
+    "created_at": "2017-06-09T18:56:27Z",
+    "updated_at": "2017-06-09T18:56:31Z",
+    "story_type": "bug",
+    "name": "I added in a client's email address and it also randomly added in Brad Pal[...]",
+    "description": "*Sender*: laurel.somers@yougov.com\n*Comment*: I added in a client's email address and it also randomly added in Brad Palmquist. I've seen this happen a few times where it randomly adds additional people when I copy/paste in specific email addresses to the add dataset users interface\n\n*Browser*: Firefox 53 (macOS Sierra)\n*Referer*: https://app.crunch.io/dataset/2091655c02f64256a654c838f313f5cf/properties/dataset-users/eyJhcHBTdGF0ZVN0b3JlIjp0cnVlLCJhbmFseXplIjp7fSwidmFyaWFibGVzTmF2aWdhdG9yIjp7Iml0ZW0iOiIvOGRhYWM3ZTlmOWEwNGJmMGJjNjU5ZTVlZmZiOTIxYjIvIn19\n*Screen size*: 2560 x 1440\n*Browser size*: 1416 x 716\nOpen #598 in Usersnap Dashboard: https://usersnap.com/a/#/crunch-io/p/alpha-and-beta/598\n----\nPowered by http://usersnap.com/\n",
+    "current_state": "unstarted",
+    "requested_by_id": 1144452,
+    "url": "https://www.pivotaltracker.com/story/show/146950019",
+    "project_id": 931610,
+    "owner_ids": [1144452],
+    "labels": [{
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }],
+    "owned_by_id": 1144452
+}, {
+    "kind": "story",
+    "id": 146959165,
+    "created_at": "2017-06-09T21:30:38Z",
+    "updated_at": "2017-06-11T18:31:05Z",
+    "story_type": "bug",
+    "name": "Deck-dashboard feedback",
+    "description": "*Sender*: doug@yougov.com\n*Comment*: for neal\n\n\n*Browser*: Chrome 58 (macOS Sierra)\n*Referer*: https://app.crunch.io/dataset/ce9b8b6ead514f759576255963db5509/dashboard\n*Screen size*: 2560 x 1440\n*Browser size*: 1245 x 922\nOpen #605 in Usersnap Dashboard: https://usersnap.com/a/#/crunch-io/p/alpha-and-beta/605\n----\nPowered by http://usersnap.com/\n",
+    "current_state": "unstarted",
+    "requested_by_id": 1144452,
+    "url": "https://www.pivotaltracker.com/story/show/146959165",
+    "project_id": 931610,
+    "owner_ids": [1322978],
+    "labels": [{
+        "id": 16220745,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "dashboards",
+        "created_at": "2016-08-24T22:47:34Z",
+        "updated_at": "2016-08-24T22:47:34Z"
+    }, {
+        "id": 18293335,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "deck",
+        "created_at": "2017-04-26T21:57:28Z",
+        "updated_at": "2017-04-26T21:57:28Z"
+    }, {
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }],
+    "owned_by_id": 1322978
+}, {
+    "kind": "story",
+    "id": 146655871,
+    "created_at": "2017-06-05T21:27:54Z",
+    "updated_at": "2017-06-05T21:28:38Z",
+    "story_type": "bug",
+    "name": "combine_categories mapping [-1, OTHER] maps to … something else",
+    "description": "User wants to both “include missing” and combine missing categories (both user and system) into one in the derivation.",
+    "current_state": "unscheduled",
+    "requested_by_id": 1144426,
+    "url": "https://www.pivotaltracker.com/story/show/146655871",
+    "project_id": 931610,
+    "owner_ids": [1143396],
+    "labels": [{
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }, {
+        "id": 14763183,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "yougov",
+        "created_at": "2016-05-04T16:51:34Z",
+        "updated_at": "2016-05-04T16:51:34Z"
+    }],
+    "owned_by_id": 1143396
+}]

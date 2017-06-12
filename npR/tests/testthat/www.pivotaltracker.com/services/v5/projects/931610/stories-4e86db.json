@@ -1,0 +1,209 @@
+[{
+    "kind": "story",
+    "id": 146491711,
+    "created_at": "2017-06-01T22:42:43Z",
+    "updated_at": "2017-06-05T19:11:09Z",
+    "accepted_at": "2017-06-05T18:34:36Z",
+    "story_type": "bug",
+    "name": "Weight dropdown height isn't recalculated every time the dropdown opens, but only on page load.",
+    "description": "So if you are unweighted and you choose a weight then open the dropdown, you need to scroll to see \"Unweighted\" (as brian reports below). \n\nConversely, if you begin weighted and you unweight then open the dropdown again, there's an extra 'blank' space at the bottom.\n\n*Sender*: brian.law@yougov.com\n\n*Browser*: Chrome 58 (Mac OS X Yosemite)\n*Referer*: https://app.crunch.io/dataset/b2d0ab310960413aa5a65de802abbf34/analyze/eyJhcHBTdGF0ZVN0b3JlIjp0cnVlLCJhbmFseXplIjp7InF1ZXJ5Ijoie1wiZGltZW5zaW9uc1wiOlt7XCJ2YXJpYWJsZVwiOlwiLzAwMDc2Ni9zdWJ2YXJpYWJsZXMvMDA0OC9cIn0se1widmFyaWFibGVcIjpcIi8wMDAxMDQvXCJ9XSxcIm1lYXN1cmVzXCI6e1wiY291bnRcIjp7XCJmdW5jdGlvblwiOlwiY3ViZV9jb3VudFwiLFwiYXJnc1wiOltdfX0sXCJ3ZWlnaHRcIjpcIi9kMTU5N2IxZGE1YzI0NjkxOGZmZGFhNjQ1MjNjMmVmYy9cIn0ifSwidmFyaWFibGVzTmF2aWdhdG9yIjp7Iml0ZW0iOiIvMDAwMTA0LyJ9fQ==\n*Screen size*: 2560 x 1440\n*Browser size*: 2543 x 1324\nOpen #576 in Usersnap Dashboard: https://usersnap.com/a/#/crunch-io/p/alpha-and-beta/576\n----\nPowered by http://usersnap.com/\n",
+    "current_state": "accepted",
+    "requested_by_id": 1144452,
+    "url": "https://www.pivotaltracker.com/story/show/146491711",
+    "project_id": 931610,
+    "owner_ids": [2225701],
+    "labels": [{
+        "id": 18578761,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "rel-3.9.3",
+        "created_at": "2017-06-05T18:01:23Z",
+        "updated_at": "2017-06-05T18:01:23Z"
+    }, {
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }, {
+        "id": 16090529,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "verified:cferejohn",
+        "created_at": "2016-08-10T18:49:16Z",
+        "updated_at": "2016-08-10T18:49:16Z"
+    }],
+    "owned_by_id": 2225701
+}, {
+    "kind": "story",
+    "id": 145283511,
+    "created_at": "2017-05-11T15:41:57Z",
+    "updated_at": "2017-06-06T15:42:50Z",
+    "accepted_at": "2017-06-06T15:09:53Z",
+    "estimate": 1,
+    "story_type": "feature",
+    "name": "Fixed: users of Internet Explorer can now set a password; the incorrect “4 unique characters” are actually counted correctly now.",
+    "description": "No matter what you put in either box, it says “you must enter 4 unique characters”",
+    "current_state": "accepted",
+    "requested_by_id": 1144426,
+    "url": "https://www.pivotaltracker.com/story/show/145283511",
+    "project_id": 931610,
+    "owner_ids": [2225701],
+    "labels": [{
+        "id": 10476994,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "cross-browser compatibility",
+        "created_at": "2015-01-13T18:58:34Z",
+        "updated_at": "2015-01-13T18:58:34Z"
+    }, {
+        "id": 18405095,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "hospitality",
+        "created_at": "2017-05-11T15:39:31Z",
+        "updated_at": "2017-05-11T15:39:31Z"
+    }, {
+        "id": 18585769,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "rel-3.9.6",
+        "created_at": "2017-06-06T13:49:08Z",
+        "updated_at": "2017-06-06T13:49:08Z"
+    }, {
+        "id": 14260479,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "reviewed:enrique",
+        "created_at": "2016-03-07T20:46:14Z",
+        "updated_at": "2016-03-07T20:46:14Z"
+    }, {
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }, {
+        "id": 17782341,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "verified:enrique",
+        "created_at": "2017-02-24T21:56:28Z",
+        "updated_at": "2017-02-24T21:56:28Z"
+    }],
+    "owned_by_id": 2225701
+}, {
+    "kind": "story",
+    "id": 146710243,
+    "created_at": "2017-06-06T16:47:26Z",
+    "updated_at": "2017-06-06T17:39:09Z",
+    "accepted_at": "2017-06-06T17:36:51Z",
+    "story_type": "bug",
+    "name": "Folders with names that span two lines are out-dented relative to the othe[...]",
+    "description": "*Sender*: chris.jones@yougov.com\n*Comment*: Folders with names that span two lines are out-dented relative to the others in the same list.\n\n*Browser*: Chrome 58 (Windows 10)\n*Referer*: https://app.crunch.io/dataset/ab81c5047d00450eb38ab37017d7efa0/variable/categorical/\n*Screen size*: 1920 x 1200\n*Browser size*: 1920 x 1094\nOpen #579 in Usersnap Dashboard: https://usersnap.com/a/#/crunch-io/p/alpha-and-beta/579\n----\nPowered by http://usersnap.com/\n",
+    "current_state": "accepted",
+    "requested_by_id": 1144452,
+    "url": "https://www.pivotaltracker.com/story/show/146710243",
+    "project_id": 931610,
+    "owner_ids": [1144452],
+    "labels": [{
+        "id": 15842427,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "needs verification",
+        "created_at": "2016-07-19T17:47:56Z",
+        "updated_at": "2016-07-19T17:47:56Z"
+    }, {
+        "id": 18588401,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "rel-3.9.7",
+        "created_at": "2017-06-06T17:03:20Z",
+        "updated_at": "2017-06-06T17:03:20Z"
+    }, {
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }],
+    "owned_by_id": 1144452
+}, {
+    "kind": "story",
+    "id": 145896603,
+    "created_at": "2017-05-22T23:29:21Z",
+    "updated_at": "2017-06-07T20:55:02Z",
+    "accepted_at": "2017-06-07T20:54:24Z",
+    "estimate": 1,
+    "story_type": "feature",
+    "name": "in this dropdown, it shows the Project I was last visiting, not the projec[...]",
+    "description": "*Sender*: delia.bailey@yougov.com\n\n*Browser*: Chrome 58 (OS X El Capitan)\n*Referer*: https://app.crunch.io/dataset/b2d0ab310960413aa5a65de802abbf34/dashboard\n*Screen size*: 1440 x 900\n*Browser size*: 1416 x 745\nOpen #565 in Usersnap Dashboard: https://usersnap.com/a/#/crunch-io/p/alpha-and-beta/565\n----\nPowered by http://usersnap.com/\n\n----\n\nWork performed in #145891075",
+    "current_state": "accepted",
+    "requested_by_id": 1144452,
+    "url": "https://www.pivotaltracker.com/story/show/145896603",
+    "project_id": 931610,
+    "owner_ids": [1773660],
+    "labels": [{
+        "id": 18140149,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "dataset properties panels",
+        "created_at": "2017-04-05T00:42:22Z",
+        "updated_at": "2017-04-05T00:42:22Z"
+    }, {
+        "id": 10967900,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "has no code",
+        "created_at": "2015-02-27T02:49:09Z",
+        "updated_at": "2015-02-27T02:49:09Z"
+    }, {
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }],
+    "owned_by_id": 1773660
+}, {
+    "kind": "story",
+    "id": 145992101,
+    "created_at": "2017-05-24T08:54:47Z",
+    "updated_at": "2017-06-07T20:54:36Z",
+    "accepted_at": "2017-06-07T20:54:27Z",
+    "story_type": "bug",
+    "name": "When you click on unlock in the new layout in GUI nothing happens. You nee[...]",
+    "description": "*Sender*: teresa.rasmussen@yougov.com\n*Comment*: When you click on unlock in the new layout in GUI nothing happens. You need to refresh for the actual unlock to work.\n\n*Browser*: Chrome 58 (Windows 10)\n*Referer*: https://app.crunch.io/dataset/f75401358b364b5bb9a11ec984cf631e/properties/dataset-properties/\n*Screen size*: 1680 x 1050\n*Browser size*: 1680 x 920\nOpen #568 in Usersnap Dashboard: https://usersnap.com/a/#/crunch-io/p/alpha-and-beta/568\n----\nPowered by http://usersnap.com/\n\n----\nWork performed in #145891075",
+    "current_state": "accepted",
+    "requested_by_id": 1144452,
+    "url": "https://www.pivotaltracker.com/story/show/145992101",
+    "project_id": 931610,
+    "owner_ids": [1773660],
+    "labels": [{
+        "id": 18140149,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "dataset properties panels",
+        "created_at": "2017-04-05T00:42:22Z",
+        "updated_at": "2017-04-05T00:42:22Z"
+    }, {
+        "id": 10967900,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "has no code",
+        "created_at": "2015-02-27T02:49:09Z",
+        "updated_at": "2015-02-27T02:49:09Z"
+    }, {
+        "id": 10008790,
+        "project_id": 931610,
+        "kind": "label",
+        "name": "user-reported",
+        "created_at": "2014-11-17T11:21:38Z",
+        "updated_at": "2014-11-17T11:21:38Z"
+    }],
+    "owned_by_id": 1773660
+}]
