@@ -1,25 +1,6 @@
 /*! Squarespace LESS Compiler  (less.js language v1.3.3)  */
 
-@font-face {
-  font-family: 'AvenirLTStd';
-  src: url(/fonts/AvenirLTPro-Heavy.ttf) format('truetype'),        url(/fonts/AvenirLTPro-Heavy.eot) format('embedded-opentype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'AvenirLTStd';
-  src: url(/fonts/AvenirLTPro-Roman.ttf) format('truetype'),        url(/fonts/AvenirLTPro-Roman.eot) format('embedded-opentype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'AvenirLTStd';
-  src: url(/fonts/AvenirLTPro-Roman.ttf) format('truetype'),        url(/fonts/AvenirLTPro-Roman.eot) format('embedded-opentype');
-  font-weight: 700;
-  font-style: normal;
-}
+@import url('https://s.crunch.io/public/fonts/proximanova.css');
 
 @font-face {
   font-family: 'crunch';
@@ -61,11 +42,11 @@ body {
   margin: 0;
   font-size: 13px;
   line-height: 1.6em;
-  font-family: AvenirLTStd, Helvetica, Arial, sans-serif;
+  font-family: ProximaNova, Helvetica, Arial, sans-serif;
 }
 
 button {
-  font-family: AvenirLTStd, Helvetica, Arial, sans-serif;
+  font-family: ProximaNova, Helvetica, Arial, sans-serif;
   color: #222;
 }
 
@@ -2581,7 +2562,7 @@ html .sqs-block.sqs-block-html .sqs-block-content {
 .sqs-block-button .sqs-block-button-element--small {
   padding: 13px 26px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-family: "AvenirLTStd", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "ProximaNova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -2595,7 +2576,7 @@ html .sqs-block.sqs-block-html .sqs-block-content {
 .sqs-block-button .sqs-block-button-element--medium {
   padding: 21px 34px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-family: "AvenirLTStd", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "ProximaNova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -2609,7 +2590,7 @@ html .sqs-block.sqs-block-html .sqs-block-content {
 .sqs-block-button .sqs-block-button-element--large {
   padding: 25px 46px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-family: "AvenirLTStd", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "ProximaNova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -3415,7 +3396,7 @@ a:hover,a:active {
 }
 
 #site-title a {
-  font-family: font-family: AvenirLTStd, Helvetica, Arial, sans-serif;
+  font-family: font-family: ProximaNova, Helvetica, Arial, sans-serif;
   font-size: 72px;
   letter-spacing: 2px;
   text-transform: none;
@@ -3433,7 +3414,7 @@ a:hover,a:active {
 }
 
 #page-title {
-  font-family: font-family: AvenirLTStd, Helvetica, Arial, sans-serif;
+  font-family: font-family: ProximaNova, Helvetica, Arial, sans-serif;
   font-size: 55px;
   font-style: italic;
   letter-spacing: 2px;
@@ -3463,27 +3444,26 @@ a:hover,a:active {
 }
 
 body,p,ul,button {
-  font-family: font-family: AvenirLTStd, Helvetica, Arial, sans-serif;
+  font-family: font-family: ProximaNova, Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.8em;
   font-size: 16px;
   line-height: 1.6em;
   letter-spacing: 0px;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
 }
 
 h1:not(#site-title):not(#page-title) {
-  font-family: font-family: AvenirLTStd, Helvetica, Arial, sans-serif;
+  font-family: font-family: ProximaNova, Helvetica, Arial, sans-serif;
   font-size: 30px;
-  font-weight: normal;
   line-height: 1.8em;
   font-size: 36px;
   line-height: 1.1em;
   text-transform: none;
   letter-spacing: 0px;
-  font-weight: 100;
+  font-weight: 400;
   font-style: normal;
   margin-left: auto;
   margin-right: auto;
@@ -3491,7 +3471,7 @@ h1:not(#site-title):not(#page-title) {
 }
 
 h2 {
-  font-family: font-family: AvenirLTStd, Helvetica, Arial, sans-serif;
+  font-family: font-family: ProximaNova, Helvetica, Arial, sans-serif;
   font-size: 21px;
   font-weight: normal;
   letter-spacing: 0px;
@@ -3500,12 +3480,12 @@ h2 {
   line-height: 1.2em;
   text-transform: none;
   letter-spacing: 1px;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
 }
 
 h3 {
-  font-family: AvenirLTStd, Arial, sans-serif;
+  font-family: ProximaNova, Arial, sans-serif;
   font-size: 17px;
   font-weight: normal;
   text-transform: uppercase;
@@ -3540,7 +3520,7 @@ h3 {
 }
 
 #page-footer p,#page-footer ul {
-  font-family: AvenirLTStd, Arial, sans-serif;
+  font-family: ProximaNova, Arial, sans-serif;
   font-size: 12px;
   font-weight: normal;
   font-size: 14px;
@@ -3552,14 +3532,14 @@ h3 {
 #page-header nav ul a,#page-header nav ul .delimiter {
   font-size: 14px;
   letter-spacing: 0px;
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .page-description p {
-  font-family: AvenirLTStd, Arial, sans-serif;
+  font-family: ProximaNova, Arial, sans-serif;
   font-size: 18px;
   font-weight: normal;
   line-height: 1.8em;
@@ -3681,7 +3661,7 @@ nav ul {
 }
 
 .pagination ul {
-  font-family: AvenirLTStd, Arial, sans-serif;
+  font-family: ProximaNova, Arial, sans-serif;
   font-weight: normal;
   font-size: 14px;
   text-transform: uppercase;
@@ -3953,13 +3933,13 @@ article .post {
 }
 
 article .post .article-meta {
-  font-family: AvenirLTStd, Arial, sans-serif;
+  font-family: ProximaNova, Arial, sans-serif;
   font-size: 11px;
   font-weight: normal;
   font-size: 13px;
   line-height: 1.8em;
   letter-spacing: 0px;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
   color: #949494;
   margin-top: 24px;
@@ -4183,7 +4163,7 @@ body.banner-content-page-title-description .horizontal-navigation-bar #banner-wr
 }
 
 body.banner-content-page-title-description .horizontal-navigation-bar #site-title a,body.banner-content-empty .horizontal-navigation-bar #site-title a {
-  font-family: AvenirLTStd, Georgia, Times, serif;
+  font-family: ProximaNova, Georgia, Times, serif;
   font-size: 21px;
   font-style: italic;
   letter-spacing: 2px;
@@ -4459,14 +4439,14 @@ body.site-description-in-sidebar #sidebar-one .site-info {
 }
 
 body.site-description-in-sidebar #sidebar-one .site-description p {
-  font-family: AvenirLTStd, Arial, sans-serif;
+  font-family: ProximaNova, Arial, sans-serif;
   font-size: 12px;
   font-weight: normal;
   font-size: 18px;
   line-height: 1.8em;
   text-transform: none;
   letter-spacing: 0px;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -4588,7 +4568,7 @@ div[data-src="v5"] img {
 }
 
 #mobile-navigation {
-  font-family: AvenirLTStd, Arial, sans-serif;
+  font-family: ProximaNova, Arial, sans-serif;
   font-size: 14px;
   font-weight: normal;
   letter-spacing: 0px;
@@ -4603,7 +4583,7 @@ div[data-src="v5"] img {
 }
 
 #mobile-navigation ul li a,#mobile-navigation ul li label {
-  font-family: AvenirLTStd, Arial, sans-serif;
+  font-family: ProximaNova, Arial, sans-serif;
   font-size: 14px;
   font-weight: normal;
   letter-spacing: 0px;
@@ -4646,7 +4626,7 @@ div[data-src="v5"] img {
 #mobile-navigation-title a {
   color: #000;
   vertical-align: middle;
-  font-family: AvenirLTStd, Georgia, Times, serif;
+  font-family: ProximaNova, Georgia, Times, serif;
   font-size: 21px;
   font-style: italic;
   letter-spacing: 2px;
@@ -4936,7 +4916,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .site-title-font {
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   font-size: 48px;
   line-height: 1.25em;
   text-transform: uppercase;
@@ -4946,7 +4926,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .page-title-font {
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   font-size: 62px;
   line-height: 1.25em;
   text-transform: none;
@@ -4956,7 +4936,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .site-name-font {
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   font-size: 28px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -4965,7 +4945,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .nav-font {
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -4973,16 +4953,16 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .body-font {
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   font-size: 16px;
   line-height: 1.6em;
   letter-spacing: 0px;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
 }
 
 .footer-font {
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   font-size: 14px;
   line-height: 1.8em;
   letter-spacing: 0px;
@@ -4990,16 +4970,16 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .meta-font {
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   font-size: 13px;
   line-height: 1.8em;
   letter-spacing: 0px;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
 }
 
 .pagination-font {
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0px;
@@ -5007,7 +4987,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .small-button-block-font {
-  font-family: "AvenirLTStd", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "ProximaNova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -5016,7 +4996,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .medium-button-block-font {
-  font-family: "AvenirLTStd", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "ProximaNova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -5025,7 +5005,7 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .large-button-block-font {
-  font-family: "AvenirLTStd", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "ProximaNova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -5034,10 +5014,10 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 .system-button-font {
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-weight: 300;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -5072,13 +5052,13 @@ body.canvas-setting-site-width #canvas-wrapper {
 }
 
 h1:not(#site-title):not(#page-title) {
-  font-family: AvenirLTStd, Arial, non-serif;
-  font-weight: 200;
+  font-family: ProximaNova, Arial, non-serif;
+  font-weight: 400;
   font-size: 36px;
 }
 
 h1 {
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   font-size: 40px;
   max-width: 1280px;
   padding: 0 30px;
@@ -5087,17 +5067,17 @@ h1 {
 }
 
 h2 {
-  font-family: AvenirLTStd, Arial, non-serif;
-  font-weight: 200;
+  font-family: ProximaNova, Arial, non-serif;
+  font-weight: 400;
   font-size: 20px;
   letter-spacing: .6px;
 }
 
 h3 {
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   font-size: 20px;
   line-height: 1.4;
-  font-weight: 200;
+  font-weight: 400;
   color: #565656 !important;
   max-width: 1280px;
   padding: 0 30px;
@@ -5106,16 +5086,16 @@ h3 {
 }
 
 p {
-  font-weight: 200;
+  font-weight: 400;
 }
 
 meta {
-  font-family: AvenirLTStd, Arial, non-serif;
-  font-weight: 300;
+  font-family: ProximaNova, Arial, non-serif;
+  font-weight: 400;
 }
 
 .sqs-block-button .sqs-block-button-element {
-  font-family: AvenirLTStd, Arial, non-serif;
+  font-family: ProximaNova, Arial, non-serif;
   font-weight: 400;
 }
 
@@ -5243,7 +5223,7 @@ meta {
 .sqs-block-markdown h2,.sqs-block-code h2 {
   font-size: 26px;
   line-height: 20px;
-  font-weight: 200;
+  font-weight: 400;
   color: #565656 !important;
   margin-top: 0px;
   padding: 12px 30px;
@@ -5267,8 +5247,8 @@ meta {
   margin-left: auto;
   margin-right: auto;
   font-size: 18px;
-  font-family: AvenirLTStd, Arial, non-serif;
-  font-weight: 200;
+  font-family: ProximaNova, Arial, non-serif;
+  font-weight: 400;
   display: flex;
   line-height: 40px;
 }
@@ -5278,7 +5258,7 @@ meta {
   line-height: 28px;
   margin-left: auto;
   margin-right: auto;
-  font-family: AvenirLTStd, Helvetica, Arial, sans-serif;
+  font-family: ProximaNova, Helvetica, Arial, sans-serif;
 }
 
 .sqs-block-markdown p img,.sqs-block-code p img,.sqs-block-markdown .BA-container img,.sqs-block-code .BA-container img {
@@ -5313,7 +5293,7 @@ meta {
   margin-right: auto;
   max-width: 1280px;
   padding: 30px;
-  font-family: AvenirLTStd, Helvetica, Arial, sans-serif;
+  font-family: ProximaNova, Helvetica, Arial, sans-serif;
 }
 
 .sqs-block-markdown .expandable-section-content p.inner-header,.sqs-block-code .expandable-section-content p.inner-header {
@@ -5333,9 +5313,9 @@ meta {
 }
 
 .sqs-block-markdown .expandable-section-content li,.sqs-block-code .expandable-section-content li {
-  font-family: AvenirLTStd, Helvetica, Arial, sans-serif;
+  font-family: ProximaNova, Helvetica, Arial, sans-serif;
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .sqs-block-markdown .expandable-section-content .inner-text,.sqs-block-code .expandable-section-content .inner-text {
@@ -5359,7 +5339,7 @@ meta {
   margin-right: auto;
   max-width: 1280px;
   padding: 30px;
-  font-family: AvenirLTStd, Helvetica, Arial, sans-serif;
+  font-family: ProximaNova, Helvetica, Arial, sans-serif;
 }
 
 .sqs-block-markdown .header-section-content p.inner-header,.sqs-block-code .header-section-content p.inner-header {
@@ -5381,9 +5361,9 @@ meta {
 }
 
 .sqs-block-markdown .header-section-content li,.sqs-block-code .header-section-content li {
-  font-family: AvenirLTStd, Helvetica, Arial, sans-serif;
+  font-family: ProximaNova, Helvetica, Arial, sans-serif;
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .sqs-block-markdown .header-section-content .inner-text,.sqs-block-code .header-section-content .inner-text {
@@ -5452,7 +5432,7 @@ meta {
   -webkit-flex: 1;
   margin: auto 0;
   font-size: 23px;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .sqs-block-markdown .top-bottom-border,.sqs-block-code .top-bottom-border {
