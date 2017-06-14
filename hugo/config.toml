@@ -1,0 +1,7 @@
+baseURL = "http://crunch.io/"
+languageCode = "en-us"
+title = "Crunch.io"
+theme = "landing-page-hugo"
+
+[params]
+description = "A modern platform for analytics"
