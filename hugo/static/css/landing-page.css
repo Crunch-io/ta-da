@@ -1,16 +1,4 @@
-@font-face {
-  font-family: 'AvenirLTStd';
-  src: url(https://app.crunch.io/AvenirLTPro-Heavy.ttf);
-  src: url(fonts/AvenirLTPro-Heavy.ttf);
-  font-weight: 700;
-  font-style: normal; }
-@font-face {
-  font-family: 'AvenirLTStd';
-  src: url(https://app.crunch.io/AvenirLTPro-Roman.ttf);
-  src: url(fonts/AvenirLTPro-Roman.ttf);
-  font-weight: 400;
-  font-style: normal; }
-
+@import url('https://s.crunch.io/public/fonts/proximanova.css');
 
 /*!
  * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
@@ -170,7 +158,7 @@ p.copyright {
 }
 
 h1.title, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: AvenirLTStd, Lato, sans-serif;
+    font-family: ProximaNova, Lato, sans-serif;
     color: #565656;
     line-height: 1;
     font-weight: 200;
@@ -181,7 +169,7 @@ h1.title, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 body {
     color:#565656;
-    font-family: AvenirLTStd, Lato, sans-serif;
+    font-family: ProximaNova, Lato, sans-serif;
 }
 
 p {
