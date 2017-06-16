@@ -154,12 +154,12 @@ p+h2, p+h3, p+h4 {
 
 .floating-right {
     float: right;
-    padding-left: 9px;
+    padding-left: 15px;
 }
 
 .floating-left {
     float: left;
-    padding-right: 9px;
+    padding-right: 15px;
 }
 
 .centered-image img {

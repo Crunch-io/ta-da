@@ -6,10 +6,19 @@
     <description>Recent content in Tags on The Crunch.io Developer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 May 2017 23:20:47 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 12 Jun 2017 23:20:47 -0400</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Clients</title>
+      <link>/tags/clients/</link>
+      <pubDate>Mon, 12 Jun 2017 23:20:47 -0400</pubDate>
+      
+      <guid>/tags/clients/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Derived Variables</title>
@@ -17,6 +26,15 @@
       <pubDate>Wed, 03 May 2017 23:20:47 -0400</pubDate>
       
       <guid>/tags/derived-variables/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Draft And Publish</title>
+      <link>/tags/draft-and-publish/</link>
+      <pubDate>Mon, 12 Jun 2017 23:20:47 -0400</pubDate>
+      
+      <guid>/tags/draft-and-publish/</guid>
       <description></description>
     </item>
     

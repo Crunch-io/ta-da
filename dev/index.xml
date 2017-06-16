@@ -6,10 +6,20 @@
     <description>Recent content on The Crunch.io Developer Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 May 2017 21:12:10 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 12 Jun 2017 23:20:47 -0400</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Deliver New Data When You&#39;re Ready</title>
+      <link>/features/draft-and-publish/</link>
+      <pubDate>Mon, 12 Jun 2017 23:20:47 -0400</pubDate>
+      
+      <guid>/features/draft-and-publish/</guid>
+      <description>Lately we’ve been focusing on ways to make it easier for data owners to manage data for their clients. After all, Crunch isn’t just for analyzing data, it’s a tool for making everything about delivering data to clients faster, smoother, and more powerful.
+To that end, we’ve recently developed a draft and publish feature that allows data owners to make significant changes to data accessible to their clients with minimal interruption to how those clients interact with the data.</description>
+    </item>
     
     <item>
       <title>Using Travis-CI to Build Static Sites</title>
@@ -21,7 +31,7 @@
     </item>
     
     <item>
-      <title>New labs feature: Sentiment analysis</title>
+      <title>New Labs Feature: Sentiment Analysis</title>
       <link>/features/sentiment-analysis/</link>
       <pubDate>Wed, 03 May 2017 23:20:47 -0400</pubDate>
       
