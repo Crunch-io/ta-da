@@ -19,7 +19,8 @@ Depends:
 Imports:
     httr,
     jsonlite,
-    pivotaltrackR
+    pivotaltrackR,
+    useRsnap
 Suggests:
     covr,
     httptest
