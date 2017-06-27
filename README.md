@@ -7,6 +7,7 @@ A set of internal scripts and libraries, including:
 * [elbr](./elbr) (R): an R package for doing ELB log analysis
 * [superadmin](./superadmin) (R): an R package CLI for our superadmin UI
 * [kaboom](./kaboom) (Python): a load-testing project using Locust
+* [bootstrap](./bootstrap)(bash/Python): a set of scripts to reset your local dataset for functional (swoosh) testing.
 
 ## Cron jobs
 
