@@ -111,9 +111,24 @@ def main():
             allow_redirects=False,
             **admin_url(connection, '/datasets/%s/actions/replay' % dataset_id)
         )
-        if resp.status_code in (301, 302, 303):
-            # On success we get redirected to the new dataset.
-            notify(dataset_id, dataset['name'], 'Successfully replayed dataset at: %s' % resp.headers['Location'],
+        if resp.status_code in (202, ):
+            # Progress response, the replay is proceeding asynchronously.
+            progress_url = resp.json()['value']
+            target_url = resp.headers['Location']
+            status = {'progress': 0, 'message': ''}
+            while -1 < status['progress'] < 100:
+                status.update(requests.get(progress_url).json()['value'])
+                print('    %(progress)s%% - %(message)s' % status)
+                time.sleep(1.0)
+
+            if status['progress'] == -1:
+                notify(dataset_id, dataset['name'],
+                       'Failed to replay dataset: %s' % status['message'],
+                       success=False)
+                return
+
+            notify(dataset_id, dataset['name'],
+                   'Successfully replayed dataset at: %s' % target_url,
                    success=True)
         else:
             notify(dataset_id, dataset['name'], 'Failed to replay dataset: %s' % resp.text,
