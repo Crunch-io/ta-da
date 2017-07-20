@@ -161,7 +161,7 @@ h1.title, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: ProximaNova, Lato, sans-serif;
     color: #565656;
     line-height: 1;
-    font-weight: 200;
+    font-weight: 400;
     margin-bottom: 10px;
     margin-top: 20px;
     clear: both;
@@ -170,6 +170,7 @@ h1.title, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 body {
     color:#565656;
     font-family: ProximaNova, Lato, sans-serif;
+    font-weight: 400;
 }
 
 p {
@@ -374,6 +375,8 @@ blockquote {
     background-size: cover;
 }
 
-.text-on-dark-bg {
-    color: #f8f8f8
+h1.text-on-dark-bg {
+    color: #f8f8f8;
+    font-weight: 400;
+    text-shadow: 0px 0px 10px #000000;
 }
