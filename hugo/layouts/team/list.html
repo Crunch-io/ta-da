@@ -1,0 +1,19 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<div id="hero" class="wrap">
+    <h1>{{.Title}}</h1>
+    <p>{{.Content}}</p>
+
+</div>
+
+<section class="team-list">
+    {{ range .Data.Pages.ByDate }}
+        <div class="team-member">
+            <img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}"/ height=120 width=120>
+            <span>{{ .Params.firstname }} {{ .Params.lastname }}</span>
+        </div>
+    {{ end }}
+</section>
+
+{{ partial "footer" . }}

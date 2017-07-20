@@ -349,3 +349,16 @@ p+h2, p+h3, p+h4 {
 blockquote {
     font-style: normal;
 }
+
+.team-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
