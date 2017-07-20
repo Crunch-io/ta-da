@@ -264,6 +264,8 @@ blockquote[itemprop="description"] {
 
 #post-box {
     max-width: 900px;
+    margin: auto;
+    padding-top: 60px;
 }
 
 .h1, h1 {
@@ -361,4 +363,5 @@ blockquote {
     display: flex;
     flex-direction: column;
     position: relative;
+    padding: 15px;
 }

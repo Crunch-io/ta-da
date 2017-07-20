@@ -1,7 +1,8 @@
 {{ partial "head.html" . }}
 {{ partial "header.html" . }}
 
-<div id="hero" class="wrap">
+<div id="post-box">
+<div class="wrap">
     <h1>{{.Title}}</h1>
     <p>{{.Content}}</p>
 
@@ -14,5 +15,6 @@
         </li>
     {{ end }}
 </ul>
+</div>
 
 {{ partial "footer" . }}
