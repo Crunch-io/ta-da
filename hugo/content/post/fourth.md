@@ -6,8 +6,4 @@ img = "sharing-mock.jpg"
 weight = 4
 +++
 
-Harness the power of a cloud platform to help people work together
-
-Share your data with permission controls—no more emailing files
-
-Use R and Python for scripting and modeling on the same data
+Harness the power of a cloud platform to help people work together. Share your data with permission controls—no more emailing files. Use R and Python for scripting and modeling on the same data.

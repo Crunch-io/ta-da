@@ -6,8 +6,4 @@ img = "searching.png"
 weight = 1
 +++
 
-Datasets are stored in the cloud, instantly available anywhere
-
-Find answers from any of your datasets using a powerful search tool
-
-You don’t have to worry about losing old data—it’s always there
+Datasets are stored in the cloud, instantly available from anywhere. Find answers from any of your datasets using a powerful search tool. And you never have to worry about losing old data—it’s always there.

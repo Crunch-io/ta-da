@@ -5,4 +5,4 @@ title = "About Us"
 
 +++
 
-Crunch is a searchable data analytics platform for all your datasets, designed to foster collaboration across a range of technical abilities.  Business analysts and data scientists alike can prepare, explore, analyze and visualize data, and then deliver results to teammates and clients effortlessly.
+Crunch is a searchable analytics platform for all your datasets, designed to foster collaboration across a range of technical abilities.  Business analysts and data scientists alike can prepare, explore, analyze and visualize data, and then deliver results to teammates and clients effortlessly.
