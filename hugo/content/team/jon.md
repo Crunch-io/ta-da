@@ -1,9 +1,9 @@
 +++
-date = "2013-12-01T14:08:35+02:00"
+date = "2017-05-30T14:08:35+02:00"
 draft = false
 firstname = "Jon"
 lastname = "Keane"
 description = ""
 weight = 1
-img = "jon.png"
+img = "jon.jpeg"
 +++

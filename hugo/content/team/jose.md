@@ -1,8 +1,8 @@
 +++
-date = "2013-12-01T14:08:35+02:00"
+date = "2017-01-02T14:08:35+02:00"
 draft = false
 firstname = "José"
-lastname = "De la Cruz"
+lastname = "de la Cruz"
 description = ""
 weight = 1
 img = "jose.png"
