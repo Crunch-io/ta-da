@@ -2,7 +2,7 @@
 date = "2015-07-18T14:53:21+02:00"
 draft = false
 title = "Optimized for survey research"
-img = "phones.png"
+img = "cat-array.png"
 weight = 3
 +++
 
