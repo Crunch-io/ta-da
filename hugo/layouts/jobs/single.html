@@ -1,0 +1,20 @@
+{{ define "title"}} {{ .Title | emojify }} {{end}}
+{{ define "header"}} {{ partial "header" .}} {{end}}
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<div id="hero">
+    <h1 itemprop="headline">  {{.Title | emojify }}</h1>
+    {{ if .Description }}
+<blockquote itemprop="description">{{ .Description | emojify }}</blockquote>
+{{ end }}
+</div>
+<div id="post-box">
+<div id="post" itemprop="articleBody">
+    {{.Content | safeHTML}}
+
+</div>
+
+</div>
+</div>
+{{ partial "footer.html" .}}

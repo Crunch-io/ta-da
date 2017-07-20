@@ -1,0 +1,18 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<div id="hero" class="wrap">
+    <h1>{{.Title}}</h1>
+    <p>{{.Content}}</p>
+
+</div>
+
+<ul>
+    {{ range .Data.Pages.ByWeight }}
+        <li>
+            <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+        </li>
+    {{ end }}
+</ul>
+
+{{ partial "footer" . }}
