@@ -5,5 +5,5 @@ firstname = "Neal"
 lastname = "Richardson"
 description = "Emperor of the United States, Protector of Mexico"
 weight = 1
-img = "neal.png"
+img = "npr.jpg"
 +++

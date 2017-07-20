@@ -5,5 +5,5 @@ firstname = "Mike"
 lastname = "Malecki"
 description = ""
 weight = 1
-img = "malecki.png"
+img = "malecki.jpg"
 +++
