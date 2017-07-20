@@ -10,6 +10,6 @@ We’re survey experts. Crunch has special features to make survey analysis simp
 
 Generate population weights and apply them automatically to all calculations
 
-Multiple response and ”grid” data types natively supported
+Multiple response and “grid” data types natively supported
 
 Coding of open-text data, including sentiment analysis, at the push of a button
