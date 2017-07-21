@@ -6,4 +6,5 @@ lastname = "Perkins"
 description = ""
 weight = 1
 img = "percious.jpg"
+location = "Denver"
 +++

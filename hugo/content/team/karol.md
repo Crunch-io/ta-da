@@ -6,4 +6,5 @@ lastname = "Wypchło"
 description = ""
 weight = 1
 img = "karol.jpeg"
+location = "Warsaw"
 +++

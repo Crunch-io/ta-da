@@ -1,22 +1,7 @@
 {{ partial "head.html" . }}
 {{ partial "header.html" . }}
 
-<section id="intro">
-	<!-- Header -->
-	<div class="team-header">
-	    <div class="container">
-		<div class="row">
-		    <div class="col-lg-12">
-			<div class="intro-message">
-			    <h1 class="text-on-dark-bg">{{.Title}}</h1>
-			</div>
-		    </div>
-		</div>
-	    </div>
-	    <!-- /.container -->
-	</div>
-	<!-- /.intro-header -->
-</section>
+{{ partial "container-intro.html" . }}
 
 <div id="post-box">
 <div class="wrap">
@@ -29,6 +14,7 @@
         <div class="team-member">
             <img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}"/ height=120 width=120>
             <span>{{ .Params.firstname }} {{ .Params.lastname }}</span>
+            <span>{{ .Params.location }}</span>
         </div>
     {{ end }}
 </section>

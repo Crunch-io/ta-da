@@ -6,4 +6,5 @@ lastname = "Malecki"
 description = ""
 weight = 1
 img = "malecki.jpg"
+location = "Philadelphia"
 +++

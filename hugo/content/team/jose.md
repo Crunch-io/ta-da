@@ -5,5 +5,6 @@ firstname = "José"
 lastname = "de la Cruz"
 description = ""
 weight = 1
-img = "jose.png"
+img = "default.png"
+location = "Santo Domingo"
 +++

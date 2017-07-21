@@ -6,4 +6,5 @@ lastname = "Brewer"
 description = ""
 weight = 1
 img = "fumanchu.jpg"
+location = "California"
 +++

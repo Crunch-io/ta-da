@@ -6,4 +6,5 @@ lastname = "Lane"
 description = ""
 weight = 1
 img = "emma.png"
+location = "Australia"
 +++

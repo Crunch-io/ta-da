@@ -6,4 +6,5 @@ lastname = "Regeer"
 description = ""
 weight = 1
 img = "xistence.jpg"
+location = "Denver"
 +++

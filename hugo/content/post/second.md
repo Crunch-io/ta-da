@@ -6,4 +6,4 @@ weight = 2
 img = "coffeegraph.png"
 +++
 
-An intuitive, visual interface allows anyone to browse—and to dig deeper. Drag and drop to create tables and charts; slice and filter further with a few clicks. Insights are available to you at the speed of thought.
+An intuitive, visual interface allows anyone to browse—and to dig deeper. Drag and drop to create tables and charts; slice and filter further with a few clicks. All of this happens at the speed of thought, thanks to our purpose-built columnar database. Get instant results for most any query without any advance setup.

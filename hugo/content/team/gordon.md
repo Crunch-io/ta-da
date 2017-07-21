@@ -6,4 +6,5 @@ lastname = "Shotwell"
 description = ""
 weight = 1
 img = "gordon.jpeg"
+location = "Nova Scotia"
 +++

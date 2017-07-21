@@ -6,4 +6,5 @@ lastname = "Del Carpio"
 description = ""
 weight = 1
 img = "jjdelc.jpg"
+location = "Lima"
 +++

@@ -6,4 +6,5 @@ lastname = "Alcántara"
 description = ""
 weight = 1
 img = "enrique.jpg"
+location = "Santo Domingo"
 +++
