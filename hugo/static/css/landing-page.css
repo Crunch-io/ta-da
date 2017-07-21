@@ -364,7 +364,7 @@ blockquote {
     display: flex;
     flex-direction: column;
     position: relative;
-    padding: 15px;
+    padding: 25px;
 }
 
 .team-header {
