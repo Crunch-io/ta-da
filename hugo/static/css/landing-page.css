@@ -17,6 +17,10 @@ html {
     font-weight: 400;
 }
 
+.header-logo {
+    margin 6px 0px;
+}
+
 .intro-header {
     padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
@@ -93,9 +97,13 @@ html {
 
 .section-heading {
     margin-bottom: 30px;
+    margin-top: 0px;
+    font-weight: 600;
+
 }
 
 .section-heading-spacer {
+    margin: 12px 0px;
     float: left;
     width: 200px;
     border-top: 3px solid #e7e7e7;
@@ -176,6 +184,7 @@ body {
 p {
     margin-bottom: 24px;
     font-size: 16px;
+    line-height: 27px;
 }
 
 a {
@@ -365,6 +374,18 @@ blockquote {
     flex-direction: column;
     position: relative;
     padding: 25px;
+    line-height: 22px;
+}
+
+.team-member-name {
+    font-weight: 600;
+}
+
+.team-member-location {
+    font-style: italic;
+    color: #888;
+    margin-top: -5px;
+    font-weight: 200;
 }
 
 .team-header {

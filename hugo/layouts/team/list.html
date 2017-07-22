@@ -13,8 +13,8 @@
     {{ range .Data.Pages.ByDate }}
         <div class="team-member">
             <img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}"/ height=120 width=120>
-            <span>{{ .Params.firstname }} {{ .Params.lastname }}</span>
-            <span>{{ .Params.location }}</span>
+            <span class="team-member-name">{{ .Params.firstname }} {{ .Params.lastname }}</span>
+            <span class="team-member-location">{{ .Params.location }}</span>
         </div>
     {{ end }}
 </section>
