@@ -369,12 +369,18 @@ blockquote {
     align-items: flex-start;
 }
 
+.team-list
+
 .team-member {
     display: flex;
     flex-direction: column;
     position: relative;
     padding: 25px;
     line-height: 22px;
+}
+
+.team-member img {
+    border-radius: 2px;
 }
 
 .team-member-name {
@@ -400,4 +406,8 @@ h1.text-on-dark-bg {
     color: #f8f8f8;
     font-weight: 400;
     text-shadow: 0px 0px 15px #222222;
+}
+
+iframe {
+    border: 1px solid #d3d3d3;
 }
