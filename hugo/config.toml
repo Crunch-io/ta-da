@@ -2,6 +2,8 @@ baseURL = "http://crunch.io/"
 languageCode = "en-us"
 title = "Crunch"
 theme = "landing-page-hugo"
+relativeURLs = true
+
 
 [params]
 description = "A modern platform for analytics"
