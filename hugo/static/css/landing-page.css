@@ -18,7 +18,7 @@ html {
 }
 
 .header-logo {
-    margin 6px 0px;
+    margin: 6px 0px;
 }
 
 .intro-header {
@@ -91,8 +91,8 @@ html {
 
 .content-section-b {
     padding: 50px 0;
-    border-top: 1px solid #e7e7e7;
-    border-bottom: 1px solid #e7e7e7;
+    border-top: 1px solid #d3d3d3;
+    border-bottom: 1px solid #d3d3d3;
 }
 
 .section-heading {
@@ -106,7 +106,7 @@ html {
     margin: 12px 0px;
     float: left;
     width: 200px;
-    border-top: 3px solid #e7e7e7;
+    border-top: 3px solid #d3d3d3;
 }
 
 .contact {
