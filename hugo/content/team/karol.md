@@ -5,6 +5,6 @@ firstname = "Karol"
 lastname = "Wypchło"
 description = ""
 weight = 1
-img = "karol.jpeg"
+img = "karol.jpg"
 location = "Warsaw"
 +++
