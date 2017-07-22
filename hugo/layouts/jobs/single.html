@@ -6,15 +6,13 @@
 <div id="post-box">
     <div>
         <h1 itemprop="headline">  {{.Title | emojify }}</h1>
-        {{ if .Description }}
-    <blockquote itemprop="description">{{ .Description | emojify }}</blockquote>
-    {{ end }}
     </div>
-<div id="post" itemprop="articleBody">
-    {{.Content | safeHTML}}
+    <div id="post" itemprop="articleBody">
+        {{.Content | safeHTML}}
+    </div><br/>
+    {{ partial "equal-opportunity.html" . }}
 
-</div>
-
+    {{ partial "apply-here.html" . }}
 </div>
 </div>
 {{ partial "footer.html" .}}
