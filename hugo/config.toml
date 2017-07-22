@@ -1,6 +1,6 @@
 baseURL = "http://crunch.io/"
 languageCode = "en-us"
-title = "Crunch.io"
+title = "Crunch"
 theme = "landing-page-hugo"
 
 [params]
