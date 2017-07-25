@@ -36,8 +36,7 @@ superDisconnect <- function (local.port=getOption("superadmin.local.port")) {
 findAdminHost <- function (host="eu") {
     ## Hostnames are dynamic. Read from this table to find out the web server
     ## to connect to for superadmin access
-    df <- read.table("https://paster:youseeit@dev.crunch.io/ec2-hosts.txt",
-        sep="\t", header=1, stringsAsFactors=FALSE)
+    df <- loadHostTable("https://paster:youseeit@dev.crunch.io/ec2-hosts.txt")
     hosts <- df$Name[df$System == host &
                      df$State == "running" &
                      grepl("webservers", df$Ansible.Role)]
@@ -47,4 +46,9 @@ findAdminHost <- function (host="eu") {
     } else {
         stop("No running webserver found for ", host, call.=FALSE)
     }
+}
+
+loadHostTable <- function (url) {
+    tab <- GET(url)
+    read.table(textConnection(content(tab, "text", encoding="UTF-8")), sep="\t", header=1, stringsAsFactors=FALSE)
 }

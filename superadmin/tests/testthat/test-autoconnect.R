@@ -1,8 +1,11 @@
 context("Auto-tunneling")
 
-suppressMessages(trace("read.table", where=head, at=1, print=FALSE,
-    tracer=quote(file <- basename(file))))
-on.exit(suppressMessages(untrace("read.table", where=head)))
+suppressMessages(trace("loadHostTable", where=superGET, at=1, print=FALSE,
+    tracer=quote({
+            GET <- function (url, ...) readLines(basename(url))
+            content <- function (x, ...) x
+        })))
+on.exit(suppressMessages(untrace("loadHostTable", where=superGET)))
 
 test_that("findAdminHost", {
     expect_identical(findAdminHost("eu"),
