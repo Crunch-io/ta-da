@@ -2,12 +2,9 @@ Package: superadmin
 Type: Package
 Title: CLI for Crunch Superadmin
 Description: A longer statement about what this does.
-Version: 0.3.0
-Date: 2017-04-08
+Version: 0.4.0
 Authors@R: c(person("Neal", "Richardson", role = c("aut", "cre"),
     email = "neal@crunch.io"))
-Author: Neal Richardson [aut, cre]
-Maintainer: Neal Richardson <neal@crunch.io>
 License: MIT + file LICENSE
 Depends:
     R (>= 3.0.0)
