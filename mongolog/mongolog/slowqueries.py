@@ -19,7 +19,7 @@ class tunnel(object):
 
 
 def fetch_logs(path):
-    with tunnel('eu-mongo-01.priveu.crunch.io', 22, 2922) as connection:
+    with tunnel('eu-mongo-14.priveu.crunch.io', 22, 2922) as connection:
         print('Tunneling Through %s' % (connection,))
         cli = SSHClient()
         cli.load_system_host_keys()
