@@ -410,3 +410,8 @@ h1.text-on-dark-bg {
 iframe {
     border: 1px solid #d3d3d3;
 }
+
+figcaption {
+    font-size: 14px;
+    font-style: italic;
+}
