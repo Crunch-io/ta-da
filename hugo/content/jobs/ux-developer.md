@@ -6,7 +6,7 @@ weight = 200
 
 +++
 
-Crunch is looking for a skilled developer/designer that takes pride in having extreme attention to detail, and understands how to marry aesthetics and usability. You should be passionate about creating great user experiences and always advocate for them. We are looking for people who are passionate about turning visual and user interaction designs into finely crafted web applications. 
+Crunch is looking for a skilled developer/designer that takes pride in having extreme attention to detail, and understands how to marry aesthetics and usability. You should be passionate about creating great user experiences and always advocate for them. We are looking for people who enjoy turning visual and user interaction designs into finely crafted web applications. 
 
 ### Qualifications
 
