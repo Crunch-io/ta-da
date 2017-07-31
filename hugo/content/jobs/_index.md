@@ -9,12 +9,12 @@ We are looking for talented and motivated new team members in a variety of roles
 
 In any role we’re looking for skills and potential more than pedigree or specific experiences — we come from a variety of backgrounds — but any of the following will likely strengthen your application:
 
+* An imagination — for tools that are better than the ones you have now
+* Consideration for users’ needs and a desire to make their work easier
 * Demonstrated experience in developing large-scale, single-page web applications
+* Special talents for designing highly scalable web services and APIs, Angular, or CSS3
 * Leadership, contribution, or participation in well-known open-source projects
 * Experience with iterative statistical exploration and modeling
 * Interest in machine learning / prediction, in any language(s)
 * A love of learning and staying up to date with the tools of the trade — e.g., NumPy, R, Stan, TensorFlow, Elasticsearch, React, scijs, and D3.
-* An imagination — for tools that are better than the ones you have now
-* Consideration for users’ needs and a desire to make their work easier
-* Special talents for designing highly scalable web services and APIs, Angular, or CSS3
 * Experience working on a remote-first, distributed team
