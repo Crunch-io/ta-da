@@ -50,5 +50,6 @@ findAdminHost <- function (host="eu") {
 
 loadHostTable <- function (url) {
     tab <- GET(url)
-    read.table(textConnection(content(tab, "text", encoding="UTF-8")), sep="\t", header=1, stringsAsFactors=FALSE)
+    read.table(textConnection(content(tab, "text", encoding="UTF-8")),
+        sep="\t", header=1, fill=TRUE, stringsAsFactors=FALSE)
 }
