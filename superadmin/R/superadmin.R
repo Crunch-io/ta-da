@@ -1,6 +1,6 @@
 bye <- new.env() ## For the finalizer
 
-.onAttach <- function (lib, pkgname="superadmin") {
+.onLoad <- function (lib, pkgname="superadmin") {
     setIfNotAlready(
         superadmin.local.port=28081
     )
