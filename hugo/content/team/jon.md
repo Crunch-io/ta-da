@@ -1,7 +1,7 @@
 +++
 date = "2017-05-30T14:08:35+02:00"
 draft = false
-firstname = "Jon"
+firstname = "Jonathan"
 lastname = "Keane"
 description = ""
 weight = 1
