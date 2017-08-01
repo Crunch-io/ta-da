@@ -1,7 +1,7 @@
 +++
 date = "2017-07-27T14:08:35+02:00"
 draft = false
-title = "Senior Backend Engineer"
+title = "Backend Engineer"
 weight = 200
 
 +++
