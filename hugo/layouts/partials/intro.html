@@ -7,14 +7,17 @@
 		<div class="row">
 		    <div class="col-lg-12">
 			<div class="intro-message">
-			    <h1>{{ .Site.Title }}</h1>
+			    <!-- <h1>{{ .Site.Title }}</h1> -->
 			    <h3>{{ .Site.Params.description }}</h3>
+				<h3>{{ .Site.Params.description2 }}</h3>
 			    <hr class="intro-divider">
 			    {{ if isset .Site.Params "social" }}
 			    <ul class="list-inline intro-social-buttons">
 				        {{ partial "social.html" . }}
 			    </ul>
 			    {{ end }}
+				<br/>
+				<button type="button" class="btn btn-primary sign-up-button">Sign up</button>
 			</div>
 		    </div>
 		</div>

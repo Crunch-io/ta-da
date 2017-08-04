@@ -6,4 +6,5 @@ relativeURLs = true
 
 
 [params]
-description = "A modern platform for analytics"
+description = "A modern platform"
+description2 = "for analytics"

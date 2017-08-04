@@ -2,7 +2,18 @@
 
 <!-- Page Content -->
  {{ range $index, $element :=  .Data.Pages }}{{ if or (eq .Section "services") (eq .Section "post") }}
-    {{ if modBool $index 2 }}
+    {{ if .Params.crunchbox }}
+    <div class="container text-center content-section-a">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">{{ .Title }}</h2>
+                {{ .Content }}
+                <iframe src="{{ .Params.crunchbox }}" width="640" height="600"></iframe>
+            </div>
+        </div>
+    </div>
+    {{ else if modBool $index 2 }}
     <div class="content-section-a">
 
         <div class="container">
@@ -14,11 +25,7 @@
                     {{ .Content }}
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    {{ if .Params.crunchbox }}
-                        <iframe src="{{ .Params.crunchbox }}" width="640" height="600"></iframe>
-                    {{ else }}
-                        <img class="img-responsive" src="img/{{ .Params.img }}" alt="">
-                    {{ end }}
+                    <img class="img-responsive" src="img/{{ .Params.img }}" alt="">
                 </div>
             </div>
 
@@ -40,11 +47,7 @@
                     {{ .Content }}
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    {{ if .Params.crunchbox }}
-                        <iframe src="{{ .Params.crunchbox }}" width=500 height=400></iframe>
-                    {{ else }}
-                        <img class="img-responsive" src="img/{{ .Params.img }}" alt="">
-                    {{ end }}
+                    <img class="img-responsive" src="img/{{ .Params.img }}" alt="">
                 </div>
             </div>
 
