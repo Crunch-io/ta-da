@@ -1,4 +1,4 @@
-baseURL = "http://crunch.io/"
+baseURL = "https://crunch-io.github.io/crunchy/newsite/"
 languageCode = "en-us"
 title = "Crunch"
 theme = "landing-page-hugo"
