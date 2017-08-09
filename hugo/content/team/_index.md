@@ -16,7 +16,7 @@ Existing software for working with--collecting, cleaning, analyzing, and deliver
 
 Our team has grown quite a bit from those beginnings. While our origins are in the San Francisco Bay Area, our team is completely remote. Most of us are in the Americas, but we range from Australia to Poland. So we don't just allow remote working: we embrace it. All communication happens online, whether in Slack, in Google Hangouts, or on pull requests on GitHub--there's no central office where important conversations are happening without you.
 
-{{< figure src="img/crunch-dinner.png" class="floating-right" caption="And we'll even Photoshop you in if you can't make it to the meetup.">}}
+{{< figure src="/img/crunch-dinner.png" class="floating-right" caption="And we'll even Photoshop you in if you can't make it to the meetup.">}}
 
 Of course, we also appreciate the kinds of connections and interactions that can only happen face to face, so we schedule team meetups a few times a year. We rent a big house or two, and when we're not planning out roadmaps, discussing how we can improve our processes, or sprinting together on a new feature, we cook meals together, go out and explore the city (or countryside), and share laughs with the humans behind the chat avatars.
 
