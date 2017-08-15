@@ -5,6 +5,7 @@
 #' give the report for yesterday)
 #' @param send Logical: send messages to Slack?
 #' @export
+#' @importFrom elbr cleanLog standardizeURLs extractDatasetID
 summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
     dates <- strftime(rev(before.date - seq_len(days)), "%Y/%m/%d")
     df <- do.call(rbind, lapply(dates, find504s))
@@ -18,6 +19,15 @@ summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
         t2$name <- sapply(rownames(t2), function (x) {
             getDatasets(dsid=x)$name
         })
+        
+        reportToSlack <- function (obj, send=TRUE) {
+            if (send) {
+                slack(channel="systems", username="jenkins", icon_emoji=":timer_clock:",
+                    text=md(obj))
+            } else {
+                print(obj)
+            }
+        }
         reportToSlack(t1, send)
         reportToSlack(t2, send)
     }

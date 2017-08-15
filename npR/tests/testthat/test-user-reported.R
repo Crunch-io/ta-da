@@ -13,7 +13,7 @@ with_mock_API({
             npR:::slack_url,
             ## Here's the beginning
             '{"attachments":[{"pretext":"Date range: -7days..today",',
-            '"fallback":"Support Report: warning","fields":[',
+            '"fallback":"Pivotal Tracker Support Report: warning","fields":[',
             '{"title":"New active tickets","value":11,"short":true},',
             '{"title":"Net tickets","value":6,"short":true},',
             '{"title":"5 accepted tickets",')
@@ -23,10 +23,10 @@ with_mock_API({
         expect_POST(supportReport("yesterday"),
             npR:::slack_url,
             '{"attachments":[{"pretext":"Date range: yesterday",',
-            '"fallback":"Support Report: good","fields":[',
+            '"fallback":"Pivotal Tracker Support Report: good","fields":[',
             '{"title":"New active tickets","value":0,"short":true},',
             '{"title":"Net tickets","value":0,"short":true}],"color":"good"}],',
             '"channel":"@npr","icon_emoji":":ambulance:",',
-            '"username":"Support Report"}')
+            '"username":"Pivotal Tracker Support Report"}')
     })
 })

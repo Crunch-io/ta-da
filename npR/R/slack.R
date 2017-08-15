@@ -41,3 +41,12 @@ with_slack_errors <- function (expr) {
 md <- function (df) {
     paste0("```\n", paste(capture.output(print(df)), collapse="\n"), "\n```")
 }
+
+slack_linkify <- function (href, text) {
+    # Make links that the Slack webhook will render correctly
+    if (length(href) && length(text)) {
+        return(paste0("<", href, "|", text, ">"))
+    } else {
+        return(character(0))
+    }
+}
