@@ -246,6 +246,26 @@ ol, ol ol, ol ul, ul, ul ol, ul ul {
     margin:0;
 }
 
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ul li {
+    padding-left: 1em;
+}
+ul:not(.nav,.list-inline) li::before {
+    content: '▪';
+    color: #d3d3d3;
+    display: inline-block;
+    width: 1.1em;
+    margin-left: -1.1em
+}
+li h1{ 
+    display: inline-block;
+    font-size: 1em;
+}
+
 .button.outline {
     color:#0064a4;
     border-color: #0064a4;
@@ -429,6 +449,7 @@ ul.nav a {
     letter-spacing: 2px;
 }
 
+
 .navbar-default .navbar-nav>.active>a {
     /*Override the bootstrap highlighting of the "Product" menu when you scroll to it*/
     color: #FFFFFF;
@@ -438,6 +459,10 @@ ul.nav a {
 .navbar-default .navbar-nav li a {
     color: #FFFFFF;
     padding: 15px 25px;
+}
+.navbar-default .navbar-nav li a:hover {
+    background: #d3d3d3; color: #0064a4;
+    border-radius: 2px;
 }
 
 .list-inline {
