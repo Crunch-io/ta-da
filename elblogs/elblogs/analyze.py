@@ -76,7 +76,7 @@ def format_summary(summary):
 ## Basic math
 
 def mean(x):
-    return float(sum(x))/len(x)
+    return float(sum(x))/len(x) if len(x) else None
 
 def quantile(x, q):
     i = int(q * len(x))
@@ -86,4 +86,4 @@ def median(x):
     return quantile(x, .5)
 
 def dot(x, y):
-    return sum([a*b for a, b in zip(x, y)])
+    return sum([a*b for a, b in zip(x, y) if a is not None and b is not None])
