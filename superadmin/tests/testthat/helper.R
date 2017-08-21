@@ -1,6 +1,2 @@
 Sys.setlocale("LC_COLLATE", "C") ## What CRAN does
 set.seed(999)
-
-public({
-    source("helper-mocks.R")
-})

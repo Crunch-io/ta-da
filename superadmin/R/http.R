@@ -28,14 +28,11 @@ superPOST <- function (...) {
 #' @param path character relative path
 #' @param host character path that `path` is relative to
 #' @return A valid URL.
-#' @importFrom httr parse_url build_url
 #' @export
 superadminURL <- function (path,
         host=paste0("http://localhost:", getOption("superadmin.local.port"))) {
 
-    u <- parse_url(host)
-    u$path <- path
-    return(build_url(u))
+    paste(host, path, sep=ifelse(substr(path, 1, 1) == "/", "", "/"))
 }
 
 retryWithNewTunnel <- function (call, envir) {

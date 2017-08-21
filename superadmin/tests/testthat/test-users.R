@@ -23,7 +23,7 @@ public({
             u <- getUser("4091a7")
             expect_identical(featureFlags(u), list(projects=TRUE))
             expect_POST(featureFlags(u)$something_else <- TRUE,
-                "mockapi/users/4091a7/edit")
+                "http://localhost:28081/users/4091a7/edit")
         })
     })
 })
