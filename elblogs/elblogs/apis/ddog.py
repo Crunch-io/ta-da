@@ -12,7 +12,7 @@ def dog_count(metric, start, end, scope=None):
     ''' Get a total count of a dog metric for a date range, not a time series'''
     # metric = 'zz9.imports.frame.started'
     if scope is None:
-        scope = 'autoscaling_group:eu-zz9' if metric[:3] == 'zz9' else 'host:eu-backend.priveu.crunch.io'
+        scope = 'autoscaling_group:eu-zz9' if metric[:3] == 'zz9' else 'region:eu-west-1'
     q = 'sum:%s{%s}.as_count()' % (metric, scope)
     response = api.Metric.query(start=start, end=end, query=q)
     if 'series' in response and len(response['series']):
