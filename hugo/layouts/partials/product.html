@@ -24,9 +24,11 @@
                     <h2 class="section-heading">{{ .Title }}</h2>
                     {{ .Content }}
                 </div>
+                {{ if .Params.img }}
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
                     <img class="img-responsive" src="img/{{ .Params.img }}" alt="">
                 </div>
+                {{ end }}
             </div>
 
         </div>
@@ -46,9 +48,11 @@
                     <h2 class="section-heading">{{ .Title }}</h2>
                     {{ .Content }}
                 </div>
+                {{ if .Params.img }}
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
                     <img class="img-responsive" src="img/{{ .Params.img }}" alt="">
                 </div>
+                {{ end }}
             </div>
 
         </div>
