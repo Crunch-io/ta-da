@@ -1,0 +1,7 @@
+{{ if .PublishDate.IsZero }}
+  Published <span datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">{{ .Date.Format "2 Jan 2006" }}</span>
+{{ else if lt .PublishDate .Lastmod }}
+  Modified <span datetime="{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}">{{ .Lastmod.Format "2 Jan 2006" }}</span>
+{{ else }}
+  Published <span datetime="{{ .PublishDate.Format "2006-01-02T15:04:05-07:00" }}">{{ .PublishDate.Format "2 Jan 2006" }}</span>
+{{ end }}
