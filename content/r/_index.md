@@ -4,7 +4,7 @@ draft = false
 title = "Crunch Speaks R"
 weight = 1
 header_image = "shipping-containers-desaturated.jpg"
-feed_tags = ["r"]
+feed_tags = ["r", "R"]
 +++
 
 Do more in R with Crunch. Check out our R packages:
