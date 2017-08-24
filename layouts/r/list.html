@@ -5,8 +5,23 @@
 
 <div id="post-box">
 <div class="wrap">
-    <p>{{.Content}}</p>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-6">
+                <div class="clearfix"></div>
+                <h2 class="section-heading">{{ .Title }}</h2>
+                <p>{{.Content}}</p>
+            </div>
+            <div class="col-lg-3 col-sm-4">
+                <h3>Recent R blog posts:</h3>
+                <ul>
+                {{ range first 5 (where .Site.Pages ".Params.tags" "intersect" .Params.feed_tags) }}
+                    <li><a href="{{ .Permalink }}">{{ .Title | emojify }}</a>
+                {{ end }}
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 {{ partial "footer" . }}
