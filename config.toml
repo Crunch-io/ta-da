@@ -1,4 +1,5 @@
-baseURL = "https://crunch-io.github.io/crunchy/newsite/"
+baseURL = "http://crunch.io/"
+
 languageCode = "en-us"
 title = "Crunch"
 theme = "landing-page-hugo"
@@ -9,4 +10,4 @@ sectionPagesMenu = "main"
 [params]
 description = "A modern platform"
 description2 = "for analytics"
-copyofbaseURL = "https://crunch-io.github.io/crunchy/newsite/"
+copyofbaseURL = "http://crunch.io/"

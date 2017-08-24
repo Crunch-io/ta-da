@@ -1,6 +1,8 @@
 branches:
   only:
   - hugo
+  - src
+  - dev
 language: go
 go:
 - 1.7.1
