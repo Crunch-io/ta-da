@@ -22,7 +22,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
         # Dev
         # Sub in the staging URL into the config so the site URLs are built correctly
         STAGING_URL=https://crunch-io.github.io/crunchy/newsite/
-        sed 's@http://crunch.io/@'"$STAGING_URL"'@g' config.toml
+        sed -i 's@http://crunch.io/@'"$STAGING_URL"'@g' config.toml
 
         hugo
 
