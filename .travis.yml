@@ -4,25 +4,7 @@ branches:
 language: go
 go:
 - 1.7.1
-before_script:
-- git clone https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
-- cd $TRAVIS_REPO_SLUG
-- git checkout -qf $TRAVIS_BRANCH
-- git clone --branch v2 https://github.com/go-yaml/yaml $GOPATH/src/gopkg.in/yaml.v2
-- go get -u -v github.com/spf13/hugo
-- git config --global user.email "systems+crunchbot@crunch.io"
-- git config --global user.name "Crunchbot"
-script:
-- git clone https://github.com/crakjie/landing-page-hugo.git ./themes/landing-page-hugo
-- hugo
-after_success:
-- git clone --branch gh-pages https://${GH_TOKEN}@github.com/Crunch-io/crunchy.git ../crunchy
-- rm -rf ../crunchy/newsite
-- cp -r public ../crunchy/newsite
-- cd ../crunchy
-- git add .
-- git commit -m "Updating test version of company website" || true
-- git push origin gh-pages || true
+script: ./build-and-deploy.sh
 env:
   global:
     secure: Ux+3u8vRxsWwFGgQNs9zfAsrOGLoZUdL2pV41+IaBcZ76Og+1z8wwsz2eErbDAGGKOMKPyFRskOkJ3W4Xi0LtIzgc3fu6Ce9HGDhRnkymZ8uVvyrY+MTe6tHiNOYLi9WF3ICK4pcyv4l4hlccOmDmzprtzwXpGyhhnzrQcseXLXrFkVIbcb1u4N1SdD2T6jmfvQaTblnj38VsQnn2hddqrQqZ7CdCuICE2x+6OFYRxGbJG2mNFW+h/YnRJeux0uQdlwnKsVzOE/uCuyQ8wAk3f1Hu8XMzvnMBWngW4Vd71xjK2A0BFkV0Hb1XLyQeb9+8erzijUujdtauPfjre7SGxlc+ewNdt8Ej6mEcPAJMv8CcdQmARv02LdyjXTOivKAxeY6TRgAvq4sTiubNRfXInSf7LC51U/CNDMVW+BIIYPc8knbjp/XpzA28ZE25B2f6d9Z/0iraUVyD3YZf2J8vlL/DQsSuu82vlGX6h2mef587SWyzmvKYvherbje/iHIl79OMfTbpErgOalu5yNl7DazSGcbQeBEQPXm4gL2V4Xf78lfFZTunWM2vUcnZHi+UcbxA42zU8PlV8w0SKxOoDWwfF0+RNCIIp3pxAOh6GZ0XljFfHCzHf71rc2V3zHNoBQVlrv8EItYlZ1YB8Pk/6FnEl/943w1ckIE91+DwWQ=
