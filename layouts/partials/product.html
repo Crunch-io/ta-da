@@ -1,5 +1,5 @@
 <section id="product">
-
+{{ printf "%#v" $.Site.Menus.main }}
 <!-- Page Content -->
  {{ range $index, $element :=  .Data.Pages }}{{ if or (eq .Section "services") (eq .Section "post") }}
     {{ if .Params.crunchbox }}

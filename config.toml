@@ -4,7 +4,9 @@ title = "Crunch"
 theme = "landing-page-hugo"
 relativeURLs = true
 
+sectionPagesMenu = "main"
 
 [params]
 description = "A modern platform"
 description2 = "for analytics"
+copyofbaseURL = "https://crunch-io.github.io/crunchy/newsite/"
