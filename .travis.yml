@@ -1,6 +1,5 @@
 branches:
   only:
-  - hugo
   - src
   - dev
 language: go
