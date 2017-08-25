@@ -18,7 +18,7 @@ Since the last CRAN release in June (1.17.0), some significant features have bee
 
 ## Mapping
 
-Crunch-hosted geographic data can now be set and updated. Use [`geo()`](/r/crunch/reference/geo.html) on a variable to see if there is already associated geographic data. Use the [`addGeoMetadata()`]((/r/crunch/reference/addGeoMetadata.html)) function to match a text or categorical variable with available geodata based on the contents of the variable and metadata associated with Crunch-hosted geographic data. This function looks at the contents of the variable and the currently available geodata files that are available on Crunch. In most cases, you can set the geographic connection with just
+Crunch-hosted geographic data can now be set and updated. Use [`geo()`](/r/crunch/reference/geo.html) on a variable to see if there is already associated geographic data. Use the [`addGeoMetadata()`](/r/crunch/reference/addGeoMetadata.html) function to match a text or categorical variable with available geodata based on the contents of the variable and metadata associated with Crunch-hosted geographic data. This function looks at the contents of the variable and the currently available geodata files that are available on Crunch. In most cases, you can set the geographic connection with just
 
 ```{r}
 geo(ds$state) <- addGeoMetadata(ds$state)
