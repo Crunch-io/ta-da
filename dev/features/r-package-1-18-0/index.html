@@ -122,7 +122,7 @@
 
 <h2 id="mapping">Mapping</h2>
 
-<p>Crunch-hosted geographic data can now be set and updated. Use <a href="../../../r/crunch/reference/geo.html"><code>geo()</code></a> on a variable to see if there is already associated geographic data. Use the <a href="(/r/crunch/reference/addGeoMetadata.html)"><code>addGeoMetadata()</code></a> function to match a text or categorical variable with available geodata based on the contents of the variable and metadata associated with Crunch-hosted geographic data. This function looks at the contents of the variable and the currently available geodata files that are available on Crunch. In most cases, you can set the geographic connection with just</p>
+<p>Crunch-hosted geographic data can now be set and updated. Use <a href="../../../r/crunch/reference/geo.html"><code>geo()</code></a> on a variable to see if there is already associated geographic data. Use the <a href="../../../r/crunch/reference/addGeoMetadata.html"><code>addGeoMetadata()</code></a> function to match a text or categorical variable with available geodata based on the contents of the variable and metadata associated with Crunch-hosted geographic data. This function looks at the contents of the variable and the currently available geodata files that are available on Crunch. In most cases, you can set the geographic connection with just</p>
 
 <pre><code class="language-r">geo(ds$state) &lt;- addGeoMetadata(ds$state)
 </code></pre>
