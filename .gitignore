@@ -1,4 +1,4 @@
 themes/
-^public/
+public/
 *.orig$
 .DS_Store
