@@ -39,7 +39,7 @@ geo(ds$country) <- CrunchGeography(
 
 Once a variable has been associated with geographic data, you can use the Crunch webapp to make [beautiful choropleths](https://s.crunch.io/widget/index.html#/ds/b877914954c7e82db199753717ddaef9/row/00001c/column/000003?viz=geo&cp=percent&dp=0&grp=stack) with drag and drop ease. We're also working on a new R package for working with Crunch's geographic data, so watch this space for news about that.
 
-See `?geo` for more detailed documentation and information.
+See [geo](/r/crunch/reference/geo.html) for more detailed documentation and information.
 
 ## New variable builders
 
@@ -57,9 +57,9 @@ ds_pets$ACME_NPS <- makeCaseVariable(
 ```
  Case variables match the first case that evaluates to `TRUE`. If none of the cases match and there is no else case specified, the system default `No Data` category will be used.
 
- `makeCaseVariable()` is incredibly powerful for making complicated derived variables that are based on anything that can be expressed with a Crunch expression. Best of all, `makeCaseVariable()` uses the power of Crunch's servers to do all of this computation, there's no need to pull data and then send it back to Crunch. See `?makeCaseVariable` for more detailed documentation and information.
+ `makeCaseVariable()` is incredibly powerful for making complicated derived variables that are based on anything that can be expressed with a Crunch expression. Best of all, `makeCaseVariable()` uses the power of Crunch's servers to do all of this computation, there's no need to pull data and then send it back to Crunch. See [`makeCaseVariable()`](/r/crunch/reference/makeCaseVariable.html) for more detailed documentation and information.
 
-* Added a function to create interactions of variables (#42): `interactVariables()` takes two or more categorical variables and derives a new variable with the combination of each. See `?interactVariables` for more detailed documentation and information.
+* Added a function to create interactions of variables (#42): `interactVariables()` takes two or more categorical variables and derives a new variable with the combination of each. See [`interactVariables()`](/r/crunch/reference/interactVariables.html) for more detailed documentation and information.
 
 ## Derived variable tools
 
@@ -67,7 +67,7 @@ ds_pets$ACME_NPS <- makeCaseVariable(
 * Check if a variable is derived with `is.derived(ds$variable)`
 * Integrate (or realize or instantiate) a derived variable with `derivation(ds$derived_variable) <- NULL` or `is.derived(ds$derived_variable) <- FALSE`. This is useful to separate the connection between the derived variable and the source variables in the derivation expression.
 
-See `?derivations` for more detailed documentation and information.
+See [derivations](/r/crunch/reference/derivations.html) for more detailed documentation and information.
 
 ## Multitables
 
@@ -75,17 +75,17 @@ Similar to the new tools for working with derived variables, there are also new 
 
 * Multitables can now be updated with `multitables(ds)[["Multitable name"]] <- ~ var1 + var2` syntax. Similarly, multitables can be deleted with `multitables(ds)[["Multitable name"]] <- NULL`. Multitables also have new `name()` and `delete()` methods.
 
-See `?multitables` for more detailed documentation and information.
+See [multitables](/r/crunch/reference/multitable-catalog.html) for more detailed documentation and information.
 
 
 ## Assorted enhancements and fixes
 
 There are many more changes in the release; see the full release notes for more details. A few other new functions are worth mentioning.
 
-* Better integration with the web application. You can copy the URL from the browser in the web app and pass it to `loadDataset()` to load the same dataset in your R session. To go the other way, call `webApp()` on your R dataset object and it will open it in your web browser.
-* `resetPassword()` allows you to trigger a password reset from R.
-* `copyOrder()` to copy the ordering of variables from one dataset to another.
-* `searchDatasets()` provides a basic interface to the Crunch search API for finding variables and datasets.
-* Support for streaming data: check for received data with `pendingStream()`; append that pending stream data to the dataset with `appendStream()`.
+* Better integration with the web application. You can copy the URL from the browser in the web app and pass it to [`loadDataset()`](/r/crunch/reference/loadDataset.html) to load the same dataset in your R session. To go the other way, call [`webApp()`](/r/crunch/reference/webApp.html) on your R dataset object and it will open it in your web browser.
+* [`resetPassword()`](/r/crunch/reference/resetPassword.html) allows you to trigger a password reset from R.
+* [`copyOrder()`](/r/crunch/reference/copyOrder.html) to copy the ordering of variables from one dataset to another.
+* [`searchDatasets()`](/r/crunch/reference/searchDatasets.html) provides a basic interface to the Crunch search API for finding variables and datasets.
+* Support for streaming data: check for received data with [`pendingStream()`](/r/crunch/reference/pendingStream.html); append that pending stream data to the dataset with [`appendStream()`](/r/crunch/reference/appendStream.html).
 
 More exciting changes are coming!
