@@ -1,8 +1,11 @@
-\+++ date = "2017-07-18T14:08:35+02:00" draft = false title = "Crunch Speaks R"
-weight = 1 header_image = "shipping-containers-desaturated.jpg" feed_tags =
-["r"] +++
-
- 
++++
+date = "2017-07-18T14:08:35+02:00"
+draft = false
+title = "Crunch Speaks R"
+weight = 1
+header_image = "shipping-containers-desaturated.jpg"
+feed_tags = ["r"]
++++
 
 At Crunch, we understand that no graphical interface is going to be able to
 accomplish every single task that faces an analyst. For instance if you need to
