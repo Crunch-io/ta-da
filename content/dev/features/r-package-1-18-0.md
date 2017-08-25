@@ -18,27 +18,10 @@ Since the last CRAN release in June (1.17.0), some significant features have bee
 
 ## Mapping
 
-Crunch-hosted geographic data can now be set and updated. Use [`geo()`](/r/crunch/reference/geo.html) on a variable to see if there is already associated geographic data. Use the [`addGeoMetadata()`]((/r/crunch/reference/addGeoMetadata.html)) function to match a text or categorical variable with available geodata based on the contents of the variable and metadata associated with Crunch-hosted geographic data. This function looks at the contents of the variable and the currently available geodata files that are available on Crunch. If there is a single match, you can set the geographic connection with just
+Crunch-hosted geographic data can now be set and updated. Use [`geo()`](/r/crunch/reference/geo.html) on a variable to see if there is already associated geographic data. Use the [`addGeoMetadata()`]((/r/crunch/reference/addGeoMetadata.html)) function to match a text or categorical variable with available geodata based on the contents of the variable and metadata associated with Crunch-hosted geographic data. This function looks at the contents of the variable and the currently available geodata files that are available on Crunch. In most cases, you can set the geographic connection with just
 
 ```{r}
 geo(ds$state) <- addGeoMetadata(ds$state)
-```
-
-If there isn't a single match, you will be given a set of geodata files that could match, and you can link them manually:
-
-```{r}
-geo(ds$country) <- addGeoMetadata(ds$country)
-
-# There is more than one possible match. Please specify the geography manually:
-#        value      geodatum_name                                geodatum   property
-#7  0.09615385          Countries http://app.crunch.io/api/geodata/00001/    country
-#9  0.09615385 Countries Topojson http://app.crunch.io/api/geodata/00002/    country
-
-geo(ds$country) <- CrunchGeography(
-    geodatum = http://app.crunch.io/api/geodata/00001/,
-    feature_key = "name",
-    match_field = "country"
-)
 ```
 
 Once a variable has been associated with geographic data, you can use the Crunch web app to make beautiful choropleths like this:
