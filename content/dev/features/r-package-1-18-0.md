@@ -1,5 +1,5 @@
 +++
-date = "2017-08-22T23:20:47-04:00"
+date = "2017-08-25T18:20:47-04:00"
 draft = false
 title = "Crunch R Package 1.18.0 Released"
 description = "New tools for working with maps, derived variables, multitables, and more."
