@@ -17,7 +17,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
         cp -r ../public/* .
         git add .
         git commit -m "Updating built site (build ${TRAVIS_BUILD_NUMBER})" || true
-        #git push origin master > /dev/null 2>&1 || true
+        git push origin master > || true
     else
         # Dev
         # Sub in the staging URL into the config so the site URLs are built correctly
