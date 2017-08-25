@@ -14,7 +14,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
         git clone -b master https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG.git OUTPUT
         cd OUTPUT
         git rm -rf .
-        cp -r ../public/* .
+        cp -r ../public/. .
         git add .
         git commit -m "Updating built site (build ${TRAVIS_BUILD_NUMBER})" || true
         git push origin master || true
@@ -28,7 +28,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
 
         git clone --branch gh-pages https://${GH_TOKEN}@github.com/Crunch-io/crunchy.git ../crunchy
         rm -rf ../crunchy/newsite
-        cp -r public ../crunchy/newsite
+        cp -r public/. ../crunchy/newsite
         cd ../crunchy
         git add .
         git commit -m "Updating test version of company website (build ${TRAVIS_BUILD_NUMBER})" || true
