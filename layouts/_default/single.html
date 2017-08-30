@@ -1,8 +1,9 @@
 {{ partial "head.html" . }}
 {{ partial "header.html" . }}
 
-<div id="hero">
-    <div class="intro-post">
+<div class="container">
+<div id="hero" class="row">
+    <div class="intro-post col">
         <h1 itemprop="headline">  {{.Title | emojify }}</h1>
         {{ if .Description }}
             <blockquote itemprop="description">{{ .Description | emojify }}</blockquote>
@@ -10,14 +11,17 @@
         <time class="post-time">{{ partial "blog/meta" . }}</time>
     </div>
 </div>
-<div id="post-box">
-    <div id="post" itemprop="articleBody">
-        {{.Content | safeHTML}}
-    </div><br/>
-    <div>
-        {{ partial "blog/byauthor.html" . }}
-        {{ partial "blog/related-content" . }}
+<div id="post-box" class="row">
+    <div class="col">
+        <div id="post" itemprop="articleBody">
+            {{.Content | safeHTML}}
+        </div><br/>
+        <div>
+            {{ partial "blog/byauthor.html" . }}
+            {{ partial "blog/related-content" . }}
+        </div>
     </div>
+</div>
 </div>
 
 {{ partial "footer.html" .}}

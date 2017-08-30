@@ -8,7 +8,9 @@
                 <div class="clearfix"></div>
                 <h2 class="section-heading">{{ .Title }}</h2>
                 {{ .Content }}
-                <iframe src="{{ .Params.crunchbox }}" width="640" height="600"></iframe>
+                <div class="crunchbox">
+                    <iframe src="{{ .Params.crunchbox }}" width="640" height="600"></iframe>
+                </div>
             </div>
         </div>
     </div>

@@ -26,8 +26,8 @@ geo(ds$state) <- addGeoMetadata(ds$state)
 
 Once a variable has been associated with geographic data, you can use the Crunch web app to make beautiful choropleths like this:
 
-<div style="text-align: center;">
-<iframe src="https://s.crunch.io/widget/index.html#/ds/b877914954c7e82db199753717ddaef9/row/00001c/column/000003?viz=geo&cp=percent&dp=0&grp=stack" width="600" height="480"></iframe></div>
+<div class="crunchbox">
+<iframe src="https://s.crunch.io/widget/index.html#/ds/b877914954c7e82db199753717ddaef9/row/00001c/column/000003?viz=geo&cp=percent&dp=0&grp=stack" height=480 width=600></iframe></div>
 
 We're also working on a new R package for working with Crunch's geographic data, so watch this space for news about that.
 
