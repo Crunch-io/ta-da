@@ -1,6 +1,6 @@
 +++
 categories = ["general"]
-date = "2017-08-08T21:12:10-07:00"
+date = "2017-09-05T21:12:10-07:00"
 description = "Building software for a specific target audience can be challenging, particularly when developers' intuitions are very different from those of that audience. At a recent all-hands meeting, we exploited a unique opportunity to turn our developers into legitimate users of our product."
 draft = false
 tags = []
