@@ -28,11 +28,13 @@ pre, tt {
 }
 
 .intro-post {
-    padding-top: 120px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    /*padding-top: 120px; */
+    /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
 }
 
 .intro-header {
-    padding-top: 120px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    /*padding-top: 120px; */
+    /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     padding-bottom: 50px;
     text-align: right;
     /*color: #f8f8f8;*/
@@ -445,10 +447,16 @@ figcaption {
 .navbar {
     min-height: 112px;
     background-color: #16161B;
+    margin-bottom: 0;
 }
 
 .navbar-content {
     padding: 30px;
+}
+
+.navbar-top {
+    border-width: 0 0 1px;
+    border-radius: 0;
 }
 
 ul.nav a {
@@ -578,4 +586,30 @@ pre {
 
 ul.dropdown-menu > li > a.dropdown-menu-element {
     color: #555;
+}
+
+a > code {
+    color: #0064a4;
+    text-decoration: underline;
+}
+
+.crunchbox {
+    position: relative;
+    padding-bottom: 75%;
+    height: 0;
+    overflow: hidden;
+}
+
+.crunchbox iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.crunchbox-container {
+    margin: auto;
+    max-width: 600px;
+    max-height: 480px;
 }
