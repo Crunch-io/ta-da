@@ -6,6 +6,7 @@ draft = false
 tags = []
 title = "Developers As Users"
 weight = 20
+images = ["../images/ice-cream-display-figure.jpg"]
 
 +++
 
