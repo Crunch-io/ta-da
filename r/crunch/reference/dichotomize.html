@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Indicate how categories represent a dichotomized value — dichotomize • CRUNCH</title>
+<title>Indicate how categories represent a dichotomized value — dichotomize • Crunch</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,6 +25,12 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Indicate how categories represent a dichotomized value — dichotomize" />
+
+<meta property="og:description" content="Multiple Response variables are essentially Categorical Arrays in which one
+or more categories are set as "selected". These methods allow you set that state." />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -33,6 +39,18 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+
+<!-- Google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50332119-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
 
   </head>
 
@@ -71,7 +89,7 @@
       <a href="../articles/datasets.html">Datasets</a>
     </li>
     <li>
-      <a href="../articles/vareiables.html">Variables</a>
+      <a href="../articles/variables.html">Variables</a>
     </li>
     <li>
       <a href="../articles/array-variables.html">Array Variables</a>
@@ -80,13 +98,16 @@
       <a href="../articles/variable-order.html">Reorder Variables</a>
     </li>
     <li>
-      <a href="../articles/derive-variables.html">Derive Variables</a>
+      <a href="../articles/derive.html">Derive Variables</a>
     </li>
     <li>
-      <a href="../articles/filters.html">Filter Dataå</a>
+      <a href="../articles/filters.html">Filter Data</a>
     </li>
     <li>
       <a href="../articles/export.html">Export Data</a>
+    </li>
+    <li>
+      <a href="../articles/crunch-internals.html">Crunch Internals</a>
     </li>
   </ul>
 </li>
@@ -114,9 +135,8 @@
     </div>
 
     
-    <p>Multiple Response variables are essentially Categorical Arrays that have
-had a category or categories indicated as the "selected" value. These
-methods let you set that state.</p>
+    <p>Multiple Response variables are essentially Categorical Arrays in which one
+or more categories are set as "selected". These methods allow you set that state.</p>
     
 
     <pre class="usage"><span class='co'># S4 method for Categories</span>
@@ -164,13 +184,13 @@ numeric indices are positional, not with reference to category ids.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Categories or the Variable, (un)dichotomized accoringly</p>
+    <p>Categories or the Variable, (un)dichotomized accordingly</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>dichotomize</code> lets you specify which categories are "selected", while
 <code>undichotomize</code> strips that selection information. Dichotomize converts
-a Categorical Array to a Multiple Response, and undichotomize converts back.</p>
+a Categorical Array to a Multiple Response, and undichotomize does the reverse.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Copy a variable — copyVariable • CRUNCH</title>
+<title>Copy a variable — copyVariable • Crunch</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,6 +25,11 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Copy a variable — copyVariable" />
+
+<meta property="og:description" content="Makes a copy of a Crunch variable on the server." />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -33,6 +38,18 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+
+<!-- Google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50332119-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
 
   </head>
 
@@ -71,7 +88,7 @@
       <a href="../articles/datasets.html">Datasets</a>
     </li>
     <li>
-      <a href="../articles/vareiables.html">Variables</a>
+      <a href="../articles/variables.html">Variables</a>
     </li>
     <li>
       <a href="../articles/array-variables.html">Array Variables</a>
@@ -80,13 +97,16 @@
       <a href="../articles/variable-order.html">Reorder Variables</a>
     </li>
     <li>
-      <a href="../articles/derive-variables.html">Derive Variables</a>
+      <a href="../articles/derive.html">Derive Variables</a>
     </li>
     <li>
-      <a href="../articles/filters.html">Filter Dataå</a>
+      <a href="../articles/filters.html">Filter Data</a>
     </li>
     <li>
       <a href="../articles/export.html">Export Data</a>
+    </li>
+    <li>
+      <a href="../articles/crunch-internals.html">Crunch Internals</a>
     </li>
   </ul>
 </li>
@@ -145,20 +165,20 @@ appended.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a VariableDefinition for the copy expression. Assign into a Dataset
+    <p>a VariableDefinition for the copied variable. Assign into a Dataset
 to make the copy happen.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Copies can be shallow (linked) or deep. Shallow copying is faster and should
-be preferred unless a true hard copy is required, though keep in mind the
-implications of shallow copying. When you append data to the original
+    <p>Copies can be shallow (linked) or deep. Shallow copying is faster and is preferable
+unless a true hard copy is required. Shallow copies are effectively pointers to the
+original variable, and then you append data to the original
 variable or otherwise alter its values, the values in the copy automatically
 update. This linking may be desirable, but it comes with some limitations.
 First, you cannot edit the values of the copy independently of the original.
 Second, some attributes of the copy are immutable: of note, properties of
-categories cannot be altered independely in the copy. Subvariable names and
-ordering within arrays, however, can.</p>
+categories cannot be altered independely in the copy, but you can alter Subvariable names and
+ordering within arrays.</p>
     
 
   </div>

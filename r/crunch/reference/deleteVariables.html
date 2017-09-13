@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Delete Variables Within a Dataset — deleteVariables • CRUNCH</title>
+<title>Delete Variables Within a Dataset — deleteVariables • Crunch</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,6 +25,12 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Delete Variables Within a Dataset — deleteVariables" />
+
+<meta property="og:description" content="This function permenantly deletes a variable from a dataset. For a non-destructive
+alternative see hide()." />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -33,6 +39,18 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+
+<!-- Google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50332119-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
 
   </head>
 
@@ -71,7 +89,7 @@
       <a href="../articles/datasets.html">Datasets</a>
     </li>
     <li>
-      <a href="../articles/vareiables.html">Variables</a>
+      <a href="../articles/variables.html">Variables</a>
     </li>
     <li>
       <a href="../articles/array-variables.html">Array Variables</a>
@@ -80,13 +98,16 @@
       <a href="../articles/variable-order.html">Reorder Variables</a>
     </li>
     <li>
-      <a href="../articles/derive-variables.html">Derive Variables</a>
+      <a href="../articles/derive.html">Derive Variables</a>
     </li>
     <li>
-      <a href="../articles/filters.html">Filter Dataå</a>
+      <a href="../articles/filters.html">Filter Data</a>
     </li>
     <li>
       <a href="../articles/export.html">Export Data</a>
+    </li>
+    <li>
+      <a href="../articles/crunch-internals.html">Crunch Internals</a>
     </li>
   </ul>
 </li>
@@ -114,10 +135,8 @@
     </div>
 
     
-    <p>Deleting requires confirmation. In an interactive session, you will be asked
-to confirm. To avoid that prompt, or to delete variables from a
-non-interactive session, wrap the call in <code><a href='consent.html'>with_consent</a></code> to give
-your permission to delete.</p>
+    <p>This function permenantly deletes a variable from a dataset. For a non-destructive
+alternative see <code><a href='hide.html'>hide()</a></code>.</p>
     
 
     <pre class="usage"><span class='fu'>deleteVariables</span>(<span class='no'>dataset</span>, <span class='no'>variables</span>)
@@ -142,6 +161,13 @@ of variables to delete.</p></td>
 
     <p>(invisibly) <code>dataset</code> with the specified variables deleted</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>In an interactive session, you will be prompted to confirm that you
+wish to delete the variable. To avoid that prompt, or to delete variables from a
+non-interactive session, wrap the call in <code><a href='consent.html'>with_consent()</a></code> to give
+your permission to delete.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <p><code><a href='hide.html'>hide</a></code></p>
@@ -154,6 +180,8 @@ of variables to delete.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
           </ul>

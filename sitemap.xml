@@ -163,6 +163,11 @@
   </url>
   
   <url>
+    <loc>http://crunch.io/dev/blog/devs-as-users/</loc>
+    <lastmod>2017-09-12T12:12:10-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://crunch.io/dev/features/r-package-1-18-0/</loc>
     <lastmod>2017-08-25T18:20:47-04:00</lastmod>
   </url>
@@ -293,7 +298,7 @@
   
   <url>
     <loc>http://crunch.io/categories/general/</loc>
-    <lastmod>2017-05-18T21:12:10-07:00</lastmod>
+    <lastmod>2017-09-12T12:12:10-07:00</lastmod>
     <priority>0</priority>
   </url>
   
