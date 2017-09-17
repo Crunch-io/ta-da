@@ -2,7 +2,7 @@ def analyze_log(data):
     '''Given a log data.frame-like dict, aggregate'''
     results = {}
     results['count_requests'] = len(data['elb'])
-    results['stream_requests'] = len([x for x in data['request_url'] if '/stream/' in x])
+    results['stream_requests'] = len([x for x in data['request'] if '/stream/' in x])
     times = zip(data['request_processing_time'], data['backend_processing_time'], data['response_processing_time'])
     total_time = [sum(list(x)) for x in times]
     results['mean_time'] = mean([x for x in total_time if x > 0])

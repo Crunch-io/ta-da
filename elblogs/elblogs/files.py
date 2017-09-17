@@ -1,8 +1,10 @@
+import csv
+from collections import defaultdict
 import os
 import re
 import subprocess
 
-FIELDS = 'timestamp elb client:port backend:port request_processing_time backend_processing_time response_processing_time elb_status_code backend_status_code received_bytes sent_bytes request_verb request_url request_protocol user_agent ssl_cipher ssl_protocol'.split(' ')
+FIELDS = 'timestamp elb client:port backend:port request_processing_time backend_processing_time response_processing_time elb_status_code backend_status_code received_bytes sent_bytes request user_agent ssl_cipher ssl_protocol'.split(' ')
 NUMERIC_FIELDS = 'request_processing_time backend_processing_time response_processing_time elb_status_code backend_status_code received_bytes sent_bytes'.split(' ')
 
 re_dataset_id = re.compile(".*/api/datasets/([0-9a-f]+).*")
@@ -57,15 +59,21 @@ def file_in_date_range(filename, startdate=None, enddate=None, starttime=None, e
 
 def load_log(filename):
     '''Take an ELB file and return a data.frame-like dict of columns'''
+
+    columns = defaultdict(list) # each value in each column is appended to a list
+
     with open(filename) as f:
-        ## Filter out lines that are invalid. Valid lines start with a timestamp
-        cols = zip(*(line.split(' ') for line in f
-                    if len(line) > 2 and line[:2] == "20"))
-    out = dict(zip(FIELDS, cols))
+        reader = csv.DictReader(f, delimiter=" ", fieldnames=FIELDS)
+        for row in reader:
+            # ^ Filter out lines that are invalid. Valid lines start with a
+            # timestamp
+            if row.get("timestamp", "XXX")[:2] == "20":
+                for (k,v) in row.items():
+                    columns[k].append(v)
     for i in NUMERIC_FIELDS:
         ## Make these numeric so we can do math on them
-        out[i] = [float(x) for x in out[i]]
-    return out
+        columns[i] = [float(x) for x in columns[i]]
+    return columns
 
 def debugfloat(x, i):
     '''Not currently used, but function to debug parsing of floats in load_log'''
