@@ -3,11 +3,16 @@ from collections import defaultdict
 import os
 import re
 import subprocess
+import sys
 
 FIELDS = 'timestamp elb client:port backend:port request_processing_time backend_processing_time response_processing_time elb_status_code backend_status_code received_bytes sent_bytes request user_agent ssl_cipher ssl_protocol'.split(' ')
 NUMERIC_FIELDS = 'request_processing_time backend_processing_time response_processing_time elb_status_code backend_status_code received_bytes sent_bytes'.split(' ')
 
 re_dataset_id = re.compile(".*/api/datasets/([0-9a-f]+).*")
+
+# Bump up the default because request URLs can be long
+csv.field_size_limit(sys.maxsize)
+
 
 def find_dot(start=None, end=None, path="."):
     ''' Find all log files, perhaps filtered by a date range, as 8 digit
