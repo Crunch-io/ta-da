@@ -27,7 +27,7 @@ class deferring_build_ext(build_ext):
 
 setup(
     name='silhouette',
-    version='0.3.0',
+    version='0.3.1',
     author="Robert Brewer, JJ Del Carpio, Charles G Waldman",
     author_email="dev@crunch.io",
     packages=find_packages('.'),
