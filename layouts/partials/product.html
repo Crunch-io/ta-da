@@ -10,7 +10,9 @@
                     <h2 class="section-heading">{{ .Title }}</h2>
                     {{ .Content }}
                     <div class="crunchbox-container">
-                        <iframe src="{{ .Params.crunchbox }}"></iframe>
+                        <div class="crunchbox">
+                            <iframe src="{{ .Params.crunchbox }}"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
