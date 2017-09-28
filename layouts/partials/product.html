@@ -2,15 +2,17 @@
 <!-- Page Content -->
  {{ range $index, $element :=  .Data.Pages }}{{ if or (eq .Section "services") (eq .Section "post") }}
     {{ if .Params.crunchbox }}
-    <div class="container text-center content-section-a">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <div class="clearfix"></div>
-                <h2 class="section-heading">{{ .Title }}</h2>
-                {{ .Content }}
-                <div class="crunchbox-container">
-                    <div class="crunchbox">
-                        <iframe src="{{ .Params.crunchbox }}"></iframe>
+    <div class="content-section-a">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">{{ .Title }}</h2>
+                    {{ .Content }}
+                    <div class="crunchbox-container">
+                        <div class="crunchbox">
+                            <iframe src="{{ .Params.crunchbox }}"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
