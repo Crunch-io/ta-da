@@ -5,7 +5,7 @@
 #' give the report for yesterday)
 #' @param send Logical: send messages to Slack?
 #' @export
-#' @importFrom elbr cleanLog standardizeURLs extractDatasetID
+#' @importFrom elbr cleanLog standardizeURLs extractDatasetID find504s
 summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
     dates <- strftime(rev(before.date - seq_len(days)), "%Y/%m/%d")
     df <- do.call(rbind, lapply(dates, find504s))
