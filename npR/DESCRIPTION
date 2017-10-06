@@ -20,11 +20,11 @@ Imports:
     elbr,
     httr,
     jsonlite,
-    pivotaltrackR,
-    useRsnap
+    pivotaltrackR
 Suggests:
     covr,
     httptest,
-    superadmin
-RoxygenNote: 6.0.0
+    superadmin,
+    useRsnap
+RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)

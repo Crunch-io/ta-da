@@ -1,9 +1,8 @@
-#' @importFrom useRsnap getReports
 #' @export
 userSnapChat <- function (start=end - 1, end=Sys.Date(),
                           subtitle=paste("Usersnaps from", start, "to", end),
                           ...) {
-
+    require(useRsnap)
     end <- as.Date(end)
     start <- as.Date(start)
 

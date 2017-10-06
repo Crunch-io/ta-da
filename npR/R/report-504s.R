@@ -13,13 +13,8 @@ summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
         require(superadmin)
         df <- cleanLog(df)
         t1 <- table(standardizeURLs(df$request_url), df$request_verb)
-        t2 <- as.data.frame(sort(table(extractDatasetID(df$request_url)),
-            decreasing=TRUE))
-        names(t2) <- "timeouts"
-        t2$name <- sapply(rownames(t2), function (x) {
-            getDatasets(dsid=x)$name
-        })
-        
+        t2 <- tablulateDatasetsByName(df$request_url)
+
         reportToSlack <- function (obj, send=TRUE) {
             if (send) {
                 slack(channel="systems", username="jenkins", icon_emoji=":timer_clock:",
@@ -31,4 +26,14 @@ summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
         reportToSlack(t1, send)
         reportToSlack(t2, send)
     }
+}
+
+tablulateDatasetsByName <- function (urls) {
+    out <- as.data.frame(sort(table(extractDatasetID(urls)), decreasing=TRUE),
+        stringsAsFactors=FALSE, row.names="Var1")
+    names(out) <- "timeouts"
+    out$name <- sapply(rownames(out), function (x) {
+        superadmin::getDatasets(dsid=x)$name
+    })
+    return(out)
 }
