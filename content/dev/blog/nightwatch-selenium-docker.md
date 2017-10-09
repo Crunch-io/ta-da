@@ -1,32 +1,31 @@
 +++
 date = "2017-10-02T09:00:00-07:00"
-description = "Using Docker containers to get more consistent Nightwatch testing results using Selenium"
+description = "Nightwatchrun = Docker + Selenium + Nightwatch for Consistent End-to-End Testing"
 draft = false
-title = "Improving end-to-end testing using Nightwatch, Selenium, and Docker"
+title = "Our new open-source tool eliminates the \"works on my machine\" problem for automated end-to-end browser testing. Ensure that everyone's \"machine\" has the same configuration using Docker."
 weight = 20
-tags = ["testing"]
+tags = ["testing", "automation"]
 categories = ["general"]
 
 +++
 
-At Crunch we value tests tremendously; we have unit tests, functional tests, and of course the stack wouldn't be complete without end-to-end tests. Good tests allow us to confidently update code quickly and efficiently.
+At Crunch we greatly value tests. We have unit tests, functional tests, and the stack wouldn't be complete without end-to-end tests. Good tests allow us to update code quickly and confidently.
 
-For our end to end testing we use [Nightwatch.js][1], a JavaScript
+For our end-to-end testing we use [Nightwatch.js][1], a JavaScript
 testing tool that uses [Selenium][2] to drive a browser to perform tests. Our goal is to be
-able to test our Python backend, our REST API's, as well as the
-behavior of our JavaScript single page application, using a real browser,
+able to test our Python backend, our REST APIs, and the
+behavior of our JavaScript single-page application, using a real browser,
 running real code.
 
-Anyone that has ever set up Selenium knows that it can be very picky about
+Anyone that has set up Selenium knows that it can be very picky about
 the versions of the different tools you should have. Selenium 3.4.0 might need
 [ChromeDriver][4] 2.31 which requires [Chrome][6] 56.3920.234034249324234329 (okay, so
 those version numbers may be made up), and unless you have
 the exact same versions every single time, it can easily result in tests
 that work on one developer's machine but not on another.
 
-At Crunch our entire stack is tested using a [Jenkins][8] setup. One of the issues we saw was that
-our developers would be testing on [Apple MacOS][3], and our Jenkins pipeline
-was running on [Ubuntu][5] or more recently on [CentOS][7]. This led to messages like these being posted to our Slack channel:
+Compounding the version mismatch problem, we build and test our entire stack on a [Jenkins][8] cluster. Many of our developers would code and test on [Apple MacOS][3], but our Jenkins pipeline
+was running on [Ubuntu][5] or [CentOS][7]. This led to messages like these being posted to our Slack channel:
 
 > new variable tests pass locally so I'm sending them to jenkins for failure
 
@@ -35,38 +34,34 @@ and
 > once again it passes locally (I’m tired of saying that). we’ll see if it
 > passes the Jenkins Arbitron 5000
 
-This led to developers no longer running tests locally before pushing because Jenkins was the final arbiter
-anyway, and well, it would pass locally anyway.
+As a result, developers were less likely to run all tests locally before pushing because Jenkins was the final arbiter
+of truth, and well, it would pass locally anyway (right?). Moreover, trying to debug this kind of "works on my machine" problem was really, really painful.
 
-There was one other issue around the setup: operations was spending an awful
+In addition to the cost to developers, operations spent an awful
 lot of time testing Selenium/ChromeDriver/Chrome versions to verify that
 everything continued to work. Linux package management makes installing the
-latest version of a package incredibly simple, but unless you manually keep
-around the old versions of packages you end up scouring the net for just the
+latest version of a package incredibly simple, but rolling back is less so. Unless you manually keep
+around the old versions of packages, you end up scouring the net for just the
 right `.deb` or `.rpm` that would make everything function again. In the mean
-time developers are unhappy because you've just taken down their only testing
+time, developers are unhappy because you've just taken down their testing
 platform.
 
 This is where [Docker][9] containers presented a perfect solution for us.
 Selenium makes Docker containers available in a variety of configurations on
-the [Selenium Dockerhub][10]. Using the [standalone-chrome][11] container we
+the [Selenium Dockerhub][10]. Using the [standalone-chrome][11] container, we
 can easily spawn a Selenium server that allows us to connect and spawn Chrome
-browsers for testing. The docker container is easy to start up, and easy to
-tear down, and due to it's self-contained nature won't require installation of
-packages or software, and thus makes upgrading a breeze.
+browsers for testing. The docker container is easy to start up, easy to
+tear down, and because it is self contained and doesn't require installation of
+packages or software, easy to upgrade.
 
-Thus [nightwatchrun][12] was born. Given our existing test suite of nightwatch
-tests we wanted to be able to quickly spin up a new container, run our tests,
-and after tests were completed tear down the container. Thus solving our two
-problems:
-
-- Jenkins is running the exact same software/container as developers
-- Operations is no longer in the business of testing all kinds of different
-  versions against each other
-
-Using [Docker for Mac][13] our developers can now easily run their Nightwatch
-tests against the exact same software stack used by Jenkins. "Passes locally, but not on Jenkins"
-is a thing of the past.
+Hence the birth of [nightwatchrun][12], which we have just made public under the MIT license. Given our existing test suite of Nightwatch
+tests, we wanted to be able to quickly spin up a new container, run our tests,
+and after the tests were completed, tear down the container. This approach solved our two big problems.
+Because Jenkins is running the exact same software/container as developers, "Passes locally, but not on Jenkins"
+is a thing of the past. Our developers can now easily run their Nightwatch
+tests against the exact same software stack used by Jenkins with [Docker for Mac][13].
+Moreover, operations is no longer in the business of testing all kinds of different
+  versions against each other to find the right combination of dependencies.
 
 `nightwatchrun.sh` is a simple shell script that, given a Nightwatch.js
 configuration file, will run a Docker container, get its IP address/port
