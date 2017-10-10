@@ -70,9 +70,11 @@ variables are used to set the Selenium host/port number.
 
 You can try it out yourself:
 
-- `git clone git@github.com:Crunch-io/nightwatchrun.git`
-- `yarn install`
-- `./nightwatchrun.sh -c nightwatch.conf.js`
+```
+git clone git@github.com:Crunch-io/nightwatchrun.git
+yarn install
+./nightwatchrun.sh -c nightwatch.conf.js
+```
 
 This will output something similar to:
 
