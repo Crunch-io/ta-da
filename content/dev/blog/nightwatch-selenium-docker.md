@@ -1,6 +1,6 @@
 +++
-date = "2017-10-02T09:00:00-07:00"
-title = "Nightwatchrun = Docker + Selenium + Nightwatch for Consistent End-to-End Testing"
+date = "2017-10-10T09:00:00-07:00"
+title = "Nightwatchrun = Docker + Nightwatch.js for Consistent Testing"
 draft = false
 description = "Our new open-source tool eliminates the \"works on my machine\" problem for automated end-to-end browser testing. Ensure that everyone's \"machine\" has the same configuration using Docker."
 weight = 20
