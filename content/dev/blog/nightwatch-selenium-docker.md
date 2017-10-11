@@ -1,8 +1,8 @@
 +++
 date = "2017-10-10T09:00:00-07:00"
-title = "Nightwatchrun = Docker + Nightwatch.js for Consistent Testing"
+title = "Using Nightwatch.js with Docker for Consistent Testing"
 draft = false
-description = "Our new open-source tool eliminates the \"works on my machine\" problem for automated end-to-end browser testing. Ensure that everyone's \"machine\" has the same configuration using Docker."
+description = "\"Nightwatchrun\", our new open-source tool, eliminates the \"works on my machine\" problem for automated end-to-end browser testing. Ensure that everyone's machine has the same configuration using Docker."
 weight = 20
 tags = ["testing", "automation"]
 categories = ["general"]
