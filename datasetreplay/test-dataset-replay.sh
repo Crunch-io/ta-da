@@ -12,4 +12,6 @@ CRUNCHENV="eu"
 dataset_id=$(dataset.pick --skipfile=$skipfile --env=$CRUNCHENV)
 echo "Picked $dataset_id"
 echo "$dataset_id" >> $skipfile
-dataset.replay $dataset_id --env=$CRUNCHENV --slack
+last_savepoint=$(dataset.savepoints $dataset_id --env=$CRUNCHENV | head -n 1)
+echo "Last savepoint $last_savepoint"
+dataset.replay $dataset_id $last_savepoint --env=$CRUNCHENV --slack

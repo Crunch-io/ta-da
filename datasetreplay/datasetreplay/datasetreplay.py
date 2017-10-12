@@ -48,11 +48,11 @@ def admin_url(connection, path):
                 headers={'Accept': 'application/json'})
 
 
-def notify(dataset_id, dataset_name, message, success=True):
+def notify(dataset_id, dataset_name, from_version, message, success=True):
     if USE_SLACK:
         r = slack.message(channel="sentry", username="crunchbot",
                           icon_emoji=":grinning:" if success else ':worried:' ,
-                          attachments=[{'title': 'Dataset Replay Check for %s - %s' % (dataset_id, dataset_name),
+                          attachments=[{'title': 'Dataset Replay Check for %s - %s from %s' % (dataset_id, dataset_name, from_version),
                                         'text': message}])
         r.raise_for_status()
     else:
@@ -139,15 +139,16 @@ def main():
                 time.sleep(1.0)
 
             if status['progress'] == -1:
-                notify(dataset_id, dataset['name'],
+                notify(dataset_id, dataset['name'], from_revision,
                        'Failed to replay dataset: %s' % status['message'],
                        success=False)
                 return
 
-            notify(dataset_id, dataset['name'],
+            notify(dataset_id, dataset['name'], from_revision,
                    'Successfully replayed dataset at: %s' % target_url,
                    success=True)
         else:
-            notify(dataset_id, dataset['name'], 'Failed to replay dataset: %s' % resp.text,
+            notify(dataset_id, dataset['name'], from_revision,
+                   'Failed to replay dataset: %s' % resp.text,
                    success=False)
 
