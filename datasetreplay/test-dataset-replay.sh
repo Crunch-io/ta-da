@@ -7,8 +7,11 @@ if [ -z "$skipfile" ]; then
    exit 1
 fi
 
-CRUNCHENV="eu"
+if [ -z "$CRUNCHENV" ]; then
+    CRUNCHENV="eu"
+fi
 
+echo "Going to $CRUNCHENV"
 dataset_id=$(dataset.pick --skipfile=$skipfile --env=$CRUNCHENV)
 echo "Picked $dataset_id"
 echo "$dataset_id" >> $skipfile
