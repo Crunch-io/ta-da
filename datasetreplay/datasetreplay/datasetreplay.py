@@ -118,7 +118,7 @@ def main():
         else:
             actions_count = len(resp['actions'])
 
-        print('Replaying up to %s actions...' % actions_count)
+        print('Replaying %s actions...' % actions_count)
         resp = requests.post(
             data={
                 'dataset_name': '%s Replay %s' % (dataset['name'], int(time.time())),
