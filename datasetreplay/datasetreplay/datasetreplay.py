@@ -1,7 +1,5 @@
 import sys
-import os
 import time
-import tempfile
 import subprocess
 import requests
 import docopt
@@ -12,8 +10,8 @@ USE_SLACK = False
 ENVIRONS = {
     'unstable': ('localhost', 'ubuntu@unstable-backend.crunch.io'),
     'stable': ('localhost', 'ubuntu@stable-backend.crunch.io'),
-    'alpha': ('alpha-backend.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io'),
-    'eu': ('eu-backend.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io'),
+    'alpha': ('alpha-backend-39.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io'),
+    'eu': ('eu-backend-178.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io'),
     'vagrant': (None, None)
 }
 
@@ -44,7 +42,10 @@ class tunnel(object):
 
 
 def admin_url(connection, path):
-    return dict(url='http://localhost:%s/%s' % (connection[1], path), headers={'Accept': 'application/json'})
+    if not path.startswith('/'):
+        path = '/' + path
+    return dict(url='http://%s:%s%s' % (connection[0], connection[1], path),
+                headers={'Accept': 'application/json'})
 
 
 def notify(dataset_id, dataset_name, message, success=True):
@@ -63,11 +64,13 @@ def main():
     helpstr = """Test Replayability of a dataset.
 
     Usage:
-      %(script)s <dsid> [--slack] [--env=ENV]
+      %(script)s <dsid> [<from_version>] [--slack] [--env=ENV]
       %(script)s (-h | --help)
 
     Arguments:
       dsid ID of the dataset that should be replayed
+      from_version revision from which the dataset replay should be tested.
+                   By default datasets replay from the origin.
 
     Options:
       -h --help    Show this screen
@@ -77,8 +80,14 @@ def main():
 
     arguments = docopt.docopt(helpstr, sys.argv[1:])
     dataset_id = arguments['<dsid>']
+    from_version = arguments['<from_version>']
     USE_SLACK = arguments['--slack']
     env = arguments['--env']
+
+    if from_version:
+        from_revision = from_version.split('__')[-1]
+    else:
+        from_revision = ''
 
     hosts = ENVIRONS[env]
     with tunnel(hosts[0], 8081, 29081, hosts[1]) as connection:
@@ -100,13 +109,21 @@ def main():
             return
 
         resp = resp.json()
-        actions_count = len(resp['actions'])
+        if from_revision:
+            actions_count = 0
+            for a in resp['actions']:
+                if a['hash'] == from_revision:
+                    break
+                actions_count += 1
+        else:
+            actions_count = len(resp['actions'])
 
-        print('Replaying %s actions...' % actions_count)
+        print('Replaying up to %s actions...' % actions_count)
         resp = requests.post(
             data={
                 'dataset_name': '%s Replay %s' % (dataset['name'], int(time.time())),
-                'dataset_owner': REPLAY_USER
+                'dataset_owner': REPLAY_USER,
+                'from_revision': from_revision
             },
             allow_redirects=False,
             **admin_url(connection, '/datasets/%s/actions/replay' % dataset_id)
