@@ -138,7 +138,7 @@ def main():
             while -1 < status['progress'] < 100:
                 status.update(requests.get(progress_url).json()['value'])
                 print('    %(progress)s%% - %(message)s' % status)
-                time.sleep(1.0)
+                time.sleep(5.0)
 
             if status['progress'] == -1:
                 notify(dataset_id, dataset['name'], from_revision,
