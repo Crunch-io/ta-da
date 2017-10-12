@@ -231,6 +231,12 @@ $(x, name) <- value
 # S4 method for TeamCatalog,character,missing,CrunchTeam
 [[(x, i, j) <- value
 
+# S4 method for UserCatalog,character,ANY
+[(x, i, j, ..., drop = TRUE)
+
+# S4 method for UserCatalog,character
+[[(x, i, j, ...)
+
 # S4 method for VariableCatalog,numeric
 [[(x, i, j, ...)
 
@@ -273,7 +279,8 @@ $(x, name) <- value
     </tr>
     <tr>
       <th>...</th>
-      <td><p>additional arguments</p></td>
+      <td><p>additional arguments (for example <code>secondary</code> a vector of elements to match
+against like <code><a href='describe-catalog.html'>emails(x)</a></code> or <code><a href='owners.html'>owners(x)</a></code> by default this is <code>names(x)</code>)</p></td>
     </tr>
     <tr>
       <th>value</th>
