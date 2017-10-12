@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import sys
 import time
 import subprocess
@@ -27,7 +29,7 @@ class tunnel(object):
         if self.target is None and self.bastion is None:
             return '127.0.0.1', self.target_port
 
-        print('Tunnel to %s through %s' % (self.target, self.bastion))
+        print('Tunnel to %s through %s' % (self.target, self.bastion), file=sys.stderr)
         subprocess.call(
             'ssh -A -f -N -L %s:%s:%s %s' % (self.local_port, self.target, self.target_port, self.bastion),
             shell=True
