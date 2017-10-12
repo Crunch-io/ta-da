@@ -129,11 +129,8 @@
     </div>
 
     
-    <p>Some of the attributes of a <code>ShojiCatalog</code> will not naturally fit in
-a conventional data.frame. For example, an array variable contains a list of
-subvariables, and these subvariables will not easily fit in a single row of a
-data.frame. In this case, the list of subvariables are stored in a
-list-column in the resulting data.frame.</p>
+    <p>This is an internal function called by the various <code>as.data.frame</code> methods.
+Use <code>as.data.frame</code> instead of calling this directly.</p>
     
 
     <pre class="usage"><span class='fu'>catalogToDataFrame</span>(<span class='no'>x</span>, <span class='kw'>keys</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rownames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -161,7 +158,7 @@ names will be the URLs of the catalog tuples.</p></td>
     <tr>
       <th>list_columns</th>
       <td><p>A character vector of the names of the attributes that
-should be stored in a list-column.</p></td>
+should be stored in a list-column. Currently ignored.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -173,6 +170,14 @@ should be stored in a list-column.</p></td>
 
     <p>a <code>data.frame</code> view of the catalog</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Some of the attributes of a <code>ShojiCatalog</code> will not naturally fit in
+a conventional data.frame. For example, an array variable contains a list of
+subvariables, and these subvariables will not easily fit in a single row of a
+data.frame. In this case, the list of subvariables are stored in a
+list-column in the resulting data.frame.</p>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -181,6 +186,8 @@ should be stored in a list-column.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
           </ul>
 
   </div>

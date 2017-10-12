@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dataset weights — weight • Crunch</title>
+<title>Change which variables can be set as a dataset's weight. — weightVariables&lt;-,CrunchDataset-method • Crunch</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -125,52 +125,76 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Dataset weights</h1>
+    <h1>Change which variables can be set as a dataset's weight.</h1>
     </div>
 
     
-    <p><code>weight</code> lets you view and set your user's currently applied weight on the
-server. <code>weightVariables</code> lets you view all of the variables that have been
-designated as valid to use as weights.</p>
+    <p><code>modifyWeightVariables</code> allows you to change the variables which are eligible
+to be used as a dataset's weight. You can also add variables to the weight variables
+catalog by assignment with <code>weightVariables(ds) &lt;- "weight"</code> or
+<code>is.weightVariable(ds$weight) &lt;- TRUE</code>.</p>
     
 
-    <pre class="usage"><span class='fu'>weight</span>(<span class='no'>x</span>)
+    <pre class="usage"><span class='co'># S4 method for CrunchDataset</span>
+<span class='fu'><a href='weightVariables.html'>weightVariables</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
-<span class='fu'>weight</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='fu'>modifyWeightVariables</span>(<span class='no'>x</span>, <span class='no'>vars</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"append"</span>)
 
-<span class='fu'>is.weight</span>(<span class='no'>x</span>)
+<span class='fu'>is.weightVariable</span>(<span class='no'>x</span>)
 
 <span class='co'># S4 method for NumericVariable</span>
-<span class='fu'>is.weight</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+<span class='fu'>is.weightVariable</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a Dataset</p></td>
+      <td><p>a CrunchDataset</p></td>
     </tr>
     <tr>
       <th>value</th>
-      <td><p>a Variable, VariableDefinition, or <code>NULL</code>. If a
-VariableDefinition is passed, the variable will first be created and then set
-as the datasets weight. Set to <code>NULL</code> to remove existing weights from the
-dataset.</p></td>
+      <td><p>For the <code><a href='weightVariables.html'>weightVariables()</a></code> and <code>is.weightVariable</code> setters the
+variables to append to a dataset's weightVariables.</p></td>
+    </tr>
+    <tr>
+      <th>vars</th>
+      <td><p>Variables to add or remove  this can be a numeric Crunch variable,
+list of numeric Crunch variables or a character vector with the aliases of
+numeric Crunch variables. Setting vars to <code>NULL</code> clears a datasets <code>weightVariables</code></p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>a character string determining how the weightVariables
+will be modified:</p><ul>
+<li><p><code>"append"</code> : add <code>vars</code> to the current weight variables</p></li>
+<li><p><code>"remove"</code> : remove <code>vars</code> from the current list of weight variables</p></li>
+<li><p><code>"replace"</code>: replace the current weight variables with <code>vars</code></p></li>
+</ul></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>For the <code>weight</code> getter, a Variable if there is a weight, else
-NULL. For the setter, x, modified accordingly. <code>weightVariables</code> returns
-the aliases (or names, according to <code>options(crunch.namekey.dataset)</code>),
-of the variables designated as weights.</p>
+    <p>a CrunchDataset</p>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code><a href='weightVariables.html'>weightVariables()</a></code> <code><a href='makeWeight.html'>makeWeight()</a></code></p>
+    <p>Editors can change which variables can be set as the weighting variable
+for a dataset. For instance if several weights have been calculated they
+can let the user choose which of those variables to use a weight, but prevent
+the user from choosing other variables as weight. This function allows you
+to change the <code>weightVariables</code> of a dataset.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>modifyweightVariables</span>(<span class='no'>ds</span>, <span class='st'>"weight"</span>, <span class='st'>"append"</span>)
+<span class='fu'><a href='weightVariables.html'>weightVariables</a></span>(<span class='no'>ds</span>) <span class='kw'>&lt;-</span> <span class='fu'>list</span>(<span class='no'>ds</span>$<span class='no'>weight</span>, <span class='no'>ds</span>$<span class='no'>weight2</span>)
+<span class='fu'><a href='weightVariables.html'>weightVariables</a></span>(<span class='no'>ds</span>) <span class='kw'>&lt;-</span> <span class='kw'>NULL</span>
+<span class='fu'><a href='weightVariables.html'>weightVariables</a></span>(<span class='no'>ds</span>) <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"weight"</span>, <span class='st'>"weight2"</span>)
+<span class='fu'>is.weightVariables</span>(<span class='no'>ds</span>$<span class='no'>weight</span>) <span class='kw'>&lt;-</span> <span class='fl'>TRUE</span>
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -179,8 +203,10 @@ of the variables designated as weights.</p>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#see-also">See also</a></li>
-          </ul>
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Dataset weights — weight • Crunch</title>
+<title>as.data.frame method for catalog objects — as.data.frame.VariableCatalog • Crunch</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -125,52 +125,85 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Dataset weights</h1>
+    <h1>as.data.frame method for catalog objects</h1>
     </div>
 
     
-    <p><code>weight</code> lets you view and set your user's currently applied weight on the
-server. <code>weightVariables</code> lets you view all of the variables that have been
-designated as valid to use as weights.</p>
+    <p>This method gives you a view of a catalog, such as a <code>VariableCatalog</code>, as a
+<code>data.frame</code> in order to facilitate further exploration.</p>
     
 
-    <pre class="usage"><span class='fu'>weight</span>(<span class='no'>x</span>)
+    <pre class="usage"><span class='co'># S3 method for VariableCatalog</span>
+<span class='fu'>as.data.frame</span>(<span class='no'>x</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>optional</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>keys</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"alias"</span>, <span class='st'>"name"</span>, <span class='st'>"type"</span>), <span class='no'>...</span>)
 
-<span class='fu'>weight</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='co'># S3 method for ShojiCatalog</span>
+<span class='fu'>as.data.frame</span>(<span class='no'>x</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>optional</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>...</span>)
 
-<span class='fu'>is.weight</span>(<span class='no'>x</span>)
+<span class='co'># S3 method for BatchCatalog</span>
+<span class='fu'>as.data.frame</span>(<span class='no'>x</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>optional</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>keys</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"id"</span>, <span class='st'>"status"</span>), <span class='no'>...</span>)
 
-<span class='co'># S4 method for NumericVariable</span>
-<span class='fu'>is.weight</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+<span class='co'># S3 method for FilterCatalog</span>
+<span class='fu'>as.data.frame</span>(<span class='no'>x</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>optional</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>keys</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"name"</span>, <span class='st'>"id"</span>, <span class='st'>"is_public"</span>), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a Dataset</p></td>
+      <td><p>A catalog object</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>a Variable, VariableDefinition, or <code>NULL</code>. If a
-VariableDefinition is passed, the variable will first be created and then set
-as the datasets weight. Set to <code>NULL</code> to remove existing weights from the
-dataset.</p></td>
+      <th>row.names</th>
+      <td><p>A character vector of elements to use as row labels for the
+resulting data.frame, or <code>NULL</code>, the default, adds no row labels.</p></td>
+    </tr>
+    <tr>
+      <th>optional</th>
+      <td><p>part of <code>as.data.frame</code> signature. Ignored.</p></td>
+    </tr>
+    <tr>
+      <th>keys</th>
+      <td><p>A character vector of the catalog attributes that you
+would like included in the data.frame. To include all attributes, set keys to
+<code>TRUE</code>, which is the default for some catalogs. Other catalog classes specify
+a narrower default:</p><ul>
+<li><p>VariableCatalog: <code>c("alias", "name", "type")</code></p></li>
+<li><p>BatchCatalog: <code>c("id", "status")</code></p></li>
+<li><p>FilterCatalog: <code>c("name", "id", "is_public")</code></p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments passed to <code>data.frame</code></p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>For the <code>weight</code> getter, a Variable if there is a weight, else
-NULL. For the setter, x, modified accordingly. <code>weightVariables</code> returns
-the aliases (or names, according to <code>options(crunch.namekey.dataset)</code>),
-of the variables designated as weights.</p>
+    <p>A <code>data.frame</code> including metadata about each entity contained in the
+catalog. The fields in the data.frame match the <code>keys</code> argument
+provided to the function, and each row represents a entity.</p>
     
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code><a href='weightVariables.html'>weightVariables()</a></code> <code><a href='makeWeight.html'>makeWeight()</a></code></p>
+    <p>Modifying the <code>data.frame</code> produced by this function will not update the
+objects on the Crunch server. Other methods exist for updating the metadata
+in the variable catalog, for example. See <code>vingette("variables", package = "crunch")</code>.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>ds</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='loadDataset.html'>loadDataset</a></span>(<span class='st'>"iris"</span>)
+<span class='no'>vars</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='dataset-variables.html'>variables</a></span>(<span class='no'>ds</span>)
+<span class='no'>var_df</span> <span class='kw'>&lt;-</span> <span class='fu'>as.data.frame</span>(<span class='no'>vars</span>, <span class='kw'>keys</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='co'># With row names</span>
+<span class='fu'>as.data.frame</span>(<span class='no'>vars</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fu'><a href='urls.html'>urls</a></span>(<span class='no'>vars</span>))
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -179,8 +212,10 @@ of the variables designated as weights.</p>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#see-also">See also</a></li>
-          </ul>
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
