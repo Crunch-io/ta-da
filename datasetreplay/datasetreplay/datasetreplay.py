@@ -123,7 +123,7 @@ def main():
         print('Replaying %s actions...' % actions_count)
         resp = requests.post(
             data={
-                'dataset_name': '%s Replay %s' % (dataset['name'], int(time.time())),
+                'dataset_name': 'AUTOREPLAY %s - %s' % (int(time.time()), dataset['name']),
                 'dataset_owner': REPLAY_USER,
                 'from_revision': from_revision
             },
