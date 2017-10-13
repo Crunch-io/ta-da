@@ -52,7 +52,7 @@ def admin_url(connection, path):
 
 def notify(dataset_id, dataset_name, from_version, message, success=True):
     if USE_SLACK:
-        r = slack.message(channel="sentry", username="crunchbot",
+        r = slack.message(channel="api", username="crunchbot",
                           icon_emoji=":grinning:" if success else ':worried:' ,
                           attachments=[{'title': 'Dataset Replay Check for %s - %s from %s' % (dataset_id, dataset_name, from_version),
                                         'text': message}])
