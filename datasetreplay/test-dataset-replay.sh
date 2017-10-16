@@ -11,6 +11,7 @@ fi
 if [ -z "$tracefile" ]; then
     echo 'Call as <script> <skipfile> <tracefile>, where <tracefile> is a path to the file log of dataset replays' 1>&2
     exit 1
+fi
 
 if [ -z "$CRUNCHENV" ]; then
     CRUNCHENV="eu"
