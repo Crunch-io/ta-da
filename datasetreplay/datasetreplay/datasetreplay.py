@@ -119,6 +119,11 @@ def main():
             print('Dataset %s not found' % dataset_id)
             return
 
+        if dataset['name'].startswith('AUTOREPLAY '):
+            # We don't want to replay our own replays
+            print('SKIPPED: %s was a replay' % dataset['name'])
+            return
+
         print('Fetching Actions for Dataset "%s"' % dataset['name'])
         resp = requests.get(**admin_url(connection, '/datasets/%s/actions' % dataset_id))
         if resp.status_code != 200:
