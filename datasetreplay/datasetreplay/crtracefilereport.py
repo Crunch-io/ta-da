@@ -12,7 +12,7 @@ def notify(date, success, text):
     if USE_SLACK:
         r = slack.message(channel="api", username="crunchbot",
                           icon_emoji=":grinning:" if success else ':worried:',
-                          attachments=[{'title': 'Dataset Replay Report fo %s' % date,
+                          attachments=[{'title': 'Dataset Replay Report for %s' % date,
                                         'text': '```%s```' % text,
                                         "mrkdwn_in": ["text"]}])
         r.raise_for_status()
@@ -53,7 +53,7 @@ def main():
                     failures = True
                 loglines.append(logline['format'] % logline)
 
-    notify(date, not failures, '\n'.join(loglines))
+    notify(date, not failures, '\n\n'.join(loglines))
 
 
 
