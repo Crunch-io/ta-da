@@ -13,7 +13,8 @@ def notify(date, success, text):
         r = slack.message(channel="api", username="crunchbot",
                           icon_emoji=":grinning:" if success else ':worried:',
                           attachments=[{'title': 'Dataset Replay Report fo %s' % date,
-                                        'text': text}])
+                                        'text': '```%s```' % text,
+                                        "mrkdwn_in": ["text"]}])
         r.raise_for_status()
     else:
         print('Dataset Replay Report fo %s' % date)
