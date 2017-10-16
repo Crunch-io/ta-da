@@ -1,8 +1,11 @@
 from __future__ import print_function
 
+import json
 import sys
 import time
 import subprocess
+
+import datetime
 import requests
 import docopt
 from . import slack
@@ -50,7 +53,7 @@ def admin_url(connection, path):
                 headers={'Accept': 'application/json'})
 
 
-def notify(dataset_id, dataset_name, from_version, message, success=True):
+def notify(dataset_id, dataset_name, from_version, message, success=True, tracefile=None):
     if USE_SLACK:
         r = slack.message(channel="api", username="crunchbot",
                           icon_emoji=":grinning:" if success else ':worried:' ,
@@ -60,13 +63,23 @@ def notify(dataset_id, dataset_name, from_version, message, success=True):
     else:
         print(message)
 
+    if tracefile is not None:
+        with open(tracefile, 'a') as f:
+            f.write(json.dumps({
+                'date': datetime.datetime.utcnow().strftime('%Y%m%d'),
+                'dataset_id': dataset_id, 'from_version': from_version,
+                'dataset_name': dataset_name, 'success': success,
+                'message': message,
+                'format': '%(dataset_id)s from %(from_version)s, "%(dataset_name)s": %(message)s'
+            }))
+
 
 def main():
     global USE_SLACK
     helpstr = """Test Replayability of a dataset.
 
     Usage:
-      %(script)s <dsid> [<from_version>] [--slack] [--env=ENV]
+      %(script)s <dsid> [<from_version>] [--slack] [--env=ENV] [--tracefile=TRACEFILE]
       %(script)s (-h | --help)
 
     Arguments:
@@ -75,9 +88,10 @@ def main():
                    By default datasets replay from the origin.
 
     Options:
-      -h --help    Show this screen
-      --slack      Send messages to slack
-      --env=ENV    Environment against which to run the commands [default: eu]
+      -h --help               Show this screen
+      --slack                 Send messages to slack
+      --env=ENV               Environment against which to run the commands [default: eu]
+      --tracefile=TRACEFILE   Save replay logs to a file.
     """ % dict(script=sys.argv[0])
 
     arguments = docopt.docopt(helpstr, sys.argv[1:])
@@ -85,6 +99,7 @@ def main():
     from_version = arguments['<from_version>']
     USE_SLACK = arguments['--slack']
     env = arguments['--env']
+    tracefile = arguments['--tracefile']
 
     if from_version:
         from_revision = from_version.split('__')[-1]
@@ -143,14 +158,14 @@ def main():
             if status['progress'] == -1:
                 notify(dataset_id, dataset['name'], from_revision,
                        'Failed to replay dataset: %s' % status['message'],
-                       success=False)
+                       success=False, tracefile=tracefile)
                 return
 
             notify(dataset_id, dataset['name'], from_revision,
                    'Successfully replayed dataset at: %s' % target_url,
-                   success=True)
+                   success=True, tracefile=tracefile)
         else:
             notify(dataset_id, dataset['name'], from_revision,
                    'Failed to replay dataset: %s' % resp.text,
-                   success=False)
+                   success=False, tracefile=tracefile)
 
