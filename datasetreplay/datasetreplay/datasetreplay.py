@@ -70,7 +70,7 @@ def notify(dataset_id, dataset_name, from_version, message, success=True, tracef
                 'dataset_id': dataset_id, 'from_version': from_version,
                 'dataset_name': dataset_name, 'success': success,
                 'message': message,
-                'format': '%(dataset_id)s from %(from_version)s": %(message)s'
+                'format': '%(dataset_id)s from %(from_version)s: %(message)s'
             })+'\n')
 
 
