@@ -1,29 +1,31 @@
 +++
-date = "2017-10-16T23:20:47-04:00"
+date = "2017-10-17T23:20:47-04:00"
 draft = false
-title = "Introducing Dataset Dashboards"
-description = "Dashboards provide a customizable top level view of the dataset"
+title = "Introducing Dashboards"
+description = "Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings."
 weight = 20
-tags = ["dashboards", "clients"]
+tags = ["dashboards", "clients", "graphs"]
 categories = ["feature"]
 +++
 
-One of the challenges we face here at Crunch is that our tool is designed to be used by many sorts of users, who all have different needs and expectations for how they expect to interact with the data.
+Crunch is designed to make data accessible to many different audiences that have varying needs, expectations, and technical abilities.
+Our [browse](http://support.crunch.io/crunch/crunch_browsing.html) and [analyze](http://support.crunch.io/crunch/crunch_analyzing-data.html) views allow data owners and analysts to quickly explore and analyze interesting insights in potentially large, complex datasets. However, not everyone has time to explore a dataset---some need to see key findings at a glance.
 
-Our [browse](http://support.crunch.io/crunch/crunch_browsing.html) and [analyze](http://support.crunch.io/crunch/crunch_analyzing-data.html) views have proven very useful for data owners and data analysts, allowing these users to quickly find, assess, and analyze the variables they are looking for in large complex datasets.
-
-We are proud to announce a new view that is geared towards users who might be less familiar with the details of a particular dataset, but need to see a quick summary of key analyses: the dataset dashboard.
+To meet this executive-type need, we're introducing a new dashboard feature.
 
 {{< figure src="../images/dashboard.png" class="centered-image">}}
 
-This dashboard provides a quick snapshot of up to four analyses. Double-click an analysis to open it in analyze view where you can further explore the data by [adding filters](http://support.crunch.io/crunch/crunch_filtering-data.html), [changing variables](http://support.crunch.io/crunch/crunch_analyzing-data.html), or customizing the analysis using the [display controller](http://support.crunch.io/crunch/crunch_variable-display-in-expanded-view.html).
+This dashboard provides a quick view of up to four analyses, right when you open a dataset. These views are dynamic: when new data is added to the dataset, the dashboard updates with the latest values.
+
+In keeping with Crunch's philosophy that exploring data should be instant and intuitive, the graphs and tables on a dashboard can be a starting point for further analysis if you want to dig deeper. Double-click on an analysis to open it in the full-screen view, where you can explore by [adding filters](http://support.crunch.io/crunch/crunch_filtering-data.html), [changing variables](http://support.crunch.io/crunch/crunch_analyzing-data.html), or customizing the analysis using the [display controller](http://support.crunch.io/crunch/crunch_variable-display-in-expanded-view.html).
 
 {{< figure src="../images/dashboard-icon.png" class="floating-right">}}
-The dashboard view loads when a dataset is first opened. It can be accessed by clicking the dashboard view icon at the top of the interface.
+At any time when working with a dataset, you can return to the dashboard by clicking its icon at the top of the screen.
 
 ## Creating a Dashboard
 
-If you are a dataset editor, create a dashboard using an existing deck of saved analyses by clicking the dataset name and selecting **Configure Dashboard**. See [Configuring a Dataset Dashboard](http://support.crunch.io/crunch/crunch_dashboards.html) for more information.
+If you are a dataset editor, setting up a dashboard for your dataset takes just a few steps. First, [save the analyses](http://support.crunch.io/crunch/crunch_saving-analyses.html) you want to appear in the dashboard to a deck. Then, indicate that you want to use that deck as the source for your dashboard by clicking the dataset name, selecting **Configure Dashboard**, and select the deck. See [Configuring a Dataset Dashboard](http://support.crunch.io/crunch/crunch_dashboards.html) for more information. To change the composition of the analyses that show in the dashboard, edit the saved slides in your deck, and the changes will be reflected in the dashboard.
 
-## The future of Dashboards
-We have a number of enhancements to dashboards we plan to develop in the future, but we’d also love to hear from you: what would you like to see as part of a dataset dashboard? Let us know at support@crunch.io. Thanks!
+## The Future of Dashboards
+
+There are lots of enhancements we plan to add to the dashboards, and your feedback about how you'd like to see them improved is greatly appreciated. Let us know what you think at support@crunch.io.
