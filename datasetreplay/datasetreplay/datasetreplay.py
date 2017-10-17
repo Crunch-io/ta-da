@@ -70,7 +70,7 @@ def notify(dataset_id, dataset_name, from_version, message, success=True, tracef
                 'dataset_id': dataset_id, 'from_version': from_version,
                 'dataset_name': dataset_name, 'success': success,
                 'message': message,
-                'format': '%(dataset_id)s from %(from_version)s, "%(dataset_name)s": %(message)s'
+                'format': '%(dataset_id)s from %(from_version)s": %(message)s'
             })+'\n')
 
 
@@ -162,15 +162,15 @@ def main():
 
             if status['progress'] == -1:
                 notify(dataset_id, dataset['name'], from_revision,
-                       'Failed to replay dataset: %s' % status['message'],
+                       'Failed: %s' % status['message'],
                        success=False, tracefile=tracefile)
                 return
 
             notify(dataset_id, dataset['name'], from_revision,
-                   'Successfully replayed dataset at: %s' % target_url,
+                   'Successful: %s' % target_url,
                    success=True, tracefile=tracefile)
         else:
             notify(dataset_id, dataset['name'], from_revision,
-                   'Failed to replay dataset: %s' % resp.text,
+                   'Failed: %s' % resp.text,
                    success=False, tracefile=tracefile)
 
