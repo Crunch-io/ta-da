@@ -80,19 +80,21 @@ The dataset will be saved in your personal project.
 
 ## A few caveats
 
-1) Datasets need an end date or start date defined to automatically create the dashboard with the trending variable.
+1. Datasets need an end date or start date defined to automatically create the dashboard with the trending variable.
    You may define the end date and start date for your datasets under properties.
-2) Variables that you would like combined need to have the same alias, as this is what the system currently keys on
+2. Variables that you would like combined need to have the same alias, as this is what the system currently keys on
    for correlation.
-3) There are some limitations.  You can combine up to 100 datasets.  Those datasets have to have combined less than
+3. There are some limitations.  You can combine up to 100 datasets.  Those datasets have to have combined less than
 3000 rows in 1000 variables.  That is to say the overall size of each dataset must be 3000 rows * 1000 variables or
 roughly 30mb after combined.  There is some flexibility so that if you select less datasets you can have a larger 
 number variables selected.
-
+4. Expect combined datasets to take a while, we are shoveling some heavy loads to make this happen if you choose
+many datasets with many variables.
+5. If there is conflicts between variables in the datasets, those variables are not included.
 
 ## Future Improvements
 
 On the roadmap for crunch is a better way of tracking variables across datasets, using tools like machine learning and
 fuzzy matching in order to match datasets.  We are planning on keeping track of what matched after combining to make
 combining easier and more accurate in the future!  We'd also like to eliminate the limitation on number of rows that
-the target dataset can contain.
+the target dataset can contain.  We are also working on performance.
