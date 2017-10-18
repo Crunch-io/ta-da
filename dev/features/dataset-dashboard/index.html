@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <title>Deliver New Data When You’re Ready</title>
+    <title>Introducing Dashboards</title>
 
     
     <link href="../../../css/bootstrap.min.css" rel="stylesheet">
@@ -36,20 +36,16 @@
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="msapplication-config" content="/img/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-    <meta property="og:title" content="Deliver New Data When You’re Ready" />
-<meta property="og:description" content="Our new draft-and-publish feature allows you to prepare and review changes to data before pushing them to everyone." />
+    <meta property="og:title" content="Introducing Dashboards" />
+<meta property="og:description" content="Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://crunch.io/dev/features/draft-and-publish/" />
+<meta property="og:url" content="http://crunch.io/dev/features/dataset-dashboard/" />
 
 
 
-<meta property="article:published_time" content="2017-06-12T23:20:47-04:00"/>
+<meta property="article:published_time" content="2017-10-17T23:20:47-04:00"/>
 
-<meta property="article:modified_time" content="2017-06-12T23:20:47-04:00"/>
-
-
-
-
+<meta property="article:modified_time" content="2017-10-17T23:20:47-04:00"/>
 
 
 
@@ -57,8 +53,12 @@
 
 
 
-    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Deliver New Data When You’re Ready"/>
-<meta name="twitter:description" content="Our new draft-and-publish feature allows you to prepare and review changes to data before pushing them to everyone."/>
+
+
+
+
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Introducing Dashboards"/>
+<meta name="twitter:description" content="Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings."/>
 
 </head>
 <body>
@@ -121,12 +121,12 @@
 <div class="container">
 <div id="hero" class="row">
     <div class="intro-post col">
-        <h1 itemprop="headline">  Deliver New Data When You’re Ready</h1>
+        <h1 itemprop="headline">  Introducing Dashboards</h1>
         
-            <blockquote itemprop="description">Our new draft-and-publish feature allows you to prepare and review changes to data before pushing them to everyone.</blockquote>
+            <blockquote itemprop="description">Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings.</blockquote>
         
         <time class="post-time">
-  Published <span datetime="2017-06-12T23:20:47-04:00">12 Jun 2017</span>
+  Published <span datetime="2017-10-17T23:20:47-04:00">17 Oct 2017</span>
 
 </time>
     </div>
@@ -136,64 +136,55 @@
         <div id="post" itemprop="articleBody">
             
 
-<p>Lately we’ve been focusing on ways to make it easier for data owners to manage data for their clients. After all, Crunch isn’t just for analyzing data, it’s a tool for making everything about delivering data to clients faster, smoother, and more powerful.</p>
+<p>Crunch is designed to make data accessible to many different audiences that have varying needs, expectations, and technical abilities.
+Our <a href="http://support.crunch.io/crunch/crunch_browsing.html">browse</a> and <a href="http://support.crunch.io/crunch/crunch_analyzing-data.html">analyze</a> views allow data owners and analysts to quickly explore and analyze interesting insights in potentially large, complex datasets. However, not everyone has time to explore a dataset&mdash;some need to see key findings at a glance.</p>
 
-<p>To that end, we’ve recently developed a draft and publish feature that allows data owners to make significant changes to data accessible to their clients with minimal interruption to how those clients interact with the data. Here’s how it works.</p>
-
-<h2 id="creating-a-draft">Creating a Draft</h2>
-
-
-<figure class="floating-left">
-    
-        <img src="../images/DraftButton.png" />
-    
-    
-</figure>
-
-
-<p>Open dataset properties of a dataset you are currently editing; you’ll see the Draft button on the right side of the screen.</p>
-
-<p>Click <strong>Create Draft</strong> to create and open a draft of the current dataset. Now you can append new rows of data, reorganize variables, create new variables, and edit dataset and variable metadata freely, and your clients won’t see your changes until you are ready. The draft dataset is automatically made available to others who have edit permissions on the current dataset, so multiple editors can make changes collaboratively or allow other stakeholders to review and sign off on changes. Other editors will see the draft marked with the <strong>draft</strong> label.</p>
+<p>To meet this executive-type need, we&rsquo;re introducing a new dashboard feature.</p>
 
 
 <figure class="centered-image">
     
-        <img src="../images/DraftDsList.png" />
+        <img src="../images/dashboard.png" />
     
     
 </figure>
 
 
-<p>While a draft exists, we prevent the original and draft datasets from getting out of sync by warning anyone who attempts to edit the original and pointing them to the draft. Additionally, if you find that you are not happy with the changes you’ve made, you can simply delete the draft dataset and start over again by creating a new draft.</p>
+<p>This dashboard provides a quick view of up to four analyses, right when you open a dataset. These views are dynamic: when new data is added to the dataset, the dashboard updates with the latest values.</p>
 
-<h2 id="publishing">Publishing</h2>
+<p>In keeping with Crunch&rsquo;s philosophy that exploring data should be instant and intuitive, the graphs and tables on a dashboard can be a starting point for further analysis if you want to dig deeper. Double-click on an analysis to open it in the full-screen view, where you can explore by <a href="http://support.crunch.io/crunch/crunch_filtering-data.html">adding filters</a>, <a href="http://support.crunch.io/crunch/crunch_analyzing-data.html">changing variables</a>, or customizing the analysis using the <a href="http://support.crunch.io/crunch/crunch_variable-display-in-expanded-view.html">display controller</a>.</p>
 
-
+<p>
 <figure class="floating-right">
     
-        <img src="../images/PublishButton.png" />
+        <img src="../images/dashboard-icon.png" />
     
     
 </figure>
 
+At any time when working with a dataset, you can return to the dashboard by clicking its icon at the top of the screen.</p>
 
-<p>Once you are satisfied with the draft, your changes can be published by returning to dataset properties in the draft and clicking <strong>Publish</strong>. The original dataset will be updated with the changes from the draft and the draft will be deleted.</p>
+<h2 id="creating-a-dashboard">Creating a Dashboard</h2>
 
-<p>We are confident this feature will make managing data for your clients a better experience for you and for them. If you have any feedback about draft and publish (or anything else!), please don’t hesitate to let us know at <a href="mailto:support@crunch.io">support@crunch.io</a>.</p>
+<p>If you are a dataset editor, setting up a dashboard for your dataset takes just a few steps. First, <a href="http://support.crunch.io/crunch/crunch_saving-analyses.html">save the analyses</a> you want to appear in the dashboard to a deck. Then, indicate that you want to use that deck as the source for your dashboard by clicking the dataset name, selecting <strong>Configure Dashboard</strong>, and select the deck. See <a href="http://support.crunch.io/crunch/crunch_dashboards.html">Configuring a Dataset Dashboard</a> for more information. To change the composition of the analyses that show in the dashboard, edit the saved slides in your deck, and the changes will be reflected in the dashboard.</p>
+
+<h2 id="the-future-of-dashboards">The Future of Dashboards</h2>
+
+<p>There are lots of enhancements we plan to add to the dashboards, and your feedback about how you&rsquo;d like to see them improved is greatly appreciated. Let us know what you think at support@crunch.io.</p>
 
         </div><br/>
         <div>
             <p class="post-footer">
   Published
   
-  <time datetime="2017-06-12T23:20:47-04:00">
-    12 Jun 2017
+  <time datetime="2017-10-17T23:20:47-04:00">
+    17 Oct 2017
   </time>
   
     in <span itemprop="articleSection"><a href="../../../categories/feature/">feature</a></span>
   
   
-    and tagged <a href="../../../tags/clients/">clients</a> and <a href="../../../tags/draft-and-publish/">draft and publish</a>
+    and tagged <a href="../../../tags/clients/">clients</a>, <a href="../../../tags/dashboards/">dashboards</a> and <a href="../../../tags/graphs/">graphs</a>
   
 </p>
 
@@ -208,7 +199,9 @@
     <ul>
       
       
-        <li><a href="../../../dev/features/dataset-dashboard/">Introducing Dashboards</a> &ndash; 2 minutes
+        <li><a href="../../../dev/features/visual-updates/">:bar_chart: New Header, New Font, New Graphs :chart_with_upwards_trend: </a> &ndash; 3 minutes
+      
+        <li><a href="../../../dev/features/draft-and-publish/">Deliver New Data When You’re Ready</a> &ndash; 2 minutes
       
     </ul>
   </aside>
