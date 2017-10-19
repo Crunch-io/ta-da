@@ -350,6 +350,8 @@ p+h2, p+h3, p+h4 {
 
 .centered-image img {
     margin: 0 auto;
+    max-width: 100%;
+    border: 1px solid #dfdfdf
 }
 
 #top-brand img {

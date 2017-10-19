@@ -8,93 +8,54 @@ tags = ["combine"]
 categories = ["feature"]
 +++
 
-Our users often ask how they can visualize how a particular variable changes over time.
-For instance, one might want to look at how the perceived direction of the country changes over time.  The
-data might already be saved in "waves".  The combine datasets feature simply allows users to bring all of that data
-into a single dataset.  Here's how.
+At Crunch, in addition to giving our users tools to process, analyze, and present new data, we are also looking for ways we can help our users to make more use out of older data. The more data you have in Crunch, the more useful it should be.
+
+For example, you might want to look at how the perceived direction of the country changes over time using surveys that were taken in multiple waves. The combine datasets feature allows you to bring that data into a single dataset where you can track it over time.  Here's how.
 
 ## Select a variable to trend on
 Click the "+" at the bottom left of the screen.  Select "combine datasets".
-  
-{{< figure src="../images/combine_datasets/01-plus.png" class="clear-left">}}  
-  
-This will prompt the search panel to pop open.  
 
-{{< figure src="../images/combine_datasets/02-search.png" class="clear-left">}}  
+{{< figure src="../images/CombineDSplus.png" class="clear-left">}}  
 
-Search for a variable you would like to create a trend with, and matching variables will appear with
-the datasets that contain them below.  If more than one dataset matches, when you hover over the search entry 
-the "combine datasets" link will appear, this is your entry point for creating a combined dataset.
+This will open the search panel.  
 
+{{< figure src="../images/CombineDSsearch.png" class="centered-image">}}  
+
+Search for a variable. The search results will show the matching variable names; you can click the arrow on the left to see all datasets that contain a given variable. Hover over the search entry to reveal the **Combine Datasets** link. Click it to start the process of combining datasets.
 
 ## Choose which datasets you'd like to see in the trend
-After selecting your trending variable, a screen will appear.
-  
-{{< figure src="../images/combine_datasets/03-datasets.png" class="clear-left">}}  
+After selecting the trending variable, the dataset selection screen will appear.
 
-All of the datasets that match the variable you
-selected will appear.  At this point you can select or deselect the given datasets. If you want to include
-datasets that don't have a matching variable (but may match ther variables you want to trend) you can click the
-link on the right to show other datasets.  If you had a project  selected when you started combining, all of 
-the datasets in your projects will appear.  If you were in your personal project, personal project datasets will appear.
+{{< figure src="../images/CombineDSdatasets.png" class="centered-image">}}  
 
-## Maybe there are other variables you would like to trend?
-Once you've selected the datasets you want to trend, you will be able to select which variables you want to
-include in your combined dataset.  
+All datasets that match the variable you selected will be displayed and can be selected or deselected. If you want to include
+datasets don't have the the searched variable (but may match other variables you want to include), click **Show all datasets in project** to show other datasets in the current project.  
 
+## Select other variables you would like to trend
+Once you've selected the datasets you want to combine, click **Next** to open the variable selection screen, where you can select which variables you want to
+include in the combined dataset.  
 
-{{< figure src="../images/combine_datasets/04-variables.png" class="clear-left">}}  
+{{< figure src="../images/CombineDSvariables.png" class="centered-image">}}  
 
+Browse or use the filter to find the variables you would like to include.  You can restrict which variables are displayed to ones that appear in minimum number of datasets using the **Minimum dataset matches** option. Click **Next** to continue.
 
-Use the filter to find the variables you would like to include.  The interface
-remembers which variables you have clicked even if they aren't displayed.
+## Select options
+Finally, you can name the new dataset and optionally create new variables based on both the survey start or end date as well as the dataset name – this allows you to perform analyses over these variables (e.g. track a variable over time or any other differentiator between the datasets, such as region).
 
-## Click Finish!
-When you are done selecting your variables, there's a few options that you can pick before clicking combine.
-
-
-{{< figure src="../images/combine_datasets/05-finish.png" class="clear-left">}}  
-
+{{< figure src="../images/CombineDSfinish.png" class="centered-image">}}  
 
 Depending on how many datasets and variables you have chosen, it may take some time to combine your datasets.  
 
+When Crunch is done combining your datasets, click **View** to explore your new dataset.
 
-{{< figure src="../images/combine_datasets/06-progress.png" class="clear-left">}}
+{{< figure src="../images/CombineDSdashboard.png" class="clear-left">}}  
 
-  
-When Crunch is done combining your datasets, you should see something like this:
+If you created a new time variable, the dashboard will automatically include a time series of the variable you chose in your initial search.
 
+## More details
 
-{{< figure src="../images/combine_datasets/07-finished.png" class="clear-left">}}  
+See [Combining datasets](http://support.crunch.io/crunch/crunch_combining-datasets.html) in our support documentation for more detailed information about the options available when combining datasets.
 
-
-Click "View" to immediately explore your new trend dataset.
-
-
-{{< figure src="../images/combine_datasets/08-dashboard.png" class="clear-left">}}  
-
-
-Your new dataset will be complete with a time trend in the dashboard of the variable you chose at the beginning.
-The dataset will be saved in your personal project.
-
-
-## A few caveats
-
-1. Datasets need an end date or start date defined to automatically create the dashboard with the trending variable.
-   You may define the end date and start date for your datasets under properties.
-2. Variables that you would like combined need to have the same alias, as this is what the system currently keys on
-   for correlation.
-3. There are some limitations.  You can combine up to 100 datasets.  Those datasets have to have combined less than
-3000 rows in 1000 variables.  That is to say the overall size of each dataset must be 3000 rows * 1000 variables or
-roughly 30mb after combined.  There is some flexibility so that if you select less datasets you can have a larger 
-number variables selected.
-4. Expect combined datasets to take a while, we are shoveling some heavy loads to make this happen if you choose
-many datasets with many variables.
-5. If there is conflicts between variables in the datasets, those variables are not included.
-
-## Future Improvements
-
-On the roadmap for crunch is a better way of tracking variables across datasets, using tools like machine learning and
+Our future plans for this feature include better way of tracking variables across datasets, using tools like machine learning and
 fuzzy matching in order to match datasets.  We are planning on keeping track of what matched after combining to make
-combining easier and more accurate in the future!  We'd also like to eliminate the limitation on number of rows that
-the target dataset can contain.  We are also working on performance.
+combining easier and more accurate in the future. If there are any other capabilities you'd like to see at support@crunch.io.
