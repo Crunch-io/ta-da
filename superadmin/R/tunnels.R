@@ -17,7 +17,7 @@ superConnect <- function (host="eu",
     message("Connecting...")
     cmd <- paste0("-A -f -N -L ", local.port, ":", findAdminHost(host),
         ":", remote.port, " ec2-user@vpc-nat.eu.crunch.io")
-    out <- system2("ssh", cmd)
+    out <- system_call("ssh", cmd)
     options(superadmin.is.connected=TRUE)
     invisible(out)
 }
@@ -27,7 +27,7 @@ superConnect <- function (host="eu",
 superDisconnect <- function (local.port=getOption("superadmin.local.port")) {
     message("Disconnecting...")
     cmd <- paste0('-f "ssh -A -f -N -L ', local.port, '"')
-    out <- system2("pkill", cmd)
+    out <- system_call("pkill", cmd)
     options(superadmin.is.connected=FALSE)
     invisible(out)
 }
@@ -53,3 +53,6 @@ loadHostTable <- function (url) {
     read.table(textConnection(content(tab, "text", encoding="UTF-8")),
         sep="\t", header=1, fill=TRUE, stringsAsFactors=FALSE)
 }
+
+## For test mocking
+system_call <- function (...) system2(...)

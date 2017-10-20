@@ -19,15 +19,20 @@ test_that("findAdminHost", {
 })
 
 with_mock(
-    `httr:::request_perform`=function (...) stop("Couldn't connect to server"),
-    `base::system2`=function (command, args, ...) print(paste(command, args)), {
+    `httr:::request_perform`=function (...) {
+        stop(structure(list(
+            message="Failed to connect to localhost port 28081: Connection refused",
+            call=quote(curl::curl_fetch_memory(url, handle = handle))
+        ), class=c("simpleError", "error", "condition")))
+    },
+    `superadmin:::system_call`=function (command, args, ...) print(paste(command, args)), {
 
     test_that("superGET tries to connect and retry", {
         expect_output(
             expect_message(
                 expect_error(
                     superGET("foo"),
-                        "Couldn't connect to server"), ## This is the retry
+                        "Failed to connect"), ## This is the retry
                     "Connecting..."),
             "ssh -A -f -N -L 28081:eu-backend-216.priveu.crunch.io:8081 ec2-user@vpc-nat.eu.crunch.io")
     })
@@ -36,7 +41,7 @@ with_mock(
             expect_message(
                 expect_error(
                     superPOST("foo"),
-                        "Couldn't connect to server"), ## This is the retry
+                        "Failed to connect"), ## This is the retry
                     "Connecting..."),
             "ssh")
     })
