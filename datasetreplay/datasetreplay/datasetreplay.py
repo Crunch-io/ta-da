@@ -79,7 +79,7 @@ def main():
     helpstr = """Test Replayability of a dataset.
 
     Usage:
-      %(script)s <dsid> [<from_version>] [--slack] [--env=ENV] [--tracefile=TRACEFILE]
+      %(script)s <dsid> [<from_version>] [--slack] [--env=ENV] [--tracefile=TRACEFILE] [--timelimit=SECONDS]
       %(script)s (-h | --help)
 
     Arguments:
@@ -92,6 +92,7 @@ def main():
       --slack                 Send messages to slack
       --env=ENV               Environment against which to run the commands [default: eu]
       --tracefile=TRACEFILE   Save replay logs to a file.
+      --timelimit=SECONDS     Limit maximum allowed history length to SECONDS seconds.
     """ % dict(script=sys.argv[0])
 
     arguments = docopt.docopt(helpstr, sys.argv[1:])
@@ -100,11 +101,19 @@ def main():
     USE_SLACK = arguments['--slack']
     env = arguments['--env']
     tracefile = arguments['--tracefile']
+    timelimit = arguments['--timelimit']
 
     if from_version:
         from_revision = from_version.split('__')[-1]
     else:
         from_revision = ''
+
+    if timelimit is not None:
+        if not from_revision:
+            print('--timelimit is currently only supported when <from_version> is provided too.')
+            sys.exit(1)
+
+        timelimit = int(timelimit)
 
     hosts = ENVIRONS[env]
     with tunnel(hosts[0], 8081, 29081, hosts[1]) as connection:
@@ -133,14 +142,24 @@ def main():
         resp = resp.json()
         if from_revision:
             actions_count = 0
+            total_time = 0
             for a in resp['actions']:
                 if a['hash'] == from_revision:
                     break
                 actions_count += 1
+                total_time += round(a.get('timing', 0), 3)
         else:
             actions_count = len(resp['actions'])
+            total_time = -1
 
-        print('Replaying %s actions...' % actions_count)
+        print('Replaying %s actions (expected %s seconds)...' % (actions_count, total_time))
+        if timelimit is not None and total_time > timelimit:
+            notify(dataset_id, dataset['name'], from_revision,
+                   'Skipped: Expected to take %s seconds to replay %s actions' % (
+                       total_time, actions_count
+                   ), success=False, tracefile=tracefile)
+            return
+
         resp = requests.post(
             data={
                 'dataset_name': 'AUTOREPLAY %s - %s' % (int(time.time()), dataset['name']),
