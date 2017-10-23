@@ -23,7 +23,7 @@ echo "Picked $dataset_id"
 echo "$dataset_id" >> $skipfile
 last_savepoint=$(dataset.savepoints $dataset_id --env=$CRUNCHENV | head -n 1)
 echo "Last savepoint $last_savepoint"
-dataset.replay $dataset_id $last_savepoint --env=$CRUNCHENV --tracefile=$tracefile
+dataset.replay $dataset_id $last_savepoint --env=$CRUNCHENV --tracefile=$tracefile --timelimit=1800
 echo "Trimming tracefile to last 300 replays"
 tempfile=$(mktemp)
 tail -n 300 $tracefile > $tempfile
