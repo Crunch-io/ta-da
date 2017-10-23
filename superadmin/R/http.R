@@ -37,7 +37,7 @@ superadminURL <- function (path,
 
 retryWithNewTunnel <- function (call, envir) {
     tryCatch(eval(call, envir=envir), error=function (e) {
-        if (grepl("curl", e$message)) {
+        if (grepl("curl", deparse(e$call))) {
             superConnect()
             eval(call, envir=envir)
         } else {
