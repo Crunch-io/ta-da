@@ -122,6 +122,7 @@ def main():
 
     hosts = ENVIRONS[env]
     with tunnel(hosts[0], 8081, 29081, hosts[1]) as connection:
+        print('Fetching Dataset info for %s' % dataset_id)
         resp = requests.get(**admin_url(connection, '/datasets/?dsid=' + dataset_id))
         if resp.status_code != 200:
             print('ERROR: %s' % resp.text)
