@@ -1,12 +1,13 @@
 Analyzing the Stack Overflow developers survey in Crunch
-=======================================================
+========================================================
 
 Survey designers often use data structures which make it easy to collect survey
 responses even if those structures are somewhat difficult to analyze. The result
 is that analysts can be faced with a number of tedious or difficult tasks before
 they can actually get insight from the data. Crunch was developed to make it
 easier to work with these kinds of awkward data structures. To provide a
-concrete example, lets take a look at the Stack Overflow developer survey.
+concrete example, lets take a look at the [Stack Overflow developer
+survey](https://insights.stackoverflow.com/survey/2017).
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
 library(crunch)
@@ -227,22 +228,22 @@ mr_vars <- stack_df$ImportantBenefits %>%
     map(str_to_var) %>%
     bind_rows()
 
-head(mr_vars) %>%
+head(mr_vars[, 1:5) %>%
     knitr::kable()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| Stock options | Vacation/days off | Remote options | Annual bonus | Health benefits | Equipment | Private office | Expected work hours | Professional development sponsorship | Education sponsorship | Long-term leave | Child/elder care | Retirement | Meals | Charitable match | Other | None of these |
-|---------------|-------------------|----------------|--------------|-----------------|-----------|----------------|---------------------|--------------------------------------|-----------------------|-----------------|------------------|------------|-------|------------------|-------|---------------|
-| selected      | selected          | selected       | NA           | NA              | NA        | NA             | NA                  | NA                                   | NA                    | NA              | NA               | NA         | NA    | NA               | NA    | NA            |
-| NA            | NA                | NA             | NA           | NA              | NA        | NA             | NA                  | NA                                   | NA                    | NA              | NA               | NA         | NA    | NA               | NA    | NA            |
-| NA            | NA                | NA             | NA           | NA              | NA        | NA             | NA                  | NA                                   | NA                    | NA              | NA               | NA         | NA    | NA               | NA    | NA            |
-| selected      | NA                | NA             | selected     | selected        | selected  | selected       | NA                  | NA                                   | NA                    | NA              | NA               | NA         | NA    | NA               | NA    | NA            |
-| NA            | NA                | NA             | NA           | NA              | NA        | NA             | NA                  | NA                                   | NA                    | NA              | NA               | NA         | NA    | NA               | NA    | NA            |
-| NA            | selected          | NA             | NA           | NA              | NA        | NA             | selected            | NA                                   | NA                    | NA              | NA               | NA         | NA    | NA               | NA    | NA            |
+| **Stock options** | **Vacation/days off** | **Remote options** | **Annual bonus** | **Health benefits** |
+|-------------------|-----------------------|--------------------|------------------|---------------------|
+| selected          | selected              | selected           | NA               | NA                  |
+| Not Answered      | Not Answered          | Not Answered       | Not Answered     | Not Answered        |
+| Not Answered      | Not Answered          | Not Answered       | Not Answered     | Not Answered        |
+| selected          | NA                    | NA                 | selected         | selected            |
+| Not Answered      | Not Answered          | Not Answered       | Not Answered     | Not Answered        |
+| NA                | selected              | NA                 | NA               | NA                  |
 
-This creates a dataframe with each multiple response option as a variable, and
-the selection indicated by either "selected" or NA. We can now convert it to a
-factors and upload it to Crunch.
+This creates a dataframe with each multiple response option as a variable with
+the selection indicated in the entries. We can now convert it to a factors and
+upload it to Crunch.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
 mr_vars[] <- map(mr_vars, as.factor)
@@ -261,68 +262,53 @@ ds$compensation_MR <- makeMR(ds[, names(mr_vars)],
 
 ![](./images/compensation_MR_screen.png)
 
-The multiple response variable card displays the multiple response variable in a
-compact, easy to understand way. We can improve this picture by reordering the
-expectations by the number of times they were selected.
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
-ordered_subvariables <- mr_vars %>%
-    gather(expectation, selection, na.rm = TRUE) %>%
-    group_by(expectation) %>%
-    tally(sort = TRUE) %>%
-    pull(expectation)
-subvariables(ds$compensation_MR) <-
-    subvariables(ds$compensation_MR)[ordered_subvariables]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-![](./images/sorted_mr_screen.png)
-
 ### Correcting misreported salaries
 
 Next we're going to replicate and extend a [procedure used by Evelina
 Gabasova](http://evelinag.com/blog/2017/06-20-stackoverflow-tabs-spaces-and-salary/#.We4QuxNSxTY)
 to correct for misreported salary data from Eastern Europe. Evelina noticed that
-there were discrepancies in the distributions of salary data. For some countries,
-even within countries, there was a multi-modal distribution of salaries that she
-was surprised by. In fact, for a number of countries, it looked like there were 
-two distributions, one centered at approximately 1/12 of the other. This lead 
-her to wonder if maybe some developers from countries where salaries are 
-frequently given by month had actually reported their monthly rather than yearly
-salaries. 
+there were discrepancies in the distributions of salary data. For some
+countries, even within countries, there was a multi-modal distribution of
+salaries that she was surprised by. In fact, for a number of countries, it
+looked like there were two distributions, one centered at approximately 1/12 of
+the other. This lead her to wonder if maybe some developers from countries where
+salaries are frequently given by month had actually reported their monthly
+rather than yearly salaries.
 
-Left alone, this would skew the salaries for the countries where this is common 
+Left alone, this would skew the salaries for the countries where this is common
 much lower than reality. Inspired by Evelina's approach of using mixture models,
 which she fit to the data and then corrected the low-salary group by multiplying
-by 12 to get an annualized salary, we used mixture models and a some heuristics 
-to determine which  countries had suspect distributions of salaries, and then 
-corrected those that fit this monthly-annual discrepancy. Like Evelina, we fit 
-mixture models using the [mclust package](http://www.stat.washington.edu/mclust/).
-We fit mixture models for every country, and then adjusted salaries under the 
-following conditions:
-* if there is only one mode / cluster don't adjust the salaries. This is the 
-simplest case, if there's no discrepancy there's no reason to correct.
-* if any mode / cluster of salaries only represented 10% of the population, 
-don't adjust the salaries. We found that sometimes `mclust` would find very 
-small clusters and that would produce odd results, we chose 10% here out of 
-convenience, but a more principle approach would pick a better cut off.
-* if there was more than one mode / cluster of salaries, and the lowest group's 
-salary multiplied by 12 was greater than the second lowest group's salary 
-multiplied by two, then do not attempt to adjust the salaries. Sometimes
-`mclust` would find clusters, but they would actually be fairly tightly together.
-This was likely the result of other covariates like experience, but critically,
-we didn't want to multiply junior developers' salaries by 12 just because they 
-form a distinct cluster separate from senior developers.
-* otherwise, multiply the lowest salary group by 12 to correct for apparent 
-misreporting.
+by 12 to get an annualized salary, we used mixture models and a some heuristics
+to determine which countries had suspect distributions of salaries, and then
+corrected those that fit this monthly-annual discrepancy. Like Evelina, we fit
+mixture models using the [mclust
+package](http://www.stat.washington.edu/mclust/). We fit mixture models for
+every country, and then adjusted salaries under the following conditions: \* if
+there is only one mode / cluster don't adjust the salaries. This is the simplest
+case, if there's no discrepancy there's no reason to correct. \* if any mode /
+cluster of salaries only represented 10% of the population, don't adjust the
+salaries. We found that sometimes `mclust` would find very small clusters and
+that would produce odd results, we chose 10% here out of convenience, but a more
+principle approach would pick a better cut off. \* if there was more than one
+mode / cluster of salaries, and the lowest group's salary multiplied by 12 was
+greater than the second lowest group's salary multiplied by two, then do not
+attempt to adjust the salaries. Sometimes `mclust` would find clusters, but they
+would actually be fairly tightly together. This was likely the result of other
+covariates like experience, but critically, we didn't want to multiply junior
+developers' salaries by 12 just because they form a distinct cluster separate
+from senior developers. \* otherwise, multiply the lowest salary group by 12 to
+correct for apparent misreporting.
 
-Finally, we only applied this adjustment to countries where we had at least 90 
-responses. This allowed us to be reasonably confident that there were enough 
+Finally, we only applied this adjustment to countries where we had at least 90
+responses. This allowed us to be reasonably confident that there were enough
 salaries in the sample to detect distinct clusters.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
-# this code should be adapted to be able to be run against the dataset you've 
-# got going, and within crplyr (which means adding `do()`?). It also might be 
-# cleaned up to be a bit more readable 
+library(crplyr)
+library(mclust)
+adjFrame <- ds %>% 
+    select(Salary, Country, Respondent) %>% 
+    collect()
 
 adjustSalary <- function(df) {
     res <- Mclust(df$Salary)
@@ -358,6 +344,21 @@ adjusted <- adjFrame %>%
     group_by(Country)  %>%
     filter(n() >= 90) %>%
     do(adjustSalary(.)) %>%
-    ungroup() %>%
-    right_join(adjFrame, by="Respondent")
+    ungroup() %>% 
+    right_join(adjFrame[, "Respondent"], by = "Respondent")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ 
+
+We can then upload the data back up to the Crunch app to see that the small
+outlying salaries have been smoothed over the rest of the distribution.
+
+ 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ds$adjSalary <- adjusted$adjSalary
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ 
+
+![](images/adjSalary%20screen.png)
