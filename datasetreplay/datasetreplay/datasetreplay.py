@@ -53,12 +53,17 @@ def admin_url(connection, path):
                 headers={'Accept': 'application/json'})
 
 
-def notify(dataset_id, dataset_name, from_version, message, success=True, tracefile=None):
+def notify(dataset_id, dataset_name, from_version, message, success=True, skipped=False,
+           tracefile=None):
     if USE_SLACK:
         r = slack.message(channel="api", username="crunchbot",
                           icon_emoji=":grinning:" if success else ':worried:' ,
-                          attachments=[{'title': 'Dataset Replay Check for %s - %s from %s' % (dataset_id, dataset_name, from_version),
-                                        'text': message}])
+                          attachments=[{
+                              'title': 'Dataset Replay Check for %s - %s from %s' % (
+                                  dataset_id, dataset_name, from_version
+                              ),
+                              'text': message
+                          }])
         r.raise_for_status()
     else:
         print(message)
@@ -68,7 +73,7 @@ def notify(dataset_id, dataset_name, from_version, message, success=True, tracef
             f.write(json.dumps({
                 'date': datetime.datetime.utcnow().strftime('%Y%m%d'),
                 'dataset_id': dataset_id, 'from_version': from_version,
-                'dataset_name': dataset_name, 'success': success,
+                'dataset_name': dataset_name, 'success': success, 'skipped': skipped,
                 'message': message,
                 'format': '%(dataset_id)s from %(from_version)s: %(message)s'
             })+'\n')
@@ -157,7 +162,7 @@ def main():
             notify(dataset_id, dataset['name'], from_revision,
                    'Skipped: Expected to take %s seconds to replay %s actions' % (
                        total_time, actions_count
-                   ), success=False, tracefile=tracefile)
+                   ), success=False, skipped=True, tracefile=tracefile)
             return
 
         resp = requests.post(
