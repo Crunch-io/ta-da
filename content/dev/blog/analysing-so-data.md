@@ -1,12 +1,12 @@
-Analyzing the Stackoverflow developers survey in Crunch
+Analyzing the Stack Overflow developers survey in Crunch
 =======================================================
 
 Survey designers often use data structures which make it easy to collect survey
 responses even if those structures are somewhat difficult to analyze. The result
 is that analysts can be faced with a number of tedious or difficult tasks before
 they can actually get insight from the data. Crunch was developed to make it
-easier to work with this kind of awkward data structures. To provide a concrete
-example, lets take a look at the StackOverflow developer survey.
+easier to work with these kinds of awkward data structures. To provide a
+concrete example, lets take a look at the Stack Overflow developer survey.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
 library(crunch)
@@ -25,16 +25,16 @@ ds <- newDataset(stack_df, name = "stackoverflow_survey")
 In the Crunch app we can take a look at some variable summaries to start to get
 a sense of the data structure.
 
-The StackOverflow questions are stored in two distinct formats, theres's a human
-readable version which is presented to the respondant, and a machine readable
+The StackOverflow questions are stored in two distinct formats, there's a human
+readable version which is presented to the respondent, and a machine readable
 one which is stored as the variable names. One of the first, and most frequent
 questions that you'll likely ask when analyzing this survey is "what was that
 question again?". The StackOverflow team has helpfully provided the survey
-schema and Questionaire which shows the relationship between the variable names
+schema and Questionnaire which shows the relationship between the variable names
 and the questions, but there's not a natural way to store this information in
 either a csv file or an R dataframe. Storing the questions in the first row of
-the table is probably a bad idea, so you will probably end up just keeping the
-schema and questionaire in separate files and cross-referencing them when
+the table is not a great idea, so you will probably end up just keeping the
+schema and questionnaire in separate files and cross-referencing them when
 needed.
 
 Crunch allows you to store more information than just the name about the
@@ -86,9 +86,9 @@ questions are broken up into a bunch of separate variables:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
 vars <- schema$Column[str_detect( schema$Question, "Congratulations! You've just been put in charge of technical recruiting at Globex")]
 
-stack_df %>% 
-    filter(row_number() ==1:10) %>% 
-    select(one_of(vars)) %>% 
+stack_df %>%
+    filter(row_number() ==1:10) %>%
+    select(one_of(vars)) %>%
         knitr::kable()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -117,16 +117,16 @@ gave a variable a particular rating. We can do this locally in R with something
 like the following:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
-catarray <- stack_df[, vars] %>% 
-    gather(variable, rating) %>% 
-    group_by(variable, rating) %>% 
+catarray <- stack_df[, vars] %>%
+    gather(variable, rating) %>%
+    group_by(variable, rating) %>%
     tally() %>%
-    filter(!is.na(rating)) %>% 
-    mutate(n = scales::percent(n/sum(n))) %>% 
-    spread(rating, n) 
+    filter(!is.na(rating)) %>%
+    mutate(n = scales::percent(n/sum(n))) %>%
+    spread(rating, n)
 catarray$variable <- str_replace(catarray$variable, "ImportantHiring", "")
 catarray[ ,c("variable", "Very important",
-    "Important", "Somewhat important", "Not very important", "Not at all important")] %>% 
+    "Important", "Somewhat important", "Not very important", "Not at all important")] %>%
     knitr::kable()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -146,7 +146,7 @@ catarray[ ,c("variable", "Very important",
 This picture is great for summarizing a set of related categorical variables,
 but it's a bit of a pain to produce, and is difficult to display alongside other
 variable summaries. Since this is such a common task, Crunch has a special data
-type called a "catagorical array" for working with related catagorical
+type called a "categorical array" for working with related categorical
 variables.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
@@ -189,12 +189,12 @@ Another common survey response datatype can be found in Q350
 
 >   \- Child or elder care benefits
 
-This is a multiple response quetion which allows respondents to select a number
-of factors which they consider important. The reponses are stored in semi-colon
-deliminted lists:
+This is a multiple response question which allows respondents to select a number
+of factors which they consider important. The responses are stored in semi-colon
+delimited lists:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
-stack_df[1:10, c("Respondent", "ImportantBenefits")] %>% 
+stack_df[1:10, c("Respondent", "ImportantBenefits")] %>%
     knitr::kable()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -222,12 +222,12 @@ str_to_var <- function(str){
     names(out) <- str
     out
 }
-mr_vars <- stack_df$ImportantBenefits %>% 
-    str_split("; ") %>% 
-    map(str_to_var) %>% 
+mr_vars <- stack_df$ImportantBenefits %>%
+    str_split("; ") %>%
+    map(str_to_var) %>%
     bind_rows()
 
-head(mr_vars) %>% 
+head(mr_vars) %>%
     knitr::kable()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -246,17 +246,16 @@ factors and upload it to Crunch.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
 mr_vars[] <- map(mr_vars, as.factor)
-names(mr_vars) <- str_replace_all(names(mr_vars), " ", "_") %>% 
+names(mr_vars) <- str_replace_all(names(mr_vars), " ", "_") %>%
     str_to_lower()
 var_defs <- map2(mr_vars, names(mr_vars), ~toVariable(.x, name = .y))
-addVariables(ds, var_defs)
-ds <- refresh(ds)
+ds <- addVariables(ds, var_defs)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The last step is to create the multiple response variable:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
-ds$compensation_MR <- makeMR(ds[, names(mr_vars)], 
+ds$compensation_MR <- makeMR(ds[, names(mr_vars)],
     selections = "selected", name = "compensation_MR")
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -267,12 +266,12 @@ compact, easy to understand way. We can improve this picture by reordering the
 expectations by the number of times they were selected.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
-ordered_subvariables <- mr_vars %>% 
-    gather(expectation, selection, na.rm = TRUE) %>% 
-    group_by(expectation) %>% 
-    tally(sort = TRUE) %>% 
+ordered_subvariables <- mr_vars %>%
+    gather(expectation, selection, na.rm = TRUE) %>%
+    group_by(expectation) %>%
+    tally(sort = TRUE) %>%
     pull(expectation)
-subvariables(ds$compensation_MR) <- 
+subvariables(ds$compensation_MR) <-
     subvariables(ds$compensation_MR)[ordered_subvariables]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -280,11 +279,85 @@ subvariables(ds$compensation_MR) <-
 
 ### Correcting misreported salaries
 
-Next we're going to replicate a procedure used by [Evelina
+Next we're going to replicate and extend a [procedure used by Evelina
 Gabasova](http://evelinag.com/blog/2017/06-20-stackoverflow-tabs-spaces-and-salary/#.We4QuxNSxTY)
-to correct for misreported salary data from Eastern Europe. What Evelina noticed
-about the salary data was that some developers were reporting their monthly
-salary rather than their annual salary because that is the common method of
-reporting salary in their countries. The result is that salary estimates will be
-biased downard unless we can identify those salaries which were reported
-monthly.
+to correct for misreported salary data from Eastern Europe. Evelina noticed that
+there were discrepancies in the distributions of salary data. For some countries,
+even within countries, there was a multi-modal distribution of salaries that she
+was surprised by. In fact, for a number of countries, it looked like there were 
+two distributions, one centered at approximately 1/12 of the other. This lead 
+her to wonder if maybe some developers from countries where salaries are 
+frequently given by month had actually reported their monthly rather than yearly
+salaries. 
+
+Left alone, this would skew the salaries for the countries where this is common 
+much lower than reality. Inspired by Evelina's approach of using mixture models,
+which she fit to the data and then corrected the low-salary group by multiplying
+by 12 to get an annualized salary, we used mixture models and a some heuristics 
+to determine which  countries had suspect distributions of salaries, and then 
+corrected those that fit this monthly-annual discrepancy. Like Evelina, we fit 
+mixture models using the [mclust package](http://www.stat.washington.edu/mclust/).
+We fit mixture models for every country, and then adjusted salaries under the 
+following conditions:
+* if there is only one mode / cluster don't adjust the salaries. This is the 
+simplest case, if there's no discrepancy there's no reason to correct.
+* if any mode / cluster of salaries only represented 10% of the population, 
+don't adjust the salaries. We found that sometimes `mclust` would find very 
+small clusters and that would produce odd results, we chose 10% here out of 
+convenience, but a more principle approach would pick a better cut off.
+* if there was more than one mode / cluster of salaries, and the lowest group's 
+salary multiplied by 12 was greater than the second lowest group's salary 
+multiplied by two, then do not attempt to adjust the salaries. Sometimes
+`mclust` would find clusters, but they would actually be fairly tightly together.
+This was likely the result of other covariates like experience, but critically,
+we didn't want to multiply junior developers' salaries by 12 just because they 
+form a distinct cluster separate from senior developers.
+* otherwise, multiply the lowest salary group by 12 to correct for apparent 
+misreporting.
+
+Finally, we only applied this adjustment to countries where we had at least 90 
+responses. This allowed us to be reasonably confident that there were enough 
+salaries in the sample to detect distinct clusters.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ r
+# this code should be adapted to be able to be run against the dataset you've 
+# got going, and within crplyr (which means adding `do()`?). It also might be 
+# cleaned up to be a bit more readable 
+
+adjustSalary <- function(df) {
+    res <- Mclust(df$Salary)
+    df$adjSalary <- df$Salary
+    df$Group <- res$classification
+    summaryDf <- df %>%
+        group_by(Group) %>%
+        summarise(mean = mean(Salary), n=n())
+    if(any(summaryDf$n < nrow(df) / 10)){
+        # if any cluster is smaller than 1/10 of the sample, don't adjust salaries
+        df$adjSalary <- df$Salary
+        return(df)
+    }
+    if(nrow(summaryDf) > 1 && mean(df$adjSalary[df$Group==1])*12 > mean(df$adjSalary[df$Group==2])*2){
+        # if the lowest cluster*12 is greater than the second lowest*2, then the
+        # correction is over-aggressive, so don't adjust salaries
+        df$adjSalary <- df$Salary
+        return(df)
+    } else if (nrow(summaryDf) == 1){
+        # if there is a single cluster, don't adjust the salaries
+        df$adjSalary <- df$Salary
+        return(df)
+    }
+    # otherwise, multiple group 1's salaries by 12
+    df <- df %>%
+        mutate(adjSalary = case_when(Group == 1 ~ Salary * 12,
+                                         TRUE ~ Salary))
+    return(df)
+}
+
+adjusted <- adjFrame %>%
+    filter(!is.na(Salary)) %>%
+    group_by(Country)  %>%
+    filter(n() >= 90) %>%
+    do(adjustSalary(.)) %>%
+    ungroup() %>%
+    right_join(adjFrame, by="Respondent")
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
