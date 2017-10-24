@@ -11,18 +11,28 @@ log = logging.getLogger(__name__)
 USE_SLACK = False
 
 
-def notify(title, date, success, text, ratio):
+def notify(title, date, success, text, ratio, skipped, skiptext):
     title = '%s for %s (%s/%s)' % (title, date, ratio[0], ratio[1])
+    skiptitle = '%s Skips for %s (%s)' % (title, date, skipped)
     if USE_SLACK:
+        message_parts = [{'title': title,
+                          'text': '```%s```' % text,
+                          "mrkdwn_in": ["text"]}]
+        if skipped:
+            message_parts.append({
+                'title': skiptitle,
+                'text': '```%s```' % skiptext,
+                "mrkdwn_in": ["text"]
+            })
         r = slack.message(channel="api", username="crunchbot",
                           icon_emoji=":grinning:" if success else ':worried:',
-                          attachments=[{'title': title,
-                                        'text': '```%s```' % text,
-                                        "mrkdwn_in": ["text"]}])
+                          attachments=message_parts)
         r.raise_for_status()
     else:
         print(title)
         print(text)
+        print(skiptitle)
+        print(skiptext)
 
 
 def main():
@@ -41,6 +51,7 @@ def main():
     Options:
       -h --help               Show this screen
       --slack                 Send the output to slack
+      --failures              Only report failures and skips
     """ % dict(script=sys.argv[0])
 
     arguments = docopt.docopt(helpstr, sys.argv[1:])
@@ -52,6 +63,9 @@ def main():
 
     total = 0
     failures = 0
+    skipped = 0
+
+    skiplines = []
     loglines = []
     with open(tracefile, 'r') as f:
         for l in f:
@@ -63,6 +77,11 @@ def main():
                 pass
 
             if date == logline['date']:
+                if logline.get('skipped', False):
+                    skipped += 1
+                    skiplines.append(logline['format'] % logline)
+                    continue
+
                 total += 1
                 if not logline['success']:
                     failures += 1
@@ -71,7 +90,7 @@ def main():
                 loglines.append(logline['format'] % logline)
 
     notify(title, date, failures == 0, '\n'.join(loglines),
-           (total-failures, total))
+           (total-failures, total), skipped, '\n'.join(skiplines))
 
 
 
