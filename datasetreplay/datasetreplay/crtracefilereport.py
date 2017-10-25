@@ -12,8 +12,8 @@ USE_SLACK = False
 
 
 def notify(title, date, success, text, ratio, skipped, skiptext):
-    title = '%s for %s (%s/%s)' % (title, date, ratio[0], ratio[1])
     skiptitle = '%s Skips for %s (%s)' % (title, date, skipped)
+    title = '%s for %s (%s/%s)' % (title, date, ratio[0], ratio[1])
     if USE_SLACK:
         message_parts = [{'title': title,
                           'text': '```%s```' % text,
