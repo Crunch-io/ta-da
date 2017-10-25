@@ -2,10 +2,11 @@ Analyzing the Stack Overflow developers survey in Crunch
 ========================================================
 
 Survey designers often use data structures which make it easy to collect survey
-responses even if those structures are somewhat difficult to analyze. The result
-is that analysts can be faced with a number of tedious or difficult tasks before
+responses even if those structures are somewhat difficult to analyze and so 
+analysts can be faced with a number of tedious or difficult tasks before
 they can actually get insight from the data. Crunch was developed to make it
-easier to work with these kinds of awkward data structures. To provide a
+easier to work with these kinds of awkward data structures and allows you to automate
+a number of tasks which otherwise take up a lot of time. To provide a
 concrete example, lets take a look at the [Stack Overflow developer
 survey](https://insights.stackoverflow.com/survey/2017).
 
@@ -283,21 +284,22 @@ to determine which countries had suspect distributions of salaries, and then
 corrected those that fit this monthly-annual discrepancy. Like Evelina, we fit
 mixture models using the [mclust
 package](http://www.stat.washington.edu/mclust/). We fit mixture models for
-every country, and then adjusted salaries under the following conditions: \* if
-there is only one mode / cluster don't adjust the salaries. This is the simplest
-case, if there's no discrepancy there's no reason to correct. \* if any mode /
-cluster of salaries only represented 10% of the population, don't adjust the
+every country, and then adjusted salaries under the following conditions: 
+
+* if there is only one mode / cluster don't adjust the salaries. This is the simplest
+case, if there's no discrepancy there's no reason to correct. 
+* if any mode /cluster of salaries only represented 10% of the population, don't adjust the
 salaries. We found that sometimes `mclust` would find very small clusters and
 that would produce odd results, we chose 10% here out of convenience, but a more
-principle approach would pick a better cut off. \* if there was more than one
-mode / cluster of salaries, and the lowest group's salary multiplied by 12 was
-greater than the second lowest group's salary multiplied by two, then do not
+principle approach would pick a better cut off. 
+* if there was more than one mode / cluster of salaries, and the lowest group's salary
+multiplied by 12 was greater than the second lowest group's salary multiplied by two, then do not
 attempt to adjust the salaries. Sometimes `mclust` would find clusters, but they
 would actually be fairly tightly together. This was likely the result of other
 covariates like experience, but critically, we didn't want to multiply junior
 developers' salaries by 12 just because they form a distinct cluster separate
-from senior developers. \* otherwise, multiply the lowest salary group by 12 to
-correct for apparent misreporting.
+from senior developers. 
+* otherwise, multiply the lowest salary group by 12 to correct for apparent misreporting.
 
 Finally, we only applied this adjustment to countries where we had at least 90
 responses. This allowed us to be reasonably confident that there were enough
@@ -361,4 +363,4 @@ ds$adjSalary <- adjusted$adjSalary
 
  
 
-![](images/adjSalary%20screen.png)
+![](images/adjSalary_screen.png)
