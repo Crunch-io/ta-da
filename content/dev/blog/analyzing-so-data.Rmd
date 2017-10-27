@@ -5,18 +5,21 @@ output:
     keep_md: true
 ---
 
-Survey designers often use data structures which make it easy to collect survey
-responses even if those structures are somewhat difficult to analyze and so 
-analysts can be faced with a number of tedious or difficult tasks before
-they can actually get insight from the data. Crunch was developed to make it
-easier to work with these kinds of awkward data structures and allows you to automate
-a number of tasks which otherwise take up a lot of time. To provide a
-concrete example, lets take a look at the [Stack Overflow developer
-survey](https://insights.stackoverflow.com/survey/2017).
+[As we discussed previously](../devs-as-users/), we recently did an exercise of loading the Stack Overflow developer
+survey](https://insights.stackoverflow.com/survey/2017) into Crunch so that our development team could experience the product as real users with real questions they wanted to answer. The first challenge that everyone encountered was "how do we get the data in and make it usable?"
+
+Survey data is much more than a series of 1s and 2s in a CSV file. Metadata, including the wording of the questions asked and the response options given, is essential to being able to interpret the results of a survey, but it is lost or ignored in many file formats. In addition to that labeling metadata, surveys often involve data structures, such as multiple-response sets, which map intuitively to human concepts ("Which of the following do you agree with? Select all that apply.") but can be challenging to view and analyze properly in a flat, rectangular data export. Crunch was developed to make it
+easier to work with these kinds of data structures, but going from a raw CSV to a well-labeled, cleaned dataset can take some work.
+
+However, with some decent data wrangling skills, this process can be scripted efficiently. In this post, our R developers discuss how they used Crunch's R packages to harness the flexibility of Crunch's APIs along with the power of R to script repetitive cleaning tasks, reshape the data in ways that the web application doesn't let you do, and use statistical modeling to correct biases in the underlying data. We go from a raw CSV of values to a polished dataset that nontechnical users can explore and gain insights from on the web, while still maintaining the ability to do any statistical analysis we want in R.
+
 ```{r include=FALSE}
 crunch::login()
-
 ```
+
+# 1. Upload the data
+
+To begin, let's load the [crunch](http://crunch.io/r/crunch/) package along with some others we'll use in the data processing.
 
 ```{r library load, message = FALSE}
 library(crunch)
@@ -24,29 +27,29 @@ library(stringr)
 library(tidyverse)
 ```
 
+Now, read in the CSVs from the survey and upload the data to the Crunch platform.
+
 ```{r Read data, results=FALSE, message=FALSE, cache = TRUE}
 stack_df <- read_csv("survey_results_public.csv", progress = FALSE)
 schema <- read_csv("survey_results_schema.csv", progress = FALSE)
 ```
 
-The first step is to upload the main survey to the crunch platform. 
-
 ```{r Upload to crunch, results = FALSE, message = FALSE, cache = TRUE}
-ds <- newDataset(stack_df, name = "stackoverflow_survey")
+ds <- newDataset(stack_df, name = "StackOverflow Developer Survey 2017")
 ```
 
-In the Crunch app we can take a look at some variable summaries to start to get a sense of the data structure. 
+In the Crunch web app, we can take a look at some variable summaries to start to get a sense of the data structure.
 
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('./images/so_var_cards.png')
 ```
 
-The StackOverflow questions are stored in two distinct formats, there's a human
-readable version which is presented to the respondent, and a machine readable
+The StackOverflow questions are stored in two distinct formats. There's a human
+readable version, which is presented to the respondent, and a machine readable
 one which is stored as the variable names. One of the first, and most frequent
 questions that you'll likely ask when analyzing this survey is "what was that
 question again?". The StackOverflow team has helpfully provided the survey
-schema and Questionnaire which shows the relationship between the variable names
+schema and questionnaire which shows the relationship between the variable names
 and the questions, but there's not a natural way to store this information in
 either a csv file or an R dataframe. Storing the questions in the first row of
 the table is not a great idea, so you will probably end up just keeping the
@@ -60,14 +63,14 @@ it to the variable description.
 ```{r, cache = TRUE}
 descriptions(variables(ds)) <- schema$Question
 ```
-In the app the descriptions show up just under the variable name. 
+In the app the descriptions show up just under the variable name.
 
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('./images/so_cards_descriptions.png')
 ```
 
 There are a couple of pieces of this survey which illustrate some of the pain
-points faced by survey analysts. First let's take a look at Q149 which asks
+points faced by survey analysts. First, let's take a look at Q149 which asks
 respondents to rate how important various factors would be if they were the
 hiring manager at a major technology company. When the question is asked all of
 the possibilities are presented together:
@@ -93,11 +96,11 @@ But the limits of tabular data structures means that the answers to these
 questions are broken up into a bunch of separate variables:
 ```{r Illustrate problem columns, results='asis'}
 
-vars <- schema$Column[str_detect( schema$Question, 
+vars <- schema$Column[str_detect(schema$Question,
     "Congratulations! You've just been put in charge of technical recruiting at Globex")]
 
-stack_df[1:10, ] %>% 
-    select(one_of(vars)) %>% 
+stack_df[1:10, ] %>%
+    select(one_of(vars)) %>%
     knitr::kable()
 ```
 
@@ -133,7 +136,7 @@ ds$importanceHiringArray <- makeArray(ds[, vars], name = "Importance to Hiring")
 knitr::include_graphics('./images/catarray_screen.png')
 ```
 
-Another common survey response datatype can be found in Q350
+Another common survey response data type can be found in Q350
 
 >   Q350. When it comes to compensation and benefits, other than base salary,
 >   which f the following are the most important to you? Please choose no more
@@ -155,10 +158,10 @@ Another common survey response datatype can be found in Q350
 
 This is a multiple response question which allows respondents to select a number
 of factors which they consider important. The responses are stored in semi-colon
-delimited lists: 
+delimited lists:
 
 ```{r, cache = TRUE, results='asis'}
-stack_df[1:10, c("Respondent", "ImportantBenefits")] %>% 
+stack_df[1:10, c("Respondent", "ImportantBenefits")] %>%
     knitr::kable()
 ```
 
@@ -173,15 +176,15 @@ str_to_var <- function(str){
     names(out) <- str
     out
 }
-mr_vars <- stack_df$ImportantBenefits %>% 
-    str_split("; ") %>% 
-    map(str_to_var) %>% 
+mr_vars <- stack_df$ImportantBenefits %>%
+    str_split("; ") %>%
+    map(str_to_var) %>%
     bind_rows()
 
 skipped <- map_lgl(seq_along(mr_vars[, 1]), ~all(is.na(mr_vars[., ])))
 mr_vars[skipped, ] <-  "Not Answered"
 
-head(mr_vars[, 1:5]) %>% 
+head(mr_vars[, 1:5]) %>%
     knitr::kable()
 ```
 
@@ -191,7 +194,7 @@ upload it to Crunch.
 
 ```{r message=FALSE, cache = TRUE}
 mr_vars[] <- map(mr_vars, as.factor)
-names(mr_vars) <- str_replace_all(names(mr_vars), " ", "_") %>% 
+names(mr_vars) <- str_replace_all(names(mr_vars), " ", "_") %>%
     str_to_lower()
 var_defs <- map2(mr_vars, names(mr_vars), ~toVariable(.x, name = .y))
 addVariables(ds, var_defs)
@@ -202,7 +205,7 @@ ds <- refresh(ds)
 The last step is to create the multiple response variable:
 
 ```{r cache = TRUE}
-ds$compensation_MR <- makeMR(ds[, names(mr_vars)], 
+ds$compensation_MR <- makeMR(ds[, names(mr_vars)],
     selections = "selected", name = "compensation_MR")
 knitr::include_graphics('./images/compensation_MR_screen.png')
 ```
@@ -229,21 +232,21 @@ to determine which countries had suspect distributions of salaries, and then
 corrected those that fit this monthly-annual discrepancy. Like Evelina, we fit
 mixture models using the [mclust
 package](http://www.stat.washington.edu/mclust/). We fit mixture models for
-every country, and then adjusted salaries under the following conditions: 
+every country, and then adjusted salaries under the following conditions:
 
 * if there is only one mode / cluster don't adjust the salaries. This is the simplest
-case, if there's no discrepancy there's no reason to correct. 
+case, if there's no discrepancy there's no reason to correct.
 * if any mode /cluster of salaries only represented 10% of the population, don't adjust the
 salaries. We found that sometimes `mclust` would find very small clusters and
 that would produce odd results, we chose 10% here out of convenience, but a more
-principle approach would pick a better cut off. 
+principle approach would pick a better cut off.
 * if there was more than one mode / cluster of salaries, and the lowest group's salary
 multiplied by 12 was greater than the second lowest group's salary multiplied by two, then do not
 attempt to adjust the salaries. Sometimes `mclust` would find clusters, but they
 would actually be fairly tightly together. This was likely the result of other
 covariates like experience, but critically, we didn't want to multiply junior
 developers' salaries by 12 just because they form a distinct cluster separate
-from senior developers. 
+from senior developers.
 * otherwise, multiply the lowest salary group by 12 to correct for apparent misreporting.
 
 Finally, we only applied this adjustment to countries where we had at least 90
@@ -253,8 +256,8 @@ salaries in the sample to detect distinct clusters.
 ```{r, cache = TRUE}
 library(crplyr)
 library(mclust)
-adjFrame <- ds %>% 
-    select(Salary, Country, Respondent) %>% 
+adjFrame <- ds %>%
+    select(Salary, Country, Respondent) %>%
     collect()
 
 adjustSalary <- function(df) {
@@ -291,11 +294,11 @@ adjusted <- adjFrame %>%
     group_by(Country)  %>%
     filter(n() >= 90) %>%
     do(adjustSalary(.)) %>%
-    ungroup() %>% 
+    ungroup() %>%
     right_join(adjFrame[, "Respondent"], by = "Respondent")
 ```
 
-We can then upload the data back up to the Crunch app: 
+We can then upload the data back up to the Crunch app:
 
 ```{r, cache = TRUE}
 
@@ -303,4 +306,3 @@ ds$adjSalary <- adjusted$adjSalary
 knitr::include_graphics("images/adjSalary_screen.png")
 
 ```
-
