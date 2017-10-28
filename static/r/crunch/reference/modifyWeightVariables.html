@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Change which variables can be set as a dataset's weight. — weightVariables&lt;-,CrunchDataset-method • Crunch</title>
+<title>Change which variables can be set as a dataset's weight. — modifyWeightVariables • Crunch</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -23,8 +23,16 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+  <link href="../extra.css" rel="stylesheet">
   
-  
+<meta property="og:title" content="Change which variables can be set as a dataset's weight. — modifyWeightVariables" />
+
+<meta property="og:description" content="modifyWeightVariables allows you to change the variables which are eligible
+to be used as a dataset's weight. You can also add variables to the weight variables
+catalog by assignment with weightVariables(ds) &lt;- "weight" or
+is.weightVariable(ds$weight) &lt;- TRUE." />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -67,7 +75,7 @@
   <a href="../articles/getting-started.html">Intro</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -105,6 +113,9 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../news/">News</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -135,10 +146,10 @@ catalog by assignment with <code>weightVariables(ds) &lt;- "weight"</code> or
 <code>is.weightVariable(ds$weight) &lt;- TRUE</code>.</p>
     
 
-    <pre class="usage"><span class='co'># S4 method for CrunchDataset</span>
-<span class='fu'><a href='weightVariables.html'>weightVariables</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+    <pre class="usage"><span class='fu'>modifyWeightVariables</span>(<span class='no'>x</span>, <span class='no'>vars</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"append"</span>)
 
-<span class='fu'>modifyWeightVariables</span>(<span class='no'>x</span>, <span class='no'>vars</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"append"</span>)
+<span class='co'># S4 method for CrunchDataset</span>
+<span class='fu'><a href='weightVariables.html'>weightVariables</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
 
 <span class='fu'>is.weightVariable</span>(<span class='no'>x</span>)
 
@@ -151,11 +162,6 @@ catalog by assignment with <code>weightVariables(ds) &lt;- "weight"</code> or
     <tr>
       <th>x</th>
       <td><p>a CrunchDataset</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>For the <code><a href='weightVariables.html'>weightVariables()</a></code> and <code>is.weightVariable</code> setters the
-variables to append to a dataset's weightVariables.</p></td>
     </tr>
     <tr>
       <th>vars</th>
@@ -171,6 +177,11 @@ will be modified:</p><ul>
 <li><p><code>"remove"</code> : remove <code>vars</code> from the current list of weight variables</p></li>
 <li><p><code>"replace"</code>: replace the current weight variables with <code>vars</code></p></li>
 </ul></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p>For the <code><a href='weightVariables.html'>weightVariables()</a></code> and <code>is.weightVariable</code> setters the
+variables to append to a dataset's weightVariables.</p></td>
     </tr>
     </table>
     
