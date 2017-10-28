@@ -23,8 +23,20 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+  <link href="../extra.css" rel="stylesheet">
   
-  
+<meta property="og:title" content="Work with CrunchCubes, MultitableResults, and TabBookResults — cube-computing" />
+
+<meta property="og:description" content="These functions provide an interface like base::margin.table()
+and base::prop.table() for the CrunchCube object. CrunchCubes contain
+richer metadata than standard R array objects, and they also conceal
+certain complexity in the data structures from the user. In particular,
+multiple-response variables are generally represented as single dimensions
+in result tables, but in the actual data, they may comprise two dimensions.
+These methods understand the subtleties in the Crunch data types and
+correctly compute margins and percentages off of them." />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -67,7 +79,7 @@
   <a href="../articles/getting-started.html">Intro</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -104,6 +116,9 @@
       <a href="../articles/crunch-internals.html">Crunch Internals</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/">News</a>
 </li>
       </ul>
       
