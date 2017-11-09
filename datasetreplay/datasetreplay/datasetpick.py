@@ -46,6 +46,10 @@ def main():
 
         datasets = resp.json()['datasets']
         for ds in datasets:
+            if ds['expired'] is not None:
+                # Skip deleted datasets.
+                continue
+
             dataset_id = ds['id']
             if dataset_id in skiplist:
                 continue
