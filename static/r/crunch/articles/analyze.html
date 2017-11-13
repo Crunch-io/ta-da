@@ -128,11 +128,11 @@
 <h3 class="hasAnchor">
 <a href="#basic-examples" class="anchor"></a>Basic examples</h3>
 <p>Like <code>xtabs</code>, <code>crtabs</code> takes a formula and a data argument. Dimensions of your crosstab go on the right side of the <code>~</code>. For a univariate table of frequencies by education, we can do</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="op">~</span><span class="st"> </span>educ, <span class="dt">data=</span>ds)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(~<span class="st"> </span>educ, <span class="dt">data=</span>ds)
 tab1</code></pre></div>
 <pre><code>## [1] 12 71 61 24 57 25</code></pre>
 <p>Additional dimensions are added with <code>+</code>. For a two-way table of education and gender,</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data=</span>ds)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(~<span class="st"> </span>educ +<span class="st"> </span>gender, <span class="dt">data=</span>ds)
 tab2</code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    6    6
@@ -149,9 +149,9 @@ tab2</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/weight.html">weight</a></span>(ds)</code></pre></div>
 <pre><code>## NULL</code></pre>
 <p>but we can very easily change that. Let’s use the “weight” variable that already exists in the dataset:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/weight.html">weight</a></span>(ds) &lt;-<span class="st"> </span>ds<span class="op">$</span>weight</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/weight.html">weight</a></span>(ds) &lt;-<span class="st"> </span>ds$weight</code></pre></div>
 <p>Now, if we request the same two-way table as before, we’ll get weighted results:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data=</span>ds)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(~<span class="st"> </span>educ +<span class="st"> </span>gender, <span class="dt">data=</span>ds)</code></pre></div>
 <pre><code>##           [,1]      [,2]
 ## [1,] 12.628200  8.698227
 ## [2,] 43.315170 43.297542
@@ -160,7 +160,7 @@ tab2</code></pre></div>
 ## [5,] 16.492669 22.581293
 ## [6,]  8.935983  8.647220</code></pre>
 <p>If we want unweighted data, that’s easy enough:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data=</span>ds, <span class="dt">weight=</span><span class="ot">NULL</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(~<span class="st"> </span>educ +<span class="st"> </span>gender, <span class="dt">data=</span>ds, <span class="dt">weight=</span><span class="ot">NULL</span>)</code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    6    6
 ## [2,]   33   38
@@ -185,7 +185,7 @@ tab2</code></pre></div>
 ## [5,] 0.22522523 0.23021583
 ## [6,] 0.13513514 0.07194245</code></pre>
 <p>Let’s make that more readable:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cube-computing.html">round</a></span>(<span class="dv">100</span><span class="op">*</span><span class="kw"><a href="../reference/cube-computing.html">prop.table</a></span>(tab2, <span class="dv">2</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cube-computing.html">round</a></span>(<span class="dv">100</span>*<span class="kw"><a href="../reference/cube-computing.html">prop.table</a></span>(tab2, <span class="dv">2</span>))</code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    5    4
 ## [2,]   30   27
@@ -198,7 +198,7 @@ tab2</code></pre></div>
 <h3 class="hasAnchor">
 <a href="#complex-data-types" class="anchor"></a>Complex data types</h3>
 <p><code>crtabs</code> also comfortably handles the more complex data types that Crunch supports, including categorical array and multiple response variables. In the <a href="array-variables.html">array variables vignette</a>, we created a categorical array, “imiss”, for “Important issues”. We can crosstab with arrays just as we do non-arrays.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="op">~</span><span class="st"> </span>imiss <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data=</span>ds)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(~<span class="st"> </span>imiss +<span class="st"> </span>gender, <span class="dt">data=</span>ds)
 tab3</code></pre></div>
 <pre><code>## , , 1
 ## 
@@ -235,9 +235,9 @@ tab3</code></pre></div>
 ## [13,] 48.27161 48.41640 17.997678 13.762882</code></pre>
 <p>Note that even though we specified two variables in our formula, because “imiss” itself is two dimensional, our result is a three-dimensional array.</p>
 <p>To illustrate working with multiple response variables, let’s convert “imiss” to multiple response, selecting its positive categories as indicating selection:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ds<span class="op">$</span>imiss &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dichotomize.html">dichotomize</a></span>(ds<span class="op">$</span>imiss, <span class="kw">c</span>(<span class="st">"Very Important"</span>, <span class="st">"Somewhat Important"</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ds$imiss &lt;-<span class="st"> </span><span class="kw"><a href="../reference/dichotomize.html">dichotomize</a></span>(ds$imiss, <span class="kw">c</span>(<span class="st">"Very Important"</span>, <span class="st">"Somewhat Important"</span>))</code></pre></div>
 <p>Now, when we crosstab it, we’ll get a two-dimensional table because multiple response variables present a one-dimensional interface:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab3mr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="op">~</span><span class="st"> </span>imiss <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data=</span>ds)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tab3mr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(~<span class="st"> </span>imiss +<span class="st"> </span>gender, <span class="dt">data=</span>ds)
 tab3mr</code></pre></div>
 <pre><code>##            [,1]      [,2]
 ##  [1,]  58.64993  97.61001
@@ -259,7 +259,7 @@ tab3mr</code></pre></div>
 ## attr(,"package")
 ## [1] "crunch"</code></pre>
 <p>This allows us to do the appropriate calculations on arrays and multiple response variables when <code>prop.table</code> is called. To compute a margin table over a multiple response variable, summing along the dimension would give an incorrect value because the responses in a multiple response are not mutually exclusive–they can’t be assumed to sum to 100 percent. However, the <code>margin.table</code> method on <code>CrunchCubes</code> can compute the correct margin, so <code>prop.table</code> gives correct proportions:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cube-computing.html">round</a></span>(<span class="dv">100</span><span class="op">*</span><span class="kw"><a href="../reference/cube-computing.html">prop.table</a></span>(tab3mr, <span class="dv">2</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cube-computing.html">round</a></span>(<span class="dv">100</span>*<span class="kw"><a href="../reference/cube-computing.html">prop.table</a></span>(tab3mr, <span class="dv">2</span>))</code></pre></div>
 <pre><code>##       [,1] [,2]
 ##  [1,]   48   76
 ##  [2,]   77   90
@@ -275,7 +275,7 @@ tab3mr</code></pre></div>
 ## [12,]   74   76
 ## [13,]   61   75</code></pre>
 <p>Finally, just as we saw in the <a href="array-variables.html">array variables</a> vignette, we can grab individual subvariables and crosstab with them:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="op">~</span><span class="st"> </span>imiss<span class="op">$</span>imiss_f <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data=</span>ds)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(~<span class="st"> </span>imiss$imiss_f +<span class="st"> </span>gender, <span class="dt">data=</span>ds)</code></pre></div>
 <pre><code>##          [,1]      [,2]
 ## [1,] 47.47270 70.032722
 ## [2,] 46.51134 45.048457
@@ -286,7 +286,7 @@ tab3mr</code></pre></div>
 <h3 class="hasAnchor">
 <a href="#n-way-tables" class="anchor"></a>N-way tables</h3>
 <p>It’s worth noting that we can extend the crosstabbing to higher dimensions, just by adding more terms on the right-hand side of the formula:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cube-computing.html">round</a></span>(<span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="op">~</span><span class="st"> </span>imiss <span class="op">+</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data=</span>ds))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cube-computing.html">round</a></span>(<span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(~<span class="st"> </span>imiss +<span class="st"> </span>educ +<span class="st"> </span>gender, <span class="dt">data=</span>ds))</code></pre></div>
 <pre><code>## , , 1
 ## 
 ##       [,1] [,2] [,3] [,4] [,5] [,6]
@@ -331,7 +331,7 @@ tab3mr</code></pre></div>
 <h3 class="hasAnchor">
 <a href="#numeric-aggregations" class="anchor"></a>Numeric aggregations</h3>
 <p><code>crtabs</code> can also compute quantities other than counts. Using the left-hand side of the formula, we can specify other aggregations to put in the cells of the table. For example, in the <a href="derive.html">deriving variables vignette</a>, we created an “age” variable. We can easily compute the average age by gender and education:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="kw"><a href="../reference/crunch-uni.html">mean</a></span>(age) <span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data=</span>ds)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="kw"><a href="../reference/crunch-uni.html">mean</a></span>(age) ~<span class="st"> </span>educ +<span class="st"> </span>gender, <span class="dt">data=</span>ds)</code></pre></div>
 <pre><code>##          [,1]     [,2]
 ## [1,] 54.00829 56.02205
 ## [2,] 50.31550 48.09241
@@ -340,7 +340,7 @@ tab3mr</code></pre></div>
 ## [5,] 50.14993 40.75736
 ## [6,] 50.85838 48.64874</code></pre>
 <p>Other supported aggregations include <code>min</code>, <code>max</code>, <code>sd</code>, and <code>sum</code>. For the minimum age by gender and education,</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="kw"><a href="../reference/crunch-uni.html">min</a></span>(age) <span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data=</span>ds)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="kw"><a href="../reference/crunch-uni.html">min</a></span>(age) ~<span class="st"> </span>educ +<span class="st"> </span>gender, <span class="dt">data=</span>ds)</code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]   42   45
 ## [2,]   35   27
@@ -349,17 +349,17 @@ tab3mr</code></pre></div>
 ## [5,]   32   24
 ## [6,]   26   27</code></pre>
 <p>We can get unconditional (univariate) statistics by making the right-hand side of your formula be just the number <code>1</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="kw"><a href="../reference/crunch-uni.html">min</a></span>(age) <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>ds)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="kw"><a href="../reference/crunch-uni.html">min</a></span>(age) ~<span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>ds)</code></pre></div>
 <pre><code>## [1] 22</code></pre>
 <p>Numeric aggregation functions also work with categorical variables that have numeric values defined for their categories; this is the reason why numeric values for categories are defined, in fact. In the <a href="variables.html">variables vignette</a>, we worked with the “On the right track” question and set some numeric values:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/var-categories.html">categories</a></span>(ds<span class="op">$</span>track)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/var-categories.html">categories</a></span>(ds$track)</code></pre></div>
 <pre><code>##   id                                    name value missing
 ## 1  1 Generally headed in the right direction     1   FALSE
 ## 2  3                                Not sure     0    TRUE
 ## 3  2                             Wrong track    -1   FALSE
 ## 4 -1                                 No Data    NA    TRUE</code></pre>
 <p>We can use these numeric values to compute an “on the right track index” by averaging them. If the index is greater than zero, more people thing things are going well, and if it is negative, more respondents are pessimistic.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cube-computing.html">round</a></span>(<span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="kw"><a href="../reference/crunch-uni.html">mean</a></span>(track) <span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data=</span>ds), <span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cube-computing.html">round</a></span>(<span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="kw"><a href="../reference/crunch-uni.html">mean</a></span>(track) ~<span class="st"> </span>educ +<span class="st"> </span>gender, <span class="dt">data=</span>ds), <span class="dv">2</span>)</code></pre></div>
 <pre><code>##       [,1]  [,2]
 ## [1,] -0.39 -0.05
 ## [2,] -0.69 -0.22
@@ -373,7 +373,7 @@ tab3mr</code></pre></div>
 <h3 class="hasAnchor">
 <a href="#subsetting-data" class="anchor"></a>Subsetting data</h3>
 <p>We can also specify a subset of <code>ds</code> to analyze, just as if it were a data.frame. Let’s do the same calculation for Democrats only:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cube-computing.html">round</a></span>(<span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="kw"><a href="../reference/crunch-uni.html">mean</a></span>(track) <span class="op">~</span><span class="st"> </span>educ <span class="op">+</span><span class="st"> </span>gender, <span class="dt">data=</span>ds[ds<span class="op">$</span>pid3 <span class="op">==</span><span class="st"> "Democrat"</span>,]), <span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cube-computing.html">round</a></span>(<span class="kw"><a href="../reference/crtabs.html">crtabs</a></span>(<span class="kw"><a href="../reference/crunch-uni.html">mean</a></span>(track) ~<span class="st"> </span>educ +<span class="st"> </span>gender, <span class="dt">data=</span>ds[ds$pid3 ==<span class="st"> "Democrat"</span>,]), <span class="dv">2</span>)</code></pre></div>
 <pre><code>##       [,1]  [,2]
 ## [1,]   NaN  1.00
 ## [2,]  0.64 -0.08
@@ -391,7 +391,7 @@ tab3mr</code></pre></div>
 <a href="#statistical-modeling" class="anchor"></a>Statistical modeling</h2>
 <p>Any statistical modeling function that takes a <code>data</code> argument should happily accept a <code>CrunchDataset</code> and just do the right thing–no extra effort or thought required.</p>
 <p>Let’s fit a basic Ordinary Least Squares (OLS) model. In our dataset, we have a few questions about Edward Snowden, such as:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ds<span class="op">$</span>snowdenleakapp</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ds$snowdenleakapp</code></pre></div>
 <pre><code>## Approval of Snowden's Leak (categorical)
 ## 
 ##                        Count
@@ -401,7 +401,7 @@ tab3mr</code></pre></div>
 ## Somewhat disapprove 40.26587
 ## Strongly approve    24.70842</code></pre>
 <p>We can use <code>lm</code> to fit our model. Let’s explore the relationship between approval of Snowden’s leak and respondents’ interest in current events, party identification, gender, and age.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ols1 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">I</span>(snowdenleakapp <span class="op">==</span><span class="st"> "Strongly approve"</span>) <span class="op">~</span><span class="st"> </span>newsint2 <span class="op">+</span><span class="st"> </span>pid3 <span class="op">+</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ols1 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">I</span>(snowdenleakapp ==<span class="st"> "Strongly approve"</span>) ~<span class="st"> </span>newsint2 +<span class="st"> </span>pid3 +<span class="st"> </span>gender +<span class="st"> </span>age,
     <span class="dt">data=</span>ds)
 <span class="kw">summary</span>(ols1)</code></pre></div>
 <pre><code>## 
@@ -431,7 +431,7 @@ tab3mr</code></pre></div>
 ## F-statistic: 0.6931 on 9 and 240 DF,  p-value: 0.7149</code></pre>
 <p>Looks like partisanship is weakly associated with approval of the NSA leak, but overall the model isn’t a great fit, given our data. (For what it’s worth, we’re working on a randomly drawn subset of the survey so that the size of data included with package is small. Results are more meaningful with the full dataset.) Nevertheless, this example illustrates how straightforward it is to do statistical analysis with data in Crunch. Even though your dataset lives on the server, you can think of it like a local <code>data.frame</code>. Note, for example, that our categorical variables (News Interest, Party ID, and Gender) expand their categories out as dichotomous indicators, just as if they were <code>factor</code> variables in a <code>data.frame</code>.</p>
 <p>Given that we’re estimating a model with a dichotomous dependent variable, perhaps a logit would be more appropriate than a strict linear predictor. We can use <code>glm</code> instead:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logit1 &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">I</span>(snowdenleakapp <span class="op">==</span><span class="st"> "Strongly approve"</span>) <span class="op">~</span><span class="st"> </span>newsint2 <span class="op">+</span><span class="st"> </span>pid3 <span class="op">+</span><span class="st"> </span>gender <span class="op">+</span><span class="st"> </span>age,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logit1 &lt;-<span class="st"> </span><span class="kw">glm</span>(<span class="kw">I</span>(snowdenleakapp ==<span class="st"> "Strongly approve"</span>) ~<span class="st"> </span>newsint2 +<span class="st"> </span>pid3 +<span class="st"> </span>gender +<span class="st"> </span>age,
     <span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">"logit"</span>), <span class="dt">data=</span>ds)
 <span class="kw">summary</span>(logit1)</code></pre></div>
 <pre><code>## 
