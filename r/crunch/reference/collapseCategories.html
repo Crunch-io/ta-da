@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • Crunch</title>
+<title>Combine Categories in place — collapseCategories • Crunch</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,7 +25,10 @@
 <script src="../pkgdown.js"></script>
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Combine Categories in place — collapseCategories" />
+
+<meta property="og:description" content="This function allows you to combine the categories of a variable without
+making a copy of the variable." />
 
 <meta property="og:image" content="http://crunch.io/r/crunch/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -53,7 +56,7 @@
   </head>
 
   <body>
-    <div class="container template-vignette-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -129,29 +132,56 @@
       
       </header>
 
-      <div class="page-header">
-  <h1>Articles <small>version&nbsp;1.19.0</small></h1>
-</div>
-
-<div class="row">
-  <div class="col-md-9">
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <ul>
-        <li><a href="analyze.html">Analyzing Crunch Data</a></li>
-        <li><a href="array-variables.html">Array Variables</a></li>
-        <li><a href="crunch-internals.html">Crunch Internals</a></li>
-        <li><a href="datasets.html">Importing datasets</a></li>
-        <li><a href="derive.html">Adding Variables</a></li>
-        <li><a href="export.html">Exporting Data</a></li>
-        <li><a href="filters.html">Filtering Data</a></li>
-        <li><a href="getting-started.html">Getting Started</a></li>
-        <li><a href="variable-order.html">Reordering Variables</a></li>
-        <li><a href="variables.html">Crunch Variables</a></li>
-      </ul>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Combine Categories in place</h1>
     </div>
+
+    
+    <p>This function allows you to combine the categories of a variable without
+making a copy of the variable.</p>
+    
+
+    <pre class="usage"><span class='fu'>collapseCategories</span>(<span class='no'>var</span>, <span class='no'>from</span>, <span class='no'>to</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>var</th>
+      <td><p>A categorical Crunch variable</p></td>
+    </tr>
+    <tr>
+      <th>from</th>
+      <td><p>A character vector of categories you want to combine.</p></td>
+    </tr>
+    <tr>
+      <th>to</th>
+      <td><p>A character string with the destination category.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>the variable duly modified</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='combine.html'>combine()</a></code></p>
+    
+
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+          </ul>
+
   </div>
 </div>
 
