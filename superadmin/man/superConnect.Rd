@@ -11,12 +11,12 @@ superConnect(host = "eu", local.port = getOption("superadmin.local.port"),
 superDisconnect(local.port = getOption("superadmin.local.port"))
 }
 \arguments{
+\item{host}{character, default is "eu" for production. Alternative is
+"alpha"}
+
 \item{local.port}{What port to use on your local host}
 
 \item{remote.port}{What port the admin server is on}
-
-\item{host.prefix}{character, default is "eu" for production. Alternative is
-"alpha"}
 }
 \value{
 Whatever exit status that \code{system2} returns.
