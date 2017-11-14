@@ -55,12 +55,16 @@ print.SlowRequest <- function (x, ..., threshold=10) {
         url <- paste(url, meta$query_string, sep="?")
     }
     user <- try(getUser(id=meta$user_id))
-    if (inherits(user, "try-error")) {
-        user <- meta$user_id
-    } else {
-        user <- user$user$email
+    user <- paste("User:",
+        ifelse(inherits(user, "try-error"), meta$user_id, user$user$email))
+    dsid <- datasetURLToId(meta$request_path)
+    if (!identical(dsid, meta$request_path)) {
+        ds <- try(getDatasets(dsid=dsid))
+        if (!inherits(ds, "try-error")) {
+            ds <- paste("Dataset:", ds$name)
+            user <- paste(user, ds, sep="\n")
+        }
     }
-    user <- paste("User:", user)
     cat(headline, url, user, "", sep="\n")
 
     class(x) <- "data.frame"
