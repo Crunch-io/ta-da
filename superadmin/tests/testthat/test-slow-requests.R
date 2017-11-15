@@ -6,7 +6,7 @@ public({
             s <- getSlowRequests(threshold=119, limit=10)
             expect_length(s, 10)
             expect_output(print(s[[1]]),
-"120.114 seconds @ 2017-11-14T15:51:38
+"139.91 seconds @ 2017-11-14T15:51:38
 GET /datasets/a2250e623c2a40d988ab7221d078034f/table/?limit=0
 User: davide.contu@yougov.com
 Dataset: YouGov/Economist Weekly Survey #235

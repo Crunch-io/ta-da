@@ -29,7 +29,19 @@ getDatasets <- function (...) {
     }
 }
 
-datasetURLToId <- function (url) {
-    ## Parses ID from URL, if a URL. Otherwise just returns url
-    sub("^.*?datasets/([0-9a-f]+)/.*$", "\\1", url)
+#' Get the dataset ID from a URL
+#'
+#' @param url character vector of request URLs or URL segments
+#' @return A character vector of equal length containing the dataset IDs, or
+#' \code{NA} if the url contains no dataset ID.
+#' @export
+#' @examples
+#' extractDatasetID("http://crunch.io/datasets/8159d0c4e26fef8ea371a2d9338ceb91/")
+#' is.na(extractDatasetID("http://crunch.io/users/"))
+extractDatasetID <- function (url) {
+    # Look for "/datasets/" (API) or "/dataset/" (whaam browser URLs)
+    dsid <- sub("^.*?datasets?/([0-9a-f]{32})/.*$", "\\1", url)
+    # If there is no dataset ID, return NA
+    is.na(dsid) <- dsid == url
+    return(dsid)
 }
