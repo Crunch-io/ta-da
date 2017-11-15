@@ -37,3 +37,53 @@ tablulateDatasetsByName <- function (urls) {
     })
     return(out)
 }
+
+slowRequestReport <- function (minutes=60, max.reports=5, send=FALSE,
+                               channel="#systems", ...) {
+    ## Query slow requests, check timestamps, go `minutes` back
+    require(superadmin)
+    ## Assume no more than 100
+    reports <- getSlowRequests(threshold=119, limit=100)
+    reports <- keepRecentSRs(reports, minutes)
+    if (length(reports) == 0) {
+        return()
+    }
+
+    reports <- groupSRs(reports)
+    ## TODO: sort by max time, truncate max.reports if necessary (but report how many)
+
+    ## Prepare reports
+    out <- lapply(reports, md, header=FALSE)
+    heads <- lapply(reports, formatSRmeta)
+    heads <- lapply(heads, slackifySRhead)
+    obj <- paste(heads, out, sep="\n", collapse="\n\n")
+    if (send) {
+        slack(channel=channel, username="crunchbot", icon_emoji=":thinking_face:",
+            text=obj, parsing=NULL, ...)
+    } else {
+        cat(obj)
+    }
+}
+
+slackifySRhead <- function (headdata) {
+    h <- b(headdata$headline)
+    if (headdata$times > 1) {
+        h <- paste(h, paste0("(", headdata$times, " times)"))
+    }
+    h <- c(
+        h,
+        paste(headdata$url, slack_linkify(headdata$seealso_url, "More of this endpoint")),
+        paste(b("User:"), paste(headdata$user, collapse=", "))
+    )
+    if (!is.null(headdata$dataset)) {
+        h <- c(h, paste(b("Dataset:"), headdata$dataset,
+            slack_linkify(headdata$seealso_dataset, "More of this dataset")))
+    }
+    return(paste(c(h, "\n"), collapse="\n"))
+}
+
+# h <- c(headdata$headline, headdata$url, paste("User:", headdata$user))
+# if (!is.null(headdata$dataset)) {
+#     h <- c(h, paste("Dataset:", headdata$dataset))
+# }
+# h <- paste(c(h, "\n"), collapse="\n")
