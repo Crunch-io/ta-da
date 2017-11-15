@@ -146,6 +146,7 @@ from8601 <- function (x) {
 
 #' @export
 groupSRs <- function (reqs) {
+    ## TODO: this needs testing
     ## Collapse by request_method + request_path; collect times and emails from
     meta <- lapply(reqs, attr, "meta")
     ids <- vapply(meta,
