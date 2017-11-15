@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://crunch.io/team/diana/</loc>
+    <lastmod>2017-11-13T14:08:35+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://crunch.io/team/slobodan/</loc>
     <lastmod>2017-09-25T14:08:35+02:00</lastmod>
   </url>
@@ -287,7 +292,7 @@
   
   <url>
     <loc>http://crunch.io/</loc>
-    <lastmod>2017-09-25T14:08:35+02:00</lastmod>
+    <lastmod>2017-11-13T14:08:35+02:00</lastmod>
     <priority>0</priority>
   </url>
   
