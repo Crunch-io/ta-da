@@ -16,7 +16,7 @@ def notify(title, date, success, text, ratio, skipped, skiptext):
     title = '%s for %s (%s/%s)' % (title, date, ratio[0], ratio[1])
     if USE_SLACK:
         message_parts = [{'title': title,
-                          'text': '```%s```' % text,
+                          'text': 'ALL SUCCESSFUL' if success else '```%s```' % text,
                           "mrkdwn_in": ["text"]}]
         if skipped:
             message_parts.append({
