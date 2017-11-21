@@ -186,6 +186,13 @@ def main():
                 time.sleep(5.0)
 
             if status['progress'] == -1:
+                if status['message'] == 'There is no savepoint at that revision':
+                    # The target savepoint was deleted before we could replay from it.
+                    notify(dataset_id, dataset['name'], from_revision,
+                           'Skipped: %s gone before we could replay from it' % from_revision,
+                           success=False, skipped=True, tracefile=tracefile)
+                    return
+
                 notify(dataset_id, dataset['name'], from_revision,
                        'Failed: %s' % status['message'],
                        success=False, tracefile=tracefile)
