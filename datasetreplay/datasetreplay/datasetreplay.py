@@ -189,7 +189,13 @@ def main():
                 if status['message'] == 'There is no savepoint at that revision':
                     # The target savepoint was deleted before we could replay from it.
                     notify(dataset_id, dataset['name'], from_revision,
-                           'Skipped: %s gone before we could replay from it' % from_revision,
+                           'Skipped: Savepoint deleted before we could start replaying from it',
+                           success=False, skipped=True, tracefile=tracefile)
+                    return
+                elif status['message'].startswith('Trying to modify a deleted dataset'):
+                    # If the dataset was deleted we just skip it
+                    notify(dataset_id, dataset['name'], from_revision,
+                           'Skipped: Dataset deleted before we could start replaying from it',
                            success=False, skipped=True, tracefile=tracefile)
                     return
 
