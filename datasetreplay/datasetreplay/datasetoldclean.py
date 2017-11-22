@@ -28,7 +28,7 @@ def main():
     today = datetime.datetime.utcnow().replace(microsecond=0, second=0, minute=0, hour=0)
 
     hosts = ENVIRONS[env]
-    with tunnel(hosts[0], 8081, 29081, hosts[1]) as connection:
+    with tunnel(hosts[0], 8081, 29085, hosts[1]) as connection:
         resp = requests.get(params={'email': user, 'sorting': '+creation_time', 'limit': 2000},
                             **admin_url(connection, '/datasets/'))
         if resp.status_code != 200:
