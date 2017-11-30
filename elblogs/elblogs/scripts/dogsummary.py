@@ -74,7 +74,7 @@ def dog_summary_stats(start, end):
 
     ## Query Timeouts:
     qt_total = dog_count("zz9.client.timeouts", start, end,
-        scope="host:eu-backend.priveu.crunch.io")
+        scope="region:eu-west-1")
 
     return {
         "append": {

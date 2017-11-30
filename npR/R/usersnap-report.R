@@ -1,9 +1,8 @@
-#' @importFrom useRsnap getReports
 #' @export
 userSnapChat <- function (start=end - 1, end=Sys.Date(),
                           subtitle=paste("Usersnaps from", start, "to", end),
                           ...) {
-    
+    require(useRsnap)
     end <- as.Date(end)
     start <- as.Date(start)
 
@@ -21,17 +20,26 @@ userSnapChat <- function (start=end - 1, end=Sys.Date(),
     reps <- reps[created >= start & created <= end]
 
     ## total open, active/untouched (separate sent to pivotal by get on entity)
-    total_open <- length(reps)
+    closed <- vapply(reps, function (x) x$closed, logical(1))
     untouched <- vapply(reps,
         function (x) !x$closed && length(x$comments) == 0 && is.null(x$assignee),
         logical(1))
     needs_triage <- vapply(reps[untouched], slackURLForUsersnap, character(1))
-    active <- vapply(reps[!untouched], slackURLForUsersnap, character(1))
-
-    ## TODO: also total closed
+    active <- vapply(reps[!untouched & !closed], slackURLForUsersnap, character(1))
 
     color <- ifelse(TRUE, "warning", "good") ## TODO: compare something?
-    fields <- list()
+    fields <- list(
+        list(
+            title="New open reports",
+            value=sum(!closed),
+            short=TRUE
+        ),
+        list(
+            title="New reports already closed",
+            value=sum(closed),
+            short=TRUE
+        )
+    )
     if (length(active)) {
         fields <- c(fields, list(list(
             title=paste(length(active), "reports being handled:"),

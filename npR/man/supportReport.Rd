@@ -8,15 +8,25 @@ supportReport(date = "yesterday", subtitle = paste("Date range:", date),
   ...)
 }
 \arguments{
-\item{date}{string Pivotal date query}
+\item{date}{string a Pivotal date query. See
+\url{https://www.pivotaltracker.com/help/articles/advanced_search/#search_keywords}.
+The search query will take that string and search for "accepted:that" and
+"created:that", plus "label:user-reported".}
 
 \item{subtitle}{string to use as "pretext" in Slack attachment}
 
 \item{...}{additional arguments passed to \code{slack}}
 }
 \value{
-A \code{httr} response from the slack POST.
+A \code{httr} response from the slack POST. Called for side effect of
+posting in Slack.
 }
 \description{
 Support Reports
+}
+\examples{
+\dontrun{
+supportReport("2017/08/14..2017/09/13", channel="#support")
+supportReport("yesterday", channel="@npr")
+}
 }

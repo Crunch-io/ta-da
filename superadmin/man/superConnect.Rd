@@ -5,13 +5,13 @@
 \alias{superDisconnect}
 \title{Connect and Disconnect to the Admin Server}
 \usage{
-superConnect(host.prefix = "eu",
-  local.port = getOption("superadmin.local.port"), remote.port = 8081)
+superConnect(host = "eu", local.port = getOption("superadmin.local.port"),
+  remote.port = 8081)
 
 superDisconnect(local.port = getOption("superadmin.local.port"))
 }
 \arguments{
-\item{host.prefix}{character, default is "eu" for production. Alternative is
+\item{host}{character, default is "eu" for production. Alternative is
 "alpha"}
 
 \item{local.port}{What port to use on your local host}

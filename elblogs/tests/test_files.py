@@ -46,8 +46,8 @@ class TestFiles(TestCase):
         self.assertFalse(file_in_date_range(f1, 20151101, 20151101, 2130, 2259))
 
     def test_find_dot(self):
-        paths = ["2015/12/30", "2015/12/31", "2016/01/01", "2016/01/02", "2016/01/03"]
-        nlogs = [48, 46, 46, 45, 0]  # Apparently they aren't all 24*2, but that's ok
+        paths = ["2015/12/30", "2015/12/31", "2016/01/01", "2016/01/02", "2016/01/03", "2017/08/17"]
+        nlogs = [48, 46, 46, 45, 0, 1]  # Apparently they aren't all 24*2, but that's ok
         for i, p in enumerate(paths):
             self.assertLength(find_dot(path=os.path.join(FIXTURES_DIR, p)),
                 nlogs[i])
@@ -136,15 +136,17 @@ class TestFiles(TestCase):
     def test_reshape_script_no_end(self):
         with tempdir() as testdir:
             out = subprocess.call(["elb.ds", FIXTURES_DIR, testdir, "20160102"])
+            # Collect the actual files from the remaining days
             lfiles = find_dot(path=os.path.join(FIXTURES_DIR, "2016/01/02"))
-
+            lfiles += find_dot(path=os.path.join(FIXTURES_DIR, "2017"))
+            # Collect the files from the reshaped directory
             outfiles = find_dot(path=testdir)
             filelengths = [file_line_count(f) for f in outfiles]
             originallengths = [file_line_count(f) for f in lfiles]
             self.assertEqual(sum(filelengths), sum(originallengths))
 
     def test_find_error_entries(self):
-        jan2 = find_dot("20160102")
+        jan2 = find_dot("20160102", "20160102")
         errs = []
         for f in jan2:
             errs += get_error_entries(f)

@@ -31,6 +31,9 @@ setup(name='datasetreplay',
           'console_scripts': [
               'dataset.replay=datasetreplay.datasetreplay:main',
               'dataset.pick=datasetreplay.datasetpick:main',
+              'dataset.savepoints=datasetreplay.datasetsavepoint:main',
+              'crtracefile.report=datasetreplay.crtracefilereport:main',
+              'dataset.oldclean=datasetreplay.datasetoldclean:main',
          ]
       }
 )

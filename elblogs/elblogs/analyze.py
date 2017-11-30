@@ -2,7 +2,7 @@ def analyze_log(data):
     '''Given a log data.frame-like dict, aggregate'''
     results = {}
     results['count_requests'] = len(data['elb'])
-    results['stream_requests'] = len([x for x in data['request_url'] if '/stream/' in x])
+    results['stream_requests'] = len([x for x in data['request'] if '/stream/' in x])
     times = zip(data['request_processing_time'], data['backend_processing_time'], data['response_processing_time'])
     total_time = [sum(list(x)) for x in times]
     results['mean_time'] = mean([x for x in total_time if x > 0])
@@ -76,7 +76,7 @@ def format_summary(summary):
 ## Basic math
 
 def mean(x):
-    return float(sum(x))/len(x)
+    return float(sum(x))/len(x) if len(x) else None
 
 def quantile(x, q):
     i = int(q * len(x))
@@ -86,4 +86,4 @@ def median(x):
     return quantile(x, .5)
 
 def dot(x, y):
-    return sum([a*b for a, b in zip(x, y)])
+    return sum([a*b for a, b in zip(x, y) if a is not None and b is not None])

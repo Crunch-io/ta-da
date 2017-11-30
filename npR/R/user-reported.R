@@ -1,24 +1,19 @@
-# s <- getStories(search="(created:-7days..today OR accepted:-7days..today) label:user-reported")
-#
-# table(s$current_state)
-#
-# get reported (yesterday, last week)
-# get accepted (time)
-#
-# count accepted, count reported (by state?), net (excluding icebox?)
-#
-# of those accepted, difftime between created and accepted
-#
-# of new ones, search for [...], which means it hasn't been processed from usersnap (do this for daily only), and print their URLs in slack
-#
-# also note triage (unstarted vs. unscheduled)
-
 #' Support Reports
-#' @param date string Pivotal date query
+#'
+#' @param date string a Pivotal date query. See
+#' \url{https://www.pivotaltracker.com/help/articles/advanced_search/#search_keywords}.
+#' The search query will take that string and search for "accepted:that" and
+#' "created:that", plus "label:user-reported".
 #' @param subtitle string to use as "pretext" in Slack attachment
 #' @param ... additional arguments passed to `slack`
-#' @return A `httr` response from the slack POST.
+#' @return A `httr` response from the slack POST. Called for side effect of
+#' posting in Slack.
 #' @importFrom pivotaltrackR getStories
+#' @examples
+#' \dontrun{
+#' supportReport("2017/08/14..2017/09/13", channel="#support")
+#' supportReport("yesterday", channel="@npr")
+#' }
 #' @export
 supportReport <- function (date="yesterday", subtitle=paste("Date range:", date), ...) {
     search <- paste(date, "label:user-reported")
@@ -30,11 +25,8 @@ supportReport <- function (date="yesterday", subtitle=paste("Date range:", date)
     done <- nrow(accepted)
     net <- new - done
 
-    ## For new stories, print how many,
-    ## For new tickets, check for ones that have the raw usersnap title
-    needs_triage <- grepl("[...]", created$name, fixed=TRUE)
-    needs_triage <- slack_linkify(created$url[needs_triage],
-        created$name[needs_triage])
+    ## For new stories, print how many, and which are open
+    new_tickets <- !(created$current_state %in% c("accepted", "unscheduled"))
 
     color <- ifelse(net > 0, "warning", "good")
     fields <- list()
@@ -59,27 +51,20 @@ supportReport <- function (date="yesterday", subtitle=paste("Date range:", date)
             short=FALSE
         )))
     }
-    if (length(needs_triage)) {
+    if (sum(new_tickets)) {
+        new_tickets <- slack_linkify(created$url[new_tickets],
+            created$name[new_tickets])
         fields <- c(fields, list(list(
-            title=paste(length(needs_triage), "tickets needing triage:"),
-            value=paste("* ", needs_triage, sep="", collapse="\n"),
+            title=paste(length(new_tickets), "new open tickets"),
+            value=paste("* ", new_tickets, sep="", collapse="\n"),
             short=FALSE
         )))
     }
     body <- list(list(
         pretext=subtitle,
-        fallback=paste("Support Report:", color),
+        fallback=paste("Pivotal Tracker Support Report:", color),
         fields=fields,
         color=color
     ))
-    slack(attachments=body, ..., channel="@npr", icon_emoji=":ambulance:", username="Support Report", parsing=NULL)
-}
-
-
-slack_linkify <- function (href, text) {
-    if (length(href) && length(text)) {
-        return(paste0("<", href, "|", text, ">"))
-    } else {
-        return(character(0))
-    }
+    slack(attachments=body, ..., channel="@npr", icon_emoji=":ambulance:", username="Pivotal Tracker Support Report", parsing=NULL)
 }

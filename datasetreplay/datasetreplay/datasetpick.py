@@ -38,13 +38,18 @@ def main():
 
     hosts = ENVIRONS[env]
     with tunnel(hosts[0], 8081, 29081, hosts[1]) as connection:
-        resp = requests.get(**admin_url(connection, '/datasets/?show_all=1&sorting=-modification_time'))
+        resp = requests.get(**admin_url(connection,
+                                        '/datasets/?show_all=1&sorting=-modification_time&limit=2000'))
         if resp.status_code != 200:
             print('ERROR: %s' % resp.text, file=sys.stderr)
             sys.exit(1)
 
         datasets = resp.json()['datasets']
         for ds in datasets:
+            if ds['expired'] is not None:
+                # Skip deleted datasets.
+                continue
+
             dataset_id = ds['id']
             if dataset_id in skiplist:
                 continue

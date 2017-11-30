@@ -140,21 +140,30 @@ class Profit(_threadlocal):
                          for tag, c in calls.iteritems())
 
         cdef Call call
-        dsu = [(call.total, tag) for tag, call in calls.iteritems() if call.count]
+        dsu = []
+        for tag, call in calls.iteritems():
+            if call._depth > 0:
+                # The call is still under way, probably in a separate thread.
+                # Record its partial time.
+                dsu.append((call.total + (time.time() - call._start), tag,
+                           call.count + 1, call.min, call.max, True))
+            else:
+                dsu.append((call.total, tag, call.count, call.min, call.max, False))
+        dsu.sort(reverse=True)
+
         if total_time is None:
-            total_time = max([call.total for call in calls.itervalues()] + [0.0])
+            total_time = max([entry[0] for entry in dsu] + [0.0])
 
         lines = ["   Pct  Total      Count  Min       Avg       Max       Tag"]
-        for call_total, tag in sorted(dsu, reverse=True):
-            call = calls[tag]
+        for total, tag, count, mn, mx, partial in dsu:
             lines.append(fmt % {
-                "pct": ((call.total / total_time) * 100) if total_time else 0.0,
-                "total": call.total,
-                "count": call.count,
-                "min": call.min,
-                "avg": call.total / call.count,
-                "max": call.max,
-                "tag": tag
+                "pct": ((total / total_time) * 100) if total_time else 0.0,
+                "total": total,
+                "count": count,
+                "min": mn,
+                "avg": total / count if count else total,
+                "max": mx,
+                "tag": (tag + "...") if partial else tag
             })
 
         return lines
