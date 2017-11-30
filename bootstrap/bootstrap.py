@@ -59,7 +59,7 @@ def load_dataset_from_file(file_name, name=None, team=None, project=None, user=N
     if name is None:
         name = os.path.basename(file_name).split('.')[0]
 
-    file_name = os.path.abspath(os.path.dirname(__file__)) + '/swoosh/files/' + file_name
+    file_name = '/var/lib/crunch.io/src/swoosh/files/' + file_name
 
     captain = User.find_by_id(id='00002')
 
@@ -95,18 +95,19 @@ def load_dataset_from_file(file_name, name=None, team=None, project=None, user=N
 
 def create_team():
 
-    member_ids = ['00002', '00004']
+    member_ids = ['00004']
+    captain = User.find_by_id(id='00002')
+
     t = Team()
     t.name = 'Enterprise'
-    t.owner_id = '00002'
     t.account_id = '00001'
-    t.create()
+    t.create_for_user(captain)
 
     t.save()
 
     for user_id in member_ids:
         u = User.find_by_id(id=user_id)
-        t.add_member(u, {'view': True})
+        t.add_member(u, 'view')
 
     t.save()
 
@@ -191,7 +192,20 @@ def main():
         if 'navigation' in email:
             navigation_user = user
 
-        team.add_member(user, {'view': True})
+    for name in ('firstofficer',
+                 'borg',
+                 'armus',
+                 'quark',
+                 'grob',
+                 'test.drop-zones',
+                 'test.cat-array-filter',
+                 'test.count-mr-filtered-rows',
+                 'test.navigation',
+                 'test.decimal-places-and-counts@crunch.io',
+                 ):
+        email = name + '@crunch.io'
+        user = User.find_many_by_email([email])[0]
+        team.add_member(user, 'view')
 
 
     print 'done.'

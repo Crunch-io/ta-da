@@ -13,5 +13,5 @@ sleep 30
 echo 'Done, setting up index'
 /var/lib/crunch.io/venv/bin/cr.index /var/lib/crunch.io/cr.server-0.conf --create-only --update-alias --clear
 echo 'Bootstrapping'
-CR_LOGLEVEL=1 /var/lib/crunch.io/venv/bin/python /var/lib/crunch.io/src/bootstrap.py /var/lib/crunch.io/cr.server-0.conf
+CR_LOGLEVEL=1 /var/lib/crunch.io/venv/bin/python ./bootstrap.py /var/lib/crunch.io/cr.server-0.conf
 /var/lib/crunch.io/venv/bin/cr.index /var/lib/crunch.io/cr.server-0.conf
