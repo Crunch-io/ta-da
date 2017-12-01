@@ -9,6 +9,7 @@ from cr.lib.entities.datasets import Dataset
 from cr.lib.entities.projects import Project
 from cr.lib.entities.teams import Team
 from cr.lib.entities.geodata import GeoDatum, VariableGeoDatum
+from cr.lib.entities.variables import VariableDefinition
 from cr.lib.stores import stores
 from cr.lib.exceptions import NotFound
 
@@ -93,6 +94,73 @@ def load_dataset_from_file(file_name, name=None, team=None, project=None, user=N
     return ds
 
 
+def create_dataset(user=None, **kwargs):
+
+    print 'creating dataset: %s' % kwargs
+    captain = User.find_by_id(id='00002')
+    user = user or captain
+    ds = Dataset(owner=user, **kwargs).create()
+    return ds
+
+def create_dataset_with_subvariables(name, num_subvars):
+    dataset = create_dataset(name=name)
+
+    primary = dataset.primary
+    vardefs = [
+        VariableDefinition.from_data({
+            'type': 'categorical',
+            'name': 'subvar %s' % x,
+            'alias': 'subvar %s' % x,
+            'categories': [
+                {"id": 1, "missing": False, "name": "not selected",
+                 "numeric_value": None}]
+        }) for x in xrange(num_subvars)
+        ]
+    primary.add_variables(vardefs)
+
+    primary.bind("big array", [v.id for v in vardefs], {"alias": 'big_array'})
+    return dataset
+
+def create_dataset_with_many_categories(name, num_vars, num_cats):
+    dataset = create_dataset(name=name)
+    primary = dataset.primary
+    rows = 1
+
+    print 'adding variables'
+    # Add a bunch of variables to make the dataset wide
+    for x in xrange(num_vars):
+        tv = VariableDefinition.from_data({
+            'type': 'categorical',
+            'name': 'var%s' % x,
+            'alias': 'var%s' % x,
+            'categories': [{
+                "id": 1,
+                "missing": False,
+                "name": "not selected",
+                "numeric_value": None
+            }]
+        })
+        primary.add_variable(tv,
+                         values=[1] * rows)
+
+    print 'making many_cats'
+    # This is the variable we will be modifying
+    many_cats = VariableDefinition.from_data({
+        'type': 'categorical',
+        'name': 'many_cats',
+        'alias': 'many_cats',
+        'categories': [{
+            "id": catnum,
+            "missing": False,
+            "name": str(catnum),
+            "numeric_value": None
+        } for catnum in xrange(num_cats)]
+    })
+    primary.add_variable(many_cats,
+                         values=[x % num_cats for x in xrange(rows)])
+
+    return dataset
+
 def create_team():
 
     member_ids = ['00004']
@@ -136,16 +204,7 @@ def create_geodata():
     return {'us': us, 'gb': gb}
 
 
-def main():
-
-    settings_file = 'backend-http/settings_local.py'
-    try:
-        settings_file = sys.argv[1]
-    except IndexError:
-        pass
-
-    load_settings(settings_file)
-
+def initial_setup():
     team = create_team()
 
     print 'setting up test users',
@@ -164,6 +223,8 @@ def main():
             id='08ed498c0aa1422491b95a6b04c69653'
         ).create()
 
+
+    users = []
     for name in ('captain',
                  'firstofficer',
                  'borg',
@@ -187,6 +248,7 @@ def main():
             auth.save()
 
         user.save()
+        users.append(user)
         project.members.add(user)
 
         if 'navigation' in email:
@@ -209,24 +271,16 @@ def main():
 
 
     print 'done.'
-    #for i in xrange(0, 100):
-    #    load_dataset_from_file('simple_alltypes.sav', name='a_simple_alltypes_%s' % i, team=team, project=project)
-    #    load_dataset_from_file('UCBAdmissions.csv', name='Admissions_%s' % i, team=team, project=project)
-    #    load_dataset_from_file('ECON_few_columns.sav', name='econ_few_columns_%s' % i, team=team, project=project)
-
-
-    load_dataset_from_file('simple_alltypes.sav', name='a_simple_alltypes', project=project)
-    load_dataset_from_file('UCBAdmissions.csv', name='Admissions', team=team, project=project)
-    load_dataset_from_file('ECON_few_columns.sav', name='a_econ_few_columns', team=team, project=project)
-
-    #load_dataset_from_file('UCBAdmissions.csv', name='test-navigation_admissions', team=team, project=project, user=navigation_user)
-    #load_dataset_from_file('simple_alltypes.sav', name='test-navigation_simple-alltypes', team=team, project=project, user=navigation_user)
-
     geodata = create_geodata()
+    return users, project, team, geodata
+
+
+def load_geodata_dataset(project, team, geodata):
 
     ds = load_dataset_from_file('pollsterdata.csv',
                                  name='a_pollsterdata',
                                  team=team, project=project)
+
 
     print 'setting geodata for pollsterdata'
     vg = VariableGeoDatum()
@@ -246,6 +300,66 @@ def main():
     vg.feature_key = 'properties.name'
     vg.create()
     vg.save()
+
+    return ds
+
+
+def load_search_functional_testing_datasets(users, project, team, geodata):
+
+    # load a bunch of common datasets for search
+    for i in xrange(0, 100):
+        load_dataset_from_file('simple_alltypes.sav', name='a_simple_alltypes_%s' % i, team=team, project=project)
+        load_dataset_from_file('UCBAdmissions.csv', name='Admissions_%s' % i, team=team, project=project)
+        load_dataset_from_file('ECON_few_columns.sav', name='econ_few_columns_%s' % i, team=team, project=project)
+
+def load_search_load_testing_datasets(project, team):
+    NUM_DATASETS = 50
+    NUM_CATS = 1000
+    NUM_VARS = 300
+    NUM_SUBVARS =  5000
+    for i in xrange(0, NUM_DATASETS):
+        ds = create_dataset_with_many_categories('categorical_test_%s' %i, NUM_VARS, NUM_CATS)
+        ds.reindex()
+        ds.release()
+    for i in xrange(0, NUM_DATASETS):
+        ds = create_dataset_with_subvariables('subvariable_test_%s' %i, NUM_SUBVARS)
+        ds.reindex()
+        ds.release()
+
+
+def load_functional_testing_datasets(project, team, geodata):
+    load_dataset_from_file('simple_alltypes.sav', name='a_simple_alltypes', project=project)
+    load_dataset_from_file('UCBAdmissions.csv', name='Admissions', team=team, project=project)
+    load_dataset_from_file('ECON_few_columns.sav', name='a_econ_few_columns', team=team, project=project)
+
+    navigation_user = User.find_many_by_email(['test.navigation@crunch.io'])[0]
+
+    load_dataset_from_file('UCBAdmissions.csv', name='test-navigation_admissions', team=team, project=project, user=navigation_user)
+    load_dataset_from_file('simple_alltypes.sav', name='test-navigation_simple-alltypes', team=team, project=project, user=navigation_user)
+
+    load_geodata_dataset(project, team, geodata)
+
+
+def main():
+
+    settings_file = 'backend-http/settings_local.py'
+    try:
+        settings_file = sys.argv[1]
+    except IndexError:
+        pass
+
+    load_settings(settings_file)
+
+    users, project, team, geodata = initial_setup()
+
+    project = Project.find_by_id(id='08ed498c0aa1422491b95a6b04c69653')
+    team = Team.find_one({'account_id': '00001'})
+    captain = User.find_by_id(id='00002')
+    users = [captain]
+    geodata = {'us': GeoDatum.find_one({'location': 'https://s.crunch.io/geodata/leafletjs/us-states.geojson' })}
+
+    load_functional_testing_datasets(project, team, geodata)
+    load_search_load_testing_datasets(project, team)
 
 if __name__ == '__main__':
     main()
