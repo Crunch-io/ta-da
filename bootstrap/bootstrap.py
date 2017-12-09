@@ -100,6 +100,8 @@ def create_dataset(user=None, **kwargs):
     captain = User.find_by_id(id='00002')
     user = user or captain
     ds = Dataset(owner=user, **kwargs).create()
+    ds.save()
+
     return ds
 
 def create_dataset_with_subvariables(name, num_subvars):
@@ -116,9 +118,9 @@ def create_dataset_with_subvariables(name, num_subvars):
                  "numeric_value": None}]
         }) for x in xrange(num_subvars)
         ]
-    primary.add_variables(vardefs)
+    dataset.add_variables(vardefs)
 
-    primary.bind("big array", [v.id for v in vardefs], {"alias": 'big_array'})
+    dataset.bind("big array", [v.id for v in vardefs], {"alias": 'big_array'})
     return dataset
 
 def create_dataset_with_many_categories(name, num_vars, num_cats):
@@ -140,7 +142,7 @@ def create_dataset_with_many_categories(name, num_vars, num_cats):
                 "numeric_value": None
             }]
         })
-        primary.add_variable(tv,
+        dataset.add_variable(tv,
                          values=[1] * rows)
 
     print 'making many_cats'
@@ -156,7 +158,7 @@ def create_dataset_with_many_categories(name, num_vars, num_cats):
             "numeric_value": None
         } for catnum in xrange(num_cats)]
     })
-    primary.add_variable(many_cats,
+    dataset.add_variable(many_cats,
                          values=[x % num_cats for x in xrange(rows)])
 
     return dataset
@@ -313,7 +315,7 @@ def load_search_functional_testing_datasets(users, project, team, geodata):
         load_dataset_from_file('ECON_few_columns.sav', name='econ_few_columns_%s' % i, team=team, project=project)
 
 def load_search_load_testing_datasets(project, team):
-    NUM_DATASETS = 50
+    NUM_DATASETS = 2
     NUM_CATS = 1000
     NUM_VARS = 300
     NUM_SUBVARS =  5000
