@@ -12,6 +12,7 @@ from cr.lib.entities.geodata import GeoDatum, VariableGeoDatum
 from cr.lib.entities.variables import VariableDefinition
 from cr.lib.stores import stores
 from cr.lib.exceptions import NotFound
+from cr.lib.index.indexer import index_dataset
 
 import logging
 
@@ -107,25 +108,27 @@ def create_dataset(user=None, **kwargs):
 def create_dataset_with_subvariables(name, num_subvars):
     dataset = create_dataset(name=name)
 
-    primary = dataset.primary
     vardefs = [
         VariableDefinition.from_data({
             'type': 'categorical',
-            'name': 'subvar %s' % x,
-            'alias': 'subvar %s' % x,
+            'name': 'subvar %s %s' % (x, chr(97 + x%4)),
+            'alias': 'subvar %s %s' % (x, chr(97 + x%4)),
             'categories': [
                 {"id": 1, "missing": False, "name": "not selected",
                  "numeric_value": None}]
         }) for x in xrange(num_subvars)
         ]
-    dataset.add_variables(vardefs)
 
-    dataset.bind("big array", [v.id for v in vardefs], {"alias": 'big_array'})
+    for var in vardefs:
+        dataset.add_variable(var)
+
+    dataset.bind([v.id for v in vardefs], name="big array", alias='big_array')
+    index_dataset(dataset, skip_variables=False)
+    dataset.release()
     return dataset
 
 def create_dataset_with_many_categories(name, num_vars, num_cats):
     dataset = create_dataset(name=name)
-    primary = dataset.primary
     rows = 1
 
     print 'adding variables'
@@ -133,8 +136,8 @@ def create_dataset_with_many_categories(name, num_vars, num_cats):
     for x in xrange(num_vars):
         tv = VariableDefinition.from_data({
             'type': 'categorical',
-            'name': 'var%s' % x,
-            'alias': 'var%s' % x,
+            'name': 'var %s %s' % (x, chr(97 + x%4)),
+            'alias': 'var %s %s' % (x, chr(97 + x%4)),
             'categories': [{
                 "id": 1,
                 "missing": False,
@@ -161,6 +164,8 @@ def create_dataset_with_many_categories(name, num_vars, num_cats):
     dataset.add_variable(many_cats,
                          values=[x % num_cats for x in xrange(rows)])
 
+    dataset.reindex()
+    dataset.release()
     return dataset
 
 def create_team():
@@ -318,15 +323,11 @@ def load_search_load_testing_datasets(project, team):
     NUM_DATASETS = 2
     NUM_CATS = 1000
     NUM_VARS = 300
-    NUM_SUBVARS =  5000
+    NUM_SUBVARS =  2000
     for i in xrange(0, NUM_DATASETS):
         ds = create_dataset_with_many_categories('categorical_test_%s' %i, NUM_VARS, NUM_CATS)
-        ds.reindex()
-        ds.release()
     for i in xrange(0, NUM_DATASETS):
         ds = create_dataset_with_subvariables('subvariable_test_%s' %i, NUM_SUBVARS)
-        ds.reindex()
-        ds.release()
 
 
 def load_functional_testing_datasets(project, team, geodata):
@@ -361,7 +362,7 @@ def main():
     geodata = {'us': GeoDatum.find_one({'location': 'https://s.crunch.io/geodata/leafletjs/us-states.geojson' })}
 
     load_functional_testing_datasets(project, team, geodata)
-    load_search_load_testing_datasets(project, team)
+    #load_search_load_testing_datasets(project, team)
 
 if __name__ == '__main__':
     main()
