@@ -164,7 +164,7 @@ def create_dataset_with_many_categories(name, num_vars, num_cats):
     dataset.add_variable(many_cats,
                          values=[x % num_cats for x in xrange(rows)])
 
-    dataset.reindex()
+    index_dataset(dataset, skip_variables=False)
     dataset.release()
     return dataset
 
@@ -321,13 +321,13 @@ def load_search_functional_testing_datasets(users, project, team, geodata):
 
 def load_search_load_testing_datasets(project, team):
     NUM_DATASETS = 2
-    NUM_CATS = 1000
-    NUM_VARS = 300
-    NUM_SUBVARS =  2000
-    for i in xrange(0, NUM_DATASETS):
-        ds = create_dataset_with_many_categories('categorical_test_%s' %i, NUM_VARS, NUM_CATS)
+    NUM_CATS = 5
+    NUM_VARS = 3
+    NUM_SUBVARS = 3
     for i in xrange(0, NUM_DATASETS):
         ds = create_dataset_with_subvariables('subvariable_test_%s' %i, NUM_SUBVARS)
+    for i in xrange(0, NUM_DATASETS):
+        ds = create_dataset_with_many_categories('categorical_test_%s' %i, NUM_VARS, NUM_CATS)
 
 
 def load_functional_testing_datasets(project, team, geodata):
@@ -353,7 +353,7 @@ def main():
 
     load_settings(settings_file)
 
-    users, project, team, geodata = initial_setup()
+    #users, project, team, geodata = initial_setup()
 
     project = Project.find_by_id(id='08ed498c0aa1422491b95a6b04c69653')
     team = Team.find_one({'account_id': '00001'})
@@ -361,8 +361,8 @@ def main():
     users = [captain]
     geodata = {'us': GeoDatum.find_one({'location': 'https://s.crunch.io/geodata/leafletjs/us-states.geojson' })}
 
-    load_functional_testing_datasets(project, team, geodata)
-    #load_search_load_testing_datasets(project, team)
+    #load_functional_testing_datasets(project, team, geodata)
+    load_search_load_testing_datasets(project, team)
 
 if __name__ == '__main__':
     main()
