@@ -9,10 +9,8 @@ from datetime import datetime
 
 es = None
 
-colors = {'red': 5000, 'orange': 1000, 'yellow': 500, 'green': 100, 'cyan': 10, 'blue': 1}
-distribution = list(itertools.chain.from_iterable(([key] * value for key, value in colors.iteritems())))
 
-def index_array(ds_id, name, cat_num, subvar_num, subvar_name):
+def index_array(ds_id, name, cat_num, subvar_num, subvar_name, distribution):
     var_id = uuid.uuid4().hex
     id = '__'.join((ds_id, var_id))
 
@@ -125,11 +123,23 @@ def main():
 {'no_vars': 7572, 'no_subvars': 1, 'name':    "one"},
 ]
 
-    for d in xrange(NUM_DATASETS):
-        ds_id = create_dataset("Search Test Dataset %s" %d, "Description for the search dataset %s" % d)
-        for dist in distribution:
-            print 'dataset: %s %s (%s vars)' % (d, ds_id, dist['no_vars'])
-            bulk(es, (index_array(ds_id, "Array %s" % v, NUM_CATS, dist['no_subvars'], dist['name']) for v in xrange(dist['no_vars'])))
+    names = {
+        'colors': {'red': 5000, 'orange': 1000, 'yellow': 500, 'green': 100, 'cyan': 10, 'blue': 1},
+        'animals': {'dogs': 5000, 'pigs': 1000, 'wolfs': 500, 'parrots': 100, 'fish': 10, 'dreams': 1},
+        'shapes': {'circle': 5000, 'square': 1000, 'triangle': 500, 'pentagon': 100, 'decagon': 10, 'sphere': 1},
+        'bikes': {'pivot': 5000, 'specialized': 1000, 'kona': 500, 'trek': 100, 'juliana': 10, 'santa cruz': 1},
+        'cars': {'toyota': 5000, 'honda': 1000, 'bmw': 500, 'audi': 100, 'volkswagen': 10, 'ford': 1},
+        'computers': {'compaq': 5000, 'apple': 1000, 'dell': 500, 'ibm': 100, 'hp': 10, 'acer': 1}
+    }
+
+    for db_name, colors in names.iteritems():
+        print 'LOADING', db_name
+        name_distribution = list(itertools.chain.from_iterable(([key] * value for key, value in colors.iteritems())))
+        for d in xrange(NUM_DATASETS):
+            ds_id = create_dataset("Search Test Dataset %s" %d, "Description for the search dataset %s" % d)
+            for dist in distribution:
+                print 'dataset: %s %s (%s vars)' % (d, ds_id, dist['no_vars'])
+                bulk(es, (index_array(ds_id, "Array %s" % v, NUM_CATS, dist['no_subvars'], dist['name'], name_distribution) for v in xrange(dist['no_vars'])))
 
 
 if __name__ == '__main__':
