@@ -1,5 +1,7 @@
 import sys
 import uuid
+import itertools
+import random
 from cr.lib.settings import settings
 from cr.lib.index.es import get_es
 from cr.lib.index.util import bulk
@@ -7,13 +9,15 @@ from datetime import datetime
 
 es = None
 
+colors = {'red': 5000, 'orange': 1000, 'yellow': 500, 'green': 100, 'cyan': 10, 'blue': 1}
+distribution = list(itertools.chain.from_iterable(([key] * value for key, value in colors.iteritems())))
 
-def index_array(ds_id, name, cat_num, subvar_num):
+def index_array(ds_id, name, cat_num, subvar_num, subvar_name):
     var_id = uuid.uuid4().hex
     id = '__'.join((ds_id, var_id))
 
     cat_names = ['cat %s' % i for i in xrange(cat_num)]
-    subvar_names = ['subvar %s' % i for i in xrange(subvar_num)]
+    subvar_names = ['subvar %s %s %s' % (i, subvar_name, random.choice(distribution)) for i in xrange(subvar_num)]
 
     array = {
        u'_op_type': 'update',
@@ -102,16 +106,31 @@ def main():
     settings_file = sys.argv[1]
     load_settings(settings_file)
 
+    NUM_DATASETS = 1
+    NUM_CATS = 200
 
-    NUM_DATASETS = 100
-    NUM_SUBVARS = 10000
-    NUM_CATS = 500
-    NUM_VARS = 100
+    distribution = [
+{'no_vars': 5,    'no_subvars': 4000, 'name': "quattro"},
+{'no_vars': 7,    'no_subvars': 3000, 'name': "trio"},
+{'no_vars': 12,   'no_subvars': 2000, 'name': 'duo'},
+{'no_vars': 20,   'no_subvars': 1000, 'name': 'uno'},
+{'no_vars': 42,   'no_subvars': 500, 'name':  'cinq'},
+{'no_vars': 53,   'no_subvars': 400, 'name':  'quarant'},
+{'no_vars': 71,   'no_subvars': 300, 'name':  'tres'},
+{'no_vars': 98,   'no_subvars': 200, 'name':  'duece'},
+{'no_vars': 234,  'no_subvars': 100, 'name':  'hundy'},
+{'no_vars': 1032, 'no_subvars': 50, 'name':   'fifty'},
+{'no_vars': 5427, 'no_subvars': 10, 'name':   'ten'},
+{'no_vars': 6229, 'no_subvars': 5, 'name':    "five"},
+{'no_vars': 7572, 'no_subvars': 1, 'name':    "one"},
+]
 
     for d in xrange(NUM_DATASETS):
         ds_id = create_dataset("Search Test Dataset %s" %d, "Description for the search dataset %s" % d)
-        print 'dataset: %s %s' % (d, ds_id)
-        bulk(es, (index_array(ds_id, "Array %s" % v, NUM_CATS, NUM_SUBVARS) for v in xrange(NUM_VARS)))
+        for dist in distribution:
+            print 'dataset: %s %s (%s vars)' % (d, ds_id, dist['no_vars'])
+            bulk(es, (index_array(ds_id, "Array %s" % v, NUM_CATS, dist['no_subvars'], dist['name']) for v in xrange(dist['no_vars'])))
+
 
 if __name__ == '__main__':
     main()
