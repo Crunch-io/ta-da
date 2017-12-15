@@ -11,7 +11,7 @@ output:
     keep_md: true
 ---
 
-We are constantly learning new ways that our users, and their clients think about their data and the ways that they want to see that data presented. When looking at categorical data, people frequently want to collapse two or more categories together. Crunch has long had the ability to combine categories, but that results in a new variable being created. Sometimes users don't want a new fully separate variable for the combined categories, rather they wanted to see the combined category alongside the for the original categories themselves. In the market research world this goes by a number of names like _Top Box_, _Top Two Box_, or _Nets_.
+We are constantly learning new ways that our users, and their clients think about their data and the ways that they want to see that data presented. When looking at categorical data, people frequently want to collapse two or more categories together. Crunch has long had the ability to combine categories, but that results in a new variable being created. Sometimes users don't want a new fully separate variable for the combined categories, rather they wanted to see the combined category alongside the original categories themselves. In the market research world this goes by a number of names like _Top Box_, _Top Two Box_, or _Nets_.
 
 After hearing much feedback from our users that they wanted these, we developed an implementation that was general and flexible for displaying category combinations and gave our users the power to easily create and customize headings and subtotals within categorical variables. Let's take a look at what these look like in our app, as well as how to set and manipulate them using [our R `crunch` package](http://crunch.io/r/crunch/). If you want to checkout or set headings and subtotals from R, you can too, just make sure to install our most recent version by simply running `devtools::install_github("Crunch-io/rcrunch", build_vignettes=TRUE)`.
 
@@ -25,7 +25,7 @@ But how do we get there? First, and most importantly, we can create these subtot
 
 {{< figure src="../images/subtotals-edit.png" class="floating-left" width="425px">}}
 
-Once there, you're just a few clicks, drags, and drops away from fancy new subtotals. Many of our users, however, like to interact with their datasets grammatically. For these users, setting subtotals in R is much quicker and easier to replicate across different datasets and projects.
+Once there, you're just a few clicks, drags, and drops away from fancy new subtotals. Many of our users, however, like to interact with their datasets programmatically. For these users, setting subtotals in R is much quicker and easier to replicate across different datasets and projects.
 
 # Setting subtotals in R
 
@@ -53,7 +53,7 @@ subtotals(ds$DiversityImportant)
 To add subtotals, we can save a list of `Subtotal` objects. Each `Subtotal` object has three things:
 
 * `name` the label to identify the subtotal
-* `categoires` the categories to add subtotal (here you can use either category names or category ids)
+* `categories` the categories to add subtotal (here you can use either category names or category ids)
 * `after` the category that the subtotal should follow (again, either category names or category ids)
 
 
@@ -199,7 +199,7 @@ crtabs(~LearningNewTech + University, data = ds)
 ##    Generally agree          23288           1956           5054
 ```
 
-We can even get just the subtotals as an array from the cube if we want to compute specific statistics about the subtotals ignoring the constiuent groups:
+We can even get just the subtotals as an array from the cube if we want to compute specific statistics about the subtotals ignoring the constituent groups:
 
 ```r
 subtotalArray(crtabs(~LearningNewTech + University, data = ds))
