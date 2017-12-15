@@ -11,9 +11,9 @@ output:
     keep_md: true
 ---
 
-We are constantly learning new ways that our users, and their clients think about their data and the ways that they want to see that data presented. When looking at categorical data, people frequently want to collapse two or more categories together. Crunch has long had the ability to combine categories, but that results in a new variable being created. Sometimes users don't want a new fully separate variable for the combined categories, rather they wanted to see the combined categorys alongside the for the original categories themselves. In the market research world this goes by a number of names like _Top Box_, _Top Two Box_, or _Nets_.
+We are constantly learning new ways that our users, and their clients think about their data and the ways that they want to see that data presented. When looking at categorical data, people frequently want to collapse two or more categories together. Crunch has long had the ability to combine categories, but that results in a new variable being created. Sometimes users don't want a new fully separate variable for the combined categories, rather they wanted to see the combined category alongside the for the original categories themselves. In the market research world this goes by a number of names like _Top Box_, _Top Two Box_, or _Nets_.
 
-After hearing much feedback from our users that they wanted these, we developed an implementation that was general and flexible for displaying category combinations and gave our users the power to easily create and customise headings and subtotals within categorical variables. Let's take a look at what these look like in our app, as well as how to set and manipulate them using [our R `crunch` package](http://crunch.io/r/crunch/). If you want to checkout or set headings and subtotals from R, you can too, just make sure to install our most recent version by simply running `devtools::install_github("Crunch-io/rcrunch", build_vignettes=TRUE)`.
+After hearing much feedback from our users that they wanted these, we developed an implementation that was general and flexible for displaying category combinations and gave our users the power to easily create and customize headings and subtotals within categorical variables. Let's take a look at what these look like in our app, as well as how to set and manipulate them using [our R `crunch` package](http://crunch.io/r/crunch/). If you want to checkout or set headings and subtotals from R, you can too, just make sure to install our most recent version by simply running `devtools::install_github("Crunch-io/rcrunch", build_vignettes=TRUE)`.
 
 # What do subtotals look like in the app?
 
@@ -25,12 +25,11 @@ But how do we get there? First, and most importantly, we can create these subtot
 
 {{< figure src="../images/subtotals-edit.png" class="floating-left" width="425px">}}
 
-Once there, you're just a few clicks, drags, and drops away from fancy new subtotals. Many of our users, however, like to interact with their datasets programmtically. For these users, setting subtotals in R is much quicker and easier to replicate across different datasets and projects.
+Once there, you're just a few clicks, drags, and drops away from fancy new subtotals. Many of our users, however, like to interact with their datasets grammatically. For these users, setting subtotals in R is much quicker and easier to replicate across different datasets and projects.
 
 # Setting subtotals in R
 
 To begin, let's load the [crunch](http://crunch.io/r/crunch/) package along with some others we'll use in the data processing and load our dataset.
-
 ```{r login real, include=FALSE}
 library(crunch)
 login()
@@ -48,7 +47,6 @@ ds <- loadDataset("Stack Overflow Annual Developer Survey (2017)")
 ```
 
 With a bit of time travel from the previous photos, we are starting with a dataset that does not have any subtotals on the diversity variable that we were looking at, it's a bog-standard categorical. We can tell this by checking with the `subtotals()` function. If it returns `NULL`, there are no subtotals.
-
 ```{r no subtotals}
 subtotals(ds$DiversityImportant)
 ```
@@ -57,7 +55,7 @@ To add subtotals, we can save a list of `Subtotal` objects. Each `Subtotal` obje
 
 * `name` the label to identify the subtotal
 * `categoires` the categories to add subtotal (here you can use either category names or category ids)
-* `after` the cagtegory that the subtotal should follow (again, either category names or category ids)
+* `after` the category that the subtotal should follow (again, either category names or category ids)
 
 ```{r add some subtotals}
 subtotals(ds$DiversityImportant) <- list(
@@ -70,8 +68,7 @@ subtotals(ds$DiversityImportant) <- list(
 )
 ```
 
-Now, if we check `subtotals()`, we can see that we have saved them:
-
+Now, if we check `subtotals()`, we can see that we have saved them. In this output we see a few different aspects of subtotals: the `anchor` is the id of the category to put the subtotal after (matching the `after` argument in `Subtotal()`), name, function to aggregate with (here all of these are `subtotal`, but it will include others in the future; for headings it will be `NA`), and finally `args` are the category ids to include in the subtotal (matching the `categories` argument in `Subtotal()`).
 ```{r new subtotals}
 subtotals(ds$DiversityImportant)
 ```
@@ -82,7 +79,6 @@ And now, the subtotals are ready to be used in the app!
 {{< figure src="../images/heading-years-coded.png" class="floating-right" width="250px">}}
 
 Now that we have seen how to add subtotals, let's look at headings. Headings are similar to subtotals, they are additions to categorical variables that will be displayed in the app. Although they are not particularly useful for our diversity question, for a categorical with many categories, they can help group variables visually (without adding a subtotal). Here we add some guides to different years of experience coding.
-
 ```{r add some headings}
 subtotals(ds$YearsCodedJob) <- list(
     Heading(name = "Beginner",
@@ -102,7 +98,6 @@ subtotals(ds$YearsCodedJob)
 
 # Removing subtotals
 Removing headings and subtotals is as simple as setting the `subtotals()` to null:
-
 ```{r remove some headings}
 subtotals(ds$YearsCodedJob) <- NULL
 
@@ -112,7 +107,6 @@ subtotals(ds$YearsCodedJob)
 # Setting many subtotals 
 
 In the Stack Overflow survey, there are a number of questions that have the same response categories. If the category names (or ids, if we're using those) are the same, we can use the same set of subtotals across multiple variables.
-
 ```{r save some subtotals}
 agree_disagree_subtotals <- list(
     Subtotal(name = "Generally agree",
@@ -127,7 +121,10 @@ agree_disagree_subtotals <- list(
 subtotals(ds$BuildingThings) <- agree_disagree_subtotals
 subtotals(ds$LearningNewTech) <- agree_disagree_subtotals
 subtotals(ds$RightWrongWay) <- agree_disagree_subtotals
+```
 
+Notice here, because each of the categories for these variables has slightly different ids, the `args` in the output differs slightly. But, because we used category names when we were constructing our list of subtotals, when we store them on the variable itself Crunch does the right things and converts them over to the correct ids.
+```{r show some categories}
 subtotals(ds$BuildingThings)
 subtotals(ds$LearningNewTech)
 subtotals(ds$RightWrongWay)
@@ -136,14 +133,18 @@ subtotals(ds$RightWrongWay)
 # CrunchCubes and subtotals
 
 Now that we have set subtotals on the diversity question, if we use it in a CrunchCube we can see the subtotals. Currently this is limited to the row variable in the CrunchCube alone, but have plans to expand this in the future. 
-
 ```{r show subtotals}
 crtabs(~LearningNewTech + University, data = ds)
 ```
 
+We can even get just the subtotals as an array from the cube if we want to compute specific statistics about the subtotals ignoring the constituent groups:
+```{r show subtotals only}
+subtotalArray(crtabs(~LearningNewTech + University, data = ds))
+```
+
 # Summary
 
-We've already heard from enthusiastic users that headings and subtotals are helping ease their workflows, and their clients are excited to be able to see grouped subtotals in right on varaible cards in the app. And this is just the beginning, we are planning and working on adding other features for transforming how variables look in the app. Have a favorite aggregation you want to see? Have an intersting usecase or workflow using headings and subtotals? [Let us know!](mailto:support@crunch.io)
+We've already heard from enthusiastic users that headings and subtotals are helping ease their workflows, and their clients are excited to be able to see grouped subtotals in right on variable cards in the app. And this is just the beginning, we are planning and working on adding other features for transforming how variables look in the app. Have a favorite aggregation you want to see? Have an interesting use-case or workflow using headings and subtotals? [Let us know!](mailto:support@crunch.io)
 
 ```{r cleanup, include=FALSE}
 with_consent(delete(ds))
