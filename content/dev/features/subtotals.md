@@ -214,6 +214,6 @@ subtotalArray(crtabs(~LearningNewTech + University, data = ds))
 
 # Summary
 
-We've already heard from enthusiastic users that headings and subtotals are helping ease their workflows, and their clients are excited to be able to see grouped subtotals in right on variable cards in the app. And this is just the beginning, we are planning and working on adding other features for transforming how variables look in the app. Have a favorite aggregation you want to see? Have an interesting use-case or workflow using headings and subtotals? [Let us know!](mailto:support@crunch.io)
+We've already heard from enthusiastic users that headings and subtotals are helping ease their workflows, and their clients are excited to be able to see grouped subtotals right on variable cards in the app. And this is just the beginning, we are planning and working on adding other features for transforming how variables look in the app. Have a favorite aggregation you want to see? Have an interesting use-case or workflow using headings and subtotals? [Let us know!](mailto:support@crunch.io)
 
 
