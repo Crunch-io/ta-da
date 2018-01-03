@@ -33,14 +33,26 @@ Example config.yaml file:
             verify: false
 """
 from __future__ import print_function
+from collections import defaultdict
 import json
 import sys
 import time
 
 import docopt
 import yaml
+import six
 
 from .crunch_util import connect_pycrunch
+
+
+def make_cats_key(categories_list, remove_ids=True):
+    if remove_ids:
+        categories_list = [d.copy() for d in categories_list]
+        for d in categories_list:
+            d.pop('id', None)
+    return tuple(
+        json.dumps(d, sort_keys=True)
+        for d in categories_list)
 
 
 class MetadataModel(object):
@@ -102,23 +114,88 @@ class MetadataModel(object):
         """Save downloaded metadata to JSON file"""
         if self.verbose:
             print("Saving metadata to:", filename)
-        with open(filename, 'w') as f:
+        with open(filename, 'wb') as f:
             json.dump(self._meta, f, indent=2, sort_keys=True)
             f.write('\n')
 
+    def load(self, filename):
+        """Load downloaded metadata from JSON file"""
+        if self.verbose:
+            print("Loading metadata from:", filename)
+        with open(filename, 'rb') as f:
+            self._meta = json.load(f)
 
-def do_get_metadata(args):
+    def report(self):
+        # general info
+        meta = self._meta
+        print("Dataset ID:", meta['id'])
+        print("name:", meta['name'])
+        print("description:", meta['description'])
+        print("size:")
+        print("  columns:", meta['size']['columns'])
+        print("  rows:", meta['size']['rows'])
+        print("  unfiltered_rows:", meta['size']['rows'])
+        # variable info
+        table = meta['table']
+        var_type_count_map = defaultdict(int)
+        num_vars_with_categories = 0
+        unique_cats_lists_without_ids = set()
+        unique_cats_lists_with_ids = set()
+        tot_categories = 0
+        min_categories = None
+        max_categories = None
+        for var_id, var_def in six.iteritems(table):
+            var_type = var_def['type']
+            var_type_count_map[var_type] += 1
+            if 'categories' in var_def:
+                num_vars_with_categories += 1
+                categories_list = var_def['categories']
+                unique_cats_lists_without_ids.add(
+                    make_cats_key(categories_list, remove_ids=True))
+                unique_cats_lists_with_ids.add(
+                    make_cats_key(categories_list, remove_ids=False))
+                num_categories = len(categories_list)
+                tot_categories += num_categories
+                if min_categories is None or num_categories < min_categories:
+                    min_categories = num_categories
+                if max_categories is None or num_categories > max_categories:
+                    max_categories = num_categories
+        print("variables:")
+        print("  num. variables:", len(table))
+        print("  variables by type:")
+        for var_type in sorted(var_type_count_map):
+            print("    {}: {}".format(var_type, var_type_count_map[var_type]))
+        print("  num. variables with categories:", num_vars_with_categories)
+        print("  total categories:", tot_categories)
+        print("  min. categories per variable:", min_categories)
+        if num_vars_with_categories > 0:
+            print("  ave. categories per variable:", float(tot_categories) /
+                  num_vars_with_categories)
+        print("  max. categories per variable:", max_categories)
+        print("  num. unique category lists:")
+        print("    with ids:", len(unique_cats_lists_with_ids))
+        print("    without ids:", len(unique_cats_lists_without_ids))
+
+
+def do_get(args):
     ds_id = args['<ds-id>']
     filename = args['<filename>']
     with open(args['-c']) as f:
         config = yaml.safe_load(f)[args['-p']]
     site = connect_pycrunch(config['connection'], verbose=args['-v'])
-    if args['-i']:
-        import IPython
-        IPython.embed()
     meta = MetadataModel(verbose=args['-v'])
     meta.get(site, ds_id)
     meta.save(filename)
+    if args['-i']:
+        import IPython
+        IPython.embed()
+
+
+def do_info(args):
+    filename = args['<filename>']
+    meta = MetadataModel(verbose=args['-v'])
+    meta.load(filename)
+    meta.report()
 
 
 def main():
@@ -126,7 +203,9 @@ def main():
     t0 = time.time()
     try:
         if args['get']:
-            result = do_get_metadata(args)
+            return do_get(args)
+        elif args['info']:
+            return do_info(args)
         else:
             raise NotImplementedError(
                 "Sorry, that command is not yet implemented.")
