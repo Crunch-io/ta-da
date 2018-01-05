@@ -181,6 +181,10 @@ class MetadataModel(object):
         tot_categories = 0
         min_categories = None
         max_categories = None
+        num_vars_with_subvars = 0
+        tot_subvars = 0
+        min_subvars = None
+        max_subvars = None
         for var_id, var_def in six.iteritems(table):
             var_type = var_def['type']
             var_type_count_map[var_type] += 1
@@ -197,6 +201,14 @@ class MetadataModel(object):
                     min_categories = num_categories
                 if max_categories is None or num_categories > max_categories:
                     max_categories = num_categories
+            if 'subreferences' in var_def:
+                num_vars_with_subvars += 1
+                num_subvars = len(var_def['subreferences'])
+                tot_subvars += num_subvars
+                if min_subvars is None or num_subvars < min_subvars:
+                    min_subvars = num_subvars
+                if max_subvars is None or num_subvars > max_subvars:
+                    max_subvars = num_subvars
         print("variables:")
         print("  num. variables:", len(table))
         print("  variables by type:")
@@ -212,6 +224,15 @@ class MetadataModel(object):
         print("  num. unique category lists:")
         print("    with ids:", len(unique_cats_lists_with_ids))
         print("    without ids:", len(unique_cats_lists_without_ids))
+        print("  subvariables:")
+        print("    num. variables with subvariables (multiple response):",
+              num_vars_with_subvars)
+        print("    tot. subvariables:", tot_subvars)
+        print("    min. subvariables per variable:", min_subvars)
+        if num_vars_with_subvars > 0:
+            print("    ave. subvariables per variable:",
+                  float(tot_subvars) / num_vars_with_subvars)
+        print("    max. subvariables per variable:", max_subvars)
 
     def anonymize(self):
         meta = self._meta
