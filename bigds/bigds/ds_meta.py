@@ -241,6 +241,20 @@ class MetadataModel(object):
             })
             if self.verbose:
                 print()
+        # Set the list of weight variables
+        var_index = self._meta['variables']['index']
+        weight_urls = []
+        ds.variables.refresh()
+        for orig_weight_url in self._meta['variables']['weights']:
+            var_alias = var_index[orig_weight_url]['alias']
+            var_id = ds.variables.by('alias')[var_alias]['id']
+            weight_urls.append(
+                "{}{}/".format(ds.variables.self, var_id))
+        if self.verbose:
+            print("Setting {} weight variable(s)".format(len(weight_urls)))
+        ds.variables.weights.patch({
+            'graph': weight_urls,
+        })
 
     @staticmethod
     def _open_json(filename, mode):
@@ -425,3 +439,7 @@ def main():
                 "Sorry, that command is not yet implemented.")
     finally:
         print("Elapsed time:", time.time() - t0, "seconds", file=sys.stderr)
+
+
+if __name__ == '__main__':
+    sys.exit(main())
