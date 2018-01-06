@@ -37,9 +37,11 @@ Example config.yaml file:
 """
 from __future__ import print_function
 from collections import defaultdict, OrderedDict
+import copy
 import io
 import json
 import random
+import re
 import string
 import sys
 import time
@@ -168,6 +170,11 @@ class MetadataModel(object):
             response = site.session.get(missing_rules_url)
             missing_rules = response.payload['body']['rules']
             self._meta['table'][var_id]['missing_rules'] = missing_rules
+        # Get hierarchical order
+        if self.verbose:
+            print("Getting hierarchical order")
+        hier = ds.variables.hier['graph']
+        variables['hier'] = hier
         # That's all
         if self.verbose:
             print("Done.")
@@ -234,11 +241,21 @@ class MetadataModel(object):
         def _translate_var_url(orig_var_url):
             if orig_var_url is None:
                 return None
-            var_index = self._meta['variables']['index']
-            var_alias = var_index[orig_var_url]['alias']
-            var_id = ds.variables.by('alias')[var_alias]['id']
-            var_url = "{}{}/".format(ds.variables.self, var_id)
-            return var_url
+            m = re.match(r'\.\./([^/]+)/$', orig_var_url)
+            if m:
+                # Handle relative URL like "../<var-id>/"
+                orig_var_id = m.group(1)
+                var_def = self._meta['table'][orig_var_id]
+                var_alias = var_def['alias']
+                var_id = ds.variables.by('alias')[var_alias]['id']
+                return "../{}/".format(var_id)
+            else:
+                # Handle absolute URL
+                var_index = self._meta['variables']['index']
+                var_alias = var_index[orig_var_url]['alias']
+                var_id = ds.variables.by('alias')[var_alias]['id']
+                var_url = "{}{}/".format(ds.variables.self, var_id)
+                return var_url
 
         # Second pass: Create all the variables with longer IDs
         if self.verbose:
@@ -281,6 +298,24 @@ class MetadataModel(object):
         preferences = self._meta['preferences'].copy()
         preferences['weight'] = _translate_var_url(preferences['weight'])
         ds.preferences.patch(preferences)
+        # Set hierarchical order
+        if self.verbose:
+            print("Setting hierarchical order")
+        hier = copy.deepcopy(self._meta['variables']['hier'])
+
+        def _fix_hier(hier_list):
+            for i in six.moves.range(len(hier_list)):
+                node = hier_list[i]
+                if isinstance(node, six.string_types):
+                    hier_list[i] = _translate_var_url(node)
+                elif isinstance(node, dict):
+                    for _, sub_list in six.iteritems(node):
+                        _fix_hier(sub_list)
+
+        _fix_hier(hier)
+        ds.variables.hier.put({
+            'graph': hier,
+        })
 
     @staticmethod
     def _open_json(filename, mode):
