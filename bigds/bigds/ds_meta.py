@@ -36,7 +36,7 @@ Example config.yaml file:
             verify: false
 """
 from __future__ import print_function
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 import io
 import json
 import random
@@ -48,7 +48,7 @@ import docopt
 import yaml
 import six
 
-from .crunch_util import connect_pycrunch
+from .crunch_util import connect_pycrunch, create_dataset_from_csv
 
 
 def make_cats_key(categories_list, remove_ids=True):
@@ -91,6 +91,19 @@ class MetadataModel(object):
         self.verbose = verbose
         self._meta = {}
 
+    @staticmethod
+    def _var_has_non_default_missing_reasons(var_def):
+        """
+        Return true iff the variable definition has one or more missing reasons
+        other than the default system one.
+        """
+        missing_reasons = var_def.get('missing_reasons')
+        if not missing_reasons:
+            return False
+        if len(missing_reasons) == 1 and missing_reasons == {'No Data': -1}:
+            return False
+        return True
+
     def get(self, site, ds_id):
         """
         Download dataset metadata into an internal data structure
@@ -98,7 +111,7 @@ class MetadataModel(object):
         ds_id: Dataset ID
         """
         if self.verbose:
-            print("Downloading metadata for dataset", ds_id, end='')
+            print("Downloading metadata for dataset", ds_id)
         self._meta.clear()
         self._meta['id'] = ds_id
         ds_url = "{}{}/".format(site.datasets['self'], ds_id)
@@ -109,36 +122,125 @@ class MetadataModel(object):
         self._meta['size'] = ds_info['body']['size']
         # Get variables
         if self.verbose:
-            print(".", end='')
-        variables_url = "{}/variables/".format(ds_url)
+            print("Fetching variables")
+        variables_url = "{}variables/".format(ds_url)
         response = site.session.get(variables_url)
         variables_info = response.payload
         self._meta['variables'] = variables = {}
         variables['index'] = variables_info['index']
         # Get weights
         if self.verbose:
-            print(".", end='')
-        weights_url = "{}/variables/weights/".format(ds_url)
+            print("Fetching weights")
+        weights_url = "{}variables/weights/".format(ds_url)
         response = site.session.get(weights_url)
         weights_info = response.payload
         variables['weights'] = weights_info['graph']
         # Get settings
         if self.verbose:
-            print(".", end='')
-        settings_url = "{}/settings/".format(ds_url)
+            print("Fetching settings")
+        settings_url = "{}settings/".format(ds_url)
         response = site.session.get(settings_url)
         settings_info = response.payload
         self._meta['settings'] = settings_info['body']
         # Get "table" of variable definitions
         if self.verbose:
-            print(".", end='')
-        table_url = "{}/table/".format(ds_url)
+            print("Fetching metadata table")
+        table_url = "{}table/".format(ds_url)
         response = site.session.get(table_url)
         table_info = response.payload
         self._meta['table'] = table_info['metadata']
+        # Get missing_rules for variables with non-default missing_reason
+        # codes.
+        var_ids_needing_missing_rules = []
+        for var_id, var_def in six.iteritems(self._meta['table']):
+            if self._var_has_non_default_missing_reasons(var_def):
+                var_ids_needing_missing_rules.append(var_id)
+        if self.verbose:
+            print("Fetching missing_rules for {} variables"
+                  .format(len(var_ids_needing_missing_rules)))
+        for var_id in var_ids_needing_missing_rules:
+            missing_rules_url = ("{}variables/{}/missing_rules/"
+                                 .format(ds_url, var_id))
+            response = site.session.get(missing_rules_url)
+            missing_rules = response.payload['body']['rules']
+            self._meta['table'][var_id]['missing_rules'] = missing_rules
         # That's all
         if self.verbose:
             print("Done.")
+
+    @staticmethod
+    def _convert_var_def(var_def):
+        """
+        Convert a variable definition from the format returned by GET into the
+        format expected by POST.
+
+        For variables of type multiple_response:
+
+            The GET format includes a 'subreferences' key containing a map of
+            subvariable ID to subvariable definition, and a 'subvariables' key
+            containing a list of subvariable IDs.
+
+            The POST format instead just has a key named 'subvariables'
+            containing a list of subvariable definitions.
+        """
+        new_var_def = var_def.copy()
+        if 'subreferences' in new_var_def and 'subvariables' in new_var_def:
+            del new_var_def['subreferences']
+            new_var_def['subvariables'] = subvariables = []
+            for subvar_id in var_def['subvariables']:
+                subvariables.append(var_def['subreferences'][subvar_id].copy())
+        return new_var_def
+
+    def post(self, site):
+        if not self._meta:
+            raise RuntimeException("Must load metadata before POSTing dataset")
+        new_meta = {
+            "element": "shoji:entity",
+            "body": {
+                "name": self._meta['name'],
+                "description": self._meta['description'],
+                "table": {
+                    "element": "crunch:table",
+                    "metadata": OrderedDict(),
+                    "order": [],
+                },
+                "weight_variables": [],
+            },
+        }
+        table = self._meta['table']
+        new_table = new_meta['body']['table']['metadata']
+        var_ids_to_create = set(table)
+        # First pass: Create all the variables with IDs like "000000"
+        # in the same request used to create the dataset.
+        for i in six.moves.range(100000):
+            var_id = str(i).zfill(6)
+            if var_id in var_ids_to_create:
+                var_ids_to_create.remove(var_id)
+            else:
+                continue
+            var_def = table[var_id]
+            new_table[var_def['alias']] = self._convert_var_def(var_def)
+        if self.verbose:
+            print("Creating dataset with its {} original variables"
+                  .format(len(new_table)))
+        ds = create_dataset_from_csv(site, new_meta, None,
+                                     verbose=self.verbose)
+        print("New dataset ID:", ds.body.id)
+        # Second pass: Create all the variables with longer IDs
+        if self.verbose:
+            print("Adding {} more variables to dataset"
+                  .format(len(var_ids_to_create)))
+        for i, var_id in enumerate(sorted(var_ids_to_create), 1):
+            if self.verbose:
+                print("\rCreating variable {:04d} of {:04d}"
+                      .format(i, len(var_ids_to_create)),
+                      end='')
+            var_def = self._convert_var_def(self._meta['table'][var_id])
+            ds.variables.create({
+                'body': var_def,
+            })
+            if self.verbose:
+                print()
 
     @staticmethod
     def _open_json(filename, mode):
@@ -294,6 +396,16 @@ def do_loadsave(args):
     meta.save(args['<output-filename>'])
 
 
+def do_post(args):
+    filename = args['<filename>']
+    with io.open(args['-c'], 'r', encoding='UTF-8') as f:
+        config = yaml.safe_load(f)[args['-p']]
+    site = connect_pycrunch(config['connection'], verbose=args['-v'])
+    meta = MetadataModel(verbose=args['-v'])
+    meta.load(filename)
+    meta.post(site)
+
+
 def main():
     args = docopt.docopt(__doc__)
     t0 = time.time()
@@ -304,6 +416,8 @@ def main():
             return do_info(args)
         elif args['anonymize']:
             return do_anonymize(args)
+        elif args['post']:
+            return do_post(args)
         elif args['loadsave']:
             return do_loadsave(args)
         else:

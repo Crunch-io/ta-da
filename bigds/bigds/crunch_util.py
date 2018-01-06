@@ -69,9 +69,9 @@ def create_dataset_from_csv(site, metadata, fileobj_or_url, timeout_sec=300.0,
         data greater than 100MB, pass None and then follow up with a call to
         append_csv_file_to_dataset().
     See:
-        http://docs.crunch.io/?http#1-create-a-dataset-entity-with-variable-definitions
-        http://docs.crunch.io/examples/dataset.json
-        http://docs.crunch.io/examples/dataset.csv
+        http://docs.crunch.io/feature-guide/feature-importing.html#example
+        http://docs.crunch.io/_static/examples/dataset.json
+        http://docs.crunch.io/_static/examples/dataset.csv
     Poll the progress URL to make sure the upload is complete.
     Return the dataset entity
     """
