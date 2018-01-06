@@ -116,10 +116,10 @@ class MetadataModel(object):
         self._meta['id'] = ds_id
         ds_url = "{}{}/".format(site.datasets['self'], ds_id)
         response = site.session.get(ds_url)
-        ds_info = response.payload
-        self._meta['name'] = ds_info['body']['name']
-        self._meta['description'] = ds_info['body']['description']
-        self._meta['size'] = ds_info['body']['size']
+        ds = response.payload
+        self._meta['name'] = ds['body']['name']
+        self._meta['description'] = ds['body']['description']
+        self._meta['size'] = ds['body']['size']
         # Get variables
         if self.verbose:
             print("Fetching variables")
@@ -142,6 +142,10 @@ class MetadataModel(object):
         response = site.session.get(settings_url)
         settings_info = response.payload
         self._meta['settings'] = settings_info['body']
+        # Get preferences
+        if self.verbose:
+            print("Fetching preferences")
+        self._meta['preferences'] = ds.preferences['body']
         # Get "table" of variable definitions
         if self.verbose:
             print("Fetching metadata table")
@@ -226,6 +230,16 @@ class MetadataModel(object):
         ds = create_dataset_from_csv(site, new_meta, None,
                                      verbose=self.verbose)
         print("New dataset ID:", ds.body.id)
+
+        def _translate_var_url(orig_var_url):
+            if orig_var_url is None:
+                return None
+            var_index = self._meta['variables']['index']
+            var_alias = var_index[orig_var_url]['alias']
+            var_id = ds.variables.by('alias')[var_alias]['id']
+            var_url = "{}{}/".format(ds.variables.self, var_id)
+            return var_url
+
         # Second pass: Create all the variables with longer IDs
         if self.verbose:
             print("Adding {} more variables to dataset"
@@ -242,19 +256,31 @@ class MetadataModel(object):
             if self.verbose:
                 print()
         # Set the list of weight variables
-        var_index = self._meta['variables']['index']
         weight_urls = []
         ds.variables.refresh()
         for orig_weight_url in self._meta['variables']['weights']:
-            var_alias = var_index[orig_weight_url]['alias']
-            var_id = ds.variables.by('alias')[var_alias]['id']
-            weight_urls.append(
-                "{}{}/".format(ds.variables.self, var_id))
+            weight_urls.append(_translate_var_url(orig_weight_url))
         if self.verbose:
             print("Setting {} weight variable(s)".format(len(weight_urls)))
         ds.variables.weights.patch({
             'graph': weight_urls,
         })
+        # Set settings
+        if self.verbose:
+            print("Setting settings")
+        settings = self._meta['settings'].copy()
+        settings['weight'] = _translate_var_url(settings['weight'])
+        if settings['dashboard_deck']:
+            print("WARNING: dashboard_deck is set to '{}'"
+                  " which is probably not valid for this dataset."
+                  .format(settings['dashboard_deck']), file=sys.stderr)
+        ds.settings.patch(settings)
+        # Set preferences
+        if self.verbose:
+            print("Setting preferences")
+        preferences = self._meta['preferences'].copy()
+        preferences['weight'] = _translate_var_url(preferences['weight'])
+        ds.preferences.patch(preferences)
 
     @staticmethod
     def _open_json(filename, mode):
