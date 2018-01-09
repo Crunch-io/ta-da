@@ -13,6 +13,7 @@ Options:
     -p PROFILE_NAME         Profile section in config [default: local]
     -i                      Run interactive prompt after executing command
     -v                      Print verbose messages
+    --name=NAME             Override dataset name in JSON file (post command)
 
 Commands:
     get
@@ -36,10 +37,12 @@ Example config.yaml file:
             verify: false
 """
 from __future__ import print_function
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
+import copy
 import io
 import json
 import random
+import re
 import string
 import sys
 import time
@@ -48,7 +51,7 @@ import docopt
 import yaml
 import six
 
-from .crunch_util import connect_pycrunch
+from .crunch_util import connect_pycrunch, create_dataset_from_csv
 
 
 def make_cats_key(categories_list, remove_ids=True):
@@ -91,6 +94,19 @@ class MetadataModel(object):
         self.verbose = verbose
         self._meta = {}
 
+    @staticmethod
+    def _var_has_non_default_missing_reasons(var_def):
+        """
+        Return true iff the variable definition has one or more missing reasons
+        other than the default system one.
+        """
+        missing_reasons = var_def.get('missing_reasons')
+        if not missing_reasons:
+            return False
+        if len(missing_reasons) == 1 and missing_reasons == {'No Data': -1}:
+            return False
+        return True
+
     def get(self, site, ds_id):
         """
         Download dataset metadata into an internal data structure
@@ -98,47 +114,212 @@ class MetadataModel(object):
         ds_id: Dataset ID
         """
         if self.verbose:
-            print("Downloading metadata for dataset", ds_id, end='')
+            print("Downloading metadata for dataset", ds_id)
         self._meta.clear()
         self._meta['id'] = ds_id
         ds_url = "{}{}/".format(site.datasets['self'], ds_id)
         response = site.session.get(ds_url)
-        ds_info = response.payload
-        self._meta['name'] = ds_info['body']['name']
-        self._meta['description'] = ds_info['body']['description']
-        self._meta['size'] = ds_info['body']['size']
+        ds = response.payload
+        self._meta['name'] = ds['body']['name']
+        self._meta['description'] = ds['body']['description']
+        self._meta['size'] = ds['body']['size']
         # Get variables
         if self.verbose:
-            print(".", end='')
-        variables_url = "{}/variables/".format(ds_url)
+            print("Fetching variables")
+        variables_url = "{}variables/".format(ds_url)
         response = site.session.get(variables_url)
         variables_info = response.payload
         self._meta['variables'] = variables = {}
         variables['index'] = variables_info['index']
         # Get weights
         if self.verbose:
-            print(".", end='')
-        weights_url = "{}/variables/weights/".format(ds_url)
+            print("Fetching weights")
+        weights_url = "{}variables/weights/".format(ds_url)
         response = site.session.get(weights_url)
         weights_info = response.payload
         variables['weights'] = weights_info['graph']
         # Get settings
         if self.verbose:
-            print(".", end='')
-        settings_url = "{}/settings/".format(ds_url)
+            print("Fetching settings")
+        settings_url = "{}settings/".format(ds_url)
         response = site.session.get(settings_url)
         settings_info = response.payload
         self._meta['settings'] = settings_info['body']
+        # Get preferences
+        if self.verbose:
+            print("Fetching preferences")
+        self._meta['preferences'] = ds.preferences['body']
         # Get "table" of variable definitions
         if self.verbose:
-            print(".", end='')
-        table_url = "{}/table/".format(ds_url)
+            print("Fetching metadata table")
+        table_url = "{}table/".format(ds_url)
         response = site.session.get(table_url)
         table_info = response.payload
         self._meta['table'] = table_info['metadata']
+        # Get missing_rules for variables with non-default missing_reason
+        # codes.
+        var_ids_needing_missing_rules = []
+        for var_id, var_def in six.iteritems(self._meta['table']):
+            if self._var_has_non_default_missing_reasons(var_def):
+                var_ids_needing_missing_rules.append(var_id)
+        if self.verbose:
+            print("Fetching missing_rules for {} variables"
+                  .format(len(var_ids_needing_missing_rules)))
+        for var_id in var_ids_needing_missing_rules:
+            missing_rules_url = ("{}variables/{}/missing_rules/"
+                                 .format(ds_url, var_id))
+            response = site.session.get(missing_rules_url)
+            missing_rules = response.payload['body']['rules']
+            self._meta['table'][var_id]['missing_rules'] = missing_rules
+        # Get hierarchical order
+        if self.verbose:
+            print("Getting hierarchical order")
+        hier = ds.variables.hier['graph']
+        variables['hier'] = hier
         # That's all
         if self.verbose:
             print("Done.")
+
+    @staticmethod
+    def _convert_var_def(var_def):
+        """
+        Convert a variable definition from the format returned by GET into the
+        format expected by POST.
+
+        For variables of type multiple_response:
+
+            The GET format includes a 'subreferences' key containing a map of
+            subvariable ID to subvariable definition, and a 'subvariables' key
+            containing a list of subvariable IDs.
+
+            The POST format instead just has a key named 'subvariables'
+            containing a list of subvariable definitions.
+        """
+        new_var_def = var_def.copy()
+        if 'subreferences' in new_var_def and 'subvariables' in new_var_def:
+            del new_var_def['subreferences']
+            new_var_def['subvariables'] = subvariables = []
+            for subvar_id in var_def['subvariables']:
+                subvariables.append(var_def['subreferences'][subvar_id].copy())
+        return new_var_def
+
+    def post(self, site, name=None):
+        if not self._meta:
+            raise RuntimeException("Must load metadata before POSTing dataset")
+        if not name:
+            name = self._meta['name']
+        new_meta = {
+            "element": "shoji:entity",
+            "body": {
+                "name": name,
+                "description": self._meta['description'],
+                "table": {
+                    "element": "crunch:table",
+                    "metadata": OrderedDict(),
+                    "order": [],
+                },
+                "weight_variables": [],
+            },
+        }
+        table = self._meta['table']
+        new_table = new_meta['body']['table']['metadata']
+        var_ids_to_create = set(table)
+        # First pass: Create all the variables with IDs like "000000"
+        # in the same request used to create the dataset.
+        for i in six.moves.range(100000):
+            var_id = str(i).zfill(6)
+            if var_id in var_ids_to_create:
+                var_ids_to_create.remove(var_id)
+            else:
+                continue
+            var_def = table[var_id]
+            new_table[var_def['alias']] = self._convert_var_def(var_def)
+        if self.verbose:
+            print("Creating dataset with its {} original variables"
+                  .format(len(new_table)))
+        ds = create_dataset_from_csv(site, new_meta, None,
+                                     verbose=self.verbose,
+                                     gzip_metadata=True)
+        print("New dataset ID:", ds.body.id)
+
+        def _translate_var_url(orig_var_url):
+            if orig_var_url is None:
+                return None
+            m = re.match(r'\.\./([^/]+)/$', orig_var_url)
+            if m:
+                # Handle relative URL like "../<var-id>/"
+                orig_var_id = m.group(1)
+                var_def = self._meta['table'][orig_var_id]
+                var_alias = var_def['alias']
+                var_id = ds.variables.by('alias')[var_alias]['id']
+                return "../{}/".format(var_id)
+            else:
+                # Handle absolute URL
+                var_index = self._meta['variables']['index']
+                var_alias = var_index[orig_var_url]['alias']
+                var_id = ds.variables.by('alias')[var_alias]['id']
+                var_url = "{}{}/".format(ds.variables.self, var_id)
+                return var_url
+
+        # Second pass: Create all the variables with longer IDs
+        if self.verbose:
+            print("Adding {} more variables to dataset"
+                  .format(len(var_ids_to_create)))
+        for i, var_id in enumerate(sorted(var_ids_to_create), 1):
+            if self.verbose:
+                print("\rCreating variable {:04d} of {:04d}"
+                      .format(i, len(var_ids_to_create)),
+                      end='')
+            var_def = self._convert_var_def(self._meta['table'][var_id])
+            ds.variables.create({
+                'body': var_def,
+            })
+            if self.verbose:
+                print()
+        # Set the list of weight variables
+        weight_urls = []
+        ds.variables.refresh()
+        for orig_weight_url in self._meta['variables']['weights']:
+            weight_urls.append(_translate_var_url(orig_weight_url))
+        if self.verbose:
+            print("Setting {} weight variable(s)".format(len(weight_urls)))
+        ds.variables.weights.patch({
+            'graph': weight_urls,
+        })
+        # Set settings
+        if self.verbose:
+            print("Setting settings")
+        settings = self._meta['settings'].copy()
+        settings['weight'] = _translate_var_url(settings['weight'])
+        if settings['dashboard_deck']:
+            print("WARNING: dashboard_deck is set to '{}'"
+                  " which is probably not valid for this dataset."
+                  .format(settings['dashboard_deck']), file=sys.stderr)
+        ds.settings.patch(settings)
+        # Set preferences
+        if self.verbose:
+            print("Setting preferences")
+        preferences = self._meta['preferences'].copy()
+        preferences['weight'] = _translate_var_url(preferences['weight'])
+        ds.preferences.patch(preferences)
+        # Set hierarchical order
+        if self.verbose:
+            print("Setting hierarchical order")
+        hier = copy.deepcopy(self._meta['variables']['hier'])
+
+        def _fix_hier(hier_list):
+            for i in six.moves.range(len(hier_list)):
+                node = hier_list[i]
+                if isinstance(node, six.string_types):
+                    hier_list[i] = _translate_var_url(node)
+                elif isinstance(node, dict):
+                    for _, sub_list in six.iteritems(node):
+                        _fix_hier(sub_list)
+
+        _fix_hier(hier)
+        ds.variables.hier.put({
+            'graph': hier,
+        })
 
     @staticmethod
     def _open_json(filename, mode):
@@ -181,6 +362,10 @@ class MetadataModel(object):
         tot_categories = 0
         min_categories = None
         max_categories = None
+        num_vars_with_subvars = 0
+        tot_subvars = 0
+        min_subvars = None
+        max_subvars = None
         for var_id, var_def in six.iteritems(table):
             var_type = var_def['type']
             var_type_count_map[var_type] += 1
@@ -197,6 +382,14 @@ class MetadataModel(object):
                     min_categories = num_categories
                 if max_categories is None or num_categories > max_categories:
                     max_categories = num_categories
+            if 'subreferences' in var_def:
+                num_vars_with_subvars += 1
+                num_subvars = len(var_def['subreferences'])
+                tot_subvars += num_subvars
+                if min_subvars is None or num_subvars < min_subvars:
+                    min_subvars = num_subvars
+                if max_subvars is None or num_subvars > max_subvars:
+                    max_subvars = num_subvars
         print("variables:")
         print("  num. variables:", len(table))
         print("  variables by type:")
@@ -212,6 +405,15 @@ class MetadataModel(object):
         print("  num. unique category lists:")
         print("    with ids:", len(unique_cats_lists_with_ids))
         print("    without ids:", len(unique_cats_lists_without_ids))
+        print("  subvariables:")
+        print("    num. variables with subvariables (multiple response):",
+              num_vars_with_subvars)
+        print("    tot. subvariables:", tot_subvars)
+        print("    min. subvariables per variable:", min_subvars)
+        if num_vars_with_subvars > 0:
+            print("    ave. subvariables per variable:",
+                  float(tot_subvars) / num_vars_with_subvars)
+        print("    max. subvariables per variable:", max_subvars)
 
     def anonymize(self):
         meta = self._meta
@@ -273,6 +475,16 @@ def do_loadsave(args):
     meta.save(args['<output-filename>'])
 
 
+def do_post(args):
+    filename = args['<filename>']
+    with io.open(args['-c'], 'r', encoding='UTF-8') as f:
+        config = yaml.safe_load(f)[args['-p']]
+    site = connect_pycrunch(config['connection'], verbose=args['-v'])
+    meta = MetadataModel(verbose=args['-v'])
+    meta.load(filename)
+    meta.post(site, name=args['--name'])
+
+
 def main():
     args = docopt.docopt(__doc__)
     t0 = time.time()
@@ -283,6 +495,8 @@ def main():
             return do_info(args)
         elif args['anonymize']:
             return do_anonymize(args)
+        elif args['post']:
+            return do_post(args)
         elif args['loadsave']:
             return do_loadsave(args)
         else:
@@ -290,3 +504,7 @@ def main():
                 "Sorry, that command is not yet implemented.")
     finally:
         print("Elapsed time:", time.time() - t0, "seconds", file=sys.stderr)
+
+
+if __name__ == '__main__':
+    sys.exit(main())
