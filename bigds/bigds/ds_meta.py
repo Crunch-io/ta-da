@@ -13,6 +13,7 @@ Options:
     -p PROFILE_NAME         Profile section in config [default: local]
     -i                      Run interactive prompt after executing command
     -v                      Print verbose messages
+    --name=NAME             Override dataset name in JSON file (post command)
 
 Commands:
     get
@@ -202,13 +203,15 @@ class MetadataModel(object):
                 subvariables.append(var_def['subreferences'][subvar_id].copy())
         return new_var_def
 
-    def post(self, site):
+    def post(self, site, name=None):
         if not self._meta:
             raise RuntimeException("Must load metadata before POSTing dataset")
+        if not name:
+            name = self._meta['name']
         new_meta = {
             "element": "shoji:entity",
             "body": {
-                "name": self._meta['name'],
+                "name": name,
                 "description": self._meta['description'],
                 "table": {
                     "element": "crunch:table",
@@ -235,7 +238,8 @@ class MetadataModel(object):
             print("Creating dataset with its {} original variables"
                   .format(len(new_table)))
         ds = create_dataset_from_csv(site, new_meta, None,
-                                     verbose=self.verbose)
+                                     verbose=self.verbose,
+                                     gzip_metadata=True)
         print("New dataset ID:", ds.body.id)
 
         def _translate_var_url(orig_var_url):
@@ -478,7 +482,7 @@ def do_post(args):
     site = connect_pycrunch(config['connection'], verbose=args['-v'])
     meta = MetadataModel(verbose=args['-v'])
     meta.load(filename)
-    meta.post(site)
+    meta.post(site, name=args['--name'])
 
 
 def main():

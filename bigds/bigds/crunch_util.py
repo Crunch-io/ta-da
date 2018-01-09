@@ -3,6 +3,9 @@ Common library for operations using the Crunch API
 """
 from __future__ import print_function
 import copy
+import gzip
+import io
+import json
 import time
 import warnings
 
@@ -55,7 +58,8 @@ def connect_pycrunch(connection_info, verbose=False):
 
 
 def create_dataset_from_csv(site, metadata, fileobj_or_url, timeout_sec=300.0,
-                            retry_delay=0.25, verbose=False, dataset_name=None):
+                            retry_delay=0.25, verbose=False, dataset_name=None,
+                            gzip_metadata=True):
     """
     site:
         pycrunch.shoji.Catalog object returned by connect_pycrunch()
@@ -68,6 +72,11 @@ def create_dataset_from_csv(site, metadata, fileobj_or_url, timeout_sec=300.0,
         (binary), containing CSV data compatible with the metadata. For CSV
         data greater than 100MB, pass None and then follow up with a call to
         append_csv_file_to_dataset().
+    dataset_name:
+        If not None, override dataset name in metadata. (Default is None.)
+    gzip_metadata:
+        If true, gzip the metadata in the JSON request body.
+        Default is True.
     See:
         http://docs.crunch.io/feature-guide/feature-importing.html#example
         http://docs.crunch.io/_static/examples/dataset.json
@@ -80,7 +89,24 @@ def create_dataset_from_csv(site, metadata, fileobj_or_url, timeout_sec=300.0,
     if dataset_name is not None:
         metadata = copy.deepcopy(metadata)
         metadata['body']['name'] = dataset_name
-    ds = site.datasets.create(metadata).refresh()
+    if gzip_metadata:
+        with io.BytesIO() as f:
+            with gzip.GzipFile(mode='w', fileobj=f) as g:
+                json.dump(metadata, g)
+            f.seek(0)
+            response = site.session.post(
+                site.datasets.self,
+                data=f,
+                headers={'Content-Type': 'application/json',
+                         'Content-Encoding': 'gzip'},
+            )
+        response.raise_for_status()
+        ds_url = response.headers['Location']
+        ds_id = ds_url.rstrip('/').rpartition('/')[-1]
+        ds = site.datasets.by('id')[ds_id]
+        ds = ds.fetch()
+    else:
+        ds = site.datasets.create(metadata).refresh()
     if fileobj_or_url is not None:
         if isinstance(fileobj_or_url, six.string_types):
             data_url = fileobj_or_url
