@@ -3,7 +3,7 @@ title: "Headings and subtotals are here"
 description: "A new way to view categorical variables."
 date: "2017-12-14T13:20:47-04:00"
 draft: false
-weight: 20
+weight: 20TZ
 tags: ["analysis", "cubes", "subtotals"]
 categories: ["feature"]
 output:
@@ -27,18 +27,7 @@ But how do we get there? First, and most importantly, we can create these subtot
 
 Once there, you're just a few clicks, drags, and drops away from fancy new subtotals. It's also possible to create subtotals and headings programmatically in R. 
 
-# Setting subtotals in R
 
-Let's repeat the whole process of creating subtotals from R. To begin, let's load the [crunch](http://crunch.io/r/crunch/) package and our dataset.
-```{r login real, include=FALSE}
-library(crunch)
-login()
-```
-```{r Load dataset real, include=FALSE}
-ds <- loadDataset("https://app.crunch.io/dataset/11d9c85800fc46f5aca3b89c8741f77e/")
-# fork so that we aren't over-writting our pristine dataset
-ds <- forkDataset(ds)
-```
 
 ```{r Load dataset fake, eval=FALSE}
 library(crunch)
