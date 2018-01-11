@@ -6,6 +6,7 @@ import copy
 import gzip
 import io
 import json
+import os
 import time
 import warnings
 
@@ -57,6 +58,22 @@ def connect_pycrunch(connection_info, verbose=False):
     return site
 
 
+if six.PY2:
+    def _StrToBytesFileAdapter(f):
+        return f
+else:
+    class _StrToBytesFileAdapter(object):
+
+        def __init__(self, f):
+            self.f = f
+
+        def write(self, s):
+            self.f.write(s.encode('utf-8'))
+
+        def close(self):
+            self.f.close()
+
+
 def create_dataset_from_csv(site, metadata, fileobj_or_url, timeout_sec=300.0,
                             retry_delay=0.25, verbose=False, dataset_name=None,
                             gzip_metadata=True):
@@ -91,8 +108,9 @@ def create_dataset_from_csv(site, metadata, fileobj_or_url, timeout_sec=300.0,
         metadata['body']['name'] = dataset_name
     if gzip_metadata:
         with io.BytesIO() as f:
-            with gzip.GzipFile(mode='w', fileobj=f) as g:
-                json.dump(metadata, g)
+            g = _StrToBytesFileAdapter(gzip.GzipFile(mode='w', fileobj=f))
+            json.dump(metadata, g)
+            g.close()
             f.seek(0)
             response = site.session.post(
                 site.datasets.self,

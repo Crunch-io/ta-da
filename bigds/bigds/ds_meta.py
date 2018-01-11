@@ -6,6 +6,8 @@ Usage:
     ds.meta info [options] <filename>
     ds.meta anonymize [options] <filename> <output-filename>
     ds.meta post [options] <filename>
+    ds.meta addvar [options] <ds-id> <filename>
+    ds.meta folderize [options] <ds-id> <filename>
     ds.meta loadsave [options] <filename> <output-filename>
 
 Options:
@@ -13,7 +15,8 @@ Options:
     -p PROFILE_NAME         Profile section in config [default: local]
     -i                      Run interactive prompt after executing command
     -v                      Print verbose messages
-    --name=NAME             Override dataset name in JSON file (post command)
+    --name=NAME             Override name in JSON file (post, addvar)
+    --alias=ALIAS           Override alias in JSON file (addvar)
 
 Commands:
     get
@@ -25,6 +28,11 @@ Commands:
         the same length.
     post
         Create an empty dataset with metadata from JSON file
+    addvar
+        Create a variable with metadata from JSON file
+    folderize
+        Organize the variables in dataset <ds-id> into folders according to
+        the structure in the JSON metadata file.
     loadsave
         Just load the JSON file and save it again, for testing
 
@@ -181,7 +189,7 @@ class MetadataModel(object):
             print("Done.")
 
     @staticmethod
-    def _convert_var_def(var_def):
+    def convert_var_def(var_def):
         """
         Convert a variable definition from the format returned by GET into the
         format expected by POST.
@@ -202,6 +210,42 @@ class MetadataModel(object):
             for subvar_id in var_def['subvariables']:
                 subvariables.append(var_def['subreferences'][subvar_id].copy())
         return new_var_def
+
+    def _translate_var_id(self, variables_by_alias, orig_var_id):
+        """
+        variables_by_alias: ds.variables.by('alias')
+        orig_var_id: ID from metadata file used to create dataset
+        Return variable ID from live dataset, or None if not found.
+        """
+        var_def = self._meta['table'].get(orig_var_id)
+        if not var_def:
+            return None
+        var_alias = var_def['alias']
+        var_info = variables_by_alias.get(var_alias)
+        if not var_info:
+            return None
+        return var_info['id']
+
+    def _translate_var_url(self, ds, orig_var_url, variables_by_alias=None):
+        if variables_by_alias is None:
+            variables_by_alias = ds.variables.by('alias')
+        if orig_var_url is None:
+            return None
+        m = re.match(r'^(.*)/([^/]+)/$', orig_var_url)
+        if not m:
+            # Doesn't look like a URL
+            return None
+        prefix = m.group(1)
+        orig_var_id = m.group(2)
+        var_id = self._translate_var_id(variables_by_alias, orig_var_id)
+        if var_id is None:
+            return None
+        if orig_var_url.startswith(('.', '/')):
+            # Handle relative URL like "../<var-id>/" or URI like "/..."
+            return "{}/{}/".format(prefix, var_id)
+        else:
+            # Handle absolute URL
+            return "{}{}/".format(ds.variables.self, var_id)
 
     def post(self, site, name=None):
         if not self._meta:
@@ -233,7 +277,7 @@ class MetadataModel(object):
             else:
                 continue
             var_def = table[var_id]
-            new_table[var_def['alias']] = self._convert_var_def(var_def)
+            new_table[var_def['alias']] = self.convert_var_def(var_def)
         if self.verbose:
             print("Creating dataset with its {} original variables"
                   .format(len(new_table)))
@@ -241,26 +285,6 @@ class MetadataModel(object):
                                      verbose=self.verbose,
                                      gzip_metadata=True)
         print("New dataset ID:", ds.body.id)
-
-        def _translate_var_url(orig_var_url):
-            if orig_var_url is None:
-                return None
-            m = re.match(r'\.\./([^/]+)/$', orig_var_url)
-            if m:
-                # Handle relative URL like "../<var-id>/"
-                orig_var_id = m.group(1)
-                var_def = self._meta['table'][orig_var_id]
-                var_alias = var_def['alias']
-                var_id = ds.variables.by('alias')[var_alias]['id']
-                return "../{}/".format(var_id)
-            else:
-                # Handle absolute URL
-                var_index = self._meta['variables']['index']
-                var_alias = var_index[orig_var_url]['alias']
-                var_id = ds.variables.by('alias')[var_alias]['id']
-                var_url = "{}{}/".format(ds.variables.self, var_id)
-                return var_url
-
         # Second pass: Create all the variables with longer IDs
         if self.verbose:
             print("Adding {} more variables to dataset"
@@ -270,7 +294,7 @@ class MetadataModel(object):
                 print("\rCreating variable {:04d} of {:04d}"
                       .format(i, len(var_ids_to_create)),
                       end='')
-            var_def = self._convert_var_def(self._meta['table'][var_id])
+            var_def = self.convert_var_def(self._meta['table'][var_id])
             ds.variables.create({
                 'body': var_def,
             })
@@ -279,8 +303,12 @@ class MetadataModel(object):
         # Set the list of weight variables
         weight_urls = []
         ds.variables.refresh()
+        variables_by_alias = ds.variables.by('alias')
         for orig_weight_url in self._meta['variables']['weights']:
-            weight_urls.append(_translate_var_url(orig_weight_url))
+            weight_url = self._translate_var_url(
+                ds, orig_weight_url, variables_by_alias=variables_by_alias)
+            if weight_url:
+                weight_urls.append(weight_url)
         if self.verbose:
             print("Setting {} weight variable(s)".format(len(weight_urls)))
         ds.variables.weights.patch({
@@ -290,7 +318,8 @@ class MetadataModel(object):
         if self.verbose:
             print("Setting settings")
         settings = self._meta['settings'].copy()
-        settings['weight'] = _translate_var_url(settings['weight'])
+        settings['weight'] = self._translate_var_url(
+            ds, settings['weight'], variables_by_alias=variables_by_alias)
         if settings['dashboard_deck']:
             print("WARNING: dashboard_deck is set to '{}'"
                   " which is probably not valid for this dataset."
@@ -300,23 +329,38 @@ class MetadataModel(object):
         if self.verbose:
             print("Setting preferences")
         preferences = self._meta['preferences'].copy()
-        preferences['weight'] = _translate_var_url(preferences['weight'])
+        preferences['weight'] = _translate_var_url(
+            ds, preferences['weight'], variables_by_alias=variables_by_alias)
         ds.preferences.patch(preferences)
         # Set hierarchical order
+        self.folderize(ds)
+
+    def _translate_hier(self, ds, hier_list, variables_by_alias=None):
+        # ds: Dataset object
+        # hier_list: List of folders dicts and variable URLs
+        # variables_by_alias: ds.variables.by('alias')
+        # Return the new hierarchy with all variable URLs translated
+        if variables_by_alias is None:
+            variables_by_alias = ds.variables.by('alias')
+        new_hier_list = []
+        for node in hier_list:
+            if isinstance(node, six.string_types):
+                var_url = self._translate_var_url(
+                    ds, node, variables_by_alias=variables_by_alias)
+                if var_url:
+                    new_hier_list.append(var_url)
+            elif isinstance(node, dict):
+                new_node = {}
+                for folder_name, sub_list in six.iteritems(node):
+                    new_node[folder_name] = self._translate_hier(
+                        ds, sub_list, variables_by_alias=variables_by_alias)
+                new_hier_list.append(new_node)
+        return new_hier_list
+
+    def folderize(self, ds):
         if self.verbose:
             print("Setting hierarchical order")
-        hier = copy.deepcopy(self._meta['variables']['hier'])
-
-        def _fix_hier(hier_list):
-            for i in six.moves.range(len(hier_list)):
-                node = hier_list[i]
-                if isinstance(node, six.string_types):
-                    hier_list[i] = _translate_var_url(node)
-                elif isinstance(node, dict):
-                    for _, sub_list in six.iteritems(node):
-                        _fix_hier(sub_list)
-
-        _fix_hier(hier)
+        hier = self._translate_hier(ds, self._meta['variables']['hier'])
         ds.variables.hier.put({
             'graph': hier,
         })
@@ -485,6 +529,50 @@ def do_post(args):
     meta.post(site, name=args['--name'])
 
 
+def do_addvar(args):
+    ds_id = args['<ds-id>']
+    filename = args['<filename>']
+    verbose = args['-v']
+    with io.open(args['-c'], 'r', encoding='UTF-8') as f:
+        config = yaml.safe_load(f)[args['-p']]
+    site = connect_pycrunch(config['connection'], verbose=verbose)
+    ds_url = "{}{}/".format(site.datasets['self'], ds_id)
+    response = site.session.get(ds_url)
+    ds = response.payload
+    with open(filename) as f:
+        var_meta = json.load(f)
+    if args['--name']:
+        var_meta['name'] = args['--name']
+    if args['--alias']:
+        var_meta['alias'] = args['--alias']
+    meta = MetadataModel(verbose=verbose)
+    var_def = meta.convert_var_def(var_meta)
+    if verbose:
+        print("Creating variable '{}' with alias {}"
+              .format(var_def['name'], var_def['alias']))
+    t0 = time.time()
+    try:
+        ds.variables.create({
+            'body': var_def,
+        })
+    finally:
+        print("Request duration:", time.time() - t0)
+
+
+def do_folderize(args):
+    ds_id = args['<ds-id>']
+    filename = args['<filename>']
+    with io.open(args['-c'], 'r', encoding='UTF-8') as f:
+        config = yaml.safe_load(f)[args['-p']]
+    site = connect_pycrunch(config['connection'], verbose=args['-v'])
+    ds_url = "{}{}/".format(site.datasets['self'], ds_id)
+    response = site.session.get(ds_url)
+    ds = response.payload
+    meta = MetadataModel(verbose=args['-v'])
+    meta.load(filename)
+    meta.folderize(ds)
+
+
 def main():
     args = docopt.docopt(__doc__)
     t0 = time.time()
@@ -497,6 +585,10 @@ def main():
             return do_anonymize(args)
         elif args['post']:
             return do_post(args)
+        elif args['addvar']:
+            return do_addvar(args)
+        elif args['folderize']:
+            return do_folderize(args)
         elif args['loadsave']:
             return do_loadsave(args)
         else:
