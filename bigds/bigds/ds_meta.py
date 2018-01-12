@@ -17,6 +17,8 @@ Options:
     -v                      Print verbose messages
     --name=NAME             Override name in JSON file (post, addvar)
     --alias=ALIAS           Override alias in JSON file (addvar)
+    -u --unique-subvar-aliases
+                            Generate unique subvariable aliases (addvar)
 
 Commands:
     get
@@ -54,6 +56,7 @@ import re
 import string
 import sys
 import time
+import uuid
 
 import docopt
 import yaml
@@ -529,6 +532,17 @@ def do_post(args):
     meta.post(site, name=args['--name'])
 
 
+def _generate_unique_subvar_aliases(var_meta):
+    """
+    Modify variable metadata in-place, replacing the alias of each subvarible
+    (if any) with a guaranteed unique identifier.
+    """
+    if not 'subreferences' in var_meta:
+        return
+    for subref in six.itervalues(var_meta['subreferences']):
+        subref['alias'] = uuid.uuid4().hex
+
+
 def do_addvar(args):
     ds_id = args['<ds-id>']
     filename = args['<filename>']
@@ -545,6 +559,8 @@ def do_addvar(args):
         var_meta['name'] = args['--name']
     if args['--alias']:
         var_meta['alias'] = args['--alias']
+    if args['--unique-subvar-aliases']:
+        _generate_unique_subvar_aliases(var_meta)
     meta = MetadataModel(verbose=verbose)
     var_def = meta.convert_var_def(var_meta)
     if verbose:
