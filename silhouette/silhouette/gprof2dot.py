@@ -3320,7 +3320,8 @@ def cprofile(stream=None, restrictions=None, filename=None, write_svg=True, rss=
                     p.dump_stats(fname)
                     if write_svg:
                         os.system(
-                            "%s -f pstats %s | dot -Tsvg > %s" % (
+                            "%s %s -f pstats %s | dot -Tsvg > %s" % (
+                                sys.executable,
                                 __file__,
                                 fname,
                                 fname.rsplit(".", 1)[0] + ".svg"
