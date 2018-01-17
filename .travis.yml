@@ -3,6 +3,8 @@ branches:
   - src
   - dev
 language: go
+before_install:
+- sudo apt-get install hugo
 script: ./build-and-deploy.sh
 env:
   global:
