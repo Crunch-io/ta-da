@@ -567,12 +567,15 @@ def do_addvar(args):
         print("Creating variable '{}' with alias {}"
               .format(var_def['name'], var_def['alias']))
     t0 = time.time()
+    variables = ds.variables
+    t1 = time.time()
+    print("GET /variables duration:", t1 - t0)
     try:
-        ds.variables.create({
+        variables.create({
             'body': var_def,
         })
     finally:
-        print("Request duration:", time.time() - t0)
+        print("POST /variables duration:", time.time() - t1)
 
 
 def do_folderize(args):
