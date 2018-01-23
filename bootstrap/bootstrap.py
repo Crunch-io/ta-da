@@ -105,6 +105,30 @@ def create_dataset(user=None, **kwargs):
 
     return ds
 
+def create_dataset_with_derivation(name):
+    dataset = create_dataset(name=name)
+    gender = VariableDefinition.from_data({
+        'name': 'Gender',
+        'alias': 'Gender',
+        'type': 'categorical',
+    })
+    dataset.add_variable(gender)
+
+    derived_gender = VariableDefinition.from_data({
+        'name': 'Derived Gender',
+        'alias': 'Derived Gender',
+        'type': 'categorical',
+    })
+    derived_gender.derived = True
+    derived_gender._derivation = {
+        'function': 'copy_variable',
+        'args': [{'variable': dataset['Gender'].id}]
+    }
+    dataset.add_variable(derived_gender)
+
+    index_dataset(dataset, skip_variables=False)
+    dataset.release()
+
 def create_dataset_with_subvariables(name, num_subvars):
     dataset = create_dataset(name=name)
 
@@ -363,6 +387,8 @@ def main():
 
     #load_functional_testing_datasets(project, team, geodata)
     load_search_load_testing_datasets(project, team)
+    #for i in range(10):
+    #    create_dataset_with_derivation('dataset_with_derivation_%d' % (i))
 
 if __name__ == '__main__':
     main()
