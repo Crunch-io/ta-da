@@ -21,8 +21,15 @@ echo "Going to $CRUNCHENV"
 dataset_id=$(dataset.pick --skipfile=$skipfile --env=$CRUNCHENV)
 echo "Picked $dataset_id"
 echo "$dataset_id" >> $skipfile
-last_savepoint=$(dataset.savepoints $dataset_id --env=$CRUNCHENV | head -n 1)
-echo "Last savepoint $last_savepoint"
+
+# Replay from 2nd last savepoint, and from last if there is only 1
+last_savepoint=$(dataset.savepoints $dataset_id --env=$CRUNCHENV | sed -n 2p)
+if [ -z "$last_savepoint" ]; then
+   echo "Only had 1 savepoint..."
+   last_savepoint=$(dataset.savepoints $dataset_id --env=$CRUNCHENV | head -n 1)
+fi
+echo "Savepoint $last_savepoint"
+
 dataset.replay $dataset_id $last_savepoint --env=$CRUNCHENV --tracefile=$tracefile --timelimit=1800
 echo "Trimming tracefile to last 300 replays"
 tempfile=$(mktemp)
