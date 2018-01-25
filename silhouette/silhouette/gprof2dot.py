@@ -3314,13 +3314,14 @@ def cprofile(stream=None, restrictions=None, filename=None, write_svg=True, rss=
                 if filename is not None:
                     fname = filename % {
                         "function": f.__name__,
-                        "time": datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"),
+                        "time": datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S.%f"),
                         "thread": hex(threading._get_ident())[-6:]
                     }
                     p.dump_stats(fname)
                     if write_svg:
                         os.system(
-                            "%s -f pstats %s | dot -Tsvg > %s" % (
+                            "%s %s -f pstats %s | dot -Tsvg > %s" % (
+                                sys.executable,
                                 __file__,
                                 fname,
                                 fname.rsplit(".", 1)[0] + ".svg"
