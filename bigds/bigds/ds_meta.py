@@ -409,6 +409,7 @@ class MetadataModel(object):
         tot_categories = 0
         min_categories = None
         max_categories = None
+        max_categories_var_alias = None
         num_vars_with_subvars = 0
         tot_subvars = 0
         min_subvars = None
@@ -429,6 +430,7 @@ class MetadataModel(object):
                     min_categories = num_categories
                 if max_categories is None or num_categories > max_categories:
                     max_categories = num_categories
+                    max_categories_var_alias = var_def['alias']
             if 'subreferences' in var_def:
                 num_vars_with_subvars += 1
                 num_subvars = len(var_def['subreferences'])
@@ -449,6 +451,7 @@ class MetadataModel(object):
             print("  ave. categories per variable:", float(tot_categories) /
                   num_vars_with_categories)
         print("  max. categories per variable:", max_categories)
+        print("  alias of variable with most categories:", max_categories_var_alias)
         print("  num. unique category lists:")
         print("    with ids:", len(unique_cats_lists_with_ids))
         print("    without ids:", len(unique_cats_lists_without_ids))
