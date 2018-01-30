@@ -1,0 +1,33 @@
+// Homepage content Styles
+// Page-content-wrapper
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+}
+
+#wrapper-homepage.toggled #page-content-wrapper {
+    position: absolute;
+    margin-left: -250px;
+}
+
+@media(min-width:768px) {
+    #wrapper-homepage.toggled #page-content-wrapper {
+        position: relative;
+        margin-left: 0;
+    }
+}
+
+// Crunch interface
+.crunch-interface {
+    img {
+        margin: auto;
+        margin-top: -200px;
+    }
+}
+
+// Secondary-content
+.secondary-content {
+    .row {
+        margin: 0;
+    }
+}
