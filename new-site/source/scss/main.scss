@@ -10,7 +10,7 @@
 @import '../../node_modules/sass-autoprefixer/scss/prefixes';
 
 // Import Proxima Nova
-@import url('./../fonts/proximanova.css');
+@import url('./../../static/fonts/proximanova.css');
 
 /* BASE - Base styles, variables, mixins, etc... */
 @import 'base/_variables.scss';
