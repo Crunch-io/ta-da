@@ -34,6 +34,8 @@
 
 //Secondary-pages content styles
 #secondary-pages-wrapper {
+
+    //About content
     .about-content {
         color: $white;
 
@@ -82,4 +84,38 @@
             }
         }
     }
+
+    //Team content
+
+    .team-content {
+        color: $white;
+
+        .jumbotron {
+            background-color: $color-green;
+            height: 485px;
+
+        }
+
+        .team-leads {
+            // border:1px solid red;
+            margin-top: -250px;
+            margin-bottom: 50px;
+        }
+    }
+
+    .figure {
+
+        .figure-caption {
+            margin-top: 10px;
+        }
+
+    }
+
+    @include media-breakpoint-down(xs) {
+        .team-members,
+        .team-leads {
+            text-align: center;
+        }
+    }
+
 }
