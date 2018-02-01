@@ -17,6 +17,8 @@ Options:
     -v                      Print verbose messages
     --name=NAME             Override name in JSON file (post, addvar)
     --alias=ALIAS           Override alias in JSON file (addvar)
+    -u --unique-subvar-aliases
+                            Generate unique subvariable aliases (addvar)
 
 Commands:
     get
@@ -54,6 +56,7 @@ import re
 import string
 import sys
 import time
+import uuid
 
 import docopt
 import yaml
@@ -406,6 +409,7 @@ class MetadataModel(object):
         tot_categories = 0
         min_categories = None
         max_categories = None
+        max_categories_var_alias = None
         num_vars_with_subvars = 0
         tot_subvars = 0
         min_subvars = None
@@ -426,6 +430,7 @@ class MetadataModel(object):
                     min_categories = num_categories
                 if max_categories is None or num_categories > max_categories:
                     max_categories = num_categories
+                    max_categories_var_alias = var_def['alias']
             if 'subreferences' in var_def:
                 num_vars_with_subvars += 1
                 num_subvars = len(var_def['subreferences'])
@@ -446,6 +451,7 @@ class MetadataModel(object):
             print("  ave. categories per variable:", float(tot_categories) /
                   num_vars_with_categories)
         print("  max. categories per variable:", max_categories)
+        print("  alias of variable with most categories:", max_categories_var_alias)
         print("  num. unique category lists:")
         print("    with ids:", len(unique_cats_lists_with_ids))
         print("    without ids:", len(unique_cats_lists_without_ids))
@@ -529,6 +535,17 @@ def do_post(args):
     meta.post(site, name=args['--name'])
 
 
+def _generate_unique_subvar_aliases(var_meta):
+    """
+    Modify variable metadata in-place, replacing the alias of each subvarible
+    (if any) with a guaranteed unique identifier.
+    """
+    if not 'subreferences' in var_meta:
+        return
+    for subref in six.itervalues(var_meta['subreferences']):
+        subref['alias'] = uuid.uuid4().hex
+
+
 def do_addvar(args):
     ds_id = args['<ds-id>']
     filename = args['<filename>']
@@ -545,18 +562,23 @@ def do_addvar(args):
         var_meta['name'] = args['--name']
     if args['--alias']:
         var_meta['alias'] = args['--alias']
+    if args['--unique-subvar-aliases']:
+        _generate_unique_subvar_aliases(var_meta)
     meta = MetadataModel(verbose=verbose)
     var_def = meta.convert_var_def(var_meta)
     if verbose:
         print("Creating variable '{}' with alias {}"
               .format(var_def['name'], var_def['alias']))
     t0 = time.time()
+    variables = ds.variables
+    t1 = time.time()
+    print("GET /variables duration:", t1 - t0)
     try:
-        ds.variables.create({
+        variables.create({
             'body': var_def,
         })
     finally:
-        print("Request duration:", time.time() - t0)
+        print("POST /variables duration:", time.time() - t1)
 
 
 def do_folderize(args):
