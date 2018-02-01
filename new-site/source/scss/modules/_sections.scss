@@ -1,4 +1,4 @@
-// Homepage content Styles
+// Homepage content styles
 // Page-content-wrapper
 #page-content-wrapper {
     width: 100%;
@@ -29,5 +29,57 @@
 .secondary-content {
     .row {
         margin: 0;
+    }
+}
+
+//Secondary-pages content styles
+#secondary-pages-wrapper {
+    .about-content {
+        color: $white;
+
+        .jumbotron {
+            height: 600px;
+            background: $color-green url(../../images/app_interface_example.png) no-repeat;
+            background-position: center 260px;
+        }
+    }
+
+    .lead {
+        color: $color-green;
+    }
+
+    .secondary-content {
+        h2 {
+            color: $color-green;
+        }
+
+        .features {
+            margin-top: 50px;
+
+            > div {
+                border-left: 1px solid $color-green;
+            }
+
+            div:last-child {
+                border-right: 1px solid $color-green;
+            }
+        }
+    }
+
+    .footer-content {
+        color: $white;
+
+        .jumbotron {
+            height: 300px;
+            background: url(../../images/crunch_shell.jpg) no-repeat top 500px center fixed;
+            @include vp-background-size(cover);
+            margin-bottom: 0;
+
+            .btn-link {
+                    color: $white;
+                    padding: 0;
+                    margin: 0;
+            }
+        }
     }
 }
