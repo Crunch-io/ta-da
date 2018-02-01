@@ -1,0 +1,35 @@
+.btn {
+    padding: 10px 50px;
+    border-radius: 2px;
+}
+
+.btn-primary {
+    background-color: $color-blue;
+    border-color: $color-blue;
+    @include vp-box-shadow(2px 2px 15px 3px rgba(0,0,0,0.1));
+
+    &:hover {
+        background-color: $--darker-primary-color;
+        border-color: $--darker-primary-color;
+    }
+}
+
+.btn-secondary {
+    background-color: $color-purple;
+    border-color: $color-purple;
+
+    &:hover {
+        background-color: $--darker-message-color;
+        border-color: $--darker-message-color;
+    }
+}
+
+.btn-success {
+    background-color: $color-green;
+    border-color: $color-green;
+
+    &:hover {
+        background-color: $--darker-secondary-color;
+        border-color: $--darker-secondary-color;
+    }
+}

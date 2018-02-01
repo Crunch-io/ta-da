@@ -1,0 +1,14 @@
+// Footer
+.footer {
+    padding: 20px 0;
+
+    .nav {
+        .nav-item a {
+            color: $font-color-dark-grey;
+
+            &:hover {
+                color: $font-color-light-grey;
+            }
+        }
+    }
+}
