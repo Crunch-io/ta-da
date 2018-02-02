@@ -105,7 +105,13 @@
       <a href="../articles/export.html">Export Data</a>
     </li>
     <li>
+      <a href="../articles/subtotals.html">Subtotals and Headings</a>
+    </li>
+    <li>
       <a href="../articles/crunch-internals.html">Crunch Internals</a>
+    </li>
+    <li>
+      <a href="../articles/abstract-categories.html">Abstract Categories</a>
     </li>
   </ul>
 </li>
@@ -137,6 +143,48 @@
     </div>
 
     <div class="contents">
+    <div id="crunch-1-20-0" class="section level2">
+<h2 class="hasAnchor">
+<a href="#crunch-1-20-0" class="anchor"></a>crunch 1.20.0</h2>
+<div id="subtotals-and-headings" class="section level3">
+<h3 class="hasAnchor">
+<a href="#subtotals-and-headings" class="anchor"></a>Subtotals and Headings</h3>
+<ul>
+<li>Added support for subtotals and headings on categorical variables and CrunchCubes. Subtotals can be set with <code>subtotals(variable) &lt;- Subtotal(name = 'subtotal', categories = c(1, 2), after = 2)</code>. Use <code><a href="../reference/SubtotalsHeadings.html">subtotals(variable)</a></code> to see what subtotals are set for a variable.</li>
+<li>By default, subtotals will be displayed on CrunchCube results. Arrays consisting of only subtotals can be created using <code>subtotalArray([cube])</code>
+</li>
+<li>See <code><a href="../reference/SubtotalsHeadings.html">?subtotals</a></code> or <code><a href="../articles/subtotals.html">vignette("subtotals", package="crunch")</a></code> for more information.</li>
+</ul>
+</div>
+<div id="multiple-response-in-crunchcubes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#multiple-response-in-crunchcubes" class="anchor"></a>Multiple response in CrunchCubes</h3>
+<ul>
+<li>The default method for including multiple response variables in CrunchCubes has changed, allowing for better handling of variables with different missingness across subvariables. (Internally: queries with multiple response variables now use the <code>as_selected</code> function instead of <code>selected_array</code>, which is now deprecated).</li>
+<li>For now, the deprecated method can be restored by setting <code>options(crunch.mr.selection = "selected_array")</code>.</li>
+</ul>
+</div>
+<div id="improvements-to-conditionaltransform" class="section level3">
+<h3 class="hasAnchor">
+<a href="#improvements-to-conditionaltransform" class="anchor"></a>Improvements to <code><a href="../reference/conditionalTransform.html">conditionalTransform()</a></code>
+</h3>
+<ul>
+<li>
+<code><a href="../reference/conditionalTransform.html">conditionalTransform()</a></code> now has a <code>formulas</code> argument to specify a list of conditions to be used.</li>
+<li>Errors and warnings are now more helpful when using <code><a href="../reference/conditionalTransform.html">conditionalTransform()</a></code>.</li>
+</ul>
+</div>
+<div id="optimizations-and-bugfixes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#optimizations-and-bugfixes" class="anchor"></a>Optimizations and bugfixes</h3>
+<ul>
+<li>Improved efficiency when loading a dataset from URL.</li>
+<li>
+<code><a href="../reference/refresh.html">refresh()</a></code> for Datasets is now more efficient.</li>
+<li>Fixed a bug where CrunchCubes with categorical variables that had categories “Selected”, “Not selected”, and “No data” might not display correctly.</li>
+</ul>
+</div>
+</div>
     <div id="crunch-1-19-0" class="section level2">
 <h2 class="hasAnchor">
 <a href="#crunch-1-19-0" class="anchor"></a>crunch 1.19.0</h2>
@@ -165,6 +213,7 @@
 <code><a href="../reference/addSubvariable.html">addSubvariable()</a></code> now accepts variable definitions directly (#72)</li>
 <li>
 <code><a href="../reference/makeCaseVariable.html">makeCaseVariable()</a></code> has better errors when a user doesn’t name all of their case definitions (#158).</li>
+<li>The size limit on <code>as.data.frame()</code> when <code>force = TRUE</code> has been removed (#150)</li>
 </ul>
 </div>
 <div id="crunch-1-18-4" class="section level3">
@@ -998,6 +1047,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#crunch-1-20-0">1.20.0</a></li>
         <li><a href="#crunch-1-19-0">1.19.0</a></li>
         <li><a href="#crunch-1-18-0">1.18.0</a></li>
         <li><a href="#crunch-1-17-0">1.17.0</a></li>
@@ -1030,7 +1080,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

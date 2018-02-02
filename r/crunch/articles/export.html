@@ -80,7 +80,13 @@
       <a href="../articles/export.html">Export Data</a>
     </li>
     <li>
+      <a href="../articles/subtotals.html">Subtotals and Headings</a>
+    </li>
+    <li>
       <a href="../articles/crunch-internals.html">Crunch Internals</a>
+    </li>
+    <li>
+      <a href="../articles/abstract-categories.html">Abstract Categories</a>
     </li>
   </ul>
 </li>
@@ -114,7 +120,7 @@
     
     
 <div class="contents">
-<p><a href="filter.html">Previous: filtering data</a></p>
+<p><a href="filters.html">Previous: filtering data</a></p>
 <div id="downloading-and-exporting-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#downloading-and-exporting-data" class="anchor"></a>Downloading and exporting data</h1>
@@ -179,7 +185,7 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(df)
 <p>CSV export does have a “categories” option that governs whether categorical variables are exported as category names or ids. The latter is more concise and pairs well with the Crunch metadata export, but category names can be useful when taking the file without additional metadata.</p>
 <p>As with the <code>as.data.frame</code> methods, you can subset what you export by indexing the rows and columns. Following the previous example, we can get a CSV of that demographic subset by:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/exportDataset.html">write.csv</a></span>(ds[ds$pid3 ==<span class="st"> "Democrat"</span>, <span class="kw">c</span>(<span class="st">"age"</span>, <span class="st">"educ"</span>, <span class="st">"gender"</span>)], <span class="dt">file=</span><span class="st">"demo-demos.csv"</span>)</code></pre></div>
-<p><a href="crunch-internals.html">Next: Crunch internals</a></p>
+<p><a href="subtotals.html">Next: subtotals</a></p>
 </div>
 </div>
 </div>
@@ -210,7 +216,7 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(df)
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
