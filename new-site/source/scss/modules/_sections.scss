@@ -19,6 +19,11 @@
 
 // Crunch interface
 .crunch-interface {
+
+    &.hidden {
+         opacity: 0;
+    }
+
     img {
         margin: auto;
         margin-top: -200px;

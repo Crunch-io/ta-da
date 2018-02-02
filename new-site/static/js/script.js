@@ -30,4 +30,13 @@ $(document).ready(function() {
         .resize(resize)
         .trigger('resize');
 
+
+    //Homepage img animation
+    $(window).scroll(function(){
+        if($(window).scrollTop() <= 1000){
+          $('.crunch-interface').addClass('animated fadeInUp');
+          $('.crunch-interface').removeClass('hidden');
+        } 
+    });
+
 });
