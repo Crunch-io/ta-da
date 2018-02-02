@@ -13,4 +13,21 @@ $(document).ready(function() {
         }
     });
 
+    //Footer
+    var $window = $(window),
+    $footer = $('.footer');
+
+    function resize() {
+        if ($window.width() < 576) {
+            return $footer.removeClass('justify-content-center');
+        }
+        else {
+            return $footer.addClass('justify-content-center');
+        }
+    }
+
+    $window
+        .resize(resize)
+        .trigger('resize');
+
 });
