@@ -37,7 +37,7 @@
 
     //About content
     .about-content {
-        color: $white;
+        color: $color-white;
 
         .jumbotron {
             height: 600px;
@@ -69,16 +69,16 @@
     }
 
     .footer-content {
-        color: $white;
+        color: $color-white;
 
         .jumbotron {
             height: 300px;
-            background: url(../../images/crunch_shell.jpg) no-repeat top 500px center fixed;
+            background: url(../../images/crunch_shell.jpg) no-repeat center center fixed;
             @include vp-background-size(cover);
             margin-bottom: 0;
 
             .btn-link {
-                    color: $white;
+                    color: $color-white;
                     padding: 0;
                     margin: 0;
             }
@@ -88,7 +88,7 @@
     //Team content
 
     .team-content {
-        color: $white;
+        color: $color-white;
 
         .jumbotron {
             background-color: $color-green;

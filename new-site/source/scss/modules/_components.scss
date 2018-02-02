@@ -6,7 +6,7 @@
 // Intro-content jumbotron
 #page-content-wrapper {
     .intro-content {
-        color: $white;
+        color: $color-white;
 
         .jumbotron {
             padding-top: 200px;
@@ -18,7 +18,7 @@
     }
 
     .footer-content {
-        color: $white;
+        color: $color-white;
 
         .jumbotron {
             width: 100%;
@@ -53,5 +53,24 @@
                 overflow: hidden;
             }
         }
+    }
+}
+
+//Popover
+
+.popover  {
+    .popover-header{
+        background-color: $color-white;
+        border: 0;
+    }
+
+    .popover-body {
+        color: $color-green;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .popover {
+        display: none;
     }
 }
