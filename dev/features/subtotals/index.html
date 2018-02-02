@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>Subtotals for Categorical Data</title>
+
+    
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="../../../css/landing-page.css" rel="stylesheet">
+
+    
+    
+
+    
+    <link href="../../../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    
+    
+    
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../img/favicon-16x16.png">
+    <link rel="manifest" href="../../../img/manifest.json">
+    <link rel="mask-icon" href="../../../img/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="msapplication-config" content="/img/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Subtotals for Categorical Data" />
+<meta property="og:description" content="Enhance your analyses by adding subtotals to your tables. See summary statistics of interest at a glance." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://crunch.io/dev/features/subtotals/" />
+
+
+
+<meta property="article:published_time" content="2018-01-14T13:20:47-04:00"/>
+
+<meta property="article:modified_time" content="2018-01-14T13:20:47-04:00"/>
+
+
+
+
+
+
+
+
+
+
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Subtotals for Categorical Data"/>
+<meta name="twitter:description" content="Enhance your analyses by adding subtotals to your tables. See summary statistics of interest at a glance."/>
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-default navbar-top" role="navigation">
+    <div class="container navbar-content">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="page-scroll" href="../../../"><img class="header-logo" src="../../../img/crunch_logo_reversed.png" height=40></a>
+        </div>
+        
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="../../../#product">Product</a>
+                </li>
+                <li>
+                    <a href="../../../team">Team</a>
+                </li>
+                <li>
+                    <a href="../../../jobs">Jobs</a>
+                </li>
+                
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    Blog
+
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li>
+                      <a href="../../../dev/features" class="dropdown-menu-element">New Features</a>
+                    </li>
+                    <li>
+                      <a href="../../../dev/blog" class="dropdown-menu-element">Dev Blog</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                    <a href="http://support.crunch.io/">Support</a>
+                </li>
+                <li>
+                    <a href="http://app.crunch.io/">Sign in</a>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+    
+</nav>
+
+
+<div class="container">
+<div id="hero" class="row">
+    <div class="intro-post col">
+        <h1 itemprop="headline">  Subtotals for Categorical Data</h1>
+        
+            <blockquote itemprop="description">Enhance your analyses by adding subtotals to your tables. See summary statistics of interest at a glance.</blockquote>
+        
+        <time class="post-time">
+  Published <span datetime="2018-01-14T13:20:47-04:00">14 Jan 2018</span>
+
+</time>
+    </div>
+</div>
+<div id="post-box" class="row">
+    <div class="col">
+        <div id="post" itemprop="articleBody">
+            
+<figure class="floating-right">
+    
+        <img src="../images/subtotals-diversity.png" width="250px" />
+    
+    
+</figure>
+
+
+<p>At Crunch, we are constantly searching for ways to help our customers&mdash;and their clients&mdash;gain insights from their data. A common task in the market-research world is to take data that is essentially a scale&mdash;rate from 1 to 10, or an ordinal range of responses from &ldquo;Strongly agree&rdquo; to &ldquo;Strongly disagree&rdquo;&mdash;and collapse it into a smaller number of bins. For example, if you asked people to rate their preference on a scale of 1-10 you might want to see how the people who provide a rating between 1 and 5 compare to those who rated it between 6 and 10. This goes by a number of names like <em>Top Box</em>, <em>Top Two Box</em>, or <em>Nets</em>.</p>
+
+<p>Crunch has long had the ability to create a new variable by <a href="http://support.crunch.io/crunch/crunch_creating-a-combined-variable.html">combining the categories</a> of an existing variable. Sometimes, though, you want to see the subtotals alongside the original categories.</p>
+
+<p>Our new &ldquo;headings and subtotals&rdquo; feature allows you to do just that. The example above shows how subtotals look in the web app, using an example variable card from the Stack Overflow Developer Survey that we have <a href="../devs-as-users/">used previously</a>. Here, we have a question which asks respondents to rate the importance of diversity on a five point scale.</p>
+
+<p>Perhaps for our purposes, we think the five point scale is too granular, and instead we just want to get a feeling for those who <em>generally</em> agree compared to those who <em>generally</em> disagree. That grouping may make it easier for us to report conclusions from the data, or make it easier for others to interpret. We could make a new variable that collapses &ldquo;Strongly disagree&rdquo; and &ldquo;Disagree&rdquo; responses into one category and &ldquo;Somewhat agree&rdquo;, &ldquo;Agree&rdquo;, and &ldquo;Strongly agree&rdquo; into another. But what if we want it both ways: we want to see the higher level, aggregated values <em>and</em> the breakdown of percentages within each group? Maybe there are within-group differences of interest&mdash;say, most of those who agree agree strongly, while those who disagree only do so &ldquo;somewhat&rdquo;&mdash;that we don&rsquo;t want to obscure completely.</p>
+
+<p>Subtotals can help. To make them appear in Crunch, we add some properties to the variable so that every time it is loaded, whether in the card view, the crosstabbing view, or any reports, the subtotals are shown. To define the subtotals for a variable in the web app, click on the variable&rsquo;s <em>properties</em>, and then select <em>Headings and Subtotals</em>. Once there, you&rsquo;re just a few clicks, drags, and drops away from fancy new subtotals.</p>
+
+
+<figure class="centered-image">
+    
+        <img src="../images/subtotals-edit.png" width="600px" />
+    
+    
+</figure>
+
+
+<p>If you want to script, it&rsquo;s also possible to create subtotals and headings <a href="http://crunch.io/r/crunch/articles/subtotals.html">programmatically in R</a>.</p>
+
+<p>We&rsquo;ve already heard from some enthusiastic users that headings and subtotals are helping ease their workflows, and their clients are excited to see grouped subtotals right on variable cards in the app. Have a favorite aggregation you want to see added to Crunch? Have an interesting use-case or workflow using headings and subtotals? <a href="mailto:support@crunch.io">Let us know!</a></p>
+
+        </div><br/>
+        <div>
+            <p class="post-footer">
+  Published
+  
+  <time datetime="2018-01-14T13:20:47-04:00">
+    14 Jan 2018
+  </time>
+  
+    in <span itemprop="articleSection"><a href="../../../categories/feature/">feature</a></span>
+  
+  
+    and tagged <a href="../../../tags/analysis/">analysis</a>, <a href="../../../tags/nets/">nets</a> and <a href="../../../tags/subtotals/">subtotals</a>
+  
+</p>
+
+            
+
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 footer-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a href="../../../">Home</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="../../../#product">Product</a>
+                    </li>
+                    <li>
+                        <a href="../../../team">Team</a>
+                    </li>
+                    <li>
+                        <a href="../../../jobs">Jobs</a>
+                    </li>
+                    <li>
+                        <a href="../../../dev">Blog</a>
+                    </li>
+                    <li>
+                        <a href="http://support.crunch.io/">Support</a>
+                    </li>
+                    <li>
+                        <a href="http://app.crunch.io/">Sign in</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../../../js/jquery-1.11.0.js"></script>
+
+
+<script src="../../../js/jquery.easing.min.js"></script>
+
+
+<script src="../../../js/bootstrap.min.js"></script>
+
+
+<script src="../../../js/landing-page.js"></script>
+
+
+
+</body>
+</html>
+
