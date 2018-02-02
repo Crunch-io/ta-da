@@ -51,16 +51,3 @@
         }
     }
 }
-
-
-.bg-blue {
-    background-color: $color-blue;
-
-    .nav-link  {
-        color: $color-white;
-
-        &:hover {
-            color: $--darker-primary-color;
-        }
-    }
-}
