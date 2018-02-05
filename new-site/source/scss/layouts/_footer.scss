@@ -12,3 +12,42 @@
         }
     }
 }
+
+@include media-breakpoint-down(xs) {
+
+    .footer {
+
+        & ul.list-inline {
+
+            .list-inline-item {
+                display: block;
+            }
+
+        }
+    }
+
+}
+
+.bg-green {
+    background-color: $color-green;
+
+    .nav-link {
+        color: $color-white;
+
+        &:hover {
+            color: $--darker-secondary-color;
+        }
+    }
+}
+
+.bg-blue {
+    background-color: $color-blue;
+
+    .nav-link {
+        color: $color-white;
+
+        &:hover {
+            color: $--darker-primary-color;
+        }
+    }
+}
