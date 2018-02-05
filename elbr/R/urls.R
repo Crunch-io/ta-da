@@ -34,10 +34,17 @@ standardizeURLs <- function (url) {
     # Substitute queryparam
     url <- sub("(.*/)(\\?.*)$", "\\1?QUERY", url)
     # Substitute ids
-    url <- gsub("/[0-9]+/|/[0-9a-f]{32}/", "/ID/", url)
+    url <- gsub("/[0-9X]+/|/[0-9a-f]{32}/", "/ID/", url)
     # Remove progress hash
     url <- sub("(.*/progress/.*?)%3.*", "\\1/", url)
     # Remove whaam state hash
     url <- sub("(.*/)[0-9a-zA-Z]+==$", "\\1WHAAM", url)
+    # Prune long segments (which are probably bad requests)
+    # (have to track the trailing slash because of how strsplit works)
+    trailing_slash <- substr(url, nchar(url), nchar(url)) == "/"
+    url <- paste0(vapply(strsplit(url, "/"), function (s) {
+        s[nchar(s) > 39] <- "TOOLONG"
+        paste(s, collapse="/")
+    }, character(1)), ifelse(trailing_slash, "/", ""))
     return(url)
 }
