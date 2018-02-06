@@ -1,4 +1,7 @@
-themes/
 public/
+
+themes/*
+!themes/new-site/*
+
 *.orig$
 .DS_Store
