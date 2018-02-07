@@ -23,10 +23,10 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
         git commit -m "Updating built site (build ${TRAVIS_BUILD_NUMBER})" || true
         git push origin master || true
     else
-        node --version
-        npm install
+        # node --version
+        # npm install
         # npm run build:scss
-        # Dev
+        # # Dev
         # Sub in the staging URL into the config so the site URLs are built correctly
         STAGING_URL=https://crunch-io.github.io/crunchy/newsite/
         sed -i 's@http://crunch.io/@'"$STAGING_URL"'@g' config.toml
