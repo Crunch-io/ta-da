@@ -9,6 +9,10 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     git config --global user.name "Crunchbot"
     git clone https://github.com/crakjie/landing-page-hugo.git ./themes/landing-page-hugo
 
+    node --version
+
+    npm install
+
     if [ "${TRAVIS_BRANCH}" = "src" ]; then
         # Production
         hugo
