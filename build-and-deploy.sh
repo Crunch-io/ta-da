@@ -1,4 +1,8 @@
 #!/bin/bash
+
+node --version
+npm install
+
 set -ev
 if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     git clone --branch v2 https://github.com/go-yaml/yaml $GOPATH/src/gopkg.in/yaml.v2
@@ -9,9 +13,6 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     git config --global user.name "Crunchbot"
     git clone https://github.com/crakjie/landing-page-hugo.git ./themes/landing-page-hugo
 
-    node --version
-
-    npm install
 
     if [ "${TRAVIS_BRANCH}" = "src" ]; then
         # Production
