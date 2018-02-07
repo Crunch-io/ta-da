@@ -1,22 +1,146 @@
 {{ partial "head.html" . }}
+
 {{ partial "header.html" . }}
 
-{{ partial "container-intro.html" . }}
+      <div id="wrapper">
 
-<div id="post-box">
-<div class="wrap">
-    <p>{{.Content}}</p>
+          <div id="secondary-pages-wrapper">
+              <div class="container-fluid">
 
-</div>
+                  <div class="team-content">
+                      <div class="jumbotron">
+                          <div class="container">
+                              <div class="row justify-content-md-center">
+                                  <div class="col-md-4">
+                                      <h1 class="display-4">The team</h1>
+                                  </div>
 
-<section class="team-list">
-    {{ range .Data.Pages.ByDate }}
-        <div class="team-member">
-            <img src="/img/team/{{.Params.img}}" alt="{{ .Params.firstname }}"/ height=120 width=120>
-            <span class="team-member-name">{{ .Params.firstname }} {{ .Params.lastname }}</span>
-            <span class="team-member-location">{{ .Params.location }}</span>
-        </div>
-    {{ end }}
-</section>
-</div>
-{{ partial "footer" . }}
+                                  <div class="col-md-5">
+                                      <p>While our origins are in the San Francisco Bay Area, our team is completely remote. Most of us are in the Americas, but we range from Australia to Poland. So we don’t just allow remote working: we embrace it.</p>
+                                  </div>
+                              </div> <!-- /.row -->
+
+                          </div> <!-- /.container -->
+                      </div> <!-- /.jumbotron -->
+
+                      <div class="container team-leads">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4">
+                                <figure class="figure">
+                                  <img src="http://via.placeholder.com/320x320" class="" alt="..." class="img-fluid">
+                                  <figcaption class="figure-caption">
+                                      <strong>Doug Rivers</strong>
+                                      <br>
+                                      CA, United States
+                                  </figcaption>
+                                </figure>
+                            </div>
+
+                            <div class="col-md-4 offset-md-1">
+                                <figure class="figure">
+                                  <img src="http://via.placeholder.com/320x320" class="" alt="..." class="img-fluid">
+                                  <figcaption class="figure-caption">
+                                      <strong>Jeff Coombs</strong>
+                                      <br>
+                                      WA, United States
+                                  </figcaption>
+                                </figure>
+                            </div>
+                        </div> <!-- /.row -->
+                      </div> <!-- /.container -->
+                  </div> <!-- /.about-content -->
+
+                  <div class="secondary-content">
+                    <div class="container">
+
+                        <div class="team-members">
+                            <figure class="figure p-3">
+                              <a href="#" data-toggle="popover"><img src="http://via.placeholder.com/185x185" class="" alt="..." class="img-fluid"></a>
+                              <div class="popover-title d-none">
+                                  <h4>Robert Brewer</h4>
+                                  <p>Python Developer</p>
+                              </div>
+                              <div class="popover-content d-none">
+                                  <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, reprehenderit quam cumque!"</p>
+                              </div>
+                              <figcaption class="figure-caption">
+                                  <strong>Robert Brewer</strong>
+                                  <br>
+                                  CA, United States
+                              </figcaption>
+                            </figure>
+                            <figure class="figure p-3">
+                              <img src="http://via.placeholder.com/185x185" class="" alt="..." class="img-fluid">
+                              <figcaption class="figure-caption">
+                                  <strong>Robert Brewer</strong>
+                                  <br>
+                                  CA, United States
+                              </figcaption>
+                            </figure>
+                            <figure class="figure p-3">
+                              <img src="http://via.placeholder.com/185x185" class="" alt="..." class="img-fluid">
+                              <figcaption class="figure-caption">
+                                  <strong>Robert Brewer</strong>
+                                  <br>
+                                  CA, United States
+                              </figcaption>
+                            </figure>
+                            <figure class="figure p-3">
+                              <img src="http://via.placeholder.com/185x185" class="" alt="..." class="img-fluid">
+                              <figcaption class="figure-caption">
+                                  <strong>Robert Brewer</strong>
+                                  <br>
+                                  CA, United States
+                              </figcaption>
+                            </figure>
+                            <figure class="figure p-3">
+                              <img src="http://via.placeholder.com/185x185" class="" alt="..." class="img-fluid">
+                              <figcaption class="figure-caption">
+                                  <strong>Robert Brewer</strong>
+                                  <br>
+                                  CA, United States
+                              </figcaption>
+                            </figure>
+                            <figure class="figure p-3">
+                              <img src="http://via.placeholder.com/185x185" class="" alt="..." class="img-fluid">
+                              <figcaption class="figure-caption">
+                                  <strong>Robert Brewer</strong>
+                                  <br>
+                                  CA, United States
+                              </figcaption>
+                            </figure>
+                        </div>
+
+                    </div> <!-- /.container -->
+                  </div> <!-- /.secondary-content -->
+
+                  <div class="footer-content">
+                      <div class="jumbotron">
+                          <div class="container">
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <h1>Liberate your data.</h1>
+                                      <a href="https://app.crunch.io/signup/?email=" class="btn btn-link">Try now &#10230;</a>
+                                  </div>
+                              </div> <!-- /.row. -->
+                          </div> <!-- /.container -->
+                      </div> <!-- /.jumbotron -->
+                  </div>
+
+                  <footer class="footer d-flex justify-content-center bg-blue">
+                      <ul class="list-inline">
+                          <li class="list-inline-item"><a class="nav-link" href="/about">About</a></li>
+                          <li class="list-inline-item"><a class="nav-link  active" href="/team">Team</a></li>
+                          <li class="list-inline-item"><a class="nav-link" href="http://support.crunch.io/crunch/home.html">Support</a></li>
+                          <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/login">Login</a></li>
+                          <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/login/?email=">Try now</a></li>
+                      </ul>
+                  </footer>
+
+              </div> <!-- /.container-fluid -->
+
+          </div> <!-- /#secondary-pages-wrapper -->
+
+      </div> <!-- /#wrapper -->
+
+{{ partial "footer.html" . }}

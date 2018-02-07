@@ -1,7 +1,5 @@
 public/
-
-themes/*
-!themes/new-site/*
+themes/landing-page-hugo
 
 *.orig$
 .DS_Store

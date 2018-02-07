@@ -1,12 +1,10 @@
+theme = "crunch"
 baseURL = "http://crunch.io/"
 googleAnalytics = "UA-50332119-2"
 
 languageCode = "en-us"
 title = "Crunch"
-theme = "landing-page-hugo"
-relativeURLs = true
-
-sectionPagesMenu = "main"
+MetaDataFormat = "toml"
 
 [params]
 description = "A modern platform"
