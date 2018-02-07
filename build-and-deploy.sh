@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -ev
 if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     git clone --branch v2 https://github.com/go-yaml/yaml $GOPATH/src/gopkg.in/yaml.v2
@@ -8,6 +9,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     git config --global user.email "systems+crunchbot@crunch.io"
     git config --global user.name "Crunchbot"
     git clone https://github.com/crakjie/landing-page-hugo.git ./themes/landing-page-hugo
+
 
     if [ "${TRAVIS_BRANCH}" = "src" ]; then
         # Production
@@ -21,6 +23,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
         git commit -m "Updating built site (build ${TRAVIS_BUILD_NUMBER})" || true
         git push origin master || true
     else
+        npm install && npm build
         # Dev
         # Sub in the staging URL into the config so the site URLs are built correctly
         STAGING_URL=https://crunch-io.github.io/crunchy/newsite/
