@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:scss": "node-sass --watch source/scss/ -o static/css/",
+    "build:scss-dev": "node-sass --include-path node_modules --watch source/scss/ -o themes/crunch/static/css/",
+    "build:scss": "node-sass --include-path node_modules themes/crunch/source/scss/ -o themes/crunch/static/css/",
     "build:fonts": "cp node_modules/font-awesome/fonts/* static/fonts"
   },
   "author": "",

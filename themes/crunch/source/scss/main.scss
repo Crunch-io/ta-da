@@ -1,29 +1,29 @@
 // selectively import components we need from font-awesome
 // see: node_modules/font-awesome/scss/font-awesome.scss
-@import 'source/scss/font-awesome';
+@import './font-awesome';
 
 // selectively import components we need from bootstrap
 // see: node_modules/bootstrap/scss/bootstrap.scss
-@import 'source/scss/bootstrap';
+@import './bootstrap';
 
 // Sass-autoprefixer
-@import '../../node_modules/sass-autoprefixer/scss/prefixes';
+@import 'node_modules/sass-autoprefixer/scss/prefixes';
 
 // Import Proxima Nova
 @import url('/fonts/proximanova.css');
 
 /* BASE - Base styles, variables, mixins, etc... */
-@import 'base/_variables.scss';
-@import 'base/_base.scss';
+@import './base/_variables.scss';
+@import './base/_base.scss';
 
 /* MODULES  - Individual site components */
-@import 'modules/_typography.scss';
-@import 'modules/_blocks.scss';
-@import 'modules/_buttons.scss';
-@import 'modules/_sections.scss';
-@import 'modules/_components.scss';
+@import './modules/_typography.scss';
+@import './modules/_blocks.scss';
+@import './modules/_buttons.scss';
+@import './modules/_sections.scss';
+@import './modules/_components.scss';
 
 /* LAYOUTS - Page Layouts */
-@import 'layouts/_sidebar.scss';
-@import 'layouts/_nav.scss';
-@import 'layouts/_footer.scss';
+@import './layouts/_sidebar.scss';
+@import './layouts/_nav.scss';
+@import './layouts/_footer.scss';
