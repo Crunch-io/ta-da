@@ -1,4 +1,6 @@
-themes/
 public/
+themes/landing-page-hugo
+node_modules
 *.orig$
 .DS_Store
+yarn.lock

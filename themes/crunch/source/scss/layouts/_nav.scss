@@ -1,0 +1,21 @@
+.navbar {
+    background-color: $color-white;
+
+    .navbar-nav {
+        .nav-item {
+            margin-left: 30px;
+
+            a:not(.btn-primary) {
+                color: $font-color-dark-grey;
+
+                &:hover {
+                    color: $font-color-light-grey;
+                }
+            }
+        }
+    }
+
+    .navbar-toggler {
+        border: 0;
+    }
+}
