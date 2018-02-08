@@ -4,7 +4,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     git clone --branch v2 https://github.com/go-yaml/yaml $GOPATH/src/gopkg.in/yaml.v2
     go get github.com/magefile/mage
     go get -d github.com/gohugoio/hugo
-    cd $HOME/go/src/github.com/gohugoio/hugo
+    cd $GOPATH/src/github.com/gohugoio/hugo
     mage vendor
     mage install
     git config --global user.email "systems+crunchbot@crunch.io"
