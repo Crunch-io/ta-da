@@ -7,6 +7,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     cd $GOPATH/src/github.com/gohugoio/hugo
     mage vendor
     mage install
+    cd $GOPATH/src/github.com/Crunch-io/ta-da
     git config --global user.email "systems+crunchbot@crunch.io"
     git config --global user.name "Crunchbot"
 
