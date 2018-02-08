@@ -57,9 +57,9 @@
                                   <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, reprehenderit quam cumque!"</p>
                               </div>
                               <figcaption class="figure-caption">
-                                  <strong>Robert Brewer</strong>
+                                  <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
                                   <br>
-                                  CA, United States
+                                  {{ .Params.location }}
                               </figcaption>
                             </figure>
                             {{ end }}
