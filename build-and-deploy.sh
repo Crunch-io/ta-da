@@ -29,7 +29,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
         STAGING_URL=https://crunch-io.github.io/crunchy/newsite/
         sed -i 's@http://crunch.io/@'"$STAGING_URL"'@g' config.toml
         npm install
-        npm build:scss
+        npm run build:scss
         hugo
 
         git clone --branch gh-pages https://${GH_TOKEN}@github.com/Crunch-io/crunchy.git ../crunchy
