@@ -25,27 +25,19 @@
 
                       <div class="container team-leads">
                         <div class="row justify-content-center">
+                            {{ range where .Data.Pages.ByDate "File.Dir" "in" "/team/board/" }}
                             <div class="col-md-4">
                                 <figure class="figure">
-                                  <img src="http://via.placeholder.com/320x320" class="" alt="..." class="img-fluid">
+                                  <img src="/img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="320" width="320">
                                   <figcaption class="figure-caption">
-                                      <strong>Doug Rivers</strong>
+                                      <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
                                       <br>
-                                      CA, United States
+                                      {{ .Params.location }}
                                   </figcaption>
                                 </figure>
                             </div>
+                            {{ end }}
 
-                            <div class="col-md-4 offset-md-1">
-                                <figure class="figure">
-                                  <img src="http://via.placeholder.com/320x320" class="" alt="..." class="img-fluid">
-                                  <figcaption class="figure-caption">
-                                      <strong>Jeff Coombs</strong>
-                                      <br>
-                                      WA, United States
-                                  </figcaption>
-                                </figure>
-                            </div>
                         </div> <!-- /.row -->
                       </div> <!-- /.container -->
                   </div> <!-- /.about-content -->
@@ -54,7 +46,7 @@
                     <div class="container">
 
                         <div class="team-members">
-                            {{ range .Data.Pages.ByDate }}
+                            {{ range where .Data.Pages.ByDate "File.Dir" "in" "/team/members/" }}
                             <figure class="figure p-3">
                               <a href="#" data-toggle="popover"><img src="/img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="185" width="185"></a>
                               <div class="popover-title d-none">
