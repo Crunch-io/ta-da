@@ -1,3 +1,6 @@
+// Import Proxima Nova
+@import url('https://s.crunch.io/public/fonts/proximanova.css');
+
 // selectively import components we need from font-awesome
 // see: node_modules/font-awesome/scss/font-awesome.scss
 @import './font-awesome';
@@ -8,9 +11,6 @@
 
 // Sass-autoprefixer
 @import 'node_modules/sass-autoprefixer/scss/prefixes';
-
-// Import Proxima Nova
-@import url('/fonts/proximanova.css');
 
 /* BASE - Base styles, variables, mixins, etc... */
 @import './base/_variables.scss';
