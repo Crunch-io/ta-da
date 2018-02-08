@@ -1,0 +1,76 @@
+//Jumbotron
+.jumbotron {
+    border-radius: 0;
+}
+
+// Intro-content jumbotron
+#page-content-wrapper {
+    .intro-content {
+        color: $color-white;
+
+        .jumbotron {
+            padding-top: 200px;
+            width: 100%;
+            height: 800px;
+            background: url(../images/crunch_lavender.jpg) no-repeat center center fixed;
+            @include vp-background-size(cover);
+        }
+    }
+
+    .footer-content {
+        color: $color-white;
+
+        .jumbotron {
+            width: 100%;
+            height: 450px;
+            border-radius: 0;
+            background: url(../images/crunch_stone.jpg) no-repeat top left fixed;
+            @include vp-background-size(cover);
+            margin-bottom: 0;
+        }
+    }
+}
+
+// Crunchbox
+.secondary-content {
+    .crunchbox-container {
+        max-width: 600px;
+        max-height: 480px;
+
+        .crunchbox {
+            padding-top: 70%;
+            border:1px solid #d3d3d3;
+            position: relative;
+            overflow: hidden;
+
+            iframe {
+                border: none;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                position: absolute;
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+//Popover
+
+.popover  {
+    .popover-header{
+        background-color: $color-white;
+        border: 0;
+    }
+
+    .popover-body {
+        color: $color-green;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .popover {
+        display: none;
+    }
+}

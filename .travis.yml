@@ -3,8 +3,6 @@ branches:
   - src
   - dev
 language: go
-go:
-- 1.7.1
 script: ./build-and-deploy.sh
 env:
   global:
