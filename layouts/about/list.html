@@ -15,14 +15,13 @@
                                       <h1 class="display-4">Faster analytics.</h1>
                                   </div>
 
+                                  {{ range where .Data.Pages "Section" "about" }}
                                   <div class="col-md-5">
-                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates dicta, error blanditiis. Nihil repellendus dolore minima natus consequatur quos, ab, fuga aperiam sit iusto omnis culpa, praesentium quibusdam. Rerum, ea!.</p>
+                                      <p>{{ .Content }}</p>
                                   </div>
+                                  {{ end }}
                               </div> <!-- /.row -->
 
-                              <div class="row justify-content-md-center">
-                                <!-- <img src="images/app_interface_example.png" alt="Crunch app" class="img-fluid"> -->
-                              </div> <!-- /.row -->
                           </div> <!-- /.container -->
                       </div> <!-- /.jumbotron -->
                   </div> <!-- /.about-content -->
