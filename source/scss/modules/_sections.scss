@@ -134,5 +134,22 @@
 
     }
 
+    //Blog content
+
+    .blog-content {
+        color: $color-white;
+
+        .jumbotron {
+            background: url(../images/crunch_lavender.jpg) no-repeat center center fixed;
+            @include vp-background-size(cover);
+        }
+
+    }
+
+    .blog-content-mg {
+        img {
+            margin: 30px;
+        }
+    }
 
 }
