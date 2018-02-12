@@ -15,13 +15,13 @@ Search has been a part of Crunch from the beginning. In a system designed to hou
 Two dropdown menus at the top of the panel help you to dial in your search.
 
 
-{{< figure src="../images/SearchTypeFilter.png" class="floating-left">}}
+{{< figure src="dev/features/images/SearchTypeFilter.png" class="float-left img-fluid">}}
 
 On the left, the **Type filter** lets you specify **Datasets**, **Variables**, or **Categories** to limit your search to that type of object. For example, imagine you had a dataset titled "Changing attitudes towards Gender Identity"; you might try searching for it using the term **Gender**, only to find that you get dozens of results from every dataset with a "Gender" variable. By limiting the search to **Datasets**, you can quickly find what you are looking for.
 
 <p style="clear:both;"></p>
 
-{{< figure src="../images/SearchDateFilter.png" class="floating-right">}}
+{{< figure src="dev/features/images/SearchDateFilter.png" class="float-right img-fluid">}}
 
 On the right, the **Date filter** lets you limit your search to recent datasets.
 
@@ -29,7 +29,7 @@ On the right, the **Date filter** lets you limit your search to recent datasets.
 We use the **End Date** property of the dataset to determine the date of a dataset. This property can be viewed in [Dataset Properties](http://support.crunch.io/crunch/crunch_dataset-properties.html), and is typically set by the data owner when the dataset is imported.
 
 ## Search in a Project
-{{< figure src="../images/SearchProject.png" class="floating-left">}}
+{{< figure src="dev/features/images/SearchProject.png" class="float-left img-fluid">}}
 
 Previously, if you searched from within a dataset, your search would be limited to that dataset by default, and if you searched outside a dataset, you would search all datasets. We found that for users with many datasets distributed over multiple projects, the ability to search within a project allowed them to better find what they were looking for, so we've made the default search from outside a dataset be limited to that project.
 
