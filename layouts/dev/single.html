@@ -1,0 +1,51 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="jobs-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-12 text-center">
+                                <h1 class="display-5">{{ .Title | emojify }}</h1>
+                            </div>
+                        </div> <!-- /.row -->
+
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.jobs-content -->
+
+            <div class="secondary-content">
+              <div class="container">
+
+                  <div class="row spacer-bottom">
+                      <div class="col-md-8">
+                          {{ .Content | emojify }}
+                      </div>
+                  </div>
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+            <footer class="footer d-flex justify-content-center bg-green">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a class="nav-link active" href="about">About</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="team">Team</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="http://support.crunch.io/crunch/home.html">Support</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/login">Login</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/login/">Try now</a></li>
+                </ul>
+            </footer>
+
+        </div> <!-- /.container-fluid -->
+
+    </div> <!-- /#secondary-pages-wrapper -->
+
+</div> <!-- /#wrapper -->
+
+{{ partial "footer.html" . }}

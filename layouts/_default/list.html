@@ -1,0 +1,17 @@
+{{ partial "head.html" . }}
+{{ partial "header.html" . }}
+
+<!-- {{ partial "container-intro.html" . }} -->
+
+<div id="post-box">
+    <div class="intro-post">
+        <h1>{{.Title}}</h1>
+        <p>{{.Content}}<br></p>
+    </div>
+
+    <ul id="posts">
+     {{ range .Paginator.Pages.ByWeight }} {{ partial "blog/page-summary" . }} {{ end }}
+      <section>{{ partial "blog/pagination" .}}</section>
+    </ul>
+</div>
+{{ partial "footer" . }}

@@ -1,12 +1,12 @@
----
-title: "Subtotals for Categorical Data"
-description: "Enhance your analyses by adding subtotals to your tables. See summary statistics of interest at a glance."
-date: "2018-01-14T13:20:47-04:00"
-draft: false
-weight: 20
-tags: ["analysis", "nets", "subtotals"]
-categories: ["feature"]
----
++++
+title = "Subtotals for Categorical Data"
+description = "Enhance your analyses by adding subtotals to your tables. See summary statistics of interest at a glance."
+date = "2018-01-14T13:20:47-04:00"
+draft = false
+weight = 20
+tags = ["analysis", "nets", "subtotals"]
+categories = ["feature"]
++++
 
 {{< figure src="../images/subtotals-diversity.png" class="floating-right" width="250px">}}
 
