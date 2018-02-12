@@ -12,7 +12,7 @@ A wealth of information can be locked in text data. Our new “sentiment analysi
 
 In the properties panel for text variables, you’ll notice the **Classify** button. Click it to create a new categorical variable containing the sentiment analysis for that text variable. Empty responses will be classified as Neutral.
 
-{{< figure src="../images/SentimentClassify.png" class="floating-right">}}
+{{< figure src="dev/features/images/SentimentClassify.png" class="float-right img-fluid">}}
 
 The initial version of this feature uses a modern (slightly American inflected) English lexicon, tailored especially for terms that occur in social media:  
 

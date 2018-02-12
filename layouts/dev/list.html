@@ -1,17 +1,84 @@
 {{ partial "head.html" . }}
+
 {{ partial "header.html" . }}
 
-<!-- {{ partial "container-intro.html" . }} -->
+<div id="wrapper">
 
-<div id="post-box">
-    <div class="intro-post">
-        <h1>{{.Title}}</h1>
-        <p>{{.Content}}<br></p>
-    </div>
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
 
-    <ul id="posts">
-     {{ range .Paginator.Pages.ByWeight }} {{ partial "blog/page-summary" . }} {{ end }}
-    </ul>
-    <section>{{ partial "blog/pagination" .}}</section>
-</div>
+            <div class="blog-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-8 text-center">
+                                <h1 class="display-4">{{ .Title }}</h1>
+                            </div>
+                        </div> <!-- /.row -->
+
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.blog-content -->
+
+            <div class="secondary-content">
+              <div class="container">
+
+                  <div class="row spacer-top spacer-bottom justify-content-md-center">
+                      <div class="col-md-5">
+                          <h2 class="text-center">{{ .Content }}</h2>
+                      </div>
+                  </div>
+
+                  <div class="row spacer-bottom">
+                      {{ range .Paginator.Pages.ByWeight }}
+                          <div class="col-md-6 col-lg-4">
+                              <div class="post-card">
+                                  <div class="posts">
+                                      {{ if gt (len .Summary) 90 }}
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                      <span>Published {{ .Date.Format "Jan 2, 2006" }}</span>
+                                      <hr>
+                                      <p>{{ slicestr .Summary 0 90 | emojify }}...</p>
+                                      <a href="{{ .Permalink }}">Learn More</a>
+                                      {{ end }}
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+
+                      {{ partial "blog/pagination" . }}
+                  </div>
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+            <div class="footer-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Learn more about our team</h1>
+                                <a href="team" class="btn btn-link">Our team &#10230;</a>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+            <footer class="footer d-flex justify-content-center bg-green">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a class="nav-link active" href="about">About</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="team">Team</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="http://support.crunch.io/crunch/home.html">Support</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/login">Login</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/login/">Try now</a></li>
+                </ul>
+            </footer>
+
+        </div> <!-- /.container-fluid -->
+
+    </div> <!-- /#secondary-pages-wrapper -->
+
+</div> <!-- /#wrapper -->
+
 {{ partial "footer" . }}
