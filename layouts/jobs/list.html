@@ -1,23 +1,83 @@
 {{ partial "head.html" . }}
+
 {{ partial "header.html" . }}
 
-{{ partial "container-intro.html" . }}
+<div id="wrapper">
 
-<div id="post-box">
-<div class="wrap">
-    <p>{{.Content}}</p>
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
 
-    {{ partial "equal-opportunity.html" }}
+            <div class="jobs-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-4 text-center">
+                                <h1 class="display-4">{{ .Title }}</h1>
+                            </div>
+                        </div> <!-- /.row -->
 
-</div>
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.jobs-content -->
 
-<ul>
-    {{ range .Data.Pages.ByWeight }}
-        <li>
-            <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-        </li>
-    {{ end }}
-</ul>
-</div>
+            <div class="secondary-content">
+              <div class="container">
 
-{{ partial "footer" . }}
+                  <div class="row">
+                      <div class="col-md-6 offset-md-3 text-center">
+                          <p>{{ .Content }}</p>
+                      </div>
+                  </div>
+
+                  <div class="row spacer-top spacer-bottom justify-content-md-center">
+                      <div class="col-md-5">
+                          <h2 class="text-center">Check out our current openings</h2>
+                      </div>
+                  </div>
+
+                  <div class="row spacer-bottom">
+                      {{ range .Data.Pages.ByWeight }}
+                          <div class="col-md-4">
+                              <div class="card">
+                                  <div class="card-body">
+                                      <h4 class="card-title">{{ .Title }}</h4>
+                                      <a href="{{ .Permalink }}">Learn More</a>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+                  </div>
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+            <div class="footer-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Learn about <span>our team</span></h1>
+                                <a href="team" class="btn btn-link">Our team &#10230;</a>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+            <footer class="footer d-flex justify-content-center bg-green">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a class="nav-link active" href="about">About</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="team">Team</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="http://support.crunch.io/crunch/home.html">Support</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/login">Login</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/login/">Try now</a></li>
+                </ul>
+            </footer>
+
+        </div> <!-- /.container-fluid -->
+
+    </div> <!-- /#secondary-pages-wrapper -->
+
+</div> <!-- /#wrapper -->
+
+{{ partial "footer.html" . }}

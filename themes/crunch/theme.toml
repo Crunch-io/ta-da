@@ -6,4 +6,5 @@ description = "Data, Smarter"
 license = "MIT"
 name = "Crunch"
 source_repo = ""
-tags = ["tags", "categories"]
+tags = ["tags", "categories", "company", "products", "landing page"]
+features = ["social", "images" ]

@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i');
+
+h1 {
+    font-family: 'Libre Baskerville', serif;
+
+    span {
+        font-style: italic;
+    }
+}
+
 h2 {
     font-size: 1.5em;
 }
