@@ -18,4 +18,16 @@
     .navbar-toggler {
         border: 0;
     }
+
+    .dropdown {
+        .dropdown-menu {
+            .dropdown-item {
+                font-weight: 100;
+
+                &.active, &:active {
+                    background-color: $color-off-black;
+                }
+            }
+        }
+    }
 }
