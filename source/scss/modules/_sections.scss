@@ -26,7 +26,7 @@
 
     img {
         margin: auto;
-        margin-top: -200px;
+        margin-top: -400px;
     }
 }
 
@@ -82,7 +82,8 @@
 
         .jumbotron {
             height: 300px;
-            background: url(../images/crunch_shell.jpg) no-repeat center center fixed;
+            background: url(../images/crunch_shell.jpg) no-repeat;
+            background-position: 0 -100px;
             @include vp-background-size(cover);
             margin-bottom: 0;
 
