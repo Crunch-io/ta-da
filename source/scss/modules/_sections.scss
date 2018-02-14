@@ -28,12 +28,24 @@
         margin: auto;
         margin-top: -400px;
     }
+
+    @include media-breakpoint-down(xs) {
+        img {
+            margin-top: -200px;
+        }
+    }
 }
 
 // Secondary-content
 .secondary-content {
     .row {
         margin: 0;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .intro-xs-margin {
+        margin-top: -300px;
     }
 }
 
@@ -48,6 +60,12 @@
             height: 600px;
             background: $color-green url(../images/app_interface_example.png) no-repeat;
             background-position: center 260px;
+        }
+
+        @include media-breakpoint-down(xs) {
+            .jumbotron {
+                background: $color-green;
+            }
         }
     }
 
@@ -74,6 +92,13 @@
             img {
                 margin-top: 20px;
             }
+
+            @include media-breakpoint-down(xs) {
+                div, div:last-child {
+                    border: none;
+                    margin-bottom: 50px;
+                }
+            }
         }
     }
 
@@ -91,6 +116,15 @@
                     color: $color-white;
                     padding: 0;
                     margin: 0;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(xs) {
+        .footer-content {
+            .jumbotron {
+                background-size: 800px auto;
+                background-position: -50px 0;
             }
         }
     }

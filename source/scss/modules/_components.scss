@@ -15,6 +15,13 @@
             background: url(../images/crunch_lavender.jpg) no-repeat center center fixed;
             @include vp-background-size(cover);
         }
+
+        @include media-breakpoint-down(xs) {
+            .jumbotron {
+                padding-top: 100px;
+                height: 800px;
+            }
+        }
     }
 
     .footer-content {
