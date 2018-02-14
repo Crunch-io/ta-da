@@ -28,26 +28,14 @@
 
 }
 
-.bg-green {
-    background-color: $color-green;
+.bg-black {
+    background-color: $font-color-off-black;
 
     .nav-link {
         color: $color-white;
 
         &:hover {
-            color: $--darker-secondary-color;
-        }
-    }
-}
-
-.bg-blue {
-    background-color: $color-blue;
-
-    .nav-link {
-        color: $color-white;
-
-        &:hover {
-            color: $--darker-primary-color;
+            color: $color-grey-darker;
         }
     }
 }
