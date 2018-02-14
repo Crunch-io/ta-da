@@ -157,3 +157,36 @@
     }
 
 }
+
+// 404 page
+
+.page-not-found {
+    min-height: 1200px;
+    width: 100%;
+    background: url(../images/crunch_lavender.jpg) no-repeat center center fixed;
+    @include vp-background-size(cover);
+    color: $color-white;
+    overflow: hidden;
+
+    .container {
+        margin-top: 200px;
+
+        span {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+        }
+
+        a {
+            color: $color-white;
+        }
+
+        h1 {
+            font-family: ProximaNova, sans-serif;
+            line-height: 1.5em;
+        }
+
+        button {
+            margin: 20px 0;
+        }
+    }
+}
