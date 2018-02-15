@@ -82,13 +82,29 @@
 //Popover
 
 .popover  {
+    top:100px !important;
+    left: -50px !important;
+    padding: 5px;
+
     .popover-header{
         background-color: $color-white;
         border: 0;
+
+        h3 {
+            font-weight: 700;
+        }
+
+        span {
+            font-size: 0.8em;
+        }
     }
 
     .popover-body {
         color: $color-green;
+    }
+
+    .arrow {
+        display: none;
     }
 }
 

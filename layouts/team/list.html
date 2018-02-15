@@ -31,10 +31,10 @@
                                   <a href="#" data-toggle="popover"><img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="320" width="320"></a>
                                   <div class="popover-title d-none">
                                       <h4>{{ .Params.firstname }} {{ .Params.lastname }}</h4>
-                                      <p>{{ .Params.location }}</p>
+                                      <p>{{ .Params.position }}</p>
                                   </div>
                                   <div class="popover-content d-none">
-                                      <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, reprehenderit quam cumque!"</p>
+                                      <p>{{ .Content }}</p>
                                   </div>
                                   <figcaption class="figure-caption">
                                       <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
@@ -57,11 +57,12 @@
                             <figure class="figure p-3">
                               <a href="#" data-toggle="popover"><img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="185" width="185"></a>
                               <div class="popover-title d-none">
-                                  <h4>{{ .Params.firstname }} {{ .Params.lastname }}</h4>
-                                  <p>{{ .Params.position }}</p>
+                                  {{ .Params.firstname }} {{ .Params.lastname }}
+                                  <br>
+                                  <span>{{ .Params.position }}</span>
                               </div>
                               <div class="popover-content d-none">
-                                  <p>{{ .Content }}</p>
+                                  {{ .Content }}
                               </div>
                               <figcaption class="figure-caption">
                                   <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
