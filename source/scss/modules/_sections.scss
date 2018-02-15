@@ -26,7 +26,13 @@
 
     img {
         margin: auto;
-        margin-top: -200px;
+        margin-top: -400px;
+    }
+
+    @include media-breakpoint-down(xs) {
+        img {
+            margin-top: -200px;
+        }
     }
 }
 
@@ -34,6 +40,12 @@
 .secondary-content {
     .row {
         margin: 0;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .intro-xs-margin {
+        margin-top: -300px;
     }
 }
 
@@ -48,6 +60,12 @@
             height: 600px;
             background: $color-green url(../images/app_interface_example.png) no-repeat;
             background-position: center 260px;
+        }
+
+        @include media-breakpoint-down(xs) {
+            .jumbotron {
+                background: $color-green;
+            }
         }
     }
 
@@ -74,6 +92,13 @@
             img {
                 margin-top: 20px;
             }
+
+            @include media-breakpoint-down(xs) {
+                div, div:last-child {
+                    border: none;
+                    margin-bottom: 50px;
+                }
+            }
         }
     }
 
@@ -82,7 +107,8 @@
 
         .jumbotron {
             height: 300px;
-            background: url(../images/crunch_shell.jpg) no-repeat center center fixed;
+            background: url(../images/crunch_shell.jpg) no-repeat;
+            background-position: 0 -100px;
             @include vp-background-size(cover);
             margin-bottom: 0;
 
@@ -90,6 +116,15 @@
                     color: $color-white;
                     padding: 0;
                     margin: 0;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(xs) {
+        .footer-content {
+            .jumbotron {
+                background-size: 800px auto;
+                background-position: -50px 0;
             }
         }
     }
@@ -156,4 +191,37 @@
         }
     }
 
+}
+
+// 404 page
+
+.page-not-found {
+    min-height: 1200px;
+    width: 100%;
+    background: url(../images/crunch_lavender.jpg) no-repeat center center fixed;
+    @include vp-background-size(cover);
+    color: $color-white;
+    overflow: hidden;
+
+    .container {
+        margin-top: 200px;
+
+        span {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+        }
+
+        a {
+            color: $color-white;
+        }
+
+        h1 {
+            font-family: ProximaNova, sans-serif;
+            line-height: 1.5em;
+        }
+
+        button {
+            margin: 20px 0;
+        }
+    }
 }
