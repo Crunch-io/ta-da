@@ -56,3 +56,4 @@ def main():
                 resp = requests.post(**admin_url(connection, '/datasets/delete/%s' % ds['id']))
                 if resp.status_code != 200:
                     print('ERROR: %s' % resp.text, file=sys.stderr)
+                time.sleep(1.0)
