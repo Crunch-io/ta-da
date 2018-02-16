@@ -7,4 +7,5 @@ description = ""
 weight = 1
 img = "jjdelc.jpg"
 location = "Lima"
+position = ""
 +++

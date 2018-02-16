@@ -7,4 +7,5 @@ description = "Python developer"
 weight = 1
 img = "diana.png"
 location = "Edmonton"
+position = ""
 +++

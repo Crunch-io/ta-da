@@ -7,4 +7,5 @@ description = ""
 weight = 1
 img = "msteitle.jpg"
 location = "Denver"
+position = ""
 +++

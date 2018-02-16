@@ -7,4 +7,5 @@ description = ""
 weight = 1
 img = "jeff.jpg"
 location = "Seattle"
+position = ""
 +++
