@@ -82,9 +82,17 @@
 //Popover
 
 .popover  {
-    top:100px !important;
-    left: -50px !important;
     padding: 5px;
+
+    &.bs-popover-right {
+        margin-top: 280px;
+        margin-left: -50px;
+    }
+
+    &.bs-popover-left {
+        margin-top: 280px;
+        margin-right: 50px;
+    }
 
     .popover-header{
         background-color: $color-white;
