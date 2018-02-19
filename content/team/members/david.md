@@ -7,4 +7,5 @@ description = "Avid Python developer, homeschooling Dad"
 weight = 1
 img = "david.jpg"
 location = "Raleigh"
+position = ""
 +++

@@ -7,4 +7,5 @@ description = ""
 weight = 1
 img = "cferejohn.jpg"
 location = "Mountain View"
+position = ""
 +++

@@ -7,4 +7,5 @@ description = ""
 weight = 1
 img = "natalia.jpg"
 location = "Santo Domingo"
+position = "UI/UX Developer"
 +++
