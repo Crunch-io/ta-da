@@ -12,14 +12,13 @@
                           <div class="container">
                               <div class="row justify-content-md-center">
                                   <div class="col-md-4">
-                                      <h1 class="display-4">Faster analytics.</h1>
+                                      <h1 class="display-4"><span>Faster</span> analytics.</h1>
                                   </div>
 
-                                  {{ range where .Data.Pages "Section" "about" }}
                                   <div class="col-md-5">
                                       <p>{{ .Content }}</p>
                                   </div>
-                                  {{ end }}
+
                               </div> <!-- /.row -->
 
                           </div> <!-- /.container -->
@@ -31,7 +30,7 @@
 
                         <div class="row spacer-top justify-content-md-center">
                             <div class="col-md-5">
-                                <h2 class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h2>
+                                <h2 class="text-center">The right tool for survey analysis</h2>
                             </div>
                         </div>
 
@@ -56,11 +55,11 @@
 
                         <div class="row spacer">
                             <div class="col-md-3">
-                                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem cumque assumenda cupiditate est expedita hic odit.</p>
+                                <p class="lead">Process, analyze, and communicate data through a single interface.</p>
                                 <ul>
-                                    <li>Praesent eu diam at neque imperdiet fermentum vel id velit.</li>
-                                    <li>In vulputate libero ut elit faucibus, sed lobortis mi feugiat.</li>
-                                    <li>Suspendisse volutpat nibh at magna interdum, non feugiat odio consequat.</li>
+                                    <li>Quickly gain insights from your survey data.</li>
+                                    <li>Confidently share datasets with clients, business users, and the public.</li>
+                                    <li>Seamlessly integrate Crunch with your data pipelines using our open source tools. </li>
                                 </ul>
                             </div>
 
@@ -77,7 +76,7 @@
                           <div class="container">
                               <div class="row">
                                   <div class="col-md-6">
-                                      <h1>Data, smarter.</h1>
+                                      <h1>Data, <span>smarter.</span></h1>
                                       <a href="https://app.crunch.io/signup/" class="btn btn-link">Try now &#10230;</a>
                                   </div>
                               </div> <!-- /.row. -->
@@ -85,20 +84,6 @@
                       </div> <!-- /.jumbotron -->
                   </div>
 
-                  <footer class="footer d-flex justify-content-center bg-green">
-                      <ul class="list-inline">
-                          <li class="list-inline-item"><a class="nav-link active" href="about">About</a></li>
-                          <li class="list-inline-item"><a class="nav-link" href="team">Team</a></li>
-                          <li class="list-inline-item"><a class="nav-link" href="http://support.crunch.io/crunch/home.html">Support</a></li>
-                          <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/login">Login</a></li>
-                          <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/login/">Try now</a></li>
-                      </ul>
-                  </footer>
-
-              </div> <!-- /.container-fluid -->
-
-          </div> <!-- /#secondary-pages-wrapper -->
-
-      </div> <!-- /#wrapper -->
+{{ partial "footer-nav.html" . }}
 
 {{ partial "footer.html" . }}

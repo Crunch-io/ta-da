@@ -3,6 +3,7 @@ $color-purple:                     #722580;
 $color-blue:                       #0064a4;
 $color-green:                      #107f65;
 $color-white:                      #ffffff;
+$color-off-black:                  #1D1D26;
 
 // 7 shades of grey
 $color-grey-lighest:               #f9f9f9;
@@ -36,3 +37,9 @@ $--lighter-secondary-color: desaturate(lighten($color-green, 80%), 50%);
 $--darker-message-color: darken($color-purple, 20%);
 $--light-message-color: desaturate(lighten($color-purple, 30%), 50%);
 $--lighter-message-color: desaturate(lighten($color-purple, 80%), 50%);
+
+// Font smoothing antialiased
+@mixin font-smoothing($smoothing) {
+    -webkit-font-smoothing: $smoothing;
+    -moz-osx-font-smoothing: $smoothing;
+}

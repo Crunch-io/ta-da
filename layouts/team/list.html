@@ -46,7 +46,7 @@
                     <div class="container">
 
                         <div class="team-members">
-                            {{ range where .Data.Pages.ByDate "File.Dir" "in" "/team/members/" }}
+                            {{ range where (.Data.Pages.ByParam "firstname") "File.Dir" "in" "/team/members/" }}
                             <figure class="figure p-3">
                               <a href="#" data-toggle="popover"><img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="185" width="185"></a>
                               <div class="popover-title d-none">
@@ -73,7 +73,7 @@
                           <div class="container">
                               <div class="row">
                                   <div class="col-md-6">
-                                      <h1>Liberate your data.</h1>
+                                      <h1><span>Liberate</span> your data.</h1>
                                       <a href="https://app.crunch.io/signup/" class="btn btn-link">Try now &#10230;</a>
                                   </div>
                               </div> <!-- /.row. -->
@@ -81,20 +81,6 @@
                       </div> <!-- /.jumbotron -->
                   </div>
 
-                  <footer class="footer d-flex justify-content-center bg-blue">
-                      <ul class="list-inline">
-                          <li class="list-inline-item"><a class="nav-link" href="about">About</a></li>
-                          <li class="list-inline-item"><a class="nav-link  active" href="team">Team</a></li>
-                          <li class="list-inline-item"><a class="nav-link" href="http://support.crunch.io/crunch/home.html">Support</a></li>
-                          <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/login">Login</a></li>
-                          <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/login/">Try now</a></li>
-                      </ul>
-                  </footer>
-
-              </div> <!-- /.container-fluid -->
-
-          </div> <!-- /#secondary-pages-wrapper -->
-
-      </div> <!-- /#wrapper -->
+{{ partial "footer-nav.html" . }}
 
 {{ partial "footer.html" . }}

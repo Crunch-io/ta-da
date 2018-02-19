@@ -3,10 +3,19 @@
     border-radius: 2px;
 }
 
+.btn-link {
+    color: $font-color-dark-grey;
+
+    &:hover, &:active, &:focus {
+        color: $color-blue;
+        text-decoration: none;
+    }
+}
+
 .btn-primary {
     background-color: $color-blue;
     border-color: $color-blue;
-    @include vp-box-shadow(2px 2px 15px 3px rgba(0,0,0,0.1));
+    @include vp-box-shadow(2px 2px 15px 1px rgba(0,0,0,0.4));
 
     &:hover {
         background-color: $--darker-primary-color;
@@ -17,6 +26,7 @@
 .btn-secondary {
     background-color: $color-purple;
     border-color: $color-purple;
+    @include vp-box-shadow(2px 2px 15px 1px rgba(0,0,0,0.4));
 
     &:hover {
         background-color: $--darker-message-color;
@@ -27,6 +37,7 @@
 .btn-success {
     background-color: $color-green;
     border-color: $color-green;
+    @include vp-box-shadow(2px 2px 15px 1px rgba(0,0,0,0.4));
 
     &:hover {
         background-color: $--darker-secondary-color;
