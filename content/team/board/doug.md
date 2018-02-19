@@ -7,4 +7,5 @@ description = "by the grace of God, Holy Roman Emperor, forever August, King of 
 weight = 1
 img = "rivers.jpg"
 location = "Palo Alto"
+position = ""
 +++

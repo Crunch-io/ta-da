@@ -7,4 +7,5 @@ description = "Explorer of Pullicidar"
 weight = 1
 img = "jim.jpg"
 location = "Denver"
+position = ""
 +++

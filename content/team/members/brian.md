@@ -7,4 +7,5 @@ description = ""
 weight = 1
 img = "default.png"
 location = "Portland"
+position = ""
 +++

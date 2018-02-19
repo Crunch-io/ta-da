@@ -7,4 +7,5 @@ description = ""
 weight = 1
 img = "jtate.jpg"
 location = "Raleigh"
+position = ""
 +++

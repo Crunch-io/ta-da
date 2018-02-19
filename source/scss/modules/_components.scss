@@ -82,13 +82,37 @@
 //Popover
 
 .popover  {
+    padding: 5px;
+
+    &.bs-popover-right {
+        margin-top: 280px;
+        margin-left: -50px;
+    }
+
+    &.bs-popover-left {
+        margin-top: 280px;
+        margin-right: 50px;
+    }
+
     .popover-header{
         background-color: $color-white;
         border: 0;
+
+        h3 {
+            font-weight: 700;
+        }
+
+        span {
+            font-size: 0.8em;
+        }
     }
 
     .popover-body {
         color: $color-green;
+    }
+
+    .arrow {
+        display: none;
     }
 }
 
