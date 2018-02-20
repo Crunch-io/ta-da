@@ -31,3 +31,34 @@
         }
     }
 }
+
+// Dot nav
+#dot-nav {
+	top: 70%;
+    right: 10px;
+	z-index: 999;
+}
+
+#dot-nav ul {
+	list-style: none;
+	margin:0;
+	padding: 0;
+
+    li {
+        background-color: $color-grey-darkest;
+    	border-radius: 15px;
+    	cursor: pointer;
+        width: 12px;
+    	height: 12px;
+        margin: 10px 10px;
+
+        a {
+            display: block;
+            text-indent: -9999px;
+        }
+    }
+}
+
+#dot-nav li.active, #dot-nav li:hover {
+	background-color: $color-grey-light;
+}

@@ -225,3 +225,75 @@
         }
     }
 }
+
+// Learn More Pages
+// A modern platform for analytics
+
+.modern-platform-title {
+    margin-left: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    transition: color .35s ease-in-out;
+}
+
+.text-white {
+    color: $color-white;
+}
+
+.modern-platform-content {
+
+    .jumbotron {
+        margin: 0;
+    }
+
+    .content-one {
+
+        margin-top: 300px;
+
+        .jumbotron {
+            height: 800px;
+            color: $color-white;
+            background-color: $color-purple;
+        }
+    }
+
+    .content-two .jumbotron {
+        height: 800px;
+        color: $color-white;
+        background-color: $color-blue;
+
+        p {
+            margin-top: 200px;
+        }
+    }
+
+    .content-three .jumbotron {
+        height: 800px;
+        color: $color-white;
+        background-color: $color-purple;
+
+        p {
+            margin-top: 200px;
+        }
+    }
+
+    .content-four .jumbotron {
+        height: 800px;
+        color: $color-off-black;
+        background-color: $color-white;
+
+        p {
+            margin-top: 200px;
+        }
+
+        a {
+            font-family: 'Libre Baskerville', serif;
+            color: $color-off-black;
+
+            span {
+                font-style: italic;
+            }
+        }
+    }
+
+}

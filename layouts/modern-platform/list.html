@@ -1,0 +1,81 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+     <div id="dot-nav" class="position-sticky float-right">
+         <ul>
+             <li><a href="modern-platform/#first-content">1</a></li>
+             <li><a href="modern-platform/#second-content">2</a></li>
+             <li><a href="modern-platform/#third-content">3</a></li>
+             <li><a href="modern-platform/#fourth-content">4</a></li>
+         </ul>
+     </div>
+
+     <div class="secondary-content" id="first-content">
+       <div class="container position-fixed">
+
+           <div class="row">
+               <div class="col-md-8">
+                   <h1 class="modern-platform-title">A <span>modern</span> platform for analytics</h1>
+
+                   <img src="images/app_interface_example.png" alt="Crunch app" class="img-fluid">
+               </div>
+           </div> <!-- /.row. -->
+
+       </div> <!-- /.container -->
+     </div> <!-- /.secondary-content -->
+
+      <div id="wrapper">
+
+          <div id="secondary-pages-wrapper">
+              <div class="container-fluid">
+
+                  <div class="modern-platform-content">
+
+                    <section class="page-scroll content-one">
+                        <div class="jumbotron">
+                            <div class="container">
+                                <div class="col-md-4 ml-auto">
+                                    <p>Your datasets are stored in our cloud-based, high performance data store.  The data is always available and can be analyzed interactively no matter where you are. </p>
+                                </div>
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                    <section id="second-content" class="page-scroll content-two">
+                        <div class="jumbotron">
+                            <div class="container">
+                                <div class="col-md-4 ml-auto">
+                                    <p>Our innovative version-control system allows you to undo changes or view earlier revisions so you never have to worry about accidentally trashing your data.</p>
+                                </div>
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                    <section id="third-content" class="page-scroll content-three">
+                        <div class="jumbotron">
+                            <div class="container">
+                                <div class="col-md-4 ml-auto">
+                                    <p>An intuitive, visual interface allows anyone to quickly view the data and to dig deeper to gain greater insights. You can drag-and-drop to create tables and charts, filter the data, and create comprehensive dashboards.</p>
+                                </div>
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                      <section id="fourth-content" class="page-scroll content-four">
+                          <div class="jumbotron">
+                              <div class="container">
+                                  <div class="col-md-4 ml-auto">
+                                      <p>We’re survey experts. Crunch has special features to make survey analysis simple. We natively support data types like multiple response and “grid” questions. You can generate population weights, check the significance of cross-tabulations, and perform sentiment analysis on text data.</p>
+                                      <a href="collaborate-securely">Collaborate <span>Securely</span> &#10230;</a>
+                                  </div>
+                              </div> <!-- /.container -->
+                          </div> <!-- /.jumbotron -->
+                      </section>
+
+                  </div> <!-- /.modern-platform-content -->
+
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}
