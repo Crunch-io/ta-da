@@ -371,13 +371,17 @@
         }
     }
 
+    .crunchbox-container {
+        margin-top: 150px;
+    }
+
 }
 
 .collaborate-securely-parallax {
 
     .img-fluid {
         opacity: 1;
-        transition: opacity .1s ease-in-out;
+        transition: opacity .35s ease-in-out;
     }
 
     .img-parallax-none {
