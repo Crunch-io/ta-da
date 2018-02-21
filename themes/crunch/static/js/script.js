@@ -83,7 +83,16 @@ $(document).ready(function() {
         } else {
             $('.learn-more-title').removeClass('text-white');
         }
+
+        if(scroll > 2200) {
+            $('.collaborate-securely-parallax .img-fluid').addClass('img-parallax-none');
+        } else {
+            $('.collaborate-securely-parallax .img-fluid').removeClass('img-parallax-none');
+        }
+
     });
+
+
 
 // End
 });

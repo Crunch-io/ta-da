@@ -358,6 +358,7 @@
 
         p {
             margin-top: 200px;
+            margin-bottom: 150px;
         }
 
         a {
@@ -370,6 +371,18 @@
         }
     }
 
+}
+
+.collaborate-securely-parallax {
+
+    .img-fluid {
+        opacity: 1;
+        transition: opacity .1s ease-in-out;
+    }
+
+    .img-parallax-none {
+        opacity: 0;
+    }
 }
 
 // Speaks Research
