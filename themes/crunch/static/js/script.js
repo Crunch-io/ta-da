@@ -79,9 +79,9 @@ $(document).ready(function() {
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
         if(scroll > 250 && scroll < 2600){
-            $('.modern-platform-title').addClass('text-white');
+            $('.learn-more-title').addClass('text-white');
         } else {
-            $('.modern-platform-title').removeClass('text-white');
+            $('.learn-more-title').removeClass('text-white');
         }
     });
 

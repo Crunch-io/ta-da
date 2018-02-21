@@ -227,9 +227,7 @@
 }
 
 // Learn More Pages
-// A modern platform for analytics
-
-.modern-platform-title {
+.learn-more-title {
     margin-left: 30px;
     margin-top: 40px;
     margin-bottom: 40px;
@@ -240,10 +238,16 @@
     color: $color-white;
 }
 
+// A modern platform for analytics
 .modern-platform-content {
 
     .jumbotron {
         margin: 0;
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.5em;
+        }
     }
 
     .content-one {
@@ -260,11 +264,14 @@
     .content-two .jumbotron {
         height: 800px;
         color: $color-white;
-        background-color: $color-blue;
+        background: url(../images/crunch_modern_platform.jpg) no-repeat center center fixed;
+        @include vp-background-size(cover);
 
         p {
             margin-top: 200px;
+            color: $color-white;
         }
+
     }
 
     .content-three .jumbotron {
@@ -289,6 +296,127 @@
         a {
             font-family: 'Libre Baskerville', serif;
             color: $color-off-black;
+
+            span {
+                font-style: italic;
+            }
+        }
+    }
+
+}
+
+// Collaborate securely
+.collaborate-securely-content {
+
+    .jumbotron {
+        margin: 0;
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.5em;
+        }
+    }
+
+    .content-one {
+
+        margin-top: 300px;
+
+        .jumbotron {
+            height: 800px;
+            color: $color-white;
+            background-color: $color-green;
+        }
+    }
+
+    .content-two .jumbotron {
+        height: 800px;
+        color: $color-white;
+        background: url(../images/crunch_collaborate_securely.jpg) no-repeat center center fixed;
+        @include vp-background-size(cover);
+
+        p {
+            margin-top: 200px;
+            color: $color-white;
+        }
+
+    }
+
+    .content-three .jumbotron {
+        height: 800px;
+        color: $color-white;
+        background-color: $color-green;
+
+        p {
+            margin-top: 200px;
+        }
+    }
+
+    .content-four .jumbotron {
+        height: 800px;
+        color: $color-off-black;
+        background-color: $color-white;
+
+        p {
+            margin-top: 200px;
+        }
+
+        a {
+            font-family: 'Libre Baskerville', serif;
+            color: $color-off-black;
+
+            span {
+                font-style: italic;
+            }
+        }
+    }
+
+}
+
+// Speaks Research
+.speaks-research-content {
+
+    .jumbotron {
+        margin: 0;
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.5em;
+        }
+    }
+    .content-one {
+
+        margin-top: 300px;
+
+        .jumbotron {
+            height: 800px;
+            color: $color-white;
+            background-color: $color-blue;
+        }
+    }
+
+    .content-two .jumbotron {
+        height: 800px;
+        color: $color-white;
+        background: url(../images/crunch_stone.jpg) no-repeat 0 top fixed;
+        @include vp-background-size(cover);
+
+        p {
+            margin-top: 200px;
+        }
+    }
+
+    .content-three .jumbotron {
+        height: 800px;
+        color: $color-white;
+        background-color: $color-blue;
+
+        p {
+            margin-top: 200px;
+        }
+
+        a {
+            font-family: 'Libre Baskerville', serif;
+            color: $color-white;
 
             span {
                 font-style: italic;
