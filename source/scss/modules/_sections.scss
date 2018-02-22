@@ -186,6 +186,10 @@
 
         .jumbotron {
             background-color: $color-blue;
+
+            a {
+                color: $color-white;
+            }
         }
 
     }
