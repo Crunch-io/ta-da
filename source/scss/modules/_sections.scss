@@ -204,7 +204,19 @@
     .blog-content-mg {
         margin-top: 30px;
         padding: 0;
-        
+
+        pre {
+            background-color: $color-grey-ligher;
+            padding: 20px;
+            border-radius: 3px;
+        }
+
+        code {
+            background-color: $color-grey-ligher;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
         img {
             margin: 30px;
         }
