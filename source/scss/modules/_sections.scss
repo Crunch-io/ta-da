@@ -76,6 +76,12 @@
     .secondary-content {
         h2 {
             color: $color-green;
+
+            span {
+                font-family: 'Libre Baskerville', serif;
+                font-style: italic;
+                color: $color-off-black;
+            }
         }
 
         .features {
