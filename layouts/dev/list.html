@@ -36,10 +36,9 @@
                                   <div class="posts">
                                       {{ if gt (len .Summary) 90 }}
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
-                                      <span>Published {{ .Date.Format "Jan 2, 2006" }}</span>
-                                      <hr>
+                                      <span>{{ .Date.Format "Jan 2, 2006" }}</span>
                                       <p>{{ slicestr .Summary 0 90 | emojify }}...</p>
-                                      <a href="{{ .Permalink }}">Learn More</a>
+                                      <a href="{{ .Permalink }}">Learn More &#10230;</a>
                                       {{ end }}
                                   </div>
                               </div>
