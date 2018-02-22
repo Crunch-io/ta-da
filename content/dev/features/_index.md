@@ -5,4 +5,4 @@ title = "Feature Announcements"
 weight = 1
 +++
 
-If it's new and exciting, you'll find it here.
+Archive
