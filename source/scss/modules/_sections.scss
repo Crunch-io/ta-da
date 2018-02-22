@@ -185,8 +185,7 @@
         color: $color-white;
 
         .jumbotron {
-            background: url(../images/crunch_lavender.jpg) no-repeat center center fixed;
-            @include vp-background-size(cover);
+            background-color: $color-blue;
         }
 
     }
