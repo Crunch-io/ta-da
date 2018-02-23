@@ -241,6 +241,13 @@
 // A modern platform for analytics
 .modern-platform-content {
 
+    .modern-platform-parallax {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+    }
+
     .jumbotron {
         margin: 0;
 
