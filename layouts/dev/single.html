@@ -13,6 +13,7 @@
                             <div class="col-md-10 offset-md-1">
                                 <h1>{{ .Title | emojify }}</h1>
                                 <hr>
+                                <p>{{ .Params.description }}</p>
                                 <span>{{ .Date.Format "Jan 2, 2006" }} </span>
                             </div>
                         </div> <!-- /.row -->
