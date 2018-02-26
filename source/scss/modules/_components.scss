@@ -141,20 +141,23 @@
 
 .post-card {
     position: relative;
-    height: 350px;
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    top: 0;
+    min-height: 450px;
     padding: 30px 50px;
     margin-bottom: 30px;
+    background-color: $color-grey-lighest;
+    @include vp-transition(all .1s ease-in-out);
 
     &:hover {
-        border-color: $color-white;
-        border-bottom: 2px solid $color-green;
+        border-bottom: 2px solid $color-blue;
         box-shadow: 2px 2px 15px 2px rgba(0,0,0,0.1);
+        top: -5px;
     }
 
     .posts {
         .post-title {
-            color: $color-green;
+            font-family: 'Libre Baskerville', serif;
+            color: $color-blue;
         }
         span {
             font-size: .8em;
@@ -165,6 +168,11 @@
         a {
             position: absolute;
             bottom: 30px;
+            color: $color-off-black;
+
+            &:hover {
+                color: $color-blue;
+            }
         }
     }
 }

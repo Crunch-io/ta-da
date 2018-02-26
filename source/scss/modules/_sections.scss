@@ -76,6 +76,13 @@
     .secondary-content {
         h2 {
             color: $color-green;
+
+            span {
+                font-family: 'Libre Baskerville', serif;
+                font-style: italic;
+                color: $color-off-black;
+                line-height: 1.3em;
+            }
         }
 
         .features {
@@ -176,16 +183,40 @@
     //Blog content
 
     .blog-content {
-        color: $color-white;
+        color: $color-blue;
 
         .jumbotron {
-            background: url(../images/crunch_lavender.jpg) no-repeat center center fixed;
-            @include vp-background-size(cover);
+            color: $color-white;
+            background-color: $color-blue;
+
+            a {
+                color: $color-white;
+            }
+
+            .lead {
+                color: $color-white;
+                font-weight: 400;
+            }
         }
 
     }
 
     .blog-content-mg {
+        margin-top: 30px;
+        padding: 0;
+
+        pre {
+            background-color: $color-grey-ligher;
+            padding: 20px;
+            border-radius: 3px;
+        }
+
+        code {
+            background-color: $color-grey-ligher;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
         img {
             margin: 30px;
         }

@@ -8,15 +8,15 @@
         <div class="container-fluid">
 
             <div class="blog-content">
-                <div class="jumbotron">
-                    <div class="container">
-                        <div class="row justify-content-md-center">
-                            <div class="col-md-12 text-center">
-                                <h1 class="display-5">{{ .Title | emojify }}</h1>
+                    <div class="container spacer-top">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <h1>{{ .Title | emojify }}</h1>
+                                <hr>
+                                <p>{{ .Params.description }}</p>
+                                <span>{{ .Date.Format "Jan 2, 2006" }} </span>
                             </div>
                         </div> <!-- /.row -->
-
-                    </div> <!-- /.container -->
                 </div> <!-- /.jumbotron -->
             </div> <!-- /.blog-content -->
 
