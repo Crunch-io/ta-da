@@ -62,7 +62,7 @@
             background-position: center 260px;
         }
 
-        @include media-breakpoint-down(xs) {
+        @include media-breakpoint-down(sm) {
             .jumbotron {
                 background: $color-green;
             }
