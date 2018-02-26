@@ -100,7 +100,7 @@
                 margin-top: 20px;
             }
 
-            @include media-breakpoint-down(xs) {
+            @include media-breakpoint-down(sm) {
                 div, div:last-child {
                     border: none;
                     margin-bottom: 50px;
