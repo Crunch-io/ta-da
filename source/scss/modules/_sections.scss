@@ -299,6 +299,28 @@
         }
     }
 
+    @include media-breakpoint-only(xs) {
+        .content-one {
+            background-color: $color-purple;
+
+            h1 {
+                margin-top: -220px;
+            }
+        }
+    }
+
+    @include media-breakpoint-only(sm) {
+        .content-one {
+            margin-top: 80px;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-one .jumbotron {
+            height: auto;
+        }
+    }
+
     .content-two .jumbotron {
         height: 800px;
         color: $color-white;
@@ -310,6 +332,27 @@
             color: $color-white;
         }
 
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+        }
+
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-two .jumbotron  {
+            height: 400px
+
+        }
     }
 
     .content-three .jumbotron {
@@ -319,6 +362,39 @@
 
         p {
             margin-top: 200px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+
+            img {
+                margin-top: -100px;
+                margin-bottom: 50px;
+            }
+        }
+
+        @include media-breakpoint-only(sm) {
+            img {
+                margin-top: -200px;
+                margin-bottom: 50px;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-three .jumbotron  {
+            height: 580px
+
         }
     }
 
@@ -338,6 +414,38 @@
             span {
                 font-style: italic;
             }
+        }
+
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+
+            img {
+                margin-top: -100px;
+                margin-bottom: 50px;
+            }
+        }
+
+        @include media-breakpoint-only(sm) {
+            img {
+                margin-top: -200px;
+                margin-bottom: 50px;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-four .jumbotron {
+            height: auto;
         }
     }
 
@@ -465,7 +573,6 @@
 
     @include media-breakpoint-only(xs) {
         .content-one {
-            // margin-top: 200px;
             background-color: $color-blue;
 
             h1 {
