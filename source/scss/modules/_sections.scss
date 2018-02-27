@@ -57,12 +57,15 @@
         color: $color-white;
 
         .jumbotron {
+            display: block;
+            position: relative;
             height: 600px;
-            background: $color-green url(../images/app_interface_example.png) no-repeat;
+            background-image: url(../images/app_interface_example.png), url(../images/hip-square.jpg);
             background-position: center 260px;
+            background-repeat: no-repeat, repeat;
         }
 
-        @include media-breakpoint-down(xs) {
+        @include media-breakpoint-down(sm) {
             .jumbotron {
                 background: $color-green;
             }
@@ -100,7 +103,7 @@
                 margin-top: 20px;
             }
 
-            @include media-breakpoint-down(xs) {
+            @include media-breakpoint-down(sm) {
                 div, div:last-child {
                     border: none;
                     margin-bottom: 50px;
@@ -142,13 +145,12 @@
         color: $color-white;
 
         .jumbotron {
-            background-color: $color-green;
+            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)), url(../images/hip-square.jpg) repeat;
             height: 485px;
 
         }
 
         .team-leads {
-            // border:1px solid red;
             margin-top: -250px;
             margin-bottom: 50px;
         }
@@ -175,7 +177,7 @@
         color: $color-white;
 
         .jumbotron {
-            background-color: $color-green;
+            background: url(../images/hip-square-blue.jpg) repeat;
         }
 
     }
@@ -187,7 +189,7 @@
 
         .jumbotron {
             color: $color-white;
-            background-color: $color-blue;
+            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)), url(../images/hip-square-blue.jpg) repeat;
 
             a {
                 color: $color-white;
@@ -215,10 +217,6 @@
             background-color: $color-grey-ligher;
             padding: 5px;
             border-radius: 3px;
-        }
-
-        img {
-            margin: 30px;
         }
     }
 
@@ -299,6 +297,28 @@
         }
     }
 
+    @include media-breakpoint-only(xs) {
+        .content-one {
+            background-color: $color-purple;
+
+            h1 {
+                margin-top: -220px;
+            }
+        }
+    }
+
+    @include media-breakpoint-only(sm) {
+        .content-one {
+            margin-top: 80px;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-one .jumbotron {
+            height: auto;
+        }
+    }
+
     .content-two .jumbotron {
         height: 800px;
         color: $color-white;
@@ -310,6 +330,27 @@
             color: $color-white;
         }
 
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+        }
+
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-two .jumbotron  {
+            height: 400px
+
+        }
     }
 
     .content-three .jumbotron {
@@ -319,6 +360,39 @@
 
         p {
             margin-top: 200px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+
+            img {
+                margin-top: -100px;
+                margin-bottom: 50px;
+            }
+        }
+
+        @include media-breakpoint-only(sm) {
+            img {
+                margin-top: -200px;
+                margin-bottom: 50px;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-three .jumbotron  {
+            height: 580px
+
         }
     }
 
@@ -338,6 +412,38 @@
             span {
                 font-style: italic;
             }
+        }
+
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+
+            img {
+                margin-top: -100px;
+                margin-bottom: 50px;
+            }
+        }
+
+        @include media-breakpoint-only(sm) {
+            img {
+                margin-top: -200px;
+                margin-bottom: 50px;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-four .jumbotron {
+            height: auto;
         }
     }
 
@@ -369,7 +475,29 @@
         .jumbotron {
             height: 800px;
             color: $color-white;
-            background-color: $color-green;
+            background: url(../images/hip-square.jpg) repeat;
+        }
+    }
+
+    @include media-breakpoint-only(xs) {
+        .content-one {
+            background: url(../images/hip-square.jpg) repeat;
+
+            h1 {
+                margin-top: -220px;
+            }
+        }
+    }
+
+    @include media-breakpoint-only(sm) {
+        .content-one {
+            margin-top: 80px;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-one .jumbotron {
+            height: auto;
         }
     }
 
@@ -384,15 +512,68 @@
             color: $color-white;
         }
 
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+        }
+
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-two .jumbotron  {
+            height: 400px
+
+        }
     }
 
     .content-three .jumbotron {
         height: 800px;
         color: $color-white;
-        background-color: $color-green;
+        background: url(../images/hip-square.jpg) repeat;
 
         p {
             margin-top: 200px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+
+            img {
+                margin-top: -100px;
+                margin-bottom: 50px;
+            }
+        }
+
+        @include media-breakpoint-only(sm) {
+            img {
+                margin-top: -200px;
+                margin-bottom: 50px;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-three .jumbotron {
+            height: auto;
         }
     }
 
@@ -414,10 +595,27 @@
                 font-style: italic;
             }
         }
+
+        @include media-breakpoint-down(sm) {
+            p {
+                margin-top: 50px;
+                margin-bottom: 50px;
+            }
+        }
+
     }
 
-    .crunchbox-container {
-        margin-top: 150px;
+    @include media-breakpoint-down(sm) {
+        .content-four .jumbotron {
+            height: auto;
+        }
+    }
+
+
+    @include media-breakpoint-up(md) {
+        .crunchbox-container {
+            margin-top: 150px;
+        }
     }
 
 }
@@ -459,7 +657,29 @@
         .jumbotron {
             height: 800px;
             color: $color-white;
-            background-color: $color-blue;
+            background: url(../images/hip-square-blue.jpg) repeat;
+        }
+    }
+
+    @include media-breakpoint-only(xs) {
+        .content-one {
+            background: url(../images/hip-square-blue.jpg) repeat;
+
+            h1 {
+                margin-top: -220px;
+            }
+        }
+    }
+
+    @include media-breakpoint-only(sm) {
+        .content-one {
+            margin-top: 80px;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-one .jumbotron {
+            height: auto;
         }
     }
 
@@ -472,12 +692,33 @@
         p {
             margin-top: 200px;
         }
+
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-two .jumbotron  {
+            height: 400px
+
+        }
     }
 
     .content-three .jumbotron {
         height: 800px;
         color: $color-white;
-        background-color: $color-blue;
+        background: url(../images/hip-square-blue.jpg) repeat;
 
         p {
             margin-top: 200px;
@@ -489,6 +730,44 @@
 
             span {
                 font-style: italic;
+            }
+        }
+
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+
+            img {
+                margin-top: -100px;
+                margin-bottom: 50px;
+            }
+        }
+
+        @include media-breakpoint-only(sm) {
+            img {
+                margin-top: -200px;
+                margin-bottom: 50px;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-three .jumbotron {
+            height: auto;
+            color: $color-off-black;
+            background: $color-white;
+
+            a {
+                color: $color-off-black;
             }
         }
     }
