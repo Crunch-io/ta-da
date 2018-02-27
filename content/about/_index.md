@@ -1,8 +1,8 @@
 +++
 date = "2015-07-18T14:08:35+02:00"
 draft = false
-title = "About Us"
+title = "Our Story"
 
 +++
 
-Crunch is a searchable analytics platform for all your datasets, designed to foster collaboration across a range of technical abilities.  Business analysts and data scientists alike can prepare, explore, analyze and visualize data, and then deliver results to teammates and clients effortlessly.
+Crunch began in 2012 as a small group working at a global survey research company. We were survey experts, data scientists, and engineers who understood the needs of research companies and their clients.
