@@ -82,6 +82,14 @@
                 font-style: italic;
             }
         }
+
+        .join-the-team {
+            p {
+                display: table-cell;
+                height: 48px;
+                vertical-align: middle;
+            }
+        }
     }
 
     .lead {
