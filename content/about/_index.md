@@ -5,4 +5,4 @@ title = "Our Story"
 
 +++
 
-Crunch began in 2012 as a small group working at a global survey research company. We were survey experts, data scientists, and engineers who understood the needs of research companies and their clients.
+In 2012, a group of survey experts, data scientists, and engineers were frustrated with needing to use many disconnected tools to compile, analyze, and deliver survey data. We set out to make Crunch: a single tool that would bring all of these functions into a single, secure, cloud-based environment that could be used by researchers, analysts, and clients. 
