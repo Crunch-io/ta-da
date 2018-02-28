@@ -57,12 +57,7 @@
         color: $color-white;
 
         .jumbotron {
-            display: block;
-            position: relative;
-            height: 600px;
-            background-image: url(../images/app_interface_example.png), url(../images/hip-square.jpg);
-            background-position: center 260px;
-            background-repeat: no-repeat, repeat;
+            background: url(../images/hip-square.jpg) repeat;
         }
 
         @include media-breakpoint-down(sm) {
