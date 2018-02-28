@@ -38,9 +38,9 @@
 
 // Secondary-content
 .secondary-content {
-    .row {
-        margin: 0;
-    }
+    // .row {
+    //     margin: 0;
+    // }
 }
 
 @include media-breakpoint-down(xs) {
@@ -63,6 +63,23 @@
         @include media-breakpoint-down(sm) {
             .jumbotron {
                 background: $color-green;
+            }
+        }
+
+    }
+
+    .secondary-about-content {
+        h2 {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.2em;
+
+            span {
+                font-style: italic;
             }
         }
     }
