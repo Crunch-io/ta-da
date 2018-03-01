@@ -26,7 +26,7 @@
                       <div class="container team-leads">
                         <div class="row justify-content-center">
                             {{ range where .Data.Pages.ByDate "File.Dir" "in" "/team/board/" }}
-                            <div class="col-md-4">
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                                 <figure class="figure">
                                   <a href="#" data-toggle="popover" data-placement="right"><img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="320" width="320"></a>
                                   <div class="popover-title d-none">

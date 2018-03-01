@@ -176,3 +176,11 @@
         }
     }
 }
+
+// Figure images in content .md
+figure.img-fluid {
+    img {
+        max-width: 100%;
+        padding: 30px;
+    }
+}
