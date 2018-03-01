@@ -31,15 +31,6 @@ $(document).ready(function() {
         .trigger('resize');
 
 
-    //Homepage img animation
-    $(window).scroll(function(){
-        if($(window).scrollTop() >= 400){
-          $('.crunch-interface').addClass('animated fadeInUp');
-          $('.crunch-interface').removeClass('hidden');
-        }
-    });
-
-
     //Dot nav
     var pagescrollPosition = [];
     $('.page-scroll').each(function() {
