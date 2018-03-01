@@ -1,0 +1,18 @@
+// Shadows
+@mixin box_shadow($color-shadow) {
+    @if $color-shadow == "blue" {
+        @include vp-box-shadow(2px 2px 15px 1px rgba(0,100,164,0.4));
+    } @else if $color-shadow == "purple" {
+        @include vp-box-shadow(2px 2px 15px 1px rgba(114,37,128,0.4));
+    } @else if $color-shadow == "green" {
+        @include vp-box-shadow(2px 2px 15px 1px rgba(16,127,101,0.4));
+    } @else if $color-shadow == "black" {
+        @include vp-box-shadow(2px 2px 15px 1px rgba(0,0,0,0.4));
+    }
+}
+
+// Font smoothing antialiased
+@mixin font-smoothing($smoothing) {
+    -webkit-font-smoothing: $smoothing;
+    -moz-osx-font-smoothing: $smoothing;
+}
