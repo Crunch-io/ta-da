@@ -45,7 +45,7 @@
 	padding: 0;
 
     li {
-        background-color: $color-grey-darkest;
+        background-color: lighten($color-off-black, 60%);
     	border-radius: 15px;
     	cursor: pointer;
         width: 12px;
@@ -60,5 +60,5 @@
 }
 
 #dot-nav li.active, #dot-nav li:hover {
-	background-color: $color-grey-light;
+	background-color: $color-off-black;
 }
