@@ -20,20 +20,29 @@
 // Crunch interface
 .crunch-interface {
 
-    &.hidden {
-         opacity: 0;
-    }
-
     img {
         margin: auto;
-        margin-top: -400px;
+        margin-top: -500px;
     }
 
-    @include media-breakpoint-down(xs) {
+    @include media-breakpoint-only(xs) {
         img {
             margin-top: -200px;
         }
     }
+
+    @include media-breakpoint-only(sm) {
+        img {
+            margin-top: -300px;
+        }
+    }
+
+    @include media-breakpoint-only(md) {
+        img {
+            margin-top: -300px;
+        }
+    }
+    
 }
 
 // Secondary-content
