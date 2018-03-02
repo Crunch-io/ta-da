@@ -30,41 +30,70 @@ $(document).ready(function() {
         .resize(resize)
         .trigger('resize');
 
+    // Smooth Scrolling
+    $('a[href*="#"]')
 
-    //Dot nav
-    var pagescrollPosition = [];
-    $('.page-scroll').each(function() {
-        pagescrollPosition.push($(this).offset().top);
-    });
+      .not('[href="#"]')
+      .not('[href="#0"]')
+      .click(function(event) {
 
-    $('#dot-nav ul li a').click(function(){
-        $('html, body').animate({
-            scrollTop: $( $(this).attr('href') ).offset().top
-    }, 500);
-        return false;
-    });
+        if (
+          location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+          &&
+          location.hostname == this.hostname
+        ) {
 
-    $('#dot-nav ul li').click(function () {
-        $('#dot-nav ul li').removeClass('active');
-        $(this).addClass('active');
-    });
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
 
-    $(document).scroll(function(){
-       var position = $(document).scrollTop(), index;
-        for (var i=0; i<pagescrollPosition.length; i++) {
-            if (position <= pagescrollPosition[i]) {
-                index = i;
-                break;
-            }
+          if (target.length) {
+
+            event.preventDefault();
+            $('html, body').animate({
+              scrollTop: target.offset().top
+            }, 1000, function() {
+              var $target = $(target);
+              $target.focus();
+              if ($target.is(":focus")) {
+                return false;
+              } else {
+                $target.attr('tabindex','-1');
+                $target.focus();
+              };
+            });
+          }
         }
-        $('#dot-nav ul li').removeClass('active');
-        $('#dot-nav ul li:eq('+index+')').addClass('active');
-    });
+      });
 
-        $('#dot-nav ul li').click(function () {
-        $('#dot-nav ul li').removeClass('active');
-            $(this).addClass('active');
-    });
+      //Dots
+      var pagescrollPosition = [];
+
+      $('.page-scroll').each(function() {
+          pagescrollPosition.push($(this).offset().top);
+      });
+
+      $('#dot-nav ul li').click(function () {
+          $('#dot-nav ul li').removeClass('active');
+          $(this).addClass('active');
+      });
+
+      $(document).scroll(function(){
+         var position = $(document).scrollTop(), index;
+          for (var i=0; i<pagescrollPosition.length; i++) {
+              if (position <= pagescrollPosition[i]) {
+                  index = i;
+                  break;
+              }
+          }
+          $('#dot-nav ul li').removeClass('active');
+          $('#dot-nav ul li:eq('+index+')').addClass('active');
+      });
+
+          $('#dot-nav ul li').click(function () {
+          $('#dot-nav ul li').removeClass('active');
+              $(this).addClass('active');
+      });
+
 
     // Change title color when scrolled
     $(window).scroll(function() {
