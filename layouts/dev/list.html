@@ -16,7 +16,7 @@
                             </div>
                             {{ range first 1 .Data.Pages }}
                             <div class="col-md-8">
-                                <h1>{{ .Title | emojify }}</h1>
+                                <h2>{{ .Title | emojify }}</h2>
                                 <span>{{ .Date.Format "Jan 2, 2006" }}</span>
                                 <p class="lead">{{ slicestr .Summary 0 80 | emojify }}...</p>
                                 <a href="{{ .Permalink }}">Learn More &#10230;</a>

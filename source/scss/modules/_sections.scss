@@ -20,20 +20,29 @@
 // Crunch interface
 .crunch-interface {
 
-    &.hidden {
-         opacity: 0;
-    }
-
     img {
         margin: auto;
-        margin-top: -400px;
+        margin-top: -500px;
     }
 
-    @include media-breakpoint-down(xs) {
+    @include media-breakpoint-only(xs) {
         img {
             margin-top: -200px;
         }
     }
+
+    @include media-breakpoint-only(sm) {
+        img {
+            margin-top: -300px;
+        }
+    }
+
+    @include media-breakpoint-only(md) {
+        img {
+            margin-top: -300px;
+        }
+    }
+
 }
 
 // Secondary-content
@@ -57,12 +66,16 @@
         color: $color-white;
 
         .jumbotron {
-            background: url(../images/hip-square.jpg) repeat;
+            background: url(../images/textures/concrete_seamless.png) repeat;
+            background-color: $color-green;
+            background-blend-mode: multiply;
         }
 
         @include media-breakpoint-down(sm) {
             .jumbotron {
-                background: $color-green;
+                background: url(../images/textures/concrete_seamless.png) repeat;
+                background-color: $color-green;
+                background-blend-mode: multiply;
             }
         }
 
@@ -165,7 +178,9 @@
         color: $color-white;
 
         .jumbotron {
-            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)), url(../images/hip-square.jpg) repeat;
+            background: url(../images/textures/paper_fibers_@2X.png) repeat;
+            background-color: $color-green;
+            background-blend-mode: multiply;
             height: 485px;
 
         }
@@ -197,7 +212,9 @@
         color: $color-white;
 
         .jumbotron {
-            background: url(../images/hip-square-blue.jpg) repeat;
+            background: url(../images/textures/cork-wallet.png) repeat;
+            background-color: $color-blue;
+            background-blend-mode: multiply;
         }
 
     }
@@ -209,7 +226,9 @@
 
         .jumbotron {
             color: $color-white;
-            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)), url(../images/hip-square-blue.jpg) repeat;
+            background: url(../images/textures/dust_scratches.png) repeat;
+            background-color: $color-blue;
+            background-blend-mode: multiply;
 
             a {
                 color: $color-white;
@@ -219,6 +238,12 @@
                 color: $color-white;
                 font-weight: 400;
             }
+        }
+
+        h2 {
+            font-family: 'ProximaNova', sans-serif;
+            font-weight: 700;
+            font-size: 2em;
         }
 
     }
@@ -495,13 +520,17 @@
         .jumbotron {
             height: 800px;
             color: $color-white;
-            background: url(../images/hip-square.jpg) repeat;
+            background: url(../images/textures/cream_dust_@2X.png) repeat;
+            background-color: $color-green;
+            background-blend-mode: multiply;
         }
     }
 
     @include media-breakpoint-only(xs) {
         .content-one {
-            background: url(../images/hip-square.jpg) repeat;
+            background: url(../images/textures/cream_dust_@2X.png) repeat;
+            background-color: $color-green;
+            background-blend-mode: multiply;
 
             h1 {
                 margin-top: -220px;
@@ -558,7 +587,9 @@
     .content-three .jumbotron {
         height: 800px;
         color: $color-white;
-        background: url(../images/hip-square.jpg) repeat;
+        background: url(../images/textures/cream_dust_@2X.png) repeat;
+        background-color: $color-green;
+        background-blend-mode: multiply;
 
         p {
             margin-top: 200px;
@@ -677,13 +708,17 @@
         .jumbotron {
             height: 800px;
             color: $color-white;
-            background: url(../images/hip-square-blue.jpg) repeat;
+            background: url(../images/textures/paper_fibers_@2X.png) repeat;
+            background-color: $color-blue;
+            background-blend-mode: multiply;
         }
     }
 
     @include media-breakpoint-only(xs) {
         .content-one {
-            background: url(../images/hip-square-blue.jpg) repeat;
+            background: url(../images/textures/paper_fibers_@2X.png) repeat;
+            background-color: $color-blue;
+            background-blend-mode: multiply;
 
             h1 {
                 margin-top: -220px;
@@ -738,7 +773,9 @@
     .content-three .jumbotron {
         height: 800px;
         color: $color-white;
-        background: url(../images/hip-square-blue.jpg) repeat;
+        background: url(../images/textures/paper_fibers_@2X.png) repeat;
+        background-color: $color-blue;
+        background-blend-mode: multiply;
 
         p {
             margin-top: 200px;

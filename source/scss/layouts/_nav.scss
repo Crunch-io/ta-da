@@ -5,6 +5,10 @@
         .nav-item {
             margin-left: 30px;
 
+            .btn-primary {
+                padding: 8px 45px;
+            }
+
             a:not(.btn-primary) {
                 color: $font-color-dark-grey;
 
@@ -45,7 +49,7 @@
 	padding: 0;
 
     li {
-        background-color: $color-grey-darkest;
+        background-color: lighten($color-off-black, 60%);
     	border-radius: 15px;
     	cursor: pointer;
         width: 12px;
@@ -60,5 +64,5 @@
 }
 
 #dot-nav li.active, #dot-nav li:hover {
-	background-color: $color-grey-light;
+	background-color: $color-off-black;
 }
