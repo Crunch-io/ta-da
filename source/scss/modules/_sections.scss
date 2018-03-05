@@ -42,7 +42,7 @@
             margin-top: -300px;
         }
     }
-    
+
 }
 
 // Secondary-content
@@ -228,6 +228,12 @@
                 color: $color-white;
                 font-weight: 400;
             }
+        }
+
+        h2 {
+            font-family: 'ProximaNova', sans-serif;
+            font-weight: 700;
+            font-size: 2em;
         }
 
     }
