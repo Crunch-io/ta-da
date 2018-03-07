@@ -66,12 +66,12 @@
         color: $color-white;
 
         .jumbotron {
-            background-color: $color-green;
+            background-image: linear-gradient( $color-green, $--darker-secondary-color);
         }
 
         @include media-breakpoint-down(sm) {
             .jumbotron {
-                background-color: $color-green;
+                background-image: linear-gradient( $color-green, $--darker-secondary-color);
             }
         }
 
@@ -174,7 +174,7 @@
         color: $color-white;
 
         .jumbotron {
-            background-color: $color-green;
+            background-image: linear-gradient( $color-green, $--darker-secondary-color);
             height: 485px;
 
         }
@@ -218,7 +218,7 @@
 
         .jumbotron {
             color: $color-white;
-            background-color: $color-blue;
+            background-image: linear-gradient( $color-blue, $--darker-primary-color);
 
             a {
                 color: $color-white;
