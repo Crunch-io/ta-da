@@ -218,9 +218,7 @@
 
         .jumbotron {
             color: $color-white;
-            background: url(../images/textures/dust_scratches.png) repeat;
             background-color: $color-blue;
-            background-blend-mode: multiply;
 
             a {
                 color: $color-white;
@@ -512,9 +510,7 @@
         .jumbotron {
             height: 800px;
             color: $color-white;
-            background: url(../images/textures/cream_dust_@2X.png) repeat;
             background-color: $color-green;
-            background-blend-mode: multiply;
         }
     }
 
