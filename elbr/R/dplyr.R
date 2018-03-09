@@ -1,3 +1,4 @@
+#' @export
 ELBLog <- function (start_date=NULL, end_date=start_date, path=getOption("elbr.dir", ".")) {
     structure(list(
         select=list(),
@@ -10,12 +11,14 @@ ELBLog <- function (start_date=NULL, end_date=start_date, path=getOption("elbr.d
 
 #' @importFrom dplyr select
 #' @importFrom rlang quos
+#' @export
 select.ELBLog <- function (.data, ...) {
     .data$select <- c(.data$select, list(quos(...)))
     return(.data)
 }
 
 #' @importFrom dplyr filter
+#' @export
 filter.ELBLog <- function (.data, ...) {
     .data$filter <- c(.data$filter, list(quos(...)))
     return(.data)
@@ -24,6 +27,7 @@ filter.ELBLog <- function (.data, ...) {
 #' @importFrom dplyr collect
 #' @importFrom rlang !!!
 #' @importFrom tidyselect vars_select
+#' @export
 collect.ELBLog <- function (.data) {
     colnames <- eval(formals(read_elb)[["col_names"]])
     for (q in .data$select) {
