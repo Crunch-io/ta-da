@@ -32,16 +32,26 @@ analyzeELB <- function (...) reduceELB(mapELB(...))
 #' @export
 #' @rdname analyzeELB
 #' @importFrom parallel mclapply
-mapELB <- function (FUN, start_date, end_date=start_date, files=findLogFiles(start_date, end_date)) {
+mapELB <- function (FUN, start_date, end_date=start_date, files=findLogFiles(start_date, end_date), select_vars=TRUE) {
     ## Only keep the columns we need
     # lapply(files, function (f, fn) fn(read_elb(f, col_names=all.vars(body(fn)))), fn=FUN)
-    parallel::mclapply(files, function (f) FUN(read_elb(f, col_names=all.vars(body(FUN)))))
+    ## Note that if FUN just wants to return a data.frame with all cols, this would fail unless it referenced the cols by name
+    if (select_vars) {
+        cnames <- all.vars(body(FUN))
+    } else {
+        cnames <- eval(formals(read_elb)[["col_names"]])
+    }
+    parallel::mclapply(files, function (f) FUN(read_elb(f, col_names=cnames)))
 }
 
 #' @export
 #' @rdname analyzeELB
+#' @importFrom dplyr bind_rows
 reduceELB <- function (results) {
     # n, .count, .mean, .table
+    if (is.data.frame(results[[1]])) {
+        return(bind_rows(results))
+    }
     measures <- names(results[[1]])
     out <- lapply(measures, function (m) {
         if (m == "n" || endsWith(m, "_count")) {

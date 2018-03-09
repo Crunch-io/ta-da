@@ -1,26 +1,10 @@
-#' Grab log entries that match a pattern
+#' Grab log entries that identifie 504 Gateway Timeouts
 #'
-#' 'filterLogs' can take any pattern you give it. 'find504s' calls 'filterLogs'
-#' with the pattern that identifies 504 Gateway Timeout responses.
-#'
-#' @param pattern character regular expression pattern to pass to 'egrep'
-#' @param date character date string of the format YYYY/MM/DD, or any segment of
-#' that (e.g. YYYY/MM).
-#' @param base.dir character directory in which the ELB logs are located
-#' @return A data.frame, via 'read.elb'
+#' @param ... arguments passed to [mapELB()]
+#' @return A data.frame (tibble), via 'read_elb'
 #' @export
-filterLogs <- function (pattern="", date="", base.dir=getOption("elbr.dir")) {
-    ## Date is YYYY/MM/DD, or any segment of that (e.g. YYYY/MM)
-    in.dir <- file.path(base.dir, date)
-    logs <- system(paste0('cd ', in.dir, ' && find . -name "*.log" | xargs -n 1 egrep "',
-        pattern, '"'), intern=TRUE)
-    return(read.elb(textConnection(logs)))
-}
-
-#' @rdname filterLogs
-#' @export
-find504s <- function (date="", base.dir=getOption("elbr.dir")) {
-    filterLogs(" -1 -1 504 ", date, base.dir)
+find504s <- function (...) {
+    analyzeELB(function (x) x[x$elb_status_code == 504,], ..., select_vars=FALSE)
 }
 
 findLogFiles <- function (start_date, end_date=start_date, base.dir=getOption("elbr.dir")) {

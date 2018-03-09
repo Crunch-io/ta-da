@@ -1,26 +1,9 @@
 #' Load an ELB log file
 #'
-#' @param file A file name or connection. See [utils::read.table()] or [readr::read_delim()]
-#' @param stringsAsFactors The standard `data.frame` argument, but
-#' defaulted to `TRUE`.
-#' @param ... Additional arguments passed to the file reader
-#' @return A `data.frame`.
-#' @export
-#' @importFrom utils read.delim
-read.elb <- function (file, stringsAsFactors=FALSE, ...) {
-    read.delim(file,
-        sep=" ",
-        header=FALSE,
-        stringsAsFactors=stringsAsFactors,
-        col.names=c("timestamp", "elb", "client_port", "backend_port",
-                    "request_processing_time", "backend_processing_time",
-                    "response_processing_time", "elb_status_code",
-                    "backend_status_code", "received_bytes", "sent_bytes",
-                    "request", "user_agent", "ssl_cipher", "ssl_protocol"),
-        ...)
-}
-
-#' @rdname read.elb
+#' @param file A file name or connection. See [readr::read_delim()]
+#' @param col_names
+#' @param ... Additional arguments passed to [readr::read_delim()]
+#' @return A tibble.
 #' @export
 #' @importFrom readr read_delim
 read_elb <- function (file,
@@ -45,6 +28,7 @@ read_elb <- function (file,
         delim=" ",
         escape_backslash=TRUE,
         escape_double=FALSE,
+        na=c("", "-1"),
         ...
     )
 }
@@ -52,8 +36,11 @@ read_elb <- function (file,
 #' Do some general cleaning
 #'
 #' Delete some columns we don't care about ever, parse the timestamp,
-#' add up response times, separate request verb from URL, etc.
-#' @param logdf a `data.frame` as returned from [read.elb()]
+#' add up response times, separate request verb from URL, etc. This was used
+#' with the old `read.elb` function, which no longer exists. Timestamp parsing
+#' and missingness are already handled by `read_elb`, and columns can be selected
+#' in that function, too.
+#' @param logdf a `data.frame` as returned from [read_elb()]
 #' @return A `data.frame` cleaned up a bit.
 #' @export
 #' @importFrom lubridate ymd_hms
