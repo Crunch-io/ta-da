@@ -1,7 +1,9 @@
 #' Load an ELB log file
 #'
 #' @param file A file name or connection. See [readr::read_delim()]
-#' @param col_names
+#' @param col_names Optional character vector to specify a subset of columns to
+#' import. If you know you only want to work with a few columns, it is faster
+#' to specify it at read time rather than filtering after. Default is everything.
 #' @param ... Additional arguments passed to [readr::read_delim()]
 #' @return A tibble.
 #' @export

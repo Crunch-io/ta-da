@@ -13,6 +13,10 @@ read_elb(file, col_names = c("timestamp", "elb", "client_port",
 \arguments{
 \item{file}{A file name or connection. See \code{\link[readr:read_delim]{readr::read_delim()}}}
 
+\item{col_names}{Optional character vector to specify a subset of columns to
+import. If you know you only want to work with a few columns, it is faster
+to specify it at read time rather than filtering after. Default is everything.}
+
 \item{...}{Additional arguments passed to \code{\link[readr:read_delim]{readr::read_delim()}}}
 }
 \value{
