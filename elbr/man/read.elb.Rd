@@ -2,17 +2,24 @@
 % Please edit documentation in R/read-elb.R
 \name{read.elb}
 \alias{read.elb}
+\alias{read_elb}
 \title{Load an ELB log file}
 \usage{
 read.elb(file, stringsAsFactors = FALSE, ...)
+
+read_elb(file, col_names = c("timestamp", "elb", "client_port",
+  "backend_port", "request_processing_time", "backend_processing_time",
+  "response_processing_time", "elb_status_code", "backend_status_code",
+  "received_bytes", "sent_bytes", "request", "user_agent", "ssl_cipher",
+  "ssl_protocol"), ...)
 }
 \arguments{
-\item{file}{A file name or connection. See \code{\link[utils]{read.table}}}
+\item{file}{A file name or connection. See \code{\link[utils:read.table]{utils::read.table()}} or \code{\link[readr:read_delim]{readr::read_delim()}}}
 
 \item{stringsAsFactors}{The standard \code{data.frame} argument, but
 defaulted to \code{TRUE}.}
 
-\item{...}{Additional arguments passed to \code{read.delim}}
+\item{...}{Additional arguments passed to the file reader}
 }
 \value{
 A \code{data.frame}.

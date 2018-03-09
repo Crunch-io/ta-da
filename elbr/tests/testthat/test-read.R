@@ -22,4 +22,14 @@ public({
         expect_identical(df$status_code[30], 504L)
         expect_true(is.na(df$response_time[30]))
     })
+
+    snake <- read_elb("example.log")
+    test_that("read_elb also reads a log file", {
+        expect_identical(dim(snake), c(97L, 15L))
+        expect_identical(snake$backend_processing_time[1], 0.0181)
+    })
+    test_that("read_elb with a problematic user-agent string", {
+        expect_silent(df <- read_elb("example2.log"))
+        expect_identical(ncol(df), 15L)
+    })
 })

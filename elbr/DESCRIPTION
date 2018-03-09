@@ -14,7 +14,10 @@ License: MIT + file LICENSE
 Depends:
     R (>= 3.0.0)
 Imports:
-    lubridate
+    lubridate,
+    parallel,
+    readr
 Suggests:
     httptest
-RoxygenNote: 6.0.0
+RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)

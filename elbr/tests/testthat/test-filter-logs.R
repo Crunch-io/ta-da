@@ -7,3 +7,7 @@ public({
         expect_true(grepl("226bc5fcea8b45588a542879636edafe", df$request))
     })
 })
+
+test_that("findLogFiles", {
+
+})

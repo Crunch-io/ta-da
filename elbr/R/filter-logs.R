@@ -22,3 +22,9 @@ filterLogs <- function (pattern="", date="", base.dir=getOption("elbr.dir")) {
 find504s <- function (date="", base.dir=getOption("elbr.dir")) {
     filterLogs(" -1 -1 504 ", date, base.dir)
 }
+
+findLogFiles <- function (start_date, end_date=start_date, base.dir=getOption("elbr.dir")) {
+    dates <- seq(as.Date(start_date), as.Date(end_date), 1)
+    dirs <- file.path(base.dir, strftime(dates, "%Y/%m/%d"))
+    return(unlist(lapply(dirs, dir, pattern="\\.log$", full.names=TRUE)))
+}

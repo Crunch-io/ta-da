@@ -7,7 +7,7 @@
 cleanLog(logdf)
 }
 \arguments{
-\item{logdf}{a \code{data.frame} as returned from \code{\link{read.elb}}}
+\item{logdf}{a \code{data.frame} as returned from \code{\link[=read.elb]{read.elb()}}}
 }
 \value{
 A \code{data.frame} cleaned up a bit.

@@ -1,10 +1,10 @@
 #' Load an ELB log file
 #'
-#' @param file A file name or connection. See \code{\link[utils]{read.table}}
-#' @param stringsAsFactors The standard \code{data.frame} argument, but
-#' defaulted to \code{TRUE}.
-#' @param ... Additional arguments passed to \code{read.delim}
-#' @return A \code{data.frame}.
+#' @param file A file name or connection. See [utils::read.table()] or [readr::read_delim()]
+#' @param stringsAsFactors The standard `data.frame` argument, but
+#' defaulted to `TRUE`.
+#' @param ... Additional arguments passed to the file reader
+#' @return A `data.frame`.
 #' @export
 #' @importFrom utils read.delim
 read.elb <- function (file, stringsAsFactors=FALSE, ...) {
@@ -20,12 +20,41 @@ read.elb <- function (file, stringsAsFactors=FALSE, ...) {
         ...)
 }
 
+#' @rdname read.elb
+#' @export
+#' @importFrom readr read_delim
+read_elb <- function (file,
+                    col_names=c("timestamp", "elb", "client_port", "backend_port",
+                            "request_processing_time", "backend_processing_time",
+                            "response_processing_time", "elb_status_code",
+                            "backend_status_code", "received_bytes", "sent_bytes",
+                            "request", "user_agent", "ssl_cipher", "ssl_protocol"),
+                    ...) {
+
+    ## Allow specifying only a selection of columns. Fill in "col_types" with "-"
+    all_cols <- eval(formals(sys.function())[["col_names"]])
+    col_types <- unlist(strsplit("Tcccdddiiiicccc", ""))
+
+    keepcols <- all_cols %in% match.arg(col_names, several.ok=TRUE)
+    col_types[!keepcols] <- "-"
+
+    readr::read_delim(
+        file,
+        col_names=all_cols[keepcols],
+        col_types=paste(col_types, collapse=""),
+        delim=" ",
+        escape_backslash=TRUE,
+        escape_double=FALSE,
+        ...
+    )
+}
+
 #' Do some general cleaning
 #'
 #' Delete some columns we don't care about ever, parse the timestamp,
 #' add up response times, separate request verb from URL, etc.
-#' @param logdf a \code{data.frame} as returned from \code{\link{read.elb}}
-#' @return A \code{data.frame} cleaned up a bit.
+#' @param logdf a `data.frame` as returned from [read.elb()]
+#' @return A `data.frame` cleaned up a bit.
 #' @export
 #' @importFrom lubridate ymd_hms
 cleanLog <- function (logdf) {
