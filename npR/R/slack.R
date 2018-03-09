@@ -30,7 +30,6 @@ slack <- function (..., parsing="full") {
 #' @importFrom utils tail
 with_slack_errors <- function (expr) {
     tryCatch(expr, error=function (e) {
-        traceback() ## To stdout
         code <- deparse(tail(sys.calls(), 5)[[1]][[2]])
         msg <- paste0("Error in `", code, "`: ", e$message)
         slack(channel="systems", username="jenkins", icon_emoji=":interrobang:",
@@ -39,8 +38,8 @@ with_slack_errors <- function (expr) {
 }
 
 #' @importFrom utils capture.output
-md <- function (df, ...) {
-    paste0("```\n", paste(capture.output(print(df, ...)), collapse="\n"), "\n```")
+md <- function (df) {
+    paste0("```\n", paste(capture.output(print(df)), collapse="\n"), "\n```")
 }
 
 slack_linkify <- function (href, text) {
@@ -51,5 +50,3 @@ slack_linkify <- function (href, text) {
         return(character(0))
     }
 }
-
-b <- function (x) paste0("*", x, "*")

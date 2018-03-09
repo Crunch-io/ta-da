@@ -9,7 +9,7 @@
 analyzeELB(...)
 
 mapELB(FUN, start_date, end_date = start_date,
-  files = findLogFiles(start_date, end_date))
+  files = findLogFiles(start_date, end_date), select_vars = TRUE)
 
 reduceELB(results)
 }

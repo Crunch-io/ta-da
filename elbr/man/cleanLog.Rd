@@ -7,12 +7,15 @@
 cleanLog(logdf)
 }
 \arguments{
-\item{logdf}{a \code{data.frame} as returned from \code{\link[=read.elb]{read.elb()}}}
+\item{logdf}{a \code{data.frame} as returned from \code{\link[=read_elb]{read_elb()}}}
 }
 \value{
 A \code{data.frame} cleaned up a bit.
 }
 \description{
 Delete some columns we don't care about ever, parse the timestamp,
-add up response times, separate request verb from URL, etc.
+add up response times, separate request verb from URL, etc. This was used
+with the old \code{read.elb} function, which no longer exists. Timestamp parsing
+and missingness are already handled by \code{read_elb}, and columns can be selected
+in that function, too.
 }
