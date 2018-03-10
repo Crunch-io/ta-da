@@ -1,13 +1,14 @@
-context("Filtered log reading")
+context("Finding log files")
 
-public({
-    test_that("find504s finds it", {
-        df <- find504s(files=c("example.log", "example2.log"))
-        expect_equal(nrow(df), 1)
-        expect_true(grepl("226bc5fcea8b45588a542879636edafe", df$request))
-    })
+test_that("find_log_files: default is all log files in dir", {
+    expect_identical(basename(find_log_files()), c("example.log", "example2.log"))
 })
 
-test_that("findLogFiles", {
+test_that("find_log_files: single date", {
+    expect_identical(basename(find_log_files("2017-12-31")), "example.log")
+})
 
+test_that("find_log_files: date range", {
+    expect_identical(basename(find_log_files("2017-12-12", "2018-02-04")),
+        c("example.log", "example2.log"))
 })

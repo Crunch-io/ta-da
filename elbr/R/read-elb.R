@@ -23,7 +23,7 @@ read_elb <- function (file,
     keepcols <- all_cols %in% match.arg(col_names, several.ok=TRUE)
     col_types[!keepcols] <- "-"
 
-    readr::read_delim(
+    read_delim(
         file,
         col_names=all_cols[keepcols],
         col_types=paste(col_types, collapse=""),

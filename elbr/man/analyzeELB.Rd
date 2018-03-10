@@ -8,8 +8,8 @@
 \usage{
 analyzeELB(...)
 
-mapELB(FUN, start_date, end_date = start_date,
-  files = findLogFiles(start_date, end_date), select_vars = TRUE)
+mapELB(FUN, start_date = NULL, end_date = start_date,
+  files = find_log_files(start_date, end_date), select_vars = TRUE)
 
 reduceELB(results)
 }
@@ -19,10 +19,10 @@ reduceELB(results)
 \item{FUN}{A function to map over each log data frame}
 
 \item{start_date}{\code{Date} or date string specifying a starting point for
-finding log files}
+finding log files. Use \code{NULL}, the default, to get all log files.}
 
 \item{end_date}{\code{Date} or date string to close the range. Default is
-\code{start_date}, i.e. it takes all log files for a single day.}
+\code{start_date}, i.e. it takes all log files for a single day, if one is given.}
 
 \item{files}{Vector of file names to read in; an alternative to specifying
 date ranges.}

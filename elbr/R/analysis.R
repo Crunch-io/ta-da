@@ -1,26 +1,10 @@
-#' Basic summary statistics from a log
-#'
-#' @param logdf data.frame as returned by \code{\link{cleanLog}}.
-#' @return A data.frame with one row.
-#' @export
-#' @importFrom stats median quantile
-summarizeLog <- function (logdf) {
-    data.frame(
-        requests=nrow(logdf),
-        server_errors=sum(logdf$status_code >= 500),
-        response_time_mean=mean(logdf$response_time, na.rm=TRUE),
-        response_time_median=median(logdf$response_time, na.rm=TRUE),
-        response_time_95pctile=quantile(logdf$response_time, .95, na.rm=TRUE)
-    )
-}
-
 #' Perform some analysis across a bunch of ELB log files
 #'
 #' @param FUN A function to map over each log data frame
 #' @param start_date `Date` or date string specifying a starting point for
-#' finding log files
+#' finding log files. Use `NULL`, the default, to get all log files.
 #' @param end_date `Date` or date string to close the range. Default is
-#' `start_date`, i.e. it takes all log files for a single day.
+#' `start_date`, i.e. it takes all log files for a single day, if one is given.
 #' @param files Vector of file names to read in; an alternative to specifying
 #' date ranges.
 #' @param results For `reduceELB`, the results of `mapELB`
@@ -32,9 +16,8 @@ analyzeELB <- function (...) reduceELB(mapELB(...))
 #' @export
 #' @rdname analyzeELB
 #' @importFrom parallel mclapply
-mapELB <- function (FUN, start_date, end_date=start_date, files=findLogFiles(start_date, end_date), select_vars=TRUE) {
+mapELB <- function (FUN, start_date=NULL, end_date=start_date, files=find_log_files(start_date, end_date), select_vars=TRUE) {
     ## Only keep the columns we need
-    # lapply(files, function (f, fn) fn(read_elb(f, col_names=all.vars(body(fn)))), fn=FUN)
     ## Note that if FUN just wants to return a data.frame with all cols, this would fail unless it referenced the cols by name
     if (select_vars) {
         cnames <- all.vars(body(FUN))

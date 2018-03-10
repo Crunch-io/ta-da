@@ -35,7 +35,7 @@ collect.ELBLog <- function (.data) {
     }
     if (is.null(.data$files)) {
         ## is.null check is to be able to poke in select files
-        .data$files <- findLogFiles(.data$start_date, .data$end_date, .data$path)
+        .data$files <- find_log_files(.data$start_date, .data$end_date, .data$path)
     }
     #parallel::mc
     dfs <- lapply(.data$files,
