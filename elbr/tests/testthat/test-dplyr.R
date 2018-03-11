@@ -25,3 +25,10 @@ test_that("select twice, with date range", {
         collect()
     expect_identical(dim(df), c(97L, 1L))
 })
+
+test_that("selected columns are in the requested order", {
+    df <- ELBLog() %>%
+        select(elb_status_code, timestamp) %>%
+        collect()
+    expect_identical(names(df), c("elb_status_code", "timestamp"))
+})

@@ -3,7 +3,11 @@
 #' @param file A file name or connection. See [readr::read_delim()]
 #' @param col_names Optional character vector to specify a subset of columns to
 #' import. If you know you only want to work with a few columns, it is faster
-#' to specify it at read time rather than filtering after. Default is everything.
+#' to specify it at read time rather than filtering after. Unlike the behavior
+#' of `read_delim()`, these `col_names` may be specified out of order, and the
+#' `data.frame` you get back will be in the order you specify.
+#'
+#' Default is to return everything.
 #' @param ... Additional arguments passed to [readr::read_delim()]
 #' @return A tibble.
 #' @export
@@ -20,10 +24,11 @@ read_elb <- function (file,
     all_cols <- eval(formals(sys.function())[["col_names"]])
     col_types <- unlist(strsplit("Tcccdddiiiicccc", ""))
 
-    keepcols <- all_cols %in% match.arg(col_names, several.ok=TRUE)
+    col_names <- match.arg(col_names, several.ok=TRUE)
+    keepcols <- all_cols %in% col_names
     col_types[!keepcols] <- "-"
 
-    read_delim(
+    out <- read_delim(
         file,
         col_names=all_cols[keepcols],
         col_types=paste(col_types, collapse=""),
@@ -33,6 +38,11 @@ read_elb <- function (file,
         na=c("", "-1"),
         ...
     )
+    if (!identical(names(out), col_names)) {
+        ## Reorder
+        out <- out[, col_names]
+    }
+    return(out)
 }
 
 #' Split the 'request' into verb, url, protocol
