@@ -5,24 +5,25 @@
 #' give the report for yesterday)
 #' @param send Logical: send messages to Slack?
 #' @export
-#' @importFrom elbr ELBLog cleanLog
-#' @importFrom dplyr collect filter
+#' @importFrom elbr ELBLog parse_request
+#' @importFrom dplyr collect filter select
 summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
     before.date <- as.Date(before.date)
-    start_date <- before.date - days
-    end_date <- before.date - 1
-    ## TODO: only select request (and elb_status_code)
     df <- collect(
         filter(
-            ELBLog(before.date - days, before.date - 1),
+            select(
+                ELBLog(before.date - days, before.date - 1),
+                request,
+                elb_status_code
+            ),
             elb_status_code == 504
         )
     )
     if (nrow(df)) {
         require(superadmin)
-        df <- cleanLog(df)
-        t1 <- table(standardizeURLs(df$request_url), df$request_verb)
-        t2 <- tablulateDatasetsByName(df$request_url)
+        reqs <- parse_request(df$request)
+        t1 <- table(standardizeURLs(reqs$request_url), reqs$request_verb)
+        t2 <- tablulateDatasetsByName(reqs$request_url)
 
         reportToSlack <- function (obj, send=TRUE) {
             if (send) {

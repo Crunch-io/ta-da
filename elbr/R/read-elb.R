@@ -35,42 +35,16 @@ read_elb <- function (file,
     )
 }
 
-#' Do some general cleaning
+#' Split the 'request' into verb, url, protocol
 #'
-#' Delete some columns we don't care about ever, parse the timestamp,
-#' add up response times, separate request verb from URL, etc. This was used
-#' with the old `read.elb` function, which no longer exists. Timestamp parsing
-#' and missingness are already handled by `read_elb`, and columns can be selected
-#' in that function, too.
-#' @param logdf a `data.frame` as returned from [read_elb()]
-#' @return A `data.frame` cleaned up a bit.
+#' @param x Character vector, the "request" column from an ELB data.frame
+#' @return A `data.frame` with three columns: "request_verb", "request_url",
+#' and "request_protocol".
 #' @export
-#' @importFrom lubridate ymd_hms
-cleanLog <- function (logdf) {
-    ## ELB log timestamps are in microseconds
-    op <- options(digits.secs=6)
-    on.exit(options(op))
-
-    ## Simplify the user-agent string to either web, R, or python
-    ua <- ifelse(grepl("rcrunch", logdf$user_agent), "R", "web")
-    ua[logdf$user_agent == "-" | grepl("pycrunch", logdf$user_agent)] <- "python"
-
-    ## Split the 'request' into verb, url, protocol, and keep the first two
-    reqs <- as.data.frame(do.call(rbind, strsplit(logdf$request, " ")),
-        stringsAsFactors=FALSE)[,1:2]
-    names(reqs) <- c("request_verb", "request_url")
-
-    ## Collect the things we want to keep
-    out <- cbind(
-        timestamp=ymd_hms(logdf$timestamp),
-        reqs,
-        status_code=logdf$elb_status_code,
-        logdf[c("received_bytes", "sent_bytes")],
-        response_time=with(logdf, request_processing_time +
-            backend_processing_time + response_processing_time),
-        user_agent=ua)
-
-    ## -1 response time means the request didn't respond
-    out$response_time[out$response_time < 0] <- NA
-    return(out)
+parse_request <- function (x) {
+    ## Split the 'request' into verb, url, protocol
+    reqs <- as.data.frame(do.call(rbind, strsplit(x, " ")),
+        stringsAsFactors=FALSE)
+    names(reqs) <- c("request_verb", "request_url", "request_protocol")
+    return(reqs)
 }

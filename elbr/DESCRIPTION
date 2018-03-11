@@ -2,12 +2,9 @@ Package: elbr
 Type: Package
 Title: Tools for Analyzing AWS ELB Logs
 Description: Read in ELB log files, compute quantities of interest.
-Version: 0.2.0
-Date: 2016-04-08
+Version: 0.3.0
 Authors@R: c(person("Neal", "Richardson", role = c("aut", "cre"),
     email = "neal@crunch.io"))
-Author: Neal Richardson [aut, cre]
-Maintainer: Neal Richardson <neal@crunch.io>
 URL: https://github.com/Crunch-io/tools/
 BugReports: https://github.com/Crunch-io/tools/issues
 License: MIT + file LICENSE
@@ -15,12 +12,12 @@ Depends:
     R (>= 3.0.0)
 Imports:
     dplyr,
-    lubridate,
     parallel,
     readr,
     rlang,
     tidyselect
 Suggests:
-    httptest
+    testthat,
+    magrittr
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)

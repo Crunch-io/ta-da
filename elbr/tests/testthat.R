@@ -1,2 +1,2 @@
-library(httptest)
+library(testthat)
 test_check("elbr")
