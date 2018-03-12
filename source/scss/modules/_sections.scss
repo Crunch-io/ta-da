@@ -207,6 +207,7 @@
 
         .jumbotron {
             background-color: $color-blue;
+            background-image: linear-gradient( $color-blue, $--darker-primary-color);
         }
 
     }
