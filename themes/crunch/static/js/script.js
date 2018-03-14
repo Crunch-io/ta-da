@@ -100,6 +100,7 @@ $(document).ready(function() {
         var scroll = $(window).scrollTop();
         if(scroll > 180 && scroll < 2600){
             $('.learn-more-title').addClass('text-white');
+
         } else {
             $('.learn-more-title').removeClass('text-white');
         }
@@ -112,7 +113,15 @@ $(document).ready(function() {
 
     });
 
-
+    // Wow animations
+    wow = new WOW({
+     boxClass:     'wow',
+     animateClass: 'animated',
+     offset:       0,
+     mobile:       false,
+     live:         true
+   })
+   wow.init();
 
 // End
 });
