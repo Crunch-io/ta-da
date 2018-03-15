@@ -486,13 +486,6 @@
 // Collaborate securely
 .collaborate-securely-content {
 
-    .collaborate-securely-parallax {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        right: 0;
-    }
-
     .jumbotron {
         margin: 0;
 
@@ -504,12 +497,16 @@
 
     .content-one {
 
-        margin-top: 300px;
+        margin-top: 200px;
 
         .jumbotron {
             height: 800px;
             color: $color-white;
             background-color: $color-green;
+        }
+
+        #learn-more-img-1 {
+            margin-top: -200px;
         }
     }
 
@@ -518,7 +515,7 @@
             background-color: $color-green;
 
             h1 {
-                margin-top: -220px;
+                margin-top: -150px;
             }
         }
     }
