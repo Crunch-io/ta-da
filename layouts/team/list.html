@@ -34,7 +34,7 @@
                                       <p>{{ .Params.position }}</p>
                                   </div>
                                   <div class="popover-content d-none">
-                                      <p>{{ .Content }}</p>
+                                      <p>{{ .Params.description  }}</p>
                                   </div>
                                   <figcaption class="figure-caption">
                                       <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
@@ -62,7 +62,7 @@
                                   <span>{{ .Params.position }}</span>
                               </div>
                               <div class="popover-content d-none">
-                                  {{ .Content }}
+                                  {{ .Params.description  }}
                               </div>
                               <figcaption class="figure-caption">
                                   <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
