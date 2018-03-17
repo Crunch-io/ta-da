@@ -7,6 +7,10 @@
 #' `start_date`, i.e. it takes all log files for a single day, if one is given.
 #' @param files Vector of file names to read in; an alternative to specifying
 #' date ranges.
+#' @param select_vars logical: should we only read in the variables named in
+#' `FUN`? Default is `TRUE`, which provides a speed boost by not loading data
+#' we don't need for the current analysis, but in cases where `FUN` doesn't
+#' name every variable we want to keep, set this to `FALSE`.
 #' @param results For `reduceELB`, the results of `mapELB`
 #' @param ... Arguments passed to `mapELB`
 #' @return A list of query results.

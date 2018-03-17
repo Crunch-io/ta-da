@@ -27,6 +27,11 @@ finding log files. Use \code{NULL}, the default, to get all log files.}
 \item{files}{Vector of file names to read in; an alternative to specifying
 date ranges.}
 
+\item{select_vars}{logical: should we only read in the variables named in
+\code{FUN}? Default is \code{TRUE}, which provides a speed boost by not loading data
+we don't need for the current analysis, but in cases where \code{FUN} doesn't
+name every variable we want to keep, set this to \code{FALSE}.}
+
 \item{results}{For \code{reduceELB}, the results of \code{mapELB}}
 }
 \value{

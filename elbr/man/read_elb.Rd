@@ -4,8 +4,8 @@
 \alias{read_elb}
 \title{Load an ELB log file}
 \usage{
-read_elb(file, col_names = c("timestamp", "elb", "client_port",
-  "backend_port", "request_processing_time", "backend_processing_time",
+read_elb(file, columns = c("timestamp", "elb", "client_port", "backend_port",
+  "request_processing_time", "backend_processing_time",
   "response_processing_time", "elb_status_code", "backend_status_code",
   "received_bytes", "sent_bytes", "request", "user_agent", "ssl_cipher",
   "ssl_protocol"), ...)
@@ -13,10 +13,10 @@ read_elb(file, col_names = c("timestamp", "elb", "client_port",
 \arguments{
 \item{file}{A file name or connection. See \code{\link[readr:read_delim]{readr::read_delim()}}}
 
-\item{col_names}{Optional character vector to specify a subset of columns to
+\item{columns}{Optional character vector to specify a subset of columns to
 import. If you know you only want to work with a few columns, it is faster
 to specify it at read time rather than filtering after. Unlike the behavior
-of \code{read_delim()}, these \code{col_names} may be specified out of order, and the
+of \code{read_delim()}'s \code{col_names}, these may be specified out of order, and the
 \code{data.frame} you get back will be in the order you specify.
 
 Default is to return everything.}

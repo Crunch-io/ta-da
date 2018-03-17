@@ -3,6 +3,7 @@
 S3method(collect,ELBLog)
 S3method(filter,ELBLog)
 S3method(select,ELBLog)
+S3method(summarise,ELBLog)
 export(ELBLog)
 export(analyzeELB)
 export(mapELB)
