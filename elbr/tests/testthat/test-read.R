@@ -16,13 +16,13 @@ public({
     })
 
     test_that("read_elb selecting columns", {
-        df <- read_elb("2017/12/31/example.log", col_names=c("received_bytes", "user_agent", "GARBAGE"))
+        df <- read_elb("2017/12/31/example.log", columns=c("received_bytes", "user_agent", "GARBAGE"))
         expect_identical(names(df), c("received_bytes", "user_agent"))
         expect_true(is.numeric(df$received_bytes))
     })
 
     test_that("read_elb selecting no valid columns", {
-        expect_error(read_elb("2017/12/31/example.log", col_names="GARBAGE"),
+        expect_error(read_elb("2017/12/31/example.log", columns="GARBAGE"),
             "'arg' should be one of")
     })
 

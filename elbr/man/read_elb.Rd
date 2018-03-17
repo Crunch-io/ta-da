@@ -15,7 +15,11 @@ read_elb(file, col_names = c("timestamp", "elb", "client_port",
 
 \item{col_names}{Optional character vector to specify a subset of columns to
 import. If you know you only want to work with a few columns, it is faster
-to specify it at read time rather than filtering after. Default is everything.}
+to specify it at read time rather than filtering after. Unlike the behavior
+of \code{read_delim()}, these \code{col_names} may be specified out of order, and the
+\code{data.frame} you get back will be in the order you specify.
+
+Default is to return everything.}
 
 \item{...}{Additional arguments passed to \code{\link[readr:read_delim]{readr::read_delim()}}}
 }

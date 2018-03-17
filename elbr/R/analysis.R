@@ -22,9 +22,9 @@ mapELB <- function (FUN, start_date=NULL, end_date=start_date, files=find_log_fi
     if (select_vars) {
         cnames <- all.vars(body(FUN))
     } else {
-        cnames <- eval(formals(read_elb)[["col_names"]])
+        cnames <- eval(formals(read_elb)[["columns"]])
     }
-    parallel::mclapply(files, function (f) FUN(read_elb(f, col_names=cnames)))
+    parallel::mclapply(files, function (f) FUN(read_elb(f, columns=cnames)))
 }
 
 #' @export

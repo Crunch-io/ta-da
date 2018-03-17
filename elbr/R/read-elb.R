@@ -1,10 +1,10 @@
 #' Load an ELB log file
 #'
 #' @param file A file name or connection. See [readr::read_delim()]
-#' @param col_names Optional character vector to specify a subset of columns to
+#' @param columns Optional character vector to specify a subset of columns to
 #' import. If you know you only want to work with a few columns, it is faster
 #' to specify it at read time rather than filtering after. Unlike the behavior
-#' of `read_delim()`, these `col_names` may be specified out of order, and the
+#' of `read_delim()`'s `col_names`, these may be specified out of order, and the
 #' `data.frame` you get back will be in the order you specify.
 #'
 #' Default is to return everything.
@@ -13,7 +13,7 @@
 #' @export
 #' @importFrom readr read_delim
 read_elb <- function (file,
-                    col_names=c("timestamp", "elb", "client_port", "backend_port",
+                    columns=c("timestamp", "elb", "client_port", "backend_port",
                             "request_processing_time", "backend_processing_time",
                             "response_processing_time", "elb_status_code",
                             "backend_status_code", "received_bytes", "sent_bytes",
@@ -21,11 +21,11 @@ read_elb <- function (file,
                     ...) {
 
     ## Allow specifying only a selection of columns. Fill in "col_types" with "-"
-    all_cols <- eval(formals(sys.function())[["col_names"]])
+    all_cols <- eval(formals(sys.function())[["columns"]])
     col_types <- unlist(strsplit("Tcccdddiiiicccc", ""))
 
-    col_names <- match.arg(col_names, several.ok=TRUE)
-    keepcols <- all_cols %in% col_names
+    columns <- match.arg(columns, several.ok=TRUE)
+    keepcols <- all_cols %in% columns
     col_types[!keepcols] <- "-"
 
     out <- read_delim(
@@ -38,9 +38,9 @@ read_elb <- function (file,
         na=c("", "-1"),
         ...
     )
-    if (!identical(names(out), col_names)) {
+    if (!identical(names(out), columns)) {
         ## Reorder
-        out <- out[, col_names]
+        out <- out[, columns]
     }
     return(out)
 }
@@ -53,7 +53,7 @@ read_elb <- function (file,
 #' @export
 parse_request <- function (x) {
     ## Split the 'request' into verb, url, protocol
-    reqs <- as.data.frame(do.call(rbind, strsplit(x, " ")),
+    reqs <- as.data.frame(matrix(unlist(strsplit(x, " ")), ncol=3, byrow=TRUE),
         stringsAsFactors=FALSE)
     names(reqs) <- c("request_verb", "request_url", "request_protocol")
     return(reqs)

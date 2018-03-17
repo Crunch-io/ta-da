@@ -32,3 +32,12 @@ test_that("selected columns are in the requested order", {
         collect()
     expect_identical(names(df), c("elb_status_code", "timestamp"))
 })
+
+test_that("summarize", {
+    out <- ELBLog() %>%
+        select(backend_processing_time, elb_status_code) %>%
+        filter(elb_status_code == 200) %>%
+        summarize(total_time=sum(backend_processing_time), count=n())
+    expect_identical(out$count, 230L)
+    expect_equal(out$total_time, 13.81685, tolerance=.00001)
+})
