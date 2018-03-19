@@ -7,5 +7,5 @@ description = "Python/NumPy developer"
 weight = 1
 img = "slobodan.jpeg"
 location = "Novi Sad"
-position = ""
+position = "Senior Software Engineer"
 +++

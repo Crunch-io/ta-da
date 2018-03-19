@@ -3,9 +3,9 @@ date = "2013-01-01T14:08:35+02:00"
 draft = false
 firstname = "Joseph"
 lastname = "Tate"
-description = ""
+description = "I keep the blinking things blinking, the spinny things spinning, and the whirring things whirring."
 weight = 1
 img = "jtate.jpg"
 location = "Raleigh"
-position = ""
+position = "Senior System Engineer"
 +++
