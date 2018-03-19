@@ -7,5 +7,5 @@ description = ""
 weight = 1
 img = "sebastian.jpg"
 location = "Warsaw"
-position = ""
+position = "Software Engineer"
 +++

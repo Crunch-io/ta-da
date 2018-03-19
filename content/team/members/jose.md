@@ -7,5 +7,5 @@ description = ""
 weight = 1
 img = "default.png"
 location = "Santo Domingo"
-position = ""
+position = "Junior Software Engineer"
 +++
