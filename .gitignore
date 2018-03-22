@@ -1,4 +1,5 @@
 themes/
 public/
-*.orig$
+*.orig
 .DS_Store
+node_modules/
