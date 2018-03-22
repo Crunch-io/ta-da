@@ -9,6 +9,7 @@ If you don't have Hugo, [install it](https://gohugo.io/getting-started/quick-sta
 * Clone this repo and check out this branch; `cd ta-da`
 * `git clone https://github.com/crakjie/landing-page-hugo.git ./themes/landing-page-hugo`
 * `hugo serve`
+* `yarn run build:scss-dev` to get the css
 * Browse
 
 ## Adding content
