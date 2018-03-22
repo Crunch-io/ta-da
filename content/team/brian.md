@@ -5,6 +5,6 @@ firstname = "Brian"
 lastname = "Law"
 description = ""
 weight = 1
-img = "default.png"
+img = "brian.jpeg"
 location = "Portland"
 +++
