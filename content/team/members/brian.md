@@ -5,7 +5,7 @@ firstname = "Brian"
 lastname = "Law"
 description = "And knowing's half the battle"
 weight = 1
-img = "default.png"
+img = "brian.jpeg"
 location = "Portland"
 position = "Customer Experience"
 +++

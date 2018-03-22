@@ -1,6 +1,6 @@
 public/
-themes/landing-page-hugo
-node_modules
-*.orig$
+themes/
+*.orig
 .DS_Store
+node_modules/
 yarn.lock
