@@ -147,6 +147,7 @@
     margin-bottom: 30px;
     background-color: $color-grey-lighest;
     @include vp-transition(all .1s ease-in-out);
+    cursor: pointer;
 
     &:hover {
         border-bottom: 2px solid $color-blue;
@@ -184,4 +185,12 @@ figure.img-fluid {
         max-width: 100%;
         padding: 30px;
     }
+}
+
+// Animation delay
+.animation-delay {
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
 }

@@ -40,7 +40,7 @@
                   <div class="row spacer-bottom">
                       {{ range .Paginator.Pages.ByWeight }}
                           <div class="col-md-6 col-lg-4">
-                              <div class="post-card">
+                              <div class="post-card" onclick="location.href='{{ .Permalink }}'">
                                   <div class="posts">
                                       {{ if gt (len .Summary) 90 }}
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>

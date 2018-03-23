@@ -717,6 +717,11 @@
         background: url(../images/crunch_stone.jpg) no-repeat 0 top fixed;
         @include vp-background-size(cover);
 
+        a {
+            color: $color-white;
+            text-decoration: underline;
+        }
+
         p {
             margin-top: 200px;
         }
@@ -753,12 +758,8 @@
         }
 
         a {
-            font-family: 'Libre Baskerville', serif;
             color: $color-white;
-
-            span {
-                font-style: italic;
-            }
+            text-decoration: underline;
         }
 
         @include media-breakpoint-down(sm) {
