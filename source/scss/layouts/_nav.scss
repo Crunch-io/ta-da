@@ -11,10 +11,6 @@
 
             a:not(.btn-primary) {
                 color: $font-color-dark-grey;
-
-                &:hover {
-                    color: $font-color-light-grey;
-                }
             }
         }
     }
@@ -28,8 +24,11 @@
             .dropdown-item {
                 font-weight: 100;
 
-                &.active, &:active {
-                    background-color: $color-off-black;
+                &:hover,
+                &:focus,
+                &.active,
+                &:active {
+                    background-color: $color-grey-lighest;
                 }
             }
         }
