@@ -2,29 +2,42 @@
 
 {{ partial "header.html" . }}
 
-{{ partial "container-intro.html" . }}
+    {{ partial "container-intro.html" . }}
 
-<div id="post-box">
-    <div class="wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-sm-6">
-                    <div></div>
-                    <h2>{{ .Title }}</h2>
-                    <p>{{.Content}}</p>
-                </div>
-                <div class="col-lg-3 col-sm-4">
-                    <h3>Recent R blog posts:</h3>
-                    <ul>
-                    {{ range first 5 (where .Site.Pages ".Params.tags" "intersect" .Params.feed_tags) }}
-                        <li><a href="{{ .Permalink }}">{{ .Title | emojify }}</a>
-                    {{ end }}
-                    </ul>
+    <div id="post-box">
+        <div class="wrap spacer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <div></div>
+                        <h2>{{ .Title }}</h2>
+                        <p>{{.Content}}</p>
+                    </div>
+                    <div class="col-lg-3 col-sm-4">
+                        <h3>Recent R blog posts:</h3>
+                        <ul>
+                        {{ range first 5 (where .Site.Pages ".Params.tags" "intersect" .Params.feed_tags) }}
+                            <li><a href="{{ .Permalink }}">{{ .Title | emojify }}</a>
+                        {{ end }}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="footer-content">
+        <div class="jumbotron">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>Data, <span>smarter.</span></h1>
+                        <a href="https://app.crunch.io/signup/" class="btn btn-link">Try now &#10230;</a>
+                    </div>
+                </div> <!-- /.row. -->
+            </div> <!-- /.container -->
+        </div> <!-- /.jumbotron -->
+    </div> <!-- footer-content -->
 
 {{ partial "footer-nav.html" . }}
 
