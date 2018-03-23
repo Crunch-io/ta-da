@@ -95,7 +95,7 @@
       <a href="../articles/array-variables.html">Array Variables</a>
     </li>
     <li>
-      <a href="../articles/variable-order.html">Reorder Variables</a>
+      <a href="../articles/variable-order.html">Organize Variables</a>
     </li>
     <li>
       <a href="../articles/derive.html">Derive Variables</a>
@@ -173,9 +173,6 @@
 # S4 method for MemberCatalog,character
 [[(x, i, j, ...)
 
-# S4 method for MemberCatalog,character,ANY
-[(x, i, j, ..., drop = TRUE)
-
 # S4 method for MemberCatalog,ANY,missing,ANY
 [[(x, i, j) <- value
 
@@ -196,9 +193,6 @@
 
 # S4 method for PermissionCatalog,character
 [[(x, i, j, ...)
-
-# S4 method for PermissionCatalog,character,ANY
-[(x, i, j, ..., drop = TRUE)
 
 # S4 method for ProjectCatalog,numeric
 [[(x, i, j, ...)
@@ -236,6 +230,12 @@ $(x, name) <- value
 
 # S4 method for ShojiCatalog,ANY,missing,ShojiCatalog
 [(x, i, j) <- value
+
+# S4 method for ShojiFolder,numeric
+[[(x, i, ..., drop = FALSE)
+
+# S4 method for ShojiFolder,character
+[[(x, i, ..., drop = FALSE)
 
 # S4 method for TeamCatalog,numeric
 [[(x, i, j, ...)

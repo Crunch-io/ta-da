@@ -12,6 +12,7 @@ articles:
   filters: filters.html
   getting-started: getting-started.html
   subtotals: subtotals.html
+  variable-order-old: variable-order-old.html
   variable-order: variable-order.html
   variables: variables.html
 
