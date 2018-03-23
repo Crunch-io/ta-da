@@ -13,7 +13,7 @@ getSlowRequests <- function (method="ANY", path=NULL, threshold=NULL, limit=10) 
         threshold=threshold,
         limit=limit
     ))
-    out <- superGET(superadminURL("/tagging"), query=query)
+    out <- superGET(superadminURL("/tracing"), query=query)
     out <- content(out)$logs
     if (length(out)) {
         # Parse the results into "SlowRequest" data.frames with metadata
