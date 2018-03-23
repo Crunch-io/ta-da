@@ -20,20 +20,29 @@
 // Crunch interface
 .crunch-interface {
 
-    &.hidden {
-         opacity: 0;
-    }
-
     img {
         margin: auto;
-        margin-top: -400px;
+        margin-top: -500px;
     }
 
-    @include media-breakpoint-down(xs) {
+    @include media-breakpoint-only(xs) {
         img {
             margin-top: -200px;
         }
     }
+
+    @include media-breakpoint-only(sm) {
+        img {
+            margin-top: -300px;
+        }
+    }
+
+    @include media-breakpoint-only(md) {
+        img {
+            margin-top: -300px;
+        }
+    }
+
 }
 
 // Secondary-content
@@ -57,12 +66,12 @@
         color: $color-white;
 
         .jumbotron {
-            background: url(../images/hip-square.jpg) repeat;
+            background-image: linear-gradient( $color-green, $--darker-secondary-color);
         }
 
         @include media-breakpoint-down(sm) {
             .jumbotron {
-                background: $color-green;
+                background-image: linear-gradient( $color-green, $--darker-secondary-color);
             }
         }
 
@@ -165,7 +174,7 @@
         color: $color-white;
 
         .jumbotron {
-            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)), url(../images/hip-square.jpg) repeat;
+            background-image: linear-gradient( $color-green, $--darker-secondary-color);
             height: 485px;
 
         }
@@ -197,7 +206,8 @@
         color: $color-white;
 
         .jumbotron {
-            background: url(../images/hip-square-blue.jpg) repeat;
+            background-color: $color-blue;
+            background-image: linear-gradient( $color-blue, $--darker-primary-color);
         }
 
     }
@@ -209,7 +219,7 @@
 
         .jumbotron {
             color: $color-white;
-            background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)), url(../images/hip-square-blue.jpg) repeat;
+            background-image: linear-gradient( $color-blue, $--darker-primary-color);
 
             a {
                 color: $color-white;
@@ -219,6 +229,12 @@
                 color: $color-white;
                 font-weight: 400;
             }
+        }
+
+        h2 {
+            font-family: 'ProximaNova', sans-serif;
+            font-weight: 700;
+            font-size: 2em;
         }
 
     }
@@ -290,13 +306,6 @@
 // A modern platform for analytics
 .modern-platform-content {
 
-    .modern-platform-parallax {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        right: 0;
-    }
-
     .jumbotron {
         margin: 0;
 
@@ -308,13 +317,18 @@
 
     .content-one {
 
-        margin-top: 300px;
+        margin-top: 200px;
 
         .jumbotron {
             height: 800px;
             color: $color-white;
             background-color: $color-purple;
         }
+
+        #learn-more-img-1 {
+            margin-top: -200px;
+        }
+
     }
 
     @include media-breakpoint-only(xs) {
@@ -322,7 +336,7 @@
             background-color: $color-purple;
 
             h1 {
-                margin-top: -220px;
+                margin-top: -150px;
             }
         }
     }
@@ -346,7 +360,7 @@
         @include vp-background-size(cover);
 
         p {
-            margin-top: 200px;
+            margin-top: 150px;
             color: $color-white;
         }
 
@@ -379,7 +393,7 @@
         background-color: $color-purple;
 
         p {
-            margin-top: 200px;
+            margin-top: 150px;
         }
 
         @include media-breakpoint-down(sm) {
@@ -422,7 +436,7 @@
         background-color: $color-white;
 
         p {
-            margin-top: 200px;
+            margin-top: 150px;
         }
 
         a {
@@ -470,14 +484,7 @@
 }
 
 // Collaborate securely
-.collaborate-securely-content {
-
-    .collaborate-securely-parallax {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        right: 0;
-    }
+.collaborate-content {
 
     .jumbotron {
         margin: 0;
@@ -490,21 +497,25 @@
 
     .content-one {
 
-        margin-top: 300px;
+        margin-top: 200px;
 
         .jumbotron {
             height: 800px;
             color: $color-white;
-            background: url(../images/hip-square.jpg) repeat;
+            background-color: $color-green;
+        }
+
+        #learn-more-img-1 {
+            margin-top: -200px;
         }
     }
 
     @include media-breakpoint-only(xs) {
         .content-one {
-            background: url(../images/hip-square.jpg) repeat;
+            background-color: $color-green;
 
             h1 {
-                margin-top: -220px;
+                margin-top: -150px;
             }
         }
     }
@@ -558,7 +569,7 @@
     .content-three .jumbotron {
         height: 800px;
         color: $color-white;
-        background: url(../images/hip-square.jpg) repeat;
+        background-color: $color-green;
 
         p {
             margin-top: 200px;
@@ -603,7 +614,7 @@
         background-color: $color-white;
 
         p {
-            margin-top: 200px;
+            margin-top: 100px;
             margin-bottom: 150px;
         }
 
@@ -634,13 +645,13 @@
 
     @include media-breakpoint-up(md) {
         .crunchbox-container {
-            margin-top: 150px;
+            margin-top: 40px;
         }
     }
 
 }
 
-.collaborate-securely-parallax {
+.collaborate-parallax {
 
     .img-fluid {
         opacity: 1;
@@ -655,13 +666,6 @@
 // Speaks Research
 .speaks-research-content {
 
-    .speaks-research-parallax {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        right: 0;
-    }
-
     .jumbotron {
         margin: 0;
 
@@ -672,21 +676,25 @@
     }
     .content-one {
 
-        margin-top: 300px;
+        margin-top: 200px;
 
         .jumbotron {
             height: 800px;
             color: $color-white;
-            background: url(../images/hip-square-blue.jpg) repeat;
+            background-color: $color-blue;
+        }
+
+        #learn-more-img-1 {
+            margin-top: -200px;
         }
     }
 
     @include media-breakpoint-only(xs) {
         .content-one {
-            background: url(../images/hip-square-blue.jpg) repeat;
+            background-color: $color-blue;
 
             h1 {
-                margin-top: -220px;
+                margin-top: -150px;
             }
         }
     }
@@ -738,7 +746,7 @@
     .content-three .jumbotron {
         height: 800px;
         color: $color-white;
-        background: url(../images/hip-square-blue.jpg) repeat;
+        background-color: $color-blue;
 
         p {
             margin-top: 200px;
