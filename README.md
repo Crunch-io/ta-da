@@ -7,6 +7,7 @@ Our new website is a static site rendered by [Hugo](https://gohugo.io/).
 If you don't have Hugo, [install it](https://gohugo.io/getting-started/quick-start/). Then,
 
 * `hugo serve`
+* `yarn run build:scss-dev` to get the css
 * Browse
 
 If you want to preview our new site work in progress, go to https://crunch-io.github.io/crunchy/newsite/.
