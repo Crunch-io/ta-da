@@ -56,3 +56,6 @@ def main():
                 resp = requests.post(**admin_url(connection, '/datasets/delete/%s' % ds['id']))
                 if resp.status_code != 200:
                     print('ERROR: %s' % resp.text, file=sys.stderr)
+                # Sleep to allow system resources to focus on anything queued
+                # up while we were sending delete queries.
+                time.sleep(1.0)
