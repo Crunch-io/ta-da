@@ -99,7 +99,7 @@ only when appropriate." />
       <a href="../articles/array-variables.html">Array Variables</a>
     </li>
     <li>
-      <a href="../articles/variable-order.html">Reorder Variables</a>
+      <a href="../articles/variable-order.html">Organize Variables</a>
     </li>
     <li>
       <a href="../articles/derive.html">Derive Variables</a>
@@ -199,7 +199,12 @@ is.na(x)
 
 bin(x)
 
-rollup(x, resolution = rollupResolution(x))</pre>
+rollup(x, resolution = rollupResolution(x))
+
+rollupResolution(x)
+
+# S4 method for DatetimeVariable
+rollupResolution(x) <- value</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -227,6 +232,11 @@ c("Y", "Q", "M", "W", "D", "h", "m", "s", "ms") indicating the unit of
 time at which a Datetime variable should be aggregated. If <code>NULL</code>,
 the server will determine an appropriate resolution based on the range of
 the data.</p></td>
+    </tr>
+    <tr>
+      <th>value</th>
+      <td><p>for the <code>rollupResolution()</code> setter, the default resolution for
+this variable.</p></td>
     </tr>
     </table>
     

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>View a Dataset in the Web Application — webApp • Crunch</title>
+<title>View a Crunch Object in the Web Application — webApp • Crunch</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,10 +25,10 @@
 <script src="../pkgdown.js"></script>
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="View a Dataset in the Web Application — webApp" />
+<meta property="og:title" content="View a Crunch Object in the Web Application — webApp" />
 
 <meta property="og:description" content="Convenience function that will use your system's "open" command to open
-a dataset in our web application in your default browser." />
+a Crunch object in our web application in your default browser." />
 
 <meta property="og:image" content="http://crunch.io/r/crunch/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -96,7 +96,7 @@ a dataset in our web application in your default browser." />
       <a href="../articles/array-variables.html">Array Variables</a>
     </li>
     <li>
-      <a href="../articles/variable-order.html">Reorder Variables</a>
+      <a href="../articles/variable-order.html">Organize Variables</a>
     </li>
     <li>
       <a href="../articles/derive.html">Derive Variables</a>
@@ -141,32 +141,28 @@ a dataset in our web application in your default browser." />
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>View a Dataset in the Web Application</h1>
+    <h1>View a Crunch Object in the Web Application</h1>
     </div>
 
     
     <p>Convenience function that will use your system's "open" command to open
-a dataset in our web application in your default browser.</p>
+a Crunch object in our web application in your default browser.</p>
     
 
-    <pre class="usage"><span class='fu'>webApp</span>(<span class='no'>dataset</span>)</pre>
+    <pre class="usage"><span class='fu'>webApp</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dataset</th>
-      <td><p>a CrunchDataset</p></td>
+      <th>x</th>
+      <td><p>a Crunch Dataset or Variable</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Nothing; called for side effect of opening your web browser.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Note that this function does not do anything on Windows.</p>
     
 
   </div>
@@ -176,8 +172,6 @@ a dataset in our web application in your default browser.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
           </ul>
 
   </div>
