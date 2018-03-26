@@ -714,7 +714,7 @@
     .content-two .jumbotron {
         height: 800px;
         color: $color-white;
-        background: url(../images/crunch_stone.jpg) no-repeat 0 top fixed;
+        background: url(../img/crunch_stone.jpg) no-repeat 0 top fixed;
         @include vp-background-size(cover);
 
         a {
