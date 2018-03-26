@@ -146,7 +146,7 @@
 
         .jumbotron {
             height: 300px;
-            background: url(../images/crunch_shell.jpg) no-repeat;
+            background: url(../img/crunch_shell.jpg) no-repeat;
             background-position: 0 -100px;
             @include vp-background-size(cover);
             margin-bottom: 0;
@@ -263,7 +263,7 @@
 .page-not-found {
     min-height: 1200px;
     width: 100%;
-    background: url(../images/crunch_lavender.jpg) no-repeat center center fixed;
+    background: url(../img/crunch_lavender.jpg) no-repeat center center fixed;
     @include vp-background-size(cover);
     color: $color-white;
     overflow: hidden;
@@ -320,7 +320,6 @@
         margin-top: 200px;
 
         .jumbotron {
-            height: 800px;
             color: $color-white;
             background-color: $color-purple;
         }
@@ -354,9 +353,8 @@
     }
 
     .content-two .jumbotron {
-        height: 800px;
         color: $color-white;
-        background: url(../images/crunch_modern_platform.jpg) no-repeat center center fixed;
+        background: url(../img/crunch_modern_platform.jpg) no-repeat center center fixed;
         @include vp-background-size(cover);
 
         p {
@@ -388,7 +386,6 @@
     }
 
     .content-three .jumbotron {
-        height: 800px;
         color: $color-white;
         background-color: $color-purple;
 
@@ -431,7 +428,6 @@
     }
 
     .content-four .jumbotron {
-        height: 800px;
         color: $color-off-black;
         background-color: $color-white;
 
@@ -500,7 +496,6 @@
         margin-top: 200px;
 
         .jumbotron {
-            height: 800px;
             color: $color-white;
             background-color: $color-green;
         }
@@ -533,9 +528,8 @@
     }
 
     .content-two .jumbotron {
-        height: 800px;
         color: $color-white;
-        background: url(../images/crunch_collaborate_securely.jpg) no-repeat center center fixed;
+        background: url(../img/crunch_collaborate.jpg) no-repeat center center fixed;
         @include vp-background-size(cover);
 
         p {
@@ -567,7 +561,6 @@
     }
 
     .content-three .jumbotron {
-        height: 800px;
         color: $color-white;
         background-color: $color-green;
 
@@ -609,7 +602,6 @@
     }
 
     .content-four .jumbotron {
-        height: 700px;
         color: $color-off-black;
         background-color: $color-white;
 
@@ -679,7 +671,6 @@
         margin-top: 200px;
 
         .jumbotron {
-            height: 800px;
             color: $color-white;
             background-color: $color-blue;
         }
@@ -712,9 +703,8 @@
     }
 
     .content-two .jumbotron {
-        height: 800px;
         color: $color-white;
-        background: url(../images/crunch_stone.jpg) no-repeat 0 top fixed;
+        background: url(../img/crunch_stone.jpg) no-repeat 0 top fixed;
         @include vp-background-size(cover);
 
         a {
@@ -749,7 +739,6 @@
     }
 
     .content-three .jumbotron {
-        height: 800px;
         color: $color-white;
         background-color: $color-blue;
 
