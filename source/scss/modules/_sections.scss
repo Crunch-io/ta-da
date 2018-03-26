@@ -320,7 +320,6 @@
         margin-top: 200px;
 
         .jumbotron {
-            height: 800px;
             color: $color-white;
             background-color: $color-purple;
         }
@@ -354,7 +353,6 @@
     }
 
     .content-two .jumbotron {
-        height: 800px;
         color: $color-white;
         background: url(../img/crunch_modern_platform.jpg) no-repeat center center fixed;
         @include vp-background-size(cover);
@@ -388,7 +386,6 @@
     }
 
     .content-three .jumbotron {
-        height: 800px;
         color: $color-white;
         background-color: $color-purple;
 
@@ -431,7 +428,6 @@
     }
 
     .content-four .jumbotron {
-        height: 800px;
         color: $color-off-black;
         background-color: $color-white;
 
