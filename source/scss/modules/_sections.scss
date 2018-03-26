@@ -146,7 +146,7 @@
 
         .jumbotron {
             height: 300px;
-            background: url(../images/crunch_shell.jpg) no-repeat;
+            background: url(../img/crunch_shell.jpg) no-repeat;
             background-position: 0 -100px;
             @include vp-background-size(cover);
             margin-bottom: 0;
@@ -263,7 +263,7 @@
 .page-not-found {
     min-height: 1200px;
     width: 100%;
-    background: url(../images/crunch_lavender.jpg) no-repeat center center fixed;
+    background: url(../img/crunch_lavender.jpg) no-repeat center center fixed;
     @include vp-background-size(cover);
     color: $color-white;
     overflow: hidden;
@@ -356,7 +356,7 @@
     .content-two .jumbotron {
         height: 800px;
         color: $color-white;
-        background: url(../images/crunch_modern_platform.jpg) no-repeat center center fixed;
+        background: url(../img/crunch_modern_platform.jpg) no-repeat center center fixed;
         @include vp-background-size(cover);
 
         p {
@@ -535,7 +535,7 @@
     .content-two .jumbotron {
         height: 800px;
         color: $color-white;
-        background: url(../images/crunch_collaborate_securely.jpg) no-repeat center center fixed;
+        background: url(../img/crunch_collaborate.jpg) no-repeat center center fixed;
         @include vp-background-size(cover);
 
         p {
