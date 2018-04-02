@@ -33,6 +33,7 @@ setup(
         'console_scripts': [
             'ds.meta=bigds.ds_meta:main',
             'ds.data=bigds.ds_data:main',
+            'ds.fix=bigds.ds_fix:main',
         ],
     },
 )
