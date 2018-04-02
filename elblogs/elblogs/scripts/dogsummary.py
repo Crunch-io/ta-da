@@ -5,7 +5,7 @@ import sys
 
 from docopt import docopt
 
-from ..apis.ddog import dog_count
+from ..apis import ddog as dog
 from ..apis.slack import errors_to_slack, message
 from ..dates import start_and_end, date_range_label, date_to_dogtime
 
@@ -63,24 +63,27 @@ def main():
 
 def dog_summary_stats(start, end):
     ## Appends:
-    append_good = dog_count("zz9.imports.frame.success", start, end)
-    append_bad = dog_count("zz9.imports.frame.failed", start, end)
+    append_good = dog.count_zz9("import_frame", start, end, status="success")
+    append_bad = dog.count_zz9("import_frame", start, end, status="failed")
+    append_invalid = dog.count_zz9("import_frame", start, end, status="invalid")
     append_total = append_good + append_bad
 
     ## Merges:
-    merge_total = dog_count("cr.server.merges.triggered", start, end)
-    merge_bad = dog_count("cr.server.merges.failed", start, end)
-    merge_good = merge_total - merge_bad
+    merge_total = dog.count_cr("datasetactionscatalog", start, end, method="POST")
+    merge_bad = dog.count_task("play_workflow", start, end, status="failed")
+    merge_good = dog.count_task("play_workflow", start, end, status="success")
+    ## Note that if good + bad != total, something is up
 
     ## Query Timeouts:
-    qt_total = dog_count("zz9.client.timeouts", start, end,
+    qt_total = dog.count("zz9.client.timeouts", start, end,
         scope="region:eu-west-1")
 
     return {
         "append": {
             "total": append_total,
             "good": append_good,
-            "bad": append_bad
+            "bad": append_bad,
+            "invalid": append_invalid
         },
         "merge": {
             "total": merge_total,
@@ -113,10 +116,16 @@ def slackify_dog_summary(summary, daterange):
             for k, v in summary.iteritems()],
         "color": color
     }]
-    ## Add in the query timeouts, which don't follow that pattern
+
     body[0]["fields"] += [{
+        ## Add in the query timeouts, which don't follow that pattern
         "title": "ZZ9 Query Timeouts",
         "value": query_timeouts["total"],
+        "short": True
+    }, {
+        ## Also, let's make an extra one for the "invalid" appends
+        "title": "'Invalid' Appends (user error)",
+        "value": summary['append']['invalid'],
         "short": True
     }]
     return body, icon_emoji
