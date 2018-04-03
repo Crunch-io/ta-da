@@ -18,6 +18,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'docopt',
+        'lz4',
         'pycrunch',
         'pyyaml',
         'requests',
