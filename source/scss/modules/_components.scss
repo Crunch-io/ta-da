@@ -121,22 +121,6 @@
     }
 }
 
-//Card
-
-.card {
-    height: 150px;
-    margin: 15px 0;
-    border-radius: 0;
-
-    .card-body {
-        a {
-            color: $color-blue;
-            position: absolute;
-            bottom: 20px;
-        }
-    }
-}
-
 // Post-Card
 
 .post-card {
@@ -177,6 +161,10 @@
             }
         }
     }
+}
+
+.post-job {
+    min-height: 200px;
 }
 
 // Figure images in content .md
