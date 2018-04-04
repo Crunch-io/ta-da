@@ -52,6 +52,7 @@
             color: $color-white;
             background: url(../img/crunch_lavender.jpg) no-repeat center center fixed;
             @include vp-background-size(cover);
+            padding: 150px 0;
         }
     }
 }
