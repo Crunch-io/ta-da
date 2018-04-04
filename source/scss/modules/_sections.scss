@@ -47,8 +47,12 @@
 
 // Secondary-content
 .secondary-content {
-    .row {
-        margin: 0;
+    .modern-platform {
+        .jumbotron {
+            color: $color-white;
+            background: url(../img/crunch_lavender.jpg) no-repeat center center fixed;
+            @include vp-background-size(cover);
+        }
     }
 }
 
