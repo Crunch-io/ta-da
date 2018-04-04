@@ -478,7 +478,7 @@
 
 }
 
-// Collaborate securely
+// Collaborate
 .collaborate-content {
 
     .jumbotron {
@@ -607,6 +607,11 @@
         p {
             margin-top: 100px;
             margin-bottom: 150px;
+
+            a {
+                font-family: 'ProximaNova', sans-serif;
+                color: $color-blue;
+            }
         }
 
         a {
