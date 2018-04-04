@@ -11,9 +11,15 @@
                 <div class="jumbotron">
                     <div class="container">
                         <div class="row justify-content-md-center">
-                            <div class="col-md-6 text-center">
-                                <h1>{{ .Title }}</h1>
+                            <div class="col-md-7">
+                                <h1 class="display-4"><span>Careers</span></h1>
                             </div>
+
+                            <div class="col-md-4">
+                                <p>{{ .Content }}</p>
+                                <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
+                            </div>
+
                         </div> <!-- /.row -->
 
                     </div> <!-- /.container -->
@@ -22,12 +28,6 @@
 
             <div class="secondary-content">
               <div class="container">
-
-                  <div class="row">
-                      <div class="col-md-6 offset-md-3 text-center">
-                          <p>{{ .Content }}</p>
-                      </div>
-                  </div>
 
                   <div class="row spacer-top spacer-bottom justify-content-md-center">
                       <div class="col-md-5">
