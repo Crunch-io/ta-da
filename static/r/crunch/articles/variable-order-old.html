@@ -8,7 +8,7 @@
 <title>Reordering Variables • Crunch</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Reordering Variables">
 <meta property="og:description" content="Variables within datasets are organized in folders. The crunch package provides tools for creating folders and moving variables among them.">
@@ -26,10 +26,10 @@
   ga('create', 'UA-50332119-2', 'auto');
   ga('send', 'pageview');
 
-</script>
+</script><!-- docsearch --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -38,8 +38,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">crunch</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">crunch</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.21.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
@@ -102,7 +106,13 @@
   </a>
 </li>
       </ul>
+<form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
+      </form>
+      
+    </div>
 <!--/.nav-collapse -->
   </div>
 <!--/.container -->
@@ -111,22 +121,22 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Reordering Variables</h1>
             
-          </div>
+      
+      <small>Source: <a href="https://github.com/Crunch-io/rcrunch/blob/master/vignettes/variable-order-old.Rmd"><code>vignettes/variable-order-old.Rmd</code></a></small>
+      <div class="hidden name"><code>variable-order-old.Rmd</code></div>
+
+    </div>
 
     
     
-<div class="contents">
 <p><a href="array-variables.html">Previous: array variables</a></p>
 <blockquote>
 <p>This ordering API is being phased out in favor of the new “variable folders” API, which is currently in a beta testing phase. This vignette is left here for reference, but you are encouraged to try the new methods. See <a href="variable-order.html">the new vignette</a> for details.</p>
 </blockquote>
-<div id="variable-order-and-organization" class="section level1">
-<h1 class="hasAnchor">
-<a href="#variable-order-and-organization" class="anchor"></a>Variable Order and Organization</h1>
 <p>In the web application, variables in a dataset are displayed in a list on the left side of the screen.</p>
 <!-- screenshot -->
 <p>Typically, when you import a dataset, the variable list is flat, but it can be organized into an accordion-like hierarchy. The variable organizer in the GUI allows you to perform this organization visually, but you can also manage this metadata from <code>crunch</code>.</p>
@@ -179,9 +189,9 @@
 <a href="#creating-groups" class="anchor"></a>Creating groups</h2>
 <p>Since I know how this dataset is organized, I’m going quickly toss the variables into one of a small number of groups, instantiated with <code>VariableGroup</code>, and collect them in a container object called <code>VariableOrder</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/ordering.html">ordering</a></span>(ds) &lt;-<span class="st"> </span><span class="kw"><a href="../reference/VariableOrder.html">VariableOrder</a></span>(
-        <span class="kw"><a href="../reference/VariableOrder.html">VariableGroup</a></span>(<span class="st">"Demos"</span>, ds[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">21</span>:<span class="dv">37</span>)]),
-        <span class="kw"><a href="../reference/VariableOrder.html">VariableGroup</a></span>(<span class="st">"Tracking questions"</span>, ds[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>, <span class="dv">11</span>:<span class="dv">20</span>)]),
-        <span class="kw"><a href="../reference/VariableOrder.html">VariableGroup</a></span>(<span class="st">"This week"</span>, ds[<span class="dv">4</span>:<span class="dv">11</span>])
+        <span class="kw"><a href="../reference/VariableOrder.html">VariableGroup</a></span>(<span class="st">"Demos"</span>, ds[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">21</span><span class="op">:</span><span class="dv">37</span>)]),
+        <span class="kw"><a href="../reference/VariableOrder.html">VariableGroup</a></span>(<span class="st">"Tracking questions"</span>, ds[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>, <span class="dv">11</span><span class="op">:</span><span class="dv">20</span>)]),
+        <span class="kw"><a href="../reference/VariableOrder.html">VariableGroup</a></span>(<span class="st">"This week"</span>, ds[<span class="dv">4</span><span class="op">:</span><span class="dv">11</span>])
     )</code></pre></div>
 <p>Now, our variable tree has some structure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/ordering.html">ordering</a></span>(ds)</code></pre></div>
@@ -251,7 +261,7 @@
 <h2 class="hasAnchor">
 <a href="#nested-groups" class="anchor"></a>Nested groups</h2>
 <p>We can create groups within groups as well. In the “This week” group, we have a set of questions about Edward Snowden: the first four variables in the group. Let’s nest them inside their own group inside “This week”:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/ordering.html">ordering</a></span>(ds)[[<span class="st">"This week"</span>]][[<span class="st">"Snowden"</span>]] &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ordering.html">ordering</a></span>(ds)[[<span class="st">"This week"</span>]][<span class="dv">1</span>:<span class="dv">4</span>]
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/ordering.html">ordering</a></span>(ds)[[<span class="st">"This week"</span>]][[<span class="st">"Snowden"</span>]] &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ordering.html">ordering</a></span>(ds)[[<span class="st">"This week"</span>]][<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]
 <span class="kw"><a href="../reference/ordering.html">ordering</a></span>(ds)</code></pre></div>
 <pre><code>## [+] Tracking questions
 ##     newsint2
@@ -299,8 +309,6 @@
 <p>Third, the four variable references we put into “Snowden” were also removed from their positions in the “This week” group: they were “moved” rather than copied. This is what we might expect from a files-and-folders form of organization. If you wish to make copies, you can set <code>duplicates(ordering(ds)) &lt;- TRUE</code>. If we had done that in this example, we’d have the four Snowden variables appearing both in the “This week” group and in the nested “Snowden” group. (More accurately, and keeping with the file-system metaphor, setting duplicates to <code>TRUE</code> lets you create symbolic links rather than actually copying the variables. Only the references are copied; there is only one variable behind them.)</p>
 <p><a href="derive.html">Next: transforming and deriving</a></p>
 </div>
-</div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -308,15 +316,11 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#variable-order-and-organization">Variable Order and Organization</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#viewing-the-order">Viewing the order</a></li>
       <li><a href="#creating-groups">Creating groups</a></li>
       <li><a href="#group-names">Group names</a></li>
       <li><a href="#reordering-groups-and-entities">Reordering groups and entities</a></li>
       <li><a href="#nested-groups">Nested groups</a></li>
-      </ul>
-</li>
       </ul>
 </div>
       </div>
@@ -335,5 +339,15 @@
       </footer>
 </div>
 
-  </body>
+  
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script>
+  docsearch({
+    
+    apiKey: '9fbcb3ae4d05600402e31f66b9b9501e',
+    indexName: 'crunch',
+    inputSelector: 'input#search-input.form-control',
+    debug: false // Set debug to true if you want to inspect the dropdown
+  });
+</script>
+</body>
 </html>
