@@ -16,37 +16,39 @@
             background-color: $color-blue;
             background-image: linear-gradient( $color-blue, $--darker-primary-color);
             margin-bottom: 0;
+            height: 700px;
         }
 
         @include media-breakpoint-down(xs) {
             .jumbotron {
                 padding-top: 100px;
-                height: 800px;
+                height: 1000px;
             }
         }
     }
 
     .footer-content {
         color: $color-white;
+        position: relative;
+        z-index: 10;
 
         .jumbotron {
             width: 100%;
             height: 450px;
             border-radius: 0;
             background: url(../img/crunch_stone.jpg) no-repeat center center fixed;
-            background-position: 0 300px;
+            background-position: 0 258px;
             @include vp-background-size(cover);
             margin-bottom: 0;
 
             .row {
                 margin-top: 50px;
             }
+        }
 
-            @include media-breakpoint-down(xs) {
-                .jumbotron {
-                    background: url(../img/crunch_stone.jpg) no-repeat;
-                    background-position: 0 top;
-                }
+        @include media-breakpoint-down(sm) {
+            .jumbotron {
+                background-position: 0 top;
             }
         }
     }
