@@ -1,6 +1,10 @@
 .navbar {
     background-color: $color-white;
 
+    .container {
+        max-width: 1450px;
+    }
+
     .navbar-nav {
         .nav-item {
             margin-left: 30px;
