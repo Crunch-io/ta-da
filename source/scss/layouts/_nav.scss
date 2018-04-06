@@ -37,9 +37,16 @@
 
 // Dot nav
 #dot-nav {
-	top: 70%;
+    position: fixed;
+	top: 50%;
     right: 10px;
 	z-index: 999;
+}
+
+@include media-breakpoint-down(sm) {
+    #dot-nav {
+        display: none;
+    }
 }
 
 #dot-nav ul {
