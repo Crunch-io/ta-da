@@ -54,6 +54,9 @@ def do_dump(args):
 
 
 def do_load(args):
+    XXX
+    # I need to parse the mongo hostname out of mongo_url
+    # and check against that hostname, not this one!
     if 'mongo' in platform.node().lower():
         raise RuntimeError(
             "Hostname '{}' looks like a production mongo system. Aborting."
@@ -61,11 +64,15 @@ def do_load(args):
     archive_filename = args['<archive-filename>']
     config = load_config()
     mongo_url = config['APP_STORE']['URL']
-    cmd = [
-        'mongorestore',
-        '--uri', mongo_url,
-        '--archive={}'.format(archive_filename),
-    ]
+    if not args['--old-mongo']:
+        cmd = [
+            'mongorestore',
+            '--uri', mongo_url,
+            '--archive={}'.format(archive_filename),
+        ]
+    else:
+        # For Mongo < 3.4.6, the --uri parameter is not available
+        XXX
     print(subprocess.list2cmdline(cmd))
     subprocess.check_call(cmd)
 
