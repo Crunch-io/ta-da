@@ -2,11 +2,12 @@
 Move documents related to a dataset from one Mongo cluster to another.
 
 Usage:
-    ds.mongo-move dump <ds-id> <output-dir>
-    ds.mongo-move load <input-dir>
+    ds.mongo-move dump <ds-id> <archive-filename>
+    ds.mongo-move load <archive-filename>
 """
 from __future__ import print_function
 import os
+import platform
 import string
 import subprocess
 
@@ -28,12 +29,16 @@ COLLECTIONS = {
 }
 
 
-def do_dump(args):
-    ds_id = args['<ds-id>']
-    output_dir = args['<output-dir>']
+def load_config():
     config_filename = '/var/lib/crunch.io/cr.server-0.conf'
     with open(config_filename) as f:
-        config = yaml.safe_load(f)
+        return yaml.safe_load(f)
+
+
+def do_dump(args):
+    ds_id = args['<ds-id>']
+    archive_filename = args['<archive-filename>']
+    config = load_config()
     mongo_url = config['APP_STORE']['URL']
     for collection_name, query in COLLECTIONS.items():
         query_instance = string.Template(query).substitute(ds_id=ds_id)
@@ -42,10 +47,27 @@ def do_dump(args):
             '--uri', mongo_url,
             '--collection', collection_name,
             '--query', query_instance,
-            '--out', output_dir,
+            '--archive={}'.format(archive_filename),
         ]
         print(subprocess.list2cmdline(cmd))
         subprocess.check_call(cmd)
+
+
+def do_load(args):
+    if 'mongo' in platform.node().lower():
+        raise RuntimeError(
+            "Hostname '{}' looks like a production mongo system. Aborting."
+            .format(platform.node()))
+    archive_filename = args['<archive-filename>']
+    config = load_config()
+    mongo_url = config['APP_STORE']['URL']
+    cmd = [
+        'mongorestore',
+        '--uri', mongo_url,
+        '--archive={}'.format(archive_filename),
+    ]
+    print(subprocess.list2cmdline(cmd))
+    subprocess.check_call(cmd)
 
 
 def main():
