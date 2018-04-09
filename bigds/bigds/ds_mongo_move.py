@@ -64,7 +64,6 @@ def _add_connection_params(cmd, args, config):
 def do_dump(args):
     ds_id = args['<ds-id>']
     output_dir = args['<output-dir>']
-    archive_filename = args['<archive-filename>']
     config = load_config()
     for collection_name, query in COLLECTIONS.items():
         query_instance = string.Template(query).substitute(ds_id=ds_id)
