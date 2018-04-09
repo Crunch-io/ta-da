@@ -13,3 +13,7 @@
 .add-shadow {
     @include vp-box-shadow(1px 5px 20px 5px rgba(0,0,0,0.2));
 }
+
+.sp-mb {
+    margin: 40px 0;
+}
