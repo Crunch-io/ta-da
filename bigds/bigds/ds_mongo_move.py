@@ -42,6 +42,7 @@ def load_config():
 def _add_connection_params(cmd, args, config):
     # Modify cmd, adding Mongo connection parameters based on args and config.
     mongo_url = config['APP_STORE']['URL']
+    u = urlparse(mongo_url)
     if args['--old-mongo']:
         # For Mongo < 3.4.6, the --uri parameter is not available
         db_name = u.path.lstrip('/')
