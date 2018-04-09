@@ -17,6 +17,17 @@
     }
 }
 
+.share-insights {
+    a {
+        font-family: 'Libre Baskerville', serif;
+        color: $color-off-black;
+
+        span {
+            font-style: italic;
+        }
+    }
+}
+
 // Crunch interface
 .crunch-interface {
 
