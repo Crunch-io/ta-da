@@ -298,10 +298,8 @@
 
 // Learn More Pages
 .learn-more-title {
-    margin-left: 30px;
     margin-top: 40px;
     margin-bottom: 40px;
-    transition: color .35s ease-in-out;
 }
 
 .text-white {
@@ -361,9 +359,10 @@
         color: $color-white;
         background: url(../img/crunch_modern_platform.jpg) no-repeat center center fixed;
         @include vp-background-size(cover);
+        padding-bottom: 150px;
 
         p {
-            margin-top: 150px;
+            margin-top: 100px;
             color: $color-white;
         }
 
@@ -392,9 +391,10 @@
     .content-three .jumbotron {
         color: $color-white;
         background-color: $color-purple;
+        padding-bottom: 150px;
 
         p {
-            margin-top: 150px;
+            margin-top: 100px;
         }
 
         @include media-breakpoint-down(sm) {
@@ -537,7 +537,7 @@
         @include vp-background-size(cover);
 
         p {
-            margin-top: 200px;
+            margin-top: 100px;
             color: $color-white;
         }
 
@@ -569,7 +569,7 @@
         background-color: $color-green;
 
         p {
-            margin-top: 200px;
+            margin-top: 100px;
         }
 
         @include media-breakpoint-down(sm) {
@@ -611,7 +611,6 @@
 
         p {
             margin-top: 100px;
-            margin-bottom: 150px;
 
             a {
                 font-family: 'ProximaNova', sans-serif;
@@ -722,7 +721,7 @@
         }
 
         p {
-            margin-top: 200px;
+            margin-top: 100px;
         }
 
         @include media-breakpoint-down(sm) {
@@ -752,7 +751,7 @@
         background-color: $color-blue;
 
         p {
-            margin-top: 200px;
+            margin-top: 100px;
         }
 
         a {
