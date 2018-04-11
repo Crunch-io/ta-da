@@ -2,16 +2,16 @@
 Move documents related to a dataset from one Mongo cluster to another.
 
 Usage:
-    ds.mongo-move [options] dump <ds-id> <output-dir>
+    ds.mongo-move [options] dump <output-dir> <ds-id>...
     ds.mongo-move [options] load <input-dir>
 
 Options:
     --old-mongo    Mongo < 3.4.6, don't use "--uri" option to connect to Mongo.
 """
 from __future__ import print_function
+import json
 import os
 import platform
-import string
 import subprocess
 
 import docopt
@@ -20,17 +20,59 @@ import yaml
 
 # Mongo collections that this script will filter, dump, and load
 COLLECTIONS = {
-    'actions': '{"params.dataset.id": "$ds_id"}',
-    'user_datasets': '{"dataset_id": "$ds_id"}',
-    'dataset_validations': '{"dataset_id": "$ds_id"}',
-    'dataset_current_editors': '{"dataset_id": "$ds_id"}',
-    'dataset_permissions': '{"dataset_id": "$ds_id"}',
-    'datasets': '{"crunch_id": "$ds_id"}',
-    'dataset_families': '{"crunch_id": "$ds_id"}',
+    'actions': '{"params.dataset.id": {"$in": DS_IDS}}',
+    'analyses_order': '{"dataset_id": {"$in": DS_IDS}}',
+    'boxdata': '{"dataset_id": {"$in": DS_IDS}}',
+    'comparisons': '{"dataset_id": {"$in": DS_IDS}}',
+    'dataset_current_editors': '{"dataset_id": {"$in": DS_IDS}}',
+    'dataset_families': '{"crunch_id": {"$in": DS_IDS}}',
+    'dataset_permissions': '{"dataset_id": {"$in": DS_IDS}}',
+    'dataset_validations': '{"dataset_id": {"$in": DS_IDS}}',
+    'datasets': '{"crunch_id": {"$in": DS_IDS}}',
+    'deck_analyses': '{"dataset_id": {"$in": DS_IDS}}',
+    'deck_order': '{"dataset_id": {"$in": DS_IDS}}',
+    'deck_slides': '{"dataset_id": {"$in": DS_IDS}}',
+    'decks': '{"dataset_id": {"$in": DS_IDS}}',
+    'filter_order': '{"dataset_id": {"$in": DS_IDS}}',
+    'filters': '{"dataset_id": {"$in": DS_IDS}}',
+    'multitables': '{"dataset_id": {"$in": DS_IDS}}',
+    'repair_actions': '{"params.dataset.id": {"$in": DS_IDS}}',
+    'slide_ordering': '{"dataset_id": {"$in": DS_IDS}}',
+    'snapshots': '{"object_ref.dataset_id": {"$in": DS_IDS}}',
+    'streaming': '{"dataset_id": {"$in": DS_IDS}}',
+    'user_datasets': '{"dataset_id": {"$in": DS_IDS}}',
+    'user_variable_order': '{"dataset_id": {"$in": DS_IDS}}',
+    'variable_folders': '{"dataset_id": {"$in": DS_IDS}}',
+    'variable_folders2': '{"dataset_id": {"$in": DS_IDS}}',
+    'variable_folders_children': '{"dataset_id": {"$in": DS_IDS}}',
+    'variable_geodata': '{"dataset_id": {"$in": DS_IDS}}',
+    'variable_ordering': '{"dataset_id": {"$in": DS_IDS}}',
+    'variable_permissions': '{"dataset_id": {"$in": DS_IDS}}',
+    'variable_unique_folders': '{"dataset_id": {"$in": DS_IDS}}',
+    'variable_unique_folders2': '{"dataset_id": {"$in": DS_IDS}}',
+    'version_tags': '{"dataset_id": {"$in": DS_IDS}}',
     # 'projects',
     # 'project_dataset_order',
     # 'dataset_order',
 }
+
+# Algorithm used to determine whether to put a collection on the list above:
+# 1. It has more than a handful of documents in prod
+# 2. It has 'dataset' in the collection name, OR
+#    It has a field named 'dataset' or 'dataset_id' (see is_ds_related_doc())
+# 3. It has data for only one dataset (this rules out projects, etc.)
+
+def is_ds_related_doc(doc):
+    if doc is None:
+        return False
+    for name in doc:
+        if name in ('dataset', 'dataset_id'):
+            return True
+    for value in doc.values():
+        if isinstance(value, dict):
+            if is_ds_related_doc(value):
+                return True
+    return False
 
 
 def load_config():
@@ -63,11 +105,12 @@ def _add_connection_params(cmd, args, config):
 
 
 def do_dump(args):
-    ds_id = args['<ds-id>']
+    ds_ids = args['<ds-id>']
+    assert isinstance(ds_ids, list)
     output_dir = args['<output-dir>']
     config = load_config()
     for collection_name, query in COLLECTIONS.items():
-        query_instance = string.Template(query).substitute(ds_id=ds_id)
+        query_instance = query.replace('DS_IDS', json.dumps(args['<ds-id>']))
         cmd = [
             'mongodump',
             '--collection', collection_name,
