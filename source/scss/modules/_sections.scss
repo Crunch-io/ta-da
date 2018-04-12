@@ -408,6 +408,15 @@
             margin-top: 100px;
         }
 
+        a {
+            font-family: 'Libre Baskerville', serif;
+            color: $color-white;
+
+            span {
+                font-style: italic;
+            }
+        }
+
         @include media-breakpoint-down(sm) {
             h2 {
                 font-family: 'Libre Baskerville', serif;
