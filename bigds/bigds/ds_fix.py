@@ -3,15 +3,19 @@ Helper script for finding and doing stuff with broken datasets
 
 Usage:
     ds.fix [options] info-repo <ds-id>
-    ds.fix [options] info-repo-list <filename>
     ds.fix [options] copy-repo <ds-id>
-    ds.fix [options] load <ds-id> [<ds-version>]
+    ds.fix [options] look <ds-id> [<ds-version>]
+    ds.fix [options] restore-from-savepoint <ds-id> [<ds-version>]
 
 Options:
-    -c FILENAME     [default: config.yaml]
-    -p PROFILE      [default: shared-dev]
-    -i              Run interactive prompt after the command
-    -w              Get info from the writable repo, not the readonly one
+    -i                      Run interactive prompt after the command
+    -w                      Get info from the writable repo, not the readonly
+    --cr-lib-config=FILENAME
+                            [default: /var/lib/crunch.io/cr.server-0.conf]
+    --zz9-config=FILENAME   [default: config.yaml]
+    --zz9-profile=PROFILE   [default: shared-dev]
+
+WARNING!!! restore-from-savepoint is currently experimental/dangerous.
 """
 from __future__ import print_function
 import os
@@ -24,17 +28,33 @@ import docopt
 import lz4.frame
 import yaml
 
-
-def _directory_is_writable(dirpath):
-    try:
-        with tempfile.TemporaryFile(dir=dirpath):
-            return True
-    except OSError:
-        return False
+from cr.lib.commands.common import load_settings, startup
+import cr.lib.entities.datasets.dataset
+import cr.lib.index.indexer
+from cr.lib.settings import settings
 
 
-def _check_config(config):
-    assert not _directory_is_writable(config['read_only_zz9repo'])
+def _cr_lib_init(args):
+    """
+    Run this before doing anything with cr.lib
+    """
+    settings_yaml = args['--cr-lib-config']
+    settings.update(load_settings(settings_yaml))
+    startup()
+
+
+def _load_zz9_config(args):
+    # Note: This is *not* the same as the zz9 config found in
+    # /var/lib/crunch.io -- it is simpler and specific to this tool.
+    with open(args['--zz9-config']) as f:
+        config = yaml.safe_load(f)[args['--zz9-profile']]
+    _check_zz9_config(config)
+    return config
+
+
+def _check_zz9_config(config):
+    if 'read_only_zz9repo' in config:
+        assert not _directory_is_writable(config['read_only_zz9repo'])
     store_config = config['store_config']
     assert _directory_is_writable(store_config['datadir'])
     assert _directory_is_writable(store_config['repodir'])
@@ -43,6 +63,14 @@ def _check_config(config):
     assert store_config['datadir'] != store_config['repodir']
     assert store_config['datadir'] != store_config['tmpdir']
     assert store_config['repodir'] != store_config['tmpdir']
+
+
+def _directory_is_writable(dirpath):
+    try:
+        with tempfile.TemporaryFile(dir=dirpath):
+            return True
+    except OSError:
+        return False
 
 
 def _readonly_ds_dir(config, ds_id):
@@ -77,43 +105,11 @@ def _calc_ds_summary(ds_info):
     }
 
 
-def do_load(args, config, ds_id, ds_version=None):
-    if not ds_version:
-        ds_version = 'master__tip'
-    ds_branch, sep, ds_revision = ds_version.partition('__')
-    print("Loading dataset {} branch {} revision {}"
-          .format(ds_id, ds_branch, ds_revision))
-    assert ds_branch
-    assert sep == '__'
-    assert ds_revision
-    store_config = config['store_config']
-    import zz9d.stores, zz9d.objects.datasets, zz9lib, zz9d.execution
-    store = zz9d.stores.get_store(store_config)
-    ds = zz9d.objects.datasets.DatasetVersion(ds_id, store, '',
-                                              branch=ds_branch,
-                                              revision=ds_revision)
-    zz9d.execution.runtime.job.dataset = ds
-    #ds.load()
-    #f = ds.partitions[0].frames['primary']
-    f = None
-    return {
-        'ds_id': ds_id,
-        'ds_version': ds_version,
-        'ds_branch': ds_branch,
-        'ds_revision': ds_revision,
-        'store_config': store_config,
-        'zz9lib': zz9lib,
-        'zz9d': zz9d,
-        'store': store,
-        'ds': ds,
-        'f': f,
-    }
-
-
-def do_info_dataset(args, config, ds_id):
+def do_info_dataset(args, ds_id):
     """
     Print the info about a dataset by scanning the repository
     """
+    config = _load_zz9_config(args)
     if args['-w']:
         ds_dir = _writable_ds_dir(config, ds_id)
     else:
@@ -128,14 +124,6 @@ def do_info_dataset(args, config, ds_id):
     print(" Num subdirs   :", ds_summary['num_dirs'])
     print(" Num files     :", ds_summary['num_files'])
     print(" Formats       :", ds_summary['ds_formats'])
-
-
-def do_info_dataset_list(args, config, filename):
-    with open(filename) as f:
-        for line in f:
-            ds_id = line.split()[0]
-            do_info_dataset(args, config, ds_id)
-            print()
 
 
 def get_dataset_info(ds_dir):
@@ -208,10 +196,11 @@ def get_dataset_subdir_info(ds_version_dir):
     }
 
 
-def do_copy_dataset(args, config, ds_id):
+def do_copy_dataset(args, ds_id):
     """
     Copy a dataset from the read-only repository to the writable local one.
     """
+    config = _load_zz9_config(args)
     ro_ds_dir = _readonly_ds_dir(config, ds_id)
     wr_ds_dir = _writable_ds_dir(config, ds_id)
     if os.path.exists(wr_ds_dir):
@@ -222,17 +211,49 @@ def do_copy_dataset(args, config, ds_id):
     shutil.copytree(ro_ds_dir, wr_ds_dir)
 
 
-def _do_command(args, config):
+def do_look(args, ds_id, ds_version=None):
+    """This command is not useful without the -i option"""
+    _cr_lib_init(args)
+    if not ds_version:
+        ds_version = 'master__tip'
+    ds = cr.lib.entities.datasets.dataset.Dataset.find_by_id(id=ds_id,
+                                                             version=ds_version)
+    return {
+        'ds_id': ds_id,
+        'ds_version': ds_version,
+        'ds': ds,
+    }
+
+
+def do_restore_from_savepoint(args, ds_id, ds_version=None):
+    _cr_lib_init(args)
+    if not ds_version:
+        ds_version = 'master__tip'
+    ds = cr.lib.entities.datasets.dataset.Dataset.find_by_id(id=ds_id,
+                                                             version=ds_version)
+    ds_rollback_revision = ds.get_current_revision()
+    print("Rolling back dataset", ds_id, "to revision", ds_rollback_revision)
+    ds.rollback(ds_rollback_revision)
+    return {
+        'ds_id': ds_id,
+        'ds_version': ds_version,
+        'ds_rollback_revision': ds_rollback_revision,
+        'ds': ds,
+    }
+
+
+def _do_command(args):
     t0 = time.time()
     try:
         if args['info-repo']:
-            return do_info_dataset(args, config, args['<ds-id>'])
-        if args['info-repo-list']:
-            return do_info_dataset_list(args, config, args['<filename>'])
+            return do_info_dataset(args, args['<ds-id>'])
         if args['copy-repo']:
-            return do_copy_dataset(args, config, args['<ds-id>'])
-        if args['load']:
-            return do_load(args, config, args['<ds-id>'], args['<ds-version>'])
+            return do_copy_dataset(args, args['<ds-id>'])
+        if args['look']:
+            return do_look(args, args['<ds-id>'], args['<ds-version>'])
+        if args['restore-from-savepoint']:
+            return do_restore_from_savepoint(args, args['<ds-id>'],
+                                             args['<ds-version>'])
         print("No command, or command not implemented yet.", file=sys.stderr)
         return 1
     finally:
@@ -241,13 +262,9 @@ def _do_command(args, config):
 
 def main():
     args = docopt.docopt(__doc__)
-    with open(args['-c']) as f:
-        config = yaml.safe_load(f)[args['-p']]
-    _check_config(config)
-    result = _do_command(args, config)
+    result = _do_command(args)
     namespace = {
         'args': args,
-        'config': config,
     }
     if isinstance(result, dict):
         namespace['exit_code'] = 0
