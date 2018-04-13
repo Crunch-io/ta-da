@@ -90,7 +90,7 @@ def _do_command(args):
         if args['look']:
             return do_look(args, args['<ds-id>'], args['<ds-version>'])
         if args['restore-from-savepoint']:
-            return do_restore_from_savepoint(args, args['<ds-id>']
+            return do_restore_from_savepoint(args, args['<ds-id>'])
         if args['restore-from-s3']:
             return do_restore_from_s3(args, args['<ds-id>'])
         print("No command, or command not implemented yet.", file=sys.stderr)
