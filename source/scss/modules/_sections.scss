@@ -201,6 +201,19 @@
         }
     }
 
+    .secondary-content {
+
+        .team-members {
+
+            text-align: center;
+
+            .figure-caption {
+                text-align: left;
+            }
+        }
+
+    }
+
     .figure {
 
         .figure-caption {
@@ -210,9 +223,18 @@
     }
 
     @include media-breakpoint-down(xs) {
-        .team-members,
         .team-leads {
             text-align: center;
+        }
+
+        .secondary-content {
+            .team-members {
+
+                .figure-caption {
+                    text-align: center;
+                }
+                
+            }
         }
     }
 
