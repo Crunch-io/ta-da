@@ -17,6 +17,10 @@
                 color: $font-color-dark-grey;
             }
         }
+
+        .nav-link:focus {
+            outline: none;
+        }
     }
 
     .navbar-toggler {
