@@ -3,7 +3,7 @@ baseURL = "http://crunch.io/"
 googleAnalytics = "UA-50332119-2"
 
 languageCode = "en-us"
-title = "Crunch"
+title = "Data, Smarter."
 MetaDataFormat = "toml"
 
 [params]
