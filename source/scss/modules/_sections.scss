@@ -233,7 +233,7 @@
                 .figure-caption {
                     text-align: center;
                 }
-                
+
             }
         }
     }
@@ -431,12 +431,7 @@
         }
 
         a {
-            font-family: 'Libre Baskerville', serif;
             color: $color-white;
-
-            span {
-                font-style: italic;
-            }
         }
 
         @include media-breakpoint-down(sm) {
@@ -657,15 +652,6 @@
             a {
                 font-family: 'ProximaNova', sans-serif;
                 color: $color-blue;
-            }
-        }
-
-        a {
-            font-family: 'Libre Baskerville', serif;
-            color: $color-off-black;
-
-            span {
-                font-style: italic;
             }
         }
 
