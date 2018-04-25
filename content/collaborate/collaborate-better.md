@@ -2,8 +2,6 @@
 date = "2018-04-25T12:27:04-04:00"
 draft = false
 title = "Collaborate better"
-subtitle1 = "Collaborate"
-subtitle2 = "better"
 img = "collaborate/collaborate_securely_example.png"
 +++
 
