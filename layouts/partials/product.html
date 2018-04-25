@@ -1,12 +1,12 @@
     <div class="secondary-content intro-xs-margin" style="position: relative; z-index: 10; background-color: white;">
     {{ range .Data.Pages }}
-        {{ if and (eq .Type "product") (eq .Title "Modern Platform") }}
+        {{ if and (eq .Type "product") (eq .Title "A modern platform") }}
         <div class="modern-platform">
             <div class="jumbotron">
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-md-7">
-                            <h1>{{ .Params.subtitle1 }} <span>{{ .Params.subtitle2 }}</span> {{ .Params.subtitle3 }}</h1>
+                            <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ end }} {{ .Params.subtitle }}</h1>
                             <p>{{ .Content }}</p>
                             <br>
                             <button type="button" class="btn btn-secondary" onclick="location.href='modern-platform'">Learn more</button>
@@ -19,10 +19,10 @@
     {{ end }}
         <div class="container">
         {{ range .Data.Pages }}
-            {{ if and (eq .Type "product") (eq .Title "Collaborate Productively") }}
+            {{ if and (eq .Type "product") (eq .Title "Collaborate productively") }}
             <div class="row spacer">
                 <div class="col-12 order-1 col-md-4 order-md-0">
-                    <h1>{{ .Params.subtitle1 }} <span>{{ .Params.subtitle2 }}</span></h1>
+                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ end }}</h1>
                     <p>{{ .Content }}</p>
                     <br>
                     <button type="button" class="btn btn-primary" onclick="location.href='collaborate'">Learn more</button>
@@ -40,7 +40,7 @@
             {{ if .Params.crunchbox }}
             <div class="row spacer share-insights">
                 <div class="col-12 col-md-4">
-                    <h1>{{ .Params.subtitle1 }} <span>{{ .Params.subtitle2 }}</span></h1>
+                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ end }}</h1>
                     <p>{{ .Content }}</p>
                     Try one now &#10230;
                 </div>
@@ -61,12 +61,12 @@
 
     <div class="footer-content">
     {{ range .Data.Pages }}
-        {{ if and (eq .Type "product") (eq .Title "Speaks Research") }}
+        {{ if and (eq .Type "product") (eq .Title "Crunch speaks research") }}
         <div class="jumbotron">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <h1>{{ .Params.subtitle1 }} <span>{{ .Params.subtitle2 }}</span></h1>
+                        <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <span>{{ index (split . " ") 2 }}</span> {{ end }}</h1>
                         <p>{{ .Content }}</p>
                         <br>
                         <button type="button" class="btn btn-success" onclick="location.href='speaks-research'">Learn more</button>

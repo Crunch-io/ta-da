@@ -1,9 +1,7 @@
 +++
 date = "2018-04-25T11:35:27-04:00"
 draft = false
-title = "Collaborate Productively"
-subtitle1 = "Collaborate"
-subtitle2 = "Productively"
+title = "Collaborate productively"
 img = "sharing-mock.jpg"
 +++
 
