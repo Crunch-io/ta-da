@@ -36,6 +36,7 @@ setup(
             'ds.data=bigds.ds_data:main',
             'ds.fix=bigds.ds_fix:main',
             'ds.mongo-move=bigds.ds_mongo_move:main',
+            'ds.detect-broken-datasets=bigds.ds_detect_broken_datasets:main',
         ],
     },
 )
