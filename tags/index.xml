@@ -2,183 +2,183 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Data, Smarter.</title>
-    <link>http://crunch.io/tags/</link>
+    <link>https://crunch.io/tags/</link>
     <description>Recent content in Tags on Data, Smarter.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 14 Jan 2018 13:20:47 -0400</lastBuildDate>
     
-	<atom:link href="http://crunch.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://crunch.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Analysis</title>
-      <link>http://crunch.io/tags/analysis/</link>
+      <link>https://crunch.io/tags/analysis/</link>
       <pubDate>Sun, 14 Jan 2018 13:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/analysis/</guid>
+      <guid>https://crunch.io/tags/analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Automation</title>
-      <link>http://crunch.io/tags/automation/</link>
+      <link>https://crunch.io/tags/automation/</link>
       <pubDate>Tue, 10 Oct 2017 09:00:00 -0700</pubDate>
       
-      <guid>http://crunch.io/tags/automation/</guid>
+      <guid>https://crunch.io/tags/automation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Clients</title>
-      <link>http://crunch.io/tags/clients/</link>
+      <link>https://crunch.io/tags/clients/</link>
       <pubDate>Tue, 17 Oct 2017 23:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/clients/</guid>
+      <guid>https://crunch.io/tags/clients/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dashboards</title>
-      <link>http://crunch.io/tags/dashboards/</link>
+      <link>https://crunch.io/tags/dashboards/</link>
       <pubDate>Tue, 17 Oct 2017 23:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/dashboards/</guid>
+      <guid>https://crunch.io/tags/dashboards/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Derived Variables</title>
-      <link>http://crunch.io/tags/derived-variables/</link>
+      <link>https://crunch.io/tags/derived-variables/</link>
       <pubDate>Mon, 21 Aug 2017 23:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/derived-variables/</guid>
+      <guid>https://crunch.io/tags/derived-variables/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Design</title>
-      <link>http://crunch.io/tags/design/</link>
+      <link>https://crunch.io/tags/design/</link>
       <pubDate>Wed, 05 Jul 2017 11:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/design/</guid>
+      <guid>https://crunch.io/tags/design/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Draft and Publish</title>
-      <link>http://crunch.io/tags/draft-and-publish/</link>
+      <link>https://crunch.io/tags/draft-and-publish/</link>
       <pubDate>Mon, 12 Jun 2017 23:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/draft-and-publish/</guid>
+      <guid>https://crunch.io/tags/draft-and-publish/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Export</title>
-      <link>http://crunch.io/tags/export/</link>
+      <link>https://crunch.io/tags/export/</link>
       <pubDate>Mon, 01 May 2017 23:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/export/</guid>
+      <guid>https://crunch.io/tags/export/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Geo</title>
-      <link>http://crunch.io/tags/geo/</link>
+      <link>https://crunch.io/tags/geo/</link>
       <pubDate>Fri, 25 Aug 2017 18:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/geo/</guid>
+      <guid>https://crunch.io/tags/geo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Graphs</title>
-      <link>http://crunch.io/tags/graphs/</link>
+      <link>https://crunch.io/tags/graphs/</link>
       <pubDate>Tue, 17 Oct 2017 23:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/graphs/</guid>
+      <guid>https://crunch.io/tags/graphs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nets</title>
-      <link>http://crunch.io/tags/nets/</link>
+      <link>https://crunch.io/tags/nets/</link>
       <pubDate>Sun, 14 Jan 2018 13:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/nets/</guid>
+      <guid>https://crunch.io/tags/nets/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>http://crunch.io/tags/r/</link>
+      <link>https://crunch.io/tags/r/</link>
       <pubDate>Fri, 25 Aug 2017 18:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/r/</guid>
+      <guid>https://crunch.io/tags/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Release</title>
-      <link>http://crunch.io/tags/release/</link>
+      <link>https://crunch.io/tags/release/</link>
       <pubDate>Fri, 25 Aug 2017 18:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/release/</guid>
+      <guid>https://crunch.io/tags/release/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Search</title>
-      <link>http://crunch.io/tags/search/</link>
+      <link>https://crunch.io/tags/search/</link>
       <pubDate>Mon, 10 Jul 2017 12:59:58 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/search/</guid>
+      <guid>https://crunch.io/tags/search/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sentiment Analysis</title>
-      <link>http://crunch.io/tags/sentiment-analysis/</link>
+      <link>https://crunch.io/tags/sentiment-analysis/</link>
       <pubDate>Mon, 21 Aug 2017 23:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/sentiment-analysis/</guid>
+      <guid>https://crunch.io/tags/sentiment-analysis/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Subtotals</title>
-      <link>http://crunch.io/tags/subtotals/</link>
+      <link>https://crunch.io/tags/subtotals/</link>
       <pubDate>Sun, 14 Jan 2018 13:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/subtotals/</guid>
+      <guid>https://crunch.io/tags/subtotals/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tabbook</title>
-      <link>http://crunch.io/tags/tabbook/</link>
+      <link>https://crunch.io/tags/tabbook/</link>
       <pubDate>Mon, 01 May 2017 23:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/tabbook/</guid>
+      <guid>https://crunch.io/tags/tabbook/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Testing</title>
-      <link>http://crunch.io/tags/testing/</link>
+      <link>https://crunch.io/tags/testing/</link>
       <pubDate>Tue, 10 Oct 2017 09:00:00 -0700</pubDate>
       
-      <guid>http://crunch.io/tags/testing/</guid>
+      <guid>https://crunch.io/tags/testing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Text</title>
-      <link>http://crunch.io/tags/text/</link>
+      <link>https://crunch.io/tags/text/</link>
       <pubDate>Mon, 21 Aug 2017 23:20:47 -0400</pubDate>
       
-      <guid>http://crunch.io/tags/text/</guid>
+      <guid>https://crunch.io/tags/text/</guid>
       <description></description>
     </item>
     
