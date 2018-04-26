@@ -14,6 +14,8 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     if [ "${TRAVIS_BRANCH}" = "src" ]; then
         # Production
         git clone https://github.com/crakjie/landing-page-hugo.git ./themes/landing-page-hugo
+        npm install
+        npm run build:scss
         hugo
 
         git clone -b master https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG.git OUTPUT
@@ -29,7 +31,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
         STAGING_URL=https://crunch-io.github.io/crunchy/newsite/
         sed -i 's@http://crunch.io/@'"$STAGING_URL"'@g' config.toml
         npm install
-        npm run build:scss-dev
+        npm run build:scss
         hugo
 
         git clone --branch gh-pages https://${GH_TOKEN}@github.com/Crunch-io/crunchy.git ../crunchy
