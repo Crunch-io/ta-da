@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Crunch</title>
+    <title>Data, Smarter.</title>
     <link>http://crunch.io/</link>
-    <description>Recent content on Crunch</description>
+    <description>Recent content on Data, Smarter.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 20 Mar 2018 14:08:35 +0200</lastBuildDate>
@@ -13,299 +13,236 @@
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/persephone/</link>
+      <link>http://crunch.io/team/members/persephone/</link>
       <pubDate>Tue, 20 Mar 2018 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/persephone/</guid>
+      <guid>http://crunch.io/team/members/persephone/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/sebastian/</link>
+      <link>http://crunch.io/team/members/sebastian/</link>
       <pubDate>Mon, 22 Jan 2018 18:29:35 +0100</pubDate>
       
-      <guid>http://crunch.io/team/sebastian/</guid>
+      <guid>http://crunch.io/team/members/sebastian/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/natalia/</link>
+      <link>http://crunch.io/team/members/natalia/</link>
       <pubDate>Mon, 15 Jan 2018 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/natalia/</guid>
+      <guid>http://crunch.io/team/members/natalia/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/diana/</link>
+      <link>http://crunch.io/team/members/diana/</link>
       <pubDate>Mon, 13 Nov 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/diana/</guid>
+      <guid>http://crunch.io/team/members/diana/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/slobodan/</link>
+      <link>http://crunch.io/team/members/slobodan/</link>
       <pubDate>Mon, 25 Sep 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/slobodan/</guid>
+      <guid>http://crunch.io/team/members/slobodan/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/david/</link>
+      <link>http://crunch.io/team/members/david/</link>
       <pubDate>Fri, 22 Sep 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/david/</guid>
+      <guid>http://crunch.io/team/members/david/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/jim/</link>
+      <link>http://crunch.io/team/members/jim/</link>
       <pubDate>Tue, 05 Sep 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/jim/</guid>
+      <guid>http://crunch.io/team/members/jim/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/gordon/</link>
+      <link>http://crunch.io/team/members/gordon/</link>
       <pubDate>Sun, 16 Jul 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/gordon/</guid>
+      <guid>http://crunch.io/team/members/gordon/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/jon/</link>
+      <link>http://crunch.io/team/members/jon/</link>
       <pubDate>Tue, 30 May 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/jon/</guid>
+      <guid>http://crunch.io/team/members/jon/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/brian/</link>
+      <link>http://crunch.io/team/members/brian/</link>
       <pubDate>Sun, 05 Feb 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/brian/</guid>
+      <guid>http://crunch.io/team/members/brian/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/karol/</link>
+      <link>http://crunch.io/team/members/karol/</link>
       <pubDate>Wed, 01 Feb 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/karol/</guid>
+      <guid>http://crunch.io/team/members/karol/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/jose/</link>
+      <link>http://crunch.io/team/members/jose/</link>
       <pubDate>Mon, 02 Jan 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/jose/</guid>
+      <guid>http://crunch.io/team/members/jose/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/bert/</link>
+      <link>http://crunch.io/team/members/bert/</link>
       <pubDate>Wed, 30 Nov 2016 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/bert/</guid>
+      <guid>http://crunch.io/team/members/bert/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/alessandro/</link>
+      <link>http://crunch.io/team/members/alessandro/</link>
       <pubDate>Tue, 01 Mar 2016 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/alessandro/</guid>
+      <guid>http://crunch.io/team/members/alessandro/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/matt/</link>
+      <link>http://crunch.io/team/members/matt/</link>
       <pubDate>Sun, 01 Nov 2015 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/matt/</guid>
+      <guid>http://crunch.io/team/members/matt/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/mcdonc/</link>
-      <pubDate>Mon, 27 Jul 2015 14:08:35 +0200</pubDate>
-      
-      <guid>http://crunch.io/team/mcdonc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>All of your data in one place</title>
-      <link>http://crunch.io/post/first/</link>
-      <pubDate>Sat, 18 Jul 2015 14:08:29 +0200</pubDate>
-      
-      <guid>http://crunch.io/post/first/</guid>
-      <description>Your datasets are stored in the cloud, instantly available from anywhere. Find answers from any of your datasets using a powerful search tool. And you never have to worry about losing old data—it’s always there. Our innovative data version-control system allows you to undo changes and view earlier revisions, so you never have to worry about accidentally trashing your data.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://crunch.io/team/percious/</link>
+      <link>http://crunch.io/team/members/percious/</link>
       <pubDate>Mon, 25 Aug 2014 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/percious/</guid>
+      <guid>http://crunch.io/team/members/percious/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/enrique/</link>
+      <link>http://crunch.io/team/members/enrique/</link>
       <pubDate>Mon, 05 May 2014 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/enrique/</guid>
+      <guid>http://crunch.io/team/members/enrique/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/emma/</link>
+      <link>http://crunch.io/team/members/emma/</link>
       <pubDate>Tue, 04 Feb 2014 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/emma/</guid>
+      <guid>http://crunch.io/team/members/emma/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/joseph/</link>
+      <link>http://crunch.io/team/members/joseph/</link>
       <pubDate>Tue, 01 Jan 2013 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/joseph/</guid>
+      <guid>http://crunch.io/team/members/joseph/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/cferejohn/</link>
+      <link>http://crunch.io/team/board/jeff/</link>
       <pubDate>Sat, 01 Dec 2012 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/cferejohn/</guid>
+      <guid>http://crunch.io/team/board/jeff/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/jeff/</link>
+      <link>http://crunch.io/team/members/cferejohn/</link>
       <pubDate>Sat, 01 Dec 2012 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/jeff/</guid>
+      <guid>http://crunch.io/team/members/cferejohn/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/bob/</link>
+      <link>http://crunch.io/team/members/bob/</link>
       <pubDate>Fri, 30 Nov 2012 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/bob/</guid>
+      <guid>http://crunch.io/team/members/bob/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/jj/</link>
+      <link>http://crunch.io/team/members/jj/</link>
       <pubDate>Fri, 30 Nov 2012 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/jj/</guid>
+      <guid>http://crunch.io/team/members/jj/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/malecki/</link>
+      <link>http://crunch.io/team/members/malecki/</link>
       <pubDate>Fri, 30 Nov 2012 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/malecki/</guid>
+      <guid>http://crunch.io/team/members/malecki/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/neal/</link>
+      <link>http://crunch.io/team/members/neal/</link>
       <pubDate>Fri, 30 Nov 2012 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/neal/</guid>
+      <guid>http://crunch.io/team/members/neal/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/doug/</link>
+      <link>http://crunch.io/team/board/doug/</link>
       <pubDate>Fri, 30 Nov 2012 12:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/doug/</guid>
+      <guid>http://crunch.io/team/board/doug/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Complex analysis made easy</title>
-      <link>http://crunch.io/post/second/</link>
-      <pubDate>Sat, 18 Jul 2015 14:08:45 +0200</pubDate>
-      
-      <guid>http://crunch.io/post/second/</guid>
-      <description>An intuitive, visual interface allows anyone to browse—and to dig deeper. Drag and drop to create tables and charts; slice and filter further with a few clicks. All of this happens at the speed of thought, thanks to our purpose-built columnar database. Get instant results for most any query without any advance setup.</description>
-    </item>
-    
-    <item>
-      <title>Optimized for survey research</title>
-      <link>http://crunch.io/post/third/</link>
-      <pubDate>Sat, 18 Jul 2015 14:53:21 +0200</pubDate>
-      
-      <guid>http://crunch.io/post/third/</guid>
-      <description>We’re survey experts. Crunch has special features to make survey analysis simple. We natively support data types like multiple response and &amp;ldquo;grid&amp;rdquo; questions. You can generate population weights and apply them automatically to all calculations. And you can code open-text data, including sentiment analysis, at the push of a button.</description>
-    </item>
-    
-    <item>
-      <title>Collaborate better</title>
-      <link>http://crunch.io/post/fourth/</link>
-      <pubDate>Sat, 18 Jul 2015 14:53:21 +0200</pubDate>
-      
-      <guid>http://crunch.io/post/fourth/</guid>
-      <description>Harness the power of a cloud platform to help people work together. Share your data with permission controls—no more emailing files. Use R and Python for scripting and modeling on the same data.</description>
-    </item>
-    
-    <item>
-      <title>Publish your findings</title>
-      <link>http://crunch.io/post/fifth/</link>
-      <pubDate>Sat, 18 Jul 2015 14:53:21 +0200</pubDate>
-      
-      <guid>http://crunch.io/post/fifth/</guid>
-      <description>The CrunchBox lets you make your results available to the public. Embed a CrunchBox of your data in a blog post, press release, or dashboard. Viewers can filter and analyze the data right in the public report or article.</description>
-    </item>
-    
-    <item>
-      <title>Unlimited possibilities</title>
-      <link>http://crunch.io/post/sixth/</link>
-      <pubDate>Sat, 18 Jul 2015 14:53:21 +0200</pubDate>
-      
-      <guid>http://crunch.io/post/sixth/</guid>
-      <description>Our APIs and client libraries make it easy to connect any data source and plug into your current workflow. Create custom integrations to import data from wherever. Perform complex modeling in R with no special code required. Plus, the ability to build custom visualizations in the web app are limitless. Our built-in support for R/Shiny apps allows you to design the perfect dashboard, and with our JavaScript SDK, you can create custom widgets and data portals.</description>
     </item>
     
     <item>
@@ -417,24 +354,6 @@ To that end, we’ve recently developed a draft and publish feature that allows 
     </item>
     
     <item>
-      <title>Welcome to the New Feature Blog</title>
-      <link>http://crunch.io/dev/features/welcome/</link>
-      <pubDate>Mon, 01 May 2017 10:44:52 -0700</pubDate>
-      
-      <guid>http://crunch.io/dev/features/welcome/</guid>
-      <description>Our first new feature announcement is&amp;hellip; the feature of announcing new features! Starting now, whenever we do a significant release that adds a new feature or notably enhances an existing one, we&amp;rsquo;ll post details about that here. Stay tuned for more!</description>
-    </item>
-    
-    <item>
-      <title>:smile: Hello.</title>
-      <link>http://crunch.io/dev/blog/hello-world/</link>
-      <pubDate>Mon, 24 Apr 2017 12:59:58 -0400</pubDate>
-      
-      <guid>http://crunch.io/dev/blog/hello-world/</guid>
-      <description>Check back here for behind-the-scenes views into building the Crunch platform.</description>
-    </item>
-    
-    <item>
       <title>Backend Engineer</title>
       <link>http://crunch.io/jobs/backend-engineer/</link>
       <pubDate>Thu, 27 Jul 2017 14:08:35 +0200</pubDate>
@@ -471,12 +390,111 @@ To that end, we’ve recently developed a draft and publish feature that allows 
     </item>
     
     <item>
-      <title>About Us</title>
-      <link>http://crunch.io/about/about/</link>
-      <pubDate>Sat, 18 Jul 2015 14:08:35 +0200</pubDate>
+      <title>Crunch is extensible</title>
+      <link>http://crunch.io/speaks-research/extensible/</link>
+      <pubDate>Wed, 25 Apr 2018 14:59:57 -0400</pubDate>
       
-      <guid>http://crunch.io/about/about/</guid>
-      <description>Crunch is a searchable analytics platform for all your datasets, designed to foster collaboration across a range of technical abilities. Business analysts and data scientists alike can prepare, explore, analyze and visualize data, and then deliver results to teammates and clients effortlessly.</description>
+      <guid>http://crunch.io/speaks-research/extensible/</guid>
+      <description>Everything that you can do in the app and much more can be accomplished through our robust API. This makes it easy to incorporate Crunch into your data workflows.</description>
+    </item>
+    
+    <item>
+      <title>Unlimited possibilities</title>
+      <link>http://crunch.io/speaks-research/possibilities/</link>
+      <pubDate>Wed, 25 Apr 2018 14:59:47 -0400</pubDate>
+      
+      <guid>http://crunch.io/speaks-research/possibilities/</guid>
+      <description>Our datasets work seamlessly with your scientific computing infrastructure. We maintain several R and Python libraries which give users the ability to automate their work on Crunch and use Crunch data in offline analyses.</description>
+    </item>
+    
+    <item>
+      <title>Complex analysis made easy</title>
+      <link>http://crunch.io/modern-platform/complex-analysis/</link>
+      <pubDate>Wed, 25 Apr 2018 14:34:59 -0400</pubDate>
+      
+      <guid>http://crunch.io/modern-platform/complex-analysis/</guid>
+      <description>An intuitive, visual interface allows anyone to quickly view the data and to dig deeper to gain greater insights. You can drag-and-drop to create tables and charts, filter the data, and create comprehensive dashboards.</description>
+    </item>
+    
+    <item>
+      <title>survey experts</title>
+      <link>http://crunch.io/modern-platform/survey-experts/</link>
+      <pubDate>Wed, 25 Apr 2018 14:34:47 -0400</pubDate>
+      
+      <guid>http://crunch.io/modern-platform/survey-experts/</guid>
+      <description>Crunch has special features to make survey analysis simple. We natively support data types like multiple response and “grid” questions; and you can easily and safely combine or recode categories. You can generate population weights, check the significance of cross-tabulations, and perform sentiment analysis on text data.</description>
+    </item>
+    
+    <item>
+      <title>Do more</title>
+      <link>http://crunch.io/collaborate/do-more/</link>
+      <pubDate>Wed, 25 Apr 2018 12:45:40 -0400</pubDate>
+      
+      <guid>http://crunch.io/collaborate/do-more/</guid>
+      <description>Crunch is more than a friendly web app. Data scientists and programmers can work with the same data in R and Python naturally. Changes made in one enviroment are available everywhere, so insights can be shared instantly. No more copying files — never get out of sync.</description>
+    </item>
+    
+    <item>
+      <title>Keep up to date</title>
+      <link>http://crunch.io/collaborate/up-to-date/</link>
+      <pubDate>Wed, 25 Apr 2018 12:34:11 -0400</pubDate>
+      
+      <guid>http://crunch.io/collaborate/up-to-date/</guid>
+      <description>Our innovative version-control system allows you to make edits safely, even on data you&amp;rsquo;ve shared with your clients. Review your work on a draft copy; publish it only when you&amp;rsquo;re ready.</description>
+    </item>
+    
+    <item>
+      <title>Collaborate better</title>
+      <link>http://crunch.io/collaborate/collaborate-better/</link>
+      <pubDate>Wed, 25 Apr 2018 12:27:04 -0400</pubDate>
+      
+      <guid>http://crunch.io/collaborate/collaborate-better/</guid>
+      <description>Harness the power of a cloud platform to manage access to your data. You control what others can see and do with it; grant or revoke access at any time. And you can monitor your clients&amp;rsquo; usage to know when they&amp;rsquo;ve spent time with the data.</description>
+    </item>
+    
+    <item>
+      <title>Share your insights</title>
+      <link>http://crunch.io/product/crunchbox/</link>
+      <pubDate>Wed, 25 Apr 2018 11:35:33 -0400</pubDate>
+      
+      <guid>http://crunch.io/product/crunchbox/</guid>
+      <description>Crunch gives you many ways to deliver your results. Save tables and graphs to a live dashboard, or download them to Excel or Powerpoint. And, with just a few clicks, you can share your key findings in an interactive CrunchBox, which can be embedded in any web page.</description>
+    </item>
+    
+    <item>
+      <title>Collaborate productively</title>
+      <link>http://crunch.io/product/collaborate-productively/</link>
+      <pubDate>Wed, 25 Apr 2018 11:35:27 -0400</pubDate>
+      
+      <guid>http://crunch.io/product/collaborate-productively/</guid>
+      <description>Deliver survey data and analytics to your company and customers — controlling who sees what and what they can do with it. Researchers can work on the data visually, creating crosstabs, charts, filters, analyses, complete decks, and fine-grained tab books, all without programming or ever having to worry about fragile data files. At the same time, data scientists can use the powerful Crunch API to dig deeper using R or Python.</description>
+    </item>
+    
+    <item>
+      <title>Crunch speaks research</title>
+      <link>http://crunch.io/product/speaks-research/</link>
+      <pubDate>Wed, 25 Apr 2018 11:35:27 -0400</pubDate>
+      
+      <guid>http://crunch.io/product/speaks-research/</guid>
+      <description>Crunch does things conventional databases and BI tools don’t — with native support for weighting, survey questions and question wording, and missing-data handling from the bottom up.</description>
+    </item>
+    
+    <item>
+      <title>A modern platform</title>
+      <link>http://crunch.io/product/modern-platform/</link>
+      <pubDate>Wed, 25 Apr 2018 11:35:06 -0400</pubDate>
+      
+      <guid>http://crunch.io/product/modern-platform/</guid>
+      <description>Your data lives in Crunch&amp;rsquo;s high-performance, columnar data store. Instantly search across your datasets, combine them on-the-fly, and analyze them interactively.</description>
+    </item>
+    
+    <item>
+      <title>Crunch Privacy Policy</title>
+      <link>http://crunch.io/about/privacy/</link>
+      <pubDate>Wed, 11 Apr 2018 14:08:35 +0200</pubDate>
+      
+      <guid>http://crunch.io/about/privacy/</guid>
+      <description>Last Updated: September 2017 Protecting your privacy is very important to us at Crunch.io, Inc. (“Crunch”, “We”, “Us”, or “Our”). Consequently, we’re providing this Privacy Policy to explain our practices regarding our collection, use, disclosure and security of information that we receive through the online analytic services provided at www.crunch.io, and other related websites designated by Crunch, (“Subscription Services”). This Privacy Policy applies to only those websites, services and applications included within the Subscription Services (each a “Crunch Site”) and does not apply to any third-party websites, services or applications, even if they are accessible through our Services.</description>
     </item>
     
   </channel>

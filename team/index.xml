@@ -1,256 +1,247 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Our team on Crunch</title>
+    <title>Our team on Data, Smarter.</title>
     <link>http://crunch.io/team/</link>
-    <description>Recent content in Our team on Crunch</description>
+    <description>Recent content in Our team on Data, Smarter.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Jul 2017 14:08:35 +0200</lastBuildDate>
+    <lastBuildDate>Thu, 08 Feb 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://crunch.io/team/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/persephone/</link>
+      <link>http://crunch.io/team/members/persephone/</link>
       <pubDate>Tue, 20 Mar 2018 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/persephone/</guid>
+      <guid>http://crunch.io/team/members/persephone/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/sebastian/</link>
+      <link>http://crunch.io/team/members/sebastian/</link>
       <pubDate>Mon, 22 Jan 2018 18:29:35 +0100</pubDate>
       
-      <guid>http://crunch.io/team/sebastian/</guid>
+      <guid>http://crunch.io/team/members/sebastian/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/natalia/</link>
+      <link>http://crunch.io/team/members/natalia/</link>
       <pubDate>Mon, 15 Jan 2018 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/natalia/</guid>
+      <guid>http://crunch.io/team/members/natalia/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/diana/</link>
+      <link>http://crunch.io/team/members/diana/</link>
       <pubDate>Mon, 13 Nov 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/diana/</guid>
+      <guid>http://crunch.io/team/members/diana/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/slobodan/</link>
+      <link>http://crunch.io/team/members/slobodan/</link>
       <pubDate>Mon, 25 Sep 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/slobodan/</guid>
+      <guid>http://crunch.io/team/members/slobodan/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/david/</link>
+      <link>http://crunch.io/team/members/david/</link>
       <pubDate>Fri, 22 Sep 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/david/</guid>
+      <guid>http://crunch.io/team/members/david/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/jim/</link>
+      <link>http://crunch.io/team/members/jim/</link>
       <pubDate>Tue, 05 Sep 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/jim/</guid>
+      <guid>http://crunch.io/team/members/jim/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/gordon/</link>
+      <link>http://crunch.io/team/members/gordon/</link>
       <pubDate>Sun, 16 Jul 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/gordon/</guid>
+      <guid>http://crunch.io/team/members/gordon/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/jon/</link>
+      <link>http://crunch.io/team/members/jon/</link>
       <pubDate>Tue, 30 May 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/jon/</guid>
+      <guid>http://crunch.io/team/members/jon/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/brian/</link>
+      <link>http://crunch.io/team/members/brian/</link>
       <pubDate>Sun, 05 Feb 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/brian/</guid>
+      <guid>http://crunch.io/team/members/brian/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/karol/</link>
+      <link>http://crunch.io/team/members/karol/</link>
       <pubDate>Wed, 01 Feb 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/karol/</guid>
+      <guid>http://crunch.io/team/members/karol/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/jose/</link>
+      <link>http://crunch.io/team/members/jose/</link>
       <pubDate>Mon, 02 Jan 2017 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/jose/</guid>
+      <guid>http://crunch.io/team/members/jose/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/bert/</link>
+      <link>http://crunch.io/team/members/bert/</link>
       <pubDate>Wed, 30 Nov 2016 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/bert/</guid>
+      <guid>http://crunch.io/team/members/bert/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/alessandro/</link>
+      <link>http://crunch.io/team/members/alessandro/</link>
       <pubDate>Tue, 01 Mar 2016 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/alessandro/</guid>
+      <guid>http://crunch.io/team/members/alessandro/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/matt/</link>
+      <link>http://crunch.io/team/members/matt/</link>
       <pubDate>Sun, 01 Nov 2015 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/matt/</guid>
+      <guid>http://crunch.io/team/members/matt/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/mcdonc/</link>
-      <pubDate>Mon, 27 Jul 2015 14:08:35 +0200</pubDate>
-      
-      <guid>http://crunch.io/team/mcdonc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://crunch.io/team/percious/</link>
+      <link>http://crunch.io/team/members/percious/</link>
       <pubDate>Mon, 25 Aug 2014 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/percious/</guid>
+      <guid>http://crunch.io/team/members/percious/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/enrique/</link>
+      <link>http://crunch.io/team/members/enrique/</link>
       <pubDate>Mon, 05 May 2014 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/enrique/</guid>
+      <guid>http://crunch.io/team/members/enrique/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/emma/</link>
+      <link>http://crunch.io/team/members/emma/</link>
       <pubDate>Tue, 04 Feb 2014 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/emma/</guid>
+      <guid>http://crunch.io/team/members/emma/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/joseph/</link>
+      <link>http://crunch.io/team/members/joseph/</link>
       <pubDate>Tue, 01 Jan 2013 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/joseph/</guid>
+      <guid>http://crunch.io/team/members/joseph/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/cferejohn/</link>
+      <link>http://crunch.io/team/board/jeff/</link>
       <pubDate>Sat, 01 Dec 2012 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/cferejohn/</guid>
+      <guid>http://crunch.io/team/board/jeff/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/jeff/</link>
+      <link>http://crunch.io/team/members/cferejohn/</link>
       <pubDate>Sat, 01 Dec 2012 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/jeff/</guid>
+      <guid>http://crunch.io/team/members/cferejohn/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/bob/</link>
+      <link>http://crunch.io/team/members/bob/</link>
       <pubDate>Fri, 30 Nov 2012 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/bob/</guid>
+      <guid>http://crunch.io/team/members/bob/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/jj/</link>
+      <link>http://crunch.io/team/members/jj/</link>
       <pubDate>Fri, 30 Nov 2012 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/jj/</guid>
+      <guid>http://crunch.io/team/members/jj/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/malecki/</link>
+      <link>http://crunch.io/team/members/malecki/</link>
       <pubDate>Fri, 30 Nov 2012 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/malecki/</guid>
+      <guid>http://crunch.io/team/members/malecki/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/neal/</link>
+      <link>http://crunch.io/team/members/neal/</link>
       <pubDate>Fri, 30 Nov 2012 14:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/neal/</guid>
+      <guid>http://crunch.io/team/members/neal/</guid>
       <description></description>
     </item>
     
     <item>
       <title></title>
-      <link>http://crunch.io/team/doug/</link>
+      <link>http://crunch.io/team/board/doug/</link>
       <pubDate>Fri, 30 Nov 2012 12:08:35 +0200</pubDate>
       
-      <guid>http://crunch.io/team/doug/</guid>
+      <guid>http://crunch.io/team/board/doug/</guid>
       <description></description>
     </item>
     

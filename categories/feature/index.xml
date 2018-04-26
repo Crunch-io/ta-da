@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Feature on Crunch</title>
+    <title>Feature on Data, Smarter.</title>
     <link>http://crunch.io/categories/feature/</link>
-    <description>Recent content in Feature on Crunch</description>
+    <description>Recent content in Feature on Data, Smarter.</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 14 Jan 2018 13:20:47 -0400</lastBuildDate>
@@ -88,15 +88,6 @@ To that end, we’ve recently developed a draft and publish feature that allows 
       
       <guid>http://crunch.io/dev/features/tab-book-improvements/</guid>
       <description>We first released the tab book feature a while back, and since then, we’ve collected a number of great suggestions for how to enrich the feature. Tab books produce a static set of tables out of many variables and put results in an Excel sheet, for offline use when you don’t need interactive features like new filters or different weights. Our recent release includes several of those enhancements, most of which are new options available to you in the “export tab book” panel.</description>
-    </item>
-    
-    <item>
-      <title>Welcome to the New Feature Blog</title>
-      <link>http://crunch.io/dev/features/welcome/</link>
-      <pubDate>Mon, 01 May 2017 10:44:52 -0700</pubDate>
-      
-      <guid>http://crunch.io/dev/features/welcome/</guid>
-      <description>Our first new feature announcement is&amp;hellip; the feature of announcing new features! Starting now, whenever we do a significant release that adds a new feature or notably enhances an existing one, we&amp;rsquo;ll post details about that here. Stay tuned for more!</description>
     </item>
     
   </channel>

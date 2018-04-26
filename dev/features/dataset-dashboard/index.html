@@ -1,141 +1,102 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+  <head>
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    
-    <title>Introducing Dashboards</title>
+    <base href="http://crunch.io/">
+    <title>Crunch | Introducing Dashboards</title>
+
+    <link rel="icon" href="images/favicon.ico">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
     
-    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
 
-    
-    <link href="../../../css/landing-page.css" rel="stylesheet">
+  </head>
 
-    
-    
-
-    
-    <link href="../../../font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-    
-    
-    
+  <body>
 
 
-    <link rel="apple-touch-icon" sizes="180x180" href="../../../img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../../img/favicon-16x16.png">
-    <link rel="manifest" href="../../../img/manifest.json">
-    <link rel="mask-icon" href="../../../img/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="../../../img/favicon.ico">
-    <meta name="msapplication-config" content="/img/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
-    <meta property="og:title" content="Introducing Dashboards" />
-<meta property="og:description" content="Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://crunch.io/dev/features/dataset-dashboard/" />
-
-
-
-<meta property="article:published_time" content="2017-10-17T23:20:47-04:00"/>
-
-<meta property="article:modified_time" content="2017-10-17T23:20:47-04:00"/>
-
-
-
-
-
-
-
-
-
-
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Introducing Dashboards"/>
-<meta name="twitter:description" content="Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings."/>
-
-</head>
-<body>
-
-
-<nav class="navbar navbar-default navbar-top" role="navigation">
-    <div class="container navbar-content">
-        
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img class="d-inline-block align-top" src="images/crunch_logo.svg" alt="" width="140"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="page-scroll" href="../../../"><img class="header-logo" src="../../../img/crunch_logo_reversed.png" height=40></a>
-        </div>
-        
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" href="../../../#product">Product</a>
-                </li>
-                <li>
-                    <a href="../../../team">Team</a>
-                </li>
-                <li>
-                    <a href="../../../jobs">Jobs</a>
-                </li>
-                
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                    Blog
 
-                    <span class="caret"></span>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Product
                   </a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li>
-                      <a href="../../../dev/features" class="dropdown-menu-element">New Features</a>
-                    </li>
-                    <li>
-                      <a href="../../../dev/blog" class="dropdown-menu-element">Dev Blog</a>
-                    </li>
-                  </ul>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="modern-platform">Modern Analytics</a>
+                      <a class="dropdown-item" href="collaborate">Collaborate Productively</a>
+                      <a class="dropdown-item" href="speaks-research">Made for Reseach</a>
+                      <a class="dropdown-item" href="dev/features">New Features</a>
+                  </div>
                 </li>
-                <li>
-                    <a href="http://support.crunch.io/">Support</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Company
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="about">About</a>
+                      <a class="dropdown-item" href="team">Team</a>
+                      <a class="dropdown-item" href="jobs">Careers</a>
+                      <a class="dropdown-item" href="dev/blog">Developer Blog</a>
+                  </div>
                 </li>
-                <li>
-                    <a href="http://app.crunch.io/">Sign in</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Support
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="http://support.crunch.io/">Help Pages</a>
+                      <a class="dropdown-item" href="http://docs.crunch.io/">API Documentation</a>
+                  </div>
                 </li>
-            </ul>
-        </div>
-        
-    </div>
-    
-</nav>
+                <li class="nav-item">
+                    <a class="nav-link"href="mailto:info@crunch.io">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-primary" href="https://app.crunch.io/">Sign In</a>
+                </li>
+              </ul>
+            </div>
+        </div> 
+    </nav>
 
 
-<div class="container">
-<div id="hero" class="row">
-    <div class="intro-post col">
-        <h1 itemprop="headline">  Introducing Dashboards</h1>
-        
-            <blockquote itemprop="description">Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings.</blockquote>
-        
-        <time class="post-time">
-  Published <span datetime="2017-10-17T23:20:47-04:00">17 Oct 2017</span>
+<div id="wrapper">
 
-</time>
-    </div>
-</div>
-<div id="post-box" class="row">
-    <div class="col">
-        <div id="post" itemprop="articleBody">
-            
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="blog-content">
+                    <div class="container spacer-top">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <h2>Introducing Dashboards</h2>
+                                <hr>
+                                <p>Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings.</p>
+                                <span>Oct 17, 2017 </span>
+                            </div>
+                        </div> 
+                </div> 
+            </div> 
+
+            <div class="secondary-content">
+              <div class="container blog-content-mg">
+
+                  <div class="row spacer-bottom">
+                      <div class="col-md-10 offset-md-1">
+                          
 
 <p>Crunch is designed to make data accessible to many different audiences that have varying needs, expectations, and technical abilities.
 Our <a href="http://support.crunch.io/crunch/crunch_browsing.html">browse</a> and <a href="http://support.crunch.io/crunch/crunch_analyzing-data.html">analyze</a> views allow data owners and analysts to quickly explore and analyze interesting insights in potentially large, complex datasets. However, not everyone has time to explore a dataset&mdash;some need to see key findings at a glance.</p>
@@ -143,9 +104,9 @@ Our <a href="http://support.crunch.io/crunch/crunch_browsing.html">browse</a> an
 <p>To meet this executive-type need, we&rsquo;re introducing a new dashboard feature.</p>
 
 
-<figure class="centered-image">
+<figure class="img-fluid">
     
-        <img src="../images/dashboard.png" />
+        <img src="dev/features/images/dashboard.png" width="100%" />
     
     
 </figure>
@@ -156,9 +117,9 @@ Our <a href="http://support.crunch.io/crunch/crunch_browsing.html">browse</a> an
 <p>In keeping with Crunch&rsquo;s philosophy that exploring data should be instant and intuitive, the graphs and tables on a dashboard can be a starting point for further analysis if you want to dig deeper. Double-click on an analysis to open it in the full-screen view, where you can explore by <a href="http://support.crunch.io/crunch/crunch_filtering-data.html">adding filters</a>, <a href="http://support.crunch.io/crunch/crunch_analyzing-data.html">changing variables</a>, or customizing the analysis using the <a href="http://support.crunch.io/crunch/crunch_variable-display-in-expanded-view.html">display controller</a>.</p>
 
 <p>
-<figure class="floating-right">
+<figure class="float-right">
     
-        <img src="../images/dashboard-icon.png" />
+        <img src="dev/features/images/dashboard-icon.png" />
     
     
 </figure>
@@ -173,95 +134,36 @@ At any time when working with a dataset, you can return to the dashboard by clic
 
 <p>There are lots of enhancements we plan to add to the dashboards, and your feedback about how you&rsquo;d like to see them improved is greatly appreciated. Let us know what you think at support@crunch.io.</p>
 
-        </div><br/>
-        <div>
-            <p class="post-footer">
-  Published
-  
-  <time datetime="2017-10-17T23:20:47-04:00">
-    17 Oct 2017
-  </time>
-  
-    in <span itemprop="articleSection"><a href="../../../categories/feature/">feature</a></span>
-  
-  
-    and tagged <a href="../../../tags/clients/">clients</a>, <a href="../../../tags/dashboards/">dashboards</a> and <a href="../../../tags/graphs/">graphs</a>
-  
-</p>
+                      </div>
+                  </div>
 
-            
-  
+              </div> 
+            </div> 
 
-
-
-  <aside>
-    <heade><strong>Related Content</strong></header>
-    <hr>
-    <ul>
-      
-      
-        <li><a href="../../../dev/features/visual-updates/">:bar_chart: New Header, New Font, New Graphs :chart_with_upwards_trend: </a> &ndash; 3 minutes
-      
-        <li><a href="../../../dev/features/draft-and-publish/">Deliver New Data When You’re Ready</a> &ndash; 2 minutes
-      
-    </ul>
-  </aside>
-
-
-        </div>
-    </div>
-</div>
-</div>
-
-
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 footer-menu">
+            <footer class="footer d-flex justify-content-center bg-black">
                 <ul class="list-inline">
-                    <li>
-                        <a href="../../../">Home</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="../../../#product">Product</a>
-                    </li>
-                    <li>
-                        <a href="../../../team">Team</a>
-                    </li>
-                    <li>
-                        <a href="../../../jobs">Jobs</a>
-                    </li>
-                    <li>
-                        <a href="../../../dev">Blog</a>
-                    </li>
-                    <li>
-                        <a href="http://support.crunch.io/">Support</a>
-                    </li>
-                    <li>
-                        <a href="http://status.crunch.io/">Status</a>
-                    </li>
-                    <li>
-                        <a href="http://app.crunch.io/">Sign in</a>
-                    </li>
+                    <li class="list-inline-item"><a class="nav-link active" href="about">About</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="team">Team</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="http://support.crunch.io/">Support</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="http://status.crunch.io/" target="_blank">Status</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="about/privacy">Privacy</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/">Sign in</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="mailto:info@crunch.io">Contact us</a></li>
                 </ul>
-                
-            </div>
-        </div>
-    </div>
-</footer>
+            </footer>
 
-<script src="../../../js/jquery-1.11.0.js"></script>
+        </div> 
 
+    </div> 
 
-<script src="../../../js/jquery.easing.min.js"></script>
+</div> 
 
 
-<script src="../../../js/bootstrap.min.js"></script>
-
-
-<script src="../../../js/landing-page.js"></script>
-
-
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="js/script.js"></script>
 
 </body>
 </html>
