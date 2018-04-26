@@ -1,0 +1,30 @@
+// Import Proxima Nova
+@import url('https://s.crunch.io/public/fonts/proximanova.css');
+
+// selectively import components we need from font-awesome
+// see: node_modules/font-awesome/scss/font-awesome.scss
+@import './font-awesome';
+
+// selectively import components we need from bootstrap
+// see: node_modules/bootstrap/scss/bootstrap.scss
+@import './bootstrap';
+
+// Sass-autoprefixer
+@import 'node_modules/sass-autoprefixer/scss/prefixes';
+
+/* BASE - Base styles, variables, mixins, etc... */
+@import './base/_variables.scss';
+@import './base/_mixins.scss';
+@import './base/_base.scss';
+
+/* MODULES  - Individual site components */
+@import './modules/_typography.scss';
+@import './modules/_blocks.scss';
+@import './modules/_buttons.scss';
+@import './modules/_sections.scss';
+@import './modules/_components.scss';
+
+/* LAYOUTS - Page Layouts */
+@import './layouts/_sidebar.scss';
+@import './layouts/_nav.scss';
+@import './layouts/_footer.scss';

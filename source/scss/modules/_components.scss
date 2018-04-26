@@ -1,0 +1,195 @@
+//Jumbotron
+.jumbotron {
+    border-radius: 0;
+}
+
+// Intro-content jumbotron
+#page-content-wrapper {
+    .intro-content {
+        color: $color-white;
+
+        h1 {
+            margin-top: 100px;
+        }
+
+        .jumbotron {
+            background-color: $color-blue;
+            background-image: linear-gradient( $color-blue, $--darker-primary-color);
+            margin-bottom: 0;
+            height: 700px;
+        }
+
+        @include media-breakpoint-down(xs) {
+            .jumbotron {
+                padding-top: 100px;
+                height: 1000px;
+            }
+        }
+    }
+
+    .footer-content {
+        color: $color-white;
+        position: relative;
+        z-index: 10;
+
+        .jumbotron {
+            width: 100%;
+            height: 450px;
+            border-radius: 0;
+            background: url(../img/crunch_stone.jpg) no-repeat center center fixed;
+            background-position: 0 258px;
+            @include vp-background-size(cover);
+            margin-bottom: 0;
+
+            .row {
+                margin-top: 50px;
+            }
+        }
+
+        @include media-breakpoint-down(sm) {
+            .jumbotron {
+                background-position: 0 top;
+            }
+        }
+    }
+}
+
+// Crunchbox
+.crunchbox-container {
+    max-width: 600px;
+    max-height: 480px;
+
+    .nav {
+        margin-bottom: 30px;
+
+        .btn {
+            padding: 0;
+            margin-top: 30px;
+            margin-right: 60px;
+        }
+    }
+
+    .crunchbox {
+        padding-top: 70%;
+        border:1px solid #d3d3d3;
+        position: relative;
+        overflow: hidden;
+
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            overflow: hidden;
+        }
+
+    }
+}
+
+
+//Popover
+
+.popover  {
+    padding: 5px;
+
+    &.bs-popover-right {
+        margin-top: 280px;
+        margin-left: -50px;
+    }
+
+    &.bs-popover-left {
+        margin-top: 280px;
+        margin-right: 50px;
+    }
+
+    .popover-header{
+        background-color: $color-white;
+        border: 0;
+
+        h3 {
+            font-weight: 700;
+        }
+
+        span {
+            font-size: 0.8em;
+        }
+    }
+
+    .popover-body {
+        color: $color-green;
+    }
+
+    .arrow {
+        display: none;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .popover {
+        display: none;
+    }
+}
+
+// Post-Card
+
+.post-card {
+    position: relative;
+    top: 0;
+    min-height: 450px;
+    padding: 30px 50px;
+    margin-bottom: 30px;
+    background-color: $color-grey-lighest;
+    @include vp-transition(all .1s ease-in-out);
+    cursor: pointer;
+
+    &:hover {
+        border-bottom: 2px solid $color-blue;
+        box-shadow: 2px 2px 15px 2px rgba(0,0,0,0.1);
+        top: -5px;
+    }
+
+    .posts {
+        .post-title {
+            font-family: 'ProximaNova', sans-serif;
+            font-weight: 400;
+            color: $color-blue;
+        }
+        span {
+            font-size: .8em;
+        }
+        p {
+            margin-top: 20px;
+        }
+        a {
+            position: absolute;
+            bottom: 30px;
+            color: $color-off-black;
+
+            &:hover {
+                color: $color-blue;
+            }
+        }
+    }
+}
+
+.post-job {
+    min-height: 200px;
+}
+
+// Figure images in content .md
+figure.img-fluid {
+    img {
+        max-width: 100%;
+        padding: 30px;
+    }
+}
+
+// Animation delay
+.animation-delay {
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+  -webkit-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+}

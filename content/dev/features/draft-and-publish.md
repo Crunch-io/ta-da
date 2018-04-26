@@ -14,19 +14,19 @@ To that end, we’ve recently developed a draft and publish feature that allows 
 
 ## Creating a Draft
 
-{{< figure src="../images/DraftButton.png" class="floating-left">}}
+{{< figure src="dev/features/images/DraftButton.png" class="float-md-left img-fluid">}}
 
 Open dataset properties of a dataset you are currently editing; you’ll see the Draft button on the right side of the screen.
 
 Click **Create Draft** to create and open a draft of the current dataset. Now you can append new rows of data, reorganize variables, create new variables, and edit dataset and variable metadata freely, and your clients won’t see your changes until you are ready. The draft dataset is automatically made available to others who have edit permissions on the current dataset, so multiple editors can make changes collaboratively or allow other stakeholders to review and sign off on changes. Other editors will see the draft marked with the **draft** label.
 
-{{< figure src="../images/DraftDsList.png" class="centered-image">}}
+{{< figure src="dev/features/images/DraftDsList.png" class="img-fluid">}}
 
 While a draft exists, we prevent the original and draft datasets from getting out of sync by warning anyone who attempts to edit the original and pointing them to the draft. Additionally, if you find that you are not happy with the changes you’ve made, you can simply delete the draft dataset and start over again by creating a new draft.
 
 ## Publishing
 
-{{< figure src="../images/PublishButton.png" class="floating-right">}}
+{{< figure src="dev/features/images/PublishButton.png" class="float-md-right img-fluid">}}
 
 Once you are satisfied with the draft, your changes can be published by returning to dataset properties in the draft and clicking **Publish**. The original dataset will be updated with the changes from the draft and the draft will be deleted.
 

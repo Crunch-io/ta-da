@@ -1,14 +1,15 @@
+theme = "crunch"
 baseURL = "http://crunch.io/"
 googleAnalytics = "UA-50332119-2"
 
 languageCode = "en-us"
-title = "Crunch"
-theme = "landing-page-hugo"
-relativeURLs = true
-
-sectionPagesMenu = "main"
+title = "Data, Smarter."
+MetaDataFormat = "toml"
 
 [params]
-description = "A modern platform"
-description2 = "for analytics"
+description = "Data,"
+description2 = "Smarter."
+description3 = "Crunch lets you search, wrangle, and analyze large quantities of survey data quickly and easily."
+product = "crunch_app.png"
+arrow = "arrow.png"
 copyofbaseURL = "http://crunch.io/"

@@ -1,14 +1,14 @@
----
-title: "Subtotals for Categorical Data"
-description: "Enhance your analyses by adding subtotals to your tables. See summary statistics of interest at a glance."
-date: "2018-01-14T13:20:47-04:00"
-draft: false
-weight: 20
-tags: ["analysis", "nets", "subtotals"]
-categories: ["feature"]
----
++++
+title = "Subtotals for Categorical Data"
+description = "Enhance your analyses by adding subtotals to your tables. See summary statistics of interest at a glance."
+date = "2018-01-14T13:20:47-04:00"
+draft = false
+weight = 20
+tags = ["analysis", "nets", "subtotals"]
+categories = ["feature"]
++++
 
-{{< figure src="../images/subtotals-diversity.png" class="floating-right" width="250px">}}
+{{< figure src="dev/features/images/subtotals-diversity.png" class="float-md-right img-fluid" width="250px">}}
 
 At Crunch, we are constantly searching for ways to help our customers---and their clients---gain insights from their data. A common task in the market-research world is to take data that is essentially a scale---rate from 1 to 10, or an ordinal range of responses from "Strongly agree" to "Strongly disagree"---and collapse it into a smaller number of bins. For example, if you asked people to rate their preference on a scale of 1-10 you might want to see how the people who provide a rating between 1 and 5 compare to those who rated it between 6 and 10. This goes by a number of names like _Top Box_, _Top Two Box_, or _Nets_.
 
@@ -20,7 +20,7 @@ Perhaps for our purposes, we think the five point scale is too granular, and ins
 
 Subtotals can help. To make them appear in Crunch, we add some properties to the variable so that every time it is loaded, whether in the card view, the crosstabbing view, or any reports, the subtotals are shown. To define the subtotals for a variable in the web app, click on the variable's _properties_, and then select _Headings and Subtotals_. Once there, you're just a few clicks, drags, and drops away from fancy new subtotals.
 
-{{< figure src="../images/subtotals-edit.png" class="centered-image" width="600px">}}
+{{< figure src="dev/features/images/subtotals-edit.png" class="img-fluid">}}
 
 If you want to script, it's also possible to create subtotals and headings [programmatically in R](http://crunch.io/r/crunch/articles/subtotals.html).
 

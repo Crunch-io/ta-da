@@ -1,0 +1,19 @@
+.spacer {
+    padding: 100px 0;
+}
+
+.spacer-top {
+    padding-top: 50px;
+}
+
+.spacer-bottom {
+    padding-bottom: 50px;
+}
+
+.add-shadow {
+    @include vp-box-shadow(0 0 10px rgba(0,0,0,0.1));
+}
+
+.sp-mb {
+    margin: 40px 0;
+}

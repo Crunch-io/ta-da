@@ -1,17 +1,77 @@
 {{ partial "head.html" . }}
+
 {{ partial "header.html" . }}
 
-<!-- {{ partial "container-intro.html" . }} -->
+<div id="wrapper">
 
-<div id="post-box">
-    <div class="intro-post">
-        <h1>{{.Title}}</h1>
-        <p>{{.Content}}<br></p>
-    </div>
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
 
-    <ul id="posts">
-     {{ range .Paginator.Pages.ByWeight }} {{ partial "blog/page-summary" . }} {{ end }}
-    </ul>
-    <section>{{ partial "blog/pagination" .}}</section>
-</div>
+            <div class="blog-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h1>The <span>latest</span></h1>
+                            </div>
+                            {{ range first 1 .Data.Pages }}
+                            <div class="col-md-8" onclick="location.href='{{ .Permalink }}'" style="cursor: pointer;">
+                                <h2>{{ .Title | emojify }}</h2>
+                                <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+                                <p class="lead">{{ slicestr .Summary 0 80 | emojify }}...</p>
+                                <a href="{{ .Permalink }}">Learn More &#10230;</a>
+                            </div>
+                            {{ end }}
+                        </div> <!-- /.row -->
+
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.blog-content -->
+
+            <div class="secondary-content">
+              <div class="container">
+
+                  <div class="row spacer-top spacer-bottom justify-content-md-center">
+                      <div class="col-md-8">
+                          <h2 class="text-center"><span>{{ .Content }}</span></h2>
+                      </div>
+                  </div>
+
+                  <div class="row spacer-bottom">
+                      {{ range .Paginator.Pages.ByWeight }}
+                          <div class="col-md-6 col-lg-4">
+                              <div class="post-card" onclick="location.href='{{ .Permalink }}'">
+                                  <div class="posts">
+                                      {{ if gt (len .Summary) 90 }}
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                      <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+                                      <p>{{ .Params.description }}</p>
+                                      <a href="{{ .Permalink }}">Learn More &#10230;</a>
+                                      {{ end }}
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+
+                      {{ partial "blog/pagination" . }}
+                  </div>
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+            <div class="footer-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Learn about <span>our team</span></h1>
+                                <a href="team" class="btn btn-link">Our team &#10230;</a>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+{{ partial "footer-nav.html" . }}
+
 {{ partial "footer" . }}

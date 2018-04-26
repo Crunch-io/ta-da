@@ -1,0 +1,77 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+      <div id="wrapper">
+
+          <div id="secondary-pages-wrapper">
+              <div class="container-fluid">
+
+                  <div class="about-content">
+                      <div class="jumbotron">
+                          <div class="container">
+                              <div class="row justify-content-md-center">
+                                  <div class="col-md-7">
+                                      <h1 class="display-4">Our <span>origins</span></h1>
+                                  </div>
+
+                                  <div class="col-md-4">
+                                      <p>{{ .Content }}</p>
+                                      <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
+                                  </div>
+
+                              </div> <!-- /.row -->
+
+                          </div> <!-- /.container -->
+                      </div> <!-- /.jumbotron -->
+                  </div> <!-- /.about-content -->
+
+                  <div class="secondary-content secondary-about-content">
+                      <div class="container">
+
+                        <div class="row spacer justify-content-md-center">
+                            <div class="col-md-4">
+                                <h3>Our <span>mission</span></h3>
+                                <h2>Facilitate survey analysis at scale</h2>
+                            </div>
+
+                            <div class="col-md-4 offset-md-3">
+                                <p>Modern survey analysis requires users to efficiently process huge volumes of data, and quickly share their results with their clients. Our mission is to create a platform which allows users to elegantly process any survey dataset, and quickly communicate their results to clients.</p>
+                            </div>
+                        </div> <!-- /.row. -->
+
+
+                        <hr>
+
+                        <div class="join-the-team">
+                            <div class="row spacer d-flex justify-content-center">
+                                <div class="col-md-6">
+                                    <p class="font-weight-bold">Join our team. Help us build the survey analysis tool of the future.</p>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-success" onclick="location.href='jobs'">View jobs</button>
+                                </div>
+                            </div> <!-- /.row. -->
+                        </div>
+
+                      </div> <!-- /.container -->
+
+                  </div> <!-- /.secondary-content -->
+
+                  <div class="footer-content">
+                      <div class="jumbotron">
+                          <div class="container">
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <h1>Data, <span>smarter.</span></h1>
+                                      <a href="mailto:info@crunch.io" class="btn btn-link">Try now &#10230;</a>
+                                  </div>
+                              </div> <!-- /.row. -->
+                          </div> <!-- /.container -->
+                      </div> <!-- /.jumbotron -->
+                  </div> <!-- footer-content -->
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

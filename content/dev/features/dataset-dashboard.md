@@ -13,13 +13,13 @@ Our [browse](http://support.crunch.io/crunch/crunch_browsing.html) and [analyze]
 
 To meet this executive-type need, we're introducing a new dashboard feature.
 
-{{< figure src="../images/dashboard.png" class="centered-image">}}
+{{< figure src="dev/features/images/dashboard.png" class="img-fluid" width="100%">}}
 
 This dashboard provides a quick view of up to four analyses, right when you open a dataset. These views are dynamic: when new data is added to the dataset, the dashboard updates with the latest values.
 
 In keeping with Crunch's philosophy that exploring data should be instant and intuitive, the graphs and tables on a dashboard can be a starting point for further analysis if you want to dig deeper. Double-click on an analysis to open it in the full-screen view, where you can explore by [adding filters](http://support.crunch.io/crunch/crunch_filtering-data.html), [changing variables](http://support.crunch.io/crunch/crunch_analyzing-data.html), or customizing the analysis using the [display controller](http://support.crunch.io/crunch/crunch_variable-display-in-expanded-view.html).
 
-{{< figure src="../images/dashboard-icon.png" class="floating-right">}}
+{{< figure src="dev/features/images/dashboard-icon.png" class="float-right">}}
 At any time when working with a dataset, you can return to the dashboard by clicking its icon at the top of the screen.
 
 ## Creating a Dashboard

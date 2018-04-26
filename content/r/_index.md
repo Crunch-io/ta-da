@@ -21,7 +21,7 @@ To learn more about working with Crunch from R, check out our packages:
 -   [crunch](/r/crunch/): Our core package for interacting with the Crunch cloud
     service.
 
--   [crplyr](https://github.com/Crunch-io/crplyr): A `dplyr` interface for the
+-   [crplyr](/r/crplyr): A `dplyr` interface for the
     Crunch backend, allowing for easy data analysis
 
 -   [crunchy](https://github.com/Crunch-io/crunchy): For building Shiny apps on
