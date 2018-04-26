@@ -1,11 +1,10 @@
 theme = "crunch"
-baseURL = "https://crunch.io/"
+baseURL = "http://crunch.io/"
 googleAnalytics = "UA-50332119-2"
 
 languageCode = "en-us"
 title = "Data, Smarter."
 MetaDataFormat = "toml"
-relativeURLs = true
 
 [params]
 description = "Data,"
