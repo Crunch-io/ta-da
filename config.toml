@@ -1,5 +1,5 @@
 theme = "crunch"
-baseURL = "http://crunch.io/"
+baseURL = "https://crunch.io/"
 googleAnalytics = "UA-50332119-2"
 
 languageCode = "en-us"
