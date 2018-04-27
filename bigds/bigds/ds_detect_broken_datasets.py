@@ -21,17 +21,27 @@ To pause the detect command (which could take days to run), put a file named
 "pause" in the current directory. Remove that file to resume.
 """
 from __future__ import print_function
+import datetime
 import glob
 import os
+from os.path import join
+import multiprocessing.pool
 import re
 import shutil
 import sys
 import tempfile
 import time
+import traceback
 
 import docopt
 import lz4.frame
 import yaml
+
+import zz9d.stores
+import zz9d.objects.datasets
+import zz9d.execution
+
+LATEST_FORMAT = '25'
 
 
 def do_list(args, filename):
@@ -49,20 +59,18 @@ def do_list(args, filename):
                 print("Skipping extraneous prefix dir:", prefix_name,
                       file=sys.stderr)
                 continue
-            for ds_id in os.listdir(os.path.join(ro_repo_base, prefix_name)):
+            for ds_id in os.listdir(join(ro_repo_base, prefix_name)):
                 if not re.match(r'[0-9a-f]{32}', ds_id):
                     print("Skipping extraneous dataset dir:", ds_id,
                           file=sys.stderr)
                     continue
                 f.write(ds_id)
                 f.write('\n')
-                sys.stdout.write('.')
-                sys.stdout.flush()
-            sys.stdout.write('\n')
-            sys.stdout.flush()
+                _write('.')
+            _write('\n')
 
 
-def do_detect(args, filename):
+def do_detect(args, filename, start_ds_id=None, tip_only=True):
     """
     Detect broken datasets, reading dataset IDs from filename
     """
@@ -70,43 +78,212 @@ def do_detect(args, filename):
     log_dirname = args['--log-dir']
     if not os.path.isdir(log_dirname):
         os.makedirs(log_dirname)
-    with open(filename) as f:
-        for line in f:
-            ds_id = line.strip()
-            if not ds_id:
-                continue
-            _check_pause_flag()
-            _check_dataset(config, None, ds_id)
+    log_filename = join(
+        log_dirname,
+        datetime.datetime.utcnow().strftime('%Y-%m-%d-%H%M%S.%f') + '.log')
+    pool = multiprocessing.pool.ThreadPool(3)
+    _write('Detecting broken datasets:')
+    with open(log_filename, 'w') as log_f:
+        with open(filename) as ds_id_f:
+            for line in ds_id_f:
+                ds_id = line.strip()
+                if not ds_id:
+                    continue
+                if start_ds_id is not None:
+                    if ds_id != start_ds_id:
+                        continue
+                    start_ds_id = None
+                _check_pause_flag()
+                _check_dataset(config, pool, log_f, ds_id, tip_only)
+    _write('\n')
+
+
+def _write(s):
+    sys.stdout.write(s)
+    sys.stdout.flush()
 
 
 def _check_pause_flag():
     message_emitted = False
     while os.path.exists('pause'):
         if not message_emitted:
-            print("Paused at", time.strftime('%Y-%m-%d %H:%M:%S UTC',
-                                             time.gmtime()))
-            sys.stdout.flush()
+            print("Paused at",
+                  time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime()),
+                  file=sys.stderr)
+            sys.stderr.flush()
             message_emitted = True
         time.sleep(30)
     if message_emitted:
-        print("Un-paused at", time.strftime('%Y-%m-%d %H:%M:%S UTC',
-                                            time.gmtime()))
-        sys.stdout.flush()
+        print("Un-paused at",
+              time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime()),
+              file=sys.stderr)
+        sys.stderr.flush()
 
 
-def _check_dataset(config, log_f, ds_id):
-    """
-    Return:
-        True if the dataset exists and is Ok
-        False if the dataset does not exist or has problems
-    """
+def _check_dataset(config, pool, log_f, ds_id, tip_only=True):
+    version_format_map = _get_check_version_format_map(config, log_f, ds_id,
+                                                       tip_only=tip_only)
+    if not version_format_map:
+        return
+    version_cp_jobs = _check_copy_dataset(config, pool, log_f, ds_id,
+                                          version_format_map)
+    for job in version_cp_jobs:
+        _check_pause_flag()
+        version, version_cp_err = job.get()
+        format = version_format_map[version]
+        print(ds_id, version, format, file=log_f, end=' ')
+        log_f.flush()
+        if version_cp_err:
+            print('FailedVersionCopy', file=log_f)
+            print(version_cp_err, file=log_f)
+            log_f.flush()
+            _write('!')
+            continue
+        branch, revision = version.split('__')
+        store = _get_zz9_store(config)
+        ds = zz9d.objects.datasets.DatasetVersion(
+            ds_id, store, '', branch=branch, revision=revision)
+        zz9d.execution.runtime.job.dataset = ds
+        if format != LATEST_FORMAT:
+            try:
+                _write('M')
+                ds.migrate()
+            except Exception:
+                print('FailedMigration', file=log_f)
+                traceback.print_exc(file=log_f)
+                _write('!')
+                continue
+        try:
+            _write('D')
+            ds.diagnose()
+        except Exception:
+            print('FailedDiagnostic', file=log_f)
+            traceback.print_exc(file=log_f)
+            _write('!')
+            continue
+        print('OK', file=log_f)
+        _write('.')
+    log_f.flush()
+    _delete_local_dataset_copy(config, pool, ds_id)
+
+
+def _get_zz9_store(config):
+    store_config = config['store_config']
+    return zz9d.stores.get_store(store_config)
+
+
+def _delete_local_dataset_copy(config, pool, ds_id):
+    local_repo_dir = _get_writable_zz9repo_dir(config, ds_id)
+    pool.apply_async(shutil.rmtree, (local_repo_dir,))
+
+
+def _check_copy_dataset(config, pool, log_f, ds_id, version_format_map):
+    """Return a list of version subdirectory copy jobs to wait for"""
+    _write('C')
+    datafiles_cp_job = _copy_dataset_datafiles(config, pool, ds_id)
+    versions = list(version_format_map)
+    version_cp_jobs = _copy_dataset_versions(config, pool, ds_id, versions)
+    # datafiles dir must be completely copied before we migrate any versions
+    if datafiles_cp_job is not None:
+        _, datafiles_cp_err = datafiles_cp_job.get()
+    if datafiles_cp_err:
+        print(ds_id, '-', '-', 'FailedDatafilesCopy', file=log_f)
+        print(datafiles_cp_err, file=log_f)
+        _write('!')
+        # If there was an error copying the datafiles subdirectory,
+        # wait for all the copy jobs but don't try to migrate/diagnose.
+        for job in version_cp_jobs:
+            version, version_cp_err = job.get()
+            format = version_format_map[version]
+            if version_cp_err:
+                # Log the version copy error as well
+                print(ds_id, version, format, 'FailedVersionCopy', file=log_f)
+                print(version_cp_err, file=log_f)
+        log_f.flush()
+        return []
+    return version_cp_jobs
+
+
+def _get_check_version_format_map(config, log_f, ds_id, tip_only=True):
+    _write('V')
+    version_format_map = _get_version_format_map(config, ds_id, tip_only)
+    if not version_format_map:
+        print(ds_id, 'NO-VERSIONS', file=log_f)
+        log_f.flush()
+        _write('!')
+    for version in list(version_format_map):
+        _write('F')
+        if not version_format_map[version]:
+            del version_format_map[version]
+            print(ds_id, version, 'NOFORMAT', file=log_f)
+            log_f.flush()
+            _write('!')
+    return version_format_map
+
+
+def _copy_dataset_datafiles(config, pool, ds_id):
+    """Asynchronously copy datafiles subdir if it exists"""
+    ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
+    local_repo_dir = _get_writable_zz9repo_dir(config, ds_id)
+    datafiles_src = join(ro_repo_dir, 'datafiles')
+    datafiles_dst = join(local_repo_dir, 'datafiles')
+    if os.path.exists(datafiles_src):
+        return pool.apply_async(_copy_dir, (datafiles_src, datafiles_dst))
+    return None
+
+
+def _copy_dataset_versions(config, pool, ds_id, versions):
+    """Asynchronously copy dataset version subdirectories"""
+    ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
+    local_repo_dir = _get_writable_zz9repo_dir(config, ds_id)
+    jobs = []
+    for version in versions:
+        version_src = join(ro_repo_dir, 'versions', version)
+        version_dst = join(local_repo_dir, 'versions', version)
+        jobs.append(pool.apply_async(_copy_dir, (version_src, version_dst,
+                                                 version)))
+    return jobs
+
+
+def _copy_dir(src, dst, job_id=None):
+    result = None
     try:
+        shutil.copytree(src, dst)
+    except Exception as result:
         pass
-    except Exception as err:
-        sys.stdout.write('E')
-    else:
-        sys.stdout.write('.')
-    sys.stdout.flush()
+    return job_id, result
+
+
+def _get_version_format_map(config, ds_id, tip_only=True):
+    """Get format of each version of interest"""
+    ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
+    all_versions = os.listdir(join(ro_repo_dir, 'versions'))
+    version_format_map = {}
+    for version in all_versions:
+        if tip_only and version != 'master__tip':
+            continue
+        format = _get_dataset_format(config, ds_id, version)
+        version_format_map[version] = format
+    return version_format_map
+
+
+def _get_dataset_format(config, ds_id, version):
+    ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
+    path = join(ro_repo_dir, 'versions', version)
+    for format_name in ('format', 'version'):
+        try:
+            return _read_maybe_lz4_compressed("%s/%s.zz9" % (path, format_name))
+        except IOError:
+            continue
+    return None
+
+
+def _read_maybe_lz4_compressed(path):
+    if os.path.exists(path):
+        with open(path) as f:
+            return f.read()
+    with lz4.frame.open(path + '.lz4', mode='r') as f:
+        return f.read()
 
 
 def _load_config(args):
@@ -145,13 +322,13 @@ def _get_readonly_zz9repo_base(config):
 def _get_readonly_zz9repo_dir(config, ds_id):
     repo_base = _get_readonly_zz9repo_base(config)
     prefix = ds_id[:2]
-    return os.path.join(repo_base, prefix, ds_id)
+    return join(repo_base, prefix, ds_id)
 
 
 def _get_writable_zz9repo_dir(config, ds_id):
     repo_base = config['store_config']['repodir']
     prefix = ds_id[:2]
-    return os.path.join(repo_base, prefix, ds_id)
+    return join(repo_base, prefix, ds_id)
 
 
 def _do_command(args):
@@ -160,7 +337,8 @@ def _do_command(args):
         if args['list']:
             return do_list(args, args['<filename>'])
         if args['detect']:
-            return do_detect(args, args['<filename>'])
+            return do_detect(args, args['<filename>'],
+                             start_ds_id=args['--start-at'])
         print("No command, or command not implemented yet.", file=sys.stderr)
         return 1
     finally:
