@@ -155,7 +155,8 @@ def _check_dataset(config, pool, log_f, ds_id, tip_only=True):
                 continue
         try:
             _write('D')
-            ds.diagnose()
+            info = ds.diagnose()
+            _check_ds_diagnosis(info, format)
         except Exception:
             print('FailedDiagnostic', file=log_f)
             traceback.print_exc(file=log_f)
@@ -165,6 +166,15 @@ def _check_dataset(config, pool, log_f, ds_id, tip_only=True):
         _write('.')
     log_f.flush()
     _delete_local_dataset_copy(config, pool, ds_id)
+
+
+def _check_ds_diagnosis(info, format):
+    # TODO: What else should I look for?
+    if info['writeflag']:
+        raise Exception("Non-empty writeflag present.")
+    if str(info['format']) != str(format):
+        raise Exception("Format {} in diagnosis doesn't match format {}"
+                        .format(info['format'], format))
 
 
 def _get_zz9_store(config):
@@ -184,6 +194,7 @@ def _check_copy_dataset(config, pool, log_f, ds_id, version_format_map):
     versions = list(version_format_map)
     version_cp_jobs = _copy_dataset_versions(config, pool, ds_id, versions)
     # datafiles dir must be completely copied before we migrate any versions
+    datafiles_cp_err = None
     if datafiles_cp_job is not None:
         _, datafiles_cp_err = datafiles_cp_job.get()
     if datafiles_cp_err:
