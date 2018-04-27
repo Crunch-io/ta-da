@@ -14,6 +14,8 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     if [ "${TRAVIS_BRANCH}" = "src" ]; then
         # Production
         git clone https://github.com/crakjie/landing-page-hugo.git ./themes/landing-page-hugo
+        npm install
+        npm run build:scss
         hugo
 
         git clone -b master https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG.git OUTPUT
