@@ -82,20 +82,26 @@ def do_detect(args, filename, start_ds_id=None, tip_only=True):
         log_dirname,
         datetime.datetime.utcnow().strftime('%Y-%m-%d-%H%M%S.%f') + '.log')
     pool = multiprocessing.pool.ThreadPool(3)
-    _write('Detecting broken datasets:')
-    with open(log_filename, 'w') as log_f:
-        with open(filename) as ds_id_f:
-            for line in ds_id_f:
-                ds_id = line.strip()
-                if not ds_id:
-                    continue
-                if start_ds_id is not None:
-                    if ds_id != start_ds_id:
+    try:
+        _write('Detecting broken datasets:')
+        with open(log_filename, 'w') as log_f:
+            with open(filename) as ds_id_f:
+                for line in ds_id_f:
+                    ds_id = line.strip()
+                    if not ds_id:
                         continue
-                    start_ds_id = None
-                _check_pause_flag()
-                _check_dataset(config, pool, log_f, ds_id, tip_only)
-    _write('\n')
+                    if start_ds_id is not None:
+                        if ds_id != start_ds_id:
+                            continue
+                        start_ds_id = None
+                    _check_pause_flag()
+                    _check_dataset(config, pool, log_f, ds_id, tip_only)
+        _write('\n')
+    finally:
+        _write('\nWaiting for ThreadPool cleanup...')
+        pool.close()
+        pool.join()
+        _write('Done.\n')
 
 
 def _write(s):
