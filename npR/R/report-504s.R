@@ -5,7 +5,7 @@
 #' give the report for yesterday)
 #' @param send Logical: send messages to Slack?
 #' @export
-#' @importFrom elbr ELBLog parse_request
+#' @importFrom elbr ELBLog line_filter parse_request
 #' @importFrom dplyr collect filter select %>%
 summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
     before.date <- as.Date(before.date)
