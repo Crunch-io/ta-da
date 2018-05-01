@@ -6,19 +6,13 @@
 #' @param send Logical: send messages to Slack?
 #' @export
 #' @importFrom elbr ELBLog parse_request
-#' @importFrom dplyr collect filter select
+#' @importFrom dplyr collect filter select %>%
 summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
     before.date <- as.Date(before.date)
-    df <- collect(
-        filter(
-            select(
-                ELBLog(before.date - days, before.date - 1),
-                request,
-                elb_status_code
-            ),
-            elb_status_code == 504
-        )
-    )
+    df <- ELBLog(before.date - days, before.date - 1) %>%
+        line_filter(" -1 -1 504 ") %>%
+        select(request, elb_status_code) %>%
+        collect()
     if (nrow(df)) {
         require(superadmin)
         reqs <- parse_request(df$request)
