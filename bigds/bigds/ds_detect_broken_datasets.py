@@ -93,10 +93,9 @@ def do_detect(args, filename, start_ds_id=None, tip_only=True):
     log_filename = join(
         log_dirname,
         datetime.datetime.utcnow().strftime('%Y-%m-%d-%H%M%S.%f') + '.log')
-    pool = multiprocessing.pool.ThreadPool(3)
     ds_id_list = _read_ds_ids(filename, start_ds_id)
     if args['--rescan-all']:
-        _write('Ignoring previous results, rescanning all datasets')
+        _write('Ignoring previous results, rescanning all datasets\n')
     else:
         _write('Reading logs\n')
         ds_id_status_map = _read_dataset_statuses(args)
@@ -104,6 +103,7 @@ def do_detect(args, filename, start_ds_id=None, tip_only=True):
         ds_id_list = _filter_finished_datasets(ds_id_list, ds_id_status_map)
         _write('Skipping {} datasets with known statuses\n'.format(
             num_before - len(ds_id_list)))
+    pool = multiprocessing.pool.ThreadPool(3)
     try:
         _write('Detecting broken datasets\n')
         with open(log_filename, 'w') as log_f:
@@ -193,25 +193,25 @@ def _check_pause_flag():
 def _check_dataset(config, pool, log_f, ds_id, tip_only=True):
     version_format_map = _get_check_version_format_map(config, log_f, ds_id,
                                                        tip_only=tip_only)
-    if not version_format_map:
+    versions = sorted(version_format_map)
+    if not versions:
         return
-    version_cp_jobs = _check_copy_dataset(config, pool, log_f, ds_id,
-                                          version_format_map)
-    for job in version_cp_jobs:
-        _check_pause_flag()
-        version, version_cp_err = job.get()
-        format = version_format_map[version]
-        print(ds_id, version, format, file=log_f, end=' ')
-        log_f.flush()
-        if version_cp_err:
-            print('FailedVersionCopy', file=log_f)
-            print(version_cp_err, file=log_f)
+    _write('C')
+    try:
+        if not _check_copy_dataset_datafiles(config, log_f, ds_id):
+            return
+        for version in versions:
+            _check_pause_flag()
+            format = version_format_map[version]
+            if not _check_copy_dataset_version(config, log_f, ds_id, version,
+                                               format):
+                continue
+            print(ds_id, version, format, file=log_f, end=' ')
             log_f.flush()
-            _write('!')
-            continue
-        _check_dataset_version(config, log_f, ds_id, version, format)
-    log_f.flush()
-    _delete_local_dataset_copy(config, pool, ds_id, list(version_format_map))
+            _check_dataset_version(config, log_f, ds_id, version, format)
+    finally:
+        log_f.flush()
+        _delete_local_dataset_copy(config, pool, ds_id, versions)
 
 
 def _check_dataset_version(config, log_f, ds_id, version, format):
@@ -259,38 +259,11 @@ def _get_zz9_store(config):
 
 def _delete_local_dataset_copy(config, pool, ds_id, versions):
     local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
-    pool.apply_async(shutil.rmtree, (local_repo_dir,))
+    pool.apply_async(shutil.rmtree, (local_repo_dir, {'ignore_errors': True}))
     for version in versions:
         local_data_dir = _get_local_zz9data_dir(config, ds_id, version)
-        pool.apply_async(shutil.rmtree, (local_data_dir,))
-
-
-def _check_copy_dataset(config, pool, log_f, ds_id, version_format_map):
-    """Return a list of version subdirectory copy jobs to wait for"""
-    _write('C')
-    datafiles_cp_job = _copy_dataset_datafiles(config, pool, ds_id)
-    versions = list(version_format_map)
-    version_cp_jobs = _copy_dataset_versions(config, pool, ds_id, versions)
-    # datafiles dir must be completely copied before we migrate any versions
-    datafiles_cp_err = None
-    if datafiles_cp_job is not None:
-        _, datafiles_cp_err = datafiles_cp_job.get()
-    if datafiles_cp_err:
-        print(ds_id, '-', '-', 'FailedDatafilesCopy', file=log_f)
-        print(datafiles_cp_err, file=log_f)
-        _write('!')
-        # If there was an error copying the datafiles subdirectory,
-        # wait for all the copy jobs but don't try to migrate/diagnose.
-        for job in version_cp_jobs:
-            version, version_cp_err = job.get()
-            format = version_format_map[version]
-            if version_cp_err:
-                # Log the version copy error as well
-                print(ds_id, version, format, 'FailedVersionCopy', file=log_f)
-                print(version_cp_err, file=log_f)
-        log_f.flush()
-        return []
-    return version_cp_jobs
+        pool.apply_async(shutil.rmtree,
+                         (local_data_dir, {'ignore_errors': True}))
 
 
 def _get_check_version_format_map(config, log_f, ds_id, tip_only=True):
@@ -310,37 +283,57 @@ def _get_check_version_format_map(config, log_f, ds_id, tip_only=True):
     return version_format_map
 
 
-def _copy_dataset_datafiles(config, pool, ds_id):
-    """Asynchronously copy datafiles subdir if it exists"""
+def _check_copy_dataset_datafiles(config, log_f, ds_id):
+    """
+    Copy datafiles subdir of dataset to the local zz9repo, if it exists.
+    Return True iff all is well.
+    """
     ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
     local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
     datafiles_src = join(ro_repo_dir, 'datafiles')
     datafiles_dst = join(local_repo_dir, 'datafiles')
-    if os.path.exists(datafiles_src):
-        return pool.apply_async(_copy_dir, (datafiles_src, datafiles_dst))
-    return None
+    if not os.path.exists(datafiles_src):
+        return True
+    err = _copy_dir(datafiles_src, datafiles_dst)
+    if err:
+        print(ds_id, '-', '-', 'FailedDatafilesCopy', file=log_f)
+        print(err, file=log_f)
+        log_f.flush()
+        _write('!')
+        return False
+    return True
 
 
-def _copy_dataset_versions(config, pool, ds_id, versions):
-    """Asynchronously copy dataset version subdirectories"""
+def _check_copy_dataset_version(config, log_f, ds_id, version, format):
+    """
+    Copy a dataset version directory to the local zz9repo.
+    Return True iff all is well.
+    """
     ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
     local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
-    jobs = []
-    for version in versions:
-        version_src = join(ro_repo_dir, 'versions', version)
-        version_dst = join(local_repo_dir, 'versions', version)
-        jobs.append(pool.apply_async(_copy_dir, (version_src, version_dst,
-                                                 version)))
-    return jobs
+    version_src = join(ro_repo_dir, 'versions', version)
+    version_dst = join(local_repo_dir, 'versions', version)
+    err = _copy_dir(version_src, version_dst)
+    if err:
+        print(ds_id, version, format, 'FailedVersionCopy', file=log_f)
+        print(version_cp_err, file=log_f)
+        log_f.flush()
+        _write('!')
+        return False
+    return True
 
 
-def _copy_dir(src, dst, job_id=None):
-    result = None
+def _copy_dir(src, dst):
+    """
+    Attempt to copy a directory tree.
+    Return the Exception object, or None if there was no error.
+    """
     try:
         copytree(src, dst)
     except Exception as result:
-        pass
-    return job_id, result
+        return result
+    else:
+        return None
 
 
 # Copied from shutil and modified to stop on the first error instead of
