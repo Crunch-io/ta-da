@@ -11,6 +11,7 @@ Options:
     --profile=PROFILE       [default: shared-dev]
     --start-at=DSID         Start detection at dataset DSID
     --log-dir=DIRNAME       [default: log]
+    --rescan-all            Don't read logs to skip already-seen datasets
 
 Commands:
     list    Save list of all dataset IDs found in repo into <filename>
@@ -19,6 +20,18 @@ Commands:
 
 To pause the detect command (which could take days to run), put a file named
 "pause" in the current directory. Remove that file to resume.
+
+Log line formats:
+    <ds-id> NO-VERSIONS
+    <ds-id> <version> NOFORMAT
+    <ds-id> - - FailedDatafilesCopy
+    <ds-id> <version> <format>  # Status check in progress
+    <ds-id> <version> <format> OK
+    <ds-id> <version> <format> FailedVersionCopy
+    <ds-id> <version> <format> FailedMigration
+    <ds-id> <version> <format> FailedDiagnostic
+    <ds-id> <version> <format> Failed<some-other-failure>
+A line in any other format is an error detail line (traceback, etc.)
 """
 from __future__ import print_function
 import datetime
@@ -81,26 +94,78 @@ def do_detect(args, filename, start_ds_id=None, tip_only=True):
         log_dirname,
         datetime.datetime.utcnow().strftime('%Y-%m-%d-%H%M%S.%f') + '.log')
     pool = multiprocessing.pool.ThreadPool(3)
+    ds_id_list = _read_ds_ids(filename, start_ds_id)
+    if args['--rescan-all']:
+        _write('Ignoring previous results, rescanning all datasets')
+    else:
+        _write('Reading logs\n')
+        ds_id_status_map = _read_dataset_statuses(args)
+        num_before = len(ds_id_list)
+        ds_id_list = _filter_finished_datasets(ds_id_list, ds_id_status_map)
+        _write('Skipping {} datasets with known statuses\n'.format(
+            num_before - len(ds_id_list)))
     try:
-        _write('Detecting broken datasets:')
+        _write('Detecting broken datasets\n')
         with open(log_filename, 'w') as log_f:
-            with open(filename) as ds_id_f:
-                for line in ds_id_f:
-                    ds_id = line.strip()
-                    if not ds_id:
-                        continue
-                    if start_ds_id is not None:
-                        if ds_id != start_ds_id:
-                            continue
-                        start_ds_id = None
-                    _check_pause_flag()
-                    _check_dataset(config, pool, log_f, ds_id, tip_only)
-        _write('\n')
+            for ds_num, ds_id in enumerate(ds_id_list, 1):
+                _check_pause_flag()
+                _write("{}/{} {} ".format(ds_num, len(ds_id_list), ds_id))
+                _check_dataset(config, pool, log_f, ds_id, tip_only)
+                _write('\n')
     finally:
         _write('\nWaiting for ThreadPool cleanup...')
         pool.close()
         pool.join()
         _write('Done.\n')
+
+
+# Note: This function only works when there is only one status per dataset.
+# If we later start checking versions other than master__tip then this needs to
+# be revisited.
+def _read_dataset_statuses(args):
+    """
+    Parse the logs to determine the status of dataset checks
+    Return: Map of dataset ID to status, any status not "OK" is bad
+    """
+    log_dir = args['--log-dir']
+    ds_id_status_map = {}
+    for name in sorted(os.listdir(log_dir)):
+        path = join(log_dir, name)
+        if not os.path.isfile(path):
+            continue
+        with open(path) as f:
+            for line in f:
+                m = re.match(r'[a-f0-d]{15,32}\s', line, re.I)
+                if not m:
+                    continue
+                parts = line.split()
+                ds_id = parts[0]
+                if ((len(parts) in (2, 3) and parts[-1].startswith('NO'))
+                        or len(parts) == 4):
+                    ds_id_status_map[ds_id] = parts[-1]
+                elif len(parts) == 3:
+                    # Still in progress
+                    ds_id_status_map[ds_id] = None
+    return ds_id_status_map
+
+
+def _filter_finished_datasets(ds_id_list, ds_id_status_map):
+    return [ds_id for ds_id in ds_id_list if not ds_id_status_map.get(ds_id)]
+
+
+def _read_ds_ids(filename, start_ds_id=None):
+    ds_id_list = []
+    with open(filename) as ds_id_f:
+        for line in ds_id_f:
+            ds_id = line.strip()
+            if not ds_id:
+                continue
+            if start_ds_id is not None:
+                if ds_id != start_ds_id:
+                    continue
+                start_ds_id = None
+            ds_id_list.append(ds_id)
+    return ds_id_list
 
 
 def _write(s):
@@ -144,34 +209,38 @@ def _check_dataset(config, pool, log_f, ds_id, tip_only=True):
             log_f.flush()
             _write('!')
             continue
-        branch, revision = version.split('__')
-        store = _get_zz9_store(config)
-        ds = zz9d.objects.datasets.DatasetVersion(
-            ds_id, store, '', branch=branch, revision=revision)
-        zz9d.execution.runtime.job.dataset = ds
-        if format != LATEST_FORMAT:
-            try:
-                _write('M')
-                ds.migrate()
-                format = LATEST_FORMAT  # for correct comparison later
-            except Exception:
-                print('FailedMigration', file=log_f)
-                traceback.print_exc(file=log_f)
-                _write('!')
-                continue
+        _check_dataset_version(config, log_f, ds_id, version, format)
+    log_f.flush()
+    _delete_local_dataset_copy(config, pool, ds_id, list(version_format_map))
+
+
+def _check_dataset_version(config, log_f, ds_id, version, format):
+    branch, revision = version.split('__')
+    store = _get_zz9_store(config)
+    ds = zz9d.objects.datasets.DatasetVersion(
+        ds_id, store, '', branch=branch, revision=revision)
+    zz9d.execution.runtime.job.dataset = ds
+    if format != LATEST_FORMAT:
         try:
-            _write('D')
-            info = ds.diagnose()
-            _check_ds_diagnosis(info, format)
+            _write('M')
+            ds.migrate()
+            format = LATEST_FORMAT  # for correct comparison later
         except Exception:
-            print('FailedDiagnostic', file=log_f)
+            print('FailedMigration', file=log_f)
             traceback.print_exc(file=log_f)
             _write('!')
-            continue
-        print('OK', file=log_f)
-        _write('.')
-    log_f.flush()
-    _delete_local_dataset_copy(config, pool, ds_id)
+            return
+    try:
+        _write('D')
+        info = ds.diagnose()
+        _check_ds_diagnosis(info, format)
+    except Exception:
+        print('FailedDiagnostic', file=log_f)
+        traceback.print_exc(file=log_f)
+        _write('!')
+        return
+    print('OK', file=log_f)
+    _write('.')
 
 
 def _check_ds_diagnosis(info, format):
@@ -188,9 +257,12 @@ def _get_zz9_store(config):
     return zz9d.stores.get_store(store_config)
 
 
-def _delete_local_dataset_copy(config, pool, ds_id):
-    local_repo_dir = _get_writable_zz9repo_dir(config, ds_id)
+def _delete_local_dataset_copy(config, pool, ds_id, versions):
+    local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
     pool.apply_async(shutil.rmtree, (local_repo_dir,))
+    for version in versions:
+        local_data_dir = _get_local_zz9data_dir(config, ds_id, version)
+        pool.apply_async(shutil.rmtree, (local_data_dir,))
 
 
 def _check_copy_dataset(config, pool, log_f, ds_id, version_format_map):
@@ -241,7 +313,7 @@ def _get_check_version_format_map(config, log_f, ds_id, tip_only=True):
 def _copy_dataset_datafiles(config, pool, ds_id):
     """Asynchronously copy datafiles subdir if it exists"""
     ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
-    local_repo_dir = _get_writable_zz9repo_dir(config, ds_id)
+    local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
     datafiles_src = join(ro_repo_dir, 'datafiles')
     datafiles_dst = join(local_repo_dir, 'datafiles')
     if os.path.exists(datafiles_src):
@@ -252,7 +324,7 @@ def _copy_dataset_datafiles(config, pool, ds_id):
 def _copy_dataset_versions(config, pool, ds_id, versions):
     """Asynchronously copy dataset version subdirectories"""
     ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
-    local_repo_dir = _get_writable_zz9repo_dir(config, ds_id)
+    local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
     jobs = []
     for version in versions:
         version_src = join(ro_repo_dir, 'versions', version)
@@ -393,10 +465,15 @@ def _get_readonly_zz9repo_dir(config, ds_id):
     return join(repo_base, prefix, ds_id)
 
 
-def _get_writable_zz9repo_dir(config, ds_id):
+def _get_local_zz9repo_dir(config, ds_id):
     repo_base = config['store_config']['repodir']
     prefix = ds_id[:2]
     return join(repo_base, prefix, ds_id)
+
+
+def _get_local_zz9data_dir(config, ds_id, version):
+    data_dir = config['store_config']['datadir']
+    return join(data_dir, '{}@{}'.format(ds_id, version))
 
 
 def _do_command(args):
