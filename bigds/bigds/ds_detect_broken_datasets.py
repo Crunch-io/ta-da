@@ -22,7 +22,6 @@ To pause the detect command (which could take days to run), put a file named
 """
 from __future__ import print_function
 import datetime
-import glob
 import os
 from os.path import join
 import multiprocessing.pool
@@ -154,6 +153,7 @@ def _check_dataset(config, pool, log_f, ds_id, tip_only=True):
             try:
                 _write('M')
                 ds.migrate()
+                format = LATEST_FORMAT  # for correct comparison later
             except Exception:
                 print('FailedMigration', file=log_f)
                 traceback.print_exc(file=log_f)
@@ -265,10 +265,61 @@ def _copy_dataset_versions(config, pool, ds_id, versions):
 def _copy_dir(src, dst, job_id=None):
     result = None
     try:
-        shutil.copytree(src, dst)
+        copytree(src, dst)
     except Exception as result:
         pass
     return job_id, result
+
+
+# Copied from shutil and modified to stop on the first error instead of
+# accumulating a huge load of errors. shutil.copytree() resulted in an 11MB
+# exception message during a disk full situation, which is unproductive.
+def copytree(src, dst, symlinks=False, ignore=None):
+    """Recursively copy a directory tree using copy2().
+
+    The destination directory must not already exist.
+
+    If the optional symlinks flag is true, symbolic links in the
+    source tree result in symbolic links in the destination tree; if
+    it is false, the contents of the files pointed to by symbolic
+    links are copied.
+
+    The optional ignore argument is a callable. If given, it
+    is called with the `src` parameter, which is the directory
+    being visited by copytree(), and `names` which is the list of
+    `src` contents, as returned by os.listdir():
+
+        callable(src, names) -> ignored_names
+
+    Since copytree() is called recursively, the callable will be
+    called once for each directory that is copied. It returns a
+    list of names relative to the `src` directory that should
+    not be copied.
+
+    XXX Consider this example code rather than the ultimate tool.
+
+    """
+    names = os.listdir(src)
+    if ignore is not None:
+        ignored_names = ignore(src, names)
+    else:
+        ignored_names = set()
+
+    os.makedirs(dst)
+    for name in names:
+        if name in ignored_names:
+            continue
+        srcname = os.path.join(src, name)
+        dstname = os.path.join(dst, name)
+        if symlinks and os.path.islink(srcname):
+            linkto = os.readlink(srcname)
+            os.symlink(linkto, dstname)
+        elif os.path.isdir(srcname):
+            copytree(srcname, dstname, symlinks, ignore)
+        else:
+            # Will raise a SpecialFileError for unsupported file types
+            shutil.copy2(srcname, dstname)
+    shutil.copystat(src, dst)
 
 
 def _get_version_format_map(config, ds_id, tip_only=True):
