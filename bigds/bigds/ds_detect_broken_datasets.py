@@ -96,6 +96,7 @@ def do_detect(args, filenames, tip_only=True):
         ds_id_status_map = _read_dataset_statuses(args)
     pool = multiprocessing.pool.ThreadPool(3)
     try:
+        _write("Log file: {}\n".format(log_filename))
         with open(log_filename, 'w') as log_f:
             for filename in filenames:
                 os.rename(filename, filename + '.in-progress')
@@ -222,9 +223,15 @@ def _check_dataset(config, pool, log_f, ds_id, tip_only=True):
 def _check_dataset_version(config, log_f, ds_id, version, format):
     branch, revision = version.split('__')
     store = _get_zz9_store(config)
-    ds = zz9d.objects.datasets.DatasetVersion(
-        ds_id, store, '', branch=branch, revision=revision)
-    zz9d.execution.runtime.job.dataset = ds
+    try:
+        ds = zz9d.objects.datasets.DatasetVersion(
+            ds_id, store, '', branch=branch, revision=revision)
+        zz9d.execution.runtime.job.dataset = ds
+    except Exception:
+        print('FailedDatasetVersion', file=log_f)
+        traceback.print_exc(file=log_f)
+        _write('X!')
+        return
     if format != LATEST_FORMAT:
         try:
             _write('M')
