@@ -4,19 +4,19 @@ See: https://www.pivotaltracker.com/story/show/157122927
 
 Usage:
     ds.detect-broken-datasets [options] list <filename>
-    ds.detect-broken-datasets [options] detect <filename>
+    ds.detect-broken-datasets [options] detect <filename>...
 
 Options:
     --config=FILENAME       [default: config.yaml]
     --profile=PROFILE       [default: shared-dev]
-    --start-at=DSID         Start detection at dataset DSID
     --log-dir=DIRNAME       [default: log]
     --rescan-all            Don't read logs to skip already-seen datasets
 
 Commands:
     list    Save list of all dataset IDs found in repo into <filename>
-    detect  Read list of dataset IDs from <filename> and check if they are
-            broken.
+    detect  Read dataset IDs from each filename; do migration and diagostic
+            tests on each dataset. Rename each file to x.in-progress while it is
+            being processed, and x.done when it is done.
 
 To pause the detect command (which could take days to run), put a file named
 "pause" in the current directory. Remove that file to resume.
@@ -27,10 +27,7 @@ Log line formats:
     <ds-id> - - FailedDatafilesCopy
     <ds-id> <version> <format>  # Status check in progress
     <ds-id> <version> <format> OK
-    <ds-id> <version> <format> FailedVersionCopy
-    <ds-id> <version> <format> FailedMigration
-    <ds-id> <version> <format> FailedDiagnostic
-    <ds-id> <version> <format> Failed<some-other-failure>
+    <ds-id> <version> <format> Failed<failure-type>
 A line in any other format is an error detail line (traceback, etc.)
 """
 from __future__ import print_function
@@ -82,10 +79,8 @@ def do_list(args, filename):
             _write('\n')
 
 
-def do_detect(args, filename, start_ds_id=None, tip_only=True):
-    """
-    Detect broken datasets, reading dataset IDs from filename
-    """
+def do_detect(args, filenames, tip_only=True):
+    """Detect broken datasets, reading dataset IDs from filenames"""
     config = _load_config(args)
     log_dirname = args['--log-dir']
     if not os.path.isdir(log_dirname):
@@ -93,25 +88,39 @@ def do_detect(args, filename, start_ds_id=None, tip_only=True):
     log_filename = join(
         log_dirname,
         datetime.datetime.utcnow().strftime('%Y-%m-%d-%H%M%S.%f') + '.log')
-    ds_id_list = _read_ds_ids(filename, start_ds_id)
     if args['--rescan-all']:
         _write('Ignoring previous results, rescanning all datasets\n')
+        ds_id_status_map = None
     else:
         _write('Reading logs\n')
         ds_id_status_map = _read_dataset_statuses(args)
-        num_before = len(ds_id_list)
-        ds_id_list = _filter_finished_datasets(ds_id_list, ds_id_status_map)
-        _write('Skipping {} datasets with known statuses\n'.format(
-            num_before - len(ds_id_list)))
     pool = multiprocessing.pool.ThreadPool(3)
     try:
-        _write('Detecting broken datasets\n')
         with open(log_filename, 'w') as log_f:
-            for ds_num, ds_id in enumerate(ds_id_list, 1):
-                _check_pause_flag()
-                _write("{}/{} {} ".format(ds_num, len(ds_id_list), ds_id))
-                _check_dataset(config, pool, log_f, ds_id, tip_only)
-                _write('\n')
+            for filename in filenames:
+                os.rename(filename, filename + '.in-progress')
+                ds_id_list = _read_ds_ids(filename + '.in-progress')
+                _write("Processing {} dataset IDs in file {}\n".format(
+                    len(ds_id_list), filename))
+                if ds_id_status_map:
+                    num_before = len(ds_id_list)
+                    ds_id_list = _filter_finished_datasets(ds_id_list,
+                                                           ds_id_status_map)
+                    _write('Skipping {} datasets with known statuses\n'.format(
+                        num_before - len(ds_id_list)))
+                try:
+                    for ds_num, ds_id in enumerate(ds_id_list, 1):
+                        _check_pause_flag()
+                        _write("{}/{} {} ".format(ds_num, len(ds_id_list),
+                                                  ds_id))
+                        _check_dataset(config, pool, log_f, ds_id, tip_only)
+                        _write('\n')
+                except KeyboardInterrupt:
+                    os.rename(filename + '.in-progress',
+                              filename + '.interrupt')
+                    raise
+                else:
+                    os.rename(filename + '.in-progress', filename + '.done')
     finally:
         _write('\nWaiting for ThreadPool cleanup...')
         pool.close()
@@ -153,17 +162,13 @@ def _filter_finished_datasets(ds_id_list, ds_id_status_map):
     return [ds_id for ds_id in ds_id_list if not ds_id_status_map.get(ds_id)]
 
 
-def _read_ds_ids(filename, start_ds_id=None):
+def _read_ds_ids(filename):
     ds_id_list = []
     with open(filename) as ds_id_f:
         for line in ds_id_f:
             ds_id = line.strip()
             if not ds_id:
                 continue
-            if start_ds_id is not None:
-                if ds_id != start_ds_id:
-                    continue
-                start_ds_id = None
             ds_id_list.append(ds_id)
     return ds_id_list
 
@@ -471,12 +476,13 @@ def _get_local_zz9data_dir(config, ds_id, version):
 
 def _do_command(args):
     t0 = time.time()
+    filenames = args['<filename>']
+    assert isinstance(filenames, list)
     try:
         if args['list']:
-            return do_list(args, args['<filename>'])
+            return do_list(args, filenames[0])
         if args['detect']:
-            return do_detect(args, args['<filename>'],
-                             start_ds_id=args['--start-at'])
+            return do_detect(args, filenames)
         print("No command, or command not implemented yet.", file=sys.stderr)
         return 1
     finally:
