@@ -333,12 +333,56 @@ def _check_dataset_version(config, log_f, ds_id, version, format):
 
 
 def _check_ds_diagnosis(info, format):
-    # TODO: What else should I look for?
     if info['writeflag']:
         raise Exception("Non-empty writeflag present.")
     if str(info['format']) != str(format):
         raise Exception("Format {} in diagnosis doesn't match format {}"
                         .format(info['format'], format))
+    errors = _check_dict_for_errors(info)
+    if errors:
+        raise Exception("Errors found in diagnosis: {}".format(errors))
+
+
+def _check_dict_for_errors(d, path=None, errors=None):
+    if path is None:
+        path = []
+    if errors is None:
+        errors = []
+    for key, value in d.items():
+        if key in ('error', 'errors'):
+            if value:
+                errors.append(('.'.join(str(i) for i in (path + [key])),
+                              value))
+        elif isinstance(value, dict):
+            _check_dict_for_errors(value, path=(path + [key]), errors=errors)
+    return errors
+
+
+def test_check_dict_for_errors():
+    d0 = {
+        'blah': [1, 2, 3],
+        'blee': {'bloo': {'msg': "all is well"}},
+    }
+    d1 = {
+        'blah': [1, 2, 3],
+        'blee': {'error': None},
+    }
+    d2 = {
+        'blah': [1, 2, 3],
+        'blee': {'error': "Red alert!"},
+    }
+    d3 = {
+        'blah': [1, 2, 3],
+        'blee': {'errors': ['e1', 'e2', 'e3']},
+        'error': 4,
+    }
+    assert _check_dict_for_errors(d0) == []
+    assert _check_dict_for_errors(d1) == []
+    assert _check_dict_for_errors(d2) == [('blee.error', 'Red alert!')]
+    e = _check_dict_for_errors(d3)
+    assert len(e) == 2
+    assert ('blee.errors', ['e1', 'e2', 'e3']) in e
+    assert ('error', 4) in e
 
 
 def _get_zz9_store(config):
