@@ -195,8 +195,7 @@ def _check_datasets(config, pool, log_f, ds_id_status_map, filenames,
                 _check_dataset(config, pool, log_f, ds_id, tip_only)
                 _write('\n')
         except KeyboardInterrupt:
-            os.rename(processing_filename,
-                      filename + '.interrupt')
+            os.rename(processing_filename, filename)
             raise
         else:
             os.rename(processing_filename, filename + '.done')
