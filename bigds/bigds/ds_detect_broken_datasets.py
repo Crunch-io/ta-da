@@ -460,7 +460,10 @@ def copytree(src, dst, symlinks=False, ignore=None):
 def _get_version_format_map(config, ds_id, tip_only=True):
     """Get format of each version of interest"""
     ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
-    all_versions = os.listdir(join(ro_repo_dir, 'versions'))
+    try:
+        all_versions = os.listdir(join(ro_repo_dir, 'versions'))
+    except OSError:
+        all_versions = []
     version_format_map = {}
     for version in all_versions:
         if tip_only and version != 'master__tip':
