@@ -5,6 +5,7 @@ See: https://www.pivotaltracker.com/story/show/157122927
 Usage:
     ds.detect-broken-datasets [options] list <filename>
     ds.detect-broken-datasets [options] detect <filename>...
+    ds.detect-broken-datasets [options] summary_report
 
 Options:
     --config=FILENAME       [default: config.yaml]
@@ -31,6 +32,7 @@ Log line formats:
 A line in any other format is an error detail line (traceback, etc.)
 """
 from __future__ import print_function
+from collections import defaultdict
 import datetime
 import os
 from os.path import join
@@ -44,6 +46,7 @@ import traceback
 
 import docopt
 import lz4.frame
+import six
 import yaml
 
 import zz9d.stores
@@ -51,6 +54,8 @@ import zz9d.objects.datasets
 import zz9d.execution
 
 LATEST_FORMAT = '25'
+
+DS_ID_PATTERN = r'[0-9a-f]{15,32}'
 
 
 def do_list(args, filename):
@@ -69,7 +74,7 @@ def do_list(args, filename):
                       file=sys.stderr)
                 continue
             for ds_id in os.listdir(join(ro_repo_base, prefix_name)):
-                if not re.match(r'[0-9a-f]{32}', ds_id):
+                if not re.match(DS_ID_PATTERN + '$', ds_id):
                     print("Skipping extraneous dataset dir:", ds_id,
                           file=sys.stderr)
                     continue
@@ -92,36 +97,14 @@ def do_detect(args, filenames, tip_only=True):
         _write('Ignoring previous results, rescanning all datasets\n')
         ds_id_status_map = None
     else:
-        _write('Reading logs\n')
+        _write('Reading previous logs\n')
         ds_id_status_map = _read_dataset_statuses(args)
     pool = multiprocessing.pool.ThreadPool(3)
     try:
-        _write("Log file: {}\n".format(log_filename))
+        _write("Output log: {}\n".format(log_filename))
         with open(log_filename, 'w') as log_f:
-            for filename in filenames:
-                os.rename(filename, filename + '.in-progress')
-                ds_id_list = _read_ds_ids(filename + '.in-progress')
-                _write("Processing {} dataset IDs in file {}\n".format(
-                    len(ds_id_list), filename))
-                if ds_id_status_map:
-                    num_before = len(ds_id_list)
-                    ds_id_list = _filter_finished_datasets(ds_id_list,
-                                                           ds_id_status_map)
-                    _write('Skipping {} datasets with known statuses\n'.format(
-                        num_before - len(ds_id_list)))
-                try:
-                    for ds_num, ds_id in enumerate(ds_id_list, 1):
-                        _check_pause_flag()
-                        _write("{}/{} {} ".format(ds_num, len(ds_id_list),
-                                                  ds_id))
-                        _check_dataset(config, pool, log_f, ds_id, tip_only)
-                        _write('\n')
-                except KeyboardInterrupt:
-                    os.rename(filename + '.in-progress',
-                              filename + '.interrupt')
-                    raise
-                else:
-                    os.rename(filename + '.in-progress', filename + '.done')
+            _check_datasets(config, pool, log_f, ds_id_status_map, filenames,
+                            tip_only=tip_only)
     finally:
         _write('\nWaiting for ThreadPool cleanup...')
         pool.close()
@@ -129,13 +112,83 @@ def do_detect(args, filenames, tip_only=True):
         _write('Done.\n')
 
 
-# Note: This function only works when there is only one status per dataset.
-# If we later start checking versions other than master__tip then this needs to
-# be revisited.
+def do_summary_report(args):
+    #                       formats
+    # status                -     21    22    23    24    25    all
+    # --------------------  ----- ----- ----- ----- ----- ----- -----
+    # FailedDataFilesCopy
+    # Failed...
+    # NO-VERSIONS
+    # NOFORMAT
+    # None
+    # all
+    ds_id_status_map = _read_dataset_statuses(args)
+    format_set = set(['all'])
+    status_set = set(['all'])
+    report_table = defaultdict(int)  # { (format, status): count }
+    for info in six.itervalues(ds_id_status_map):
+        format = str(info['format'])
+        status = str(info['status'])
+        format_set.add(format)
+        status_set.add(status)
+        report_table[(format, status)] += 1
+        report_table[('all', status)] += 1
+        report_table[(format, 'all')] += 1
+        report_table[('all', 'all')] += 1
+    print("Datasets by format and status")
+    print("                     formats")
+    print("status              ",
+          *['{:>5}'.format(i) for i in sorted(format_set)])
+    print("--------------------", *(['-----'] * len(format_set)))
+    for status in sorted(status_set):
+        print('{:20}'.format(status), end=' ')
+        for format in sorted(format_set):
+            print('{:5}'.format(report_table[(format, status)]), end=' ')
+        print()
+    print()
+
+
+def _check_datasets(config, pool, log_f, ds_id_status_map, filenames,
+                    tip_only=True):
+    for filename in filenames:
+        processing_filename = filename + '.processing.' + str(os.getpid())
+        try:
+            os.rename(filename, processing_filename)
+        except OSError:
+            _write("Input file not found, skipping: {}\n".format(filename))
+            continue
+        ds_id_list = _read_ds_ids(processing_filename)
+        _write("Processing {} dataset IDs in file {}\n".format(
+            len(ds_id_list), filename))
+        if ds_id_status_map:
+            assert isinstance(ds_id_status_map, dict)
+            num_before = len(ds_id_list)
+            ds_id_list = [ds_id for ds_id in ds_id_list
+                          if ds_id not in ds_id_status_map]
+            _write('Skipping {} datasets with known statuses\n'.format(
+                num_before - len(ds_id_list)))
+        try:
+            for ds_num, ds_id in enumerate(ds_id_list, 1):
+                _check_pause_flag()
+                _write("{}/{} {} ".format(ds_num, len(ds_id_list),
+                                          ds_id))
+                _check_dataset(config, pool, log_f, ds_id, tip_only)
+                _write('\n')
+        except KeyboardInterrupt:
+            os.rename(processing_filename,
+                      filename + '.interrupt')
+            raise
+        else:
+            os.rename(processing_filename, filename + '.done')
+
+
+# Note: If we later start checking versions other than master__tip then this
+# needs to be revisited.
 def _read_dataset_statuses(args):
     """
     Parse the logs to determine the status of dataset checks
-    Return: Map of dataset ID to status, any status not "OK" is bad
+    Return: { ds_id: {'format': <format>, 'status': <status>} }
+    <format> is '-' when not applicable or unknown.
     """
     log_dir = args['--log-dir']
     ds_id_status_map = {}
@@ -145,22 +198,24 @@ def _read_dataset_statuses(args):
             continue
         with open(path) as f:
             for line in f:
-                m = re.match(r'[a-f0-d]{15,32}\s', line, re.I)
+                m = re.match(DS_ID_PATTERN + r'\s', line)
                 if not m:
                     continue
                 parts = line.split()
+                if len(parts) < 2 or len(parts) > 4:
+                    continue
                 ds_id = parts[0]
-                if ((len(parts) in (2, 3) and parts[-1].startswith('NO'))
+                info = {'format': '-', 'status': None}
+                if (len(parts) in (2, 3) and parts[-1].startswith('NO')
                         or len(parts) == 4):
-                    ds_id_status_map[ds_id] = parts[-1]
-                elif len(parts) == 3:
-                    # Still in progress
-                    ds_id_status_map[ds_id] = None
+                    info['status'] = parts[-1]
+                elif len(parts) == 2:
+                    # Probably a malformed line / not a status line
+                    continue
+                if len(parts) > 2:
+                    info['format'] = parts[2]
+                ds_id_status_map[ds_id] = info
     return ds_id_status_map
-
-
-def _filter_finished_datasets(ds_id_list, ds_id_status_map):
-    return [ds_id for ds_id in ds_id_list if not ds_id_status_map.get(ds_id)]
 
 
 def _read_ds_ids(filename):
@@ -169,6 +224,9 @@ def _read_ds_ids(filename):
         for line in ds_id_f:
             ds_id = line.strip()
             if not ds_id:
+                continue
+            # Filter out bogus dataset IDs that might have crept in
+            if not re.match(DS_ID_PATTERN + '$', ds_id):
                 continue
             ds_id_list.append(ds_id)
     return ds_id_list
@@ -490,6 +548,8 @@ def _do_command(args):
             return do_list(args, filenames[0])
         if args['detect']:
             return do_detect(args, filenames)
+        if args['summary_report']:
+            return do_summary_report(args)
         print("No command, or command not implemented yet.", file=sys.stderr)
         return 1
     finally:
