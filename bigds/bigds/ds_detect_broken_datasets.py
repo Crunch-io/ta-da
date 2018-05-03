@@ -6,12 +6,15 @@ Usage:
     ds.detect-broken-datasets [options] list <filename>
     ds.detect-broken-datasets [options] detect <filename>...
     ds.detect-broken-datasets [options] summary_report
+    ds.detect-broken-datasets [options] ds_ids_report
 
 Options:
     --config=FILENAME       [default: config.yaml]
     --profile=PROFILE       [default: shared-dev]
     --log-dir=DIRNAME       [default: log]
     --rescan-all            Don't read logs to skip already-seen datasets
+    --format=FORMAT         Report processed DS IDs with FORMAT
+    --status=STATUS         Report processed DS IDs with STATUS
 
 Commands:
     list    Save list of all dataset IDs found in repo into <filename>
@@ -148,6 +151,23 @@ def do_summary_report(args):
     print()
 
 
+def do_ds_ids_report(args):
+    format = args['--format']
+    status = args['--status']
+    print("# Dataset IDs processed so far", file=sys.stderr)
+    if format:
+        print("# with format:", format, file=sys.stderr)
+    if status:
+        print("# with status:", status, file=sys.stderr)
+    ds_id_status_map = _read_dataset_statuses(args)
+    for ds_id, info in six.iteritems(ds_id_status_map):
+        if format and str(info['format']) != format:
+            continue
+        if status and str(info['status']) != status:
+            continue
+        print(ds_id)
+
+
 def _check_datasets(config, pool, log_f, ds_id_status_map, filenames,
                     tip_only=True):
     for filename in filenames:
@@ -212,7 +232,7 @@ def _read_dataset_statuses(args):
                 elif len(parts) == 2:
                     # Probably a malformed line / not a status line
                     continue
-                if len(parts) > 2:
+                if len(parts) > 2 and not parts[2].startswith('NO'):
                     info['format'] = parts[2]
                 ds_id_status_map[ds_id] = info
     return ds_id_status_map
@@ -553,6 +573,8 @@ def _do_command(args):
             return do_detect(args, filenames)
         if args['summary_report']:
             return do_summary_report(args)
+        if args['ds_ids_report']:
+            return do_ds_ids_report(args)
         print("No command, or command not implemented yet.", file=sys.stderr)
         return 1
     finally:
