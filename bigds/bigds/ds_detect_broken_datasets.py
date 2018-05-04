@@ -37,6 +37,7 @@ A line in any other format is an error detail line (traceback, etc.)
 from __future__ import print_function
 from collections import defaultdict
 import datetime
+import glob
 import os
 from os.path import join
 import multiprocessing.pool
@@ -93,9 +94,6 @@ def do_detect(args, filenames, tip_only=True):
     log_dirname = args['--log-dir']
     if not os.path.isdir(log_dirname):
         os.makedirs(log_dirname)
-    log_filename = join(
-        log_dirname,
-        datetime.datetime.utcnow().strftime('%Y-%m-%d-%H%M%S.%f') + '.log')
     if args['--rescan-all']:
         _write('Ignoring previous results, rescanning all datasets\n')
         ds_id_status_map = None
@@ -103,9 +101,15 @@ def do_detect(args, filenames, tip_only=True):
         _write('Reading previous logs\n')
         ds_id_status_map = _read_dataset_statuses(args)
     pool = multiprocessing.pool.ThreadPool(3)
+    log_timestamp = datetime.datetime.utcnow().strftime('%Y-%m-%d-%H%M%S.%f')
     try:
-        _write("Output log: {}\n".format(log_filename))
-        with open(log_filename, 'w') as log_f:
+        with tempfile.NamedTemporaryFile(mode='w',
+                                         prefix=log_timestamp + '-',
+                                         suffix='.log',
+                                         dir=log_dirname,
+                                         delete=False) as log_f:
+            _write("Output log: {}\n".format(log_f.name))
+            os.chmod(log_f.name, 0o664)
             _check_datasets(config, pool, log_f, ds_id_status_map, filenames,
                             tip_only=tip_only)
     finally:
@@ -211,10 +215,7 @@ def _read_dataset_statuses(args):
     """
     log_dir = args['--log-dir']
     ds_id_status_map = {}
-    for name in sorted(os.listdir(log_dir)):
-        path = join(log_dir, name)
-        if not os.path.isfile(path):
-            continue
+    for path in sorted(glob.glob(join(log_dir, '*.log'))):
         with open(path) as f:
             for line in f:
                 m = re.match(DS_ID_PATTERN + r'\s', line)
