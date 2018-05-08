@@ -4,7 +4,8 @@ draft = false
 title = "survey experts"
 subtitle = "We're"
 img = "modern_platform/combine-categories.gif"
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

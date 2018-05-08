@@ -6,7 +6,8 @@ description = "By popular demand, Excel tab books just gained a bunch of new cap
 weight = 20
 tags = ["tabbook", "export"]
 categories = ["feature"]
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

@@ -1,0 +1,21 @@
+<meta property="og:title" content="{{ if ne .URL "/" }}{{ .Title }} &middot; {{ end }}{{ .Site.Title }}">
+<meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta property="og:type" content="website" >
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:locale" content="en">
+{{ if .IsPage }}
+{{ with .Params.images }}
+    {{ range first 6 . }}
+        <meta property="og:image" content="{{ . | absURL }}">
+    {{ end }}
+{{ end }}
+{{ else }}
+    {{ with .Site.Params.images }}
+        {{ range first 6 . }}
+            <meta property="og:image" content="{{ . | absURL }}">
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ if not .Date.IsZero }}
+  <meta property="og:updated_time" content="{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}">
+{{ end }}

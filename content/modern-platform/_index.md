@@ -5,7 +5,8 @@ title = "A modern platform for analytics"
 subtitle = "platform for survey analytics"
 img = "modern_platform/search.png"
 description = "Your datasets are stored in our cloud-based, high-performance data store. The data is always available and can be analyzed interactively no matter where you are."
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

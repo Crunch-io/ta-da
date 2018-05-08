@@ -6,7 +6,8 @@ description = "At the press of a button, you can classify text data with natural
 weight = 20
 tags = ["text", "derived variables", "sentiment analysis"]
 categories = ["feature"]
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

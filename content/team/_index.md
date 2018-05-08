@@ -2,7 +2,8 @@
 date = "2018-02-08"
 title = "Our team"
 description = "Our team is completely remote. We don't just allow remote working: we embrace it."
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

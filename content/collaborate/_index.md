@@ -4,7 +4,8 @@ draft = false
 title = "Collaborate productively"
 img = "collaborate/xtab-signif-and-sort.gif"
 description = "Harness the power of a cloud platform to manage access to your data."
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 
