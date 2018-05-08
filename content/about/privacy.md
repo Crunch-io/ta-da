@@ -2,7 +2,7 @@
 date = "2018-04-11T14:08:35+02:00"
 draft = false
 title = "Crunch Privacy Policy"
-
+images = ["img/og-image.png"]
 +++
 
 ## Last Updated: September 2017

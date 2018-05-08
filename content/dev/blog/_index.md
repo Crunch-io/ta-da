@@ -4,6 +4,7 @@ draft = false
 title = "The Dev Blog"
 weight = 1
 description = "Stories from the dev team about how we do things at Crunch"
+images = ["img/og-image.png"]
 +++
 
 Bits and pieces about how we make Crunch happen
