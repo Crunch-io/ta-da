@@ -6,16 +6,20 @@ Usage:
     ds.mongo-move [options] load <input-dir>
 
 Options:
+    --config=FILENAME   [default: /var/lib/crunch.io/cr.server-0.conf]
+    --db=DBNAME         On dumping, the name of the database to dump.
+                        On loading, the name of the database into which data
+                        will be restored. The default is the use the database
+                        name in the connection URL.
     --old-mongo    Mongo < 3.4.6, don't use "--uri" option to connect to Mongo.
 """
 from __future__ import print_function
 import json
-import os
-import platform
 import subprocess
+import sys
 
 import docopt
-from six.moves.urllib.parse import urlparse
+from six.moves.urllib.parse import urlparse, urlunparse
 import yaml
 
 # Mongo collections that this script will filter, dump, and load
@@ -43,13 +47,13 @@ COLLECTIONS = {
     'user_datasets': '{"dataset_id": {"$in": DS_IDS}}',
     'user_variable_order': '{"dataset_id": {"$in": DS_IDS}}',
     'variable_folders': '{"dataset_id": {"$in": DS_IDS}}',
-    'variable_folders2': '{"dataset_id": {"$in": DS_IDS}}',
+    #'variable_folders2': '{"dataset_id": {"$in": DS_IDS}}',
     'variable_folders_children': '{"dataset_id": {"$in": DS_IDS}}',
     'variable_geodata': '{"dataset_id": {"$in": DS_IDS}}',
     'variable_ordering': '{"dataset_id": {"$in": DS_IDS}}',
     'variable_permissions': '{"dataset_id": {"$in": DS_IDS}}',
     'variable_unique_folders': '{"dataset_id": {"$in": DS_IDS}}',
-    'variable_unique_folders2': '{"dataset_id": {"$in": DS_IDS}}',
+    #'variable_unique_folders2': '{"dataset_id": {"$in": DS_IDS}}',
     'version_tags': '{"dataset_id": {"$in": DS_IDS}}',
     # 'projects',
     # 'project_dataset_order',
@@ -61,6 +65,7 @@ COLLECTIONS = {
 # 2. It has 'dataset' in the collection name, OR
 #    It has a field named 'dataset' or 'dataset_id' (see is_ds_related_doc())
 # 3. It has data for only one dataset (this rules out projects, etc.)
+
 
 def is_ds_related_doc(doc):
     if doc is None:
@@ -75,8 +80,8 @@ def is_ds_related_doc(doc):
     return False
 
 
-def load_config():
-    config_filename = '/var/lib/crunch.io/cr.server-0.conf'
+def load_config(args):
+    config_filename = args['--config']
     with open(config_filename) as f:
         return yaml.safe_load(f)
 
@@ -85,9 +90,13 @@ def _add_connection_params(cmd, args, config):
     # Modify cmd, adding Mongo connection parameters based on args and config.
     mongo_url = config['APP_STORE']['URL']
     u = urlparse(mongo_url)
+    db_name = u.path.lstrip('/')
+    if args['--db']:
+        db_name = args['--db']
+    elif not db_name:
+        raise ValueError("Missing database name in connection URI.")
     if args['--old-mongo']:
         # For Mongo < 3.4.6, the --uri parameter is not available
-        db_name = u.path.lstrip('/')
         connection_params = []
         if u.hostname:
             connection_params.extend(['--host', u.hostname])
@@ -101,6 +110,12 @@ def _add_connection_params(cmd, args, config):
             connection_params.extend(['--password', u.password])
         cmd[1:1] = connection_params
     else:
+        mongo_url = urlunparse((u.scheme,
+                                u.netloc,
+                                db_name,
+                                u.params,
+                                u.query,
+                                u.fragment))
         cmd[1:1] = ['--uri', mongo_url]
 
 
@@ -108,7 +123,7 @@ def do_dump(args):
     ds_ids = args['<ds-id>']
     assert isinstance(ds_ids, list)
     output_dir = args['<output-dir>']
-    config = load_config()
+    config = load_config(args)
     for collection_name, query in COLLECTIONS.items():
         query_instance = query.replace('DS_IDS', json.dumps(args['<ds-id>']))
         cmd = [
@@ -124,7 +139,7 @@ def do_dump(args):
 
 def do_load(args):
     input_dir = args['<input-dir>']
-    config = load_config()
+    config = load_config(args)
     mongo_url = config['APP_STORE']['URL']
     u = urlparse(mongo_url)
     if u.hostname is not None and 'mongo' in u.hostname.lower():
