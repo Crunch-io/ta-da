@@ -6,6 +6,7 @@ description = "New tools for working with maps, derived variables, multitables, 
 weight = 20
 tags = ["R", "release", "geo"]
 categories = ["feature"]
+images = ["img/og-image.png"]
 +++
 
 We've just released version 1.18.0 of the Crunch R package. Current package users should see a message when they load the package instructing you how to update to the latest version. New users (or anyone) can install this latest release from CRAN with
