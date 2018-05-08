@@ -1,3 +1,4 @@
+baseURL = "//crunch.io/"
 googleAnalytics = "UA-50332119-2"
 
 languageCode = "en-us"
@@ -8,4 +9,5 @@ MetaDataFormat = "toml"
 description = "Crunch lets you search, wrangle, and analyze large quantities of survey data quickly and easily."
 product = "crunch_app.png"
 arrow = "arrow.png"
-images = ["img/og-image.png"]
+copyofbaseURL = "//crunch.io/"
+images = ["https://crunch.io/img/og-image.png"]

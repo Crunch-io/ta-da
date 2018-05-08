@@ -6,7 +6,8 @@ description = "Our new visual updates make Crunch easier to use and let your dat
 weight = 20
 tags = ["graphs", "design"]
 categories = ["feature"]
-images = ["img/og-image.png"]
+images = ["https://crunch.io/img/og-image.png"]
+
 +++
 
 We’ve been working on updating and improving the look of Crunch, and we wanted to take moment to call out a few of the recent improvements.

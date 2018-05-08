@@ -3,7 +3,8 @@ date = "2017-07-18T14:08:35+02:00"
 draft = false
 title = "Product Delivery and Support Developer"
 weight = 200
-images = ["img/og-image.png"]
+images = ["https://crunch.io/img/og-image.png"]
+
 +++
 
 Crunch is seeking a highly motivated person to join our development team in a delivery and support role. We have a growing product and user base, and we need an organized, detail-oriented person to help us better serve our users. We must ensure that all support requests are handled in a timely, professional manner, and that we provide enough rich online documentation and examples that our users can answer many questions themselves. We need to improve our communication channels with our users so that they know when new features and resources are available to them and, in the other direction, so that we can better incorporate their feedback. By owning these responsibilities, you will improve the satisfaction of our customers, the usability of the product, and our ability to scale the product to the next level.

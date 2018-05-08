@@ -4,7 +4,8 @@ draft = false
 title = "Careers"
 description = "Check out our current openings"
 weight = 1
-images = ["img/og-image.png"]
+images = ["https://crunch.io/img/og-image.png"]
+
 +++
 
 We are looking for talented and motivated new team members in a variety of roles.
