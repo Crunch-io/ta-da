@@ -3,7 +3,8 @@ date = "2017-07-27T14:08:35+02:00"
 draft = false
 title = "Backend Engineer"
 weight = 200
-images = ["img/og-image.png"]
+images = ["https://crunch.io/img/og-image.png"]
+
 +++
 
 Crunch is looking for experienced Python developers who want to be part of a team building a large-scale cloud-based analytics platform.  Based on your talents, you will find yourself a member of one of our small teams helping move our platform forward.  This means adding value to our product by reducing friction in our client's workflows, providing new and interesting ways to manipulate their data, and allow them to publish their results with the expectation of massive scale.  If you want to be part of a team that cares as much about aesthetic and technical details as you do, Crunch will be a good match.       

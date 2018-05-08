@@ -6,7 +6,8 @@ draft = false
 tags = ["automation"]
 title = "Using Travis-CI to Build Static Sites"
 weight = 20
-images = ["img/og-image.png"]
+images = ["https://crunch.io/img/og-image.png"]
+
 +++
 
 At Crunch.io, we're fervent believers in automation. If something requires a human to remember to do an extra manual step, it won't happen consistently. We automate test running so that we don't have to fix the same bug twice. We write code to do tedious tasks so that we can devote our mental energy to harder problems. We automate processes and policies so that developers don't have remember the right things to do—the build and continuous-integration systems guide us.
