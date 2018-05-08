@@ -6,7 +6,8 @@ weight = 20
 draft = false
 tags = ["search"]
 categories = ["feature"]
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

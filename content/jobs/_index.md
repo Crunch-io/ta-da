@@ -4,7 +4,8 @@ draft = false
 title = "Careers"
 description = "Check out our current openings"
 weight = 1
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

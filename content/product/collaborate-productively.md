@@ -3,7 +3,8 @@ date = "2018-04-25T11:35:27-04:00"
 draft = false
 title = "Collaborate productively"
 img = "sharing-mock.jpg"
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

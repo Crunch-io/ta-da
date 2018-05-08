@@ -6,7 +6,8 @@ description = "New tools for working with maps, derived variables, multitables, 
 weight = 20
 tags = ["R", "release", "geo"]
 categories = ["feature"]
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

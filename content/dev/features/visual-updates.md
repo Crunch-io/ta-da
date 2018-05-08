@@ -6,7 +6,8 @@ description = "Our new visual updates make Crunch easier to use and let your dat
 weight = 20
 tags = ["graphs", "design"]
 categories = ["feature"]
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

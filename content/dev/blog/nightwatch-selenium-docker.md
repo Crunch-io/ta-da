@@ -6,7 +6,8 @@ description = "\"Nightwatchrun\", our new open-source tool, eliminates the \"wor
 weight = 20
 tags = ["testing", "automation"]
 categories = ["general"]
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

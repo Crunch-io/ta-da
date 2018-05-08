@@ -3,7 +3,8 @@ date = "2018-04-25T11:35:06-04:00"
 draft = false
 title = "A modern platform"
 subtitle = "for survey analytics"
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

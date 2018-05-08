@@ -6,7 +6,8 @@ draft = false
 weight = 20
 tags = ["analysis", "nets", "subtotals"]
 categories = ["feature"]
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

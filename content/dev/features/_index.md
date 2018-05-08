@@ -4,7 +4,8 @@ draft = false
 title = "Feature Announcements"
 weight = 1
 description = "What's new and exciting at Crunch"
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

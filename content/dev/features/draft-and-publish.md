@@ -6,7 +6,8 @@ description = "Our new draft-and-publish feature allows you to prepare and revie
 weight = 20
 tags = ["draft and publish", "clients"]
 categories = ["feature"]
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

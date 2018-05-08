@@ -4,7 +4,8 @@ draft = false
 title = "Crunch speaks research"
 img = "speaks_research/speaks_research_multitable.png"
 description = "Our datasets work seamlessly with your scientific computing infrastructure."
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

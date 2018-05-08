@@ -10,4 +10,4 @@ description = "Crunch lets you search, wrangle, and analyze large quantities of 
 product = "crunch_app.png"
 arrow = "arrow.png"
 copyofbaseURL = "//crunch.io/"
-images = ["https://crunch.io/img/og-image.png"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
