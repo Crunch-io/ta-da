@@ -3,6 +3,8 @@ date = "2017-07-27T14:08:35+02:00"
 draft = false
 title = "Backend Engineer"
 weight = 200
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

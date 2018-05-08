@@ -6,6 +6,9 @@ draft = false
 weight = 20
 tags = ["analysis", "nets", "subtotals"]
 categories = ["feature"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
+
 +++
 
 {{< figure src="dev/features/images/subtotals-diversity.png" class="float-md-right img-fluid" width="250px">}}

@@ -6,9 +6,8 @@ title = "Data, Smarter."
 MetaDataFormat = "toml"
 
 [params]
-description = "Data,"
-description2 = "Smarter."
-description3 = "Crunch lets you search, wrangle, and analyze large quantities of survey data quickly and easily."
+description = "Crunch lets you search, wrangle, and analyze large quantities of survey data quickly and easily."
 product = "crunch_app.png"
 arrow = "arrow.png"
 copyofbaseURL = "//crunch.io/"
+images = ["https://crunch.io/img/logo-1200x630.png"]

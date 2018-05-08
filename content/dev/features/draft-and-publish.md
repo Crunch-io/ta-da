@@ -6,6 +6,9 @@ description = "Our new draft-and-publish feature allows you to prepare and revie
 weight = 20
 tags = ["draft and publish", "clients"]
 categories = ["feature"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
+
 +++
 
 Lately we’ve been focusing on ways to make it easier for data owners to manage data for their clients. After all, Crunch isn’t just for analyzing data, it’s a tool for making everything about delivering data to clients faster, smoother, and more powerful.

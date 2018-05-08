@@ -6,6 +6,9 @@ description = "By popular demand, Excel tab books just gained a bunch of new cap
 weight = 20
 tags = ["tabbook", "export"]
 categories = ["feature"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
+
 +++
 
 We first released the [tab book feature](http://support.crunch.io/crunch/crunch_tabbooks.html) a while back, and since then, we’ve collected a number of great suggestions for how to enrich the feature. Tab books produce a static set of tables out of many variables and put results in an Excel sheet, for offline use when you don’t need interactive features like new filters or different weights. Our recent release includes several of those enhancements, most of which are new options available to you in the “export tab book” panel.
