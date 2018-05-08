@@ -4,6 +4,7 @@ draft = false
 title = "Feature Announcements"
 weight = 1
 description = "What's new and exciting at Crunch"
+images = ["img/og-image.png"]
 +++
 
 Archive

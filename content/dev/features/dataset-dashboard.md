@@ -6,6 +6,7 @@ description = "Dashboards provide a clear top-level view of a dataset. Dataset o
 weight = 20
 tags = ["dashboards", "clients", "graphs"]
 categories = ["feature"]
+images = ["img/og-image.png"]
 +++
 
 Crunch is designed to make data accessible to many different audiences that have varying needs, expectations, and technical abilities.

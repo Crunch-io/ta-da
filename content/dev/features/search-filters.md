@@ -6,6 +6,7 @@ weight = 20
 draft = false
 tags = ["search"]
 categories = ["feature"]
+images = ["img/og-image.png"]
 +++
 
 Search has been a part of Crunch from the beginning. In a system designed to house and share large volumes of data, the ability to quickly find the data that's important right now is critical. We're continually working to improve how data is indexed to make searching faster and more accurate, and we just added a couple new ways for you to refine your searches to get to what you are looking for faster and more easily.

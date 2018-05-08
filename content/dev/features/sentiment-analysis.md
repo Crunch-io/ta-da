@@ -6,6 +6,7 @@ description = "At the press of a button, you can classify text data with natural
 weight = 20
 tags = ["text", "derived variables", "sentiment analysis"]
 categories = ["feature"]
+images = ["img/og-image.png"]
 +++
 
 A wealth of information can be locked in text data. Our new “sentiment analysis” feature enables you to quantify and analyze just a bit of it: whether the text in question is on balance Positive, Neutral, or Negative — and then crosstab the derived sentiment variable just like any other variable to understand the variations among other groups in the dataset.

@@ -6,7 +6,7 @@ description = "\"Nightwatchrun\", our new open-source tool, eliminates the \"wor
 weight = 20
 tags = ["testing", "automation"]
 categories = ["general"]
-
+images = ["img/og-image.png"]
 +++
 
 At Crunch we greatly value tests. We have unit tests, functional tests, and the stack wouldn't be complete without end-to-end tests. Good tests allow us to update code quickly and confidently.
