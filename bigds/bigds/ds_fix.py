@@ -2,27 +2,41 @@
 Helper script for finding and doing stuff with broken datasets
 
 Usage:
-    ds.fix [options] look <ds-id> [<ds-version>]
-    ds.fix [options] restore-from-savepoint <ds-id> [<ds-version>]
-    ds.fix [options] restore-from-s3 <ds-id>
+    ds.fix [options] list-versions <ds-id>
+    ds.fix [options] list-all-actions [--long] <ds-id>
+    ds.fix [options] save-actions <ds-id> <ds-version> <filename>
+    ds.fix [options] show-actions [--long] <filename>
+    ds.fix [options] revert-to-version <ds-id> <ds-version>
+    ds.fix [options] replay-actions <ds-id> <filename>
 
 Options:
     -i                      Run interactive prompt after the command
     --cr-lib-config=FILENAME
                             [default: /var/lib/crunch.io/cr.server-0.conf]
 
-WARNING!!! The restore-* commands are currently experimental/dangerous.
+WARNING!!! these commands are currently experimental and/or dangerous.
 """
 from __future__ import print_function
+import pprint
 import sys
 import time
 
 import docopt
+import six
+from six.moves import cPickle as pickle
 
 from cr.lib.commands.common import load_settings, startup
-import cr.lib.entities.datasets.dataset
+from cr.lib import actions as actionslib
+from cr.lib.entities.actions import Action
+from cr.lib.entities.datasets.dataset import Dataset
+from cr.lib.entities.datasets.versions.versioning import (
+    version_health,
+    VersionTag,
+)
 import cr.lib.index.indexer
 from cr.lib.settings import settings
+
+this_module = sys.modules[__name__]
 
 
 def _cr_lib_init(args):
@@ -34,26 +48,135 @@ def _cr_lib_init(args):
     startup()
 
 
-def do_look(args, ds_id, ds_version=None):
-    """This command is not useful without the -i option"""
+def do_list_versions(args):
+    ds_id = args['<ds-id>']
     _cr_lib_init(args)
-    if not ds_version:
-        ds_version = 'master__tip'
-    ds = cr.lib.entities.datasets.dataset.Dataset.find_by_id(id=ds_id,
-                                                             version=ds_version)
+    version_list = version_health(ds_id)
+    print(len(version_list), "versions:")
+    for version_info in version_list:
+        pprint.pprint(version_info)
     return {
+        'ds_id': ds_id,
+        'version_list': version_list,
+    }
+
+
+def do_list_all_actions(args):
+    """
+    List all actions for a dataset in chronological order
+    """
+    ds_id = args['<ds-id>']
+    ds_version = 'master__tip'
+    _cr_lib_init(args)
+    ds = Dataset.find_by_id(id=ds_id, version=ds_version)
+    history = actionslib.for_dataset(ds, None, since=None, upto=None,
+                                     replay_order=True, only_successful=True,
+                                     exclude_keys=None)
+    print(len(history), "actions:")
+    for action in history:
+        if args['--long']:
+            pprint.pprint(action)
+        else:
+            pprint.pprint(_abbreviate_action(action))
+    return {
+        'ds_id': ds_id,
+        'ds': ds,
+        'history': history,
+    }
+
+
+def do_save_actions(args):
+    ds_id = args['<ds-id>']
+    ds_version = args['<ds-version>']
+    filename = args['<filename>']
+    _cr_lib_init(args)
+    ds = Dataset.find_by_id(id=ds_id, version=ds_version)
+    svp = VersionTag.nearest(ds.id, ds.branch, ds.revision)
+    history = actionslib.for_dataset(ds, None, since=svp.action,
+                                     upto=None, replay_order=True,
+                                     only_successful=True, exclude_keys=None)
+    with open(filename, 'wb') as f:
+        pickle.dump(history, f, 2)
+    return {
+        'ds_id': ds_id,
+        'ds_version': ds_version,
+        'ds': ds,
+        'filename': filename,
+        'history': history,
+        'svp': svp,
+    }
+
+
+def do_show_actions(args):
+    filename = args['<filename>']
+    with open(filename, 'rb') as f:
+        actions_list = pickle.load(f)
+    print(len(actions_list), "actions:")
+    for action in actions_list:
+        if args['--long']:
+            pprint.pprint(actions)
+        else:
+            pprint.pprint(_abbreviate_action(action))
+    return {
+        'actions_list': actions_list,
+        'filename': filename,
+    }
+
+
+def _abbreviate_action(action):
+    d = {}
+    for key in ('key', 'utc', 'hash'):
+        d[key] = action[key]
+    params = action['params']
+    d['params.dataset.id'] = params['dataset']['id']
+    d['params.dataset.branch'] = params['dataset']['branch']
+    return d
+
+
+def do_revert_to_version(args):
+    ds_id = args['<ds-id>']
+    ds_version = args['<ds-version>']
+    _cr_lib_init(args)
+    ds = Dataset.find_by_id(id=ds_id, version=ds_version)
+    svp = VersionTag.nearest(ds_id, ds.branch, ds.revision)
+    if not svp:
+        raise ValueError("Couldn't find savepoint for "
+                         "ds_id={} branch={} revision={}"
+                         .format(ds_id, ds.branch, ds.revision))
+    ds.restore_savepoint(svp)
+    return {
+        'ds_id': ds_id,
+        'ds_version': ds_version,
+        'ds': ds,
+        'svp': svp,
+    }
+
+
+def do_replay_actions(args):
+    ds_id = args['<ds-id>']
+    ds_version = 'master__tip'
+    filename = args['<filename>']
+    with open(filename, 'rb') as f:
+        actions_list = pickle.load(f)
+    _cr_lib_init(args)
+    ds = Dataset.find_by_id(id=ds_id, version=ds_version)
+    ds.play_workflow(None, actions_list,
+                     autorollback=ds.AutorollbackType.Full)
+    return {
+        'actions_list': actions_list,
         'ds_id': ds_id,
         'ds_version': ds_version,
         'ds': ds,
     }
 
 
-def do_restore_from_savepoint(args, ds_id, ds_version=None):
-    _cr_lib_init(args)
+def do_restore_from_savepoint(args):
+    ds_id = args['<ds-id>']
+    ds_version = args['<ds-version>']
     if not ds_version:
         ds_version = 'master__tip'
-    ds = cr.lib.entities.datasets.dataset.Dataset.find_by_id(id=ds_id,
-                                                             version=ds_version)
+    _cr_lib_init(args)
+    ds = Dataset.find_by_id(id=ds_id, version=ds_version)
     ds_rollback_revision = ds.get_current_revision()
     print("Rolling back dataset", ds_id, "to revision", ds_rollback_revision)
     ds.rollback(ds_rollback_revision)
@@ -65,34 +188,15 @@ def do_restore_from_savepoint(args, ds_id, ds_version=None):
     }
 
 
-def do_restore_from_s3(args, ds_id):
-    """
-    Steps to restore a dataset from S3:
-    1) See if the dataset is leased.  If so, release it.
-    2) Go to zz9data and remove the data directory.
-        - Make double-dog sure you are in zz9data
-        - make sure it's gone from both zz9 servers.
-    3) Go to zz9repo and rename the dataset directory in the repo to <dsid>-aside.
-    4) Try to access the dataset in superadmin. This should pull it from s3 and
-       migrate it.
-    5) Check the version in the repo.
-        - do a ds.release() to push and release the dataset
-        - use lz4cat to check that the version in zz9repo is now 25
-    """
-    _cr_lib_init(args)
-    print("XXX work-in-progress", file=sys.stderr)
-    return 1
-
-
 def _do_command(args):
     t0 = time.time()
     try:
-        if args['look']:
-            return do_look(args, args['<ds-id>'], args['<ds-version>'])
-        if args['restore-from-savepoint']:
-            return do_restore_from_savepoint(args, args['<ds-id>'])
-        if args['restore-from-s3']:
-            return do_restore_from_s3(args, args['<ds-id>'])
+        for key, value in six.iteritems(args):
+            if not key.startswith('-') and not key.startswith('<') and value:
+                funcname = 'do_' + key.replace('-', '_')
+                func = getattr(this_module, funcname, None)
+                if func:
+                    return func(args)
         print("No command, or command not implemented yet.", file=sys.stderr)
         return 1
     finally:
