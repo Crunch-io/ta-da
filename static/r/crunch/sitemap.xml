@@ -28,6 +28,12 @@
     <loc>http://crunch.io/r/crunch//reference/Insertions.html</loc>
   </url>
   <url>
+    <loc>http://crunch.io/r/crunch//reference/SO_schema.html</loc>
+  </url>
+  <url>
+    <loc>http://crunch.io/r/crunch//reference/SO_survey.html</loc>
+  </url>
+  <url>
     <loc>http://crunch.io/r/crunch//reference/ShojiObject-class.html</loc>
   </url>
   <url>
@@ -682,7 +688,7 @@
     <loc>http://crunch.io/r/crunch//articles/crunch-internals.html</loc>
   </url>
   <url>
-    <loc>http://crunch.io/r/crunch//articles/datasets.html</loc>
+    <loc>http://crunch.io/r/crunch//articles/crunch.html</loc>
   </url>
   <url>
     <loc>http://crunch.io/r/crunch//articles/derive.html</loc>
@@ -692,9 +698,6 @@
   </url>
   <url>
     <loc>http://crunch.io/r/crunch//articles/filters.html</loc>
-  </url>
-  <url>
-    <loc>http://crunch.io/r/crunch//articles/getting-started.html</loc>
   </url>
   <url>
     <loc>http://crunch.io/r/crunch//articles/subtotals.html</loc>
