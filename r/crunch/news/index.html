@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">crunch</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.22.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.22.2</span>
       </span>
     </div>
 
@@ -95,7 +95,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/getting-started.html">Getting Started</a>
+      <a href="../articles/crunch.html">Getting Started</a>
     </li>
     <li>
       <a href="../articles/datasets.html">Datasets</a>
@@ -163,6 +163,21 @@
       <small>Source: <a href='https://github.com/Crunch-io/rcrunch/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="crunch-1-22-2" class="section level2">
+<h2 class="hasAnchor">
+<a href="#crunch-1-22-2" class="anchor"></a>crunch 1.22.2</h2>
+<ul>
+<li>New introductory vignette: <code><a href="../articles/crunch.html">vignette("crunch")</a></code>
+</li>
+<li>
+<code><a href="../reference/changeCategoryID.html">changeCategoryID()</a></code> tries to unset then reset the dataset exclusion if that impacts its progress. Best practice is to disable exclusions before running <code><a href="../reference/changeCategoryID.html">changeCategoryID()</a></code> if at all possible.</li>
+<li>Setting the <code>ordering&lt;-</code> of datasets within a project will now drop any invalid entries with a warning, rather than error.</li>
+<li>Fix a bug introduced in 1.22.0 in creating categorical variables from factors with missing values.</li>
+<li>Fix a similar yet unrelated bug in creating numeric and other types of variables with all-<code>NA</code> data.</li>
+<li>Fix <code><a href="../reference/streamRows.html">streamRows()</a></code> for case when sending only one row (<a href='https://github.com/Crunch-io/rcrunch/issues/253'>#253</a>).</li>
+<li>Internal: support for the “selected_array” method of multiple response calculation, deprecated since 1.20.0, has been removed.</li>
+</ul>
+</div>
     <div id="crunch-1-22-0" class="section level2">
 <h2 class="hasAnchor">
 <a href="#crunch-1-22-0" class="anchor"></a>crunch 1.22.0</h2>
@@ -1137,6 +1152,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#crunch-1-22-2">1.22.2</a></li>
         <li><a href="#crunch-1-22-0">1.22.0</a></li>
         <li><a href="#crunch-1-21-0">1.21.0</a></li>
         <li><a href="#crunch-1-20-0">1.20.0</a></li>
@@ -1168,7 +1184,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Neal Richardson.</p>
+  <p>Developed by Neal Richardson, Jonathan Keane, Gordon Shotwell.</p>
 </div>
 
 <div class="pkgdown">
