@@ -87,6 +87,11 @@ def do_list_all_actions(args):
 
 
 def do_save_actions(args):
+    """
+    Save all actions after a savepoint (skip the savepoint action itself.)
+    The action list might be empty for a savepoint that is a copy of
+    master__tip.
+    """
     ds_id = args['<ds-id>']
     ds_version = args['<ds-version>']
     filename = args['<filename>']
@@ -96,9 +101,13 @@ def do_save_actions(args):
     history = actionslib.for_dataset(ds, None, since=svp.action,
                                      upto=None, replay_order=True,
                                      only_successful=True, exclude_keys=None)
+    # Skip the first action in the history because it is the savepoint action
+    # itself.
+    actions_list = history[1:]
     with open(filename, 'wb') as f:
-        pickle.dump(history, f, 2)
+        pickle.dump(actions_list, f, 2)
     return {
+        'actions_list': actions_list,
         'ds_id': ds_id,
         'ds_version': ds_version,
         'ds': ds,
@@ -147,10 +156,12 @@ def do_revert_to_version(args):
     ds.drop_versions(['master__tip'])
     framelib.ZZ9Dataset.create(ds)
     ds.restore_savepoint(svp)
+    push_result = ds.query(dict(command='release', push=True))
     return {
         'ds_id': ds_id,
         'ds_version': ds_version,
         'ds': ds,
+        'push_result': push_result,
         'svp': svp,
     }
 
