@@ -1,6 +1,6 @@
-pandoc: '2.2'
+pandoc: 1.19.2.4
 pkgdown: 1.0.0.9000
-pkgdown_sha: 90867f97221e9bd1c7a997f870eff28eb1083411
+pkgdown_sha: ~
 articles:
   abstract-categories: abstract-categories.html
   analyze: analyze.html
