@@ -35,6 +35,7 @@ from cr.lib.entities.datasets.versions.versioning import (
 )
 import cr.lib.index.indexer
 from cr.lib.settings import settings
+from zz9lib import frame as framelib
 
 this_module = sys.modules[__name__]
 
@@ -137,12 +138,14 @@ def do_revert_to_version(args):
     ds_id = args['<ds-id>']
     ds_version = args['<ds-version>']
     _cr_lib_init(args)
-    ds = Dataset.find_by_id(id=ds_id, version=ds_version)
-    svp = VersionTag.nearest(ds_id, ds.branch, ds.revision)
+    ds = Dataset.find_by_id(id=ds_id, version='master__tip')
+    svp = VersionTag.find_one(dict(dataset_id=ds_id, version=ds_version))
     if not svp:
         raise ValueError("Couldn't find savepoint for "
                          "ds_id={} branch={} revision={}"
                          .format(ds_id, ds.branch, ds.revision))
+    ds.drop_versions(['master__tip'])
+    framelib.ZZ9Dataset.create(ds)
     ds.restore_savepoint(svp)
     return {
         'ds_id': ds_id,
