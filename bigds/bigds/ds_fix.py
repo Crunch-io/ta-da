@@ -147,21 +147,26 @@ def do_revert_to_version(args):
     ds_id = args['<ds-id>']
     ds_version = args['<ds-version>']
     _cr_lib_init(args)
-    ds = Dataset.find_by_id(id=ds_id, version='master__tip')
     svp = VersionTag.find_one(dict(dataset_id=ds_id, version=ds_version))
     if not svp:
         raise ValueError("Couldn't find savepoint for "
                          "ds_id={} branch={} revision={}"
                          .format(ds_id, ds.branch, ds.revision))
+    ds = Dataset.find_by_id(id=ds_id, version='master__tip')
     ds.drop_versions(['master__tip'])
     framelib.ZZ9Dataset.create(ds)
     ds.restore_savepoint(svp)
-    push_result = ds.query(dict(command='release', push=True))
+    # XXX
+    # I don't know if the release commands are necessary or helpful.
+    # I'm attempting to get the right format in the repository -
+    # Currently the format in the repo directories only gets up to 23, not 25.
+    ds.query(dict(command='release', push=True))
+    ds2 = Dataset.find_by_id(id=ds_id, version=ds_version)
+    ds2.query(dict(command='release', push=True))
     return {
         'ds_id': ds_id,
         'ds_version': ds_version,
         'ds': ds,
-        'push_result': push_result,
         'svp': svp,
     }
 
