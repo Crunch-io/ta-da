@@ -450,7 +450,7 @@ def _check_copy_dataset_version(config, log_f, ds_id, version, format):
     err = _copy_dir(version_src, version_dst)
     if err:
         print(ds_id, version, format, 'FailedVersionCopy', file=log_f)
-        print(version_cp_err, file=log_f)
+        print(err, file=log_f)
         log_f.flush()
         _write('!')
         return False
