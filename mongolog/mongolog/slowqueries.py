@@ -19,7 +19,7 @@ class tunnel(object):
 
 
 def fetch_logs(path):
-    with tunnel('eu-mongo-2-59.priveu.crunch.io', 22, 2922) as connection:
+    with tunnel('eu-mongo-2-42.priveu.crunch.io', 22, 2922) as connection:
         print('Tunneling Through %s' % (connection,))
         cli = SSHClient()
         cli.load_system_host_keys()
@@ -51,12 +51,13 @@ class CrunchMLogFilterTool(MLogFilterTool):
             logevent._reformat_timestamp(self.args['timestamp_format'], force=True)
 
         data = json.loads(logevent.to_json())
-        if data['operation'] in ('getmore', ):
+        line_str = data['line_str'].lower()
+        if 'getmore' in line_str:
             # In theory we are interested in getmore operations, but they
             # screw up stats due to migrate host dumps
             return
 
-        if data['operation'] != 'query':
+        if 'nreturned' not in data:
             # For now focus on reads, will have to monitor more once reads are sane
             return
         
