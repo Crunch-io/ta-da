@@ -16,7 +16,7 @@ ENVIRONS = {
     'unstable': ('localhost', 'ubuntu@unstable-backend.crunch.io'),
     'stable': ('localhost', 'ubuntu@stable-backend.crunch.io'),
     'alpha': ('alpha-backend-39.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io'),
-    'eu': ('eu-backend-178.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io'),
+    'eu': ('eu-backend-3-155.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io'),
     'vagrant': (None, None)
 }
 
