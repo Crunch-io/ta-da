@@ -426,11 +426,18 @@ def _check_copy_dataset_datafiles(config, version_format_map, log_f, ds_id):
     Copy datafiles subdir of dataset to the local zz9repo, if it exists.
     Return True iff all is well.
 
-    If all the formats in version_format_map are at LATEST_FORMAT
-    then optimize by calling _check_copy_filtered_datafiles().
+    If a datamap.zz9 file exists in the expected location for each version of
+    interest then optimize by calling _check_copy_filtered_datafiles().
     """
-    format_set = set([str(v) for v in version_format_map.values()])
-    if format_set == set([LATEST_FORMAT]):
+    missing_datamap_file = False
+    for version in version_format_map:
+        datamap_path = _get_datamap_path(config, ds_id, version)
+        if (os.path.exists(datamap_path)
+                or os.path.exists(datamap_path + '.lz4')):
+            continue
+        missing_datamap_file = True
+        break
+    if not missing_datamap_file:
         return _check_copy_filtered_datafiles(config, version_format_map,
                                               log_f, ds_id)
     ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
@@ -488,14 +495,19 @@ def _check_copy_filtered_datafiles(config, version_format_map, log_f, ds_id):
     return True
 
 
+def _get_datamap_path(config, ds_id, version):
+    ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
+    version_src = join(ro_repo_dir, 'versions', version)
+    datamap_path = join(version_src, 'datamap.zz9')
+    return datamap_path
+
+
 def _load_datamap(config, ds_id, version, log_f, format='-'):
     """
     Load the datamap for a dataset version.
     Return the datamap dictionary, or None if there was an error.
     """
-    ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
-    version_src = join(ro_repo_dir, 'versions', version)
-    datamap_path = join(version_src, 'datamap.zz9')
+    datamap_path = _get_datamap_path(config, ds_id, version)
     try:
         datamap_bytes = _read_maybe_lz4_compressed(datamap_path)
     except IOError as err:
