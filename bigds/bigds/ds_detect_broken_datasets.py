@@ -303,11 +303,9 @@ def _check_dataset(args, config, pool, log_f, ds_id, tip_only=True):
 
 
 def _check_dataset_version(config, log_f, ds_id, version, format):
-    branch, revision = version.split('__')
     store = _get_zz9_store(config)
     try:
-        ds = zz9d.objects.datasets.DatasetVersion(
-            ds_id, store, '', branch=branch, revision=revision)
+        ds = zz9d.objects.datasets.DatasetNode(ds_id, version, store, None)
         zz9d.execution.runtime.job.dataset = ds
     except Exception:
         print('FailedDatasetVersion', file=log_f)
