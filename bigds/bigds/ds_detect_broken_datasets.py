@@ -16,6 +16,7 @@ Options:
     --format=FORMAT         Report processed DS IDs with FORMAT
     --status=STATUS         Report processed DS IDs with STATUS
     --skip-cleanup          Don't delete local dataset copies afterwards
+    --skip-latest           Don't look at datasets already at the latest format
 
 Commands:
     list    Save list of all dataset IDs found in repo into <filename>
@@ -32,6 +33,7 @@ Log line formats:
     <ds-id> <version> NOFORMAT
     <ds-id> - - FailedDatafilesCopy
     <ds-id> <version> <format>  # Status check in progress
+    <ds-id> <version> <format> SKIPPED
     <ds-id> <version> <format> OK
     <ds-id> <version> <format> Failed<failure-type>
 A line in any other format is an error detail line (traceback, etc.)
@@ -130,6 +132,7 @@ def do_summary_report(args):
     # Failed...
     # DS-DELETED
     # NO-VERSIONS
+    # SKIPPED
     # NOFORMAT
     # None
     # all
@@ -280,9 +283,12 @@ def _check_pause_flag():
         sys.stderr.flush()
 
 
-def _check_dataset(args, config, pool, log_f, ds_id, tip_only=True):
-    version_format_map = _get_check_version_format_map(config, log_f, ds_id,
-                                                       tip_only=tip_only)
+def _check_dataset(args, config, pool, log_f, ds_id, tip_only=True,
+                   skip_latest_format=False):
+    version_format_map = _get_check_version_format_map(
+        config, log_f, ds_id,
+        tip_only=tip_only,
+        skip_latest_format=args['--skip-latest'])
     if not version_format_map:
         return
     versions = sorted(version_format_map)
@@ -406,7 +412,8 @@ def _delete_local_dataset_copy(config, pool, ds_id, versions):
                          (local_data_dir, {'ignore_errors': True}))
 
 
-def _get_check_version_format_map(config, log_f, ds_id, tip_only=True):
+def _get_check_version_format_map(config, log_f, ds_id, tip_only=True,
+                                  skip_latest_format=False):
     _write('V')
     version_format_map = _get_version_format_map(config, ds_id, tip_only)
     if version_format_map is None:
@@ -421,11 +428,17 @@ def _get_check_version_format_map(config, log_f, ds_id, tip_only=True):
         return {}
     for version in list(version_format_map):
         _write('F')
-        if not version_format_map[version]:
+        format = version_format_map[version]
+        if not format:
             del version_format_map[version]
             print(ds_id, version, 'NOFORMAT', file=log_f)
             log_f.flush()
             _write('!')
+        elif skip_latest_format and format == LATEST_FORMAT:
+            del version_format_map[version]
+            print(ds_id, version, format, 'SKIPPED', file=log_f)
+            log_f.flush()
+            _write('S')
     return version_format_map
 
 
