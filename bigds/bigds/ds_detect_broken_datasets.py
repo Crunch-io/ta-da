@@ -27,6 +27,7 @@ To pause the detect command (which could take days to run), put a file named
 "pause" in the current directory. Remove that file to resume.
 
 Log line formats:
+    <ds-id> DS-DELETED
     <ds-id> NO-VERSIONS
     <ds-id> <version> NOFORMAT
     <ds-id> - - FailedDatafilesCopy
@@ -127,6 +128,7 @@ def do_summary_report(args):
     # --------------------  ----- ----- ----- ----- ----- ----- -----
     # FailedDataFilesCopy
     # Failed...
+    # DS-DELETED
     # NO-VERSIONS
     # NOFORMAT
     # None
@@ -228,7 +230,9 @@ def _read_dataset_statuses(args):
                     continue
                 ds_id = parts[0]
                 info = {'format': '-', 'status': None}
-                if (len(parts) in (2, 3) and parts[-1].startswith('NO')
+                if (len(parts) in (2, 3)
+                        and (parts[-1].startswith('NO') or
+                             parts[-1].startswith('DS-'))
                         or len(parts) == 4):
                     info['status'] = parts[-1]
                 elif len(parts) == 2:
@@ -279,9 +283,9 @@ def _check_pause_flag():
 def _check_dataset(args, config, pool, log_f, ds_id, tip_only=True):
     version_format_map = _get_check_version_format_map(config, log_f, ds_id,
                                                        tip_only=tip_only)
-    versions = sorted(version_format_map)
-    if not versions:
+    if not version_format_map:
         return
+    versions = sorted(version_format_map)
     _write('C')
     try:
         if not _check_copy_dataset_datafiles(config, version_format_map,
@@ -405,10 +409,16 @@ def _delete_local_dataset_copy(config, pool, ds_id, versions):
 def _get_check_version_format_map(config, log_f, ds_id, tip_only=True):
     _write('V')
     version_format_map = _get_version_format_map(config, ds_id, tip_only)
+    if version_format_map is None:
+        print(ds_id, 'DS-DELETED', file=log_f)
+        log_f.flush()
+        _write('!')
+        return None
     if not version_format_map:
         print(ds_id, 'NO-VERSIONS', file=log_f)
         log_f.flush()
         _write('!')
+        return {}
     for version in list(version_format_map):
         _write('F')
         if not version_format_map[version]:
@@ -614,7 +624,7 @@ def _get_version_format_map(config, ds_id, tip_only=True):
     try:
         all_versions = os.listdir(join(ro_repo_dir, 'versions'))
     except OSError:
-        all_versions = []
+        return None
     version_format_map = {}
     for version in all_versions:
         if tip_only and version != 'master__tip':
