@@ -58,9 +58,14 @@ import lz4.frame
 import six
 import yaml
 
-import zz9d.stores
-import zz9d.objects.datasets
-import zz9d.execution
+try:
+    import zz9d
+except ImportError:
+    zz9d = None
+else:
+    import zz9d.stores
+    import zz9d.objects.datasets
+    import zz9d.execution
 
 LATEST_FORMAT = '25'
 
