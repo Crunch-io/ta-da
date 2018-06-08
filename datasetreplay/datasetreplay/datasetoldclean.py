@@ -1,5 +1,6 @@
 from __future__ import print_function
 
+import time
 import sys
 import datetime
 import requests
@@ -43,7 +44,7 @@ def main():
                 continue
 
             try:
-                day, time = ds['creation_time'].split('T', 1)
+                day, daytime = ds['creation_time'].split('T', 1)
                 day = datetime.datetime.strptime(day, '%Y-%m-%d')
             except:
                 print('Unable to parse creation_time for dataset %s' % ds['id'],
