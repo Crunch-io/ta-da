@@ -17,12 +17,16 @@ Options:
     --status=STATUS         Report processed DS IDs with STATUS
     --skip-cleanup          Don't delete local dataset copies afterwards
     --skip-latest           Don't look at datasets already at the latest format
+    --skip-tip              Skip master__tip when listing dataset versions
 
 Commands:
-    list    Save list of all dataset IDs found in repo into <filename>
-    detect  Read dataset IDs from each filename; do migration and diagostic
-            tests on each dataset. Rename each file to x.in-progress while it is
-            being processed, and x.done when it is done.
+    list    Save list of all dataset IDs and versions found in repo into
+            <filename>. Format is one dataset per line, dataset ID followed by
+            space-separated list of versions.
+    detect  Read dataset IDs and versions from each filename; do migration and
+            diagostic tests on each dataset version. If no version listed for a
+            dataset, assume master__tip. Rename each file to x.in-progress while
+            it is being processed, and x.done when it is done.
 
 To pause the detect command (which could take days to run), put a file named
 "pause" in the current directory. Remove that file to resume.
@@ -84,21 +88,33 @@ def do_list(args, filename):
     with open(filename, 'w') as f:
         for prefix_name in os.listdir(ro_repo_base):
             if len(prefix_name) != 2:
-                print("Skipping extraneous prefix dir:", prefix_name,
-                      file=sys.stderr)
+                print("Skipping extraneous prefix dir:", prefix_name)
                 continue
             for ds_id in os.listdir(join(ro_repo_base, prefix_name)):
                 if not re.match(DS_ID_PATTERN + '$', ds_id):
-                    print("Skipping extraneous dataset dir:", ds_id,
-                          file=sys.stderr)
+                    print("Skipping extraneous dataset dir:", ds_id)
+                    continue
+                versions_dir = join(ro_repo_base, prefix_name, ds_id,
+                                    'versions')
+                try:
+                    versions = os.listdir(versions_dir)
+                except OSError:
+                    print("Skipping dataset because missing versions dir:",
+                          ds_id)
+                    continue
+                if args['--skip-tip']:
+                    versions = [v for v in versions if v != 'master__tip']
+                if not versions:
+                    print("Skipping dataset because it has no versions:", ds_id)
                     continue
                 f.write(ds_id)
+                for version in versions:
+                    f.write(' ')
+                    f.write(version)
                 f.write('\n')
-                _write('.')
-            _write('\n')
 
 
-def do_detect(args, filenames, tip_only=True):
+def do_detect(args, filenames):
     """Detect broken datasets, reading dataset IDs from filenames"""
     config = _load_config(args)
     log_dirname = args['--log-dir']
@@ -106,10 +122,10 @@ def do_detect(args, filenames, tip_only=True):
         os.makedirs(log_dirname)
     if args['--rescan-all']:
         _write('Ignoring previous results, rescanning all datasets\n')
-        ds_id_status_map = None
+        ds_status_map = None
     else:
         _write('Reading previous logs\n')
-        ds_id_status_map = _read_dataset_statuses(args)
+        ds_status_map = _read_dataset_statuses(args)
     pool = multiprocessing.pool.ThreadPool(3)
     log_timestamp = datetime.datetime.utcnow().strftime('%Y-%m-%d-%H%M%S.%f')
     try:
@@ -120,8 +136,8 @@ def do_detect(args, filenames, tip_only=True):
                                          delete=False) as log_f:
             _write("Output log: {}\n".format(log_f.name))
             os.chmod(log_f.name, 0o664)
-            _check_datasets(args, config, pool, log_f, ds_id_status_map,
-                            filenames, tip_only=tip_only)
+            _check_datasets(args, config, pool, log_f, ds_status_map,
+                            filenames)
     finally:
         _write('\nWaiting for ThreadPool cleanup...')
         pool.close()
@@ -184,8 +200,7 @@ def do_ds_ids_report(args):
         print(ds_id)
 
 
-def _check_datasets(args, config, pool, log_f, ds_id_status_map, filenames,
-                    tip_only=True):
+def _check_datasets(args, config, pool, log_f, ds_status_map, filenames):
     for filename in filenames:
         processing_filename = filename + '.processing.' + str(os.getpid())
         try:
@@ -193,22 +208,25 @@ def _check_datasets(args, config, pool, log_f, ds_id_status_map, filenames,
         except OSError:
             _write("Input file not found, skipping: {}\n".format(filename))
             continue
-        ds_id_list = _read_ds_ids(processing_filename)
-        _write("Processing {} dataset IDs in file {}\n".format(
-            len(ds_id_list), filename))
-        if ds_id_status_map:
-            assert isinstance(ds_id_status_map, dict)
-            num_before = len(ds_id_list)
-            ds_id_list = [ds_id for ds_id in ds_id_list
-                          if ds_id not in ds_id_status_map]
-            _write('Skipping {} datasets with known statuses\n'.format(
-                num_before - len(ds_id_list)))
+        ds_id_versions_list = _read_ds_ids_versions(processing_filename)
+        raw_num_datasets = len(ds_id_versions_list)
+        raw_num_versions = _count_versions(ds_id_versions_list)
+        _write("Processing {} datasets and {} versions from file {}\n".format(
+            raw_num_datasets, raw_num_versions, filename))
+        if ds_status_map:
+            ds_id_versions_list = _filter_already_seen_versions(ds_id_versions_list,
+                                                                ds_status_map)
+            num_datasets = len(ds_id_versions_list)
+            num_versions = _count_versions(ds_id_versions_list)
+            _write("Filtered out {} datasets and {} versions already seen.\n"
+                   .format(raw_num_datasets - num_datasets,
+                           raw_num_versions - num_versions))
         try:
-            for ds_num, ds_id in enumerate(ds_id_list, 1):
+            for ds_num, (ds_id, versions) in enumerate(ds_id_versions_list, 1):
                 _check_pause_flag()
-                _write("{}/{} {} ".format(ds_num, len(ds_id_list),
-                                          ds_id))
-                _check_dataset(args, config, pool, log_f, ds_id, tip_only)
+                _write("{}/{} {} ({}):".format(ds_num, len(ds_id_versions_list),
+                                               ds_id, len(versions)))
+                _check_dataset(args, config, pool, log_f, ds_id, versions)
                 _write('\n')
         except KeyboardInterrupt:
             os.rename(processing_filename, filename)
@@ -217,16 +235,32 @@ def _check_datasets(args, config, pool, log_f, ds_id_status_map, filenames,
             os.rename(processing_filename, filename + '.done')
 
 
-# Note: If we later start checking versions other than master__tip then this
-# needs to be revisited.
+def _count_versions(ds_id_versions_list):
+    return sum(len(i[1]) for i in ds_id_versions_list)
+
+
+def _filter_already_seen_versions(ds_id_versions_list, ds_status_map):
+    filtered_ds_id_versions_list = []
+    for ds_id, versions in ds_id_versions_list:
+        filtered_versions = []
+        for version in versions:
+            if (ds_id, version) in ds_status_map:
+                continue
+            filtered_versions.append(version)
+        if filtered_versions:
+            filtered_ds_id_versions_list.append((ds_id, filtered_versions))
+    return filtered_ds_id_versions_list
+
+
 def _read_dataset_statuses(args):
     """
     Parse the logs to determine the status of dataset checks
-    Return: { ds_id: {'format': <format>, 'status': <status>} }
-    <format> is '-' when not applicable or unknown.
+    Return: { (ds_id, version): {'format': format, 'status': status} }
+    version and format are '-' when not applicable or unknown.
+    status is None if no status reported yet.
     """
     log_dir = args['--log-dir']
-    ds_id_status_map = {}
+    ds_status_map = {}
     for path in sorted(glob.glob(join(log_dir, '*.log'))):
         with open(path) as f:
             for line in f:
@@ -237,33 +271,48 @@ def _read_dataset_statuses(args):
                 if len(parts) < 2 or len(parts) > 4:
                     continue
                 ds_id = parts[0]
-                info = {'format': '-', 'status': None}
-                if (len(parts) in (2, 3)
-                        and (parts[-1].startswith('NO') or
-                             parts[-1].startswith('DS-'))
-                        or len(parts) == 4):
-                    info['status'] = parts[-1]
-                elif len(parts) == 2:
-                    # Probably a malformed line / not a status line
-                    continue
-                if len(parts) > 2 and not parts[2].startswith('NO'):
-                    info['format'] = parts[2]
-                ds_id_status_map[ds_id] = info
-    return ds_id_status_map
+                version = '-'
+                format = '-'
+                status = None
+                if len(parts == 2):
+                    status = parts[-1]
+                elif len(parts == 3):
+                    version = parts[1]
+                    try:
+                        int(parts[2])
+                    except ValueError:
+                        # Not an integer, so must be a status
+                        status = parts[2]
+                    else:
+                        format = parts[2]  # keep format as a string
+                else:
+                    version = parts[1]
+                    format = parts[2]
+                    status = parts[3]
+                ds_status_map[(ds_id, version)] = {
+                    'format': format,
+                    'status': status,
+                }
+    return ds_status_map
 
 
-def _read_ds_ids(filename):
-    ds_id_list = []
-    with open(filename) as ds_id_f:
-        for line in ds_id_f:
-            ds_id = line.strip()
-            if not ds_id:
+def _read_ds_ids_versions(filename):
+    """Return [(ds_id, [version, ...]), ...]"""
+    ds_id_versions_list = []
+    with open(filename) as f:
+        for line in f:
+            parts = line.split()
+            if not parts:
                 continue
+            ds_id = parts[0]
             # Filter out bogus dataset IDs that might have crept in
             if not re.match(DS_ID_PATTERN + '$', ds_id):
                 continue
-            ds_id_list.append(ds_id)
-    return ds_id_list
+            versions = parts[1:]
+            if not versions:
+                versions.append('master__tip')
+            ds_id_versions_list.append((ds_id, versions))
+    return ds_id_versions_list
 
 
 def _write(s):
@@ -288,11 +337,9 @@ def _check_pause_flag():
         sys.stderr.flush()
 
 
-def _check_dataset(args, config, pool, log_f, ds_id, tip_only=True,
-                   skip_latest_format=False):
+def _check_dataset(args, config, pool, log_f, ds_id, versions):
     version_format_map = _get_check_version_format_map(
-        config, log_f, ds_id,
-        tip_only=tip_only,
+        config, log_f, ds_id, versions,
         skip_latest_format=args['--skip-latest'])
     if not version_format_map:
         return
@@ -323,7 +370,7 @@ def _check_dataset_version(config, log_f, ds_id, version, format):
         ds = zz9d.objects.datasets.DatasetNode(ds_id, version, store, None)
         zz9d.execution.runtime.job.dataset = ds
     except Exception:
-        print('FailedDatasetVersion', file=log_f)
+        print('FailedDatasetNode', file=log_f)
         traceback.print_exc(file=log_f)
         _write('X!')
         return
@@ -417,10 +464,10 @@ def _delete_local_dataset_copy(config, pool, ds_id, versions):
                          (local_data_dir, {'ignore_errors': True}))
 
 
-def _get_check_version_format_map(config, log_f, ds_id, tip_only=True,
+def _get_check_version_format_map(config, log_f, ds_id, versions,
                                   skip_latest_format=False):
     _write('V')
-    version_format_map = _get_version_format_map(config, ds_id, tip_only)
+    version_format_map = _get_version_format_map(config, ds_id, versions)
     if version_format_map is None:
         print(ds_id, 'DS-DELETED', file=log_f)
         log_f.flush()
@@ -431,11 +478,11 @@ def _get_check_version_format_map(config, log_f, ds_id, tip_only=True,
         log_f.flush()
         _write('!')
         return {}
-    for version in list(version_format_map):
+    for version in versions:
         _write('F')
-        format = version_format_map[version]
+        format = version_format_map.get(version)
         if not format:
-            del version_format_map[version]
+            version_format_map.pop(version, None)
             print(ds_id, version, 'NOFORMAT', file=log_f)
             log_f.flush()
             _write('!')
@@ -636,16 +683,16 @@ def copytree(src, dst, symlinks=False, ignore=None):
     shutil.copystat(src, dst)
 
 
-def _get_version_format_map(config, ds_id, tip_only=True):
+def _get_version_format_map(config, ds_id, versions):
     """Get format of each version of interest"""
     ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
     try:
-        all_versions = os.listdir(join(ro_repo_dir, 'versions'))
+        existing_versions = set(os.listdir(join(ro_repo_dir, 'versions')))
     except OSError:
         return None
     version_format_map = {}
-    for version in all_versions:
-        if tip_only and version != 'master__tip':
+    for version in versions:
+        if version not in existing_versions:
             continue
         format = _get_dataset_format(config, ds_id, version)
         version_format_map[version] = format
