@@ -157,11 +157,11 @@ def do_summary_report(args):
     # NOFORMAT
     # None
     # all
-    ds_id_status_map = _read_dataset_statuses(args)
+    ds_status_map = _read_dataset_statuses(args)
     format_set = set(['all'])
     status_set = set(['all'])
     report_table = defaultdict(int)  # { (format, status): count }
-    for info in six.itervalues(ds_id_status_map):
+    for info in six.itervalues(ds_status_map):
         format = str(info['format'])
         status = str(info['status'])
         format_set.add(format)
@@ -170,7 +170,7 @@ def do_summary_report(args):
         report_table[('all', status)] += 1
         report_table[(format, 'all')] += 1
         report_table[('all', 'all')] += 1
-    print("Datasets by format and status")
+    print("Dataset versions by format and status")
     print("                     formats")
     print("status              ",
           *['{:>5}'.format(i) for i in sorted(format_set)])
@@ -186,18 +186,21 @@ def do_summary_report(args):
 def do_ds_ids_report(args):
     format = args['--format']
     status = args['--status']
-    print("# Dataset IDs processed so far", file=sys.stderr)
+    print("# Dataset versions processed so far", file=sys.stderr)
     if format:
         print("# with format:", format, file=sys.stderr)
     if status:
         print("# with status:", status, file=sys.stderr)
-    ds_id_status_map = _read_dataset_statuses(args)
-    for ds_id, info in six.iteritems(ds_id_status_map):
+    ds_status_map = _read_dataset_statuses(args)
+    ds_id_versions_map = defaultdict(list)
+    for (ds_id, version), info in six.iteritems(ds_status_map):
         if format and str(info['format']) != format:
             continue
         if status and str(info['status']) != status:
             continue
-        print(ds_id)
+        ds_id_versions_map[ds_id].append(version)
+    for ds_id, versions in six.iteritems(ds_id_versions_map):
+        print(ds_id, ' '.join(sorted(versions)))
 
 
 def _check_datasets(args, config, pool, log_f, ds_status_map, filenames):
@@ -274,9 +277,9 @@ def _read_dataset_statuses(args):
                 version = '-'
                 format = '-'
                 status = None
-                if len(parts == 2):
+                if len(parts) == 2:
                     status = parts[-1]
-                elif len(parts == 3):
+                elif len(parts) == 3:
                     version = parts[1]
                     try:
                         int(parts[2])
