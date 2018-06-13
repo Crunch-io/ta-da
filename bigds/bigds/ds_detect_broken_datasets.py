@@ -173,12 +173,12 @@ def do_summary_report(args):
     print("Dataset versions by format and status")
     print("                     formats")
     print("status              ",
-          *['{:>5}'.format(i) for i in sorted(format_set)])
-    print("--------------------", *(['-----'] * len(format_set)))
+          *['{:>6}'.format(i) for i in sorted(format_set)])
+    print("--------------------", *(['------'] * len(format_set)))
     for status in sorted(status_set):
         print('{:20}'.format(status), end=' ')
         for format in sorted(format_set):
-            print('{:5}'.format(report_table[(format, status)]), end=' ')
+            print('{:6}'.format(report_table[(format, status)]), end=' ')
         print()
     print()
 
