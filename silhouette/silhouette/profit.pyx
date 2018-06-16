@@ -30,13 +30,22 @@ cdef record_exit(Call self, double elapsed):
 
 
 cdef dict Call_as_dict(Call self):
-    if self.count == 0:
-        return {}
-    return {
+    now = time.time()
+    d = {
         "min": self.min, "max": self.max,
         "total": self.total, "count": self.count,
         "recur": self.recur
     }
+    if self._depth > 0:
+        # The call is still under way, probably in a separate thread.
+        # Record its partial time.
+        d["total"] += now - self._start
+        d["count"] += 1
+
+    if d["count"] == 0:
+        return {}
+
+    return d
 
 
 cdef class Call:
@@ -88,12 +97,16 @@ class Profit(_threadlocal):
         """Remove all attributes of self."""
         self.calls = defaultdict(Call)
 
-    def as_dicts(self):
+    def as_dicts(self, calls=None):
         """Return a dict of {tag: call.__dict__} pairs."""
         cdef Call call
+
+        if calls is None:
+            calls = self.calls
+
         return dict(
             (tag, call.as_dict())
-            for tag, call in self.calls.iteritems()
+            for tag, call in calls.iteritems()
         )
 
     def merge(self, updates):
