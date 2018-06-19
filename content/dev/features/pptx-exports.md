@@ -28,23 +28,22 @@ When you open the deck in PowerPoint, you’ll see all of the analyses from your
 You can even edit the data series behind the chart. For example, you may want to take slices of multiple charts and show them on the same slide. Each chart effectively has an Excel table embedded behind it, which you can alter as you need.
 
 ## Apply templates
-
-{{< figure src="dev/features/images/pptx-style-1.png" class="float-md-right img-fluid" width="250px">}}
-{{< figure src="dev/features/images/pptx-style-2.png" class="float-md-right img-fluid" width="250px">}}
-
-
 From there, you can style it using a built-in or custom theme.
 
-
 What’s more, because the graph is native PowerPoint, you can seamlessly incorporate your results from Crunch into your already carefully and consistently styled presentations; the graphs will take on the styles defined in your presentation. Simply drag, or copy and paste the whole slide or just the graph from the Crunch download into your deck.
+
+
+{{< figure src="dev/features/images/pptx-style-1.png" class="img-fluid" width="250px">}}
+
+{{< figure src="dev/features/images/pptx-style-2.png" class="img-fluid" width="250px">}}
 
 {{< figure src="dev/features/images/pptx-custom-style.png" class="img-fluid" width="350px">}}
 
 
-### Future developments
+## Future developments
 
 The PowerPoint download doesn’t display saved *tables* yet, but we are already working on adding native tables and expect those to be included soon.
 
-### We need your feedback!
+## We need your feedback!
 
 We want to make the Crunch Deck to final-product deck process even smoother, so we want to hear from you: what steps would save you time? What could we do better in these presentations? Let us know — just drop a line to [support@crunch.io](mailto:support@crunch.io).
