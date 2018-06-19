@@ -42,7 +42,7 @@ What’s more, because the graph is native PowerPoint, you can seamlessly incorp
 
 ## Future developments
 
-The PowerPoint download doesn’t display saved *tables* yet, but we are already working on adding native tables and expect those to be included soon.
+The PowerPoint download doesn’t display saved *tables* yet, but we expect those to be included soon.
 
 ## We need your feedback!
 
