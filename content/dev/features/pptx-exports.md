@@ -33,11 +33,11 @@ From there, you can style it using a built-in or custom theme.
 What’s more, because the graph is native PowerPoint, you can seamlessly incorporate your results from Crunch into your already carefully and consistently styled presentations; the graphs will take on the styles defined in your presentation. Simply drag, or copy and paste the whole slide or just the graph from the Crunch download into your deck.
 
 
-{{< figure src="dev/features/images/pptx-style-1.png" class="img-fluid" width="250px">}}
+{{< figure src="dev/features/images/pptx-style-1.png" class="float-md-left img-fluid" width="450px">}}
 
-{{< figure src="dev/features/images/pptx-style-2.png" class="img-fluid" width="250px">}}
+{{< figure src="dev/features/images/pptx-style-2.png" class="float-md-left img-fluid" width="450px">}}
 
-{{< figure src="dev/features/images/pptx-custom-style.png" class="img-fluid" width="350px">}}
+{{< figure src="dev/features/images/pptx-custom-style.png" class="center img-fluid">}}
 
 
 ## Future developments
