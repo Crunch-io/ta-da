@@ -185,6 +185,10 @@ figure {
         text-align: center;
     }
 
+    &.bordered img {
+        border: 1px solid $color-grey-normal;
+    }
+
     &.img-fluid {
         img {
             max-width: 100%;

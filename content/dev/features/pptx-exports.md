@@ -37,7 +37,7 @@ What’s more, because the graph is native PowerPoint, you can seamlessly incorp
 
 {{< figure src="dev/features/images/pptx-style-2.png" class="float-md-left img-fluid" width="450px">}}
 
-{{< figure src="dev/features/images/pptx-custom-style.png" class="center img-fluid">}}
+{{< figure src="dev/features/images/pptx-custom-style.png" class="center bordered img-fluid">}}
 
 
 ## Future developments
