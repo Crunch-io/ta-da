@@ -17,6 +17,8 @@ We know that for many, data analysis isn’t complete until the results are in a
 
 With our new direct PowerPoint export feature, you can download your Crunch decks to PowerPoint files. Each analysis shows up as a graph on a slide, and these graphs are fully customizable in PowerPoint. You can even apply your own style and template with just a few clicks. Here’s how:
 
+<br />
+
 ## Download
 
 To get a PowerPoint file, open the deck tray and select the deck you want to download. Click the download button, which instead of just downloading an Excel file as before, gives you the option of Excel or PowerPoint. When you select one, the download starts.
