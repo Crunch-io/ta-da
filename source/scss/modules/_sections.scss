@@ -122,6 +122,10 @@
     }
 
     .secondary-content {
+        h1 {
+            font-size: 1.8em;    
+        }
+
         h2 {
             color: $color-green;
 
@@ -279,7 +283,6 @@
 
     .blog-content-mg {
         margin-top: 30px;
-        padding: 0;
 
         pre {
             background-color: $color-grey-ligher;
