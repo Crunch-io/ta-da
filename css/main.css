@@ -5393,6 +5393,9 @@ h4 {
 #secondary-pages-wrapper .lead {
   color: #107f65; }
 
+#secondary-pages-wrapper .secondary-content h1 {
+  font-size: 1.8em; }
+
 #secondary-pages-wrapper .secondary-content h2 {
   color: #107f65; }
   #secondary-pages-wrapper .secondary-content h2 span {
@@ -5478,8 +5481,7 @@ h4 {
     font-size: 2em; }
 
 #secondary-pages-wrapper .blog-content-mg {
-  margin-top: 30px;
-  padding: 0; }
+  margin-top: 30px; }
   #secondary-pages-wrapper .blog-content-mg pre {
     background-color: #f1f1f1;
     padding: 20px;
@@ -5919,6 +5921,12 @@ h4 {
 
 .post-job {
   min-height: 200px; }
+
+figure.center {
+  text-align: center; }
+
+figure.bordered img {
+  border: 1px solid #e5e5e5; }
 
 figure.img-fluid img {
   max-width: 100%;
