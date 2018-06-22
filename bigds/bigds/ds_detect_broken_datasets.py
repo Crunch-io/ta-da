@@ -218,8 +218,7 @@ def do_ds_details_report(args):
     f, line_num, line = None, None, None
     num_filtered_results = 0
     try:
-        while ds_result_map:
-            (ds_id, version), result = ds_result_map.popitem(last=False)
+        for (ds_id, version), result in six.iteritems(ds_result_map):
             if format and str(result['format']) != format:
                 continue
             if status and str(result['status']) != status:
