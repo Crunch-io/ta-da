@@ -7,6 +7,7 @@ Usage:
     ds.detect-broken-datasets [options] detect <filename>...
     ds.detect-broken-datasets [options] summary_report
     ds.detect-broken-datasets [options] ds_ids_report
+    ds.detect-broken-datasets [options] ds_details_report
 
 Options:
     --config=FILENAME       [default: config.yaml]
@@ -43,7 +44,7 @@ Log line formats:
 A line in any other format is an error detail line (traceback, etc.)
 """
 from __future__ import print_function
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 import datetime
 import glob
 import json
@@ -203,6 +204,54 @@ def do_ds_ids_report(args):
         print(ds_id, ' '.join(sorted(versions)))
 
 
+def do_ds_details_report(args):
+    format = args['--format']
+    status = args['--status']
+    print("# Dataset test migration results", file=sys.stderr)
+    if format:
+        print("# with format:", format, file=sys.stderr)
+    if status:
+        print("# with status:", status, file=sys.stderr)
+    ds_result_map = _index_result_logs(args)
+    print("# Number of results before filtering:", len(ds_result_map),
+          file=sys.stderr)
+    f, line_num, line = None, None, None
+    num_filtered_results = 0
+    try:
+        while ds_result_map:
+            (ds_id, version), result = ds_result_map.popitem(last=False)
+            if format and str(result['format']) != format:
+                continue
+            if status and str(result['status']) != status:
+                continue
+            num_filtered_results += 1
+            if f is None:
+                f, line_num, line = open(result['filename'], 'r'), 0, None
+            elif f.name != result['filename']:
+                f.close()
+                f, line_num, line = open(result['filename'], 'r'), 0, None
+            while line_num < result['line_start']:
+                line = f.readline()
+                if line:
+                    line_num += 1
+                else:
+                    raise Exception("Somehow index results got out of sync")
+            while True:
+                print(line.rstrip())
+                if line_num >= result['line_end']:
+                    break
+                line = f.readline()
+                if line:
+                    line_num += 1
+                else:
+                    break
+    finally:
+        if f is not None:
+            f.close()
+    print("# Number of filtered results:", num_filtered_results,
+          file=sys.stderr)
+
+
 def _check_datasets(args, config, pool, log_f, ds_status_map, filenames):
     for filename in filenames:
         processing_filename = filename + '.processing.' + str(os.getpid())
@@ -255,6 +304,52 @@ def _filter_already_seen_versions(ds_id_versions_list, ds_status_map):
     return filtered_ds_id_versions_list
 
 
+def _analyze_log_line(line):
+    """
+    If the line is a dataset migration summary line, return:
+        {
+            'ds_id': <dataset-ID>,
+            'version': version,
+            'format': format,
+            'status': status,
+        }
+    Else return None.
+    version and format are '-' when not applicable or unknown.
+    status is None if no status reported yet.
+    """
+    m = re.match(DS_ID_PATTERN + r'\s', line)
+    if not m:
+        return None
+    parts = line.split()
+    if len(parts) < 2 or len(parts) > 4:
+        return None
+    ds_id = parts[0]
+    version = '-'
+    format = '-'
+    status = None
+    if len(parts) == 2:
+        status = parts[-1]
+    elif len(parts) == 3:
+        version = parts[1]
+        try:
+            int(parts[2])
+        except ValueError:
+            # Not an integer, so must be a status
+            status = parts[2]
+        else:
+            format = parts[2]  # keep format as a string
+    else:
+        version = parts[1]
+        format = parts[2]
+        status = parts[3]
+    return {
+        'ds_id': ds_id,
+        'version': version,
+        'format': format,
+        'status': status,
+    }
+
+
 def _read_dataset_statuses(args):
     """
     Parse the logs to determine the status of dataset checks
@@ -267,36 +362,56 @@ def _read_dataset_statuses(args):
     for path in sorted(glob.glob(join(log_dir, '*.log'))):
         with open(path) as f:
             for line in f:
-                m = re.match(DS_ID_PATTERN + r'\s', line)
-                if not m:
+                result = _analyze_log_line(line)
+                if result is None:
                     continue
-                parts = line.split()
-                if len(parts) < 2 or len(parts) > 4:
-                    continue
-                ds_id = parts[0]
-                version = '-'
-                format = '-'
-                status = None
-                if len(parts) == 2:
-                    status = parts[-1]
-                elif len(parts) == 3:
-                    version = parts[1]
-                    try:
-                        int(parts[2])
-                    except ValueError:
-                        # Not an integer, so must be a status
-                        status = parts[2]
-                    else:
-                        format = parts[2]  # keep format as a string
-                else:
-                    version = parts[1]
-                    format = parts[2]
-                    status = parts[3]
-                ds_status_map[(ds_id, version)] = {
-                    'format': format,
-                    'status': status,
-                }
+                ds_id = result.pop('ds_id')
+                version = result.pop('version')
+                ds_status_map[(ds_id, version)] = result
     return ds_status_map
+
+
+def _index_result_logs(args):
+    """
+    Scan the log files and find the latest test migration results for every
+    known dataset version. The latest information is returned; earlier results
+    are skipped.
+    Result format:
+        {
+            (ds_id, version): {
+                'format': format,
+                'status': status
+                'filename': <log-filename>,
+                'line_start': <1-based-line-number-of-first-line>,
+                'line_end': <1-based-line-numberof-last-line>,
+            },
+            ...
+        }
+        version and format are '-' when not applicable or unknown.
+        status is None if no status reported yet.
+    The result is returned as an OrderedDict so that results from the same log
+    file will be kept together during iteration (this is crucial.)
+    """
+    log_dir = args['--log-dir']
+    ds_result_map = OrderedDict()
+    for path in sorted(glob.glob(join(log_dir, '*.log'))):
+        cur_result = None
+        with open(path) as f:
+            for line_num, line in enumerate(f, 1):
+                result = _analyze_log_line(line)
+                if result is None:
+                    if cur_result is not None:
+                        cur_result['line_end'] = line_num
+                    continue
+                cur_result = result
+                ds_id = result.pop('ds_id')
+                version = result.pop('version')
+                result['filename'] = path
+                result['line_start'] = line_num
+                result['line_end'] = line_num
+                ds_result_map.pop((ds_id, version), None)
+                ds_result_map[(ds_id, version)] = result
+    return ds_result_map
 
 
 def _read_ds_ids_versions(filename):
@@ -784,6 +899,8 @@ def _do_command(args):
             return do_summary_report(args)
         if args['ds_ids_report']:
             return do_ds_ids_report(args)
+        if args['ds_details_report']:
+            return do_ds_details_report(args)
         print("No command, or command not implemented yet.", file=sys.stderr)
         return 1
     finally:
