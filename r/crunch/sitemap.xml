@@ -85,6 +85,9 @@
     <loc>http://crunch.io/r/crunch//reference/appendStream.html</loc>
   </url>
   <url>
+    <loc>http://crunch.io/r/crunch//reference/applyAgainst.html</loc>
+  </url>
+  <url>
     <loc>http://crunch.io/r/crunch//reference/applyTransforms.html</loc>
   </url>
   <url>
@@ -223,6 +226,9 @@
     <loc>http://crunch.io/r/crunch//reference/dataset-owner.html</loc>
   </url>
   <url>
+    <loc>http://crunch.io/r/crunch//reference/dataset-reference.html</loc>
+  </url>
+  <url>
     <loc>http://crunch.io/r/crunch//reference/dataset-to-R.html</loc>
   </url>
   <url>
@@ -328,6 +334,9 @@
     <loc>http://crunch.io/r/crunch//reference/getAccountUserCatalog.html</loc>
   </url>
   <url>
+    <loc>http://crunch.io/r/crunch//reference/getDimTypes.html</loc>
+  </url>
+  <url>
     <loc>http://crunch.io/r/crunch//reference/getTeams.html</loc>
   </url>
   <url>
@@ -341,6 +350,9 @@
   </url>
   <url>
     <loc>http://crunch.io/r/crunch//reference/handleAPIresponse.html</loc>
+  </url>
+  <url>
+    <loc>http://crunch.io/r/crunch//reference/hasFunction.html</loc>
   </url>
   <url>
     <loc>http://crunch.io/r/crunch//reference/hiddenVariables.html</loc>
@@ -404,6 +416,9 @@
   </url>
   <url>
     <loc>http://crunch.io/r/crunch//reference/makeArray.html</loc>
+  </url>
+  <url>
+    <loc>http://crunch.io/r/crunch//reference/makeArrayGadget.html</loc>
   </url>
   <url>
     <loc>http://crunch.io/r/crunch//reference/makeCaseVariable.html</loc>
@@ -631,6 +646,9 @@
     <loc>http://crunch.io/r/crunch//reference/urls.html</loc>
   </url>
   <url>
+    <loc>http://crunch.io/r/crunch//reference/user-email.html</loc>
+  </url>
+  <url>
     <loc>http://crunch.io/r/crunch//reference/validateNamesInDims.html</loc>
   </url>
   <url>
@@ -698,6 +716,9 @@
   </url>
   <url>
     <loc>http://crunch.io/r/crunch//articles/filters.html</loc>
+  </url>
+  <url>
+    <loc>http://crunch.io/r/crunch//articles/fork-and-merge.html</loc>
   </url>
   <url>
     <loc>http://crunch.io/r/crunch//articles/subtotals.html</loc>
