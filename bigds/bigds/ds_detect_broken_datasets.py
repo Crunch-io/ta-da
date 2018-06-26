@@ -475,10 +475,16 @@ def _check_dataset(args, config, pool, log_f, ds_id, versions):
             print(ds_id, version, format, file=log_f, end=' ')
             log_f.flush()
             _check_dataset_version(config, log_f, ds_id, version, format)
+            if not args['--skip-cleanup']:
+                local_data_dir = _get_local_zz9data_dir(config, ds_id, version)
+                pool.apply_async(shutil.rmtree,
+                                 (local_data_dir, {'ignore_errors': True}))
     finally:
         log_f.flush()
         if not args['--skip-cleanup']:
-            _delete_local_dataset_copy(config, pool, ds_id, versions)
+            local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
+            pool.apply_async(shutil.rmtree,
+                             (local_repo_dir, {'ignore_errors': True}))
 
 
 def _check_dataset_version(config, log_f, ds_id, version, format):
@@ -570,15 +576,6 @@ def test_check_dict_for_errors():
 def _get_zz9_store(config):
     store_config = config['store_config']
     return zz9d.stores.get_store(store_config)
-
-
-def _delete_local_dataset_copy(config, pool, ds_id, versions):
-    local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
-    pool.apply_async(shutil.rmtree, (local_repo_dir, {'ignore_errors': True}))
-    for version in versions:
-        local_data_dir = _get_local_zz9data_dir(config, ds_id, version)
-        pool.apply_async(shutil.rmtree,
-                         (local_data_dir, {'ignore_errors': True}))
 
 
 def _get_check_version_format_map(config, log_f, ds_id, versions,
@@ -845,7 +842,7 @@ def _load_config(args):
 
 
 def _check_config(config):
-    assert not _directory_is_writable(config['read_only_zz9repo'])
+    assert os.path.isdir(config['read_only_zz9repo'])
     store_config = config['store_config']
     assert _directory_is_writable(store_config['datadir'])
     assert _directory_is_writable(store_config['repodir'])
