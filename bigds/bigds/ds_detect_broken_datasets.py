@@ -462,6 +462,7 @@ def _check_dataset(args, config, pool, log_f, ds_id, versions):
         return
     versions = sorted(version_format_map)
     _write('C')
+    local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
     try:
         if not _check_copy_dataset_datafiles(config, version_format_map,
                                              log_f, ds_id):
@@ -479,10 +480,12 @@ def _check_dataset(args, config, pool, log_f, ds_id, versions):
                 local_data_dir = _get_local_zz9data_dir(config, ds_id, version)
                 pool.apply_async(shutil.rmtree,
                                  (local_data_dir, {'ignore_errors': True}))
+                version_dst = join(local_repo_dir, 'versions', version)
+                pool.apply_async(shutil.rmtree,
+                                 (version_dst, {'ignore_errors': True}))
     finally:
         log_f.flush()
         if not args['--skip-cleanup']:
-            local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
             pool.apply_async(shutil.rmtree,
                              (local_repo_dir, {'ignore_errors': True}))
 
