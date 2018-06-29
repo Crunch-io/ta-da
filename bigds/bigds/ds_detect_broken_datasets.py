@@ -5,7 +5,7 @@ See: https://www.pivotaltracker.com/story/show/157122927
 Usage:
     ds.detect-broken-datasets [options] list <filename>
     ds.detect-broken-datasets [options] detect <filename>...
-    ds.detect-broken-datasets [options] summary_report
+    ds.detect-broken-datasets [options] summary_report [<filename>]
     ds.detect-broken-datasets [options] ds_ids_report
     ds.detect-broken-datasets [options] ds_details_report
     ds.detect-broken-datasets [options] cleanup-local-zz9repo <ds-id>
@@ -150,12 +150,18 @@ def do_detect(args, filenames):
 
 
 def do_summary_report(args):
+    """
+    Print a summary report of dataset version statuses.
+    If the optional <filename> is given, read dataset IDs/versions from that
+    file. Any dataset version in that file that does not appear in the logs has
+    its status counted as "NotYetScanned".
+    """
     #                       formats
     # status                -     21    22    23    24    25    all
     # --------------------  ----- ----- ----- ----- ----- ----- -----
+    # DS-DELETED
     # FailedDataFilesCopy
     # Failed...
-    # DS-DELETED
     # NO-VERSIONS
     # SKIPPED
     # NOFORMAT
@@ -165,6 +171,20 @@ def do_summary_report(args):
     format_set = set(['all'])
     status_set = set(['all'])
     report_table = defaultdict(int)  # { (format, status): count }
+    if args['<filename>']:
+        filename = args['<filename>'][0]  #  it's a list
+        ds_id_versions_list = _read_ds_ids_versions(filename)
+        format = '-'
+        status = 'NotYetScanned'
+        format_set.add(format)
+        status_set.add(status)
+        for ds_id, versions in ds_id_versions_list:
+            for version in versions:
+                if (ds_id, version) not in ds_status_map:
+                    report_table[(format, status)] += 1
+                    report_table[('all', status)] += 1
+                    report_table[(format, 'all')] += 1
+                    report_table[('all', 'all')] += 1
     for info in six.itervalues(ds_status_map):
         format = str(info['format'])
         status = str(info['status'])
