@@ -8,6 +8,7 @@ Usage:
     ds.detect-broken-datasets [options] summary_report
     ds.detect-broken-datasets [options] ds_ids_report
     ds.detect-broken-datasets [options] ds_details_report
+    ds.detect-broken-datasets [options] cleanup-local-zz9repo <ds-id>
 
 Options:
     --config=FILENAME       [default: config.yaml]
@@ -71,6 +72,8 @@ else:
     import zz9d.stores
     import zz9d.objects.datasets
     import zz9d.execution
+
+this_module = sys.modules[__name__]
 
 LATEST_FORMAT = '25'
 
@@ -249,6 +252,37 @@ def do_ds_details_report(args):
             f.close()
     print("# Number of filtered results:", num_filtered_results,
           file=sys.stderr)
+
+
+def do_cleanup_local_zz9repo(args):
+    """
+    Delete from a local zz9repo directory for a dataset:
+        - version sub-directories that have already been processed
+        - datafiles sub-directories that have already been processed
+    """
+    ds_id = args['<ds-id>']
+    config = _load_config(args)
+    print("Reading dataset/version statuses")
+    ds_status_map = _read_dataset_statuses(args)
+    local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
+    print("Looking at versions of dataset:", ds_id)
+    for (cur_ds_id, version), info in six.iteritems(ds_status_map):
+        if cur_ds_id != ds_id:
+            continue
+        status = info['status']
+        if not status or status == 'None':
+            continue
+        # It's an already-processed version
+        data_dir = join(local_repo_dir, 'datafiles', version)
+        if os.path.exists(data_dir):
+            print("Removing data subdir:", data_dir)
+            shutil.rmtree(data_dir)
+        version_dir = join(local_repo_dir, 'versions', version)
+        if os.path.exists(version_dir):
+            print("Removing version subdir:", version_dir)
+            shutil.rmtree(version_dir)
+    print("Done.")
+
 
 
 def _check_datasets(args, config, pool, log_f, ds_status_map, filenames):
@@ -894,12 +928,13 @@ def _do_command(args):
             return do_list(args, filenames[0])
         if args['detect']:
             return do_detect(args, filenames)
-        if args['summary_report']:
-            return do_summary_report(args)
-        if args['ds_ids_report']:
-            return do_ds_ids_report(args)
-        if args['ds_details_report']:
-            return do_ds_details_report(args)
+        # Some command other than 'list' or 'detect'
+        for key, value in six.iteritems(args):
+            if not key.startswith('-') and not key.startswith('<') and value:
+                funcname = 'do_' + key.replace('-', '_')
+                func = getattr(this_module, funcname, None)
+                if func:
+                    return func(args)
         print("No command, or command not implemented yet.", file=sys.stderr)
         return 1
     finally:
