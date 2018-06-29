@@ -5,6 +5,7 @@ Usage:
     ds.fix [options] list-versions <ds-id>
     ds.fix [options] replay-from <ds-id> <ds-version>
     ds.fix [options] unsafe-restore-tip <ds-id> <ds-version>
+    ds.fix [options] diagnose <ds-id> <ds-version>
     ds.fix [options] list-all-actions [--long] <ds-id>
     ds.fix [options] save-actions <ds-id> <ds-version> <filename>
     ds.fix [options] show-actions [--long] <filename>
@@ -96,8 +97,7 @@ def do_unsafe_restore_tip(args):
     ds_version = args['<ds-version>'].strip()
     assert ds_id and ds_version
     _cr_lib_init(args)
-    target_ds = Dataset.find_one_with_timeout(
-        dict(id=ds_id, version='master__tip'), timeout=5, wait=0.5)
+    target_ds = Dataset.find_by_id(id=ds_id, version='master__tip')
     print("About to call: _unsafe_restore_tip({!r}, {!r})"
           .format(target_ds, ds_version))
     _unsafe_restore_tip(target_ds, ds_version)
@@ -139,6 +139,70 @@ def _unsafe_restore_tip(target_ds, from_version):
             autorollback=target_ds.AutorollbackType.Disabled,
             task=None,
         )
+
+
+def do_diagnose(args):
+    ds_id = args['<ds-id>']
+    ds_version = 'master__tip'
+    _cr_lib_init(args)
+    ds = Dataset.find_by_id(id=ds_id, version=ds_version)
+    info = ds.diagnose()
+    pprint.pprint(info)
+    _check_ds_diagnosis(info)
+
+
+def _check_ds_diagnosis(info, format=None):
+    if info['writeflag']:
+        raise Exception("Non-empty writeflag present.")
+    if format:
+        if str(info['format']) != str(format):
+            raise Exception("Format {} in diagnosis doesn't match format {}"
+                            .format(info['format'], format))
+    errors = _check_dict_for_errors(info)
+    if errors:
+        raise Exception("Errors found in diagnosis: {}".format(errors))
+
+
+def _check_dict_for_errors(d, path=None, errors=None):
+    if path is None:
+        path = []
+    if errors is None:
+        errors = []
+    for key, value in d.items():
+        if key in ('error', 'errors'):
+            if value:
+                errors.append(('.'.join(str(i) for i in (path + [key])),
+                              value))
+        elif isinstance(value, dict):
+            _check_dict_for_errors(value, path=(path + [key]), errors=errors)
+    return errors
+
+
+def test_check_dict_for_errors():
+    d0 = {
+        'blah': [1, 2, 3],
+        'blee': {'bloo': {'msg': "all is well"}},
+    }
+    d1 = {
+        'blah': [1, 2, 3],
+        'blee': {'error': None},
+    }
+    d2 = {
+        'blah': [1, 2, 3],
+        'blee': {'error': "Red alert!"},
+    }
+    d3 = {
+        'blah': [1, 2, 3],
+        'blee': {'errors': ['e1', 'e2', 'e3']},
+        'error': 4,
+    }
+    assert _check_dict_for_errors(d0) == []
+    assert _check_dict_for_errors(d1) == []
+    assert _check_dict_for_errors(d2) == [('blee.error', 'Red alert!')]
+    e = _check_dict_for_errors(d3)
+    assert len(e) == 2
+    assert ('blee.errors', ['e1', 'e2', 'e3']) in e
+    assert ('error', 4) in e
 
 
 def do_list_all_actions(args):
