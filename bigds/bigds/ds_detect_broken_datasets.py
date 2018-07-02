@@ -9,6 +9,7 @@ Usage:
     ds.detect-broken-datasets [options] ds_ids_report
     ds.detect-broken-datasets [options] ds_details_report
     ds.detect-broken-datasets [options] cleanup-local-zz9repo <ds-id>
+    ds.detect-broken-datasets [options] clean-logs
 
 Options:
     --config=FILENAME       [default: config.yaml]
@@ -172,7 +173,7 @@ def do_summary_report(args):
     status_set = set(['all'])
     report_table = defaultdict(int)  # { (format, status): count }
     if args['<filename>']:
-        filename = args['<filename>'][0]  #  it's a list
+        filename = args['<filename>'][0]  # it's a list
         ds_id_versions_list = _read_ds_ids_versions(filename)
         format = '-'
         status = 'NotYetScanned'
@@ -304,6 +305,109 @@ def do_cleanup_local_zz9repo(args):
     print("Done.")
 
 
+def do_clean_logs(args):
+    """
+    Delete items from logs that pertain to a given status and/or version.
+    If no filter criteria given, don't delete anything.
+    """
+    format = args['--format']
+    status = args['--status']
+    if not (format or status):
+        print("# Use --format and/or --status to indicate log items to delete.",
+              file=sys.stderr)
+        return
+    print("# Deleting items from logs", file=sys.stderr)
+    if format:
+        print("# with format:", format, file=sys.stderr)
+    if status:
+        print("# with status:", status, file=sys.stderr)
+    ds_result_map = _index_result_logs(args)
+    print("# Number of results before filtering:", len(ds_result_map),
+          file=sys.stderr)
+    cleaner = _LogCleaner(ds_result_map, format=format, status=status)
+    num_deleted_items = cleaner()
+    print("# Number of deleted log items:", num_deleted_items,
+          file=sys.stderr)
+
+
+class _LogCleaner(object):
+
+    def __init__(self, ds_result_map, format=None, status=None):
+        self.ds_result_map = ds_result_map
+        self.format = format
+        self.status = status
+        #####
+        self.filename_suffix = '-filtering.{}'.format(os.getpid())
+        self.rf = None
+        self.wf = None
+        self.line_num = None
+        self.changes_in_cur_file = None
+
+    def _ensure_processing_file(self, filename):
+        if self.rf is None:
+            # Open first file
+            if filename:
+                self._open_file(filename)
+        elif self.rf.name != filename:
+            # Changing to a different file or closing last file
+            if self.changes_in_cur_file > 0:
+                while True:
+                    line = self.rf.readline()
+                    if not line:
+                        break
+                    self.wf.write(line)
+            self.rf.close()
+            self.wf.close()
+            if self.changes_in_cur_file > 0:
+                os.remove(self.rf.name)
+                os.rename(self.wf.name, self.rf.name)
+            else:
+                os.remove(self.wf.name)
+            if filename:
+                self._open_file(filename)
+
+    def _open_file(self, filename):
+        self.rf = open(filename, 'r')
+        self.wf = open(filename + self.filename_suffix, 'w')
+        self.line_num = 0
+        self.changes_in_cur_file = 0
+
+    def _read_line(self):
+        line = self.rf.readline()
+        if line:
+            self.line_num += 1
+        return line
+
+    def __call__(self):
+        num_deleted_items = 0
+        line = None
+        try:
+            for (ds_id, version), result in six.iteritems(self.ds_result_map):
+                if self.format and str(result['format']) != self.format:
+                    continue
+                if self.status and str(result['status']) != self.status:
+                    continue
+                num_deleted_items += 1
+                self._ensure_processing_file(result['filename'])
+                self.changes_in_cur_file += 1
+                while True:
+                    line = self._read_line()
+                    if not line:
+                        raise Exception("Somehow index results got out of sync")
+                    if self.line_num >= result['line_start']:
+                        break
+                    self.wf.write(line)
+                while True:
+                    print(line.rstrip())
+                    if self.line_num >= result['line_end']:
+                        break
+                    line = self._read_line()
+                    if not line:
+                        break
+        finally:
+            self._ensure_processing_file(None)
+        return num_deleted_items
+
 
 def _check_datasets(args, config, pool, log_f, ds_status_map, filenames):
     for filename in filenames:
@@ -319,8 +423,10 @@ def _check_datasets(args, config, pool, log_f, ds_status_map, filenames):
         _write("Processing {} datasets and {} versions from file {}\n".format(
             raw_num_datasets, raw_num_versions, filename))
         if ds_status_map:
-            ds_id_versions_list = _filter_already_seen_versions(ds_id_versions_list,
-                                                                ds_status_map)
+            ds_id_versions_list = _filter_already_seen_versions(
+                ds_id_versions_list,
+                ds_status_map,
+            )
             num_datasets = len(ds_id_versions_list)
             num_versions = _count_versions(ds_id_versions_list)
             _write("Filtered out {} datasets and {} versions already seen.\n"
