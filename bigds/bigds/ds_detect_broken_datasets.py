@@ -131,7 +131,7 @@ def do_detect(args, filenames):
     else:
         _write('Reading previous logs\n')
         ds_status_map = _read_dataset_statuses(args)
-    pool = multiprocessing.pool.ThreadPool(3)
+    pool = multiprocessing.pool.ThreadPool(5)
     log_timestamp = datetime.datetime.utcnow().strftime('%Y-%m-%d-%H%M%S.%f')
     try:
         with tempfile.NamedTemporaryFile(mode='w',
@@ -141,8 +141,9 @@ def do_detect(args, filenames):
                                          delete=False) as log_f:
             _write("Output log: {}\n".format(log_f.name))
             os.chmod(log_f.name, 0o664)
-            _check_datasets(args, config, pool, log_f, ds_status_map,
-                            filenames)
+            dataset_checker = _DatasetChecker(args, config, pool, log_f,
+                                              ds_status_map)
+            dataset_checker(filenames)
     finally:
         _write('\nWaiting for ThreadPool cleanup...')
         pool.close()
@@ -409,41 +410,279 @@ class _LogCleaner(object):
         return num_deleted_items
 
 
-def _check_datasets(args, config, pool, log_f, ds_status_map, filenames):
-    for filename in filenames:
-        processing_filename = filename + '.processing.' + str(os.getpid())
+class _DatasetChecker(object):
+
+    def __init__(self, args, config, pool, log_f, ds_status_map):
+        self.args = args
+        self.config = config
+        self.pool = pool
+        self.log_f = log_f
+        self.ds_status_map = ds_status_map
+
+    def __call__(self, filenames):
+        for filename in filenames:
+            processing_filename = filename + '.processing.' + str(os.getpid())
+            try:
+                os.rename(filename, processing_filename)
+            except OSError:
+                _write("Input file not found, skipping: {}\n".format(filename))
+                continue
+            ds_id_versions_list = _read_ds_ids_versions(processing_filename)
+            raw_num_datasets = len(ds_id_versions_list)
+            raw_num_versions = _count_versions(ds_id_versions_list)
+            _write("Processing {} datasets and {} versions from file {}\n"
+                   .format(raw_num_datasets, raw_num_versions, filename))
+            if self.ds_status_map:
+                ds_id_versions_list = _filter_already_seen_versions(
+                    ds_id_versions_list,
+                    self.ds_status_map,
+                )
+                num_datasets = len(ds_id_versions_list)
+                num_versions = _count_versions(ds_id_versions_list)
+                _write("Filtered {} datasets and {} versions already seen.\n"
+                       .format(raw_num_datasets - num_datasets,
+                               raw_num_versions - num_versions))
+            try:
+                for ds_num, (ds_id, versions) in enumerate(ds_id_versions_list,
+                                                           1):
+                    _check_pause_flag()
+                    _write("{}/{} {} ({}):".format(ds_num,
+                                                   len(ds_id_versions_list),
+                                                   ds_id, len(versions)))
+                    self._check_dataset(ds_id, versions)
+                    _write('\n')
+            except KeyboardInterrupt:
+                os.rename(processing_filename, filename)
+                raise
+            else:
+                os.rename(processing_filename, filename + '.done')
+
+    def _log(self, *items, **kwparams):
+        end = kwparams.pop('end', None)
+        err = kwparams.pop('err', None)
+        print_exc = kwparams.pop('print_exc', False)
+        print(*items, file=self.log_f, end=end)
+        if err:
+            print(err, file=self.log_f)
+        if print_exc:
+            traceback.print_exc(file=self.log_f)
+        self.log_f.flush()
+
+    def _check_dataset(self, ds_id, versions):
+        version_format_map = self._get_check_version_format_map(ds_id,
+                                                                versions)
+        if not version_format_map:
+            return
+        versions = sorted(version_format_map)  # filter versions with no formats
+        _write('C')
+        local_repo_dir = _get_local_zz9repo_dir(self.config, ds_id)
         try:
-            os.rename(filename, processing_filename)
-        except OSError:
-            _write("Input file not found, skipping: {}\n".format(filename))
-            continue
-        ds_id_versions_list = _read_ds_ids_versions(processing_filename)
-        raw_num_datasets = len(ds_id_versions_list)
-        raw_num_versions = _count_versions(ds_id_versions_list)
-        _write("Processing {} datasets and {} versions from file {}\n".format(
-            raw_num_datasets, raw_num_versions, filename))
-        if ds_status_map:
-            ds_id_versions_list = _filter_already_seen_versions(
-                ds_id_versions_list,
-                ds_status_map,
-            )
-            num_datasets = len(ds_id_versions_list)
-            num_versions = _count_versions(ds_id_versions_list)
-            _write("Filtered out {} datasets and {} versions already seen.\n"
-                   .format(raw_num_datasets - num_datasets,
-                           raw_num_versions - num_versions))
-        try:
-            for ds_num, (ds_id, versions) in enumerate(ds_id_versions_list, 1):
+            if not self._check_copy_dataset_datafiles(version_format_map,
+                                                      ds_id):
+                return
+            for version in versions:
                 _check_pause_flag()
-                _write("{}/{} {} ({}):".format(ds_num, len(ds_id_versions_list),
-                                               ds_id, len(versions)))
-                _check_dataset(args, config, pool, log_f, ds_id, versions)
-                _write('\n')
-        except KeyboardInterrupt:
-            os.rename(processing_filename, filename)
-            raise
-        else:
-            os.rename(processing_filename, filename + '.done')
+                format = version_format_map[version]
+                if not self._check_copy_dataset_version(ds_id, version, format):
+                    continue
+                self._check_dataset_version(ds_id, version, format)
+                if not self.args['--skip-cleanup']:
+                    local_data_dir = _get_local_zz9data_dir(self.config,
+                                                            ds_id, version)
+                    self._async_rmtree(local_data_dir)
+                    version_dst = join(local_repo_dir, 'versions', version)
+                    self._async_rmtree(version_dst)
+                    version_data = join(local_repo_dir, 'datafiles', version)
+                    if os.path.exists(version_data):
+                        self._async_rmtree(version_data)
+        finally:
+            if not self.args['--skip-cleanup']:
+                self._async_rmtree(local_repo_dir)
+
+    def _async_rmtree(self, dirpath):
+        self.pool.apply_async(shutil.rmtree, (dirpath, {'ignore_errors': True}))
+
+    def _get_check_version_format_map(self, ds_id, versions):
+        skip_latest_format = self.args['--skip-latest']
+        _write('V')
+        version_format_map = _get_version_format_map(self.config, ds_id,
+                                                     versions)
+        if version_format_map is None:
+            self._log(ds_id, 'DS-DELETED')
+            _write('!')
+            return None
+        if not version_format_map:
+            self._log(ds_id, 'NO-VERSIONS')
+            _write('!')
+            return {}
+        for version in versions:
+            _write('F')
+            format = version_format_map.get(version)
+            if not format:
+                version_format_map.pop(version, None)
+                self._log(ds_id, version, 'NOFORMAT')
+                _write('!')
+            elif skip_latest_format and format == LATEST_FORMAT:
+                del version_format_map[version]
+                self._log(ds_id, version, format, 'SKIPPED')
+                _write('S')
+        return version_format_map
+
+    def _check_copy_dataset_datafiles(self, version_format_map, ds_id):
+        """
+        Only copy these things from the datafiles directory:
+            - Any *.zz9 or *.zz9.lz4 files directly in the datafiles dir
+            - All sub-directories mentioned in the datamap files for the
+              versions of interest.
+            - Any sub-directories named after a version of interest, that
+              wasn't already copied due to datamap files.
+        """
+        ro_repo_dir = _get_readonly_zz9repo_dir(self.config, ds_id)
+        datafiles_src = join(ro_repo_dir, 'datafiles')
+        if not os.path.exists(datafiles_src):
+            # No datafiles dir in older formats
+            return True
+        local_repo_dir = _get_local_zz9repo_dir(self.config, ds_id)
+        datafiles_dst = join(local_repo_dir, 'datafiles')
+        if not os.path.exists(datafiles_dst):
+            os.makedirs(datafiles_dst)
+
+        datafiles_items = set(os.listdir(datafiles_src))
+        for filename in list(datafiles_items):
+            if not (filename.endswith('.zz9') or filename.endswith('.zz9.lz4')):
+                continue
+            src = join(datafiles_src, filename)
+            dst = join(datafiles_dst, filename)
+            try:
+                shutil.copy(src, dst)
+            except (IOError, OSError) as err:
+                self._log(ds_id, '-', '-', 'FailedDatafilesCopy', err=err)
+                return False
+            else:
+                datafiles_items.discard(filename)
+
+        if not self._check_copy_filtered_datafiles(version_format_map, ds_id,
+                                                   datafiles_items):
+            return False
+
+        for version in sorted(version_format_map):
+            if version not in datafiles_items:
+                continue
+            src_dir = join(datafiles_src, version)
+            dst_dir = join(datafiles_dst, version)
+            err = _copy_dir(src_dir, dst_dir)
+            if err:
+                format = version_format_map.get(version, '-')
+                self._log(ds_id, version, format, 'FailedDatafilesCopy',
+                          err=err)
+                return False
+            datafiles_items.discard(version)
+        return True
+
+    def _check_copy_filtered_datafiles(self, version_format_map, ds_id,
+                                       datafiles_items):
+        """
+        Copy the portions of the datafiles of a dataset to the local zz9repo
+        that are relevant to the versions in version_format_map, using the
+        datamap for each version.
+        datafiles_items: A set of items in the source datafiles directory which
+        haven't been copied yet. Discard from this as you copy.
+        Return True iff all is well.
+        """
+        ro_repo_dir = _get_readonly_zz9repo_dir(self.config, ds_id)
+        datafiles_src = join(ro_repo_dir, 'datafiles')
+        local_repo_dir = _get_local_zz9repo_dir(self.config, ds_id)
+        datafiles_dst = join(local_repo_dir, 'datafiles')
+        data_subdirs = set()
+        for version in sorted(version_format_map):
+            format = version_format_map[version]
+            datamap = self._load_datamap(ds_id, version, format=format)
+            if datamap is None:
+                # Error has already been logged
+                return False
+            data_subdirs.update([str(v) for v in datamap.values()])
+        for data_subdir in sorted(data_subdirs):
+            if data_subdir not in datafiles_items:
+                # Don't copy items that don't exist or have already been copied.
+                continue
+            src_dir = join(datafiles_src, data_subdir)
+            dst_dir = join(datafiles_dst, data_subdir)
+            err = _copy_dir(src_dir, dst_dir)
+            if err:
+                self._log(ds_id, '-', '-', 'FailedDatafilesCopy', err=err)
+                _write('!')
+                return False
+            datafiles_items.discard(data_subdir)
+        return True
+
+    def _load_datamap(self, ds_id, version, format='-'):
+        """
+        Load the datamap for a dataset version.
+        Return the datamap dictionary, or None if there was an error.
+        """
+        datamap_path = _get_datamap_path(self.config, ds_id, version)
+        try:
+            datamap_bytes = _read_maybe_lz4_compressed(datamap_path)
+        except IOError as err:
+            self._log(ds_id, version, format, 'FailedMissingDatamap', err=err)
+            _write('!')
+            return None
+        try:
+            datamap = json.loads(datamap_bytes)
+        except ValueError as err:
+            self._log(ds_id, version, format, 'FailedCorruptDatamap', err=err)
+            _write('!')
+            return None
+        return datamap
+
+    def _check_copy_dataset_version(self, ds_id, version, format):
+        """
+        Copy a dataset version directory to the local zz9repo.
+        Return True iff all is well.
+        """
+        ro_repo_dir = _get_readonly_zz9repo_dir(self.config, ds_id)
+        local_repo_dir = _get_local_zz9repo_dir(self.config, ds_id)
+        local_versions_dir = join(local_repo_dir, 'versions')
+        if not os.path.exists(local_versions_dir):
+            os.makedirs(local_versions_dir)
+        version_src = join(ro_repo_dir, 'versions', version)
+        version_dst = join(local_versions_dir, version)
+        err = _copy_dir(version_src, version_dst)
+        if err:
+            self._log(ds_id, version, format, 'FailedVersionCopy', err=err)
+            _write('!')
+            return False
+        return True
+
+    def _check_dataset_version(self, ds_id, version, format):
+        self._log(ds_id, version, format, end=' ')
+        store = _get_zz9_store(self.config)
+        try:
+            ds = zz9d.objects.datasets.DatasetNode(ds_id, version, store, None)
+            zz9d.execution.runtime.job.dataset = ds
+        except Exception:
+            self._log('FailedDatasetNode', print_exc=True)
+            _write('X!')
+            return
+        if format != LATEST_FORMAT:
+            try:
+                _write('M')
+                ds.migrate()
+                format = LATEST_FORMAT  # for correct comparison later
+            except Exception:
+                self._log('FailedMigration', print_exc=True)
+                _write('!')
+                return
+        try:
+            _write('D')
+            info = ds.diagnose()
+            _check_ds_diagnosis(info, format)
+        except Exception:
+            self._log('FailedDiagnostic', print_exc=True)
+            _write('!')
+            return
+        self._log('OK')
+        _write('.')
 
 
 def _count_versions(ds_id_versions_list):
@@ -614,75 +853,6 @@ def _check_pause_flag():
         sys.stderr.flush()
 
 
-def _check_dataset(args, config, pool, log_f, ds_id, versions):
-    version_format_map = _get_check_version_format_map(
-        config, log_f, ds_id, versions,
-        skip_latest_format=args['--skip-latest'])
-    if not version_format_map:
-        return
-    versions = sorted(version_format_map)
-    _write('C')
-    local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
-    try:
-        if not _check_copy_dataset_datafiles(config, version_format_map,
-                                             log_f, ds_id):
-            return
-        for version in versions:
-            _check_pause_flag()
-            format = version_format_map[version]
-            if not _check_copy_dataset_version(config, log_f, ds_id, version,
-                                               format):
-                continue
-            print(ds_id, version, format, file=log_f, end=' ')
-            log_f.flush()
-            _check_dataset_version(config, log_f, ds_id, version, format)
-            if not args['--skip-cleanup']:
-                local_data_dir = _get_local_zz9data_dir(config, ds_id, version)
-                pool.apply_async(shutil.rmtree,
-                                 (local_data_dir, {'ignore_errors': True}))
-                version_dst = join(local_repo_dir, 'versions', version)
-                pool.apply_async(shutil.rmtree,
-                                 (version_dst, {'ignore_errors': True}))
-    finally:
-        log_f.flush()
-        if not args['--skip-cleanup']:
-            pool.apply_async(shutil.rmtree,
-                             (local_repo_dir, {'ignore_errors': True}))
-
-
-def _check_dataset_version(config, log_f, ds_id, version, format):
-    store = _get_zz9_store(config)
-    try:
-        ds = zz9d.objects.datasets.DatasetNode(ds_id, version, store, None)
-        zz9d.execution.runtime.job.dataset = ds
-    except Exception:
-        print('FailedDatasetNode', file=log_f)
-        traceback.print_exc(file=log_f)
-        _write('X!')
-        return
-    if format != LATEST_FORMAT:
-        try:
-            _write('M')
-            ds.migrate()
-            format = LATEST_FORMAT  # for correct comparison later
-        except Exception:
-            print('FailedMigration', file=log_f)
-            traceback.print_exc(file=log_f)
-            _write('!')
-            return
-    try:
-        _write('D')
-        info = ds.diagnose()
-        _check_ds_diagnosis(info, format)
-    except Exception:
-        print('FailedDiagnostic', file=log_f)
-        traceback.print_exc(file=log_f)
-        _write('!')
-        return
-    print('OK', file=log_f)
-    _write('.')
-
-
 def _check_ds_diagnosis(info, format):
     if info['writeflag']:
         raise Exception("Non-empty writeflag present.")
@@ -741,159 +911,11 @@ def _get_zz9_store(config):
     return zz9d.stores.get_store(store_config)
 
 
-def _get_check_version_format_map(config, log_f, ds_id, versions,
-                                  skip_latest_format=False):
-    _write('V')
-    version_format_map = _get_version_format_map(config, ds_id, versions)
-    if version_format_map is None:
-        print(ds_id, 'DS-DELETED', file=log_f)
-        log_f.flush()
-        _write('!')
-        return None
-    if not version_format_map:
-        print(ds_id, 'NO-VERSIONS', file=log_f)
-        log_f.flush()
-        _write('!')
-        return {}
-    for version in versions:
-        _write('F')
-        format = version_format_map.get(version)
-        if not format:
-            version_format_map.pop(version, None)
-            print(ds_id, version, 'NOFORMAT', file=log_f)
-            log_f.flush()
-            _write('!')
-        elif skip_latest_format and format == LATEST_FORMAT:
-            del version_format_map[version]
-            print(ds_id, version, format, 'SKIPPED', file=log_f)
-            log_f.flush()
-            _write('S')
-    return version_format_map
-
-
-def _check_copy_dataset_datafiles(config, version_format_map, log_f, ds_id):
-    """
-    Copy datafiles subdir of dataset to the local zz9repo, if it exists.
-    Return True iff all is well.
-
-    If a datamap.zz9 file exists in the expected location for each version of
-    interest then optimize by calling _check_copy_filtered_datafiles().
-    """
-    missing_datamap_file = False
-    for version in version_format_map:
-        datamap_path = _get_datamap_path(config, ds_id, version)
-        if (os.path.exists(datamap_path)
-                or os.path.exists(datamap_path + '.lz4')):
-            continue
-        missing_datamap_file = True
-        break
-    if not missing_datamap_file:
-        return _check_copy_filtered_datafiles(config, version_format_map,
-                                              log_f, ds_id)
-    ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
-    local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
-    datafiles_src = join(ro_repo_dir, 'datafiles')
-    datafiles_dst = join(local_repo_dir, 'datafiles')
-    if not os.path.exists(datafiles_src):
-        return True
-    err = _copy_dir(datafiles_src, datafiles_dst)
-    if err:
-        print(ds_id, '-', '-', 'FailedDatafilesCopy', file=log_f)
-        print(err, file=log_f)
-        log_f.flush()
-        _write('!')
-        return False
-    return True
-
-
-def _check_copy_filtered_datafiles(config, version_format_map, log_f, ds_id):
-    """
-    Copy the portions of the datafiles of a dataset to the local zz9repo
-    that are relevant to the versions in version_format_map, using the datamap
-    for each version.
-    Return True iff all is well.
-    """
-    ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
-    datafiles_src = join(ro_repo_dir, 'datafiles')
-    if not os.path.exists(datafiles_src):
-        print(ds_id, '-', '-', 'FailedMissingDatafiles', file=log_f)
-        log_f.flush()
-        _write('!')
-        return False
-    local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
-    datafiles_dst = join(local_repo_dir, 'datafiles')
-    if not os.path.exists(datafiles_dst):
-        os.makedirs(datafiles_dst)
-    data_subdirs = set()
-    for version in sorted(version_format_map):
-        format = version_format_map[version]
-        datamap = _load_datamap(config, ds_id, version, log_f, format=format)
-        if datamap is None:
-            # Error has already been logged
-            return False
-        data_subdirs.update([str(v) for v in datamap.values()])
-    for data_subdir in sorted(data_subdirs):
-        src_dir = join(datafiles_src, data_subdir)
-        dst_dir = join(datafiles_dst, data_subdir)
-        err = _copy_dir(src_dir, dst_dir)
-        if err:
-            print(ds_id, '-', '-', 'FailedDatafilesCopy', file=log_f)
-            print(err, file=log_f)
-            log_f.flush()
-            _write('!')
-            return False
-    return True
-
-
 def _get_datamap_path(config, ds_id, version):
     ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
     version_src = join(ro_repo_dir, 'versions', version)
     datamap_path = join(version_src, 'datamap.zz9')
     return datamap_path
-
-
-def _load_datamap(config, ds_id, version, log_f, format='-'):
-    """
-    Load the datamap for a dataset version.
-    Return the datamap dictionary, or None if there was an error.
-    """
-    datamap_path = _get_datamap_path(config, ds_id, version)
-    try:
-        datamap_bytes = _read_maybe_lz4_compressed(datamap_path)
-    except IOError as err:
-        print(ds_id, version, format, 'FailedMissingDatamap', file=log_f)
-        print(err, file=log_f)
-        log_f.flush()
-        _write('!')
-        return None
-    try:
-        datamap = json.loads(datamap_bytes)
-    except ValueError as err:
-        print(ds_id, version, format, 'FailedCorruptDatamap', file=log_f)
-        print(err, file=log_f)
-        log_f.flush()
-        _write('!')
-        return None
-    return datamap
-
-
-def _check_copy_dataset_version(config, log_f, ds_id, version, format):
-    """
-    Copy a dataset version directory to the local zz9repo.
-    Return True iff all is well.
-    """
-    ro_repo_dir = _get_readonly_zz9repo_dir(config, ds_id)
-    local_repo_dir = _get_local_zz9repo_dir(config, ds_id)
-    version_src = join(ro_repo_dir, 'versions', version)
-    version_dst = join(local_repo_dir, 'versions', version)
-    err = _copy_dir(version_src, version_dst)
-    if err:
-        print(ds_id, version, format, 'FailedVersionCopy', file=log_f)
-        print(err, file=log_f)
-        log_f.flush()
-        _write('!')
-        return False
-    return True
 
 
 def _copy_dir(src, dst):
