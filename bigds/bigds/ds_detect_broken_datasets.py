@@ -597,6 +597,9 @@ class _DatasetChecker(object):
         for version in sorted(version_format_map):
             format = version_format_map[version]
             datamap = self._load_datamap(ds_id, version, format=format)
+            if datamap is False:
+                # No datamap file - skip this version
+                continue
             if datamap is None:
                 # Error has already been logged
                 return False
@@ -618,13 +621,18 @@ class _DatasetChecker(object):
     def _load_datamap(self, ds_id, version, format='-'):
         """
         Load the datamap for a dataset version.
-        Return the datamap dictionary, or None if there was an error.
+        Return False if the datamap doesn't exist (Ok depending on format),
+        None if there was an error reading or parsing the datamap,
+        else return the datamap dictionary.
         """
         datamap_path = _get_datamap_path(self.config, ds_id, version)
+        if not (os.path.exists(datamap_path)
+                or os.path.exists(datamap_path + '.lz4')):
+            return False
         try:
             datamap_bytes = _read_maybe_lz4_compressed(datamap_path)
         except IOError as err:
-            self._log(ds_id, version, format, 'FailedMissingDatamap', err=err)
+            self._log(ds_id, version, format, 'FailedReadingDatamap', err=err)
             _write('!')
             return None
         try:
