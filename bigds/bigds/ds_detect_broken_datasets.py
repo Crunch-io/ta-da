@@ -500,7 +500,8 @@ class _DatasetChecker(object):
                 self._async_rmtree(local_repo_dir)
 
     def _async_rmtree(self, dirpath):
-        self.pool.apply_async(shutil.rmtree, (dirpath, {'ignore_errors': True}))
+        self.pool.apply_async(shutil.rmtree,
+                              (dirpath,), {'ignore_errors': True})
 
     def _get_check_version_format_map(self, ds_id, versions):
         skip_latest_format = self.args['--skip-latest']
