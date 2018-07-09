@@ -8,16 +8,16 @@ Usage:
     ds.fix [options] restore-tip <ds-id> <ds-version>
     ds.fix [options] recover <ds-id>
     ds.fix [options] diagnose <ds-id> [<ds-version>]
-    ds.fix [options] list-all-actions [--long] <ds-id>
+    ds.fix [options] list-all-actions <ds-id>
     ds.fix [options] save-actions <ds-id> <ds-version> <filename>
-    ds.fix [options] show-actions [--long] <filename>
+    ds.fix [options] show-actions <filename>
 
 Options:
-    -i                      Run interactive prompt after the command
-    --cr-lib-config=FILENAME
-                            [default: /var/lib/crunch.io/cr.server-0.conf]
-    --owner-email=EMAIL     [default: captain@crunch.io]
-    --zz9repo=DIRNAME
+    -i                        Run interactive prompt after the command
+    --long                    Output data in longer format if applicable.
+    --cr-lib-config=FILENAME  [default: /var/lib/crunch.io/cr.server-0.conf]
+    --owner-email=EMAIL       [default: captain@crunch.io]
+    --zz9repo=DIRNAME         Specify writeable zz9repo location (careful!)
 
 Command summaries:
     list-versions       Print versions (savepoints) for a dataset.
@@ -43,16 +43,19 @@ Command summaries:
 WARNING!!! these commands are currently experimental and/or dangerous.
 """
 from __future__ import print_function
+from collections import OrderedDict
 import datetime
 import errno
 import itertools
+import json
 import os
-from os.path import join
+from os.path import basename, dirname, join, splitext
 import pprint
 import subprocess
 import sys
 import tempfile
 import time
+import traceback
 
 import docopt
 import six
@@ -87,7 +90,10 @@ def do_list_versions(args):
     version_list = version_health(ds_id)
     print(len(version_list), "versions:")
     for version_id, version_info in version_list:
-        print("{:32} {}".format(version_id, version_info['date']))
+        if args['--long']:
+            pprint.pprint(version_info)
+        else:
+            print("{:32} {}".format(version_id, version_info['date']))
     return {
         'ds_id': ds_id,
         'version_list': version_list,
@@ -109,11 +115,17 @@ def do_replay_from(args):
         owner_type='User',
         owner_id=dataset_owner.id,
     )
-    newds.replay_from(source_dataset, from_version=ds_version, task=None)
+    succeeded = True
+    try:
+        newds.replay_from(source_dataset, from_version=ds_version, task=None)
+    except Exception:
+        succeeded = False
+        traceback.print_exc()
     print("Created new dataset by replaying dataset", ds_id, "from savepoint",
           ds_version)
     print("New dataset ID:", newds.id)
     print("New dataset Name:", newds.name)
+    print("Succeeded:", succeeded)
 
 
 def do_unsafe_restore_tip(args):
@@ -194,16 +206,17 @@ def do_restore_tip(args):
         raise ValueError(
             "Invalid --zz9repo parameter: Not a directory.")
     zz9repo_dir = join(zz9repo_base, ds_id[:2], ds_id)
-    if not os.path.isdir(zz9repo_dir):
-        raise ValueError(
-            "No such dataset repository dir: {}".format(zz9repo_dir))
     _cr_lib_init(args)
-    target_ds = Dataset.find_by_id(id=ds_id, version='master__tip')
-    _restore_tip(target_ds, ds_version, zz9repo_dir)
-    print("Done.")
+    restorer = _DatasetTipRestorer(ds_id, ds_version, zz9repo_dir)
+    if restorer():
+        print("Done.")
+        return {'exit_code': 0}
+    else:
+        print("Failed.")
+        return {'exit_code': 1}
 
 
-def _open_unique_file(prefix, suffix='.dat', dir=None):
+def _create_unique_file(prefix, suffix='.dat', dir=None):
     if not dir:
         dir = os.getcwd()
     timestamp = datetime.datetime.utcnow().strftime('%Y%m%d-%H%M%S')
@@ -217,7 +230,6 @@ def _open_unique_file(prefix, suffix='.dat', dir=None):
 
 
 def _create_empty_backup_dir(dirpath):
-    dirname = os.path.basename(dirpath)
     for i in itertools.count():
         backup_dirpath = "{}-bak{:03}".format(dirpath, i)
         try:
@@ -229,61 +241,124 @@ def _create_empty_backup_dir(dirpath):
             return backup_dirpath
 
 
-def _restore_tip(target_ds, from_version, zz9repo_dir):
-    from_branch = Dataset.version_branch(from_version)
-    from_revision = Dataset.version_revision(from_version)
-    if from_branch != target_ds.branch:
-        raise ValueError(
-            'Start and End versions of replay must be on same branch.')
-    if os.path.basename(zz9repo_dir) != target_ds.id:
-        raise ValueError("repo dir {} doesn't seem to match dataset ID {}"
-                         .format(zz9repo_dir), target_ds.id)
-    print("Locking dataset", target_ds.id, "branch", target_ds.branch)
-    with actionslib.dataset_lock('restore_tip', target_ds.id,
-                                 dataset_branch=target_ds.branch,
-                                 exclusive=True):
-        print("Finding the savepoint at branch", from_branch, "revision",
-              from_revision)
-        vtag = VersionTag.nearest(target_ds.id, from_branch, from_revision)
+class _DatasetTipRestorer(object):
+
+    def __init__(self, ds_id, from_version, zz9repo_dir):
+        if os.path.basename(zz9repo_dir) != ds_id:
+            raise ValueError("repo dir {} doesn't seem to match dataset ID {}"
+                             .format(zz9repo_dir), ds_id)
+        if not os.path.isdir(zz9repo_dir):
+            raise ValueError(
+                "No such dataset repository dir: {}".format(zz9repo_dir))
+        self.target_ds = Dataset.find_by_id(id=ds_id, version='master__tip')
+        from_branch = Dataset.version_branch(from_version)
+        if from_branch != self.target_ds.branch:
+            raise ValueError(
+                'Start and End versions of replay must be on same branch.')
+        self.from_version = from_version
+        self.zz9repo_dir = zz9repo_dir
+        #####
+        self.restore_tip_filename = None
+        self.actions_filename = None
+        self.backup_zz9repo_dir = None
+
+    def __call__(self):
+        self._write_restore_tip_file()
+        try:
+            print("Locking dataset", self.target_ds.id,
+                  "branch", self.target_ds.branch)
+            with actionslib.dataset_lock('restore_tip', self.target_ds.id,
+                                         dataset_branch=self.target_ds.branch,
+                                         exclusive=True):
+                self._restore_savepoint()
+            self._write_restore_tip_file(completed=True)
+            return True
+        except Exception:
+            self._write_restore_tip_file(caught_exc=True)
+            return False
+
+    def _restore_savepoint(self):
+        from_revision = Dataset.version_revision(self.from_version)
+        print("Finding the savepoint at branch", self.target_ds.branch,
+              "revision", from_revision)
+        self.vtag = vtag = VersionTag.nearest(self.target_ds.id,
+                                              self.target_ds.branch,
+                                              from_revision)
         if vtag is None or vtag.revision(vtag.version) != from_revision:
             raise ValueError('There is no savepoint at that revision')
 
         # Grab delta from that savepoint up to <branch>__tip
         savepoint_action = vtag.action
         actions_to_replay = actionslib.for_dataset(
-            target_ds, None, since=savepoint_action, only_successful=True,
+            self.target_ds, None, since=savepoint_action, only_successful=True,
             exclude_hashes=[savepoint_action.hash], replay_order=True
         )
 
-        # save actions to file
-        with _open_unique_file('actions') as f:
-            print("Saving", len(actions_to_replay), "actions to", f.name)
-            pickle.dump(actions_to_replay, f, 2)
-
-        # backup dataset repo dir
-        backup_zz9repo_dir = _create_empty_backup_dir(zz9repo_dir)
-        print("Backing up repository directory to", backup_zz9repo_dir)
-        cmd = ['cp', '-pR']
-        cmd.extend([join(zz9repo_dir, i) for i in os.listdir(zz9repo_dir)])
-        assert len(cmd) >= 3
-        cmd.append(backup_zz9repo_dir + '/')
-        print(subprocess.list2cmdline(cmd))
-        subprocess.check_call(cmd)
+        self._save_actions(actions_to_replay)
+        self._backup_dataset_repo_dir()
 
         # Revert from <branch>__tip back to the savepoint.
         # This also deletes the actions between the savepoint and tip.
         print("Reverting to savepoint", vtag)
-        target_ds.restore_savepoint(vtag)
+        self.target_ds.restore_savepoint(vtag)
 
         # Replay those actions to get the dataset back the way it was.
         print("Replaying actions")
-        target_ds.play_workflow(
+        self.target_ds.play_workflow(
             None,
             actions_to_replay,
-            autorollback=target_ds.AutorollbackType.Disabled,
+            autorollback=self.target_ds.AutorollbackType.Disabled,
             task=None,
         )
-    print("Done.")
+
+    def _save_actions(self, actions_list):
+        self.actions_filename = join(
+            dirname(self.restore_tip_filename),
+            splitext(basename(self.restore_tip_filename))[0] + '-actions.dat')
+        with open(self.actions_filename, 'wb') as f:
+            print("Saving", len(actions_list), "actions to", f.name)
+            pickle.dump(actions_list, f, 2)
+
+    def _backup_dataset_repo_dir(self):
+        self.backup_zz9repo_dir = _create_empty_backup_dir(self.zz9repo_dir)
+        print("Backing up repository directory to", self.backup_zz9repo_dir)
+        cmd = ['cp', '-pR']
+        cmd.extend([join(self.zz9repo_dir, i)
+                    for i in os.listdir(self.zz9repo_dir)])
+        assert len(cmd) >= 3
+        cmd.append(self.backup_zz9repo_dir + '/')
+        print(subprocess.list2cmdline(cmd))
+        subprocess.check_call(cmd)
+
+    def _write_restore_tip_file(self, completed=False, caught_exc=False):
+        if caught_exc:
+            error = traceback.format_exc()
+            # Just in case we get an exception trying to write to the result
+            # file, also send the error to stderr.
+            sys.stderr.write(error)
+            sys.stderr.write('\n')
+        else:
+            error = None
+        if not self.restore_tip_filename:
+            f = _create_unique_file("restore-tip-{}".format(self.target_ds.id),
+                                    suffix='.json')
+            self.restore_tip_filename = f.name
+        else:
+            f = open(self.restore_tip_filename, 'wb')
+        print("Saving restore-tip parameters to:", self.restore_tip_filename)
+        try:
+            params = OrderedDict([
+                ('ds_id', self.target_ds.id),
+                ('from_version', self.from_version),
+                ('actions_filename', self.actions_filename),
+                ('backup_zz9repo_dir', self.backup_zz9repo_dir),
+                ('completed', completed),
+                ('error', error),
+            ])
+            json.dump(params, f, indent=4, separators=(',', ': '))
+            f.write('\n')
+        finally:
+            f.close()
 
 
 def do_diagnose(args):
