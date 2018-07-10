@@ -1,13 +1,7 @@
 Big Dataset Tools
 =================
 
-This project has (or will have) scripts for creating big datasets for
-load-testing and performance diagnosis at scale.
-
-I created these scripts because I want to reproduce in a development
-environment datasets with the same characteristics as those in production that
-are having performance issues.  It's a non-trivial problem, because the size of
-the variable metadata alone exceeds the 100MB request body size limit.
+This project has scripts for development use only.
 
 Commands planned or implemented include:
 
@@ -38,3 +32,7 @@ Commands planned or implemented include:
 - ``ds.data append``
 
   - Append a (potentially very large) CSV file to a dataset via URL.
+
+- ``ds.fix``
+
+  - Commands related to finding and fixing dataset migration issues.
