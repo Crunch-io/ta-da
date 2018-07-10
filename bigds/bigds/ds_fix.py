@@ -4,20 +4,23 @@ Helper script for examining and fixing datasets.
 Usage:
     ds.fix [options] list-versions <ds-id>
     ds.fix [options] replay-from <ds-id> <ds-version>
-    ds.fix [options] unsafe-restore-tip <ds-id> <ds-version>
     ds.fix [options] restore-tip <ds-id> <ds-version>
-    ds.fix [options] recover <ds-id>
     ds.fix [options] diagnose <ds-id> [<ds-version>]
-    ds.fix [options] list-all-actions <ds-id>
+    ds.fix [options] list-actions [--include-failed] <ds-id> <ds-version>
     ds.fix [options] save-actions <ds-id> <ds-version> <filename>
     ds.fix [options] show-actions <filename>
+    ds.fix [options] apply-actions <ds-id> <filename> [--offset=N]
 
 Options:
     -i                        Run interactive prompt after the command
     --long                    Output data in longer format if applicable.
     --cr-lib-config=FILENAME  [default: /var/lib/crunch.io/cr.server-0.conf]
     --owner-email=EMAIL       [default: captain@crunch.io]
-    --zz9repo=DIRNAME         Specify writeable zz9repo location (careful!)
+    --zz9repo=DIRNAME         Specify writeable zz9repo location for backing up
+                              repo directory for dataset before doing
+                              restore-tip.
+    --no-zz9repo-backup       Don't attempt to back up dataset repo dir before
+                              restore-tip command.
 
 Command summaries:
     list-versions       Print versions (savepoints) for a dataset.
@@ -25,20 +28,10 @@ Command summaries:
     replay-from         Create a new dataset by replaying the actions of another
                         dataset starting at a savepoint.
 
-    unsafe-restore-tip  Re-create the tip version of a dataset by replaying
-                        actions starting at a savepoint. If anything goes wrong,
-                        recovery is difficult or impossible.
-
     restore-tip         Re-create the tip version of a dataset by replaying
                         actions starting at a savepoint. Before any changes are
                         made, the dataset's repository directory is backed up
                         and the actions are saved to a pickle file.
-
-    recover             Attempt to recover a dataset to the way it was before
-                        the restore-tip command was run, using the repo back dir
-                        and the pickle file with saved actions. If something is
-                        wrong with the backup, this could make things worse than
-                        before.
 
 WARNING!!! these commands are currently experimental and/or dangerous.
 """
@@ -56,6 +49,7 @@ import sys
 import tempfile
 import time
 import traceback
+import warnings
 
 import docopt
 import six
@@ -69,6 +63,7 @@ from cr.lib.entities.datasets.versions.versioning import (
     VersionTag,
 )
 from cr.lib.entities.users import User
+from cr.lib.index.indexer import index_dataset, index_dataset_variables
 from cr.lib.settings import settings
 from cr.lib import stores
 
@@ -128,61 +123,6 @@ def do_replay_from(args):
     print("Succeeded:", succeeded)
 
 
-def do_unsafe_restore_tip(args):
-    """
-    Remove the master__tip version of dataset <ds-id> and re-create it by
-    re-playing actions starting at savepoint <ds-version>.
-    No "safety-net" is provided if replaying fails - the master__tip version
-    will be lost or corrupted.
-    """
-    ds_id = args['<ds-id>'].strip()
-    ds_version = args['<ds-version>'].strip()
-    assert ds_id and ds_version
-    _cr_lib_init(args)
-    target_ds = Dataset.find_by_id(id=ds_id, version='master__tip')
-    print("About to call: _unsafe_restore_tip({!r}, {!r})"
-          .format(target_ds, ds_version))
-    _unsafe_restore_tip(target_ds, ds_version)
-    print("Done.")
-
-
-def _unsafe_restore_tip(target_ds, from_version):
-    """
-    target_ds: Dataset that will have it's tip re-created
-    from_version: 'master__<revision>' version to replay from
-    """
-    from_branch = Dataset.version_branch(from_version)
-    from_revision = Dataset.version_revision(from_version)
-    if from_branch != target_ds.branch:
-        raise ValueError(
-            'Start and End versions of replay must be on same branch.')
-    with actionslib.dataset_lock('unsafe_restore_tip', target_ds.id,
-                                 dataset_branch=target_ds.branch,
-                                 exclusive=True):
-        vtag = VersionTag.nearest(target_ds.id, from_branch, from_revision)
-        if vtag is None or vtag.revision(vtag.version) != from_revision:
-            raise ValueError('There is no savepoint at that revision')
-
-        # Grab delta from that savepoint up to <branch>__tip
-        savepoint_action = vtag.action
-        actions_to_replay = actionslib.for_dataset(
-            target_ds, None, since=savepoint_action, only_successful=True,
-            exclude_hashes=[savepoint_action.hash], replay_order=True
-        )
-
-        # Revert from <branch>__tip back to the savepoint.
-        # This also deletes the actions between the savepoint and tip.
-        target_ds.restore_savepoint(vtag)
-
-        # Replay those actions to get the dataset back the way it was.
-        target_ds.play_workflow(
-            None,
-            actions_to_replay,
-            autorollback=target_ds.AutorollbackType.Disabled,
-            task=None,
-        )
-
-
 def do_restore_tip(args):
     """
     Restore the tip of a dataset by replaying from a savepoint.
@@ -191,21 +131,21 @@ def do_restore_tip(args):
         - Save the actions that will be deleted to a pickle file.
         - Back up the zz9repo directory (this could take a while!)
     All of this is done in the context of a dataset lock.
-    If this process is interrupted or crashes, the ds.recover command is
-    intended to get back to the original state using the backups of the actions
-    and repo directory.
     """
     ds_id = args['<ds-id>'].strip()
     ds_version = args['<ds-version>'].strip()
     assert ds_id and ds_version
     zz9repo_base = args['--zz9repo']
-    if not zz9repo_base:
+    if args['--no-zz9repo-backup']:
+        zz9repo_dir = None
+    elif not zz9repo_base:
         raise ValueError(
-            "--zz9repo parameter required to find and backup repo dir")
-    if not os.path.isdir(zz9repo_base):
-        raise ValueError(
-            "Invalid --zz9repo parameter: Not a directory.")
-    zz9repo_dir = join(zz9repo_base, ds_id[:2], ds_id)
+            "Either pass --zz9repo or --no-zz9repo-backup")
+    else:
+        if not os.path.isdir(zz9repo_base):
+            raise ValueError(
+                "Invalid --zz9repo parameter: Not a directory.")
+        zz9repo_dir = join(zz9repo_base, ds_id[:2], ds_id)
     _cr_lib_init(args)
     restorer = _DatasetTipRestorer(ds_id, ds_version, zz9repo_dir)
     if restorer():
@@ -244,12 +184,14 @@ def _create_empty_backup_dir(dirpath):
 class _DatasetTipRestorer(object):
 
     def __init__(self, ds_id, from_version, zz9repo_dir):
-        if os.path.basename(zz9repo_dir) != ds_id:
-            raise ValueError("repo dir {} doesn't seem to match dataset ID {}"
-                             .format(zz9repo_dir), ds_id)
-        if not os.path.isdir(zz9repo_dir):
-            raise ValueError(
-                "No such dataset repository dir: {}".format(zz9repo_dir))
+        if zz9repo_dir:
+            if os.path.basename(zz9repo_dir) != ds_id:
+                raise ValueError(
+                    "repo dir {} doesn't seem to match dataset ID {}"
+                    .format(zz9repo_dir), ds_id)
+            if not os.path.isdir(zz9repo_dir):
+                raise ValueError(
+                    "No such dataset repository dir: {}".format(zz9repo_dir))
         self.target_ds = Dataset.find_by_id(id=ds_id, version='master__tip')
         from_branch = Dataset.version_branch(from_version)
         if from_branch != self.target_ds.branch:
@@ -268,8 +210,6 @@ class _DatasetTipRestorer(object):
         self.datetime_started = datetime.datetime.utcnow()
         self._write_restore_tip_file()
         try:
-            print("Locking dataset", self.target_ds.id,
-                  "branch", self.target_ds.branch)
             with actionslib.dataset_lock('restore_tip', self.target_ds.id,
                                          dataset_branch=self.target_ds.branch,
                                          exclusive=True):
@@ -283,32 +223,21 @@ class _DatasetTipRestorer(object):
             return False
 
     def _restore_savepoint(self):
-        from_revision = Dataset.version_revision(self.from_version)
-        print("Finding the savepoint at branch", self.target_ds.branch,
-              "revision", from_revision)
-        self.vtag = vtag = VersionTag.nearest(self.target_ds.id,
-                                              self.target_ds.branch,
-                                              from_revision)
-        if vtag is None or vtag.revision(vtag.version) != from_revision:
-            raise ValueError('There is no savepoint at that revision')
-
-        # Grab delta from that savepoint up to <branch>__tip
-        savepoint_action = vtag.action
-        actions_to_replay = actionslib.for_dataset(
-            self.target_ds, None, since=savepoint_action, only_successful=True,
-            exclude_hashes=[savepoint_action.hash], replay_order=True
-        )
+        vtag, actions_to_replay = _get_vtag_actions_list(self.target_ds,
+                                                         self.from_version)
 
         self._save_actions(actions_to_replay)
         self._backup_dataset_repo_dir()
 
         # Revert from <branch>__tip back to the savepoint.
         # This also deletes the actions between the savepoint and tip.
-        print("Reverting to savepoint", vtag)
-        self.target_ds.restore_savepoint(vtag)
+        print("Reverting to savepoint", vtag.version)
+        with warnings.catch_warnings():
+            warnings.simplefilter('ignore')
+            self.target_ds.restore_savepoint(vtag)
 
         # Replay those actions to get the dataset back the way it was.
-        print("Replaying actions")
+        print("Replaying", len(actions_to_replay), "actions")
         self.target_ds.play_workflow(
             None,
             actions_to_replay,
@@ -316,15 +245,21 @@ class _DatasetTipRestorer(object):
             task=None,
         )
 
+        print("Indexing dataset metadata and variables")
+        index_dataset(self.target_ds)
+        index_dataset_variables(self.target_ds)
+
     def _save_actions(self, actions_list):
         self.actions_filename = join(
             dirname(self.restore_tip_filename),
             splitext(basename(self.restore_tip_filename))[0] + '-actions.dat')
         with open(self.actions_filename, 'wb') as f:
-            print("Saving", len(actions_list), "actions to", f.name)
             pickle.dump(actions_list, f, 2)
 
     def _backup_dataset_repo_dir(self):
+        if not self.zz9repo_dir:
+            print("NOT backing up the repository directory.")
+            return
         self.backup_zz9repo_dir = _create_empty_backup_dir(self.zz9repo_dir)
         print("Backing up repository directory to", self.backup_zz9repo_dir)
         cmd = ['cp', '-pR']
@@ -350,7 +285,9 @@ class _DatasetTipRestorer(object):
             self.restore_tip_filename = f.name
         else:
             f = open(self.restore_tip_filename, 'wb')
-        print("Saving restore-tip parameters to:", self.restore_tip_filename)
+        if completed or caught_exc:
+            print("Saving restore-tip parameters to:",
+                  self.restore_tip_filename)
         try:
             params = OrderedDict([
                 ('ds_id', self.target_ds.id),
@@ -368,6 +305,27 @@ class _DatasetTipRestorer(object):
             f.write('\n')
         finally:
             f.close()
+
+
+def _get_vtag_actions_list(ds, from_version, only_successful=True):
+    """
+    Get actions for a dataset starting at a savepoint going towards the tip, in
+    replay order.
+    Return (vtag, actions_list)
+    vtag: VersionTag object
+    """
+    from_revision = Dataset.version_revision(from_version)
+    vtag = VersionTag.nearest(ds.id, ds.branch, from_revision)
+    if vtag is None or vtag.revision(vtag.version) != from_revision:
+        raise ValueError('No such savepoint: {}'.format(from_revision))
+
+    # Grab delta from that savepoint up to <branch>__tip
+    savepoint_action = vtag.action
+    actions_list = actionslib.for_dataset(
+        ds, None, since=savepoint_action, only_successful=only_successful,
+        exclude_hashes=[savepoint_action.hash], replay_order=True
+    )
+    return vtag, actions_list
 
 
 def do_diagnose(args):
@@ -434,17 +392,17 @@ def test_check_dict_for_errors():
     assert ('error', 4) in e
 
 
-def do_list_all_actions(args):
+def do_list_actions(args):
     """
     List all actions for a dataset in chronological order
     """
     ds_id = args['<ds-id>']
-    ds_version = 'master__tip'
+    from_version = args['<ds-version>']
+    only_successful = not args['--include-failed']
     _cr_lib_init(args)
-    ds = Dataset.find_by_id(id=ds_id, version=ds_version)
-    history = actionslib.for_dataset(ds, None, since=None, upto=None,
-                                     replay_order=True, only_successful=True,
-                                     exclude_keys=None)
+    ds = Dataset.find_by_id(id=ds_id, version='master__tip')
+    _, history = _get_vtag_actions_list(ds, from_version,
+                                        only_successful=only_successful)
     _print_action_list(args, history)
     return {
         'ds_id': ds_id,
@@ -463,11 +421,35 @@ def do_show_actions(args):
 
 def _print_action_list(args, history):
     print(len(history), "actions:")
-    for action in history:
+    for i, action in enumerate(history):
+        sys.stdout.write(str(i) + ':\n')
         if args['--long']:
-            pprint.pprint(action)
+            _print_action(action)
         else:
             pprint.pprint(_abbreviate_action(action))
+
+
+def _print_action(action):
+    write = sys.stdout.write
+    write('{\n')
+    for k, v in action.iteritems():
+        write('    "{!s}": {!r}\n'.format(k, v))
+    write('}\n')
+
+
+def _abbreviate_action(action):
+    d = {}
+    for key in ('key', 'utc', 'hash'):
+        if key in action:
+            d[key] = action[key]
+    params = action['params']
+    d['params.dataset.id'] = params['dataset']['id']
+    d['params.dataset.branch'] = params['dataset']['branch']
+    state = action['state']
+    d['state.failed'] = state['failed']
+    d['state.completed'] = state['completed']
+    d['state.played'] = state['played']
+    return d
 
 
 def do_save_actions(args):
@@ -493,29 +475,42 @@ def _save_actions(ds, from_version, filename):
     with actionslib.dataset_lock('save_actions', ds.id,
                                  dataset_branch=ds.branch,
                                  exclusive=False):
-        vtag = VersionTag.nearest(ds.id, from_branch, from_revision)
-        if vtag is None or vtag.revision(vtag.version) != from_revision:
-            raise ValueError('There is no savepoint at that revision')
-
-        # Grab delta from that savepoint up to <branch>__tip
-        savepoint_action = vtag.action
-        actions_to_save = actionslib.for_dataset(
-            ds, None, since=savepoint_action, only_successful=True,
-            exclude_hashes=[savepoint_action.hash], replay_order=True
-        )
+        _, actions_to_save = _get_vtag_actions_list(ds, from_version)
     print("Saving", len(actions_to_save), "actions to", filename)
     with open(filename, 'wb') as f:
         pickle.dump(actions_to_save, f, 2)
 
 
-def _abbreviate_action(action):
-    d = {}
-    for key in ('key', 'utc', 'hash'):
-        d[key] = action[key]
-    params = action['params']
-    d['params.dataset.id'] = params['dataset']['id']
-    d['params.dataset.branch'] = params['dataset']['branch']
-    return d
+def do_apply_actions(args):
+    """Replay some or all of the actions saved in a pickle file."""
+    ds_id = args['<ds-id>']
+    filename = args['<filename>']
+    with open(filename, 'rb') as f:
+        actions_to_replay = pickle.load(f)
+    assert isinstance(actions_to_replay, list)
+    print("Loaded", len(actions_to_replay), "actions from file.")
+    offset = 0
+    if args['--offset']:
+        offset = int(args['--offset'])
+        assert offset >= 0
+    print("Skipping", offset, "actions from beginning of file.")
+    actions_to_replay = actions_to_replay[offset:]
+    if not actions_to_replay:
+        print("No actions to replay.")
+        return
+    _cr_lib_init(args)
+    ds = Dataset.find_by_id(id=ds_id, version='master__tip')
+    with actionslib.dataset_lock('apply_actions', ds.id,
+                                 dataset_branch=ds.branch,
+                                 exclusive=True):
+        print("Replaying", len(actions_to_replay), "actions")
+        ds.play_workflow(
+            None,
+            actions_to_replay,
+            autorollback=ds.AutorollbackType.Disabled,
+            rehash=True,  # to avoid conflict with failed actions
+            task=None,
+        )
 
 
 def _do_command(args):
