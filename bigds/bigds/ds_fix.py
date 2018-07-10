@@ -468,7 +468,6 @@ def do_save_actions(args):
 
 def _save_actions(ds, from_version, filename):
     from_branch = Dataset.version_branch(from_version)
-    from_revision = Dataset.version_revision(from_version)
     if from_branch != ds.branch:
         raise ValueError(
             'Start and End versions must be on same branch.')
