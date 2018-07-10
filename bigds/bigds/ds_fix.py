@@ -261,8 +261,11 @@ class _DatasetTipRestorer(object):
         self.restore_tip_filename = None
         self.actions_filename = None
         self.backup_zz9repo_dir = None
+        self.datetime_started = None
+        self.datetime_finished = None
 
     def __call__(self):
+        self.datetime_started = datetime.datetime.utcnow()
         self._write_restore_tip_file()
         try:
             print("Locking dataset", self.target_ds.id,
@@ -271,9 +274,11 @@ class _DatasetTipRestorer(object):
                                          dataset_branch=self.target_ds.branch,
                                          exclusive=True):
                 self._restore_savepoint()
+            self.datetime_finished = datetime.datetime.utcnow()
             self._write_restore_tip_file(completed=True)
             return True
         except Exception:
+            self.datetime_finished = datetime.datetime.utcnow()
             self._write_restore_tip_file(caught_exc=True)
             return False
 
@@ -354,6 +359,10 @@ class _DatasetTipRestorer(object):
                 ('backup_zz9repo_dir', self.backup_zz9repo_dir),
                 ('completed', completed),
                 ('error', error),
+                ('datetime_started', self.datetime_started and
+                 self.datetime_started.isoformat(' ')),
+                ('datetime_finished', self.datetime_finished and
+                 self.datetime_finished.isoformat(' ')),
             ])
             json.dump(params, f, indent=4, separators=(',', ': '))
             f.write('\n')
