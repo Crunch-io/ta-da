@@ -241,7 +241,7 @@ class _DatasetTipRestorer(object):
         self.target_ds.play_workflow(
             None,
             actions_to_replay,
-            autorollback=self.target_ds.AutorollbackType.Disabled,
+            autorollback=self.target_ds.AutorollbackType.LastAction,
             task=None,
         )
 
@@ -503,11 +503,11 @@ def do_apply_actions(args):
                                  dataset_branch=ds.branch,
                                  exclusive=True):
         print("Replaying", len(actions_to_replay), "actions")
+        # Note: At some point we may need an option to replay with rehash=True
         ds.play_workflow(
             None,
             actions_to_replay,
-            autorollback=ds.AutorollbackType.Disabled,
-            rehash=True,  # to avoid conflict with failed actions
+            autorollback=ds.AutorollbackType.LastAction,
             task=None,
         )
 
