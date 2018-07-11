@@ -15,12 +15,12 @@ Options:
     -i                        Run interactive prompt after the command
     --long                    Output data in longer format if applicable.
     --cr-lib-config=FILENAME  [default: /var/lib/crunch.io/cr.server-0.conf]
-    --owner-email=EMAIL       [default: captain@crunch.io]
-    --zz9repo=DIRNAME         Specify writeable zz9repo location for backing up
-                              repo directory for dataset before doing
-                              restore-tip.
-    --no-zz9repo-backup       Don't attempt to back up dataset repo dir before
-                              restore-tip command.
+    --owner-email=EMAIL       Email address of new dataset owner when doing
+                              replay-from. [default: captain@crunch.io]
+    --backup-repo-dir         Back up dataset repo dir before doing restore-tip
+    --zz9repo=DIRNAME         Location of root of zz9 repositories, used when
+                              backing up dataset repo dir.
+                              [default: /var/lib/crunch.io/zz9repo]
 
 Command summaries:
     list-versions       Print versions (savepoints) for a dataset.
@@ -136,16 +136,14 @@ def do_restore_tip(args):
     ds_version = args['<ds-version>'].strip()
     assert ds_id and ds_version
     zz9repo_base = args['--zz9repo']
-    if args['--no-zz9repo-backup']:
-        zz9repo_dir = None
-    elif not zz9repo_base:
-        raise ValueError(
-            "Either pass --zz9repo or --no-zz9repo-backup")
-    else:
+    if args['--backup-repo-dir']:
         if not os.path.isdir(zz9repo_base):
             raise ValueError(
-                "Invalid --zz9repo parameter: Not a directory.")
+                "Invalid --zz9repo parameter: Not a directory: {}"
+                .format(zz9repo_base))
         zz9repo_dir = join(zz9repo_base, ds_id[:2], ds_id)
+    else:
+        zz9repo_dir = None
     _cr_lib_init(args)
     restorer = _DatasetTipRestorer(ds_id, ds_version, zz9repo_dir)
     if restorer():
