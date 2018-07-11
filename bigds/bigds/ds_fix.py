@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 Helper script for examining and fixing datasets.
 
