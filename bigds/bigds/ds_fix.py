@@ -30,8 +30,7 @@ Command summaries:
 
     restore-tip         Re-create the tip version of a dataset by replaying
                         actions starting at a savepoint. Before any changes are
-                        made, the dataset's repository directory is backed up
-                        and the actions are saved to a pickle file.
+                        made, the actions are saved to a pickle file.
 
 WARNING!!! these commands are currently experimental and/or dangerous.
 """
