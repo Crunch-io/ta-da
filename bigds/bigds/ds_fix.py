@@ -7,6 +7,7 @@ Usage:
     ds.fix [options] replay-from <ds-id> <ds-version>
     ds.fix [options] restore-tip <ds-id> <ds-version>
     ds.fix [options] diagnose <ds-id> [<ds-version>]
+    ds.fix [options] diagnose-fromfile <filename>
     ds.fix [options] list-actions [--include-failed] <ds-id> <ds-version>
     ds.fix [options] save-actions <ds-id> <ds-version> <filename>
     ds.fix [options] show-actions <filename>
@@ -22,6 +23,7 @@ Options:
     --zz9repo=DIRNAME         Location of root of zz9 repositories, used when
                               backing up dataset repo dir.
                               [default: /var/lib/crunch.io/zz9repo]
+    --format=FORMAT           Expected zz9 format [default: 25]
 
 Command summaries:
     list-versions       Print versions (savepoints) for a dataset.
@@ -329,11 +331,43 @@ def _get_vtag_actions_list(ds, from_version, only_successful=True):
 def do_diagnose(args):
     ds_id = args['<ds-id>']
     ds_version = args['<ds-version>'] or 'master__tip'
+    format = args['--format']
     _cr_lib_init(args)
     ds = Dataset.find_by_id(id=ds_id, version=ds_version)
     info = ds.diagnose()
     pprint.pprint(info)
-    _check_ds_diagnosis(info)
+    _check_ds_diagnosis(info, format)
+
+
+def do_diagnose_fromfile(args):
+    """
+    The input file lines are in the format:
+    <dataset-id> <version> <version>...
+    If no <version> is given, master__tip is assumed.
+    """
+    filename = args['<filename>']
+    format = args['--format']
+    _cr_lib_init(args)
+    with open(filename) as f:
+        for line in f:
+            parts = line.split()
+            ds_id = parts[0]
+            if len(parts) == 1:
+                versions = ['master__tip']
+            else:
+                versions = parts[1:]
+            for version in versions:
+                print('{}@{}:'.format(ds_id, version), end=' ')
+                sys.stdout.flush()
+                try:
+                    ds = Dataset.find_by_id(id=ds_id, version=version)
+                    info = ds.diagnose()
+                    _check_ds_diagnosis(info, format)
+                    print('OK')
+                except Exception as err:
+                    print(err)
+                finally:
+                    sys.stdout.flush()
 
 
 def _check_ds_diagnosis(info, format=None):
