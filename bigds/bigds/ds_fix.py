@@ -86,11 +86,23 @@ def do_list_versions(args):
     _cr_lib_init(args)
     version_list = version_health(ds_id)
     print(len(version_list), "versions:")
-    for version_id, version_info in version_list:
-        if args['--long']:
+    if args['--long']:
+        for version_id, version_info in version_list:
+            print("{}:".format(version_id))
             pprint.pprint(version_info)
-        else:
-            print("{:32} {}".format(version_id, version_info['date']))
+    else:
+        print("dataset-id                       ds ver date")
+        print("-------------------------------- -- --- -------------------")
+        for version_id, version_info in version_list:
+            version_date = str(version_info['date'])
+            print(
+                "{:32} {:2} {:3} {:19}".format(
+                    version_id,
+                    version_info['datasets'],
+                    version_info.get('version_tags', 0),
+                    version_date,
+                ),
+            )
     return {
         'ds_id': ds_id,
         'version_list': version_list,
