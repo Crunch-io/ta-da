@@ -4,12 +4,13 @@ Helper script for examining and fixing datasets.
 
 Usage:
     ds.fix [options] list-versions <ds-id>
-    ds.fix [options] replay-from <ds-id> <ds-version>
+    ds.fix [options] replay-from <ds-id> [<ds-version>]
     ds.fix [options] restore-tip <ds-id> <ds-version>
     ds.fix [options] diagnose <ds-id> [<ds-version>]
     ds.fix [options] diagnose-fromfile <filename>
-    ds.fix [options] list-actions [--include-failed] <ds-id> <ds-version>
+    ds.fix [options] list-actions <ds-id> [<ds-version>]
     ds.fix [options] save-actions <ds-id> <ds-version> <filename>
+    ds.fix [options] save-all-actions <ds-id> <filename>
     ds.fix [options] show-actions <filename>
     ds.fix [options] apply-actions <ds-id> <filename> [--offset=N]
 
@@ -24,6 +25,7 @@ Options:
                               backing up dataset repo dir.
                               [default: /var/lib/crunch.io/zz9repo]
     --format=FORMAT           Expected zz9 format [default: 25]
+    --include-failed          Also list or save actions that did not succeed
 
 Command summaries:
     list-versions       Print versions (savepoints) for a dataset.
@@ -130,11 +132,15 @@ def do_replay_from(args):
     except Exception:
         succeeded = False
         traceback.print_exc()
-    print("Created new dataset by replaying dataset", ds_id, "from savepoint",
-          ds_version)
+    if ds_version is not None:
+        from_msg = "from savepoint {}".format(ds_version)
+    else:
+        from_msg = "from the beginning"
+    print("Created new dataset by replaying dataset", ds_id, from_msg)
     print("New dataset ID:", newds.id)
     print("New dataset Name:", newds.name)
     print("Succeeded:", succeeded)
+    return 0 if succeeded else 1
 
 
 def do_restore_tip(args):
@@ -147,8 +153,8 @@ def do_restore_tip(args):
     All of this is done in the context of a dataset lock.
     """
     ds_id = args['<ds-id>'].strip()
-    ds_version = args['<ds-version>'].strip()
-    assert ds_id and ds_version
+    assert ds_id
+    ds_version = args['<ds-version>']
     zz9repo_base = args['--zz9repo']
     if args['--backup-repo-dir']:
         if not os.path.isdir(zz9repo_base):
@@ -160,12 +166,13 @@ def do_restore_tip(args):
         zz9repo_dir = None
     _cr_lib_init(args)
     restorer = _DatasetTipRestorer(ds_id, ds_version, zz9repo_dir)
-    if restorer():
+    succeeded = restorer()
+    if suceeded:
         print("Done.")
-        return {'exit_code': 0}
+        return 0
     else:
         print("Failed.")
-        return {'exit_code': 1}
+        return 1
 
 
 def _create_unique_file(prefix, suffix='.dat', dir=None):
@@ -205,10 +212,11 @@ class _DatasetTipRestorer(object):
                 raise ValueError(
                     "No such dataset repository dir: {}".format(zz9repo_dir))
         self.target_ds = Dataset.find_by_id(id=ds_id, version='master__tip')
-        from_branch = Dataset.version_branch(from_version)
-        if from_branch != self.target_ds.branch:
-            raise ValueError(
-                'Start and End versions of replay must be on same branch.')
+        if from_version is not None:
+            from_branch = Dataset.version_branch(from_version)
+            if from_branch != self.target_ds.branch:
+                raise ValueError(
+                    'Start and End versions of replay must be on same branch.')
         self.from_version = from_version
         self.zz9repo_dir = zz9repo_dir
         #####
@@ -322,20 +330,26 @@ class _DatasetTipRestorer(object):
 def _get_vtag_actions_list(ds, from_version, only_successful=True):
     """
     Get actions for a dataset starting at a savepoint going towards the tip, in
-    replay order.
+    replay order. If from_version is None then get all actions from the
+    beginning and return None for vtag.
     Return (vtag, actions_list)
     vtag: VersionTag object
     """
-    from_revision = Dataset.version_revision(from_version)
-    vtag = VersionTag.nearest(ds.id, ds.branch, from_revision)
-    if vtag is None or vtag.revision(vtag.version) != from_revision:
-        raise ValueError('No such savepoint: {}'.format(from_revision))
-
-    # Grab delta from that savepoint up to <branch>__tip
-    savepoint_action = vtag.action
+    if from_version is not None:
+        from_revision = Dataset.version_revision(from_version)
+        vtag = VersionTag.nearest(ds.id, ds.branch, from_revision)
+        if vtag is None or vtag.revision(vtag.version) != from_revision:
+            raise ValueError('No such savepoint: {}'.format(from_revision))
+        # Grab delta from that savepoint up to <branch>__tip
+        since_action = vtag.action
+        exclude_hashes = [since_action.hash]
+    else:
+        vtag = None
+        since_action = None
+        exclude_hashes = []
     actions_list = actionslib.for_dataset(
-        ds, None, since=savepoint_action, only_successful=only_successful,
-        exclude_hashes=[savepoint_action.hash], replay_order=True
+        ds, None, since=since_action, only_successful=only_successful,
+        exclude_hashes=exclude_hashes, replay_order=True
     )
     return vtag, actions_list
 
@@ -510,11 +524,20 @@ def do_save_actions(args):
     _save_actions(ds, from_version, filename)
 
 
+def do_save_all_actions(args):
+    ds_id = args['<ds-id>']
+    filename = args['<filename>']
+    _cr_lib_init(args)
+    ds = Dataset.find_by_id(id=ds_id, version='master__tip')
+    _save_actions(ds, None, filename)
+
+
 def _save_actions(ds, from_version, filename):
-    from_branch = Dataset.version_branch(from_version)
-    if from_branch != ds.branch:
-        raise ValueError(
-            'Start and End versions must be on same branch.')
+    if from_version is not None:
+        from_branch = Dataset.version_branch(from_version)
+        if from_branch != ds.branch:
+            raise ValueError(
+                'Start and End versions must be on same branch.')
     with actionslib.dataset_lock('save_actions', ds.id,
                                  dataset_branch=ds.branch,
                                  exclusive=False):
