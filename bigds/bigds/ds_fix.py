@@ -26,6 +26,7 @@ Options:
                               [default: /var/lib/crunch.io/zz9repo]
     --format=FORMAT           Expected zz9 format [default: 25]
     --include-failed          Also list or save actions that did not succeed
+    --yes                     Bypass "Are you sure?" prompt on restore-tip
 
 Command summaries:
     list-versions       Print versions (savepoints) for a dataset.
@@ -164,10 +165,16 @@ def do_restore_tip(args):
         zz9repo_dir = join(zz9repo_base, ds_id[:2], ds_id)
     else:
         zz9repo_dir = None
+    if not args['--yes']:
+        answer = six.moves.input(
+            "About to modify a dataset. Are you sure? y/[n] ")
+        if not answer.strip().lower().startswith('y'):
+            print("Aborting.")
+            return 1
     _cr_lib_init(args)
     restorer = _DatasetTipRestorer(ds_id, ds_version, zz9repo_dir)
     succeeded = restorer()
-    if suceeded:
+    if succeeded:
         print("Done.")
         return 0
     else:
