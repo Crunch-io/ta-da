@@ -1,9 +1,9 @@
 my_ui <- function () shinyUI(fluidPage(
     # Application title
     h1("Trello Report"),
-    div(
-        uiOutput("label"),
-        uiOutput("user")
+    fluidRow(
+        column(6, uiOutput("label")),
+        column(6, uiOutput("user"))
     ),
     tabsetPanel(type = "tabs",
         tabPanel("Roadmap",
@@ -14,12 +14,11 @@ my_ui <- function () shinyUI(fluidPage(
             )
         ),
         tabPanel("Team board",
-            h2("Last week"),
-            uiOutput("last_week"),
-            h2("This week"),
-            uiOutput("this_week"),
-            h2("Coming up"),
-            uiOutput("team_next")
+            tabsetPanel(type = "tabs",
+                tabPanel("Last week", uiOutput("last_week")),
+                tabPanel("This week", uiOutput("this_week")),
+                tabPanel("Coming up", uiOutput("team_next"))
+            )
         )
     )
 ))

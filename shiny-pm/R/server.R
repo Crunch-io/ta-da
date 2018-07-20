@@ -54,21 +54,21 @@ my_server <- shinyServer(function(input, output) {
             selected_cards() %>%
             last_week()
         card_list <- card_list[order(card_list$due),]
-        format_cards(card_list)
+        format_team_cards(card_list)
     })
     output$this_week <- renderUI({
         card_list <-
             selected_cards() %>%
             this_week()
         card_list <- card_list[order(card_list$due),]
-        format_cards(card_list)
+        format_team_cards(card_list)
     })
     output$team_next <- renderUI({
         card_list <-
             selected_cards() %>%
             up_next()
-        card_list <- card_list[order(card_list$due),]
-        format_cards(card_list)
+        # card_list <- card_list[order(card_list$due),]
+        format_team_coming_cards(card_list)
     })
 
     output$doing_now <- renderDT({
@@ -83,7 +83,7 @@ my_server <- shinyServer(function(input, output) {
     #         selected_cards() %>%
     #         filter(listName %in% building)
     #     card_list <- card_list[order(card_list$due),]
-    #     format_cards(card_list)
+    #     format_team_cards(card_list)
     # })
 
     output$done <- renderDT({

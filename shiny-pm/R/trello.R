@@ -26,6 +26,8 @@ parse_milestones <- function (miles) {
     miles$date <- suppressWarnings(
         ymd(sub(".*([0-9]{4}-[0-9]{2}-[0-9]{2})$", "\\1", miles$name))
     )
+    # Keep only those with dates set?
+    miles <- miles[!is.na(miles$date),]
     # Remove date from milestone name
     miles$name <- sub(":? [0-9]{4}-[0-9]{2}-[0-9]{2}$", "", miles$name)
     return(miles[, c("name", "date", "state")])
