@@ -15,3 +15,18 @@ same_week <- function (x, date) {
     # x can be vector but date is scalar
     year(x) %in% year(date) & isoweek(x) %in% isoweek(date)
 }
+
+format_date <- function (x, now=Sys.Date()) {
+    if (x == now) return("Today!")
+    if (year(x) == year(now)) {
+        if (isoweek(x) == isoweek(now)) {
+            fmt <- "%A"
+        } else {
+            fmt <- "%B %d"
+        }
+    } else {
+        fmt <- "%d %b %Y"
+    }
+
+    strftime(x, fmt)
+}
