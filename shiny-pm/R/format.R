@@ -11,6 +11,7 @@ format_team_cards <- function (df) {
 }
 
 format_team_coming_cards <- function (df) {
+    # This df is a bespoke shape, see up_next()
     df <- df[order(df$date), ]
     tags$ul(lapply(seq_len(min(nrow(df), 10)), function (i) {
         tags$li(
@@ -33,7 +34,16 @@ format_card <- function (df) {
         if (NROW(miles)) {
             for (i in seq_len(nrow(miles))) {
                 details$children <- c(details$children,
-                    list(tags$li(format_milestone(miles[i, "name"], miles[i, "date"], miles[i, "state"]))))
+                    list(tags$li(format_milestone(miles[i, "name"], miles[i, "date"], miles[i, "done"]))))
+            }
+        }
+    }
+    if (!is.null(df$comments)) {
+        comms <- df$comments[[1]]
+        if (NROW(comms)) {
+            for (i in seq_len(nrow(comms))) {
+                details$children <- c(details$children,
+                    list(tags$li(format_comment(comms[i, "comment"], comms[i, "date"], comms[i, "member"]))))
             }
         }
     }
@@ -51,11 +61,15 @@ format_card_short <- function (df) {
     tags$li(out)
 }
 
-format_milestone <- function (name, date, state) {
+format_milestone <- function (name, date, done) {
     date <- format_date(date)
-    if (state == "complete") {
+    if (done) {
         return(paste(name, date))
     } else {
         return(paste(name, "expected", date))
     }
+}
+
+format_comment <- function (comment, date, member) {
+    return(tags$i(paste(paste0('"', comment, '"'), member, sep=" -- ")))
 }

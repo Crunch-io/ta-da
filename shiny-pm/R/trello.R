@@ -4,6 +4,7 @@ trello_cards <- function (board_url, token) {
         get_board_checklists(board_url, token) %>%
         filter(name == "Milestones")
     lists <- get_board_lists(board_url, token)
+    comms <- get_board_comments(board_url, token)
 
     cards <- get_board_cards(board_url, token) %>%
         mutate(
@@ -16,8 +17,21 @@ trello_cards <- function (board_url, token) {
                 milestones=lapply(miles$checkItems, parse_milestones)
             )
         ) %>%
-        left_join(data_frame(idList=lists$id, listName=lists$name))
-
+        left_join(data_frame(idList=lists$id, listName=lists$name)) %>%
+        left_join(parse_comments(comms))
+    # Add a row to milestones for the due dates
+    cards$milestones <- lapply(seq_len(nrow(cards)), function (i) {
+        out <- cards$milestones[[i]]
+        if (!is.na(cards$due[i])) {
+            due <- data_frame(name="Due", date=cards$due[i], done=cards$dueComplete[i])
+            if (NROW(out)) {
+                out <- bind_rows(out, due)
+            } else {
+                out <- due
+            }
+        }
+        return(out)
+    })
     return(cards)
 }
 
@@ -30,5 +44,23 @@ parse_milestones <- function (miles) {
     miles <- miles[!is.na(miles$date),]
     # Remove date from milestone name
     miles$name <- sub(":? [0-9]{4}-[0-9]{2}-[0-9]{2}$", "", miles$name)
-    return(miles[, c("name", "date", "state")])
+    # Turn state into a logical
+    miles$done <- miles$state == "complete"
+    return(miles[, c("name", "date", "done")])
+}
+
+parse_comments <- function (comms) {
+    # TODO: Look for date in data.text, overwrite date
+    # parse date
+    df <- data_frame(
+        id=comms$data.card.id,
+        comment=comms$data.text,
+        date=parse_date(comms$date),
+        member=comms$memberCreator.fullName
+    )
+    out <- split(df, df$id)
+    return(data_frame(
+        id=names(out),
+        comments=out
+    ))
 }

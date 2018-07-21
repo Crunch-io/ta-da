@@ -36,7 +36,17 @@ get_team_activity <- function (df, date) {
         # Keep only those that are this week
         x[x$date >= thisweek[1] & x$date <= thisweek[2],]
     })
-    return(df[df$tickets > 0 | vapply(df$milestones, NROW, integer(1)) > 0,])
+    # and comments
+    df$comments <- lapply(df$comments, function (x) {
+        # Keep only those that are this week
+        x[x$date >= thisweek[1] & x$date <= thisweek[2],]
+    })
+    return(df[df$tickets > 0 | has_entries(df$milestones) | has_entries(df$comments),])
+}
+
+has_entries <- function (col) {
+    # For a list column of data.frames, return logical where there are any rows
+    vapply(col, NROW, integer(1)) > 0
 }
 
 up_next <- function (df) {
@@ -51,15 +61,12 @@ up_next <- function (df) {
     df <- filter(df, listName %in% c(specing, "Ready to build", building))
 
     ## Take that, get name, url, milestone name (or due), and date. Sort by date. Print the top 10?
-    miles <- lapply(which(vapply(df$milestones, NROW, integer(1)) > 0), function (i) {
+    miles <- lapply(which(has_entries(df$milestones)), function (i) {
         x <- df$milestones[[i]]
         x$cardName <- df$name[i]
         x$cardUrl <- df$url[i]
         x
     })
     miles <- bind_rows(miles)
-    out <- df[df$due >= thisweek[2] & !is.na(df$due), ] %>%
-        mutate(cardName=name, cardUrl=url, name="Due", date=due, state="incomplete") %>%
-        select(cardName, cardUrl, name, date, state)
-    return(bind_rows(out, miles))
+    return(bind_rows(miles))
 }
