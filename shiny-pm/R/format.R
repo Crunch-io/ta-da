@@ -6,7 +6,12 @@ format_team_cards <- function (df) {
     out$children <- lapply(which(has_milestones),
         function (i) format_card(df[i,]))
     ongoing <- df[!has_milestones,]
-    out$children <- c(out$children, list(tags$li("Ongoing", tags$ul(lapply(seq_len(nrow(ongoing)), function (i) format_card_short(ongoing[i,]))))))
+    if (NROW(ongoing)) {
+        out$children <- c(
+            out$children,
+            list(tags$li("Ongoing",
+                tags$ul(lapply(seq_len(nrow(ongoing)), function (i) format_card_short(ongoing[i,]))))))
+    }
     out
 }
 
@@ -15,8 +20,8 @@ format_team_coming_cards <- function (df) {
     df <- df[order(df$date), ]
     tags$ul(lapply(seq_len(min(nrow(df), 10)), function (i) {
         tags$li(
-            df$name[i],
             tags$a(href=df$cardUrl[i], df$cardName[i]),
+            df$name[i],
             format_date(df$date[i])
         )
     }))
@@ -34,7 +39,9 @@ format_card <- function (df) {
         if (NROW(miles)) {
             for (i in seq_len(nrow(miles))) {
                 details$children <- c(details$children,
-                    list(tags$li(format_milestone(miles[i, "name"], miles[i, "date"], miles[i, "done"]))))
+                    list(tags$li(
+                        tags$b(format_milestone(miles[i, "name"], miles[i, "date"], miles[i, "done"]))))
+                    )
             }
         }
     }
@@ -62,11 +69,14 @@ format_card_short <- function (df) {
 }
 
 format_milestone <- function (name, date, done) {
-    date <- format_date(date)
     if (done) {
-        return(paste(name, date))
+        return(paste(name, format_date(date)))
     } else {
-        return(paste(name, "expected", date))
+        out <- paste(name, "expected", format_date(date))
+        if (date <= Sys.Date()) {
+            out <- tags$span(out, style="color:red")
+        }
+        return(out)
     }
 }
 

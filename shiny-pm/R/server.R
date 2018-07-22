@@ -19,7 +19,14 @@ my_server <- shinyServer(function(input, output) {
         labs <- get_board_labels(board_url, tok)
         save(cards, membs, labs, file="trellodata.RData")
     }
+    rv <- reactiveValues()
+    rv$cards <- cards
 
+    output$time <- renderUI(tags$p(paste("Last updated", Sys.time())))
+    observeEvent(input$refresh, {
+        output$time <- renderUI(tags$p(paste("Last updated", Sys.time())))
+        rv$cards <- trello_cards(board_url, tok)
+    })
     # Set up filters, which require data that the server has to fetch
     output$user <- renderUI({
         selectInput("user", "Person",
@@ -33,19 +40,19 @@ my_server <- shinyServer(function(input, output) {
         if (is.null(input$user) || input$user == "all") {
             TRUE
         } else {
-            vapply(cards$idMembers, function (x) any(unlist(x) %in% input$user), logical(1))
+            vapply(rv$cards$idMembers, function (x) any(unlist(x) %in% input$user), logical(1))
         }
     })
     label_filter <- reactive({
         if (is.null(input$label) || input$label == "all") {
             TRUE
         } else {
-            vapply(cards$idLabels, function (x) any(unlist(x) %in% input$label), logical(1))
+            vapply(rv$cards$idLabels, function (x) any(unlist(x) %in% input$label), logical(1))
         }
     })
 
     selected_cards <- reactive({
-        cards[user_filter() & label_filter(), ]
+        rv$cards[user_filter() & label_filter(), ]
     })
 
     # Team board

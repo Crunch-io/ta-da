@@ -1,6 +1,38 @@
 my_ui <- function () shinyUI(fluidPage(
-    # Application title
-    h1("Trello Report"),
+    tags$head(
+        tags$style(HTML("
+            h1 {
+                font-size: 2em;
+                line-height: 2;
+                color: #0064CA;
+            }
+            ul {
+               list-style: square;
+               padding-left: 20px;
+            }
+
+            a {
+                color: #0064a4;
+            }
+
+            li {
+                padding-top: .5em;
+            }
+
+            .btn {
+                margin-top: 10px;
+            }
+
+            p {
+                margin-top: 10px;
+            }
+
+        "))
+    ),
+    fluidRow(
+        column(6, h1("Trello Report")),
+        column(6, actionButton('refresh', 'Refresh'))
+    ),
     fluidRow(
         column(6, uiOutput("label")),
         column(6, uiOutput("user"))
@@ -20,5 +52,6 @@ my_ui <- function () shinyUI(fluidPage(
                 tabPanel("Coming up", uiOutput("team_next"))
             )
         )
-    )
+    ),
+    uiOutput("time")
 ))
