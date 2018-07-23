@@ -153,11 +153,14 @@ def _replay_from(source_dataset, from_version, owner_email):
         owner_id=dataset_owner.id,
     )
     succeeded = True
-    try:
-        newds.replay_from(source_dataset, from_version=from_version, task=None)
-    except Exception:
-        succeeded = False
-        traceback.print_exc()
+    with warnings.catch_warnings():
+        warnings.simplefilter('ignore')
+        try:
+            newds.replay_from(source_dataset, from_version=from_version,
+                              task=None)
+        except Exception:
+            succeeded = False
+            traceback.print_exc()
     return newds, succeeded
 
 
@@ -352,9 +355,15 @@ class _DatasetTipRestorer(object):
         subprocess.check_call(cmd)
 
     def _preflight_replay_from(self):
+        print("Doing pre-flight replay-from...", end=' ')
         newds, succeeded = _replay_from(self.target_ds,
                                         self.from_version,
                                         self.owner_email)
+        if succeeded:
+            print("succeeded.", end=' ')
+        else:
+            print("failed.", end=' ')
+        print("New dataset ID:", newds.id)
         self.replay_from_ds, self.replay_from_succeeded = newds, succeeded
         return self.replay_from_succeeded
 
