@@ -5,7 +5,7 @@ Helper script for examining and fixing datasets.
 Usage:
     ds.fix [options] list-versions <ds-id>
     ds.fix [options] replay-from <ds-id> [<ds-version>]
-    ds.fix [options] restore-tip <ds-id> <ds-version>
+    ds.fix [options] restore-tip <ds-id> [<ds-version>]
     ds.fix [options] diagnose <ds-id> [<ds-version>]
     ds.fix [options] diagnose-fromfile <filename>
     ds.fix [options] list-actions <ds-id> [<ds-version>]
@@ -27,6 +27,9 @@ Options:
     --format=FORMAT           Expected zz9 format [default: 25]
     --include-failed          Also list or save actions that did not succeed
     --yes                     Bypass "Are you sure?" prompt on restore-tip
+    --no-replay-from          Don't do the automatic replay-from when doing
+                              restore-tip. Note: This is dangerous, and not
+                              allowed if not restoring from a savepoint.
 
 Command summaries:
     list-versions       Print versions (savepoints) for a dataset.
@@ -57,6 +60,8 @@ import traceback
 import warnings
 
 import docopt
+from magicbus import bus
+from magicbus.plugins import loggers
 import six
 from six.moves import cPickle as pickle
 
@@ -69,6 +74,7 @@ from cr.lib.entities.datasets.versions.versioning import (
 )
 from cr.lib.entities.users import User
 from cr.lib.index.indexer import index_dataset, index_dataset_variables
+from cr.lib.loglib import log, log_to_stdout
 from cr.lib.settings import settings
 from cr.lib import stores
 
@@ -118,21 +124,8 @@ def do_replay_from(args):
     _cr_lib_init(args)
     source_dataset = Dataset.find_one_with_timeout(
         dict(id=ds_id, version='master__tip'), timeout=5, wait=0.5)
-    newds_id = stores.gen_id()
-    dataset_name = "REPLAY: " + source_dataset.name
-    dataset_owner = User.get_by_email(args['--owner-email'])
-    newds = Dataset(
-        id=newds_id,
-        name=dataset_name,
-        owner_type='User',
-        owner_id=dataset_owner.id,
-    )
-    succeeded = True
-    try:
-        newds.replay_from(source_dataset, from_version=ds_version, task=None)
-    except Exception:
-        succeeded = False
-        traceback.print_exc()
+    owner_email = args['--owner-email']
+    newds, succeeded = _replay_from(source_dataset, ds_version, owner_email)
     if ds_version is not None:
         from_msg = "from savepoint {}".format(ds_version)
     else:
@@ -142,6 +135,30 @@ def do_replay_from(args):
     print("New dataset Name:", newds.name)
     print("Succeeded:", succeeded)
     return 0 if succeeded else 1
+
+
+def _replay_from(source_dataset, from_version, owner_email):
+    """
+    Create a new dataset by replaying actions from source_dataset from savepoint
+    from_version, or from the beginning if from_version is None.
+    Return (newds, succeeded)
+    """
+    newds_id = stores.gen_id()
+    dataset_name = "REPLAY: " + source_dataset.name
+    dataset_owner = User.get_by_email(owner_email)
+    newds = Dataset(
+        id=newds_id,
+        name=dataset_name,
+        owner_type='User',
+        owner_id=dataset_owner.id,
+    )
+    succeeded = True
+    try:
+        newds.replay_from(source_dataset, from_version=from_version, task=None)
+    except Exception:
+        succeeded = False
+        traceback.print_exc()
+    return newds, succeeded
 
 
 def do_restore_tip(args):
@@ -165,14 +182,24 @@ def do_restore_tip(args):
         zz9repo_dir = join(zz9repo_base, ds_id[:2], ds_id)
     else:
         zz9repo_dir = None
+    if not ds_version and args['--no-replay-from']:
+        # Replaying entire history requires doing a delete first, which deletes
+        # all the sources unless you have done a replay-from.
+        raise ValueError("Cannot skip replay-from if restoring entire history.")
     if not args['--yes']:
         answer = six.moves.input(
             "About to modify a dataset. Are you sure? y/[n] ")
         if not answer.strip().lower().startswith('y'):
             print("Aborting.")
             return 1
+    if ds_version:
+        log.info("ds.fix restore-tip {} {}".format(ds_id, ds_version))
+    else:
+        log.info("ds.fix restore-tip {}".format(ds_id))
     _cr_lib_init(args)
-    restorer = _DatasetTipRestorer(ds_id, ds_version, zz9repo_dir)
+    restorer = _DatasetTipRestorer(ds_id, ds_version, zz9repo_dir,
+                                   no_replay_from=args['--no-replay-from'],
+                                   owner_email=args['--owner-email'])
     succeeded = restorer()
     if succeeded:
         print("Done.")
@@ -209,7 +236,9 @@ def _create_empty_backup_dir(dirpath):
 
 class _DatasetTipRestorer(object):
 
-    def __init__(self, ds_id, from_version, zz9repo_dir):
+    def __init__(self, ds_id, from_version, zz9repo_dir, no_replay_from=False,
+                 owner_email=None):
+        self.target_ds = Dataset.find_by_id(id=ds_id, version='master__tip')
         if zz9repo_dir:
             if os.path.basename(zz9repo_dir) != ds_id:
                 raise ValueError(
@@ -218,18 +247,26 @@ class _DatasetTipRestorer(object):
             if not os.path.isdir(zz9repo_dir):
                 raise ValueError(
                     "No such dataset repository dir: {}".format(zz9repo_dir))
-        self.target_ds = Dataset.find_by_id(id=ds_id, version='master__tip')
-        if from_version is not None:
+        if from_version:
             from_branch = Dataset.version_branch(from_version)
             if from_branch != self.target_ds.branch:
                 raise ValueError(
                     'Start and End versions of replay must be on same branch.')
+        elif no_replay_from:
+            raise ValueError(
+                "Must do replay-from if restoring from entire history, "
+                "because dataset gets deleted with its sources "
+                "and sources will be lost if no other dataset using them.")
         self.from_version = from_version
         self.zz9repo_dir = zz9repo_dir
+        self.no_replay_from = no_replay_from
+        self.owner_email = owner_email
         #####
         self.restore_tip_filename = None
         self.actions_filename = None
         self.backup_zz9repo_dir = None
+        self.replay_from_ds = None
+        self.replay_from_succeeded = None
         self.datetime_started = None
         self.datetime_finished = None
 
@@ -254,14 +291,33 @@ class _DatasetTipRestorer(object):
                                                          self.from_version)
 
         self._save_actions(actions_to_replay)
-        self._backup_dataset_repo_dir()
+        if not self.zz9repo_dir:
+            print("NOT backing up the repository directory.")
+        else:
+            self._backup_dataset_repo_dir()
+        if not self.no_replay_from:
+            if not self._preflight_replay_from():
+                raise ValueError("Pre-flight dataset replay failed. Aborting.")
 
-        # Revert from <branch>__tip back to the savepoint.
-        # This also deletes the actions between the savepoint and tip.
-        print("Reverting to savepoint", vtag.version)
-        with warnings.catch_warnings():
-            warnings.simplefilter('ignore')
-            self.target_ds.restore_savepoint(vtag)
+        if vtag is None:
+            # Destroy this dataset so that we can recreate it from scratch
+            # using the entire history.
+            first_action = actions_to_replay[0]
+            if first_action['key'] != 'Dataset.create':
+                raise ValueError("First action is not Dataset.create; "
+                                 "cannot re-create dataset from history.")
+            actions_to_replay = actions_to_replay[1:]
+            print("Destroying dataset {} so we can re-create it from history"
+                  .format(self.target_ds.id))
+            self.target_ds.destroy()
+            _create_ds_from_first_action(self.target_ds, first_action)
+        else:
+            # Revert from <branch>__tip back to the savepoint.
+            # This also deletes the actions between the savepoint and tip.
+            print("Reverting to savepoint", vtag.version)
+            with warnings.catch_warnings():
+                warnings.simplefilter('ignore')
+                self.target_ds.restore_savepoint(vtag)
 
         # Replay those actions to get the dataset back the way it was.
         print("Replaying", len(actions_to_replay), "actions")
@@ -269,6 +325,7 @@ class _DatasetTipRestorer(object):
             None,
             actions_to_replay,
             autorollback=self.target_ds.AutorollbackType.LastAction,
+            rehash=False,
             task=None,
         )
 
@@ -284,9 +341,6 @@ class _DatasetTipRestorer(object):
             pickle.dump(actions_list, f, 2)
 
     def _backup_dataset_repo_dir(self):
-        if not self.zz9repo_dir:
-            print("NOT backing up the repository directory.")
-            return
         self.backup_zz9repo_dir = _create_empty_backup_dir(self.zz9repo_dir)
         print("Backing up repository directory to", self.backup_zz9repo_dir)
         cmd = ['cp', '-pR']
@@ -296,6 +350,13 @@ class _DatasetTipRestorer(object):
         cmd.append(self.backup_zz9repo_dir + '/')
         print(subprocess.list2cmdline(cmd))
         subprocess.check_call(cmd)
+
+    def _preflight_replay_from(self):
+        newds, succeeded = _replay_from(self.target_ds,
+                                        self.from_version,
+                                        self.owner_email)
+        self.replay_from_ds, self.replay_from_succeeded = newds, succeeded
+        return self.replay_from_succeeded
 
     def _write_restore_tip_file(self, completed=False, caught_exc=False):
         if caught_exc:
@@ -321,6 +382,9 @@ class _DatasetTipRestorer(object):
                 ('from_version', self.from_version),
                 ('actions_filename', self.actions_filename),
                 ('backup_zz9repo_dir', self.backup_zz9repo_dir),
+                ('replay_from_ds_id', self.replay_from_ds.id if
+                 self.replay_from_ds else None),
+                ('replay_from_succeeded', self.replay_from_succeeded),
                 ('completed', completed),
                 ('error', error),
                 ('datetime_started', self.datetime_started and
@@ -332,6 +396,18 @@ class _DatasetTipRestorer(object):
             f.write('\n')
         finally:
             f.close()
+
+
+def _create_ds_from_first_action(ds, first_action):
+    print('Re-creating dataset {} "{}"'.format(ds.id, ds.name))
+    _data = first_action['params'].get('_data', {})
+    name = _data.get('name')
+    description = _data.get('description')
+    if name is not None:
+        ds.name = name
+    if description is not None:
+        ds.description = description
+    ds.create()
 
 
 def _get_vtag_actions_list(ds, from_version, only_successful=True):
@@ -497,8 +573,13 @@ def _print_action_list(args, history):
 def _print_action(action):
     write = sys.stdout.write
     write('{\n')
-    for k, v in action.iteritems():
-        write('    "{!s}": {!r}\n'.format(k, v))
+    for k, v in six.iteritems(action):
+        if k == 'params':
+            write('    "params":\n')
+            for k, p in six.iteritems(v):
+                write('        "{!s}": {!r}\n'.format(k, p))
+        else:
+            write('    "{!s}": {!r}\n'.format(k, v))
     write('}\n')
 
 
@@ -571,6 +652,8 @@ def do_apply_actions(args):
     if not actions_to_replay:
         print("No actions to replay.")
         return
+    log.info("ds.fix apply-actions {} {} --offset={}"
+             .format(ds_id, filename, offset))
     _cr_lib_init(args)
     ds = Dataset.find_by_id(id=ds_id, version='master__tip')
     with actionslib.dataset_lock('apply_actions', ds.id,
@@ -603,6 +686,9 @@ def _do_command(args):
 
 def main():
     args = docopt.docopt(__doc__)
+    level = int(os.environ.get("CR_LOGLEVEL", "30"))
+    loggers.StdoutLogger(bus, format="%(message)s\n", level=level).subscribe()
+    log_to_stdout(level=30)
     result = _do_command(args)
     namespace = {
         'args': args,
