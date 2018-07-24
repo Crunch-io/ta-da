@@ -27,6 +27,8 @@ Suggests:
     knitr,
     testthat,
     spelling
+Remotes:
+    Crunch-io/crunchy
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

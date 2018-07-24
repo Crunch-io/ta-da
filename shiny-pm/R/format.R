@@ -40,7 +40,7 @@ format_card <- function (df) {
             for (i in seq_len(nrow(miles))) {
                 details$children <- c(details$children,
                     list(tags$li(
-                        tags$b(format_milestone(miles[i, "name"], miles[i, "date"], miles[i, "done"]))))
+                        tags$b(format_milestone(miles$name[i], miles$date[i], miles$done[i]))))
                     )
             }
         }
@@ -50,7 +50,7 @@ format_card <- function (df) {
         if (NROW(comms)) {
             for (i in seq_len(nrow(comms))) {
                 details$children <- c(details$children,
-                    list(tags$li(format_comment(comms[i, "comment"], comms[i, "date"], comms[i, "member"]))))
+                    list(tags$li(format_comment(comms$comment[i], comms$date[i], comms$member[i]))))
             }
         }
     }

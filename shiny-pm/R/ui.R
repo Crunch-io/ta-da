@@ -29,6 +29,16 @@ my_ui <- function () shinyUI(fluidPage(
 
         "))
     ),
+    uiOutput("the_body")
+))
+
+bod <- function (...) {
+    function () {
+        tags$div(...)
+    }()
+}
+
+authedBody <- function () { tags$div(
     fluidRow(
         column(6, h1("Trello Report")),
         column(6, actionButton('refresh', 'Refresh'))
@@ -53,5 +63,6 @@ my_ui <- function () shinyUI(fluidPage(
             )
         )
     ),
+    uiOutput("current_user"),
     uiOutput("time")
-))
+)}

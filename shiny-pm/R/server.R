@@ -4,12 +4,26 @@ token <- "dd2cc7d91c341e37596ae4f0fff54c6d"
 secret <- "346eb20f0da81962755b153402df12e414a9289325429ac711cc5ee9ef7f29f8"
 
 
-my_server <- shinyServer(function(input, output) {
+my_server <- shinyServer(function(input, output, session) {
+    u <- shinyUser()
+    # output$current_user <- renderUI(paste0("Hello ", email(u()), "!"))
+    output$the_body <- renderUI({
+        if (!is.character(input$token) || nchar(input$token) == 0) {
+            h1("You are not authenticated")
+        } else {
+            authenticatedServer(input, output, session)
+            ## Now, return the UI body
+            authedBody()
+        }
+    })
+})
+
+authenticatedServer <- function (input, output, session) {
     tok <- get_token(token,
-            secret,
-            appname="shiny-board",
-            scope="read,write",
-            expiration="never"
+        secret,
+        appname="shiny-board",
+        scope="read,write",
+        expiration="never"
     )
     if (file.exists("trellodata.RData")) {
         load("trellodata.RData")
@@ -74,7 +88,6 @@ my_server <- shinyServer(function(input, output) {
         card_list <-
             selected_cards() %>%
             up_next()
-        # card_list <- card_list[order(card_list$due),]
         format_team_coming_cards(card_list)
     })
 
@@ -85,14 +98,6 @@ my_server <- shinyServer(function(input, output) {
             datatable(options=list(order=list(list(2, "asc")))) %>%
             formatDate(2)
     })
-    # output$doing_now <- renderUI({
-    #     card_list <-
-    #         selected_cards() %>%
-    #         filter(listName %in% building)
-    #     card_list <- card_list[order(card_list$due),]
-    #     format_team_cards(card_list)
-    # })
-
     output$done <- renderDT({
         selected_cards() %>%
             filter(listName %in% "Done") %>%
@@ -108,4 +113,4 @@ my_server <- shinyServer(function(input, output) {
             datatable(options=list(order=list(list(2, "asc")))) %>%
             formatDate(2)
     })
-})
+}
