@@ -78,6 +78,7 @@ from cr.lib.index.indexer import index_dataset, index_dataset_variables
 from cr.lib.loglib import log, log_to_stdout
 from cr.lib.settings import settings
 from cr.lib import stores
+from zz9lib.errors import ZZ9Timeout
 
 this_module = sys.modules[__name__]
 
@@ -94,7 +95,12 @@ def _cr_lib_init(args):
 def do_list_versions(args):
     ds_id = args['<ds-id>']
     _cr_lib_init(args)
-    version_list = version_health(ds_id)
+    try:
+        version_list = version_health(ds_id)
+    except ZZ9Timeout:
+        print("Query timeout while getting version list for dataset {}"
+              .format(ds_id))
+        return 1
     print(len(version_list), "versions:")
     if args['--long']:
         for version_id, version_info in version_list:
