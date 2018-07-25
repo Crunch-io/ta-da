@@ -73,6 +73,7 @@ from cr.lib.entities.datasets.versions.versioning import (
     VersionTag,
 )
 from cr.lib.entities.users import User
+from cr.lib import exceptions
 from cr.lib.index.indexer import index_dataset, index_dataset_variables
 from cr.lib.loglib import log, log_to_stdout
 from cr.lib.settings import settings
@@ -550,7 +551,11 @@ def do_list_actions(args):
     from_version = args['<ds-version>']
     only_successful = not args['--include-failed']
     _cr_lib_init(args)
-    ds = Dataset.find_by_id(id=ds_id, version='master__tip')
+    try:
+        ds = Dataset.find_by_id(id=ds_id, version='master__tip')
+    except exceptions.NotFound:
+        print("Dataset {} not found.".format(ds_id))
+        return 1
     _, history = _get_vtag_actions_list(ds, from_version,
                                         only_successful=only_successful)
     _print_action_list(args, history)
