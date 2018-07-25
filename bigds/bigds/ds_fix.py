@@ -108,7 +108,7 @@ def do_list_versions(args):
             print(
                 "{:40} {:2} {:3} {:19}".format(
                     version_id,
-                    version_info['datasets'],
+                    version_info.get('datasets', 0),
                     version_info.get('version_tags', 0),
                     version_date,
                 ),
