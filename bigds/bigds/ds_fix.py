@@ -133,13 +133,14 @@ def do_replay_from(args):
         dict(id=ds_id, version='master__tip'), timeout=5, wait=0.5)
     owner_email = args['--owner-email']
     newds, succeeded = _replay_from(source_dataset, ds_version, owner_email)
-    if ds_version is not None:
-        from_msg = "from savepoint {}".format(ds_version)
-    else:
-        from_msg = "from the beginning"
-    print("Created new dataset by replaying dataset", ds_id, from_msg)
-    print("New dataset ID:", newds.id)
-    print("New dataset Name:", newds.name)
+    if newds is not None:
+        if ds_version is not None:
+            from_msg = "from savepoint {}".format(ds_version)
+        else:
+            from_msg = "from the beginning"
+        print("Created new dataset by replaying dataset", ds_id, from_msg)
+        print("New dataset ID:", newds.id)
+        print("New dataset Name:", newds.name)
     print("Succeeded:", succeeded)
     return 0 if succeeded else 1
 
@@ -152,7 +153,12 @@ def _replay_from(source_dataset, from_version, owner_email):
     """
     newds_id = stores.gen_id()
     dataset_name = "REPLAY: " + source_dataset.name
-    dataset_owner = User.get_by_email(owner_email)
+    try:
+        dataset_owner = User.get_by_email(owner_email)
+    except exceptions.NotFound:
+        print('Owner email "{}" not found.'.format(owner_email),
+              file=sys.stderr)
+        return None, False
     newds = Dataset(
         id=newds_id,
         name=dataset_name,
@@ -366,12 +372,12 @@ class _DatasetTipRestorer(object):
         newds, succeeded = _replay_from(self.target_ds,
                                         self.from_version,
                                         self.owner_email)
+        self.replay_from_ds, self.replay_from_succeeded = newds, succeeded
         if succeeded:
             print("succeeded.", end=' ')
         else:
             print("failed.", end=' ')
-        print("New dataset ID:", newds.id)
-        self.replay_from_ds, self.replay_from_succeeded = newds, succeeded
+        print("New dataset ID:", newds.id if newds is not None else None)
         return self.replay_from_succeeded
 
     def _write_restore_tip_file(self, completed=False, caught_exc=False):
