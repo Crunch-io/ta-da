@@ -452,7 +452,11 @@ def do_diagnose(args):
     ds_version = args['<ds-version>'] or 'master__tip'
     format = args['--format']
     _cr_lib_init(args)
-    ds = Dataset.find_by_id(id=ds_id, version=ds_version)
+    try:
+        ds = Dataset.find_by_id(id=ds_id, version=ds_version)
+    except exceptions.NotFound:
+        print("Dataset version {}@{} not found.".format(ds_id, ds_version))
+        return 1
     info = ds.diagnose()
     pprint.pprint(info)
     _check_ds_diagnosis(info, format)
