@@ -6,9 +6,17 @@ my_ui <- function () shinyUI(fluidPage(
                 line-height: 2;
                 color: #0064CA;
             }
+            h2 {
+                font-size: 1.4em;
+                line-height: 2;
+                color: #107f65;
+            }
             ul {
                list-style: square;
                padding-left: 20px;
+            }
+            .ul-top {
+                list-style: none;
             }
 
             a {
@@ -25,6 +33,13 @@ my_ui <- function () shinyUI(fluidPage(
 
             p {
                 margin-top: 10px;
+            }
+
+            .center-column {
+                padding-bottom: 20px;
+                border: #107f65;
+                border-width: thin;
+                border-style: dashed;
             }
 
         "))
@@ -56,10 +71,15 @@ authedBody <- function () { tags$div(
             )
         ),
         tabPanel("Team board",
-            tabsetPanel(type = "tabs",
-                tabPanel("Last week", uiOutput("last_week")),
-                tabPanel("This week", uiOutput("this_week")),
-                tabPanel("Coming up", uiOutput("team_next"))
+            # tabsetPanel(type = "tabs",
+            #     tabPanel("Last week", uiOutput("last_week")),
+            #     tabPanel("This week", uiOutput("this_week")),
+            #     tabPanel("Coming up", uiOutput("team_next"))
+            # )
+            fluidRow(
+                column(4, h2("Last week"), uiOutput("last_week")),
+                column(4, class="center-column", h2("This week"), uiOutput("this_week")),
+                column(4, h2("Coming up"), uiOutput("team_next"))
             )
         )
     ),

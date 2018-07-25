@@ -18,9 +18,12 @@ get_team_activity <- function (df, date) {
 
     # Map trello cards to epics
     epics <- get_epics_from_desc(df$desc)
-    stories <- getStories(
-        label=epics[nchar(epics) > 0],
-        accepted=paste(strftime(thisweek, "%Y/%m/%d"), collapse="..")
+    stories <- tryCatch(
+        getStories(
+            label=epics[nchar(epics) > 0],
+            accepted=paste(strftime(thisweek, "%Y/%m/%d"), collapse="..")
+        ),
+        error=function (e) list()
     )
     # Join on counts of tickets
     if (length(stories)) {

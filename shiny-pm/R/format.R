@@ -1,46 +1,47 @@
 format_team_cards <- function (df) {
-    # This takes a board_cards data frame and returns name (href to trello), plus due date
-    # Suitable for turning into a bunch of <li>
-    has_milestones <- vapply(df$milestones, NROW, integer(1)) > 0
-    out <- tags$ul()
-    out$children <- lapply(which(has_milestones),
-        function (i) format_card(df[i,]))
+    has_milestones <- has_entries(df$milestones)
+    out <- as.ul(df[has_milestones,], format_card, class="ul-top")
     ongoing <- df[!has_milestones,]
-    if (NROW(ongoing)) {
-        out$children <- c(
-            out$children,
-            list(tags$li("Ongoing",
-                tags$ul(lapply(seq_len(nrow(ongoing)), function (i) format_card_short(ongoing[i,]))))))
+    if (!all(has_milestones)) {
+        # We have some cards we're working that don't have milestones this week
+        # so include them but with less detail
+        out <- tag.append(out,
+            li(
+                "Ongoing",
+                as.ul(df[!has_milestones,], format_card_short)
+            )
+        )
     }
     out
 }
 
 format_team_coming_cards <- function (df) {
     # This df is a bespoke shape, see up_next()
-    df <- df[order(df$date), ]
-    tags$ul(lapply(seq_len(min(nrow(df), 10)), function (i) {
-        tags$li(
-            tags$a(href=df$cardUrl[i], df$cardName[i]),
-            df$name[i],
-            format_date(df$date[i])
+    formatter <- function (data) {
+        li(
+            tags$a(href=data$cardUrl, data$cardName),
+            data$name,
+            format_date(data$date)
         )
-    }))
+    }
+
+    df[order(df$date), ] %>%
+        head(10) %>%
+        as.ul(formatter, class="ul-top")
 }
 
 format_card <- function (df) {
     # df is one-row tibble here
     out <- format_card_short(df)
-    details <- tags$ul()
-    # if (!is.na(df$due)) {
-    #     details$children <- c(details$children, list(tags$li(paste("Due", format_date(df$due)))))
-    # }
+    details <- ul()
     if (!is.null(df$milestones)) {
         miles <- df$milestones[[1]]
         if (NROW(miles)) {
+            
             for (i in seq_len(nrow(miles))) {
-                details$children <- c(details$children,
-                    list(tags$li(
-                        tags$b(format_milestone(miles$name[i], miles$date[i], miles$done[i]))))
+                details <- tag.append(details,
+                    li(
+                        bold(format_milestone(miles$name[i], miles$date[i], miles$done[i])))
                     )
             }
         }
@@ -49,13 +50,13 @@ format_card <- function (df) {
         comms <- df$comments[[1]]
         if (NROW(comms)) {
             for (i in seq_len(nrow(comms))) {
-                details$children <- c(details$children,
-                    list(tags$li(format_comment(comms$comment[i], comms$date[i], comms$member[i]))))
+                details <- tag.append(details,
+                    li(format_comment(comms$comment[i], comms$date[i], comms$member[i])))
             }
         }
     }
     if (length(details$children)) {
-        out$children <- c(out$children, list(details))
+        out <- tag.append(out, details)
     }
     return(out)
 }
@@ -65,7 +66,7 @@ format_card_short <- function (df) {
     if (!is.null(df$tickets) && df$tickets > 0) {
         out$children <- c(out$children, paste0("(", df$tickets, " tickets)"))
     }
-    tags$li(out)
+    li(out)
 }
 
 format_milestone <- function (name, date, done) {
@@ -74,12 +75,12 @@ format_milestone <- function (name, date, done) {
     } else {
         out <- paste(name, "expected", format_date(date))
         if (date <= Sys.Date()) {
-            out <- tags$span(out, style="color:red")
+            out <- tags$span(out, style="color:#722580")
         }
         return(out)
     }
 }
 
 format_comment <- function (comment, date, member) {
-    return(tags$i(paste(paste0('"', comment, '"'), member, sep=" -- ")))
+    italics(paste(paste0('"', comment, '"'), member, sep=" -- "))
 }

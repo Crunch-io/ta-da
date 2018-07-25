@@ -7,6 +7,10 @@ secret <- "346eb20f0da81962755b153402df12e414a9289325429ac711cc5ee9ef7f29f8"
 my_server <- shinyServer(function(input, output, session) {
     u <- shinyUser()
     # output$current_user <- renderUI(paste0("Hello ", email(u()), "!"))
+    try(
+        # try() in case we're offline (dev only)
+        output$current_user <- renderUI(paste0("Hello ", email(u()), "!"))
+    )
     output$the_body <- renderUI({
         if (!is.character(input$token) || nchar(input$token) == 0) {
             h1("You are not authenticated")
