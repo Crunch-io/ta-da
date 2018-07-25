@@ -44,45 +44,32 @@ my_ui <- function () shinyUI(fluidPage(
 
         "))
     ),
-    uiOutput("the_body")
-))
-
-bod <- function (...) {
-    function () {
-        tags$div(...)
-    }()
-}
-
-authedBody <- function () { tags$div(
-    fluidRow(
-        column(6, h1("Trello Report")),
-        column(6, actionButton('refresh', 'Refresh'))
-    ),
-    fluidRow(
-        column(6, uiOutput("label")),
-        column(6, uiOutput("user"))
-    ),
-    tabsetPanel(type = "tabs",
-        tabPanel("Roadmap",
-            tabsetPanel(type = "tabs",
-                tabPanel("Building now", DT::dataTableOutput("doing_now")),
-                tabPanel("Done", DT::dataTableOutput("done")),
-                tabPanel("Coming up", DT::dataTableOutput("coming"))
+    crunchyBody(
+        fluidRow(
+            column(6, h1("Trello Report")),
+            column(6, actionButton('refresh', 'Refresh'))
+        ),
+        fluidRow(
+            column(6, uiOutput("label")),
+            column(6, uiOutput("user"))
+        ),
+        tabsetPanel(type = "tabs",
+            tabPanel("Roadmap",
+                tabsetPanel(type = "tabs",
+                    tabPanel("Building now", DT::dataTableOutput("doing_now")),
+                    tabPanel("Done", DT::dataTableOutput("done")),
+                    tabPanel("Coming up", DT::dataTableOutput("coming"))
+                )
+            ),
+            tabPanel("Team board",
+                fluidRow(
+                    column(4, h2("Last week"), uiOutput("last_week")),
+                    column(4, class="center-column", h2("This week"), uiOutput("this_week")),
+                    column(4, h2("Coming up"), uiOutput("team_next"))
+                )
             )
         ),
-        tabPanel("Team board",
-            # tabsetPanel(type = "tabs",
-            #     tabPanel("Last week", uiOutput("last_week")),
-            #     tabPanel("This week", uiOutput("this_week")),
-            #     tabPanel("Coming up", uiOutput("team_next"))
-            # )
-            fluidRow(
-                column(4, h2("Last week"), uiOutput("last_week")),
-                column(4, class="center-column", h2("This week"), uiOutput("this_week")),
-                column(4, h2("Coming up"), uiOutput("team_next"))
-            )
-        )
-    ),
-    uiOutput("current_user"),
-    uiOutput("time")
-)}
+        uiOutput("current_user"),
+        uiOutput("time")
+    )
+))

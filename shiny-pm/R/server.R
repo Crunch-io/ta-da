@@ -3,26 +3,15 @@ board_url <- "https://trello.com/b/kchAl4Hx/product-management"
 token <- "dd2cc7d91c341e37596ae4f0fff54c6d"
 secret <- "346eb20f0da81962755b153402df12e414a9289325429ac711cc5ee9ef7f29f8"
 
+# setCrunchyAuthenticator({
+#     endsWith(email(shinyUser()()), "@crunch.io")
+# })
 
-my_server <- shinyServer(function(input, output, session) {
-    u <- shinyUser()
-    # output$current_user <- renderUI(paste0("Hello ", email(u()), "!"))
-    try(
-        # try() in case we're offline (dev only)
-        output$current_user <- renderUI(paste0("Hello ", email(u()), "!"))
-    )
-    output$the_body <- renderUI({
-        if (!is.character(input$token) || nchar(input$token) == 0) {
-            h1("You are not authenticated")
-        } else {
-            authenticatedServer(input, output, session)
-            ## Now, return the UI body
-            authedBody()
-        }
-    })
-})
-
-authenticatedServer <- function (input, output, session) {
+my_server <- crunchyServer(function (input, output, session) {
+    # try(
+    #     # try() in case we're offline (dev only)
+    #     output$current_user <- renderUI(paste0("Hello ", email(crunch_user()), "!"))
+    # )
     tok <- get_token(token,
         secret,
         appname="shiny-board",
@@ -45,14 +34,15 @@ authenticatedServer <- function (input, output, session) {
         output$time <- renderUI(tags$p(paste("Last updated", Sys.time())))
         rv$cards <- trello_cards(board_url, tok)
     })
+
     # Set up filters, which require data that the server has to fetch
     output$user <- renderUI({
         selectInput("user", "Person",
-                structure(c("all", membs$id), .Names=c("All", membs$fullName)))
+            structure(c("all", membs$id), .Names=c("All", membs$fullName)))
     })
     output$label <- renderUI({
         selectInput("label", "Label",
-                structure(c("all", labs$id), .Names=c("All", labs$name)))
+            structure(c("all", labs$id), .Names=c("All", labs$name)))
     })
     user_filter <- reactive({
         if (is.null(input$user) || input$user == "all") {
@@ -117,4 +107,4 @@ authenticatedServer <- function (input, output, session) {
             datatable(options=list(order=list(list(2, "asc")))) %>%
             formatDate(2)
     })
-}
+})
