@@ -30,6 +30,7 @@ Options:
     --no-replay-from          Don't do the automatic replay-from when doing
                               restore-tip. Note: This is dangerous, and not
                               allowed if not restoring from a savepoint.
+    --timeout=SECONDS         Timeout value for diagnose [default: 600]
 
 Command summaries:
     list-versions       Print versions (savepoints) for a dataset.
@@ -462,6 +463,11 @@ def _get_vtag_actions_list(ds, from_version, only_successful=True):
 def do_diagnose(args):
     ds_id = args['<ds-id>']
     ds_version = args['<ds-version>'] or 'master__tip'
+    try:
+        timeout = int(args['--timeout'])
+    except ValueError:
+        print("Invalid timeout value", file=sys.stderr)
+        return 1
     format = args['--format']
     _cr_lib_init(args)
     try:
@@ -469,7 +475,7 @@ def do_diagnose(args):
     except exceptions.NotFound:
         print("Dataset version {}@{} not found.".format(ds_id, ds_version))
         return 1
-    info = ds.diagnose()
+    info = _diagnose(ds)
     pprint.pprint(info)
     _check_ds_diagnosis(info, format)
 
@@ -481,6 +487,11 @@ def do_diagnose_fromfile(args):
     If no <version> is given, master__tip is assumed.
     """
     filename = args['<filename>']
+    try:
+        timeout = int(args['--timeout'])
+    except ValueError:
+        print("Invalid timeout value", file=sys.stderr)
+        return 1
     format = args['--format']
     _cr_lib_init(args)
     with open(filename) as f:
@@ -496,13 +507,18 @@ def do_diagnose_fromfile(args):
                 sys.stdout.flush()
                 try:
                     ds = Dataset.find_by_id(id=ds_id, version=version)
-                    info = ds.diagnose()
+                    info = _diagnose(ds)
                     _check_ds_diagnosis(info, format)
                     print('OK')
                 except Exception as err:
                     print(err)
                 finally:
                     sys.stdout.flush()
+
+
+def _diagnose(ds, timeout=600):
+    q = {"command": "diagnose"}
+    return ds.query(q, timeout=timeout)["result"]
 
 
 def _check_ds_diagnosis(info, format=None):
