@@ -44,9 +44,10 @@ my_ui <- function () shinyUI(fluidPage(
 
         "))
     ),
+    "",
     crunchyBody(
         fluidRow(
-            column(6, h1("Trello Report")),
+            column(6, h1("Product Roadmap")),
             column(6, actionButton('refresh', 'Refresh'))
         ),
         fluidRow(
@@ -71,5 +72,12 @@ my_ui <- function () shinyUI(fluidPage(
         ),
         uiOutput("current_user"),
         uiOutput("time")
+    ),
+    crunchyPublicBody(
+        h1("You can't sit here."),
+        tags$div("Try logging in at ", tags$a(href="https://app.crunch.io/login", "https://app.crunch.io/login"), ".")
+    ),
+    crunchyUnauthorizedBody(
+        h1("Soory")
     )
 ))

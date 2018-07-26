@@ -3,15 +3,15 @@ board_url <- "https://trello.com/b/kchAl4Hx/product-management"
 token <- "dd2cc7d91c341e37596ae4f0fff54c6d"
 secret <- "346eb20f0da81962755b153402df12e414a9289325429ac711cc5ee9ef7f29f8"
 
-# setCrunchyAuthenticator({
+# setCrunchyAuthorization({
 #     endsWith(email(shinyUser()()), "@crunch.io")
 # })
 
 my_server <- crunchyServer(function (input, output, session) {
-    # try(
-    #     # try() in case we're offline (dev only)
-    #     output$current_user <- renderUI(paste0("Hello ", email(crunch_user()), "!"))
-    # )
+    try(
+        # try() in case we're offline (dev only)
+        output$current_user <- renderUI(paste0("Hello ", email(shinyUser()()), "!"))
+    )
     tok <- get_token(token,
         secret,
         appname="shiny-board",
@@ -107,4 +107,5 @@ my_server <- crunchyServer(function (input, output, session) {
             datatable(options=list(order=list(list(2, "asc")))) %>%
             formatDate(2)
     })
-})
+},
+authz=as.server(endsWith(email(shinyUser()()), "@crunch.io")))
