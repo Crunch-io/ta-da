@@ -6,6 +6,10 @@
 #' @import dplyr
 .onLoad <- function (lib, pkgname="shinyPM") {
     ## Put stuff here you want to run when your package is loaded
+    options(
+        pivotal.token="019f16cff073f84e32e89562c131b6e3",
+        pivotal.project=931610
+    )
     invisible()
 }
 

@@ -1,4 +1,3 @@
-options(pivotal.token="019f16cff073f84e32e89562c131b6e3", pivotal.project=931610)
 board_url <- "https://trello.com/b/kchAl4Hx/product-management"
 token <- "dd2cc7d91c341e37596ae4f0fff54c6d"
 secret <- "346eb20f0da81962755b153402df12e414a9289325429ac711cc5ee9ef7f29f8"
@@ -25,16 +24,21 @@ my_server <- function () {
             cards <- trello_cards(board_url, tok)
             membs <- get_board_members(board_url, tok)
             labs <- get_board_labels(board_url, tok)
-            save(cards, membs, labs, file="trellodata.RData")
+            if (toupper(Sys.getenv("LOCAL", "false")) == "TRUE") {
+                # Local cache for quicker testing
+                save(cards, membs, labs, file="trellodata.RData")
+            }
         }
         rv <- reactiveValues()
         rv$cards <- cards
+        rv$last_update <- Sys.time()
 
-        output$time <- renderUI(tags$p(paste("Last updated", Sys.time())))
+        output$time <- renderUI(tags$p(paste("Last updated", rv$last_update)))
         observeEvent(input$refresh, {
-            output$time <- renderUI(tags$p(paste("Last updated", Sys.time())))
+            rv$last_update <- Sys.time()
             rv$cards <- trello_cards(board_url, tok)
         })
+        # cards <- reactivePoll(1000, session, function () rv$last_update, function () trello_cards(board_url, tok))
 
         # Set up filters, which require data that the server has to fetch
         output$user <- renderUI({
