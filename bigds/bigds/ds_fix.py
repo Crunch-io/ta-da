@@ -475,9 +475,15 @@ def do_diagnose(args):
     except exceptions.NotFound:
         print("Dataset version {}@{} not found.".format(ds_id, ds_version))
         return 1
-    info = _diagnose(ds)
-    pprint.pprint(info)
-    _check_ds_diagnosis(info, format)
+    try:
+        info = _diagnose(ds, timeout=timeout)
+        pprint.pprint(info)
+        _check_ds_diagnosis(info, format)
+        print('OK')
+        return 0
+    except Exception as err:
+        print(err)
+        return 1
 
 
 def do_diagnose_fromfile(args):
@@ -507,7 +513,7 @@ def do_diagnose_fromfile(args):
                 sys.stdout.flush()
                 try:
                     ds = Dataset.find_by_id(id=ds_id, version=version)
-                    info = _diagnose(ds)
+                    info = _diagnose(ds, timeout=timeout)
                     _check_ds_diagnosis(info, format)
                     print('OK')
                 except Exception as err:
