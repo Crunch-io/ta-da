@@ -8,21 +8,26 @@ get_team_activity <- function (df, date=Sys.Date()) {
     # Map trello cards to epics
     epics <- get_epics_from_desc(df$desc)
     stories <- safely_get_stories(
-        label=epics[nchar(epics) > 0],
+        label=unlist(epics),
         accepted=paste(strftime(thisweek, "%Y/%m/%d"), collapse="..")
     )
     # Join on counts of tickets
     if (length(stories)) {
         ticket_counts <- table(unlist(strsplit(as.data.frame(stories)$label, ", ")))
-        df$tickets <- ticket_counts[epics]
-        df$tickets[is.na(df$tickets)] <- 0
+        df$tickets <- vapply(epics, function (x) {
+            if (length(x)) {
+                sum(ticket_counts[x], na.rm=TRUE)
+            } else {
+                0L
+            }
+        }, integer(1))
     } else {
         df$tickets <- rep(0L, min(1L, nrow(df)))
     }
 
     # Look at milestones and comments
-    df$milestones <- filter_this_week(df$milestones)
-    df$comments <- filter_this_week(df$comments)
+    df$milestones <- filter_this_week(df$milestones, thisweek)
+    df$comments <- filter_this_week(df$comments, thisweek)
     # Subset on what we care about
     df <- df[df$tickets > 0 | has_entries(df$milestones) | has_entries(df$comments),]
     # Return a list of tbls to format

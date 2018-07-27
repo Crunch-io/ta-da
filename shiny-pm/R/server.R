@@ -6,6 +6,7 @@ secret <- "346eb20f0da81962755b153402df12e414a9289325429ac711cc5ee9ef7f29f8"
 #     endsWith(email(shinyUser()()), "@crunch.io")
 # })
 
+
 my_server <- function () {
     crunchyServer(function (input, output, session) {
         try(
@@ -21,22 +22,26 @@ my_server <- function () {
         if (file.exists("trellodata.RData")) {
             load("trellodata.RData")
         } else {
-            cards <- trello_cards(board_url, tok)
-            membs <- get_board_members(board_url, tok)
-            labs <- get_board_labels(board_url, tok)
+            # TODO: only update if they're NULL
+            global_cache$cards <<- trello_cards(board_url, tok)
+            global_cache$membs <<- get_board_members(board_url, tok)
+            global_cache$labs <<- get_board_labels(board_url, tok)
             if (toupper(Sys.getenv("LOCAL", "false")) == "TRUE") {
                 # Local cache for quicker testing
                 save(cards, membs, labs, file="trellodata.RData")
             }
         }
+        global_cache$cards <- cards
+        global_cache$membs <- membs
+        global_cache$labs <- labs
         rv <- reactiveValues()
-        rv$cards <- cards
-        rv$last_update <- Sys.time()
+        rv$cards <- global_cache$cards
+        global_cache$last_update <<- rv$last_update <- Sys.time()
 
         output$time <- renderUI(tags$p(paste("Last updated", rv$last_update)))
         observeEvent(input$refresh, {
-            rv$last_update <- Sys.time()
-            rv$cards <- cards <- trello_cards(board_url, tok)
+            global_cache$last_update <<- rv$last_update <- Sys.time()
+            global_cache$cards <<- rv$cards <- cards <- trello_cards(board_url, tok)
             if (toupper(Sys.getenv("LOCAL", "false")) == "TRUE") {
                 # Local cache for quicker testing
                 save(cards, membs, labs, file="trellodata.RData")
@@ -45,10 +50,14 @@ my_server <- function () {
         # reactivePoll(
         #     1000, ## TODO: back off
         #     session,
-        #     function () rv$last_update,
         #     function () {
-        #         rv$cards <<- trello_cards(board_url, tok)
-        #         rv$last_update <<- Sys.time()
+        #         message(email(shinyUser()()))
+        #         message(global_cache$last_update)
+        #         global_cache$last_update
+        #     },
+        #     function () {
+        #         rv$cards <<- global_cache$cards
+        #         rv$last_update <<- global_cache$last_update
         #     }
         # )
 

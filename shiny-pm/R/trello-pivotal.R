@@ -1,14 +1,15 @@
 get_epics_from_desc <- function (desc) {
     # Parse trello card description and look for reference to a pivotal epic
-    vapply(strsplit(desc, "\n"), function (x) {
+    lapply(strsplit(desc, "\n"), function (x) {
         piv <- grep("^Pivotal epic", x, value=TRUE)
         if (length(piv)) {
-            # TODO: allow more than one epic per card
-            return(sub("^Pivotal epic: ?", "", piv[1]))
+            # This allows that there may be more than one epic per card
+            epics <- sub("^Pivotal epic: ?", "", piv)
+            return(unlist(strsplit(epics, ", ?")))
         } else {
-            return("")
+            return(character(0))
         }
-    }, character(1))
+    })
 }
 
 #' @importFrom pivotaltrackR getStories
