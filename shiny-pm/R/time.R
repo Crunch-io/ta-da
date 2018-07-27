@@ -1,4 +1,8 @@
-parse_date <- function (x) as.Date(crunch:::from8601(x))
+#' @importFrom lubridate ymd
+parse_date <- function (x) {
+    # We don't care about any timestamp, just keep the date
+    ymd(substr(x, 1, 10))
+}
 
 #' @importFrom lubridate wday wday<- year isoweek
 get_week_range <- function (date) {

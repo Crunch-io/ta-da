@@ -59,7 +59,18 @@ parse_milestones <- function (miles) {
 }
 
 parse_comments <- function (comms) {
-    # TODO: Look for date in data.text, overwrite date
+    # Look for date in data.text, overwrite date
+    date_in_text <- grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}", comms$data.text)
+    comms$date[date_in_text] <- sub(
+        "^([0-9]{4}-[0-9]{2}-[0-9]{2}).*",
+        "\\1",
+        comms$data.text[date_in_text]
+    )
+    comms$data.text[date_in_text] <- sub(
+        "^[0-9]{4}-[0-9]{2}-[0-9]{2}:? ",
+        "",
+        comms$data.text[date_in_text]
+    )
     # parse date
     df <- data_frame(
         id=comms$data.card.id,

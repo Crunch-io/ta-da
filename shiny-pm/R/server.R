@@ -83,12 +83,12 @@ my_server <- function () {
         # Team board
         output$last_week <- renderUI({
             selected_cards() %>%
-                last_week() %>%
+                get_team_activity(Sys.Date() - 7L) %>%
                 format_team_cards()
         })
         output$this_week <- renderUI({
             selected_cards() %>%
-                this_week() %>%
+                get_team_activity() %>%
                 format_team_cards()
         })
         output$team_next <- renderUI({
