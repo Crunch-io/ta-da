@@ -1,5 +1,6 @@
 my_ui <- function () shinyUI(fluidPage(
     tags$head(
+        tags$title("Product Roadmap"),
         tags$style(HTML("
             h1 {
                 font-size: 2em;

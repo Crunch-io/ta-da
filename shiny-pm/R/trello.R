@@ -17,8 +17,17 @@ trello_cards <- function (board_url, token) {
                 milestones=lapply(miles$checkItems, parse_milestones)
             )
         ) %>%
-        left_join(data_frame(idList=lists$id, listName=lists$name)) %>%
+        left_join(
+            data_frame(
+                idList=lists$id,
+                listName=lists$name,
+                listPos=lists$pos
+            )
+        ) %>%
         left_join(parse_comments(comms))
+    # Sort the cards so that the lists are right to left, and then within each,
+    # top to bottom
+    cards <- cards[order(-cards$listPos, cards$pos),]
     # Add a row to milestones for the due dates
     cards$milestones <- lapply(seq_len(nrow(cards)), function (i) {
         out <- cards$milestones[[i]]

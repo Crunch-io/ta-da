@@ -36,9 +36,21 @@ my_server <- function () {
         output$time <- renderUI(tags$p(paste("Last updated", rv$last_update)))
         observeEvent(input$refresh, {
             rv$last_update <- Sys.time()
-            rv$cards <- trello_cards(board_url, tok)
+            rv$cards <- cards <- trello_cards(board_url, tok)
+            if (toupper(Sys.getenv("LOCAL", "false")) == "TRUE") {
+                # Local cache for quicker testing
+                save(cards, membs, labs, file="trellodata.RData")
+            }
         })
-        # cards <- reactivePoll(1000, session, function () rv$last_update, function () trello_cards(board_url, tok))
+        # reactivePoll(
+        #     1000, ## TODO: back off
+        #     session,
+        #     function () rv$last_update,
+        #     function () {
+        #         rv$cards <<- trello_cards(board_url, tok)
+        #         rv$last_update <<- Sys.time()
+        #     }
+        # )
 
         # Set up filters, which require data that the server has to fetch
         output$user <- renderUI({
@@ -70,24 +82,19 @@ my_server <- function () {
 
         # Team board
         output$last_week <- renderUI({
-            card_list <-
-                selected_cards() %>%
-                last_week()
-            card_list <- card_list[order(card_list$due),]
-            format_team_cards(card_list)
+            selected_cards() %>%
+                last_week() %>%
+                format_team_cards()
         })
         output$this_week <- renderUI({
-            card_list <-
-                selected_cards() %>%
-                this_week()
-            card_list <- card_list[order(card_list$due),]
-            format_team_cards(card_list)
+            selected_cards() %>%
+                this_week() %>%
+                format_team_cards()
         })
         output$team_next <- renderUI({
-            card_list <-
-                selected_cards() %>%
-                up_next()
-            format_team_coming_cards(card_list)
+            selected_cards() %>%
+                up_next() %>%
+                format_team_coming_cards()
         })
 
         output$doing_now <- renderDT({

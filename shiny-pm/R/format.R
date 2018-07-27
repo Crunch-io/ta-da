@@ -1,15 +1,10 @@
-format_team_cards <- function (df) {
-    has_milestones <- has_entries(df$milestones)
-    out <- as.ul(df[has_milestones,], format_card, class="ul-top")
-    ongoing <- df[!has_milestones,]
-    if (!all(has_milestones)) {
+format_team_cards <- function (dfs) {
+    out <- as.ul(dfs$milestones, format_card, class="ul-top")
+    if (NROW(dfs$ongoing)) {
         # We have some cards we're working that don't have milestones this week
         # so include them but with less detail
         out <- tag.append(out,
-            li(
-                "Ongoing",
-                as.ul(df[!has_milestones,], format_card_short)
-            )
+            li("Ongoing", as.ul(dfs$ongoing, format_card))
         )
     }
     out
@@ -37,7 +32,7 @@ format_card <- function (df) {
     if (!is.null(df$milestones)) {
         miles <- df$milestones[[1]]
         if (NROW(miles)) {
-            
+
             for (i in seq_len(nrow(miles))) {
                 details <- tag.append(details,
                     li(

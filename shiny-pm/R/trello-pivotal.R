@@ -10,3 +10,10 @@ get_epics_from_desc <- function (desc) {
         }
     }, character(1))
 }
+
+#' @importFrom pivotaltrackR getStories
+safely_get_stories <- function (...) {
+    # Treat error as length-0 query result, so that if Pivotal is down or if
+    # we're offline, it doesn't error
+    tryCatch(getStories(...), error=function (e) list())
+}

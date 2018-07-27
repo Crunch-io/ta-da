@@ -7,7 +7,6 @@ last_week <- function (df) {
     get_team_activity(df, Sys.Date() - 7L)
 }
 
-#' @importFrom pivotaltrackR getStories
 #' @importFrom lubridate ymd
 get_team_activity <- function (df, date) {
     # For the week of `date`
@@ -18,12 +17,9 @@ get_team_activity <- function (df, date) {
 
     # Map trello cards to epics
     epics <- get_epics_from_desc(df$desc)
-    stories <- tryCatch(
-        getStories(
-            label=epics[nchar(epics) > 0],
-            accepted=paste(strftime(thisweek, "%Y/%m/%d"), collapse="..")
-        ),
-        error=function (e) list()
+    stories <- safely_get_stories(
+        label=epics[nchar(epics) > 0],
+        accepted=paste(strftime(thisweek, "%Y/%m/%d"), collapse="..")
     )
     # Join on counts of tickets
     if (length(stories)) {
@@ -44,7 +40,14 @@ get_team_activity <- function (df, date) {
         # Keep only those that are this week
         x[x$date >= thisweek[1] & x$date <= thisweek[2],]
     })
-    return(df[df$tickets > 0 | has_entries(df$milestones) | has_entries(df$comments),])
+    # Subset on what we care about
+    df <- df[df$tickets > 0 | has_entries(df$milestones) | has_entries(df$comments),]
+    # Return a list of tbls to format
+    m <- has_entries(df$milestones)
+    return(list(
+        milestones=df[m,],
+        ongoing=df[!m,]
+    ))
 }
 
 has_entries <- function (col) {
@@ -53,23 +56,21 @@ has_entries <- function (col) {
 }
 
 up_next <- function (df) {
-    # This currently is scheduled cards that aren't yet "building"
-    # It should be any upcoming milestones, not just due dates
+    # Return a df of any upcoming milestones for expected features
+    df <- filter(df, listName %in% c(specing, "Ready to build", building))
     thisweek <- get_week_range(Sys.Date())
     df$milestones <- lapply(df$milestones, function (x) {
         # Keep only those that are after this week
         x[x$date > thisweek[2],]
     })
-    today <- Sys.Date()
-    df <- filter(df, listName %in% c(specing, "Ready to build", building))
 
-    ## Take that, get name, url, milestone name (or due), and date. Sort by date. Print the top 10?
+    # Take that, get name, url, milestone name, and date.
+    # We will sort by date and print the top 10
     miles <- lapply(which(has_entries(df$milestones)), function (i) {
         x <- df$milestones[[i]]
         x$cardName <- df$name[i]
         x$cardUrl <- df$url[i]
         x
     })
-    miles <- bind_rows(miles)
     return(bind_rows(miles))
 }
