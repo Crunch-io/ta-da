@@ -7,13 +7,15 @@ get_team_activity <- function (df, date=Sys.Date()) {
 
     # Map trello cards to epics
     epics <- get_epics_from_desc(df$desc)
-    stories <- safely_get_stories(
-        label=unlist(epics),
+    stories <- as.data.frame(safely_get_stories(
+        # label=unlist(epics),
         accepted=paste(strftime(thisweek, "%Y/%m/%d"), collapse="..")
-    )
+    ))
+    print(names(stories))
+    story_labels <- strsplit(stories$labels, ", ")
     # Join on counts of tickets
-    if (length(stories)) {
-        ticket_counts <- table(unlist(strsplit(as.data.frame(stories)$label, ", ")))
+    if (NROW(stories)) {
+        ticket_counts <- table(unlist(story_labels))
         df$tickets <- vapply(epics, function (x) {
             if (length(x)) {
                 sum(ticket_counts[x], na.rm=TRUE)
@@ -25,6 +27,31 @@ get_team_activity <- function (df, date=Sys.Date()) {
         df$tickets <- rep(0L, min(1L, nrow(df)))
     }
 
+    # Find other things we did
+    ## TODO: filter on team lead
+    all_current_epics <- unique(unlist(epics))
+    has_label <- function (x, labels) {
+        vapply(
+            x,
+            function (a) length(intersect(a, labels)) > 0,
+            logical(1)
+        )
+    }
+    already_counted <- has_label(story_labels, all_current_epics)
+    filtered_labels <- lapply(story_labels, function (x) {
+        x <- setdiff(x, c(all_current_epics, "mc", "fungera", "passed", "deployed"))
+        drops <- grep("^reviewed:|^verified:|^needs |^has |^rel-", x, value=TRUE)
+        setdiff(x, drops)
+    })
+    residual_stories <-
+        stories %>%
+        select(kind, name, story_type) %>%
+        mutate(labels=filtered_labels) %>%
+        filter(!already_counted & story_type != "release")
+    print(residual_stories)
+    maintenance <- has_label(residual_stories$labels, "internal")
+    bugs <- has_label(residual_stories$labels, "user-reported")
+
     # Look at milestones and comments
     df$milestones <- filter_this_week(df$milestones, thisweek)
     df$comments <- filter_this_week(df$comments, thisweek)
@@ -34,7 +61,10 @@ get_team_activity <- function (df, date=Sys.Date()) {
     m <- has_entries(df$milestones)
     return(list(
         milestones=df[m,],
-        ongoing=df[!m,]
+        ongoing=df[!m,],
+        maintenance=residual_stories[maintenance,],
+        bugs=residual_stories[bugs & !maintenance,],
+        other_tickets=residual_stories[!(maintenance | bugs),]
     ))
 }
 

@@ -1,4 +1,4 @@
-my_ui <- function () shinyUI(fluidPage(
+my_ui <- function (request) shinyUI(fluidPage(
     tags$head(
         tags$title("Product Roadmap"),
         tags$style(HTML("
@@ -57,6 +57,7 @@ my_ui <- function () shinyUI(fluidPage(
         ),
         tabsetPanel(type = "tabs",
             tabPanel("Roadmap",
+                value="roadmap",
                 tabsetPanel(type = "tabs",
                     tabPanel("Building now", DT::dataTableOutput("doing_now")),
                     tabPanel("Done", DT::dataTableOutput("done")),
@@ -64,6 +65,7 @@ my_ui <- function () shinyUI(fluidPage(
                 )
             ),
             tabPanel("Team board",
+                value="dev",
                 fluidRow(
                     column(4, h2("Last week"), uiOutput("last_week")),
                     column(4, class="center-column", h2("This week"), uiOutput("this_week")),

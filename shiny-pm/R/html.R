@@ -34,3 +34,7 @@ tag.append <- function (tag, ...) {
 bold <- function (...) tags$b(...)
 
 italics <- function (...) tags$i(...)
+
+collapsable <- function (caption, content, ...) {
+    tags$details(tags$summary(caption, ...), content)
+}

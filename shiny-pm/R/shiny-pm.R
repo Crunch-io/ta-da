@@ -16,5 +16,5 @@
 #' @title Run the Shiny app
 #' @export
 my_app = function () {
-    shinyApp(ui = my_ui(), server = my_server())
+    shinyApp(ui = my_ui, server = my_server())
 }

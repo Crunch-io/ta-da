@@ -32,7 +32,7 @@ trello_cards <- function (board_url, token) {
     cards$milestones <- lapply(seq_len(nrow(cards)), function (i) {
         out <- cards$milestones[[i]]
         if (!is.na(cards$due[i])) {
-            due <- data_frame(name="Due", date=cards$due[i], done=cards$dueComplete[i])
+            due <- data_frame(name="Done", date=cards$due[i], done=cards$dueComplete[i])
             if (NROW(out)) {
                 out <- bind_rows(out, due)
             } else {

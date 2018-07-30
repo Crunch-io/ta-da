@@ -4,7 +4,37 @@ format_team_cards <- function (dfs) {
         # We have some cards we're working that don't have milestones this week
         # so include them but with less detail
         out <- tag.append(out,
-            li("Ongoing", as.ul(dfs$ongoing, format_card))
+            li(collapsable(
+                paste0("Ongoing (", nrow(dfs$ongoing), " projects)"),
+                as.ul(dfs$ongoing, format_card)
+            ))
+        )
+    }
+    if (NROW(dfs$bugs)) {
+        # User-reported issues fixed not falling under a Trello project
+        out <- tag.append(out,
+            li(collapsable(
+                paste0("Bugfixes (", nrow(dfs$bugs), " tickets)"),
+                as.ul(dfs$bugs, format_tickets)
+            ))
+        )
+    }
+    if (NROW(dfs$maintenance)) {
+        # Maintenance work not under another project
+        out <- tag.append(out,
+            li(collapsable(
+                paste0("Maintenance (", nrow(dfs$maintenance), " tickets)"),
+                as.ul(dfs$maintenance, format_tickets)
+            ))
+        )
+    }
+    if (NROW(dfs$other_tickets)) {
+        # Tickets that aren't categorized anywhere else
+        out <- tag.append(out,
+            li(collapsable(
+                paste0("Unknown (", nrow(dfs$other_tickets), " tickets)"),
+                as.ul(dfs$other_tickets, format_tickets)
+            ))
         )
     }
     out
@@ -78,4 +108,8 @@ format_milestone <- function (name, date, done) {
 
 format_comment <- function (comment, date, member) {
     italics(paste(paste0('"', comment, '"'), member, sep=" -- "))
+}
+
+format_tickets <- function (df) {
+    div(df$name)
 }

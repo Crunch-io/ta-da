@@ -6,9 +6,19 @@ secret <- "346eb20f0da81962755b153402df12e414a9289325429ac711cc5ee9ef7f29f8"
 #     endsWith(email(shinyUser()()), "@crunch.io")
 # })
 
+global_cache <- new.env()
 
 my_server <- function () {
     crunchyServer(function (input, output, session) {
+        # observe({
+        #     # Trigger this observer every time an input changes
+        #     ## This is bad because it serializes a lot of crap we don't want to show
+        #     reactiveValuesToList(input)
+        #     session$doBookmark()
+        # })
+        # onBookmarked(function(url) {
+        #     updateQueryString(url)
+        # })
         try(
             # try() in case we're offline (dev only)
             output$current_user <- renderUI(paste0("Hello ", email(shinyUser()()), "!"))
@@ -19,33 +29,29 @@ my_server <- function () {
             scope="read,write",
             expiration="never"
         )
-        if (file.exists("trellodata.RData")) {
+        if (file.exists("trellodata.RData") &&
+            as.Date(file.mtime("trellodata.RData")) == Sys.Date()) {
+
             load("trellodata.RData")
         } else {
             # TODO: only update if they're NULL
-            global_cache$cards <<- trello_cards(board_url, tok)
-            global_cache$membs <<- get_board_members(board_url, tok)
-            global_cache$labs <<- get_board_labels(board_url, tok)
-            if (toupper(Sys.getenv("LOCAL", "false")) == "TRUE") {
-                # Local cache for quicker testing
-                save(cards, membs, labs, file="trellodata.RData")
-            }
+            cards <- trello_cards(board_url, tok)
+            membs <- get_board_members(board_url, tok)
+            labs <- get_board_labels(board_url, tok)
+            # Local cache for quicker testing
+            save(cards, membs, labs, file="trellodata.RData")
         }
-        global_cache$cards <- cards
-        global_cache$membs <- membs
-        global_cache$labs <- labs
+
         rv <- reactiveValues()
-        rv$cards <- global_cache$cards
-        global_cache$last_update <<- rv$last_update <- Sys.time()
+        rv$cards <- cards
+        rv$last_update <- Sys.time()
 
         output$time <- renderUI(tags$p(paste("Last updated", rv$last_update)))
         observeEvent(input$refresh, {
-            global_cache$last_update <<- rv$last_update <- Sys.time()
-            global_cache$cards <<- rv$cards <- cards <- trello_cards(board_url, tok)
-            if (toupper(Sys.getenv("LOCAL", "false")) == "TRUE") {
-                # Local cache for quicker testing
-                save(cards, membs, labs, file="trellodata.RData")
-            }
+            rv$last_update <- Sys.time()
+            rv$cards <- cards <- trello_cards(board_url, tok)
+            # Local cache for quicker testing
+            save(cards, membs, labs, file="trellodata.RData")
         })
         # reactivePoll(
         #     1000, ## TODO: back off
