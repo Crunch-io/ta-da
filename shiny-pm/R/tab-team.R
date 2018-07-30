@@ -1,4 +1,4 @@
-get_team_activity <- function (df, date=Sys.Date()) {
+get_team_activity <- function (df, user="all", date=Sys.Date()) {
     # For the week of `date`
     thisweek <- get_week_range(date)
     # This currently only checks for tickets completed. But it should also look for
@@ -11,7 +11,7 @@ get_team_activity <- function (df, date=Sys.Date()) {
         # label=unlist(epics),
         accepted=paste(strftime(thisweek, "%Y/%m/%d"), collapse="..")
     ))
-    print(names(stories))
+    print(head(stories$owner_ids))
     story_labels <- strsplit(stories$labels, ", ")
     # Join on counts of tickets
     if (NROW(stories)) {
@@ -28,15 +28,23 @@ get_team_activity <- function (df, date=Sys.Date()) {
     }
 
     # Find other things we did
-    ## TODO: filter on team lead
-    all_current_epics <- unique(unlist(epics))
-    has_label <- function (x, labels) {
+    has_label <- has_owner <- function (x, labels) {
         vapply(
             x,
             function (a) length(intersect(a, labels)) > 0,
             logical(1)
         )
     }
+    lead <- TRELLO_TO_PIVOTAL_USER[[user]]
+    # Filter on team lead
+    if (!is.null(lead)) {
+        team <- PIVOTAL_TEAM[[as.character(lead)]]
+        owners <- strsplit(stories$owner_ids, ", ")
+        owned_by_team <- has_owner(owners, as.character(team))
+        stories <- stories[owned_by_team,]
+        story_labels <- story_labels[owned_by_team]
+    }
+    all_current_epics <- unique(unlist(epics))
     already_counted <- has_label(story_labels, all_current_epics)
     filtered_labels <- lapply(story_labels, function (x) {
         x <- setdiff(x, c(all_current_epics, "mc", "fungera", "passed", "deployed"))
