@@ -38,7 +38,7 @@
             border-radius: 0;
             background: url(../img/crunch_stone.jpg) no-repeat;
             background-attachment: fixed;
-            background-position: center top; 
+            background-position: center top;
             @include vp-background-size(cover);
             margin-bottom: 0;
 
@@ -180,10 +180,20 @@
 }
 
 // Figure images in content .md
-figure.img-fluid {
-    img {
-        max-width: 100%;
-        padding: 30px;
+figure {
+    &.center {
+        text-align: center;
+    }
+
+    &.bordered img {
+        border: 1px solid $color-grey-normal;
+    }
+
+    &.img-fluid {
+        img {
+            max-width: 100%;
+            padding: 30px;
+        }
     }
 }
 

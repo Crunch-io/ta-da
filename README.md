@@ -4,10 +4,12 @@ Our new website is a static site rendered by [Hugo](https://gohugo.io/).
 
 ## Local installation
 
-If you don't have Hugo, [install it](https://gohugo.io/getting-started/quick-start/). Then,
+If you don't have Hugo, [install it](https://gohugo.io/getting-started/quick-start/). Likewise with [yarn](https://yarnpkg.com/en/docs/install). Then,
 
+* `yarn install` (first time only, hopefully)
+* `npm run build:scss` to render the CSS
+    * Alternatively, `yarn run build:scss-dev` will set up a watcher, though you'll then need a second window to...
 * `hugo serve`
-* `yarn run build:scss-dev` to get the css
 * Browse
 
 If you want to preview our new site work in progress, go to https://crunch-io.github.io/crunchy/newsite/.
