@@ -13,6 +13,7 @@ Usage:
     ds.fix [options] save-all-actions <ds-id> <filename>
     ds.fix [options] show-actions <filename>
     ds.fix [options] apply-actions <ds-id> <filename> [--offset=N]
+    ds.fix [options] delete-savepoint <ds-id> <ds-version>
 
 Options:
     -i                        Run interactive prompt after the command
@@ -26,21 +27,15 @@ Options:
                               [default: /var/lib/crunch.io/zz9repo]
     --format=FORMAT           Expected zz9 format [default: 25]
     --include-failed          Also list or save actions that did not succeed
-    --yes                     Bypass "Are you sure?" prompt on restore-tip
+    --yes                     Bypass "Are you sure?" prompts
     --no-replay-from          Don't do the automatic replay-from when doing
                               restore-tip. Note: This is dangerous, and not
                               allowed if not restoring from a savepoint.
     --timeout=SECONDS         Timeout value for diagnose [default: 600]
 
 Command summaries:
-    list-versions       Print versions (savepoints) for a dataset.
-
-    replay-from         Create a new dataset by replaying the actions of another
-                        dataset starting at a savepoint.
-
-    restore-tip         Re-create the tip version of a dataset by replaying
-                        actions starting at a savepoint. Before any changes are
-                        made, the actions are saved to a pickle file.
+    replay-from         Create a dataset by playing the actions of another.
+    restore-tip         Re-create the tip of a dataset by replaying actions.
 
 WARNING!!! these commands are currently experimental and/or dangerous.
 """
@@ -719,6 +714,27 @@ def do_apply_actions(args):
             autorollback=ds.AutorollbackType.LastAction,
             task=None,
         )
+
+
+def do_delete_savepoint(args):
+    ds_id = args['<ds-id>']
+    ds_version = args['<ds-version>']
+    if not args['--yes']:
+        answer = six.moves.input(
+            "About to delete a dataset savepoint. Are you sure? y/[n] ")
+        if not answer.strip().lower().startswith('y'):
+            print("Aborting.")
+            return 1
+    _cr_lib_init(args)
+    try:
+        versiontag = VersionTag.find_one(
+            dict(dataset_id=ds_id, version=ds_version))
+    except exceptions.NotFound:
+        print("VersionTag(dataset_id={!r}, version={!r}) not found"
+              .format(ds_id, ds_version), file=sys.stderr)
+        return 1
+    with actionslib.dataset_lock('delete-savepoint', ds_id, exclusive=True):
+        versiontag.delete()
 
 
 def _do_command(args):
