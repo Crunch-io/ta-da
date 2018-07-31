@@ -6,8 +6,12 @@ secret <- "346eb20f0da81962755b153402df12e414a9289325429ac711cc5ee9ef7f29f8"
 #     endsWith(email(shinyUser()()), "@crunch.io")
 # })
 
+
+
 global_cache <- new.env()
 
+#' @import ggplot2
+#' @importFrom plotly renderPlotly
 my_server <- function () {
     crunchyServer(function (input, output, session) {
         # observe({
@@ -133,6 +137,11 @@ my_server <- function () {
                 select(name, due) %>%
                 datatable(options=list(order=list(list(2, "asc")))) %>%
                 formatDate(2)
+        })
+        output$calendar <- renderPlotly({
+            selected_cards() %>%
+                prep_gantt_data() %>%
+                ggantt()
         })
     },
     authz=as.server(endsWith(email(shinyUser()()), "@crunch.io")))

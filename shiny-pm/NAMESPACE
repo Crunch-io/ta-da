@@ -3,6 +3,8 @@
 export(my_app)
 import(DT)
 import(dplyr)
+import(ggplot2)
+import(plotly)
 import(shiny)
 import(trelloR)
 importFrom(lubridate,"wday<-")

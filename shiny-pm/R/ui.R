@@ -1,3 +1,4 @@
+#' @importFrom plotly plotlyOutput
 my_ui <- function (request) shinyUI(fluidPage(
     tags$head(
         tags$title("Product Roadmap"),
@@ -71,6 +72,10 @@ my_ui <- function (request) shinyUI(fluidPage(
                     column(4, class="center-column", h2("This week"), uiOutput("this_week")),
                     column(4, h2("Coming up"), uiOutput("team_next"))
                 )
+            ),
+            tabPanel("Calendar",
+                value="cal",
+                plotlyOutput("calendar", height="100%")
             )
         ),
         uiOutput("current_user"),
@@ -81,6 +86,8 @@ my_ui <- function (request) shinyUI(fluidPage(
         tags$div("Try logging in at ", tags$a(href="https://app.crunch.io/login", "https://app.crunch.io/login"), ".")
     ),
     crunchyUnauthorizedBody(
-        h1("Soory")
+        h1("Soory"),
+        tags$p("You must be a Crunch team member to access this."),
+        tags$div("Try logging in at ", tags$a(href="https://app.crunch.io/login", "https://app.crunch.io/login"), ".")
     )
 ))
