@@ -734,7 +734,12 @@ def do_delete_savepoint(args):
               .format(ds_id, ds_version), file=sys.stderr)
         return 1
     with actionslib.dataset_lock('delete-savepoint', ds_id, exclusive=True):
-        versiontag.delete()
+        try:
+            versiontag.delete()
+        except ZZ9Timeout:
+            print("Query timeout while deleting {}@{}"
+                  .format(ds_id, ds_version))
+            return 1
 
 
 def _do_command(args):
