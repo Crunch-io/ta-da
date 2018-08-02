@@ -11,7 +11,6 @@ get_team_activity <- function (df, user="all", date=Sys.Date()) {
         # label=unlist(epics),
         accepted=paste(strftime(thisweek, "%Y/%m/%d"), collapse="..")
     ))
-    print(head(stories$owner_ids))
     story_labels <- strsplit(stories$labels, ", ")
     # Join on counts of tickets
     if (NROW(stories)) {
@@ -56,9 +55,8 @@ get_team_activity <- function (df, user="all", date=Sys.Date()) {
         select(kind, name, story_type) %>%
         mutate(labels=filtered_labels) %>%
         filter(!already_counted & story_type != "release")
-    print(residual_stories)
-    maintenance <- has_label(residual_stories$labels, "internal")
-    bugs <- has_label(residual_stories$labels, "user-reported")
+    maintenance <- has_label(residual_stories$labels, c("internal", "maintenance", "technical debt", "whaam technical debt"))
+    bugs <- has_label(residual_stories$labels, c("user-reported", "urgent bugfix"))
 
     # Look at milestones and comments
     df$milestones <- filter_this_week(df$milestones, thisweek)

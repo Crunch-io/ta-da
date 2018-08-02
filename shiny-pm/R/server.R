@@ -141,8 +141,11 @@ my_server <- function () {
         output$calendar <- renderPlotly({
             selected_cards() %>%
                 prep_gantt_data() %>%
-                ggantt()
+                ggantt() %>%
+                ggplotly() %>%
+                hack_plotly()
         })
+    # })
     },
     authz=as.server(endsWith(email(shinyUser()()), "@crunch.io")))
 }
