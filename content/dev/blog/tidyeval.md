@@ -1,13 +1,13 @@
 +++
- categories = ["general"]
- date = "2018-08-03T12:12:10-07:00"
- description = ""
- draft = false
- tags = ["R", "data visualization", "ggplot2", "tidyeval", "crplyr"]
- title = "Making Graphs Look Easy with ggplot2 and Tidy Evaluation"
- weight = 20
- images = ["https://crunch.io/img/logo-1200x630.png"]
- +++
+categories = ["general"]
+date = "2018-08-03T12:12:10-07:00"
+description = ""
+draft = false
+tags = ["R", "data visualization", "ggplot2", "tidyeval", "crplyr"]
+title = "Making Graphs Look Easy with ggplot2 and Tidy Evaluation"
+weight = 20
+images = ["https://crunch.io/img/logo-1200x630.png"]
++++
 
 At Crunch, one of the ways we try to make data exploration simple is by
 providing sensible default views that take into account the properties
@@ -24,25 +24,29 @@ additional `ggplot2` layers, if you want.
 This lets us plot Crunch variables, and high dimensional survey
 cross-tabs easily, while making sure that the plot always fits the data.
 
-    library(ggplot2)
-    library(crplyr)
+```r
+library(ggplot2)
+library(crplyr)
 
-    ## Warning: package 'dplyr' was built under R version 3.5.1
+login()
+ds <- loadDataset("Not-so-simple alltypes")
 
-    login()
-    ds <- loadDataset("Not-so-simple alltypes")
+autoplot(crtabs(~pasta + food_groups, ds))
+```
 
-    autoplot(crtabs(~pasta + food_groups, ds))
+![](img/tidyeval/unnamed-chunk-1-1.png)
 
-![](tidyeval_files/figure-markdown_strict/unnamed-chunk-1-1.png)
+```r
+autoplot(crtabs(~abolitionists + food_groups, ds), "tile")
+```
 
-    autoplot(crtabs(~abolitionists + food_groups, ds), "tile")
+![](img/tidyeval/unnamed-chunk-1-2.png)
 
-![](tidyeval_files/figure-markdown_strict/unnamed-chunk-1-2.png)
+```r
+autoplot(ds$ec, "bar")
+```
 
-    autoplot(ds$ec, "bar")
-
-![](tidyeval_files/figure-markdown_strict/unnamed-chunk-1-3.png)
+![](img/tidyeval/unnamed-chunk-1-3.png)
 
 Making it look easy, though, can be hard work. Our `autoplot` methods
 inspect the input objects to understand their dimensionality and data
@@ -58,14 +62,12 @@ To illustrate this pattern, this blog post goes through a simplified
 example using the "diamonds" example dataset and pure `dplyr` methods.
 We'll create a plotting function that adjusts to the number of grouping
 variables in a tibble. This lets you pipe data from a dplyr pipeline
-into a single function and get a meaningful, appropriate plot, like
-this:
+into a single function and get a meaningful, appropriate plot.
 
 The actual code for our Crunch `autoplot` methods is
 [here](https://github.com/Crunch-io/crplyr/blob/ggplot-methods/R/plotting.R).
 
-Non-Standard Evaluation: Great Power, Great Pain
-------------------------------------------------
+## Non-Standard Evaluation: Great Power, Great Pain
 
 A great feature the R language has is that it lets you access and
 manipulate the environment in which a function is called. This
@@ -147,8 +149,7 @@ where that evaluation should take place. This is an easy thing to
 forget, and presents its own problems if you move functions around, or
 later call them in a different order.
 
-Enter the Quosure
------------------
+## Enter the Quosure
 
 Tidyeval offers a solution to this problem: it bundles the expression
 and its environment in a single object called a "quosure". What this
@@ -158,8 +159,7 @@ functions with confidence. Because the expression and the environment
 are bundled together, when you end up evaluating it you won't ever be
 surprised by the result.
 
-Autoplot
---------
+## Autoplot
 
 Our first goal is to have a single function that will produce different
 plots based on the number of grouping variables in the tibble it
@@ -205,7 +205,7 @@ plotting functions which actually do the work:
         tally() %>%
         autoplot()
 
-![](tidyeval_files/figure-markdown_strict/unnamed-chunk-5-1.png)
+![](img/tidyeval/unnamed-chunk-5-1.png)
 
 The convenient thing about using tidy eval in this case is that we can
 confidently pass the unevaluated names into both the `dplyr` and
@@ -230,7 +230,7 @@ measure will be called. We can do the same thing with the 2d plot:
         tally() %>%
         autoplot()
 
-![](tidyeval_files/figure-markdown_strict/unnamed-chunk-6-1.png)
+![](img/tidyeval/unnamed-chunk-6-1.png)
 
 This is basically the same code as the 1d plot, expect that we used the
 splice operator (`!!!`) in the select call, and added another grouping
@@ -266,10 +266,9 @@ package allows us to use tidyeval to dynamically add facets.
         summarize(number_of_diamonds = n()) %>%
         autoplot()
 
-![](tidyeval_files/figure-markdown_strict/unnamed-chunk-7-1.png)
+![](img/tidyeval/unnamed-chunk-7-1.png)
 
-Conclusion
-----------
+## Conclusion
 
 Tidyeval solves the main problem with R's non-standard evaluation by
 bundling expressions and environments into quosures. The new release of
