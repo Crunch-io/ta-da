@@ -1,15 +1,21 @@
----
-title: "Confident metaprogramming with Tidyeval"
-output: html_document
----
++++
+categories = ["general"]
+date = "2018-08-03T12:12:10-07:00"
+description = ""
+draft = false
+tags = ["R", "data visualization", "ggplot2", "tidyeval", "crplyr"]
+title = "Making Graphs Look Easy with ggplot2 and Tidy Evaluation"
+weight = 20
+images = ["https://crunch.io/img/logo-1200x630.png"]
++++
 
 
 ```{r code to generate lead plots, echo = FALSE}
 autoplot <- function(df) {
     # Add grouping variable which was stripped by summarize
-    df <- df %>% 
+    df <- df %>%
         group_by(!!!groups(df), !!sym(names(df)[length(groups(df)) + 1]))
-    
+
     groups <- groups(df)
     if (length(groups) == 1) {
         plot_fun <- plot_1d
@@ -18,10 +24,10 @@ autoplot <- function(df) {
     }
     vars <- syms(names(df))
     out <- plot_fun(df, vars)
-    
+
     if (length(groups) > 2) {
         groups <- syms(groups)
-        out <- out + 
+        out <- out +
             facet_wrap(vars(!!!groups[3:length(groups)]))
     }
     return(out)
@@ -30,53 +36,58 @@ autoplot <- function(df) {
 plot_1d <- function(df, vars){
     groups <- vars[vars %in% groups(df)]
     measure <- vars[length(vars)][[1]]
-    df %>% 
-        select(!!groups[[1]], !!measure) %>% 
-        arrange(desc(!!measure)) %>% 
+    df %>%
+        select(!!groups[[1]], !!measure) %>%
+        arrange(desc(!!measure)) %>%
         ggplot(aes(x = !!measure, y = !!groups[[1]])) +
-        geom_point() + 
+        geom_point() +
         theme_minimal()
 }
 
 plot_2d <- function(df, vars){
     groups <- vars[vars %in% groups(df)]
     measure <- vars[length(vars)][[1]]
-    df %>% 
-        select(!!!groups, !!measure) %>% 
-        arrange(desc(!!measure)) %>% 
+    df %>%
+        select(!!!groups, !!measure) %>%
+        arrange(desc(!!measure)) %>%
         ggplot(aes(x = !!measure, y = !!groups[[1]], , color = !!groups[[2]])) +
         geom_point() +
         theme_minimal()
 }
 ```
 
+At Crunch, one of the ways we try to make data exploration simple is by providing sensible default views that take into account the properties of your data and metadata. We've just released some plotting methods in our `crplyr` R package that define methods for `ggplot2`'s [`autoplot()`](https://ggplot2.tidyverse.org/reference/autoplot.html) function.
+`autoplot()` was the ideal approach for us to encapsulate the logic of how to "just do the right thing." You can do the analysis you want, and it will make smart choices about how to display it with no additional input--all of which you can control or override with additional `ggplot2` layers, if you want.
 
-I recently got a chance to work with tidy eval by developing ![autoplot methods](https://github.com/Crunch-io/crplyr/blob/ggplot-methods/R/plotting.R) for Crunch objects. One of these objects is called a `CrunchCube` which is an n-dimensional array of survey cross tabs. What I wanted to do was develop a plotting method which automatically adjusted to the dimensionality of the array to provide an appropriate visualization each type of cube. 
+This lets us do [insert examples here, with pictures]
 
-This blog post goes through a simplified example of that pattern and to create ca plotting function that adjusts to the number of grouping variables in a tibble. This lets you pipe data from a dplyr pipeline into a single function and get a meaningful, appropriate plot. 
+Making it look easy, though, can be hard work. Our `autoplot` methods inspect the input objects to understand their dimensionality and data types and choose an appropriate visualization. Figuring out and passing the right arguments to the right places can be messy, so make these functions work, we took advantage of "[tidyeval](https://dplyr.tidyverse.org/articles/programming.html)", a new framework that systematizes non-standard evaluation in R.
+
+To illustrate this pattern, this blog post goes through a simplified example using the "diamonds" example dataset and pure `dplyr` methods. We'll create a plotting function that adjusts to the number of grouping variables in a tibble. This lets you pipe data from a dplyr pipeline into a single function and get a meaningful, appropriate plot, like this:
 
 ```{r}
 library(ggplot2)
 library(dplyr)
-diamonds %>% 
-    group_by(cut, clarity) %>% 
-    tally() %>% 
+diamonds %>%
+    group_by(cut, clarity) %>%
+    tally() %>%
     autoplot()
 
-diamonds %>% 
-    group_by(clarity, cut, color) %>% 
-    summarize(mean_price = mean(price)) %>% 
+diamonds %>%
+    group_by(clarity, cut, color) %>%
+    summarize(mean_price = mean(price)) %>%
     autoplot()
 ```
 
-To make these functions work, we need to use a little bit of ![tidyeval](https://dplyr.tidyverse.org/articles/programming.html) which is a new framework which systematizes non standard evaluation in R. 
+The actual code for our Crunch `autoplot` methods is [here](https://github.com/Crunch-io/crplyr/blob/ggplot-methods/R/plotting.R).
 
-## The Problems with Non-Standard Evaluation
+## Non-Standard Evaluation: Great Power, Great Pain
 
-One of the best features of the R language is that it lets you access and manipulate the environment in which a function is called. This is called non standard evaluation (NSE) in R and provides package authors a flexible and powerful way to build programming interfaces. At Crunch we use NSE a lot to improve the user friendliness of our app's API. For example if you send the wrong data to the API you might get back a response like `400: Payload is malformed` which isn't that helpful for users who are not familiar with the API. We use NSE to inspect the user's calling environment and tell them which variables or data structures are causing the problem and how they can fix it. 
+A great feature the R language is that it lets you access and manipulate the environment in which a function is called. This non-standard evaluation (NSE) gives package authors a flexible and powerful way to build programming interfaces.
 
-Despite working this framework all the time, I'm pretty sure that I've never once gotten it right on the first try. The core reason is that whenever you are capturing and expression to evaluate later you need to also keep track of which environment you should evaluate that expression in. This makes it really difficult to pass unevaluated expressions between functions and have the evaluation occur without error. For instance take this code which replaces a missing function argument with a logical value: 
+At Crunch, we use NSE a lot. One example is in reporting better error messages. If you send the wrong data to the API, you might get back a response like `400: Payload is malformed`. That's not very helpful even for users who know our API well. We use NSE to inspect the user's calling environment, figure out which variables or data structures are causing the problem, and suggest a fix.
 
+Despite working this framework all the time, I'm pretty sure that I've never once gotten it right on the first try. The core reason is that whenever you are capturing and expression to evaluate later you need to also keep track of which environment you should evaluate that expression in. This makes it really difficult to pass unevaluated expressions between functions and have the evaluation occur without error. For instance, take this code which replaces a `missing` function argument with a logical value:
 
 ```{r}
 
@@ -87,7 +98,7 @@ f1 <- function(i, j, ...) {
 }
 
 replace_missing <- function(args){
-        out <- lapply(args, function(x){
+    out <- lapply(args, function(x){
         if (is.symbol(x)) {
             x <- tryCatch(eval(x), error = function(c){
                 msg <- conditionMessage(c)
@@ -104,7 +115,7 @@ replace_missing <- function(args){
 }
 ```
 
-This code captures an expression at the top level, and passes it down to a second function which returns `TRUE` if it can't find the argument, and evaluates expression if it can. There's a tricky mistake here though because we aren't specifying in which environment we want that evaluation to take place. So if we happen to send a variable that is used somewhere in the call stack we'll get the wrong result: 
+This code captures an expression at the top level, and passes it down to a second function which returns `TRUE` if it can't find the argument, and evaluates expression if it can. There's a tricky mistake here though: we aren't specifying in which environment we want that evaluation to take place. So if we happen to send a variable that is used somewhere in the call stack we'll get the wrong result:
 
 ```{r}
 x <- 1
@@ -116,21 +127,22 @@ f1(x, , 3)
 
 ```
 
-What's happening here is that when the final `eval(x)` is happening, `x` is identified through lexical scoping, and so it ends up using the `x` that's in the `lapply` environment, rather than the one that's in the global environment. To fix this we need to specify the environment where that evaluation should take place. This is an easy thing to forget, and presents its own problems if you move functions around, or later call them in a different order. 
+What's happening here is that when the final `eval(x)` is happening, `x` is identified through lexical scoping, and so it ends up using the `x` that's in the `lapply` environment, rather than the one that's in the global environment. To fix this, we need to specify the environment where that evaluation should take place. This is an easy thing to forget, and presents its own problems if you move functions around, or later call them in a different order.
 
 ## Enter the Quosure
 
-Tidyeval has a great solution to this problem which is to bundle the expression and its environment in a single object called a "quosure". What this means it that as a developer you don't have to worry about matching expressions to environments and  can pass unevaluated expressions between functions with confidence. Because the expression and the environment are bundled together, when you end up evaluating it you won't ever be surprised by the result. 
+Tidyeval offers a solution to this problem: it bundles the expression and its environment in a single object called a "quosure". What this means it that as a developer, you don't have to worry about matching expressions to environments and can pass unevaluated expressions between functions with confidence. Because the expression and the environment are bundled together, when you end up evaluating it you won't ever be surprised by the result.
 
 ## Autoplot
-The idea here is to have a single function which will produce different plots based on the number of grouping variables in the tibble. So the first step is to create a general plotting function which figures out which plotting sub-function to use: 
+
+Our first goal is to have a single function that will produce different plots based on the number of grouping variables in the tibble it receives. So the first step is to create a general plotting function which figures out which plotting sub-function to use:
 
 ```{r}
 autoplot <- function(df) {
     # Add grouping variable which was stripped by summarize
-    df <- df %>% 
+    df <- df %>%
         group_by(!!!groups(df), !!sym(names(df)[length(groups(df)) + 1]))
-    
+
     if (length(groups(df)) == 1) {
         plot_fun <- plot_1d
     } else {
@@ -141,57 +153,57 @@ autoplot <- function(df) {
 }
 ```
 
-What this does is inspect the dataset and then select a plotting function based on the number of groups in the data frame. It then captures the names of the dataset as a list of symbols and passes it down to the plotting function. The next step is to write the two plotting functions which actually do the work: 
+What this does is inspect the dataset and then select a plotting function based on the number of groups in the data frame. It then captures the names of the dataset as a list of symbols and passes it down to the plotting function. The next step is to write the two plotting functions which actually do the work:
 
 ```{r}
 plot_1d <- function(df, vars){
     groups <- vars[vars %in% groups(df)]
     measure <- vars[length(vars)][[1]]
-    df %>% 
-        select(!!groups[[1]], !!measure) %>% 
-        arrange(desc(!!measure)) %>% 
+    df %>%
+        select(!!groups[[1]], !!measure) %>%
+        arrange(desc(!!measure)) %>%
         ggplot(aes(x = !!measure, y = !!groups[[1]])) +
         geom_point() +
         theme_minimal()
 }
 
-diamonds %>% 
-    group_by(cut) %>% 
-    tally() %>% 
+diamonds %>%
+    group_by(cut) %>%
+    tally() %>%
     autoplot()
 ```
 
-The convenient thing about using tidy eval in this case is that we can confidently pass the unevaluated names into both the `dplyr` and `ggplot2` code without worrying that the evaluation will fail. This means we can arrange the dataset based on the measure name, and then plot that measure even though we don't know ahead of time what the measure will be called. We can do the same thing with the 2d plot: 
+The convenient thing about using tidy eval in this case is that we can confidently pass the unevaluated names into both the `dplyr` and `ggplot2` code without worrying that the evaluation will fail. This means we can arrange the dataset based on the measure name, and then plot that measure even though we don't know ahead of time what the measure will be called. We can do the same thing with the 2d plot:
 
 
 ```{r}
 plot_2d <- function(df, vars){
     groups <- vars[vars %in% groups(df)]
     measure <- vars[length(vars)][[1]]
-    df %>% 
-        select(!!!groups, !!measure) %>% 
-        arrange(desc(!!measure)) %>% 
+    df %>%
+        select(!!!groups, !!measure) %>%
+        arrange(desc(!!measure)) %>%
         ggplot(aes(x = !!measure, y = !!groups[[1]], , color = !!groups[[2]])) +
         geom_point() +
         theme_minimal()
 }
 
-diamonds %>% 
-    group_by(cut ,clarity) %>% 
-    tally() %>% 
+diamonds %>%
+    group_by(cut ,clarity) %>%
+    tally() %>%
     autoplot()
 ```
 
-This is basically the same code as the 1d plot, expect that we used the splice operator (`!!!`) in the select call, and added another grouping variable on the color dimension. 
+This is basically the same code as the 1d plot, expect that we used the splice operator (`!!!`) in the select call, and added another grouping variable on the color dimension.
 
 What happens when you have more than three dimensions? The ggplot2 package allows us to use tidyeval to dynamically add facets.
 
 ```{r}
 autoplot <- function(df) {
     # Add grouping variable which was stripped by summarize
-    df <- df %>% 
+    df <- df %>%
         group_by(!!!groups(df), !!sym(names(df)[length(groups(df)) + 1]))
-    
+
     groups <- groups(df)
     if (length(groups) == 1) {
         plot_fun <- plot_1d
@@ -200,21 +212,21 @@ autoplot <- function(df) {
     }
     vars <- syms(names(df))
     out <- plot_fun(df, vars)
-    
+
     if (length(groups) > 2) {
         groups <- syms(groups)
-        out <- out + 
+        out <- out +
             facet_wrap(vars(!!!groups[3:length(groups)]))
     }
     return(out)
 }
 
-diamonds %>% 
-    group_by(cut, color, clarity) %>% 
-    summarize(number_of_diamonds = n()) %>% 
+diamonds %>%
+    group_by(cut, color, clarity) %>%
+    summarize(number_of_diamonds = n()) %>%
     autoplot()
 ```
 
 ## Conclusion
 
-Tidyeval solves the main problem with non-standard-evaluation by bundling expressions and environments into quosures. Passing these quosures back and forth between functions unlocks powerful new mechanisms of building user-friendly functions. 
+Tidyeval solves the main problem with R's non-standard evaluation by bundling expressions and environments into quosures. Passing these quosures back and forth between functions unlocks powerful new mechanisms of building user-friendly functions.
