@@ -59,7 +59,18 @@ plot_2d <- function(df, vars){
 At Crunch, one of the ways we try to make data exploration simple is by providing sensible default views that take into account the properties of your data and metadata. We've just released some plotting methods in our `crplyr` R package that define methods for `ggplot2`'s [`autoplot()`](https://ggplot2.tidyverse.org/reference/autoplot.html) function.
 `autoplot()` was the ideal approach for us to encapsulate the logic of how to "just do the right thing." You can do the analysis you want, and it will make smart choices about how to display it with no additional input--all of which you can control or override with additional `ggplot2` layers, if you want.
 
-This lets us do [insert examples here, with pictures]
+This lets us plot Crunch variables, and high dimensional survey cross-tabs easily, while making sure that the plot always fits the data. 
+
+```{r}
+library(ggplot2)
+login()
+ds <- loadDataset("Not-so-simple alltypes")
+
+autoplot(crtabs(~pasta + food_groups, ds))
+autoplot(crtabs(~abolitionists + food_groups, ds), "tile")
+autoplot(ds$ec, "bar")
+```
+
 
 Making it look easy, though, can be hard work. Our `autoplot` methods inspect the input objects to understand their dimensionality and data types and choose an appropriate visualization. Figuring out and passing the right arguments to the right places can be messy, so make these functions work, we took advantage of "[tidyeval](https://dplyr.tidyverse.org/articles/programming.html)", a new framework that systematizes non-standard evaluation in R.
 
@@ -85,7 +96,7 @@ The actual code for our Crunch `autoplot` methods is [here](https://github.com/C
 
 A great feature the R language is that it lets you access and manipulate the environment in which a function is called. This non-standard evaluation (NSE) gives package authors a flexible and powerful way to build programming interfaces.
 
-At Crunch, we use NSE a lot. One example is in reporting better error messages. If you send the wrong data to the API, you might get back a response like `400: Payload is malformed`. That's not very helpful even for users who know our API well. We use NSE to inspect the user's calling environment, figure out which variables or data structures are causing the problem, and suggest a fix.
+At Crunch, we use NSE a lot. One example is in reporting better error messages. If you send the wrong data to the API, you might get back a response like `400: Payload is malformed`. That's not very helpful even for users who know our API well. We use NSE to inspect the user's calling environment, figure out which variables or data structures are causing the problem, and ![suggest a fix](https://github.com/Crunch-io/rcrunch/blob/1b8ab2f22f3b08d246cd50232c3322de963f0165/R/case-variables.R#L83-L88).
 
 Despite working this framework all the time, I'm pretty sure that I've never once gotten it right on the first try. The core reason is that whenever you are capturing and expression to evaluate later you need to also keep track of which environment you should evaluate that expression in. This makes it really difficult to pass unevaluated expressions between functions and have the evaluation occur without error. For instance, take this code which replaces a `missing` function argument with a logical value:
 
