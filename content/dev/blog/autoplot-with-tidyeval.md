@@ -11,7 +11,7 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 At Crunch, one of the ways we try to make data exploration simple is by
 providing sensible default views that take into account the properties
-of your data and metadata. We've in the process of releasing some
+of your data and metadata. We're in the process of releasing some
 plotting methods in our `crplyr` R package that define methods for
 `ggplot2`'s
 [`autoplot()`](https://ggplot2.tidyverse.org/reference/autoplot.html)
@@ -21,23 +21,29 @@ want, and it will make smart choices about how to display it with no
 additional input--all of which you can control or override with
 additional `ggplot2` layers, if you want.
 
-This lets us plot Crunch variables, and high dimensional survey
+This lets us plot Crunch variables and high dimensional survey
 cross-tabs easily, while making sure that the plot always fits the data.
 
 ```r
 library(ggplot2)
 library(crplyr)
 
-login()
-ds <- loadDataset("Not-so-simple alltypes")
+crunch::login()
+ds <- loadDataset("Not-so-simple dataset with all types")
 
-autoplot(crtabs(~pasta + food_groups, ds))
+ds %>%
+    group_by(pasta, food_groups) %>%
+    summarize(count=n()) %>%
+    autoplot()
 ```
 
 ![](img/tidyeval/unnamed-chunk-1-1.png)
 
 ```r
-autoplot(crtabs(~abolitionists + food_groups, ds), "tile")
+ds %>%
+    group_by(abolitionists, food_groups) %>%
+    summarize(count=n()) %>%
+    autoplot("tile")
 ```
 
 ![](img/tidyeval/unnamed-chunk-1-2.png)
@@ -53,9 +59,9 @@ inspect the input objects to understand their dimensionality and data
 types and choose an appropriate visualization. Figuring out and passing
 the right arguments to the right places can be messy, so in order to
 make these functions work, we took advantage of
-[tidyeval](https://dplyr.tidyverse.org/articles/programming.html), a new
-framework that systematizes non-standard evaluation in R which is now
-also compatible with ggplot2 with the new [3.0.0 release of
+[tidyeval](https://dplyr.tidyverse.org/articles/programming.html), a
+framework that systematizes non-standard evaluation in R, now
+also supported in the new [3.0.0 release of
 ggplot2](https://www.tidyverse.org/articles/2018/07/ggplot2-3-0-0/).
 
 To illustrate this pattern, this blog post goes through a simplified
@@ -80,12 +86,12 @@ response like `400: Payload is malformed`. That's not very helpful even
 for users who know our API well. We use NSE to inspect the user's
 calling environment, figure out which variables or data structures are
 causing the problem, and [suggest a
-fix](https://github.com/Crunch-io/rcrunch/blob/1b8ab2f22f3b08d246cd50232c3322de963f0165/R/case-variables.R#L83-L88):
-instead of `400: Payload is malformed` we error with the more helpful
-`must supply case conditions in either "..." or the "cases" arugment, please use one or the other.`
+fix](https://github.com/Crunch-io/rcrunch/blob/1b8ab2f22f3b08d246cd50232c3322de963f0165/R/geo.R#L108):
+instead of a generic validation message, we error with the more helpful
+`ds$some_name must be a Crunch Variable`, pointing back to the input that the user typed.
 
-Despite working with this framework all the time, I'm pretty sure that
-I've never once gotten it right on the first try. The core reason is
+Despite working with NSE all the time, we're pretty sure that
+we've never once gotten it right on the first try. The main reason is
 that whenever you are capturing an expression to evaluate later you need
 to also keep track of which environment you should evaluate that
 expression in. This makes it really difficult to pass unevaluated
@@ -118,12 +124,13 @@ argument with a logical value:
 
 This code captures an expression at the top level, and passes it down to
 a second function which returns `TRUE` if it can't find the argument,
-and evaluates expression if it can. (We use code very similar to this
+and evaluates expression if it can. We use code very similar to this
 for [subsetting CrunchCube
-objects](https://github.com/Crunch-io/rcrunch/blob/master/R/cube-subset.R#L116-L131))
+objects](https://github.com/Crunch-io/rcrunch/blob/master/R/cube-subset.R#L116-L131).
+
 There's a tricky mistake here though: we aren't specifying in which
 environment we want that evaluation to take place. So if we happen to
-send a variable that is used somewhere in the call stack we'll get the
+send a variable that is used somewhere in the call stack, we'll get the
 wrong result:
 
     x <- 1
@@ -161,49 +168,53 @@ surprised by the result.
 
 ## Autoplot
 
-Our first goal is to have a single function that will produce different
+Back to our `autoplot()` project, our initial goal is to have a single function that will produce different
 plots based on the number of grouping variables in the tibble it
-receives. So the first step is to create a general plotting function
-which figures out which plotting sub-function to use:
+receives. First, we create a general plotting function
+that figures out which plotting sub-function to use:
 
-    library(ggplot2)
-    library(dplyr)
+```r
+library(ggplot2)
+library(dplyr)
 
-    autoplot <- function(df) {
-        # Add grouping variable which was stripped by summarize
-        df <- df %>%
-            group_by(!!!groups(df), !!sym(names(df)[length(groups(df)) + 1]))
+autoplot <- function(df) {
+    # Add grouping variable which was stripped by summarize
+    df <- df %>%
+        group_by(!!!groups(df), !!sym(names(df)[length(groups(df)) + 1]))
 
-        if (length(groups(df)) == 1) {
-            plot_fun <- plot_1d
-        } else {
-            plot_fun <- plot_2d
-        }
-        vars <- syms(names(df))
-        plot_fun(df, vars)
+    if (length(groups(df)) == 1) {
+        plot_fun <- plot_1d
+    } else {
+        plot_fun <- plot_2d
     }
+    vars <- syms(names(df))
+    plot_fun(df, vars)
+}
+```
 
-What this does is inspect the dataset and then select a plotting
-function based on the number of groups in the data frame. It then
+The function inspects the data frame and then selects a plotting
+function based on the number of groups in it. It then
 captures the names of the dataset as a list of symbols and passes it
 down to the plotting function. The next step is to write the two
-plotting functions which actually do the work:
+plotting functions that actually do the work:
 
-    plot_1d <- function(df, vars){
-        groups <- vars[vars %in% groups(df)]
-        measure <- vars[length(vars)][[1]]
-        df %>%
-            select(!!groups[[1]], !!measure) %>%
-            arrange(desc(!!measure)) %>%
-            ggplot(aes(x = !!measure, y = !!groups[[1]])) +
-            geom_point() +
-            theme_minimal()
-    }
+```r
+plot_1d <- function(df, vars){
+    groups <- vars[vars %in% groups(df)]
+    measure <- vars[length(vars)][[1]]
+    df %>%
+        select(!!groups[[1]], !!measure) %>%
+        arrange(desc(!!measure)) %>%
+        ggplot(aes(x = !!measure, y = !!groups[[1]])) +
+        geom_point() +
+        theme_minimal()
+}
 
-    diamonds %>%
-        group_by(cut) %>%
-        tally() %>%
-        autoplot()
+diamonds %>%
+    group_by(cut) %>%
+    tally() %>%
+    autoplot()
+```
 
 ![](img/tidyeval/unnamed-chunk-5-1.png)
 
@@ -214,69 +225,73 @@ means we can arrange the dataset based on the measure name, and then
 plot that measure even though we don't know ahead of time what the
 measure will be called. We can do the same thing with the 2d plot:
 
-    plot_2d <- function(df, vars){
-        groups <- vars[vars %in% groups(df)]
-        measure <- vars[length(vars)][[1]]
-        df %>%
-            select(!!!groups, !!measure) %>%
-            arrange(desc(!!measure)) %>%
-            ggplot(aes(x = !!measure, y = !!groups[[1]], , color = !!groups[[2]])) +
-            geom_point() +
-            theme_minimal()
-    }
+```r
+plot_2d <- function(df, vars){
+    groups <- vars[vars %in% groups(df)]
+    measure <- vars[length(vars)][[1]]
+    df %>%
+        select(!!!groups, !!measure) %>%
+        arrange(desc(!!measure)) %>%
+        ggplot(aes(x = !!measure, y = !!groups[[1]], , color = !!groups[[2]])) +
+        geom_point() +
+        theme_minimal()
+}
 
-    diamonds %>%
-        group_by(cut ,clarity) %>%
-        tally() %>%
-        autoplot()
+diamonds %>%
+    group_by(cut ,clarity) %>%
+    tally() %>%
+    autoplot()
+```
 
 ![](img/tidyeval/unnamed-chunk-6-1.png)
 
-This is basically the same code as the 1d plot, expect that we used the
-splice operator (`!!!`) in the select call, and added another grouping
+This is basically the same code as the 1D plot except that we used the
+splice operator (`!!!`) in the select call and added another grouping
 variable on the color dimension.
 
-What happens when you have more than three dimensions? The ggplot2
+What happens when you have more than three dimensions? The `ggplot2`
 package allows us to use tidyeval to dynamically add facets.
 
-    autoplot <- function(df) {
-        # Add grouping variable which was stripped by summarize
-        df <- df %>%
-            group_by(!!!groups(df), !!sym(names(df)[length(groups(df)) + 1]))
+```r
+autoplot <- function(df) {
+    # Add grouping variable which was stripped by summarize
+    df <- df %>%
+        group_by(!!!groups(df), !!sym(names(df)[length(groups(df)) + 1]))
 
-        groups <- groups(df)
-        if (length(groups) == 1) {
-            plot_fun <- plot_1d
-        } else {
-            plot_fun <- plot_2d
-        }
-        vars <- syms(names(df))
-        out <- plot_fun(df, vars)
-
-        if (length(groups) > 2) {
-            groups <- syms(groups)
-            out <- out +
-                facet_wrap(vars(!!!groups[3:length(groups)]))
-        }
-        return(out)
+    groups <- groups(df)
+    if (length(groups) == 1) {
+        plot_fun <- plot_1d
+    } else {
+        plot_fun <- plot_2d
     }
+    vars <- syms(names(df))
+    out <- plot_fun(df, vars)
 
-    diamonds %>%
-        group_by(cut, color, clarity) %>%
-        summarize(number_of_diamonds = n()) %>%
-        autoplot()
+    if (length(groups) > 2) {
+        groups <- syms(groups)
+        out <- out +
+            facet_wrap(vars(!!!groups[3:length(groups)]))
+    }
+    return(out)
+}
+
+diamonds %>%
+    group_by(cut, color, clarity) %>%
+    summarize(number_of_diamonds = n()) %>%
+    autoplot()
+```
 
 ![](img/tidyeval/unnamed-chunk-7-1.png)
 
 ## Conclusion
 
-Tidyeval solves the main problem with R's non-standard evaluation by
+Tidyeval solves the main challenges of working with R's non-standard evaluation by
 bundling expressions and environments into quosures. The new release of
-ggplot2 unlocks the power of using tidyeval for making powerful
+`ggplot2` unlocks the power of using tidyeval for making powerful
 visualizations quickly. Though we could have made `autoplot` methods for
 Crunch objects before tidyeval support, it would have been much more
-complicated and buggier. Using tidyeval and ggplot 3.0.0 to pass
-quosures back and forth between functions unlocks powerful new
+complicated and error-prone. Using tidyeval and `ggplot2` 3.0.0 to pass
+quosures between functions unlocks powerful new
 mechanisms of building user-friendly functions. And that let's us do
 what we strive to do most: get out of the way and let our users explore
 their data quickly in a way that matches their intuitions for how R and
