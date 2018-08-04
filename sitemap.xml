@@ -163,6 +163,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/dev/blog/autoplot-with-tidyeval/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/dev/features/pptx-exports/</loc>
     <lastmod>2018-06-18T10:20:47-04:00</lastmod>
   </url>
@@ -357,8 +362,20 @@
   </url>
   
   <url>
+    <loc>//crunch.io/tags/crplyr/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//crunch.io/tags/dashboards/</loc>
     <lastmod>2017-10-17T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/data-visualization/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -406,13 +423,19 @@
   
   <url>
     <loc>//crunch.io/categories/general/</loc>
-    <lastmod>2017-10-10T09:00:00-07:00</lastmod>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//crunch.io/tags/geo/</loc>
     <lastmod>2017-08-25T18:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/ggplot2/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -442,7 +465,7 @@
   
   <url>
     <loc>//crunch.io/tags/r/</loc>
-    <lastmod>2017-08-25T18:20:47-04:00</lastmod>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -491,6 +514,12 @@
   <url>
     <loc>//crunch.io/tags/text/</loc>
     <lastmod>2017-08-21T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/tidyeval/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
     <priority>0</priority>
   </url>
   
