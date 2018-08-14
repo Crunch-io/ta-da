@@ -1,46 +1,18 @@
     <div class="secondary-content intro-xs-margin" style="position: relative; z-index: 10; background-color: white;">
-    {{ range .Data.Pages }}
-        {{ if and (eq .Type "product") (eq .Title "A modern platform") }}
-        <div class="modern-platform">
-            <div class="jumbotron">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-md-7">
-                            <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ end }} <br>{{ .Params.subtitle }}</h1>
-                            <p>{{ .Content }}</p>
-                            <br>
-                            <button type="button" class="btn btn-secondary" onclick="location.href='modern-platform'">Learn more</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- /.modern-platform -->
-        {{ end }}
-    {{ end }}
+
         <div class="container">
         {{ range .Data.Pages }}
-            {{ if and (eq .Type "product") (eq .Title "Collaborate productively") }}
-            <div class="row spacer">
-                <div class="col-12 order-1 col-md-4 order-md-0">
-                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ end }}</h1>
-                    <p>{{ .Content }}</p>
-                    <br>
-                    <button type="button" class="btn btn-primary" onclick="location.href='collaborate'">Learn more</button>
-                </div>
-
-                <div class="col-12  order-0 col-md-6 offset-md-2 order-md-1">
-                    <div class="container-img">
-                        <img src="img/{{ .Params.img }}" alt="Sharing Crunch" class="img-fluid">
-                    </div>
-                </div>
-            </div> <!-- /.row. -->
-            {{ end }}
-        {{ end }}
-        {{ range .Data.Pages }}
             {{ if .Params.crunchbox }}
+            <div class="row spacer-top spacer-bottom justify-content-md-center">
+                <div class="col-md-5">
+                    <h2 class="text-center"><span>Simple Delivery <br> Survey Data Analytics for Everyone </span></h2>
+                </div>
+            </div>
+
             <div class="row spacer share-insights">
                 <div class="col-12 col-md-4">
-                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ end }}</h1>
+                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ end }}</h1>
+                    <p>Our new dashboard component</p>
                     <p>{{ .Content }}</p>
                     <span class="d-none d-md-block">Try one now &#10230;</span>
                 </div>
@@ -57,25 +29,141 @@
         {{ end }}
         </div> <!-- /.container -->
 
+        <div class="modern-platform">
+            <div class="jumbotron">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <h1>Why Crunch? <span>Speed</span>.</h1>
+                            <p>Powerful analytics with no programming.</p>
+
+                            <ul>
+                                <li>Cross-tabs and graphs in 2 clicks.</li>
+                                <li>Check awareness among female millennial Californians compared to last year... in 1 minute.</li>
+                                <li>Create and export a complete set of tabs in 2 minutes.</li>
+                                <li>No more 2-day turnarounds with experts to answer simple questions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /.modern-platform -->
+
+        <div class="container">
+        {{ range .Data.Pages }}
+            {{ if and (eq .Type "product") (eq .Title "Collaborate productively") }}
+            <div class="row spacer">
+                <div class="col-12  order-1 col-md-6 order-md-0">
+                    <div class="container-img">
+                        <img src="img/{{ .Params.img }}" alt="Sharing Crunch" class="img-fluid">
+                    </div>
+                </div>
+
+                <div class="col-12 order-0 col-md-4 offset-md-2 order-md-1">
+                    <h2>More speed</h2>
+                    <h1>Real-time surveys</h1>
+                    <p>Expectations are rising for shorter, more frequent surveys. Older tools just weren’t built for that. Crunch is.</p>
+
+                    <p>Stream your data into Crunch in real-time and answer  “How is the ad campaign I started yesterday doing?”</p>
+
+                    <p>Cut housekeeping time substantially. <br>
+                    Simple drag and drop to:</p>
+                    <ul>
+                        <li>Combine categories</li>
+                        <li>Organize and relabel variables</li>
+                        <li>Estimate weights</li>
+                    </ul>
+
+                    <p>Scripts automate everything. “Look Ma, No hands!”</p>
+                    <br>
+                    <button type="button" class="btn btn-primary" onclick="location.href='collaborate'">Learn more</button>
+                </div>
+            </div> <!-- /.row. -->
+            {{ end }}
+        {{ end }}
+        {{ range .Data.Pages }}
+            {{ if .Params.crunchbox }}
+            <div class="row spacer share-insights">
+                <div class="col-12 col-md-4">
+                    <h2>Even more speed</h2>
+                    <h1>Compare current results to the past, instantly.</h1>
+
+                    <ul>
+                        <li>Crunch was created for survey data and so it naturally understands and helps you with tracking studies.</li>
+                        <li>All your survey data: past and present, from current and past vendors, plays together nicely inside the CrunchDB.</li>
+                        <li>Append datasets together -- Add another “wave” of a tracking study.</li>
+                        <li>Join datasets together that share some useful information e.g. demographic information from another survey.</li>
+                    </ul>
+
+                    No more digging around to find past data files.
+                </div>
+
+                <div class="col-md-7 offset-md-1">
+                    <div class="crunchbox-container">
+                        <div class="crunchbox">
+                            <iframe src="{{ .Params.crunchbox }}" width="100%" height="450"></iframe>
+                        </div>
+                    </div> <!-- /.crunchbox -->
+                </div>
+            </div> <!-- /.row. -->
+            {{ end }}
+        {{ end }}
+        {{ range .Data.Pages }}
+            {{ if and (eq .Type "product") (eq .Title "Collaborate productively") }}
+            <div class="row spacer">
+                <div class="col-12  order-1 col-md-6 order-md-0">
+                    <div class="container-img">
+                        <img src="img/{{ .Params.img }}" alt="Sharing Crunch" class="img-fluid">
+                    </div>
+                </div>
+
+                <div class="col-12 order-0 col-md-4 offset-md-2 order-md-1">
+                    <h4>Better insight through collaboration</h4>
+                    <h1>Everyone analyzes. Everyone collaborates.</h1>
+                    <p>Empower your customers and clients to instantly answer their own questions as they explore and analyze the data.</p>
+
+                    <p>You can end the version control nightmare because Crunch is in the cloud so everyone works off the same data.</p>
+
+                    <p><strong>At the same time, you control who sees what and what they can do with it:</strong> <br>
+                    Drag and drop for the folks who want that interface API for the data scientists who want to script their work in R or Python.</p>
+                    <br>
+                    <button type="button" class="btn btn-primary" onclick="location.href='collaborate'">Learn more</button>
+                </div>
+            </div> <!-- /.row. -->
+            {{ end }}
+        {{ end }}
+        </div> <!-- /.container -->
+
     </div> <!-- /.secondary-content -->
 
     <div class="footer-content">
-    {{ range .Data.Pages }}
-        {{ if and (eq .Type "product") (eq .Title "Crunch speaks research") }}
         <div class="jumbotron">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <span>{{ index (split . " ") 2 }}</span> {{ end }}</h1>
-                        <p>{{ .Content }}</p>
-                        <br>
-                        <button type="button" class="btn btn-success" onclick="location.href='speaks-research'">Learn more</button>
+                <h1>What our users have to say:</h1>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <p>“My old tools we’re too cumbersome; Things that took me weeks, now take days or hours.”</p>
                     </div>
-                </div>
-            </div> <!-- /.container -->
+                    <div class="carousel-item">
+                        <p>“I sped up my entire workflow. Data streams in. I do daily surveys, now.”</p>
+                    </div>
+                    <div class="carousel-item">
+                        <p>“I can track Awareness across surveys with one click.”</p>
+                    </div>
+                    <div class="carousel-item">
+                        <p>“Finally, no more emailing “Data_final_v3_FINAL”! Now, everybody, even the boss, works on the same data, in Crunch.”</p>
+                    </div>
+                  </div> <!-- /.carousel-inner -->
+              </div> <!-- /.carousel -->
+          </div> <!-- /.container -->
         </div> <!-- /.jumbotron -->
-        {{ end }}
-    {{ end }}
     </div>
 
     </div> <!-- /.container-fluid -->
