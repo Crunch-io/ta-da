@@ -3,16 +3,16 @@
         <div class="container">
         {{ range .Data.Pages }}
             {{ if .Params.crunchbox }}
-            <div class="row spacer-top spacer-bottom justify-content-md-center">
+            <div class="row spacer spacer-bottom justify-content-md-center">
                 <div class="col-md-5">
-                    <h2 class="text-center"><span>Simple Delivery <br> Survey Data Analytics for Everyone </span></h2>
+                    <h2 class="text-center"><span class="font-bold">Simple Delivery</span> <br> Survey Data Analytics for Everyone</h2>
                 </div>
             </div>
 
             <div class="row spacer share-insights">
                 <div class="col-12 col-md-4">
                     <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ end }}</h1>
-                    <p>Our new dashboard component</p>
+                    <h2><span class="font-bold">Our new dashboard component</span></h2>
                     <p>{{ .Content }}</p>
                     <span class="d-none d-md-block">Try one now &#10230;</span>
                 </div>
@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <h1>Why Crunch? <span>Speed</span>.</h1>
-                            <p>Powerful analytics with no programming.</p>
+                            <h2>Powerful analytics with no programming.</h2>
 
                             <ul>
                                 <li>Cross-tabs and graphs in 2 clicks.</li>
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="col-12 order-0 col-md-4 offset-md-2 order-md-1">
-                    <h2>More speed</h2>
+                    <h2><span class="font-bold">More speed</span></h2>
                     <h1>Real-time surveys</h1>
                     <p>Expectations are rising for shorter, more frequent surveys. Older tools just weren’t built for that. Crunch is.</p>
 
@@ -85,7 +85,7 @@
             {{ if .Params.crunchbox }}
             <div class="row spacer share-insights">
                 <div class="col-12 col-md-4">
-                    <h2>Even more speed</h2>
+                    <h2><span class="font-bold">Even more speed</span></h2>
                     <h1>Compare current results to the past, instantly.</h1>
 
                     <ul>
@@ -118,8 +118,8 @@
                 </div>
 
                 <div class="col-12 order-0 col-md-4 offset-md-2 order-md-1">
-                    <h4>Better insight through collaboration</h4>
-                    <h1>Everyone analyzes. Everyone collaborates.</h1>
+                    <h2><span class="font-bold">Better insight through collaboration</span></h2>
+                    <h1>Everyone analyzes. Everyone <span>collaborates</span>.</h1>
                     <p>Empower your customers and clients to instantly answer their own questions as they explore and analyze the data.</p>
 
                     <p>You can end the version control nightmare because Crunch is in the cloud so everyone works off the same data.</p>
