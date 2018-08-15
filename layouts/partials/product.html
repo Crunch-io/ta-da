@@ -14,7 +14,10 @@
                     <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ end }}</h1>
                     <h2><span class="font-bold">Our new dashboard component</span></h2>
                     <p>{{ .Content }}</p>
-                    <span class="d-none d-md-block">Try one now &#10230;</span>
+                    <button type="button" class="btn btn-primary" onclick="location.href=''">Learn more</button>
+                    <br>
+                    <p class="spacer"><a href="">Request a demo  &#10230;</a></p>
+
                 </div>
 
                 <div class="col-md-7 offset-md-1">
