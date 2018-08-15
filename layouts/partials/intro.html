@@ -1,22 +1,31 @@
 <div id="page-content-wrapper">
     <div class="container-fluid">
 
-        <div class="intro-content" style="position:relative; z-index: 1;">
-            <div class="jumbotron" style="margin: 0; padding: 0;">
-                <div class="container-fluid">
-                    <div class="row" style="margin-right: 0; margin-left: 0;">
-                        <div class="container">
-                            <div class="col-12 col-md-4" style="margin-right: 0; margin-left: 0;">
-                                <h1 class="display-4">Modern survey analytics.</h1>
-                                <h1 class="display-4">Power <span>made</span> simple.</h1>
-                                <p>{{ .Site.Params.description }}</p>
-                                <!-- <img src="img/{{ .Site.Params.arrow }}" alt="Down arrow" class="img-fluid down-arrow"> -->
+        <div class="intro-content">
+            <div class="jumbotron">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                            <div class="col-md-5">
+                                <h1 class="display-4">Modern survey analytics. <br> Power <span>made</span> simple.</h1>
                             </div>
-                        </div>
 
-                        <div class="col-12 col-md-7 d-none d-md-block ml-auto" style="margin-right: 0; margin-left: 0; padding-right: 0; margin-top: -350px;">
-                            <div id="intro-img" style="overflow:hidden; height: 600px; position: fixed; z-index:2;">
-                                <img src="img/{{ .Site.Params.product }}" style="width: 1000px;">
+                            <div class="col-md-5">
+                                <p>{{ .Site.Params.description }} Deliver to Everyone, CMO to PhD.</p>
+                                <p>The entire team works together, on the same data, in a simple,  secure, cloud-based environment.</p>
+                            </div>
+                    </div> <!-- /.row -->
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 text-center">
+                            <button type="button" class="btn btn-secondary" onclick="location.href=''">Get a trial</button>
+                            <button type="button" class="btn btn-light" onclick="location.href=''">Request a demo</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <div id="intro-img">
+                                <img src="img/{{ .Site.Params.product }}" class="img-fluid">
                             </div>
                         </div>
                     </div> <!-- /.row. -->

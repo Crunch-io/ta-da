@@ -44,3 +44,9 @@
         border-color: $--darker-secondary-color;
     }
 }
+
+.btn-light {
+    background-color: transparent;
+    border-color: $color-white;
+    color: $color-white;
+}
