@@ -56,29 +56,27 @@
         {{ range .Data.Pages }}
             {{ if and (eq .Type "product") (eq .Title "Collaborate productively") }}
             <div class="row spacer">
-                <div class="col-12  order-1 col-md-6 order-md-0">
+                <div class="col-12 order-1 col-md-6 order-md-0">
                     <div class="container-img">
-                        <img src="img/{{ .Params.img }}" alt="Sharing Crunch" class="img-fluid">
+                        <img src="img/modern_platform/combine-categories.gif" alt="Combine categories" class="img-fluid add-shadow">
                     </div>
                 </div>
 
-                <div class="col-12 order-0 col-md-4 offset-md-2 order-md-1">
+                <div class="col-12 order-0 col-md-5 offset-md-1 order-md-1">
                     <h2><span class="font-bold">More speed</span></h2>
-                    <h1>Real-time surveys</h1>
+                    <h1>Real-time <span>surveys</span></h1>
                     <p>Expectations are rising for shorter, more frequent surveys. Older tools just weren’t built for that. Crunch is.</p>
 
                     <p>Stream your data into Crunch in real-time and answer  “How is the ad campaign I started yesterday doing?”</p>
 
-                    <p>Cut housekeeping time substantially. <br>
-                    Simple drag and drop to:</p>
+                    <p>Cut housekeeping time substantially. Simple drag and drop to:</p>
                     <ul>
                         <li>Combine categories</li>
                         <li>Organize and relabel variables</li>
                         <li>Estimate weights</li>
                     </ul>
 
-                    <p>Scripts automate everything. “Look Ma, No hands!”</p>
-                    <br>
+                    <p>Scripts automate everything. <strong>“Look Ma, No hands!”</strong></p>
                     <button type="button" class="btn btn-primary" onclick="location.href='collaborate'">Learn more</button>
                 </div>
             </div> <!-- /.row. -->
@@ -87,9 +85,9 @@
         {{ range .Data.Pages }}
             {{ if .Params.crunchbox }}
             <div class="row spacer share-insights">
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-5">
                     <h2><span class="font-bold">Even more speed</span></h2>
-                    <h1>Compare current results to the past, instantly.</h1>
+                    <h1>Compare current results to the past, <span>instantly</span>.</h1>
 
                     <ul>
                         <li>Crunch was created for survey data and so it naturally understands and helps you with tracking studies.</li>
@@ -98,15 +96,13 @@
                         <li>Join datasets together that share some useful information e.g. demographic information from another survey.</li>
                     </ul>
 
-                    No more digging around to find past data files.
+                    <p>No more digging around to find past data files.</p>
                 </div>
 
-                <div class="col-md-7 offset-md-1">
-                    <div class="crunchbox-container">
-                        <div class="crunchbox">
-                            <iframe src="{{ .Params.crunchbox }}" width="100%" height="450"></iframe>
-                        </div>
-                    </div> <!-- /.crunchbox -->
+                <div class="col-12 col-md-6 offset-md-1">
+                    <div class="container-img">
+                        <img src="img/collaborate/xtab-signif-and-sort.gif" alt="" class="img-fluid add-shadow">
+                    </div>
                 </div>
             </div> <!-- /.row. -->
             {{ end }}
@@ -114,15 +110,15 @@
         {{ range .Data.Pages }}
             {{ if and (eq .Type "product") (eq .Title "Collaborate productively") }}
             <div class="row spacer">
-                <div class="col-12  order-1 col-md-6 order-md-0">
+                <div class="col-12  order-1 col-md-5 order-md-0">
                     <div class="container-img">
                         <img src="img/{{ .Params.img }}" alt="Sharing Crunch" class="img-fluid">
                     </div>
                 </div>
 
-                <div class="col-12 order-0 col-md-4 offset-md-2 order-md-1">
+                <div class="col-12 order-0 col-md-6 offset-md-1 order-md-1">
                     <h2><span class="font-bold">Better insight through collaboration</span></h2>
-                    <h1>Everyone analyzes. Everyone <span>collaborates</span>.</h1>
+                    <h1>Everyone analyzes. <br>Everyone <span>collaborates</span>.</h1>
                     <p>Empower your customers and clients to instantly answer their own questions as they explore and analyze the data.</p>
 
                     <p>You can end the version control nightmare because Crunch is in the cloud so everyone works off the same data.</p>
