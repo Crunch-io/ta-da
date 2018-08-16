@@ -176,8 +176,7 @@ def _replay_from(source_dataset, from_version, owner_email):
 def do_restore_tip(args):
     """
     Restore the tip of a dataset by replaying from a savepoint.
-    This is intended to be safer than unsafe-restore-tip in that before
-    reverting to a savepoint it takes these steps:
+    Before reverting to a savepoint it takes these steps:
         - Save the actions that will be deleted to a pickle file.
         - Back up the zz9repo directory (this could take a while!)
     All of this is done in the context of a dataset lock.
