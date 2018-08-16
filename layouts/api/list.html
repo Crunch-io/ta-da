@@ -7,8 +7,7 @@
      <div id="dot-nav" class="float-right">
          <ul>
              <li><a href="crunchdb/#first-content">1</a></li>
-             <li><a href="crunchdb/#second-content">2</a></li>
-             <li><a href="crunchdb/#third-content">3</a></li>
+             <li><a href="crunchdb/#fourth-content">2</a></li>
          </ul>
      </div>
 
@@ -23,7 +22,7 @@
                         <div class="container">
                           <div class="row">
                               <div class="col-md-12">
-                                  <h1 class="learn-more-title">{{ with .Params.description }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }}{{ end }}</h1>
+                                  <h1 class="learn-more-title">{{ with .Params.description }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }}{{ end }}</h1>
                               </div>
                           </div> <!-- /.row. -->
                         </div> <!-- /.container -->
@@ -36,7 +35,7 @@
                                 <div class="col-md-12">
                                     <h1 class="learn-more-title">{{ with .Params.description }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }}{{ end }}</h1>
 
-                                    <img src="http://via.placeholder.com/1200x800" alt="" class="img-fluid sp-mb">
+                                    <img src="img/{{ .Params.img }}" alt="" class="img-fluid sp-mb">
                                 </div>
                             </div> <!-- /.row. -->
                         </div> <!-- /.container -->
@@ -46,7 +45,7 @@
                                 <div class="row">
                                     <div class="col-md-8 d-none d-md-block">
                                         <div id="learn-more-img-1">
-                                            <img src="http://via.placeholder.com/1200x800" alt="" class="img-fluid">
+                                            <img src="img/{{ .Params.img }}" alt="" class="img-fluid">
                                         </div>
                                     </div>
                                     <div class="col-md-3 offset-md-1">
@@ -58,45 +57,26 @@
                         </div> <!-- /.jumbotron -->
                     </section>
 
-                    <section id="second-content" class="page-scroll content-two">
+                    <section id="fourth-content" class="page-scroll content-four">
                         <div class="jumbotron">
                             <div class="container">
                             {{ range .Data.Pages }}
-                                {{ if and (eq .Type "crunchdb") (eq .Title "No more copies") }}
+                                {{ if and (eq .Type "api") (eq .Title "API libraries") }}
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <h1 class="learn-more-title text-center">{{ .Content }}</h1>
+                                    <div class="col-md-8 offset-md-2 text-center">
+                                        <p>{{ .Content }}</p>
                                     </div>
                                 </div> <!-- /.row. -->
                                 {{ end }}
                             {{ end }}
-                            </div> <!-- /.container -->
-                        </div> <!-- /.jumbotron -->
-                    </section>
 
-                    <section id="third-content" class="page-scroll content-three">
-                        <div class="jumbotron">
-                            <div class="container">
                             {{ range .Data.Pages }}
-                                {{ if and (eq .Type "crunchdb") (eq .Title "Keep up to date") }}
-                                <div class="row d-none d-md-block">
-                                    <div class="col-md-12">
-                                        <h1 class="learn-more-title">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} <span>{{ index (split . " ") 3 }}</span> {{ end }} </h1>
+                                {{ if and (eq .Type "crunchdb") (eq .Title "API libraries") }}
+                                <div class="row">
+                                    <div class="col-md-8 offset-md-2 text-center">
+                                        <p>{{ .Content }}</p>
                                     </div>
                                 </div> <!-- /.row. -->
-                                <div class="row">
-                                    <div class="col-md-8 d-none d-md-block text-center">
-                                        <div id="learn-more-img-2">
-                                            <img src="img/collaborate/history_properties.png" alt="" class="img-fluid">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 offset-md-1">
-                                        <img src="img/collaborate/history_properties.png" alt="" class="img-fluid d-md-none d-sm-block">
-                                        <h2 class="d-md-none d-sm-block">{{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <span>{{ index (split . " ") 2 }}.</span> {{ end }}</h2>
-                                        <p>{{ .Content }}</p>
-                                        <!-- <a href="/">Try now!</a> -->
-                                    </div>
-                                </div>
                                 {{ end }}
                             {{ end }}
                             </div> <!-- /.container -->
