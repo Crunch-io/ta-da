@@ -9,6 +9,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-We’re market and survey researchers too.  We’ve lived the pain.  We built Crunch for you.
-
-That means Crunch does things conventional databases and BI tools don’t.
+We’re market and survey researchers too.  We’ve lived the pain.  We built Crunch for you. That means Crunch does things conventional databases and BI tools don’t.

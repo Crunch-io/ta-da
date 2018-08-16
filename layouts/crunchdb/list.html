@@ -1,0 +1,111 @@
+{{ partial "head.html" . }}
+
+<div id="first-content"></div>
+
+{{ partial "header.html" . }}
+
+     <div id="dot-nav" class="float-right">
+         <ul>
+             <li><a href="speaks-research/#first-content">1</a></li>
+             <li><a href="speaks-research/#second-content">2</a></li>
+             <li><a href="speaks-research/#third-content">3</a></li>
+         </ul>
+     </div>
+
+      <div id="wrapper">
+
+          <div id="secondary-pages-wrapper">
+              <div class="container-fluid">
+
+                  <div class="speaks-research-content">
+
+                    <div class="d-none d-md-block">
+                        <div class="container">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <h1 class="learn-more-title">{{ with .Params.description }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }}{{ end }}</h1>
+                              </div>
+                          </div> <!-- /.row. -->
+                        </div> <!-- /.container -->
+                    </div> <!-- /.speaks-research-parallax -->
+
+                    <section class="page-scroll content-one">
+
+                        <div class="container">
+                            <div class="row d-md-none d-sm-block">
+                                <div class="col-md-12">
+                                    <h1 class="learn-more-title">{{ with .Params.description }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }}{{ end }}</h1>
+
+                                    <img src="img/collaborate/history_properties.png" alt="" class="img-fluid sp-mb">
+                                </div>
+                            </div> <!-- /.row. -->
+                        </div> <!-- /.container -->
+
+                        <div class="jumbotron">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-8 d-none d-md-block">
+                                        <div id="learn-more-img-1">
+                                            <img src="img/collaborate/history_properties.png" alt="" class="img-fluid">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 offset-md-1">
+                                        <p>{{ .Content }}</p>
+                                        <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
+                                    </div>
+                                </div> <!-- /.row. -->
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                    <section id="second-content" class="page-scroll content-two">
+                        <div class="jumbotron">
+                            <div class="container">
+                            {{ range .Data.Pages }}
+                                {{ if and (eq .Type "crunchdb") (eq .Title "No more copies") }}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h1 class="learn-more-title text-center">{{ .Content }}</h1>
+                                    </div>
+                                </div> <!-- /.row. -->
+                                {{ end }}
+                            {{ end }}
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                    <section id="third-content" class="page-scroll content-three">
+                        <div class="jumbotron">
+                            <div class="container">
+                            {{ range .Data.Pages }}
+                                {{ if and (eq .Type "crunchdb") (eq .Title "Keep up to date") }}
+                                <div class="row d-none d-md-block">
+                                    <div class="col-md-12">
+                                        <h1 class="learn-more-title">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} <span>{{ index (split . " ") 3 }}</span> {{ end }} </h1>
+                                    </div>
+                                </div> <!-- /.row. -->
+                                <div class="row">
+                                    <div class="col-md-8 d-none d-md-block text-center">
+                                        <div id="learn-more-img-2">
+                                            <img src="img/collaborate/history_properties.png" alt="" class="img-fluid">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 offset-md-1">
+                                        <img src="img/collaborate/history_properties.png" alt="" class="img-fluid d-md-none d-sm-block">
+                                        <h2 class="d-md-none d-sm-block">{{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <span>{{ index (split . " ") 2 }}.</span> {{ end }}</h2>
+                                        <p>{{ .Content }}</p>
+                                        <!-- <a href="/">Try now!</a> -->
+                                    </div>
+                                </div>
+                                {{ end }}
+                            {{ end }}
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                  </div> <!-- /.modern-platform-content -->
+
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}
