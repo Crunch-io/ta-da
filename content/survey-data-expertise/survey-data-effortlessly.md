@@ -1,7 +1,7 @@
 +++
 date = "2018-04-25T12:27:04-04:00"
 draft = false
-title = "Collaborate better"
+title = "Survey data effortlessly"
 img = "collaborate/users_properties.png"
 images = ["https://crunch.io/img/logo-1200x630.png"]
 
