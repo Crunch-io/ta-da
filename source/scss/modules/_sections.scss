@@ -832,4 +832,32 @@
         }
     }
 
+    .content-four .jumbotron {
+        color: $color-off-black;
+        background-color: $color-white;
+
+        p {
+            margin-top: 100px;
+
+            a {
+                font-family: 'ProximaNova', sans-serif;
+                color: $color-blue;
+            }
+        }
+
+        @include media-breakpoint-down(sm) {
+            p {
+                margin-top: 50px;
+                margin-bottom: 50px;
+            }
+        }
+
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-four .jumbotron {
+            height: auto;
+        }
+    }
+
 }

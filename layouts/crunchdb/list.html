@@ -6,9 +6,10 @@
 
      <div id="dot-nav" class="float-right">
          <ul>
-             <li><a href="speaks-research/#first-content">1</a></li>
-             <li><a href="speaks-research/#second-content">2</a></li>
-             <li><a href="speaks-research/#third-content">3</a></li>
+             <li><a href="crunchdb/#first-content">1</a></li>
+             <li><a href="crunchdb/#second-content">2</a></li>
+             <li><a href="crunchdb/#third-content">3</a></li>
+             <li><a href="crunchdb/#fourth-content">3</a></li>
          </ul>
      </div>
 
@@ -36,7 +37,7 @@
                                 <div class="col-md-12">
                                     <h1 class="learn-more-title">{{ with .Params.description }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }}{{ end }}</h1>
 
-                                    <img src="img/collaborate/history_properties.png" alt="" class="img-fluid sp-mb">
+                                    <img src="http://via.placeholder.com/1200x800" alt="" class="img-fluid sp-mb">
                                 </div>
                             </div> <!-- /.row. -->
                         </div> <!-- /.container -->
@@ -46,7 +47,7 @@
                                 <div class="row">
                                     <div class="col-md-8 d-none d-md-block">
                                         <div id="learn-more-img-1">
-                                            <img src="img/collaborate/history_properties.png" alt="" class="img-fluid">
+                                            <img src="http://via.placeholder.com/1200x800" alt="" class="img-fluid">
                                         </div>
                                     </div>
                                     <div class="col-md-3 offset-md-1">
@@ -97,6 +98,45 @@
                                         <!-- <a href="/">Try now!</a> -->
                                     </div>
                                 </div>
+                                {{ end }}
+                            {{ end }}
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                    <section id="fourth-content" class="page-scroll content-four">
+                        <div class="jumbotron">
+                            <div class="container">
+                            {{ range .Data.Pages }}
+                                {{ if and (eq .Type "crunchdb") (eq .Title "API") }}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h1 class="learn-more-title">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ end }}</span></h1>
+                                        <p style="margin-top: -20px;">{{ .Params.description }}</p>
+                                    </div>
+                                </div> <!-- /.row. -->
+
+                                <div class="row">
+                                    <div class="col-md-8 d-none d-md-block">
+                                        <div id="learn-more-img-3">
+                                            <img src="http://via.placeholder.com/1200x800" class="img-fluid">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 offset-md-1">
+                                        <p>{{ .Content }}</p>
+                                    </div>
+                                </div> <!-- /.row. -->
+                                {{ end }}
+                            {{ end }}
+
+                            {{ range .Data.Pages }}
+                                {{ if and (eq .Type "crunchdb") (eq .Title "API libraries") }}
+                                <div class="row">
+                                    <div class="col-md-8 offset-md-2 text-center">
+                                        <p>{{ .Content }}</p>
+                                    </div>
+                                </div> <!-- /.row. -->
                                 {{ end }}
                             {{ end }}
                             </div> <!-- /.container -->
