@@ -79,20 +79,14 @@
                             <div class="container">
                             {{ range .Data.Pages }}
                                 {{ if and (eq .Type "crunchdb") (eq .Title "Keep up to date") }}
-                                <div class="row d-none d-md-block">
-                                    <div class="col-md-12">
-                                        <h1 class="learn-more-title">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} <span>{{ index (split . " ") 3 }}</span> {{ end }} </h1>
-                                    </div>
-                                </div> <!-- /.row. -->
                                 <div class="row">
                                     <div class="col-md-8 d-none d-md-block text-center">
                                         <div id="learn-more-img-2">
-                                            <img src="img/collaborate/history_properties.png" alt="" class="img-fluid">
+                                            <img src="http://via.placeholder.com/1200x800" alt="" class="img-fluid">
                                         </div>
                                     </div>
                                     <div class="col-md-3 offset-md-1">
-                                        <img src="img/collaborate/history_properties.png" alt="" class="img-fluid d-md-none d-sm-block">
-                                        <h2 class="d-md-none d-sm-block">{{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <span>{{ index (split . " ") 2 }}.</span> {{ end }}</h2>
+                                        <img src="http://via.placeholder.com/1200x800" alt="" class="img-fluid d-md-none d-sm-block">
                                         <p>{{ .Content }}</p>
                                         <!-- <a href="/">Try now!</a> -->
                                     </div>
