@@ -3,21 +3,12 @@
         <div class="container">
         {{ range .Data.Pages }}
             {{ if .Params.crunchbox }}
-            <div class="row spacer spacer-bottom justify-content-md-center">
-                <div class="col-md-5">
-                    <h2 class="text-center"><span class="font-bold">Simple Delivery</span> <br> Survey Data Analytics for Everyone</h2>
-                </div>
-            </div>
-
             <div class="row spacer share-insights">
                 <div class="col-12 col-md-4">
-                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ end }}</h1>
+                    <h1 class="font-green" style="color: $color-green;">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ end }}</h1>
                     <h2><span class="font-bold">Our new dashboard component</span></h2>
                     <p>{{ .Content }}</p>
                     <button type="button" class="btn btn-primary" onclick="location.href=''">Learn more</button>
-                    <br>
-                    <p class="spacer"><a href="">Request a demo  &#10230;</a></p>
-
                 </div>
 
                 <div class="col-md-7 offset-md-1">
@@ -36,16 +27,11 @@
             <div class="jumbotron">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-md-6">
-                            <h1>Why Crunch? <span>Speed</span>.</h1>
-                            <h2>Powerful analytics with no programming.</h2>
-
-                            <ul>
-                                <li>Cross-tabs and graphs in 2 clicks.</li>
-                                <li>Check awareness among female millennial Californians compared to last year... in 1 minute.</li>
-                                <li>Create and export a complete set of tabs in 2 minutes.</li>
-                                <li>No more 2-day turnarounds with experts to answer simple questions.</li>
-                            </ul>
+                        <div class="col-12 text-center">
+                            <h2><span class="font-bold">Simple Delivery</span></h2>
+                            <h1>Survey Data Analytics for Everyone</h1>
+                            <br>
+                            <button type="button" class="btn btn-secondary" onclick="location.href=''">Request a demo</button>
                         </div>
                     </div>
                 </div>
@@ -53,6 +39,26 @@
         </div> <!-- /.modern-platform -->
 
         <div class="container">
+            <div class="row spacer share-insights">
+                <div class="col-12 col-md-5">
+                    <h2><span class="font-bold">Why Crunch? Speed</span></h2>
+                    <h1>Powerful <span>analytics</span> with no programming.</h1>
+
+                    <ul>
+                        <li>Cross-tabs and graphs in 2 clicks.</li>
+                        <li>Check awareness among female millennial Californians compared to last year... in 1 minute.</li>
+                        <li>Create and export a complete set of tabs in 2 minutes.</li>
+                        <li>No more 2-day turnarounds with experts to answer simple questions.</li>
+                    </ul>
+
+                </div>
+
+                <div class="col-12 col-md-6 offset-md-1">
+                    <div class="container-img">
+                        <img src="http://via.placeholder.com/1200x800" alt="" class="img-fluid add-shadow">
+                    </div>
+                </div>
+            </div> <!-- /.row. -->
         {{ range .Data.Pages }}
             {{ if and (eq .Type "product") (eq .Title "Collaborate productively") }}
             <div class="row spacer">
@@ -82,8 +88,6 @@
             </div> <!-- /.row. -->
             {{ end }}
         {{ end }}
-        {{ range .Data.Pages }}
-            {{ if .Params.crunchbox }}
             <div class="row spacer share-insights">
                 <div class="col-12 col-md-5">
                     <h2><span class="font-bold">Even more speed</span></h2>
@@ -105,8 +109,6 @@
                     </div>
                 </div>
             </div> <!-- /.row. -->
-            {{ end }}
-        {{ end }}
         {{ range .Data.Pages }}
             {{ if and (eq .Type "product") (eq .Title "Collaborate productively") }}
             <div class="row spacer">
@@ -140,7 +142,7 @@
             <div class="container">
                 <div class="row spacer-bottom justify-content-md-center">
                     <div class="col-md-5">
-                        <h2 class="text-center">What our users have to say:</h2>
+                        <h2 class="text-center">What crunch users say</h2>
                     </div>
                 </div>
                 <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
@@ -161,7 +163,7 @@
                         <p>“I can track Awareness across surveys with one click.”</p>
                     </div>
                     <div class="carousel-item">
-                        <p>“Finally, no more emailing “Data_final_v3_FINAL”! Now, everybody, even the boss, works on the same data, in Crunch.”</p>
+                        <p>“Finally, no more emailing <strong>Data_final_v3_FINAL</strong>! Now, everybody, even the boss, works on the same data, in Crunch.”</p>
                     </div>
                   </div> <!-- /.carousel-inner -->
               </div> <!-- /.carousel -->
