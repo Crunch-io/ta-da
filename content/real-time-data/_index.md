@@ -3,7 +3,7 @@ date = "2018-02-20T10:08:35+02:00"
 draft = false
 title = "Real time data"
 img = "collaborate/history_properties.png"
-description = "Upload and Prepare your data in a Flash"
+description = "Upload and prepare your data in a flash"
 images = ["https://crunch.io/img/logo-1200x630.png"]
 
 

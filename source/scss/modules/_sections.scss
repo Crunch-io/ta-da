@@ -395,18 +395,17 @@
     }
 
     .content-two .jumbotron {
-        color: $color-white;
-        background: url(../img/crunch_modern_platform.jpg) no-repeat center center fixed;
+        background: $color-white;
         @include vp-background-size(cover);
         padding-bottom: 150px;
 
         p {
             margin-top: 100px;
-            color: $color-white;
         }
 
         @include media-breakpoint-down(sm) {
             h2 {
+                margin-top: 20px;
                 font-family: 'Libre Baskerville', serif;
 
                 span {
@@ -423,7 +422,7 @@
 
     @include media-breakpoint-down(sm) {
         .content-two .jumbotron  {
-            height: 700px
+            height: 800px
         }
     }
 
@@ -469,7 +468,7 @@
 
     @include media-breakpoint-down(sm) {
         .content-three .jumbotron  {
-            height: 580px
+            height: 400px
 
         }
     }
