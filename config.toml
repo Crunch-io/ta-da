@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "//crunch-io.github.io/crunchy/newsite/"
 googleAnalytics = "UA-50332119-2"
 
 languageCode = "en-us"
@@ -9,5 +9,5 @@ MetaDataFormat = "toml"
 description = "Prepare and analyze survey data quickly and easily."
 product = "crunch_app.png"
 arrow = "arrow.png"
-copyofbaseURL = "/"
+copyofbaseURL = "//crunch-io.github.io/crunchy/newsite/"
 images = ["https://crunch.io/img/logo-1200x630.png"]
