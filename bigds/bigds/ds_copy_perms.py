@@ -21,7 +21,11 @@ from cr.lib.commands.common import load_settings, startup
 from cr.lib.entities.datasets.dataset import Dataset
 from cr.lib.loglib import log_to_stdout
 from cr.lib.settings import settings
-from cr.lib.entities.datasets.copy import SKIP, DatasetMetadataCopier
+from cr.lib.entities.datasets.copy import (
+    DATASET_COLLECTIONS_UNVERSIONED,
+    SKIP,
+    DatasetMetadataCopier,
+)
 
 
 def _cr_lib_init(args):
@@ -39,14 +43,6 @@ class DatasetPermissionsCopier(DatasetMetadataCopier):
         self.trace_log.append("Origin dataset: %s" % (self.origin.id))
         self.trace_log.append("Target dataset: %s" % (self.target.id))
 
-        (
-            variable_id_map,
-            variables_not_copied,
-            public_derivations_not_copied,
-            missing_bases_ids
-        ) = self.recreate_derived_variables()
-
-        all_not_copied = variables_not_copied | public_derivations_not_copied
         to_copy, docs_not_copied = self.prepare_docs_to_copy(
             variable_id_map,
             all_not_copied,
