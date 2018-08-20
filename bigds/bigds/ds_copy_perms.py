@@ -18,14 +18,20 @@ from magicbus.plugins import loggers
 
 from cr.lib import exceptions
 from cr.lib.commands.common import load_settings, startup
-from cr.lib.entities.datasets.dataset import Dataset
-from cr.lib.loglib import log_to_stdout
-from cr.lib.settings import settings
 from cr.lib.entities.datasets.copy import (
     DATASET_COLLECTIONS_UNVERSIONED,
     SKIP,
     DatasetMetadataCopier,
 )
+from cr.lib.entities.datasets.dataset import Dataset
+from cr.lib.entities.decks import DeckOrder
+from cr.lib.entities.permissions import Permission
+from cr.lib.entities.userprefs import UserDatasetPreferences
+from cr.lib.entities.variables.order import UserVariableOrder
+from cr.lib.loglib import log_to_stdout
+from cr.lib.settings import settings
+from cr.lib import stores
+from cr.lib.stores.mongo import allow_reading_unversioned
 
 
 def _cr_lib_init(args):
@@ -57,6 +63,13 @@ class DatasetPermissionsCopier(DatasetMetadataCopier):
         self.copy_dataset_attrs(variable_id_map, all_not_copied)
 
 
+def _build_query(ds, collection):
+    if collection == 'access_permissions':
+        return {'target': entity_path_step(ds.origin)}, False
+    query = {'dataset_id': ds.origin.id}
+    return query
+
+
 def ds_copy_perms(source_ds_id, destination_ds_id):
     try:
         origin = Dataset.find_by_id(id=source_ds_id, version='master__tip')
@@ -69,9 +82,13 @@ def ds_copy_perms(source_ds_id, destination_ds_id):
         print("Destination dataset not found:", destination_ds_id,
               file=sys.stderr)
         return 1
-    task = None
-    copier = DatasetPermissionsCopier(origin, target, task)
-    copier.copy_perms_only()
+    for storename in DATASET_COLLECTIONS_UNVERSIONED:
+        store = getattr(stores.stores, storename)
+        query = _build_query(storename)
+        with allow_reading_unversioned(
+            Permission, UserDatasetPreferences, UserVariableOrder, DeckOrder
+        ):
+            docs = store.find_all(query)
 
 
 def main():
