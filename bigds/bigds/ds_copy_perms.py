@@ -29,14 +29,10 @@ from cr.lib.entities.datasets.copy import (
     DATASET_COLLECTIONS_UNVERSIONED,
 )
 from cr.lib.entities.datasets.dataset import Dataset
-from cr.lib.entities.decks import DeckOrder
-from cr.lib.entities.permissions import Permission
-from cr.lib.entities.userprefs import UserDatasetPreferences
-from cr.lib.entities.variables.order import UserVariableOrder
 from cr.lib.loglib import log_to_stdout
 from cr.lib.settings import settings
 from cr.lib import stores
-from cr.lib.stores.mongo import allow_reading_unversioned
+from cr.lib.stores.metadata.extract import generate_query
 from cr.lib.utils.entitypaths import entity_path_step
 
 
@@ -50,10 +46,10 @@ def _cr_lib_init(args):
 
 
 def _build_query(ds, collection_name):
+    # TODO: Remove this special case after #160142829 is deployed.
     if collection_name == 'access_permissions':
         return {'target': entity_path_step(ds)}
-    query = {'dataset_id': ds.id}
-    return query
+    return generate_query(collection_name, ds.id)
 
 
 def _to_dict(obj):
@@ -84,13 +80,10 @@ def ds_list_perms(ds_id):
     for storename in DATASET_COLLECTIONS_UNVERSIONED:
         store = getattr(stores.stores, storename)
         query = _build_query(ds, storename)
-        with allow_reading_unversioned(
-            Permission, UserDatasetPreferences, UserVariableOrder, DeckOrder
-        ):
-            docs = store.find_all(query)
-            print("storename:", storename, "num_docs:", len(docs))
-            for doc in docs:
-                pprint.pprint(_to_dict(doc))
+        docs = store.find_all(query)
+        print("storename:", storename, "num_docs:", len(docs))
+        for doc in docs:
+            pprint.pprint(_to_dict(doc))
     return 0
 
 
@@ -116,43 +109,39 @@ def ds_copy_perms(source_ds_id, target_ds_id, force=False):
     print("Target owner type:", target.owner_type, "Target owner ID:",
           target.owner_id)
 
-    result = stores.stores.datasets.update_many({'id': target.id}, {
+    update = {
         'name': source.name,
         'account_id': source.account_id,
-        'maintainer_id': source.maintainer_id,
-        'paths': source.paths,
-        # In one case it looked like replay modified streaming setting.
-        'streaming': source.streaming,
-    })
+    }
+    for attrname in Dataset.SAVEPOINT_EXCLUSIONS['datasets']:
+        update[attrname] = getattr(source, attrname)
+    result = stores.stores.datasets.update_many({'id': target.id}, update)
     print("Result of updating datasets: matched_count {} modified_count {}"
           .format(result.matched_count, result.modified_count))
 
     for storename in DATASET_COLLECTIONS_UNVERSIONED:
         store = getattr(stores.stores, storename)
-        with allow_reading_unversioned(
-            Permission, UserDatasetPreferences, UserVariableOrder, DeckOrder
-        ):
-            src_docs = list(store.find_all(_build_query(source, storename)))
-            dst_docs = list(store.find_all(_build_query(target, storename)))
-            if target.owner_type == 'User':
-                # Delete pre-existing docs (user_datasets) with wrong user_id
-                doc_ids_to_del = [
-                    doc['_id'] for doc in dst_docs
-                    if 'user_id' in doc and doc['user_id'] == target.owner_id
-                ]
-                print("Deleting", len(doc_ids_to_del), "pre-existing",
-                      storename, "docs")
-                store.delete_many({'_id': {'$in': doc_ids_to_del}})
-            for doc in src_docs:
-                del doc['_id']
-                del doc['id']
-                doc['dataset_id'] = target.id
-            print("Inserting", len(src_docs), storename, "docs")
-            for doc in src_docs:
-                try:
-                    store.insert(doc)
-                except exceptions.MultipleItemsFound:
-                    print("Skipped duplicate doc:", _to_dict(doc))
+        src_docs = list(store.find_all(_build_query(source, storename)))
+        dst_docs = list(store.find_all(_build_query(target, storename)))
+        if target.owner_type == 'User':
+            # Delete pre-existing docs (user_datasets) with wrong user_id
+            doc_ids_to_del = [
+                doc['_id'] for doc in dst_docs
+                if 'user_id' in doc and doc['user_id'] == target.owner_id
+            ]
+            print("Deleting", len(doc_ids_to_del), "pre-existing",
+                  storename, "docs")
+            store.delete_many({'_id': {'$in': doc_ids_to_del}})
+        for doc in src_docs:
+            del doc['_id']
+            del doc['id']
+            doc['dataset_id'] = target.id
+        print("Inserting", len(src_docs), storename, "docs")
+        for doc in src_docs:
+            try:
+                store.insert(doc)
+            except exceptions.MultipleItemsFound:
+                print("Skipped duplicate doc:", _to_dict(doc))
 
 
 def main():
