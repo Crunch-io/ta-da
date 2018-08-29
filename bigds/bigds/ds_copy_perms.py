@@ -115,12 +115,15 @@ def ds_copy_perms(source_ds_id, target_ds_id, force=False):
           target.owner_id)
 
     result = stores.stores.datasets.update_many({'id': target.id}, {
+        'name': source.name,
+        'account_id': source.account_id,
         'maintainer_id': source.maintainer_id,
         'paths': source.paths,
+        # In one case it looked like replay modified streaming setting.
         'streaming': source.streaming,
-        'name': source.name,
     })
-    print("Result of updating datasets:", result)
+    print("Result of updating datasets: matched_count {} modified_count {}"
+          .format(result.matched_count, result.modified_count))
 
     for storename in DATASET_COLLECTIONS_UNVERSIONED:
         store = getattr(stores.stores, storename)
