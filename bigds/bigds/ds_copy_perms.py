@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 """
 Copy ownership and permissions from one dataset to another.
+The intended use case is to copy permissions from a source dataset to a
+replayed copy.
 
 Usage:
     ds_copy_perms.py [options] ls <source-ds-id>
