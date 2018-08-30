@@ -6,10 +6,6 @@ secret <- "346eb20f0da81962755b153402df12e414a9289325429ac711cc5ee9ef7f29f8"
 #     endsWith(email(shinyUser()()), "@crunch.io")
 # })
 
-
-
-global_cache <- new.env()
-
 #' @import ggplot2
 #' @importFrom plotly renderPlotly
 my_server <- function () {
@@ -34,7 +30,7 @@ my_server <- function () {
             expiration="never"
         )
         if (file.exists("trellodata.RData") &&
-            as.Date(file.mtime("trellodata.RData")) == Sys.Date()) {
+            as.Date(as.POSIXlt(file.mtime("trellodata.RData"))) == Sys.Date()) {
 
             load("trellodata.RData")
         } else {
@@ -147,5 +143,8 @@ my_server <- function () {
         })
     # })
     },
-    authz=as.server(endsWith(email(shinyUser()()), "@crunch.io")))
+    authz=function (input, output, session) {
+        e <- email(shinyUser()())
+        endsWith(e, "@crunch.io") || e == "doug@yougov.com"
+    })
 }

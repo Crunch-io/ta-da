@@ -8,10 +8,13 @@ get_team_activity <- function (df, user="all", date=Sys.Date()) {
     # Map trello cards to epics
     epics <- get_epics_from_desc(df$desc)
     stories <- as.data.frame(safely_get_stories(
-        # label=unlist(epics),
         accepted=paste(strftime(thisweek, "%Y/%m/%d"), collapse="..")
     ))
-    story_labels <- strsplit(stories$labels, ", ")
+    story_labels <- tryCatch(
+        # There's a weird, sporadic error from strsplit when deployed
+        strsplit(stories$labels, ", "),
+        error=function (e) rep(list(character(0)), nrow(stories))
+    )
     # Join on counts of tickets
     if (NROW(stories)) {
         ticket_counts <- table(unlist(story_labels))
@@ -38,7 +41,11 @@ get_team_activity <- function (df, user="all", date=Sys.Date()) {
     # Filter on team lead
     if (!is.null(lead)) {
         team <- PIVOTAL_TEAM[[as.character(lead)]]
-        owners <- strsplit(stories$owner_ids, ", ")
+        owners <- tryCatch(
+            # There's a weird, sporadic error from strsplit when deployed
+            strsplit(stories$owner_ids, ", "),
+            error=function (e) rep(list(character(0)), nrow(stories))
+        )
         owned_by_team <- has_owner(owners, as.character(team))
         stories <- stories[owned_by_team,]
         story_labels <- story_labels[owned_by_team]
@@ -55,8 +62,8 @@ get_team_activity <- function (df, user="all", date=Sys.Date()) {
         select(kind, name, story_type) %>%
         mutate(labels=filtered_labels) %>%
         filter(!already_counted & story_type != "release")
-    maintenance <- has_label(residual_stories$labels, c("internal", "maintenance", "technical debt", "whaam technical debt"))
-    bugs <- has_label(residual_stories$labels, c("user-reported", "urgent bugfix"))
+    maintenance <- has_label(residual_stories$labels, c("internal", "maintenance", "technical debt", "whaam technical debt", "ux details"))
+    bugs <- has_label(residual_stories$labels, c("user-reported", "urgent bugfix", "outages"))
 
     # Look at milestones and comments
     df$milestones <- filter_this_week(df$milestones, thisweek)

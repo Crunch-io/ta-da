@@ -1,5 +1,7 @@
 prep_gantt_data <- function (df) {
     # Take trello cards df and prepare data for ggplotting
+    # TODO: Sort labels according to what we prefer to show as "the" label
+    # Then make the label variable a factor with those levels, ordered
     gantt <- df %>%
         filter(!is.na(due)) %>%
         filter(listName %in% c(building, specing, "Done", "Ready to build")) %>%
@@ -12,10 +14,11 @@ prep_gantt_data <- function (df) {
                 }
             }),
             end=due,
+            # TODO: add a variable
             label=vapply(labels, function (x) head(x, 1)$name, character(1)),
             label_color=vapply(labels, function (x) head(x, 1)$color, character(1))
         ) %>%
-        select(name, start, end, label, label_color)
+        select(name, start, end, label, label_color, url)
     if (nrow(gantt)) {
         # bc sapply drops the class
         gantt$start <- as.Date(gantt$start, origin="1970-01-01")
@@ -23,20 +26,35 @@ prep_gantt_data <- function (df) {
         gantt$start[gantt$start == gantt$end] <- gantt$end[gantt$start == gantt$end] - 60
         # Group tracks
         gantt <- gantt[order(gantt$end),]
-        gantt$track <- seq_len(nrow(gantt))
-        for (i in gantt$track[-1]) {
-            cands <- gantt$end[1:i] < gantt$start[i] & !duplicated(gantt$track[1:i], fromLast=TRUE)
-            if (any(cands)) {
-                gantt$track[i] <- gantt$track[which(cands)[1]]
-            }
-        }
-        # Collapse to a sequence (remove gaps)
-        gantt$track <- match(gantt$track, sort(unique(gantt$track)))
+        gantt$track <- make_tracks(gantt$start, gantt$end)
+
         # Create different bar labels and suppress them for short bars
         gantt$bar_label <- gantt$name
-        gantt$bar_label[(gantt$end - gantt$start) < 28] <- NA
+        bar_length <- gantt$end - gantt$start
+        # Max char = 2.5 per week
+        max_char <- bar_length * 2.5 / 7
+        gantt$bar_label[max_char <= 3] <- "."
+        too_long <- nchar(gantt$bar_label) > max_char
+        gantt$bar_label[too_long] <- paste0(
+            substr(gantt$bar_label[too_long], 1, max_char[too_long] - 3),
+            "..."
+        )
     }
     return(gantt)
+}
+
+make_tracks <- function (start, end) {
+    # Assumes sorted by end date
+    track <- seq_along(start)
+    for (i in track[-1]) {
+        cands <- end[1:i] < start[i] & !duplicated(track[1:i], fromLast=TRUE)
+        if (any(cands)) {
+            track[i] <- track[which(cands)[1]]
+        }
+    }
+    # Collapse to a sequence (remove gaps)
+    track <- match(track, sort(unique(track)))
+    return(track)
 }
 
 TRELLO_COLORS <- c(
@@ -54,14 +72,28 @@ ggantt <- function (df) {
     label_to_color <- structure(TRELLO_COLORS[df$label_color],
         .Names=df$label)[!duplicated(df$label)]
     midpoints <- df$start + round(.5*(df$end - df$start))
+    bar_labels <- mapply(function (b, u, col) {
+        format(tags$a(
+            href=u,
+            b,
+            style=paste0(
+                "color:",
+                ifelse(col %in% c("blue"), "#F0F0F0", "#0F0F0F"),
+                ";"
+            )
+        ))
+    }, b=df$bar_label, u=df$url, col=df$label_color)
     p <- ggplot(
         df,
         aes(
             colour=label,
             text=paste(
                 paste0("___", name),
-                paste("Start:", format(start, "%d %b %Y")), 
-                paste("Expected:", format(end, "%d %b %Y")),
+                paste("Start:", format(start, "%d %b %Y")),
+                paste(
+                    ifelse(end < Sys.Date(), "Done:", "Expected:"),
+                    format(end, "%d %b %Y")
+                ),
                 sep="<br />"
             )
         )
@@ -72,8 +104,8 @@ ggantt <- function (df) {
             geom_segment(aes(x=start, xend=end, y=track, yend=track), size=6) +
             # Labels
             geom_text(
-                aes(x=midpoints, y=track, label=bar_label),
-                colour=ifelse(df$label_color %in% c("blue"), "#F0F0F0", "#0F0F0F"),
+                aes(x=midpoints, y=track, label=bar_labels),
+                # colour=ifelse(df$label_color %in% c("blue"), "#F0F0F0", "#0F0F0F"),
                 size=3
             ) +
             # Map labels to Trello colors
