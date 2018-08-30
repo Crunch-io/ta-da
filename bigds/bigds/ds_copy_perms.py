@@ -29,6 +29,7 @@ from cr.lib.entities.datasets.copy import (
     DATASET_COLLECTIONS_UNVERSIONED,
 )
 from cr.lib.entities.datasets.dataset import Dataset
+from cr.lib.entities.datasets.dataset.currenteditor import DatasetCurrentEditor
 from cr.lib.loglib import log_to_stdout
 from cr.lib.settings import settings
 from cr.lib import stores
@@ -75,8 +76,17 @@ def ds_list_perms(ds_id):
     except exceptions.NotFound:
         print("Source dataset not found:", ds_id, file=sys.stderr)
         return 1
-    print("DATASET mongo record:")
+    print("Dataset mongo record:")
     pprint.pprint(_to_dict(ds._data))
+    current_editors = DatasetCurrentEditor.find_all({'dataset_id': ds_id})
+    # Note: There should be exactly one current_editor record!
+    for current_editor in current_editors:
+        user = current_editor.user
+        if user is None:
+            print("Dataset current editor: Nobody is editing")
+        else:
+            print("Dataset current editor: {} <{}> ({})"
+                  .format(user.name, user.email, user.id))
     for storename in DATASET_COLLECTIONS_UNVERSIONED:
         store = getattr(stores.stores, storename)
         query = _build_query(ds, storename)
@@ -109,6 +119,14 @@ def ds_copy_perms(source_ds_id, target_ds_id, force=False):
     print("Target owner type:", target.owner_type, "Target owner ID:",
           target.owner_id)
 
+    # Grab the source dataset current editor
+    try:
+        current_editor_id = DatasetCurrentEditor.find_one(
+            {'dataset_id': source.id}).user_id
+    except exceptions.NotFound:
+        current_editor_id = None
+
+    # Copy the non-versioned fields
     update = {
         'name': source.name,
         'account_id': source.account_id,
@@ -119,6 +137,14 @@ def ds_copy_perms(source_ds_id, target_ds_id, force=False):
     print("Result of updating datasets: matched_count {} modified_count {}"
           .format(result.matched_count, result.modified_count))
 
+    # Set the target current editor
+    DatasetCurrentEditor.update_many({
+        'dataset_id': target.id
+    }, {
+        'user_id': current_editor_id
+    })
+
+    # Copy the rest of the unversioned collections
     for storename in DATASET_COLLECTIONS_UNVERSIONED:
         store = getattr(stores.stores, storename)
         src_docs = list(store.find_all(_build_query(source, storename)))
