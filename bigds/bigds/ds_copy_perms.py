@@ -121,10 +121,10 @@ def ds_copy_perms(source_ds_id, target_ds_id, force=False):
 
     # Grab the source dataset current editor
     try:
-        current_editor = DatasetCurrentEditor.find_one(
-            {'dataset_id': source.id})
+        current_editor_id = DatasetCurrentEditor.find_one(
+            {'dataset_id': source.id}).user_id
     except exceptions.NotFound:
-        current_editor = None
+        current_editor_id = None
 
     # Copy the non-versioned fields
     update = {
@@ -141,7 +141,7 @@ def ds_copy_perms(source_ds_id, target_ds_id, force=False):
     DatasetCurrentEditor.update_many({
         'dataset_id': target.id
     }, {
-        'user_id': current_editor.user_id if current_editor else None
+        'user_id': current_editor_id
     })
 
     # Copy the rest of the unversioned collections
