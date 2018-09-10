@@ -1,6 +1,42 @@
     <div class="secondary-content intro-xs-margin" style="position: relative; z-index: 10; background-color: white;">
 
         <div class="container">
+            <div class="row spacer share-insights">
+                <div class="col-12 col-md-5">
+                    <h2><span class="font-bold">“Things that took me days, now take minutes.”</span></h2>
+                    <h1 class="title-green">Powerful <span>analytics</span>.</h1>
+
+                    <ul>
+                        <li>No more 2-day turnarounds to answer simple questions.</li>
+                        <li>Check awareness among female, millennial, Californians... in 1 minute.</li>
+                        <li>Create and export a complete set of tabs in 2 minutes.</li>
+                    </ul>
+
+                    <button type="button" class="btn btn-primary" onclick="location.href='powerful-survey-analytics'">Speak to an expert</button>
+
+                </div>
+
+                <div class="col-12 col-md-6 offset-md-1">
+                    <div class="container-img">
+                        <img src="http://via.placeholder.com/1200x800" alt="" class="img-fluid add-shadow">
+                    </div>
+                </div>
+            </div> <!-- /.row. -->
+        </div> <!-- /.container -->
+
+        <div class="modern-platform">
+            <div class="jumbotron">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h1>Survey Data Analytics for Everyone</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /.modern-platform -->
+
+        <div class="container">
         {{ range .Data.Pages }}
             {{ if .Params.crunchbox }}
             <div class="row spacer share-insights">
@@ -23,44 +59,7 @@
         {{ end }}
         </div> <!-- /.container -->
 
-        <div class="modern-platform">
-            <div class="jumbotron">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <h2><span class="font-bold">Simple Delivery</span></h2>
-                            <h1>Survey Data Analytics for Everyone</h1>
-                            <br>
-                            <button type="button" class="btn btn-secondary" onclick="location.href=''">Request a demo</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- /.modern-platform -->
-
         <div class="container">
-            <div class="row spacer share-insights">
-                <div class="col-12 col-md-5">
-                    <h2><span class="font-bold">Why Crunch? Speed</span></h2>
-                    <h1 class="title-green">Powerful <span>analytics</span> with no programming.</h1>
-
-                    <ul>
-                        <li>Cross-tabs and graphs in 2 clicks.</li>
-                        <li>Check awareness among female millennial Californians compared to last year... in 1 minute.</li>
-                        <li>Create and export a complete set of tabs in 2 minutes.</li>
-                        <li>No more 2-day turnarounds with experts to answer simple questions.</li>
-                    </ul>
-
-                    <button type="button" class="btn btn-primary" onclick="location.href='powerful-survey-analytics'">Learn more</button>
-
-                </div>
-
-                <div class="col-12 col-md-6 offset-md-1">
-                    <div class="container-img">
-                        <img src="http://via.placeholder.com/1200x800" alt="" class="img-fluid add-shadow">
-                    </div>
-                </div>
-            </div> <!-- /.row. -->
         {{ range .Data.Pages }}
             {{ if and (eq .Type "product") (eq .Title "Collaborate productively") }}
             <div class="row spacer">
@@ -71,34 +70,35 @@
                 </div>
 
                 <div class="col-12 order-0 col-md-5 offset-md-1 order-md-1">
-                    <h2><span class="font-bold">More speed</span></h2>
+                    <h2><span class="font-bold">“With Crunch, data streams in. I do daily surveys, now.”</span></h2>
+
                     <h1 class="title-green">Real-time <span>surveys</span></h1>
-                    <p>Expectations are rising for shorter, more frequent surveys. Older tools just weren’t built for that. Crunch is.</p>
+                    <p>Shorter, more frequent surveys are the future.</p>
 
-                    <p>Stream your data into Crunch in real-time and answer  “How is the ad campaign I started yesterday doing?”</p>
+                    <p>“Did yesterday’s ad increase awareness?”</p>
 
-                    <p>Cut housekeeping time substantially. Simple drag and drop to:</p>
+                    <p>Speed up your data preparation:</p>
                     <ul>
                         <li>Combine categories</li>
                         <li>Organize and relabel variables</li>
                         <li>Estimate weights</li>
                     </ul>
 
-                    <button type="button" class="btn btn-primary" onclick="location.href='real-time-data'">Learn more</button>
+                    <p>Then, stream data into Crunch, every 30 minutes.</p>
+
+                    <button type="button" class="btn btn-primary" onclick="location.href='real-time-data'">Talk to an Expert</button>
                 </div>
             </div> <!-- /.row. -->
             {{ end }}
         {{ end }}
             <div class="row spacer share-insights">
                 <div class="col-12 col-md-5">
-                    <h2><span class="font-bold">Even more speed</span></h2>
-                    <h1 class="title-green">Compare current results to the past, <span>instantly</span>.</h1>
+                    <h2><span class="font-bold"> “I can track awareness across survey waves with one click.”</span></h2>
+                    <h1 class="title-green">Trackers Tamed: compare waves, <span>instantly</span>.</h1>
 
                     <ul>
-                        <li>Crunch was created for survey data and so it naturally understands and helps you with tracking studies.</li>
-                        <li>All your survey data: past and present, from current and past vendors, plays together nicely inside the CrunchDB.</li>
-                        <li>Append datasets together -- Add another “wave” of a tracking study.</li>
-                        <li>Join datasets together that share some useful information e.g. demographic information from another survey.</li>
+                        <li>All your survey data, past and present, lives inside CrunchDB.</li>
+                        <li>Easily append tracking study waves.</li>
                     </ul>
 
                     <p>No more digging around to find past data files.</p>
@@ -122,16 +122,18 @@
                 </div>
 
                 <div class="col-12 order-1 col-md-6 offset-md-1 order-md-1">
-                    <h2><span class="font-bold">Better insight through collaboration</span></h2>
-                    <h1 class="title-green">Everyone analyzes and collaborates</span>.</h1>
-                    <p>Empower your customers and clients to instantly answer their own questions as they explore and analyze the data.</p>
+                    <h2><span class="font-bold">“Finally, no more emailing “Data_final_v3_FINAL”! Now, everybody works on the same data in Crunch.”</span></h2>
+                    <h1 class="title-green">Everyone analyzes.</span>.</h1>
 
-                    <p>You can end the version control nightmare because Crunch is in the cloud so everyone works off the same data.</p>
+                    <ul>
+                        <li>End the version control nightmare.</li>
+                        <li>Everyone works off the same live data.</li>
+                        <li>Empower customers and clients to answer their own questions.</li>
+                        <li>You control who sees what.</li>
+                    </ul>
 
-                    <p><strong>At the same time, you control who sees what and what they can do with it:</strong> <br>
-                    Drag and drop for the folks who want that interface API for the data scientists who want to script their work in R or Python.</p>
                     <br>
-                    <button type="button" class="btn btn-primary" onclick="location.href='mailto:info@crunch.io'">Learn more</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='mailto:info@crunch.io'">Request a Demo</button>
                 </div>
             </div> <!-- /.row. -->
             {{ end }}
@@ -139,40 +141,6 @@
         </div> <!-- /.container -->
 
     </div> <!-- /.secondary-content -->
-
-    <div class="footer-content">
-        <div class="jumbotron">
-            <div class="container">
-                <div class="row spacer-bottom justify-content-md-center">
-                    <div class="col-md-5">
-                        <h2 class="text-center">What crunch users say</h2>
-                    </div>
-                </div>
-                <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
-                  <ol class="carousel-indicators">
-                    <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselIndicators" data-slide-to="2"></li>
-                    <li data-target="#carouselIndicators" data-slide-to="3"></li>
-                  </ol>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <p>“My old tools were too cumbersome; Things that took me weeks, now take days or hours.”</p>
-                    </div>
-                    <div class="carousel-item">
-                        <p>“I sped up my entire workflow. Data streams in. I do daily surveys, now.”</p>
-                    </div>
-                    <div class="carousel-item">
-                        <p>“I can track Awareness across surveys with one click.”</p>
-                    </div>
-                    <div class="carousel-item">
-                        <p>“Finally, no more emailing <strong>Data_final_v3_FINAL</strong>! Now, everybody, even the boss, works on the same data, in Crunch.”</p>
-                    </div>
-                  </div> <!-- /.carousel-inner -->
-              </div> <!-- /.carousel -->
-          </div> <!-- /.container -->
-        </div> <!-- /.jumbotron -->
-    </div>
 
     </div> <!-- /.container-fluid -->
 
