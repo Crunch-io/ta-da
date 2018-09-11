@@ -6,9 +6,9 @@
 
      <div id="dot-nav" class="float-right">
          <ul>
-             <li><a href="simple-delivery/#first-content">1</a></li>
-             <li><a href="simple-delivery/#second-content">2</a></li>
-             <li><a href="simple-delivery/#third-content">3</a></li>
+             <li><a href="visualization/#first-content">1</a></li>
+             <li><a href="visualization/#second-content">2</a></li>
+             <li><a href="visualization/#third-content">3</a></li>
          </ul>
      </div>
 
@@ -50,7 +50,6 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3 offset-md-1">
-                                        <p><strong>Crunchboard</strong></p>
                                         <p>{{ .Content }}</p>
                                         <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
                                     </div>
@@ -63,7 +62,7 @@
                         <div class="jumbotron">
                             <div class="container">
                             {{ range .Data.Pages }}
-                                {{ if and (eq .Type "simple-delivery") (eq .Title "Crunchbox") }}
+                                {{ if and (eq .Type "visualization") (eq .Title "Crunchbox") }}
                                 <div class="row d-none d-md-block">
                                     <div class="col-md-12">
                                         <h1 class="learn-more-title">{{ .Params.title }}</h1>
@@ -97,7 +96,7 @@
                         <div class="jumbotron">
                             <div class="container">
                             {{ range .Data.Pages }}
-                                {{ if and (eq .Type "simple-delivery") (eq .Title "Crunchbox research") }}
+                                {{ if and (eq .Type "visualization") (eq .Title "Crunchbox research") }}
                                     <div class="col-md-8 offset-md-2 text-center">
                                         <p>{{ .Content }}</p>
                                     </div>
