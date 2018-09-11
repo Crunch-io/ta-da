@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Access a Dataset's Variables Catalog — dataset-variables • Crunch</title>
+<title>Convert from user margins to real cube margins or vice versa — margin-translation • Crunch</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -38,11 +38,12 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Access a Dataset's Variables Catalog — dataset-variables" />
+<meta property="og:title" content="Convert from user margins to real cube margins or vice versa — margin-translation" />
 
-<meta property="og:description" content="Datasets contain collections of variables. For a few purposes, such as
-editing variables' metadata, it is helpful to access these variable catalogs
-more directly." />
+<meta property="og:description" content="It is helpful to programmatically move from user-specified margins to real
+cube margins that apply to the higher-dimensional real cube (with
+user2realMargin). Or to move from the higher-dimensional real cube to user cube
+(with real2userMargin)." />
 
 <meta property="og:image" content="http://crunch.io/r/crunch/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -83,7 +84,7 @@ more directly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Crunch</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.23.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.24.0</span>
       </span>
     </div>
 
@@ -130,6 +131,9 @@ more directly." />
       <a href="../articles/export.html">Export Data</a>
     </li>
     <li>
+      <a href="../articles/projects.html">Projects</a>
+    </li>
+    <li>
       <a href="../articles/fork-and-merge.html">Fork and Merge</a>
     </li>
     <li>
@@ -173,56 +177,52 @@ more directly." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Access a Dataset's Variables Catalog</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Crunch-io/rcrunch/blob/master/R/dataset.R'><code>R/dataset.R</code></a>, <a href='https://github.com/Crunch-io/rcrunch/blob/master/R/search.R'><code>R/search.R</code></a></small>
-    <div class="hidden name"><code>dataset-variables.Rd</code></div>
+    <h1>Convert from user margins to real cube margins or vice versa</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Crunch-io/rcrunch/blob/master/R/cube-result.R'><code>R/cube-result.R</code></a></small>
+    <div class="hidden name"><code>margin-translation.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Datasets contain collections of variables. For a few purposes, such as
-editing variables' metadata, it is helpful to access these variable catalogs
-more directly.</p>
+    <p>It is helpful to programmatically move from user-specified margins to real
+cube margins that apply to the higher-dimensional real cube (with
+<code>user2realMargin</code>). Or to move from the higher-dimensional real cube to user cube
+(with <code>real2userMargin</code>).</p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for CrunchDataset</span>
-<span class='fu'>variables</span>(<span class='no'>x</span>)
+    <pre class="usage"><span class='fu'>user2realMargin</span>(<span class='no'>margin</span>, <span class='kw'>dimTypes</span> <span class='kw'>=</span> <span class='fu'><a href='getDimTypes.html'>getDimTypes</a></span>(<span class='no'>cube</span>), <span class='no'>cube</span>)
 
-<span class='co'># S4 method for CrunchDataset,VariableCatalog</span>
-<span class='fu'>variables</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
-
-<span class='co'># S4 method for CrunchDataset</span>
-<span class='fu'>allVariables</span>(<span class='no'>x</span>)
-
-<span class='co'># S4 method for CrunchDataset,VariableCatalog</span>
-<span class='fu'>allVariables</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
-
-<span class='co'># S4 method for SearchResults</span>
-<span class='fu'>variables</span>(<span class='no'>x</span>)</pre>
+<span class='fu'>real2userMargin</span>(<span class='no'>margin</span>, <span class='kw'>dimTypes</span> <span class='kw'>=</span> <span class='fu'><a href='getDimTypes.html'>getDimTypes</a></span>(<span class='no'>cube</span>), <span class='no'>cube</span>,
+  <span class='kw'>dedupe</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a Dataset</p></td>
+      <th>margin</th>
+      <td><p>the margin or margins for the user cube to be translated</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>For the setters, a VariableCatalog to assign.</p></td>
+      <th>dimTypes</th>
+      <td><p>dimension types from <code><a href='getDimTypes.html'>getDimTypes()</a></code> (by default:
+<code><a href='getDimTypes.html'>getDimTypes(cube)</a></code>)</p></td>
+    </tr>
+    <tr>
+      <th>cube</th>
+      <td><p>the cube to translate the margin for (optional if <code>dimTypes</code> is
+explicitly supplied)</p></td>
+    </tr>
+    <tr>
+      <th>dedupe</th>
+      <td><p>logical, should the user dimensions in the result be
+deduplicated (for <code>real2userMargin</code> only)</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Getters return VariableCatalog; setters return <code>x</code> duly
-modified.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>variables</code> gives just the active variables in the dataset, while
-<code>allVariables</code> returns all variables, including hidden variables.</p>
+    <p>margin or margins in the higher-dimension real cube</p>
     
 
   </div>
@@ -232,8 +232,6 @@ modified.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
           </ul>
 
   </div>
