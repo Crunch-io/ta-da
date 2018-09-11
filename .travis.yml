@@ -1,11 +1,12 @@
+os: osx
 branches:
   only:
   - src
   - dev
 language: go
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install hugo
+  - brew update
+  - brew install hugo
 script: ./build-and-deploy.sh
 env:
   global:
