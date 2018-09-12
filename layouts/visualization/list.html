@@ -57,55 +57,7 @@
                             </div> <!-- /.container -->
                         </div> <!-- /.jumbotron -->
                     </section>
-
-                    <section id="second-content" class="page-scroll content-two">
-                        <div class="jumbotron">
-                            <div class="container">
-                            {{ range .Data.Pages }}
-                                {{ if and (eq .Type "visualization") (eq .Title "Crunchbox") }}
-                                <div class="row d-none d-md-block">
-                                    <div class="col-md-12">
-                                        <h1 class="learn-more-title">{{ .Params.title }}</h1>
-                                        <p style="margin-top: -40px;">{{ .Params.description }}</p>
-                                    </div>
-                                </div> <!-- /.row. -->
-
-                                <div class="row">
-                                    <div class="col-sm col-md-8 d-none d-md-block">
-                                        <div class="crunchbox-container">
-                                            <div class="crunchbox">
-                                                <iframe src="{{ .Params.crunchboxtwo }}" width="100%" height="450"></iframe>
-                                            </div>
-                                        </div> <!-- /.crunchbox -->
-                                    </div>
-                                    <div class="col-md-3 offset-md-1">
-                                        <div class="crunchbox d-md-none d-sm-block">
-                                            <iframe src="{{ .Params.crunchboxtwo }}" width="100%" height="450"></iframe>
-                                        </div>
-                                        <h2 class="d-md-none d-sm-block">{{ .Params.title }}</h2>
-                                        <p class="sp-mb">{{ .Content }}</p>
-                                    </div>
-                                </div>
-                                {{ end }}
-                            {{ end }}
-                            </div> <!-- /.containe -->
-                        </div> <!-- /.jumbotron -->
-                    </section>
-
-                    <section id="third-content" class="page-scroll content-three">
-                        <div class="jumbotron">
-                            <div class="container">
-                            {{ range .Data.Pages }}
-                                {{ if and (eq .Type "visualization") (eq .Title "Crunchbox research") }}
-                                    <div class="col-md-8 offset-md-2 text-center">
-                                        <p>{{ .Content }}</p>
-                                    </div>
-                                </div>
-                                {{ end }}
-                            {{ end }}
-                            </div> <!-- /.container -->
-                        </div> <!-- /.jumbotron -->
-                    </section>
+                    
                   </div> <!-- /.modern-platform-content -->
 
 
