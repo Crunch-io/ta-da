@@ -2,7 +2,7 @@
 date = "2018-04-25T14:59:57-04:00"
 draft = false
 title = "Keep up to date"
-img = "speaks_research/json_code.png"
+img = "speaks_research/save_versions.gif"
 images = ["https://crunch.io/img/logo-1200x630.png"]
 
 

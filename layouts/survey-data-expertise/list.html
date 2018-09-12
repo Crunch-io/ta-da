@@ -64,7 +64,7 @@
                                 <div class="row">
                                     <div class="col-md-8 d-none d-md-block">
                                         <div id="learn-more-img-2">
-                                            <img src="http://via.placeholder.com/1200x800" class="img-fluid">
+                                            <img src="img/{{ .Params.img }}" class="img-fluid">
                                         </div>
                                     </div>
                                     <div class="col-md-3 offset-md-1">
@@ -86,11 +86,11 @@
                                 <div class="row">
                                     <div class="col-md-8 d-none d-md-block">
                                         <div id="learn-more-img-3">
-                                            <img src="http://via.placeholder.com/1200x800" class="img-fluid">
+                                            <img src="img/{{ .Params.img }}" class="img-fluid">
                                         </div>
                                     </div>
                                     <div class="col-md-3 offset-md-1">
-                                        <img src="http://via.placeholder.com/1200x800" alt="Crunch app" class="img-fluid d-md-none d-sm-block">
+                                        <img src="img/{{ .Params.img }}" alt="Crunch app" class="img-fluid d-md-none d-sm-block">
                                         <h2 class="d-md-none d-sm-block">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ end }}</span></h2>
                                         <p>{{ .Content }}</p>
                                     </div>

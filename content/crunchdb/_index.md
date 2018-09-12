@@ -2,7 +2,7 @@
 date = "2018-02-20T10:08:35+02:00"
 draft = false
 title = "CrunchDB"
-img = "speaks_research/speaks_research_multitable.png"
+img = "speaks_research/dataset_view.gif"
 description = "Crunch’s purpose-built database for survey data."
 images = ["https://crunch.io/img/logo-1200x630.png"]
 

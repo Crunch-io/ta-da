@@ -7,7 +7,7 @@ MetaDataFormat = "toml"
 
 [params]
 description = "Prepare and analyze survey data quickly and easily."
-product = "crunch_app.png"
+product = "xtabs_intro.gif"
 arrow = "arrow.png"
 copyofbaseURL = "//crunch-io.github.io/crunchy/newsite/"
 images = ["https://crunch.io/img/logo-1200x630.png"]
