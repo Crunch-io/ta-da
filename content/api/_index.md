@@ -2,7 +2,7 @@
 date = "2018-02-20T10:08:35+02:00"
 draft = false
 title = "API"
-description = "The Crunch API - Future Proofing"
+description = "The Crunch API - Automate.  Integrate.  Extend."
 img = "speaks_research/json_code.png"
 images = ["https://crunch.io/img/logo-1200x630.png"]
 
