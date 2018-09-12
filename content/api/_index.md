@@ -9,4 +9,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-Everything that you can do in the Crunch webapp and much more can be accomplished through our API. This makes it easy to automate your work and incorporate Crunch into your data workflows.  For example, you can stream data directly into Crunch from your survey system.
+ Write simple scripts to automate data preparation.  Integrate Crunch into your data workflows. Stream data directly into Crunch from your survey system.  Extend Crunch with Python, R, or another tool to make any graph type or statistical analysis.
