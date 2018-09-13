@@ -19,7 +19,6 @@
 
 .share-insights {
     a {
-        font-family: 'Libre Baskerville', serif;
         color: $color-off-black;
 
         span {
@@ -123,7 +122,7 @@
 
     .secondary-content {
         h1 {
-            font-size: 1.8em;    
+            font-size: 1.8em;
         }
 
         h2 {
@@ -348,9 +347,8 @@
     .jumbotron {
         margin: 0;
 
-        p {
-            font-size: 1.2em;
-            line-height: 1.5em;
+        a {
+            color: $color-white;
         }
     }
 
@@ -392,18 +390,17 @@
     }
 
     .content-two .jumbotron {
-        color: $color-white;
-        background: url(../img/crunch_modern_platform.jpg) no-repeat center center fixed;
+        background: $color-white;
         @include vp-background-size(cover);
         padding-bottom: 150px;
 
         p {
             margin-top: 100px;
-            color: $color-white;
         }
 
         @include media-breakpoint-down(sm) {
             h2 {
+                margin-top: 20px;
                 font-family: 'Libre Baskerville', serif;
 
                 span {
@@ -420,7 +417,7 @@
 
     @include media-breakpoint-down(sm) {
         .content-two .jumbotron  {
-            height: 700px
+            height: 800px
         }
     }
 
@@ -466,7 +463,7 @@
 
     @include media-breakpoint-down(sm) {
         .content-three .jumbotron  {
-            height: 580px
+            height: 400px
 
         }
     }
@@ -528,11 +525,6 @@
 
     .jumbotron {
         margin: 0;
-
-        p {
-            font-size: 1.2em;
-            line-height: 1.5em;
-        }
     }
 
     .content-one {
@@ -699,11 +691,6 @@
 
     .jumbotron {
         margin: 0;
-
-        p {
-            font-size: 1.2em;
-            line-height: 1.5em;
-        }
     }
     .content-one {
 
@@ -826,6 +813,34 @@
             a {
                 color: $color-off-black;
             }
+        }
+    }
+
+    .content-four .jumbotron {
+        color: $color-off-black;
+        background-color: $color-white;
+
+        p {
+            margin-top: 100px;
+
+            a {
+                font-family: 'ProximaNova', sans-serif;
+                color: $color-blue;
+            }
+        }
+
+        @include media-breakpoint-down(sm) {
+            p {
+                margin-top: 50px;
+                margin-bottom: 50px;
+            }
+        }
+
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-four .jumbotron {
+            height: auto;
         }
     }
 

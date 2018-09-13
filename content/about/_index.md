@@ -8,4 +8,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-In 2012, a group of survey experts, data scientists, and engineers were frustrated with needing to use many disconnected tools to compile, analyze, and deliver survey data. We set out to make Crunch: a single tool that would allow researchers, analysts, and clients to collaborate in a secure, cloud-based environment.
+We’re a group of  survey experts, market researchers, data scientists, and engineers.  We were frustrated with needing to use cumbersome, disconnected tools to compile, analyze, visualize and deliver survey data. So, we built Crunch, for you, to help you do market research.

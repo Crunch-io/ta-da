@@ -1,0 +1,58 @@
+{{ partial "head.html" . }}
+
+<div id="first-content"></div>
+
+{{ partial "header.html" . }}
+
+      <div id="wrapper">
+
+          <div id="secondary-pages-wrapper">
+              <div class="container-fluid">
+
+                  <div class="modern-platform-content">
+
+                    <div class="d-none d-md-block">
+                        <div class="container">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <h1 class="learn-more-title">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ end }}{{ .Params.subtitle }}</h1>
+                              </div>
+                          </div> <!-- /.row. -->
+                        </div> <!-- /.container -->
+                    </div>
+
+                    <section class="page-scroll content-one">
+
+                        <div class="container">
+                            <div class="row d-md-none d-sm-block">
+                                <div class="col-md-12">
+                                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ end }}{{ .Params.subtitle }}</h1>
+
+                                    <img src="img/deck_pptx.gif" alt="" class="img-fluid sp-mb">
+                                </div>
+                            </div> <!-- /.row. -->
+                        </div> <!-- /.container -->
+
+                        <div class="jumbotron">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-8 d-none d-md-block text-center">
+                                        <div id="learn-more-img-1">
+                                            <img src="img/deck_pptx.gif" class="img-fluid">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 offset-md-1">
+                                        <p>{{ .Content }}</p>
+                                        <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
+                                    </div>
+                                </div>
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                  </div> <!-- /.modern-platform-content -->
+
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

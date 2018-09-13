@@ -1,0 +1,108 @@
+{{ partial "head.html" . }}
+
+<div id="first-content"></div>
+
+{{ partial "header.html" . }}
+
+    <div id="dot-nav" class="float-right">
+         <ul>
+            <li><a href="survey-data-expertise/#first-content">1</a></li>
+            <li><a href="survey-data-expertise/#second-content">2</a></li>
+            <li><a href="survey-data-expertise/#third-content">3</a></li>
+         </ul>
+    </div>
+
+    <div id="wrapper">
+
+        <div id="secondary-pages-wrapper">
+            <div class="container-fluid">
+
+                <div class="collaborate-content">
+
+                    <div class="d-none d-md-block">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h1 class="learn-more-title">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ end }}</h1>
+                                </div>
+                            </div> <!-- /.row. -->
+                        </div> <!-- /.container -->
+                    </div>
+
+                    <section class="page-scroll content-one">
+                        <div class="container">
+                            <div class="row d-md-none d-sm-block">
+                                <div class="col-md-12">
+                                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</span></h1>
+                                    <img src="img/{{ .Params.img }}" alt="Crunch app" class="img-fluid add-shadow sp-mb">
+                                </div>
+                            </div> <!-- /.row. -->
+                        </div> <!-- /.container -->
+
+                        <div class="jumbotron">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-8 d-none d-md-block">
+                                        <div id="learn-more-img-1">
+                                            <img src="img/{{ .Params.img }}" class="img-fluid add-shadow">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 offset-md-1">
+                                        <p>{{ .Content }}</p>
+                                        <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
+                                    </div>
+                                </div>
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                    <section id="second-content" class="page-scroll content-two">
+                        <div class="jumbotron">
+                            <div class="container">
+                            {{ range .Data.Pages }}
+                                {{ if and (eq .Type "survey-data-expertise") (eq .Title "Survey data effortlessly") }}
+                                <div class="row">
+                                    <div class="col-md-8 d-none d-md-block">
+                                        <div id="learn-more-img-2">
+                                            <img src="img/{{ .Params.img }}" class="img-fluid">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 offset-md-1">
+                                        <h2 class="d-md-none d-sm-block">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ end }}</span></h2>
+                                        <p>{{ .Content }}</p>
+                                    </div>
+                                </div>
+                                {{ end }}
+                            {{ end }}
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                    <section id="third-content" class="page-scroll content-three">
+                        <div class="jumbotron">
+                            <div class="container">
+                            {{ range .Data.Pages }}
+                                {{ if and (eq .Type "survey-data-expertise") (eq .Title "Crunch is extensive") }}
+                                <div class="row">
+                                    <div class="col-md-8 d-none d-md-block">
+                                        <div id="learn-more-img-3">
+                                            <img src="img/{{ .Params.img }}" class="img-fluid">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 offset-md-1">
+                                        <img src="img/{{ .Params.img }}" alt="Crunch app" class="img-fluid d-md-none d-sm-block">
+                                        <h2 class="d-md-none d-sm-block">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ end }}</span></h2>
+                                        <p>{{ .Content }}</p>
+                                    </div>
+                                </div> <!-- /.row. -->
+                                {{ end }}
+                            {{ end }}
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                </div> <!-- /.collaborate-content -->
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

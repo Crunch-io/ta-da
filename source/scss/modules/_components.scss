@@ -9,7 +9,12 @@
         color: $color-white;
 
         h1 {
-            margin-top: 100px;
+            font-size: 2.5em;
+            line-height: 1.4em;
+        }
+
+        button {
+            margin: 10px 5px;
         }
 
         .jumbotron {
@@ -32,6 +37,14 @@
         position: relative;
         z-index: 10;
 
+        h2 {
+            text-transform: uppercase;
+            font-size: 1em;
+            font-weight: 700;
+            letter-spacing: .1em;
+            margin-bottom: 0;
+        }
+
         .jumbotron {
             width: 100%;
             height: 450px;
@@ -45,11 +58,36 @@
             .row {
                 margin-top: 50px;
             }
+
+            .carousel {
+                max-width: 800px;
+                text-align: center;
+                font-family: 'Libre Baskerville', serif;
+                font-size: 1.5em;
+                margin: auto;
+
+                .carousel-inner {
+                    min-height: 140px;
+                }
+
+                .carousel-indicators {
+                    bottom: -50px;
+                }
+            }
         }
 
         @include media-breakpoint-down(sm) {
             .jumbotron {
                 background-position: 0 top;
+
+                h2 {
+                    font-size: .8em;
+                }
+
+                .carousel {
+                    font-size: 1.2em;
+
+                }
             }
         }
     }
@@ -203,4 +241,13 @@ figure {
   animation-delay: 1.2s;
   -webkit-animation-duration: 1.5s;
   animation-duration: 1.5s;
+}
+
+// carousel
+.carousel {
+    .carousel-indicators li {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
 }
