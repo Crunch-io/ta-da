@@ -9,4 +9,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
- Write simple scripts to automate data preparation.  Integrate Crunch into your data workflows. Stream data directly into Crunch from your survey system.  Extend Crunch with Python, R, or another tool to make any graph type or statistical analysis.
+Integrate Crunch into your data workflows. Stream data directly into Crunch from your survey system.  Extend Crunch with Python, R, or another tool to make any graph type or statistical analysis.

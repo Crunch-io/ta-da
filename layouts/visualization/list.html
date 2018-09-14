@@ -14,8 +14,9 @@
                     <div class="d-none d-md-block">
                         <div class="container">
                           <div class="row">
-                              <div class="col-md-12">
-                                  <h1 class="learn-more-title">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ end }}{{ .Params.subtitle }}</h1>
+                              <div class="col-md-12 text-center spacer-top">
+                                  <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ end }}{{ .Params.subtitle }}</h1>
+                                  <p>Create interactive visualizations. Place them in a dashboard.</p>
                               </div>
                           </div> <!-- /.row. -->
                         </div> <!-- /.container -->
@@ -27,6 +28,7 @@
                             <div class="row d-md-none d-sm-block">
                                 <div class="col-md-12">
                                     <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ end }}{{ .Params.subtitle }}</h1>
+                                    <p>Create interactive visualizations. Place them in a dashboard.</p>
 
                                     <img src="img/deck_pptx.gif" alt="" class="img-fluid sp-mb">
                                 </div>
