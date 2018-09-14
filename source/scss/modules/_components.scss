@@ -13,6 +13,13 @@
             line-height: 1.4em;
         }
 
+        @include media-breakpoint-down(xs) {
+            h1 {
+                font-size: 2em;
+                line-height: 1.4em;
+            }
+        }
+
         button {
             margin: 10px 5px;
         }
@@ -128,6 +135,12 @@
             overflow: hidden;
         }
 
+    }
+}
+
+@include media-breakpoint-only(xs) {
+    .crunchbox-container {
+        margin-top: 50px;
     }
 }
 

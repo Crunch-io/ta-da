@@ -19,30 +19,27 @@
 
                 <div class="collaborate-content">
 
-                    <div class="d-none d-md-block">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12 text-center spacer-top">
-                                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ end }}</h1>
-                                </div>
-                            </div> <!-- /.row. -->
-
-                            <div class="row">
-                                <div class="col-md-8 offset-md-2 text-center">
-                                    <!-- <p>{{ .Content }}</p> -->
-                                    <p><strong>We started in market and survey research. We know your pain.</strong></p>
-
-                                    <p>Crunch speaks fluent survey, with perfect diction and an extensive vocabulary; if it’s survey specific, you can do it in Crunch, easily and quickly.</p>
-                                </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-center spacer-top">
+                                <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ end }}</h1>
                             </div>
-                        </div> <!-- /.container -->
-                    </div>
+                        </div> <!-- /.row. -->
+
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2 text-center">
+                                <!-- <p>{{ .Content }}</p> -->
+                                <p><strong>We started in market and survey research. We know your pain.</strong></p>
+
+                                <p>Crunch speaks fluent survey, with perfect diction and an extensive vocabulary; if it’s survey specific, you can do it in Crunch, easily and quickly.</p>
+                            </div>
+                        </div>
+                    </div> <!-- /.container -->
 
                     <section class="page-scroll content-one">
                         <div class="container">
                             <div class="row d-md-none d-sm-block">
                                 <div class="col-md-12">
-                                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</span></h1>
                                     <img src="img/{{ .Params.img }}" alt="Crunch app" class="img-fluid add-shadow sp-mb">
                                 </div>
                             </div> <!-- /.row. -->
@@ -77,7 +74,6 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3 offset-md-1">
-                                        <h2 class="d-md-none d-sm-block">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ end }}</span></h2>
                                         <p>{{ .Content }}</p>
                                     </div>
                                 </div>
@@ -100,7 +96,6 @@
                                     </div>
                                     <div class="col-md-3 offset-md-1">
                                         <img src="img/{{ .Params.img }}" alt="Crunch app" class="img-fluid d-md-none d-sm-block">
-                                        <h2 class="d-md-none d-sm-block">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ end }}</span></h2>
                                         <p>{{ .Content }}</p>
                                     </div>
                                 </div> <!-- /.row. -->

@@ -1,7 +1,4 @@
 {{ partial "head.html" . }}
-
-<div id="first-content"></div>
-
 {{ partial "header.html" . }}
 
     <div id="wrapper">
@@ -11,41 +8,30 @@
 
                 <div class="collaborate-content">
 
-                    <div class="d-none d-md-block">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12 spacer-top">
-                                    <h1 class="text-center">{{ .Params.title }}</h1>
-                                </div>
-                            </div> <!-- /.row. -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 spacer-top">
+                                <h1 class="text-center">{{ .Params.title }}</h1>
+                            </div>
+                        </div> <!-- /.row. -->
 
-                            <div class="row">
-                                <div class="col-md-8 offset-md-2">
-                                    <p class="text-center"><strong>{{ .Params.description }}</strong></p>
-                                    <p class="text-center">A Crunch customer asked us to develop a lightweight, even easier, version of Crunch for one of their clients, who doesn’t live, breath and eat surveys all day.</p>
-                                </div>
-                            </div><!-- /.row -->
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                                <p class="text-center"><strong>{{ .Params.description }}</strong></p>
+                                <p class="text-center">A Crunch customer asked us to develop a lightweight, even easier, version of Crunch for one of their clients, who doesn’t live, breath and eat surveys all day.</p>
+                            </div>
+                        </div><!-- /.row -->
 
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <div class="container-img">
-                                        <img src="http://via.placeholder.com/1200x800" alt="" class="img-fluid add-shadow">
-                                    </div>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <div class="container-img">
+                                    <img src="http://via.placeholder.com/1200x800" alt="" class="img-fluid add-shadow">
                                 </div>
-                            </div> <!-- /.row -->
-                        </div> <!-- /.container -->
-                    </div>
+                            </div>
+                        </div> <!-- /.row -->
+                    </div> <!-- /.container -->
 
-                    <section class="page-scroll content-one">
-                        <div class="container">
-                            <div class="row d-md-none d-sm-block">
-                                <div class="col-md-12">
-                                    <h1>{{ .Params.title }}</h1>
-                                    <!-- <img src="img/{{ .Params.img }}" alt="Crunch app" class="img-fluid sp-mb"> -->
-                                </div>
-                            </div> <!-- /.row. -->
-                        </div> <!-- /.container -->
-
+                    <section class="content-one">
                         <div class="jumbotron">
                             <div class="container">
 
@@ -56,7 +42,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-8 d-none d-md-block">
+                                    <div class="col-md-8">
                                         <div class="crunchbox-container">
                                             <div class="crunchbox">
                                                 <iframe src="{{ .Params.crunchboxtwo }}" width="100%" height="450"></iframe>
