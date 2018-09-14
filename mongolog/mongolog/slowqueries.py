@@ -1,6 +1,10 @@
+import csv
 import os
 import tempfile
 import subprocess
+from StringIO import StringIO
+
+import requests
 from paramiko.client import SSHClient, WarningPolicy
 
 
@@ -18,8 +22,8 @@ class tunnel(object):
       subprocess.call('pkill -f "ssh -A -f -N -L %s"' % self.local_port, shell=True)
 
 
-def fetch_logs(path):
-    with tunnel('eu-mongo-2-42.priveu.crunch.io', 22, 2922) as connection:
+def fetch_logs(host, path):
+    with tunnel(host, 22, 2922) as connection:
         print('Tunneling Through %s' % (connection,))
         cli = SSHClient()
         cli.load_system_host_keys()
@@ -64,14 +68,34 @@ class CrunchMLogFilterTool(MLogFilterTool):
         self.LINES.append(data)
 
 
-def main():
-    from . import slack 
+def gather_servers(kind='eu', role='dbservers'):
+    req = requests.get('http://dev.crunch.io/ec2-hosts.txt', auth=('paster', 'youseeit'))
+    servers = []
+    for server in csv.DictReader(StringIO(req.text), delimiter='\t'):
+        if kind != server['System']:
+            continue
+        if role not in server['Ansible Role']:
+            continue
+        servers.append(server['Name'])
+    return servers
 
-    tmpf = fetch_logs('/var/log/mongodb/mongod.log')
-    try:
+
+def main():
+    from . import slack
+
+    with tempfile.NamedTemporaryFile('rw+b') as tmpf:
+        for server in gather_servers():
+            serverlog = fetch_logs(server, '/var/log/mongodb/mongod.log')
+            try:
+                tmpf.write(serverlog.read())
+                tmpf.write('\n')
+            finally:
+                os.unlink(serverlog)
+        tmpf.seek(0)
+
         import sys
         # We need all this to fake MLogFilterTool to think it got called with an input and some arguments
-        sys.stdin = open(tmpf)
+        sys.stdin = tmpf
         sys.argv = sys.argv[:1] + ['--slow', '500', '--from', 'now -24hours']
         CrunchMLogFilterTool.LINES = []
         CrunchMLogFilterTool().run()
@@ -87,7 +111,5 @@ def main():
                               attachments=[{'title': 'MongoDB Slow Queries for past 24 Hours',
                                             'text': 'No query over 500ms'}])
         r.raise_for_status()
-    finally:
-        os.unlink(tmpf)
 
 
