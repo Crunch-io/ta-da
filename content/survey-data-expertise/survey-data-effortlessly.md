@@ -8,4 +8,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-“Estimate weights with a mouse and a browser. Really. Turn them on and off with a click.”
+“Effortlessly handle survey data types like multiple-response and grid variables.”
