@@ -9,10 +9,6 @@ crunchboxtwo = "https://s.crunch.io/widget/index.html#/ds/1c87c6dc7cf8802bf0056c
 
 +++
 
-A Crunch customer asked us to develop a lightweight, even easier, version of Crunch for one of their clients, who doesn’t live, breath and eat surveys all day.
-
-So, we created the Crunchbox: the easiest and quickest way for anyone, with zero training, to slice and dice survey data.
-
 <ul>
     <li>Don’t deliver all of the data in PowerPoint. </li>
     <li>Don’t repeat the same 30 slides for China, the US and UK.</li>

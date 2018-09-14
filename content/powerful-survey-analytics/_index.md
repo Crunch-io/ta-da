@@ -9,6 +9,4 @@ video = "https://www.youtube.com/embed/zA7N_Q1EpSs?rel=0&amp;showinfo=0"
 
 +++
 
-An intuitive, visual interface allows anyone to quickly view the data and then to dig deeper.
-
 You can drag-and-drop to create tables and charts, filter the data, create maps, classify open-end responses by their sentiment…

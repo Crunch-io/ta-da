@@ -8,6 +8,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-“Effortlessly handle survey data types like multiple-response and grid variables.”
-
 “Turn statistical testing on/off.”
