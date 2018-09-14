@@ -87,7 +87,8 @@ def main():
         for server in gather_servers():
             serverlog = fetch_logs(server, '/var/log/mongodb/mongod.log')
             try:
-                tmpf.write(serverlog.read())
+                with open(serverlog) as f:
+                    tmpf.write(f.read())
                 tmpf.write('\n')
             finally:
                 os.unlink(serverlog)
