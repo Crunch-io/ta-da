@@ -15,9 +15,24 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h1 class="learn-more-title">{{ .Params.title }}</h1>
+                                    <h1 class="learn-more-title text-center">{{ .Params.title }}</h1>
                                 </div>
                             </div> <!-- /.row. -->
+
+                            <div class="row">
+                                <div class="col-md-8 offset-md-2">
+                                    <p class="text-center"><strong>{{ .Params.description }}</strong></p>
+                                    <p class="text-center">A Crunch customer asked us to develop a lightweight, even easier, version of Crunch for one of their clients, who doesn’t live, breath and eat surveys all day.</p>
+                                </div>
+                            </div><!-- /.row -->
+
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <div class="container-img">
+                                        <img src="http://via.placeholder.com/1200x800" alt="" class="img-fluid add-shadow">
+                                    </div>
+                                </div>
+                            </div> <!-- /.row -->
                         </div> <!-- /.container -->
                     </div>
 
@@ -42,7 +57,6 @@
                                         </div> <!-- /.crunchbox -->
                                     </div>
                                     <div class="col-md-3 offset-md-1">
-                                        <p><strong>{{ .Params.description }}</strong></p>
                                         <p>{{ .Content }}</p>
                                     </div>
                                 </div>
