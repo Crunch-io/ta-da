@@ -18,7 +18,7 @@
                         <div class="row">
                             <div class="col-md-8 offset-md-2">
                                 <p class="text-center"><strong>{{ .Params.description }}</strong></p>
-                                <p class="text-center">A Crunch customer asked us to develop a lightweight, even easier, version of Crunch for one of their clients, who doesn’t live, breath and eat surveys all day.</p>
+                                <p class="text-center">The easiest and quickest way for anyone, with zero training, to slice and dice survey data.</p>
                             </div>
                         </div><!-- /.row -->
 
@@ -37,20 +37,37 @@
 
                                 <div class="row">
                                     <div class="col-md-8 offset-md-2">
-                                        <h2 class="text-center">So, we created the CrunchBox: the easiest and quickest way for anyone, with zero training, to slice and dice survey data.</h2>
+                                        <h2 class="text-center">Explore movie data here.</h2>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-6 offset-md-3">
                                         <div class="crunchbox-container">
                                             <div class="crunchbox">
                                                 <iframe src="{{ .Params.crunchboxtwo }}" width="100%" height="450"></iframe>
                                             </div>
                                         </div> <!-- /.crunchbox -->
                                     </div>
+                                </div>
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                    <section id="second-content" class="page-scroll content-two">
+                        <div class="jumbotron">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-8 d-none d-md-block">
+                                        <div id="learn-more-img-2">
+                                            <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
+                                                 <iframe src="{{ .Params.video }}"
+                                                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
+                                             </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-3 offset-md-1">
-                                        <p class="spacer-top">{{ .Content }}</p>
+                                        <p>{{ .Content }}</p>
                                     </div>
                                 </div>
                             </div> <!-- /.container -->
