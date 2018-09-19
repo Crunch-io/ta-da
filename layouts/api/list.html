@@ -4,61 +4,41 @@
 
 {{ partial "header.html" . }}
 
-     <div id="dot-nav" class="float-right">
-         <ul>
-             <li><a href="api/#first-content">1</a></li>
-             <li><a href="api/#fourth-content">2</a></li>
-         </ul>
-     </div>
+    <div id="wrapper">
 
-      <div id="wrapper">
+        <div id="secondary-pages-wrapper">
+            <div class="container-fluid">
 
-          <div id="secondary-pages-wrapper">
-              <div class="container-fluid">
+                <div class="api-content">
 
-                  <div class="speaks-research-content">
-
-                    <div class="d-none d-md-block">
-                        <div class="container">
-                          <div class="row">
-                              <div class="col-md-12 text-center spacer-top">
-                                  <h1>The Crunch {{ .Params.title }}</h1>
-                                  <p>{{ .Params.description }}</p>
-                              </div>
-                          </div> <!-- /.row. -->
-                        </div> <!-- /.container -->
-                    </div> <!-- /.speaks-research-parallax -->
-
-                    <section class="page-scroll content-one">
-
-                        <div class="container">
-                            <div class="row d-md-none d-sm-block">
-                                <div class="col-md-12">
-                                    <h1>The Crunch {{ .Params.title }}</h1>
-                                    <p>{{ .Params.description }}</p>
-
-                                    <img src="img/{{ .Params.img }}" alt="" class="img-fluid sp-mb">
-                                </div>
-                            </div> <!-- /.row. -->
-                        </div> <!-- /.container -->
-
+                    <div class="header-content">
                         <div class="jumbotron">
                             <div class="container">
-                                <div class="row">
-                                    <div class="col-md-8 d-none d-md-block">
-                                        <div id="learn-more-img-1">
-                                            <img src="img/{{ .Params.img }}" alt="" class="img-fluid">
-                                        </div>
+                                <div class="row justify-content-md-center">
+                                    <div class="col-md-7">
+                                        <h1>The Crunch {{ .Params.title }}</h1>
+                                        <p>{{ .Params.description }}</p>
+                                    <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
                                     </div>
-                                    <div class="col-md-3 offset-md-1">
-                                        <p>{{ .Content }}</p>
-                                    </div>
-                                </div> <!-- /.row. -->
+                                </div> <!-- /.row -->
                             </div> <!-- /.container -->
                         </div> <!-- /.jumbotron -->
-                    </section>
+                    </div> <!-- /.header-content -->
 
-                  </div> <!-- /.modern-platform-content -->
+                    <div class="container spacer">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div id="learn-more-img-1">
+                                    <img src="img/{{ .Params.img }}" alt="" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-md-3 offset-md-1">
+                                <p>{{ .Content }}</p>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+
+                </div> <!-- /.api-content -->
 
 
 {{ partial "footer-nav.html" . }}

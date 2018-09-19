@@ -26,20 +26,9 @@
                 </div> <!-- /.jumbotron -->
             </div> <!-- /.header-content -->
 
-            <div class="container">
-                <div class="row d-md-none d-sm-block">
-                    <div class="col-md-12">
-                        <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ end }}{{ .Params.subtitle }}</h1>
-                        <p>{{ .Params.description }}</p>
-
-                        <img src="img/deck_pptx.gif" alt="" class="img-fluid sp-mb add-shadow">
-                    </div>
-                </div> <!-- /.row. -->
-            </div> <!-- /.container -->
-
             <div class="container spacer-top spacer-bottom">
                 <div class="row">
-                    <div class="col-md-8 d-none d-md-block text-center">
+                    <div class="col-md-8 text-center">
                         <div id="learn-more-img-1">
                         <img src="img/deck_pptx.gif" class="img-fluid add-shadow">
                         </div>
@@ -52,7 +41,6 @@
             </div> <!-- /.container -->
 
         </div> <!-- /.visualization -->
-
 
 {{ partial "footer-nav.html" . }}
 
