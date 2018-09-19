@@ -357,6 +357,13 @@
         background-color: $color-blue;
         background-image: linear-gradient( $color-blue, $--darker-primary-color);
     }
+
+    &.green {
+        .jumbotron {
+            background-color: $color-green;
+            background-image: linear-gradient( $color-green, $--darker-secondary-color);
+        }
+    }
 }
 
 @include media-breakpoint-only(xs) {

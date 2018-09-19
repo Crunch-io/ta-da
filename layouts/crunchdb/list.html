@@ -19,45 +19,34 @@
 
                   <div class="speaks-research-content">
 
-                    <div class="d-none d-md-block">
-                        <div class="container">
-                          <div class="row">
-                              <div class="col-md-12 text-center spacer-top">
-                                  <h1>{{ .Params.title }}</h1>
-                                  <p>{{ .Params.description }}</p>
-                              </div>
-                          </div> <!-- /.row. -->
-                        </div> <!-- /.container -->
-                    </div> <!-- /.speaks-research-parallax -->
+                      <div class="header-content">
+                          <div class="jumbotron">
+                              <div class="container">
+                                  <div class="row justify-content-md-center">
+                                      <div class="col-md-7">
+                                          <h1>{{ .Params.title }}</h1>
+                                          <p>{{ .Params.description }}</p>
+                                      <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
+                                      </div>
+                                  </div> <!-- /.row -->
+                              </div> <!-- /.container -->
+                          </div> <!-- /.jumbotron -->
+                      </div> <!-- /.header-content -->
 
-                    <section class="page-scroll content-one">
+                    <section class="page-scroll">
 
-                        <div class="container">
-                            <div class="row d-md-none d-sm-block">
-                                <div class="col-md-12">
-                                    <h1 class="learn-more-title">{{ .Params.title }}</h1>
-                                    {{ .Params.description }}
-
-                                    <img src="img/{{ .Params.img }}" alt="" class="img-fluid sp-mb add-shadow">
+                        <div class="container spacer">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div id="learn-more-img-1">
+                                        <img src="img/{{ .Params.img }}" alt="" class="img-fluid add-shadow">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 offset-md-1">
+                                    <p>{{ .Content }}</p>
                                 </div>
                             </div> <!-- /.row. -->
                         </div> <!-- /.container -->
-
-                        <div class="jumbotron">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-8 d-none d-md-block">
-                                        <div id="learn-more-img-1">
-                                            <img src="img/{{ .Params.img }}" alt="" class="img-fluid add-shadow">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 offset-md-1">
-                                        <p>{{ .Content }}</p>
-                                        <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
-                                    </div>
-                                </div> <!-- /.row. -->
-                            </div> <!-- /.container -->
-                        </div> <!-- /.jumbotron -->
                     </section>
 
                     <section id="second-content" class="page-scroll content-two">

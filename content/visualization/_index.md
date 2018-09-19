@@ -9,7 +9,7 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-<ul>
+<ul class="marketing-list">
     <li>Create interactive charts & graphs inside Crunch.</li>
 
     <li>Place them in a custom dashboard.</li>

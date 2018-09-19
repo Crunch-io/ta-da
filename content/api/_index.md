@@ -9,7 +9,7 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-<ul>
+<ul class="marketing-list">
     <li>Integrate Crunch into your data workflows.</li>
     <li>Write simple scripts to automate data preparation.</li>
     <li>Stream data directly into Crunch from your survey system. </li>

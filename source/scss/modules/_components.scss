@@ -261,11 +261,14 @@ figure {
   animation-duration: 1.5s;
 }
 
-// carousel
 .carousel {
     .carousel-indicators li {
         width: 12px;
         height: 12px;
         border-radius: 50%;
     }
+}
+
+ .marketing-list {
+    padding: 0;
 }
