@@ -347,6 +347,24 @@
     color: $color-white;
 }
 
+// Header Content
+
+.header-content {
+    color: $color-white;
+    text-align: center;
+
+    .jumbotron {
+        background-color: $color-blue;
+        background-image: linear-gradient( $color-blue, $--darker-primary-color);
+    }
+}
+
+@include media-breakpoint-only(xs) {
+    .header-content {
+        text-align: left;
+    }
+}
+
 // A modern platform for analytics
 .modern-platform-content {
 
@@ -360,7 +378,7 @@
 
     .content-one {
 
-        margin-top: 200px;
+        margin-top: 50px;
 
         .jumbotron {
             color: $color-white;
@@ -368,7 +386,7 @@
         }
 
         #learn-more-img-1 {
-            margin-top: -200px;
+            // margin-top: -200px;
         }
 
     }
