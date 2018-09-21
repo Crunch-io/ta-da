@@ -1,7 +1,7 @@
 +++
 title = "PowerPoint Deck Exports"
 description = "Download your Crunch deck as a PowerPoint presentation complete with embedded graphs"
-date = "2018-06-18T10:20:47-04:00"
+date = "2018-09-25T10:20:47-04:00"
 draft = false
 weight = 20
 tags = ["analysis", "powerpoint", "deck", "charts", "graphs"]
@@ -11,17 +11,17 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-We know that for many, data analysis isn’t complete until the results are in a PowerPoint slide deck. Crunch has long offered exports of analyses and tab books to Excel files, which, in addition to their own value, enabled people to get results from Crunch to PowerPoint by copying a cell range from Excel into a slide. That’s a bit tedious, though, and we wanted to do better, which is why we are excited to announce that PowerPoint exports from Crunch are now available if you have ‘Early access’ enabled in the app. We’re eager for feedback, so please try it and let us know how we can improve it to make it truly awesome for you.
+We know that for many, PowerPoint slides remain central to delivering results and to paraphrase Mark Twain, "reports of PowerPoint's death have been greatly exagerated". Crunch has long offered exports of analyses and tab books to Excel files, which, in addition to their own value, enabled people to get results from Crunch to PowerPoint by copying a cell range from Excel into a slide. That’s a bit tedious, though, and we wanted to do better, which is why we are excited to announce that PowerPoint exports from Crunch are now available if you have [‘Early access’](http://support.crunch.io/crunch/crunch_user-display-settings.html#early-access) enabled in the app. We’re eager for feedback, so please try it and let us know how we can improve it to make it truly awesome for you.
 
 {{< figure src="dev/features/images/pptx-export-menu.png" class="float-md-left img-fluid" width="250px">}}
 
-With our new direct PowerPoint export feature, you can download your Crunch decks to PowerPoint files. Each analysis shows up as a graph on a slide, and these graphs are fully customizable in PowerPoint. You can even apply your own style and template with just a few clicks. Here’s how:
+Now you can download your Crunch decks of saved analyses directly to PowerPoint files. Each analysis shows up as a graph (or table) on a slide, and these graphs are fully customizable in PowerPoint so you can right click on them and access the underlying data. You can even apply your own style and template with just a few clicks. Here’s how:
 
 <br />
 
 ## Download
 
-To get a PowerPoint file, open the deck tray and select the deck you want to download. Click the download button, which instead of just downloading an Excel file as before, gives you the option of Excel or PowerPoint. When you select one, the download starts.
+To get a PowerPoint file, open the deck tray from the right edge of the [screen](http://support.crunch.io/crunch/crunch_saving-analyses.html) and from the dropdown select the deck you want to download. At the bottom of the tray, click the download button, which instead of just downloading an Excel file as before, gives you the option of Excel or PowerPoint. When you select one, the download starts.
 
 ## Customize in PowerPoint
 
@@ -40,11 +40,6 @@ What’s more, because the graph is native PowerPoint, you can seamlessly incorp
 {{< figure src="dev/features/images/pptx-style-2.png" class="float-md-left img-fluid" width="450px">}}
 
 {{< figure src="dev/features/images/pptx-custom-style.png" class="center bordered img-fluid">}}
-
-
-## Future developments
-
-The PowerPoint download doesn’t display saved *tables* yet, but we expect those to be included soon.
 
 ## We need your feedback!
 
