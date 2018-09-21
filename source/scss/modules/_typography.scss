@@ -12,11 +12,14 @@ h1 {
 h2 {
     font-size: 1.5em;
 
-    .font-bold {
-        font-weight: 700;
-        font-size: .6em;
-        text-transform: uppercase;
-        letter-spacing: .1em;
+    &.quotes {
+        font-family: 'Libre Baskerville', serif;
+        font-size: 1.8em;
+        color: $color-green;
+
+        span {
+            font-style: italic;
+        }
     }
 }
 
@@ -35,6 +38,8 @@ h4 {
     }
 }
 
-.title-green {
-    color: $color-green;
+.subtitle {
+    color: $font-color-off-black;
+    font-weight: 700;
+    margin-bottom: 30px;
 }
