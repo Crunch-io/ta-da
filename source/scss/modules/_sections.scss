@@ -356,6 +356,10 @@
     .jumbotron {
         background-color: $color-blue;
         background-image: linear-gradient( $color-blue, $--darker-primary-color);
+
+        h1 {
+            font-size: 2.5em;
+        }
     }
 
     &.green {
