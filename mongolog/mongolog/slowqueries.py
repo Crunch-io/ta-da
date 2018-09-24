@@ -61,10 +61,10 @@ class CrunchMLogFilterTool(MLogFilterTool):
             # screw up stats due to migrate host dumps
             return
 
-        if 'nreturned' not in data:
+        if 'nreturned' not in data or data.get('operation') == 'update':
             # For now focus on reads, will have to monitor more once reads are sane
             return
-        
+
         self.LINES.append(data)
 
 
