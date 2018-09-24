@@ -47,7 +47,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='List or connect to Crunch Hosts'
     )
-    parser.add_argument('-e', '--environment', nargs=1, default='eu',
+    parser.add_argument('-e', '--environment', default='eu',
                         help='For which environment to act (alpha, eu, ...)')
 
     subparsers = parser.add_subparsers(title='subcommands',
