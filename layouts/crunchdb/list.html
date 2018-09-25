@@ -1,16 +1,7 @@
 {{ partial "head.html" . }}
 
 <div id="first-content"></div>
-
 {{ partial "header.html" . }}
-
-     <div id="dot-nav" class="float-right">
-         <ul>
-             <li><a href="crunchdb/#first-content">1</a></li>
-             <li><a href="crunchdb/#second-content">2</a></li>
-             <li><a href="crunchdb/#third-content">3</a></li>
-         </ul>
-     </div>
 
       <div id="wrapper">
 
@@ -33,8 +24,7 @@
                           </div> <!-- /.jumbotron -->
                       </div> <!-- /.header-content -->
 
-                    <section class="page-scroll">
-
+                    <section>
                         <div class="container spacer-top spacer-bottom">
                             <div class="row">
                                 <div class="col-md-8">
@@ -47,45 +37,6 @@
                                 </div>
                             </div> <!-- /.row. -->
                         </div> <!-- /.container -->
-                    </section>
-
-                    <section id="second-content" class="page-scroll content-two">
-                        <div class="jumbotron">
-                            <div class="container">
-                            {{ range .Data.Pages }}
-                                {{ if and (eq .Type "crunchdb") (eq .Title "No more copies") }}
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h1 class="learn-more-title text-center">{{ .Content }}</h1>
-                                    </div>
-                                </div> <!-- /.row. -->
-                                {{ end }}
-                            {{ end }}
-                            </div> <!-- /.container -->
-                        </div> <!-- /.jumbotron -->
-                    </section>
-
-                    <section id="third-content" class="page-scroll content-three">
-                        <div class="jumbotron">
-                            <div class="container">
-                            {{ range .Data.Pages }}
-                                {{ if and (eq .Type "crunchdb") (eq .Title "Keep up to date") }}
-                                <div class="row">
-                                    <div class="col-md-8 d-none d-md-block text-center">
-                                        <div id="learn-more-img-2">
-                                            <img src="img/{{ .Params.img }}" alt="" class="img-fluid add-shadow">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 offset-md-1">
-                                        <img src="img/{{ .Params.img }}" alt="" class="img-fluid d-md-none d-sm-block add-shadow">
-                                        <p>{{ .Content }}</p>
-                                        <!-- <a href="/">Try now!</a> -->
-                                    </div>
-                                </div>
-                                {{ end }}
-                            {{ end }}
-                            </div> <!-- /.container -->
-                        </div> <!-- /.jumbotron -->
                     </section>
 
                   </div> <!-- /.modern-platform-content -->
