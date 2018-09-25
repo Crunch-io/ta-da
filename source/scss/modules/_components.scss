@@ -13,6 +13,11 @@
             line-height: 1.4em;
         }
 
+        h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+        }
+
         @include media-breakpoint-down(xs) {
             h1 {
                 font-size: 2em;
@@ -28,18 +33,18 @@
             background-color: $color-blue;
             background-image: linear-gradient( $color-blue, $--darker-primary-color);
             margin-bottom: 0;
-            height: 700px;
+            height: 600px;
         }
 
         @include media-breakpoint-down(xs) {
             .jumbotron {
                 padding-top: 100px;
-                height: 1000px;
+                height: 650px;
             }
         }
 
         .intro-animated-gif {
-            margin-top: -380px;
+            margin-top: -400px;
             margin-bottom: 20px;
         }
     }
