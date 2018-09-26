@@ -1,0 +1,25 @@
+Package: crunchyrest
+Version: 0.1.0
+Title: Hacking Shiny To Build a Crunch(y) REST API
+Description: The goal of crunchyrest is to allow you to set up a REST API for 
+    Crunch services by hacking into a Shiny app. Of course, this isn't a good 
+    way to set up a JSON API server: you shouldn't use Shiny for that. But, if 
+    you can't easily set up "proper" web services that access R's capabilities, 
+    but you can deploy Crunchy apps, this will work :)
+Authors@R: person("Neal", "Richardson", , "neal@crunch.io", c("aut", "cre"))
+License: What license it uses
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+Suggests: 
+    testthat,
+    roxygen2
+Imports: 
+    httr,
+    crunch,
+    digest,
+    jsonlite
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.0
+Depends: 
+    crunchy
