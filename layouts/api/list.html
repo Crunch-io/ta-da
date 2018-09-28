@@ -11,32 +11,33 @@
 
                 <div class="api-content">
 
-                    <div class="header-content">
+                    <div class="intro-marketing-pages">
                         <div class="jumbotron">
                             <div class="container">
-                                <div class="row justify-content-md-center">
-                                    <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-4">
                                         <h1>The Crunch {{ .Params.title }}</h1>
+                                    </div>
+
+                                    <div class="col-md-7 offset-md-1">
                                         <p>{{ .Params.description }}</p>
-                                    <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
+                                    </div>
+                                </div> <!-- /.row -->
+
+                                <div class="row" style="margin-top:40px;">
+                                    <div class="col-md-4"></div>
+
+                                    <div class="col-md-7 offset-md-1">
+                                        <div id="learn-more-img-1">
+                                            <img src="img/{{ .Params.img }}" alt="" class="img-fluid">
+                                        </div>
+
+                                        <p style="margin-top:40px;">{{ .Content }}</p>
                                     </div>
                                 </div> <!-- /.row -->
                             </div> <!-- /.container -->
                         </div> <!-- /.jumbotron -->
-                    </div> <!-- /.header-content -->
-
-                    <div class="container spacer-bottom">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div id="learn-more-img-1">
-                                    <img src="img/{{ .Params.img }}" alt="" class="img-fluid">
-                                </div>
-                            </div>
-                            <div class="col-md-3 offset-md-1">
-                                <p>{{ .Content }}</p>
-                            </div>
-                        </div> <!-- /.row. -->
-                    </div> <!-- /.container -->
+                    </div> <!-- /.intro-marketing-pages -->
 
                 </div> <!-- /.api-content -->
 

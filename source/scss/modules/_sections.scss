@@ -349,16 +349,22 @@
 
 // Header Content
 
-.header-content {
+.intro-marketing-pages {
     color: $color-white;
-    text-align: center;
 
     .jumbotron {
         background-color: $color-blue;
         background-image: linear-gradient( $color-blue, $--darker-primary-color);
+        margin-bottom: 0;
 
         h1 {
             font-size: 2.5em;
+        }
+
+        a {
+            color: $color-white;
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
         }
     }
 
@@ -367,12 +373,6 @@
             background-color: $color-green;
             background-image: linear-gradient( $color-green, $--darker-secondary-color);
         }
-    }
-}
-
-@include media-breakpoint-only(xs) {
-    .header-content {
-        text-align: left;
     }
 }
 
@@ -882,4 +882,125 @@
         }
     }
 
+}
+
+// Crunchbox content
+.crunchbox-content {
+
+    .jumbotron {
+        margin: 0;
+    }
+
+    .content-one {
+
+        .jumbotron {
+            color: $color-white;
+            background-color: $color-green;
+        }
+
+        #learn-more-img-1 {
+            margin-top: -200px;
+        }
+    }
+
+    @include media-breakpoint-only(xs) {
+        .content-one {
+            background-color: $color-green;
+            margin-top: 50px;
+
+            h1 {
+                margin-top: -150px;
+            }
+        }
+    }
+
+    @include media-breakpoint-only(sm) {
+        .content-one {
+            margin-top: 80px;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-one .jumbotron {
+            height: auto;
+        }
+    }
+
+    .content-two .jumbotron {
+        color: $color-white;
+        background: url(../img/crunch_collaborate.jpg) no-repeat center center fixed;
+        @include vp-background-size(cover);
+
+        p {
+            margin-top: 100px;
+            color: $color-white;
+        }
+
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+        }
+
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-two .jumbotron  {
+            min-height: 500px;
+
+            p {
+                margin-top: 20px;
+            }
+
+        }
+    }
+
+    .content-three .jumbotron {
+        color: $color-white;
+        background-color: $color-green;
+
+        p {
+            margin-top: 100px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+
+            img {
+                margin-top: -100px;
+                margin-bottom: 20px;
+            }
+        }
+
+        @include media-breakpoint-only(sm) {
+            img {
+                margin-top: -200px;
+                margin-bottom: 50px;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-three .jumbotron {
+            height: auto;
+        }
+    }
 }

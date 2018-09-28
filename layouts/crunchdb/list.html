@@ -3,43 +3,42 @@
 <div id="first-content"></div>
 {{ partial "header.html" . }}
 
-      <div id="wrapper">
+    <div id="wrapper">
 
-          <div id="secondary-pages-wrapper">
-              <div class="container-fluid">
+        <div id="secondary-pages-wrapper">
+            <div class="container-fluid">
 
-                  <div class="speaks-research-content">
+                <div class="crunchdb-content">
 
-                      <div class="header-content">
-                          <div class="jumbotron">
-                              <div class="container">
-                                  <div class="row justify-content-md-center">
-                                      <div class="col-md-7">
-                                          <h1>{{ .Params.title }}</h1>
-                                          <p>{{ .Params.description }}</p>
-                                      <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
-                                      </div>
-                                  </div> <!-- /.row -->
-                              </div> <!-- /.container -->
-                          </div> <!-- /.jumbotron -->
-                      </div> <!-- /.header-content -->
-
-                    <section>
-                        <div class="container spacer-top spacer-bottom">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div id="learn-more-img-1">
-                                        <img src="img/{{ .Params.img }}" alt="" class="img-fluid add-shadow">
+                    <div class="intro-marketing-pages">
+                        <div class="jumbotron">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h1>{{ .Params.title }}</h1>
                                     </div>
-                                </div>
-                                <div class="col-md-3 offset-md-1">
-                                    <p>{{ .Content }}</p>
-                                </div>
-                            </div> <!-- /.row. -->
-                        </div> <!-- /.container -->
-                    </section>
 
-                  </div> <!-- /.modern-platform-content -->
+                                    <div class="col-md-7 offset-md-1">
+                                        <p>{{ .Params.description }}</p>
+                                    </div>
+                                </div> <!-- /.row -->
+
+                                <div class="row" style="margin-top:40px;">
+                                    <div class="col-md-4"></div>
+
+                                    <div class="col-md-7 offset-md-1">
+                                        <div id="learn-more-img-1">
+                                             <img src="img/{{ .Params.img }}" alt="" class="img-fluid add-shadow">
+                                        </div>
+
+                                        <p>{{ .Content }}</p>
+                                    </div>
+                                </div> <!-- /.row -->
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </div> <!-- /.intro-marketing-pages -->
+
+                </div> <!-- /.crunchdb-content -->
 
 
 {{ partial "footer-nav.html" . }}
