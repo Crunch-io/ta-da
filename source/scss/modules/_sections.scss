@@ -352,6 +352,11 @@
 .intro-marketing-pages {
     color: $color-white;
 
+    h2 {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
+
     .jumbotron {
         background-color: $color-blue;
         background-image: linear-gradient( $color-blue, $--darker-primary-color);
@@ -359,6 +364,11 @@
 
         h1 {
             font-size: 2.5em;
+        }
+
+        h2 {
+            margin-top: 15px;
+            margin-bottom: 30px;
         }
 
         a {
@@ -603,7 +613,6 @@
         @include vp-background-size(cover);
 
         p {
-            margin-top: 100px;
             color: $color-white;
         }
 
@@ -623,20 +632,9 @@
 
     }
 
-    @include media-breakpoint-down(sm) {
-        .content-two .jumbotron  {
-            height: 200px
-
-        }
-    }
-
     .content-three .jumbotron {
         color: $color-white;
         background-color: $color-green;
-
-        p {
-            margin-top: 100px;
-        }
 
         @include media-breakpoint-down(sm) {
             h2 {
@@ -652,7 +650,6 @@
             }
 
             img {
-                margin-top: -100px;
                 margin-bottom: 20px;
             }
         }
@@ -932,7 +929,7 @@
         @include vp-background-size(cover);
 
         p {
-            margin-top: 100px;
+            margin-top: 20px;
             color: $color-white;
         }
 
@@ -966,10 +963,6 @@
     .content-three .jumbotron {
         color: $color-white;
         background-color: $color-green;
-
-        p {
-            margin-top: 100px;
-        }
 
         @include media-breakpoint-down(sm) {
             h2 {
