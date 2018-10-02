@@ -366,6 +366,12 @@
             font-size: 2.5em;
         }
 
+        @include media-breakpoint-down(md) {
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+
         h2 {
             margin-top: 15px;
             margin-bottom: 30px;
