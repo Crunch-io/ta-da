@@ -2,7 +2,6 @@
 // Page-content-wrapper
 #page-content-wrapper {
     width: 100%;
-    // position: absolute;
 }
 
 #wrapper-homepage.toggled #page-content-wrapper {
@@ -79,10 +78,10 @@
     }
 }
 
-//Secondary-pages content styles
+// Secondary-pages content styles
 #secondary-pages-wrapper {
 
-    //About content
+    // About content
     .about-content {
         color: $color-white;
 
@@ -193,8 +192,7 @@
         }
     }
 
-    //Team content
-
+    // Team content
     .team-content {
         color: $color-white;
 
@@ -247,8 +245,7 @@
         }
     }
 
-    //Jobs content
-
+    // Jobs content
     .jobs-content {
         color: $color-white;
 
@@ -259,8 +256,7 @@
 
     }
 
-    //Blog content
-
+    // Blog content
     .blog-content {
         color: $color-blue;
 
@@ -305,7 +301,6 @@
 }
 
 // 404 page
-
 .page-not-found {
     min-height: 1200px;
     width: 100%;
@@ -348,7 +343,6 @@
 }
 
 // Header Content
-
 .intro-marketing-pages {
     color: $color-white;
 
@@ -392,35 +386,30 @@
     }
 }
 
-// A modern platform for analytics
-.modern-platform-content {
+
+// Crunchbox content
+.crunchbox-content {
 
     .jumbotron {
         margin: 0;
-
-        a {
-            color: $color-white;
-        }
     }
 
     .content-one {
 
-        margin-top: 50px;
-
         .jumbotron {
             color: $color-white;
-            background-color: $color-purple;
+            background-color: $color-green;
         }
 
         #learn-more-img-1 {
-            // margin-top: -200px;
+            margin-top: -200px;
         }
-
     }
 
     @include media-breakpoint-only(xs) {
         .content-one {
-            background-color: $color-purple;
+            background-color: $color-green;
+            margin-top: 50px;
 
             h1 {
                 margin-top: -150px;
@@ -441,17 +430,17 @@
     }
 
     .content-two .jumbotron {
-        background: $color-white;
+        color: $color-white;
+        background: url(../img/crunch_collaborate.jpg) no-repeat center center fixed;
         @include vp-background-size(cover);
-        padding-bottom: 150px;
 
         p {
-            margin-top: 100px;
+            margin-top: 20px;
+            color: $color-white;
         }
 
         @include media-breakpoint-down(sm) {
             h2 {
-                margin-top: 20px;
                 font-family: 'Libre Baskerville', serif;
 
                 span {
@@ -468,22 +457,18 @@
 
     @include media-breakpoint-down(sm) {
         .content-two .jumbotron  {
-            height: 800px
+            min-height: 500px;
+
+            p {
+                margin-top: 20px;
+            }
+
         }
     }
 
     .content-three .jumbotron {
         color: $color-white;
-        background-color: $color-purple;
-        padding-bottom: 150px;
-
-        p {
-            margin-top: 100px;
-        }
-
-        a {
-            color: $color-white;
-        }
+        background-color: $color-green;
 
         @include media-breakpoint-down(sm) {
             h2 {
@@ -500,7 +485,7 @@
 
             img {
                 margin-top: -100px;
-                margin-bottom: 50px;
+                margin-bottom: 20px;
             }
         }
 
@@ -513,66 +498,14 @@
     }
 
     @include media-breakpoint-down(sm) {
-        .content-three .jumbotron  {
-            height: 400px
-
-        }
-    }
-
-    .content-four .jumbotron {
-        color: $color-off-black;
-        background-color: $color-white;
-
-        p {
-            margin-top: 150px;
-        }
-
-        a {
-            font-family: 'Libre Baskerville', serif;
-            color: $color-off-black;
-
-            span {
-                font-style: italic;
-            }
-        }
-
-        @include media-breakpoint-down(sm) {
-            h2 {
-                font-family: 'Libre Baskerville', serif;
-
-                span {
-                    font-style: italic;
-                }
-            }
-
-            p {
-                margin-top: 0;
-            }
-
-            img {
-                margin-top: -100px;
-                margin-bottom: 50px;
-            }
-        }
-
-        @include media-breakpoint-only(sm) {
-            img {
-                margin-top: -200px;
-                margin-bottom: 50px;
-            }
-        }
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-four .jumbotron {
+        .content-three .jumbotron {
             height: auto;
         }
     }
-
 }
 
-// Collaborate
-.collaborate-content {
+// Survey Data Expertise
+.survey-data-expertise {
 
     .jumbotron {
         margin: 0;
@@ -709,297 +642,4 @@
         }
     }
 
-}
-
-.collaborate-parallax {
-
-    .img-fluid {
-        opacity: 1;
-        transition: opacity .35s ease-in-out;
-    }
-
-    .img-parallax-none {
-        opacity: 0;
-    }
-}
-
-// Speaks Research
-.speaks-research-content {
-
-    .jumbotron {
-        margin: 0;
-    }
-    .content-one {
-
-        margin-top: 200px;
-
-        .jumbotron {
-            color: $color-white;
-            background-color: $color-blue;
-        }
-
-        #learn-more-img-1 {
-            margin-top: -200px;
-        }
-    }
-
-    @include media-breakpoint-only(xs) {
-        .content-one {
-            background-color: $color-blue;
-
-            h1 {
-                margin-top: -150px;
-            }
-        }
-
-        .learn-more-title {
-            font-size: 1.5em;
-        }
-    }
-
-    @include media-breakpoint-only(sm) {
-        .content-one {
-            margin-top: 80px;
-        }
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-one .jumbotron {
-            height: auto;
-        }
-    }
-
-    .content-two .jumbotron {
-        color: $color-white;
-        background: url(../img/crunch_stone.jpg) no-repeat 0 top fixed;
-        @include vp-background-size(cover);
-
-        a {
-            color: $color-white;
-            text-decoration: underline;
-        }
-
-        p {
-            margin-top: 100px;
-        }
-
-        @include media-breakpoint-down(sm) {
-            h2 {
-                font-family: 'Libre Baskerville', serif;
-
-                span {
-                    font-style: italic;
-                }
-            }
-
-            p {
-                margin-top: 0;
-            }
-        }
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-two .jumbotron  {
-            height: 400px
-
-        }
-    }
-
-    .content-three .jumbotron {
-        color: $color-white;
-        background-color: $color-blue;
-
-        p {
-            margin-top: 100px;
-        }
-
-        a {
-            color: $color-white;
-            text-decoration: underline;
-        }
-
-        @include media-breakpoint-down(sm) {
-            h2 {
-                font-family: 'Libre Baskerville', serif;
-
-                span {
-                    font-style: italic;
-                }
-            }
-
-            p {
-                margin-top: 0;
-            }
-
-            img {
-                margin-top: -160px;
-                margin-bottom: 50px;
-            }
-        }
-
-        @include media-breakpoint-only(sm) {
-            img {
-                margin-top: -200px;
-                margin-bottom: 50px;
-            }
-        }
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-three .jumbotron {
-            height: auto;
-            color: $color-off-black;
-            background: $color-white;
-
-            a {
-                color: $color-off-black;
-            }
-        }
-    }
-
-    .content-four .jumbotron {
-        color: $color-off-black;
-        background-color: $color-white;
-
-        p {
-            margin-top: 100px;
-
-            a {
-                font-family: 'ProximaNova', sans-serif;
-                color: $color-blue;
-            }
-        }
-
-        @include media-breakpoint-down(sm) {
-            p {
-                margin-top: 50px;
-                margin-bottom: 50px;
-            }
-        }
-
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-four .jumbotron {
-            height: auto;
-        }
-    }
-
-}
-
-// Crunchbox content
-.crunchbox-content {
-
-    .jumbotron {
-        margin: 0;
-    }
-
-    .content-one {
-
-        .jumbotron {
-            color: $color-white;
-            background-color: $color-green;
-        }
-
-        #learn-more-img-1 {
-            margin-top: -200px;
-        }
-    }
-
-    @include media-breakpoint-only(xs) {
-        .content-one {
-            background-color: $color-green;
-            margin-top: 50px;
-
-            h1 {
-                margin-top: -150px;
-            }
-        }
-    }
-
-    @include media-breakpoint-only(sm) {
-        .content-one {
-            margin-top: 80px;
-        }
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-one .jumbotron {
-            height: auto;
-        }
-    }
-
-    .content-two .jumbotron {
-        color: $color-white;
-        background: url(../img/crunch_collaborate.jpg) no-repeat center center fixed;
-        @include vp-background-size(cover);
-
-        p {
-            margin-top: 20px;
-            color: $color-white;
-        }
-
-        @include media-breakpoint-down(sm) {
-            h2 {
-                font-family: 'Libre Baskerville', serif;
-
-                span {
-                    font-style: italic;
-                }
-            }
-
-            p {
-                margin-top: 0;
-            }
-        }
-
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-two .jumbotron  {
-            min-height: 500px;
-
-            p {
-                margin-top: 20px;
-            }
-
-        }
-    }
-
-    .content-three .jumbotron {
-        color: $color-white;
-        background-color: $color-green;
-
-        @include media-breakpoint-down(sm) {
-            h2 {
-                font-family: 'Libre Baskerville', serif;
-
-                span {
-                    font-style: italic;
-                }
-            }
-
-            p {
-                margin-top: 0;
-            }
-
-            img {
-                margin-top: -100px;
-                margin-bottom: 20px;
-            }
-        }
-
-        @include media-breakpoint-only(sm) {
-            img {
-                margin-top: -200px;
-                margin-bottom: 50px;
-            }
-        }
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-three .jumbotron {
-            height: auto;
-        }
-    }
 }
