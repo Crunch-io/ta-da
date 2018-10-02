@@ -9,5 +9,5 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-Store all your survey data in CrunchDB, our columnar SurveyDBMS, which runs in the AWS cloud and is scale-able to millions of respondents/rows and thousands of variables/columns.
+Store all your survey data in CrunchDB, our columnar SurveyDBMS, which runs in the AWS cloud and scales to millions of respondents/rows and thousands of variables/columns.
 Instantly search across all your datasets.

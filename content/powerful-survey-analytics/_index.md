@@ -9,4 +9,4 @@ video = "https://www.youtube.com/embed/zA7N_Q1EpSs?rel=0&amp;showinfo=0"
 
 +++
 
-Drag-and-drop using an intuitive visual interface to create tables and charts, filter the data, create maps, classify open-end responses.
+Drag and drop using an intuitive visual interface to create tables and charts, filter the data, create maps and classify open-end responses.
