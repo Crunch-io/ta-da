@@ -2,7 +2,7 @@
 date = "2018-02-20T10:08:35+02:00"
 draft = false
 title = "Visualization and Delivery"
-img = "modern_platform/search.png"
+img = "visualization/search.png"
 description = "Multiple ways to analyze, view, and deliver results."
 images = ["https://crunch.io/img/logo-1200x630.png"]
 
