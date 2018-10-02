@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Crunch</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.24.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.24.2</span>
       </span>
     </div>
 
@@ -176,9 +176,28 @@
       <small>Source: <a href='https://github.com/Crunch-io/rcrunch/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="crunch-1-24-2-under-development" class="section level1">
+<h1 class="page-header">
+<a href="#crunch-1-24-2-under-development" class="anchor"></a>crunch 1.24.2 (under development)<small> Unreleased </small>
+</h1>
+<ul>
+<li>Minor internal fixes for dataset organization.</li>
+</ul>
+</div>
+    <div id="crunch-1-24-1" class="section level1">
+<h1 class="page-header">
+<a href="#crunch-1-24-1" class="anchor"></a>crunch 1.24.1<small> Unreleased </small>
+</h1>
+<ul>
+<li>The RStudio gadgets for <code><a href="../reference/listDatasets.html">listDatasets()</a></code> and <code><a href="../reference/makeArrayGadget.html">makeArrayGadget()</a></code> have been moved to the <a href="https://github.com/Crunch-io/crunchy"><code>crunchy</code></a> package. Wiring for them, including RStudio add-in configuration, remains here, but you’ll have to install that package to use them.</li>
+<li>Minor fixes for backwards compatibility with the old projects API</li>
+<li>Remove code paths that modify the project dataset order, which was removed from the Crunch API.</li>
+<li>List as deprecated many functions that modify variable order, suggesting <code><a href="../reference/mv.html">mv()</a></code> and the other folder operations. These functions will be removed in December 2018.</li>
+</ul>
+</div>
     <div id="crunch-1-24-0" class="section level1">
 <h1 class="page-header">
-<a href="#crunch-1-24-0" class="anchor"></a>crunch 1.24.0<small> Unreleased </small>
+<a href="#crunch-1-24-0" class="anchor"></a>crunch 1.24.0<small> 2018-09-12 </small>
 </h1>
 <div id="organization" class="section level2">
 <h2 class="hasAnchor">
@@ -1305,6 +1324,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#crunch-1-24-2-under-development">1.24.2</a></li>
+        <li><a href="#crunch-1-24-1">1.24.1</a></li>
         <li><a href="#crunch-1-24-0">1.24.0</a></li>
         <li><a href="#crunch-1-23-0">1.23.0</a></li>
         <li><a href="#crunch-1-22-2">1.22.2</a></li>
