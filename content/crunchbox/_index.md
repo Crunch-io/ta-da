@@ -8,4 +8,4 @@ video = "https://www.youtube.com/embed/H-1uToR-zeg?rel=0&amp;showinfo=0"
 
 +++
 
-The easiest and quickest way for anyone, with zero training, to slice and dice survey data.
+For times when you want to deliver simplified findings using a limited set of data, CrunchBoxes are the easiest and quickest way for anyone, with zero training, to slice and dice survey data.
