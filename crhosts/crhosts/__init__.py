@@ -4,22 +4,31 @@ import csv
 import subprocess
 from StringIO import StringIO
 import requests
+import webbrowser
 from paramiko.client import SSHClient, WarningPolicy
 
 
 class tunnel(object):
-  def __init__(self, target, target_port, local_port):
+  def __init__(self, target, target_port, local_port, killonexit=True):
       self.target = target
       self.target_port = target_port
       self.local_port = local_port
+      self.killonexit = killonexit
 
   def __enter__(self):
+      if not self.killonexit:
+          # There might be a previous instance running, quit it.
+          self._kill_running()
       subprocess.call('ssh -A -f -N -L %s:%s:%s ec2-user@vpc-nat.eu.crunch.io' % (self.local_port, self.target, self.target_port), shell=True)
       return ('127.0.0.1', self.local_port)
 
   def __exit__(self, *args, **kwargs):
-      subprocess.call('pkill -f "ssh -A -f -N -L %s"' % self.local_port, shell=True)
+      if self.killonexit:
+        self._kill_running()
 
+  def _kill_running(self):
+      """Kills currently running portforwarding"""
+      subprocess.call('pkill -f "ssh -A -f -N -L %s"' % self.local_port, shell=True)
 
 
 def gather_servers(kind='eu', role='dbservers'):
@@ -41,6 +50,14 @@ def gather_tags(kind='eu'):
         for role in server['Ansible Role'].split(','):
             tags.add(role.strip())
     return tags
+
+
+def open_admin(kind='eu'):
+    admin_servers = gather_servers(kind=kind, role='webservers')
+    if not admin_servers:
+        raise ValueError('Unable to identify a valid webserver.')
+
+    
 
 
 def main():
@@ -75,6 +92,11 @@ def main():
                               help='User that should be used to connect '
                                    'to the remot host.')
 
+    adminparser = subparsers.add_parser('admin')      
+    adminparser.add_argument('-p', '--port', dest='PORT', default='28081',
+                             help='Tunnel to the given local port')
+
+
     args = parser.parse_args()
     if args.subcommand == 'tags':
         tags = gather_tags(args.environment)
@@ -104,3 +126,15 @@ def main():
                 command += ' -i {}'.format(args.IDENTITY)
             print(command)
             subprocess.call(command, shell=True)
+    elif args.subcommand == 'admin':
+        admin_servers = gather_servers(kind=args.environment, 
+                                       role='webservers')
+        if not admin_servers:
+            print('Unable to identify a webserver.')
+            return
+        server = admin_servers[0]
+        print('Connecting to', server)
+        with tunnel(server, 8081, args.PORT, 
+                    killonexit=False) as dest:
+            webbrowser.open('http://{}:{}/'.format(*dest))
+    
