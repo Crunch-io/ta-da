@@ -14,4 +14,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 <p>No more digging around to find past data files.</p>
 
-<button type="button" class="btn btn-primary" onclick="location.href='crunchdb'">Learn more</button>
+<a class="a-link" href="crunchdb">Learn more &#10230;</a>

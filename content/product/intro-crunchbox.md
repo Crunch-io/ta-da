@@ -9,4 +9,4 @@ img = "crunchbox_screenshot.png"
 
 The easiest and quickest way for anyone, with zero training, to slice and dice survey data.
 
-<button type="button" class="btn btn-primary" onclick="location.href='crunchbox'">Try a live CrunchBox</button>
+<a class="a-link" href="crunchbox">Try a live CrunchBox &#10230;</a>

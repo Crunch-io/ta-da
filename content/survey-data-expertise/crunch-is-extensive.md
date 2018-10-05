@@ -8,4 +8,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-Turn statistical testing on/off.
+Run regressions to fit any model you can think of in R or Python.
