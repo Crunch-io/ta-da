@@ -17,44 +17,32 @@
         <div id="secondary-pages-wrapper">
             <div class="container-fluid">
 
-                <div class="collaborate-content">
+                <div class="survey-data-expertise">
 
-                    <div class="d-none d-md-block">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h1 class="learn-more-title">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ end }}</h1>
-                                </div>
-                            </div> <!-- /.row. -->
-                        </div> <!-- /.container -->
-                    </div>
-
-                    <section class="page-scroll content-one">
-                        <div class="container">
-                            <div class="row d-md-none d-sm-block">
-                                <div class="col-md-12">
-                                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</span></h1>
-                                    <img src="img/{{ .Params.img }}" alt="Crunch app" class="img-fluid add-shadow sp-mb">
-                                </div>
-                            </div> <!-- /.row. -->
-                        </div> <!-- /.container -->
-
+                    <div class="page-scroll intro-marketing-pages green">
                         <div class="jumbotron">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-8 d-none d-md-block">
+                                    <div class="col-md-3 position-fixed d-none d-sm-block">
+                                        <h1>{{ with .Params.title }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</h1>
+                                    </div>
+
+
+                                    <div class="col-md-8 offset-md-4">
+                                        <h1 class="d-block d-sm-none">{{ with .Params.title }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</h1>
+
+                                        <h2>{{ .Params.description }}</h2>
+
                                         <div id="learn-more-img-1">
                                             <img src="img/{{ .Params.img }}" class="img-fluid add-shadow">
                                         </div>
-                                    </div>
-                                    <div class="col-md-3 offset-md-1">
+
                                         <p>{{ .Content }}</p>
-                                        <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
                                     </div>
-                                </div>
+                                </div> <!-- /.row -->
                             </div> <!-- /.container -->
                         </div> <!-- /.jumbotron -->
-                    </section>
+                    </div> <!-- /.intro-marketing-pages -->
 
                     <section id="second-content" class="page-scroll content-two">
                         <div class="jumbotron">
@@ -62,13 +50,12 @@
                             {{ range .Data.Pages }}
                                 {{ if and (eq .Type "survey-data-expertise") (eq .Title "Survey data effortlessly") }}
                                 <div class="row">
-                                    <div class="col-md-8 d-none d-md-block">
-                                        <div id="learn-more-img-2">
-                                            <img src="http://via.placeholder.com/1200x800" class="img-fluid">
-                                        </div>
+                                    <div class="col-md-3">
                                     </div>
-                                    <div class="col-md-3 offset-md-1">
-                                        <h2 class="d-md-none d-sm-block">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ end }}</span></h2>
+                                    <div class="col-md-8 offset-md-1">
+                                        <div id="learn-more-img-2">
+                                            <img src="img/{{ .Params.img }}" class="img-fluid add-shadow">
+                                        </div>
                                         <p>{{ .Content }}</p>
                                     </div>
                                 </div>
@@ -84,14 +71,12 @@
                             {{ range .Data.Pages }}
                                 {{ if and (eq .Type "survey-data-expertise") (eq .Title "Crunch is extensive") }}
                                 <div class="row">
-                                    <div class="col-md-8 d-none d-md-block">
-                                        <div id="learn-more-img-3">
-                                            <img src="http://via.placeholder.com/1200x800" class="img-fluid">
-                                        </div>
-                                    </div>
                                     <div class="col-md-3 offset-md-1">
-                                        <img src="http://via.placeholder.com/1200x800" alt="Crunch app" class="img-fluid d-md-none d-sm-block">
-                                        <h2 class="d-md-none d-sm-block">{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ end }}</span></h2>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div id="learn-more-img-3">
+                                            <img src="img/{{ .Params.img }}" class="img-fluid add-shadow">
+                                        </div>
                                         <p>{{ .Content }}</p>
                                     </div>
                                 </div> <!-- /.row. -->
@@ -101,7 +86,7 @@
                         </div> <!-- /.jumbotron -->
                     </section>
 
-                </div> <!-- /.collaborate-content -->
+                </div> <!-- /.survey-data-expertise -->
 
 {{ partial "footer-nav.html" . }}
 

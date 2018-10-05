@@ -5,28 +5,30 @@
             <div class="jumbotron">
                 <div class="container">
                     <div class="row justify-content-md-center">
-                            <div class="col-md-6">
-                                <h1 class="display-4">Modern survey analysis. <br> Power made simple.</h1>
-                            </div>
-
-                            <div class="col-md-5">
-                                <p>{{ .Site.Params.description }} Deliver to Everyone, CMO to PhD.</p>
-                                <p>The entire team works together, on the same data, in a simple,  secure, cloud-based environment.</p>
+                            <div class="col-md-12 text-center">
+                                <h1>Modern survey data analysis.</h1>
+                                <h2><span>Power made simple.</span></h2>
                             </div>
                     </div> <!-- /.row -->
-
-                    <div class="row justify-content-md-center">
-                        <div class="col-12 text-center">
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <div id="intro-img">
-                                <img src="img/{{ .Site.Params.product }}" class="img-fluid">
-                            </div>
-                        </div>
-                    </div> <!-- /.row. -->
                 </div> <!-- /.container -->
             </div> <!-- /.jumbotron -->
+
+            <div class="intro-animated-gif d-none d-md-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-10 offset-md-1 text-center">
+                            <img src="img/{{ .Site.Params.product }}" class="img-fluid add-shadow-xl">
+                        </div>
+                    </div> <!-- /.row. -->
+                </div>
+            </div> <!-- /.intro-animated-gif -->
+
         </div> <!-- /.intro-content -->
+
+        <div class="container d-none d-md-block">
+            <div class="row justify-content-md-center spacer">
+                    <div class="col-md-12 text-center">
+                        <h3><strong>{{ .Site.Params.description }} <br> Everyone, from CMO to PhD, works together on the same data. <br> Your data is always available, in the cloud, drag and drop.</strong></h3>
+                    </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->

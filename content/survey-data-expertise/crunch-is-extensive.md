@@ -2,10 +2,10 @@
 date = "2018-04-25T12:34:11-04:00"
 draft = false
 title = "Crunch is extensive"
-img = "collaborate/history_properties.png"
+img = "survey_data_expertise/stat_test.gif"
 images = ["https://crunch.io/img/logo-1200x630.png"]
 
 
 +++
 
-Crunch speaks fluent survey, with perfect diction and an extensive vocabulary; if it’s survey specific, chances are you can do it with Crunch, easily and quickly.
+Run regressions to fit any model you can think of in R or Python.

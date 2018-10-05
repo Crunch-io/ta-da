@@ -2,7 +2,6 @@
 // Page-content-wrapper
 #page-content-wrapper {
     width: 100%;
-    // position: absolute;
 }
 
 #wrapper-homepage.toggled #page-content-wrapper {
@@ -65,6 +64,12 @@
             padding: 150px 0;
         }
     }
+
+    @include media-breakpoint-down(xs) {
+        .container-img {
+            margin-bottom: 50px;
+        }
+    }
 }
 
 @include media-breakpoint-down(xs) {
@@ -73,10 +78,10 @@
     }
 }
 
-//Secondary-pages content styles
+// Secondary-pages content styles
 #secondary-pages-wrapper {
 
-    //About content
+    // About content
     .about-content {
         color: $color-white;
 
@@ -187,8 +192,7 @@
         }
     }
 
-    //Team content
-
+    // Team content
     .team-content {
         color: $color-white;
 
@@ -241,8 +245,7 @@
         }
     }
 
-    //Jobs content
-
+    // Jobs content
     .jobs-content {
         color: $color-white;
 
@@ -253,8 +256,7 @@
 
     }
 
-    //Blog content
-
+    // Blog content
     .blog-content {
         color: $color-blue;
 
@@ -299,7 +301,6 @@
 }
 
 // 404 page
-
 .page-not-found {
     min-height: 1200px;
     width: 100%;
@@ -341,195 +342,59 @@
     color: $color-white;
 }
 
-// A modern platform for analytics
-.modern-platform-content {
+// Header Content
+.intro-marketing-pages {
+    color: $color-white;
+
+    h2 {
+        margin-top: 15px;
+        margin-bottom: 30px;
+    }
 
     .jumbotron {
-        margin: 0;
+        background-color: $color-blue;
+        background-image: linear-gradient( $color-blue, $--darker-primary-color);
+        margin-bottom: 0;
 
-        a {
-            color: $color-white;
-        }
-    }
-
-    .content-one {
-
-        margin-top: 200px;
-
-        .jumbotron {
-            color: $color-white;
-            background-color: $color-purple;
+        h1 {
+            font-size: 2.5em;
         }
 
-        #learn-more-img-1 {
-            margin-top: -200px;
-        }
-
-    }
-
-    @include media-breakpoint-only(xs) {
-        .content-one {
-            background-color: $color-purple;
-
+        @include media-breakpoint-down(md) {
             h1 {
-                margin-top: -150px;
-            }
-        }
-    }
-
-    @include media-breakpoint-only(sm) {
-        .content-one {
-            margin-top: 80px;
-        }
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-one .jumbotron {
-            height: auto;
-        }
-    }
-
-    .content-two .jumbotron {
-        background: $color-white;
-        @include vp-background-size(cover);
-        padding-bottom: 150px;
-
-        p {
-            margin-top: 100px;
-        }
-
-        @include media-breakpoint-down(sm) {
-            h2 {
-                margin-top: 20px;
-                font-family: 'Libre Baskerville', serif;
-
-                span {
-                    font-style: italic;
-                }
-            }
-
-            p {
-                margin-top: 0;
+                font-size: 1.8em;
             }
         }
 
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-two .jumbotron  {
-            height: 800px
-        }
-    }
-
-    .content-three .jumbotron {
-        color: $color-white;
-        background-color: $color-purple;
-        padding-bottom: 150px;
-
-        p {
-            margin-top: 100px;
+        h2 {
+            margin-top: 15px;
+            margin-bottom: 30px;
         }
 
         a {
             color: $color-white;
-        }
-
-        @include media-breakpoint-down(sm) {
-            h2 {
-                font-family: 'Libre Baskerville', serif;
-
-                span {
-                    font-style: italic;
-                }
-            }
-
-            p {
-                margin-top: 0;
-            }
-
-            img {
-                margin-top: -100px;
-                margin-bottom: 50px;
-            }
-        }
-
-        @include media-breakpoint-only(sm) {
-            img {
-                margin-top: -200px;
-                margin-bottom: 50px;
-            }
-        }
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-three .jumbotron  {
-            height: 400px
-
-        }
-    }
-
-    .content-four .jumbotron {
-        color: $color-off-black;
-        background-color: $color-white;
-
-        p {
-            margin-top: 150px;
-        }
-
-        a {
             font-family: 'Libre Baskerville', serif;
-            color: $color-off-black;
-
-            span {
-                font-style: italic;
-            }
-        }
-
-        @include media-breakpoint-down(sm) {
-            h2 {
-                font-family: 'Libre Baskerville', serif;
-
-                span {
-                    font-style: italic;
-                }
-            }
-
-            p {
-                margin-top: 0;
-            }
-
-            img {
-                margin-top: -100px;
-                margin-bottom: 50px;
-            }
-        }
-
-        @include media-breakpoint-only(sm) {
-            img {
-                margin-top: -200px;
-                margin-bottom: 50px;
-            }
+            font-style: italic;
         }
     }
 
-    @include media-breakpoint-down(sm) {
-        .content-four .jumbotron {
-            height: auto;
+    &.green {
+        .jumbotron {
+            background-color: $color-green;
+            background-image: linear-gradient( $color-green, $--darker-secondary-color);
         }
     }
-
 }
 
-// Collaborate
-.collaborate-content {
+
+// Crunchbox content
+.crunchbox-content {
 
     .jumbotron {
         margin: 0;
     }
 
     .content-one {
-
-        margin-top: 200px;
 
         .jumbotron {
             color: $color-white;
@@ -544,6 +409,7 @@
     @include media-breakpoint-only(xs) {
         .content-one {
             background-color: $color-green;
+            margin-top: 50px;
 
             h1 {
                 margin-top: -150px;
@@ -569,7 +435,7 @@
         @include vp-background-size(cover);
 
         p {
-            margin-top: 100px;
+            margin-top: 20px;
             color: $color-white;
         }
 
@@ -591,7 +457,11 @@
 
     @include media-breakpoint-down(sm) {
         .content-two .jumbotron  {
-            height: 400px
+            min-height: 500px;
+
+            p {
+                margin-top: 20px;
+            }
 
         }
     }
@@ -599,10 +469,6 @@
     .content-three .jumbotron {
         color: $color-white;
         background-color: $color-green;
-
-        p {
-            margin-top: 100px;
-        }
 
         @include media-breakpoint-down(sm) {
             h2 {
@@ -619,7 +485,111 @@
 
             img {
                 margin-top: -100px;
+                margin-bottom: 20px;
+            }
+        }
+
+        @include media-breakpoint-only(sm) {
+            img {
+                margin-top: -200px;
                 margin-bottom: 50px;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-three .jumbotron {
+            height: auto;
+        }
+    }
+}
+
+// Survey Data Expertise
+.survey-data-expertise {
+
+    .jumbotron {
+        margin: 0;
+    }
+
+    .content-one {
+
+        .jumbotron {
+            color: $color-white;
+            background-color: $color-green;
+        }
+
+        #learn-more-img-1 {
+            margin-top: -200px;
+        }
+    }
+
+    @include media-breakpoint-only(xs) {
+        .content-one {
+            background-color: $color-green;
+            margin-top: 50px;
+
+            h1 {
+                margin-top: -150px;
+            }
+        }
+    }
+
+    @include media-breakpoint-only(sm) {
+        .content-one {
+            margin-top: 80px;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .content-one .jumbotron {
+            height: auto;
+        }
+    }
+
+    .content-two .jumbotron {
+        color: $color-white;
+        background: url(../img/crunch_collaborate.jpg) no-repeat center center fixed;
+        @include vp-background-size(cover);
+
+        p {
+            color: $color-white;
+        }
+
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+        }
+
+    }
+
+    .content-three .jumbotron {
+        color: $color-white;
+        background-color: $color-green;
+
+        @include media-breakpoint-down(sm) {
+            h2 {
+                font-family: 'Libre Baskerville', serif;
+
+                span {
+                    font-style: italic;
+                }
+            }
+
+            p {
+                margin-top: 0;
+            }
+
+            img {
+                margin-bottom: 20px;
             }
         }
 
@@ -669,178 +639,6 @@
     @include media-breakpoint-up(md) {
         .crunchbox-container {
             margin-top: 40px;
-        }
-    }
-
-}
-
-.collaborate-parallax {
-
-    .img-fluid {
-        opacity: 1;
-        transition: opacity .35s ease-in-out;
-    }
-
-    .img-parallax-none {
-        opacity: 0;
-    }
-}
-
-// Speaks Research
-.speaks-research-content {
-
-    .jumbotron {
-        margin: 0;
-    }
-    .content-one {
-
-        margin-top: 200px;
-
-        .jumbotron {
-            color: $color-white;
-            background-color: $color-blue;
-        }
-
-        #learn-more-img-1 {
-            margin-top: -200px;
-        }
-    }
-
-    @include media-breakpoint-only(xs) {
-        .content-one {
-            background-color: $color-blue;
-
-            h1 {
-                margin-top: -150px;
-            }
-        }
-    }
-
-    @include media-breakpoint-only(sm) {
-        .content-one {
-            margin-top: 80px;
-        }
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-one .jumbotron {
-            height: auto;
-        }
-    }
-
-    .content-two .jumbotron {
-        color: $color-white;
-        background: url(../img/crunch_stone.jpg) no-repeat 0 top fixed;
-        @include vp-background-size(cover);
-
-        a {
-            color: $color-white;
-            text-decoration: underline;
-        }
-
-        p {
-            margin-top: 100px;
-        }
-
-        @include media-breakpoint-down(sm) {
-            h2 {
-                font-family: 'Libre Baskerville', serif;
-
-                span {
-                    font-style: italic;
-                }
-            }
-
-            p {
-                margin-top: 0;
-            }
-        }
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-two .jumbotron  {
-            height: 400px
-
-        }
-    }
-
-    .content-three .jumbotron {
-        color: $color-white;
-        background-color: $color-blue;
-
-        p {
-            margin-top: 100px;
-        }
-
-        a {
-            color: $color-white;
-            text-decoration: underline;
-        }
-
-        @include media-breakpoint-down(sm) {
-            h2 {
-                font-family: 'Libre Baskerville', serif;
-
-                span {
-                    font-style: italic;
-                }
-            }
-
-            p {
-                margin-top: 0;
-            }
-
-            img {
-                margin-top: -100px;
-                margin-bottom: 50px;
-            }
-        }
-
-        @include media-breakpoint-only(sm) {
-            img {
-                margin-top: -200px;
-                margin-bottom: 50px;
-            }
-        }
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-three .jumbotron {
-            height: auto;
-            color: $color-off-black;
-            background: $color-white;
-
-            a {
-                color: $color-off-black;
-            }
-        }
-    }
-
-    .content-four .jumbotron {
-        color: $color-off-black;
-        background-color: $color-white;
-
-        p {
-            margin-top: 100px;
-
-            a {
-                font-family: 'ProximaNova', sans-serif;
-                color: $color-blue;
-            }
-        }
-
-        @include media-breakpoint-down(sm) {
-            p {
-                margin-top: 50px;
-                margin-bottom: 50px;
-            }
-        }
-
-    }
-
-    @include media-breakpoint-down(sm) {
-        .content-four .jumbotron {
-            height: auto;
         }
     }
 

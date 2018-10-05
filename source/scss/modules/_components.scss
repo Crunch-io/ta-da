@@ -13,6 +13,18 @@
             line-height: 1.4em;
         }
 
+        h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+        }
+
+        @include media-breakpoint-down(xs) {
+            h1 {
+                font-size: 2em;
+                line-height: 1.4em;
+            }
+        }
+
         button {
             margin: 10px 5px;
         }
@@ -21,14 +33,19 @@
             background-color: $color-blue;
             background-image: linear-gradient( $color-blue, $--darker-primary-color);
             margin-bottom: 0;
-            height: 700px;
+            height: 600px;
         }
 
         @include media-breakpoint-down(xs) {
             .jumbotron {
                 padding-top: 100px;
-                height: 1000px;
+                height: 650px;
             }
+        }
+
+        .intro-animated-gif {
+            margin-top: -400px;
+            margin-bottom: 20px;
         }
     }
 
@@ -127,9 +144,14 @@
     }
 }
 
+@include media-breakpoint-only(xs) {
+    .crunchbox-container {
+        margin-top: 50px;
+    }
+}
 
-//Popover
 
+// Popover
 .popover  {
     padding: 5px;
 
@@ -172,7 +194,6 @@
 }
 
 // Post-Card
-
 .post-card {
     position: relative;
     top: 0;
@@ -243,11 +264,14 @@ figure {
   animation-duration: 1.5s;
 }
 
-// carousel
 .carousel {
     .carousel-indicators li {
         width: 12px;
         height: 12px;
         border-radius: 50%;
     }
+}
+
+ .marketing-list {
+    padding-left: 15px;
 }
