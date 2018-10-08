@@ -625,17 +625,35 @@ def _print_action_list(args, history):
             pprint.pprint(_abbreviate_action(action))
 
 
-def _print_action(action):
+def _print_action(obj, level=0):
     write = sys.stdout.write
-    write('{\n')
-    for k, v in six.iteritems(action):
-        if k == 'params':
-            write('    "params":\n')
-            for k, p in six.iteritems(v):
-                write('        "{!s}": {!r}\n'.format(k, p))
-        else:
-            write('    "{!s}": {!r}\n'.format(k, v))
-    write('}\n')
+    indent = '    '
+    if isinstance(obj, dict):
+        write('{')
+        keys = sorted(obj)
+        for i, k in enumerate(keys):
+            if i == 0:
+                write('\n')
+            write('{}"{}": '.format(indent * (level + 1), k))
+            _print_action(obj[k], level=level+1)
+        if keys:
+            write(indent * level)
+        write('}')
+    elif isinstance(obj, list):
+        write('[')
+        for i, v in enumerate(obj):
+            if i == 0:
+                write('\n')
+            write(indent * (level + 1))
+            _print_action(v, level=level+1)
+        if obj:
+            write(indent * level)
+        write(']')
+    else:
+        write(repr(obj))
+    if level > 0:
+        write(',')
+    write('\n')
 
 
 def _abbreviate_action(action):
@@ -644,8 +662,8 @@ def _abbreviate_action(action):
         if key in action:
             d[key] = action[key]
     params = action['params']
-    d['params.dataset.id'] = params['dataset']['id']
-    d['params.dataset.branch'] = params['dataset']['branch']
+    d['dataset_id'] = action['dataset_id']
+    d['segment'] = action['segment']
     state = action['state']
     d['state.failed'] = state['failed']
     d['state.completed'] = state['completed']
