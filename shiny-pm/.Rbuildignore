@@ -1,0 +1,4 @@
+^app.R$
+^.*\.Rproj$
+^\.Rproj\.user$
+^trellodata.RData$
