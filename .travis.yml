@@ -1,3 +1,4 @@
+os: osx
 branches:
   only:
   - src
