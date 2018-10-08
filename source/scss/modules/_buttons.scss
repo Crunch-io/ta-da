@@ -44,3 +44,19 @@
         border-color: $--darker-secondary-color;
     }
 }
+
+.btn-light {
+    background-color: transparent;
+    border-color: $color-white;
+    color: $color-white;
+}
+
+.a-link {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+
+    &:hover {
+        text-decoration: none;
+        color: $color-blue;
+    }
+}

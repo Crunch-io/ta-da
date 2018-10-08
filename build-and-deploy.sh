@@ -2,6 +2,13 @@
 set -ev
 if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     git clone --branch v2 https://github.com/go-yaml/yaml $GOPATH/src/gopkg.in/yaml.v2
+    mkdir ${TRAVIS_HOME}/src
+    cd ${TRAVIS_HOME}/src
+    git clone https://github.com/gohugoio/hugo.git
+    cd hugo
+    go install
+
+    cd ${GOPATH}/src/github.com/Crunch-io/ta-da
     git config --global user.email "systems+crunchbot@crunch.io"
     git config --global user.name "Crunchbot"
 

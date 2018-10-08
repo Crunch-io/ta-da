@@ -9,21 +9,43 @@
         color: $color-white;
 
         h1 {
-            margin-top: 100px;
+            font-size: 2.5em;
+            line-height: 1.4em;
+        }
+
+        h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+        }
+
+        @include media-breakpoint-down(xs) {
+            h1 {
+                font-size: 2em;
+                line-height: 1.4em;
+            }
+        }
+
+        button {
+            margin: 10px 5px;
         }
 
         .jumbotron {
             background-color: $color-blue;
             background-image: linear-gradient( $color-blue, $--darker-primary-color);
             margin-bottom: 0;
-            height: 700px;
+            height: 600px;
         }
 
         @include media-breakpoint-down(xs) {
             .jumbotron {
                 padding-top: 100px;
-                height: 1000px;
+                height: 650px;
             }
+        }
+
+        .intro-animated-gif {
+            margin-top: -400px;
+            margin-bottom: 20px;
         }
     }
 
@@ -31,6 +53,14 @@
         color: $color-white;
         position: relative;
         z-index: 10;
+
+        h2 {
+            text-transform: uppercase;
+            font-size: 1em;
+            font-weight: 700;
+            letter-spacing: .1em;
+            margin-bottom: 0;
+        }
 
         .jumbotron {
             width: 100%;
@@ -45,11 +75,36 @@
             .row {
                 margin-top: 50px;
             }
+
+            .carousel {
+                max-width: 800px;
+                text-align: center;
+                font-family: 'Libre Baskerville', serif;
+                font-size: 1.5em;
+                margin: auto;
+
+                .carousel-inner {
+                    min-height: 140px;
+                }
+
+                .carousel-indicators {
+                    bottom: -50px;
+                }
+            }
         }
 
         @include media-breakpoint-down(sm) {
             .jumbotron {
                 background-position: 0 top;
+
+                h2 {
+                    font-size: .8em;
+                }
+
+                .carousel {
+                    font-size: 1.2em;
+
+                }
             }
         }
     }
@@ -89,9 +144,14 @@
     }
 }
 
+@include media-breakpoint-only(xs) {
+    .crunchbox-container {
+        margin-top: 50px;
+    }
+}
 
-//Popover
 
+// Popover
 .popover  {
     padding: 5px;
 
@@ -134,7 +194,6 @@
 }
 
 // Post-Card
-
 .post-card {
     position: relative;
     top: 0;
@@ -203,4 +262,16 @@ figure {
   animation-delay: 1.2s;
   -webkit-animation-duration: 1.5s;
   animation-duration: 1.5s;
+}
+
+.carousel {
+    .carousel-indicators li {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+}
+
+ .marketing-list {
+    padding-left: 15px;
 }

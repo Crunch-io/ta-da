@@ -1,0 +1,39 @@
+{{ partial "head.html" . }}
+
+<div id="first-content"></div>
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="visualization">
+                <div class="intro-marketing-pages">
+                    <div class="jumbotron">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ end }}</h1>
+                                </div>
+
+                                <div class="col-sm-12 col-md-8 offset-md-1">
+                                    <h2>{{ .Params.description }}</h2>
+
+                                    <div id="learn-more-img-1">
+                                        <img src="img/deck_pptx.gif" class="img-fluid add-shadow">
+                                    </div>
+
+                                    <p>{{ .Content }}</p>
+                                    <a href="#" href="#" data-toggle="modal" data-target="#Modal" id="openForm">Learn more &#10230;</a>
+                                </div>
+                            </div> <!-- /.row -->
+                        </div> <!-- /.container -->
+                    </div> <!-- /.jumbotron -->
+                </div> <!-- /.intro-marketing-pages -->
+            </div> <!-- /.visualization -->
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

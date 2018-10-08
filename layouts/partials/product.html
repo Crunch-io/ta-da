@@ -1,56 +1,137 @@
     <div class="secondary-content intro-xs-margin" style="position: relative; z-index: 10; background-color: white;">
-    {{ range .Data.Pages }}
-        {{ if and (eq .Type "product") (eq .Title "A modern platform") }}
-        <div class="modern-platform">
-            <div class="jumbotron">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-md-7">
-                            <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ end }} <br>{{ .Params.subtitle }}</h1>
-                            <p>{{ .Content }}</p>
-                            <br>
-                            <button type="button" class="btn btn-secondary" onclick="location.href='modern-platform'">Learn more</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- /.modern-platform -->
-        {{ end }}
-    {{ end }}
+
         <div class="container">
         {{ range .Data.Pages }}
-            {{ if and (eq .Type "product") (eq .Title "Collaborate productively") }}
-            <div class="row spacer">
-                <div class="col-12 order-1 col-md-4 order-md-0">
-                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ end }}</h1>
+            {{ if and (eq .Type "product") (eq .Title "Powerful analytics.") }}
+            <div class="row spacer-top">
+                <div class="col-md-8 offset-md-2">
+                    <h2 class="text-center quotes">“Things that took me <span>days</span>, now take <span>minutes</span>.”</h2>
+                </div>
+            </div> <!-- /.row. -->
+
+            <div class="row spacer-top spacer-bottom share-insights">
+                <div class="col-12 col-md-5 order-1 order-md-0">
+                    <h2 class="subtitle">Powerful <span>analytics</span>.</h2>
+
                     <p>{{ .Content }}</p>
-                    <br>
-                    <button type="button" class="btn btn-primary" onclick="location.href='collaborate'">Learn more</button>
+
                 </div>
 
-                <div class="col-12  order-0 col-md-6 offset-md-2 order-md-1">
-                    <div class="container-img">
-                        <img src="img/{{ .Params.img }}" alt="Sharing Crunch" class="img-fluid">
+                <div class="col-12 col-md-6 offset-md-1 order-0 order-md-1">
+                    <div id="learn-more-img-1">
+                        <div style="position: relative; padding-bottom: 48.25%; padding-top: 30px; height: 0; overflow: hidden;" class="add-shadow">
+                            <iframe src="{{ .Params.video }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
+                        </div>
                     </div>
                 </div>
             </div> <!-- /.row. -->
             {{ end }}
         {{ end }}
+        </div> <!-- /.container -->
+
+        <div class="modern-platform">
+            <div class="jumbotron">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h1>Survey data analytics for <span>everyone</span>.</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- /.modern-platform -->
+
+        <div class="container">
         {{ range .Data.Pages }}
-            {{ if .Params.crunchbox }}
+            {{ if and (eq .Type "product") (eq .Title "Introducing CrunchBox") }}
             <div class="row spacer share-insights">
-                <div class="col-12 col-md-4">
-                    <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ index (split . " ") 2 }} {{ end }}</h1>
+                <div class="col-12 col-md-5 order-1 order-md-0">
+                    <h2 class="quotes">{{ .Title }}</h2>
+                    <h2 class="subtitle">{{ .Description }}</h2>
                     <p>{{ .Content }}</p>
-                    <span class="d-none d-md-block">Try one now &#10230;</span>
                 </div>
 
-                <div class="col-md-7 offset-md-1">
-                    <div class="crunchbox-container">
-                        <div class="crunchbox">
-                            <iframe src="{{ .Params.crunchbox }}" width="100%" height="450"></iframe>
-                        </div>
-                    </div> <!-- /.crunchbox -->
+                <div class="col-12 col-md-6 offset-md-1 order-0 order-md-1">
+                    <div class="container-img">
+                        <img src="img/{{ .Params.img }}" alt="" class="img-fluid add-shadow">
+                    </div>
+                </div>
+
+            </div> <!-- /.row. -->
+            {{ end }}
+        {{ end }}
+        </div> <!-- /.container -->
+
+        <div class="container">
+        {{ range .Data.Pages }}
+            {{ if and (eq .Type "product") (eq .Title "Real-time surveys") }}
+            <div class="row spacer-top">
+                <div class="col-md-6 offset-md-3">
+                    <h2 class="text-center quotes">“With Crunch, data <span>streams</span> in. I do <span>daily</span> surveys, now.”</h2>
+                </div>
+            </div> <!-- /.row. -->
+
+            <div class="row spacer-top spacer-bottom">
+                <div class="col-12 order-0 col-md-6 order-md-0">
+                    <div class="container-img">
+                        <img src="img/{{ .Params.img }}" alt="Data streaming" class="img-fluid">
+                    </div>
+                </div>
+
+                <div class="col-12 order-1 col-md-5 offset-md-1 order-md-1">
+
+                    <h2 class="subtitle">{{ .Title }}</span></h2>
+                    <p>{{ .Content }}</p>
+                </div>
+            </div> <!-- /.row. -->
+            {{ end }}
+        {{ end }}
+
+            <div class="row spacer-top">
+            {{ range .Data.Pages }}
+                {{ if and (eq .Type "product") (eq .Title "Trackers tamed") }}
+                <div class="col-md-6 offset-md-3">
+                    <h2 class="text-center quotes">“I can track <span>awareness</span> across survey <span>waves</span> with one click.”</h2>
+                </div>
+            </div> <!-- /.row. -->
+
+            <div class="row spacer-top spacer-bottom share-insights">
+                <div class="col-12 col-md-5 order-0">
+
+                    <h2 class="subtitle">Trackers tamed: <br>compare waves, <span>instantly</span>.</h2>
+
+                    <p>{{ .Content }}</p>
+                </div>
+
+                <div class="col-12 col-md-6 offset-md-1 order-1">
+                    <div class="container-img">
+                        <img src="img/{{ .Params.img }}" alt="" class="img-fluid add-shadow">
+                    </div>
+                </div>
+                {{ end }}
+            {{ end }}
+            </div> <!-- /.row. -->
+
+
+        {{ range .Data.Pages }}
+            {{ if and (eq .Type "product") (eq .Title "Everyone analyzes.") }}
+            <div class="row spacer-top">
+                <div class="col-md-8 offset-md-2">
+                    <h2 class="text-center quotes">No more <span>emailing</span> Data_final_v3_FINAL.sav</h2>
+                </div>
+            </div> <!-- /.row. -->
+
+            <div class="row spacer-top spacer-bottom">
+                <div class="col-12 order-0 col-md-6 order-md-0">
+                    <div class="container-img">
+                        <img src="img/{{ .Params.img }}" alt="Sharing Crunch" class="img-fluid">
+                    </div>
+                </div>
+
+                <div class="col-12 order-1 col-md-5 offset-md-1 order-md-1">
+                    <h2 class="subtitle">{{ .Title }}</h2>
+
+                    <p>{{ .Content }}</p>
                 </div>
             </div> <!-- /.row. -->
             {{ end }}
@@ -58,25 +139,6 @@
         </div> <!-- /.container -->
 
     </div> <!-- /.secondary-content -->
-
-    <div class="footer-content">
-    {{ range .Data.Pages }}
-        {{ if and (eq .Type "product") (eq .Title "Crunch speaks research") }}
-        <div class="jumbotron">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <span>{{ index (split . " ") 2 }}</span> {{ end }}</h1>
-                        <p>{{ .Content }}</p>
-                        <br>
-                        <button type="button" class="btn btn-success" onclick="location.href='speaks-research'">Learn more</button>
-                    </div>
-                </div>
-            </div> <!-- /.container -->
-        </div> <!-- /.jumbotron -->
-        {{ end }}
-    {{ end }}
-    </div>
 
     </div> <!-- /.container-fluid -->
 

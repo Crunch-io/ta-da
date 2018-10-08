@@ -13,8 +13,13 @@
                 padding: 8px 45px;
             }
 
-            a:not(.btn-primary) {
+            a {
                 color: $font-color-dark-grey;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                color: $color-white;
             }
         }
 
