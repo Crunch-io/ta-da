@@ -63,11 +63,14 @@ def main():
             if summary['pct_500s'] < 0.001:
                 ## Five nines!
                 color = "good"
-                icon_emoji = ":parrot:"
+                if summary['sum_500s'] == 0:
+                    icon_emoji = ":parrot:"
+                else:
+                    icon_emoji = ":sunglasses:"
             elif summary['pct_500s'] < 0.01:
                 ## Four nines
                 color = "good"
-                icon_emoji = ":grinning:"
+                icon_emoji = ":simple_smile:"
             elif summary['pct_500s'] < 0.1:
                 ## Three nines
                 color = "warning"
