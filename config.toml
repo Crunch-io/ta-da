@@ -2,7 +2,7 @@ baseURL = "/"
 googleAnalytics = "UA-50332119-2"
 
 languageCode = "en-us"
-title = "Data, Smarter."
+title = "Modern survey data analysis"
 MetaDataFormat = "toml"
 
 [params]

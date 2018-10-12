@@ -27,7 +27,6 @@
                                         <h1>{{ with .Params.title }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</h1>
                                     </div>
 
-
                                     <div class="col-md-8 offset-md-4">
                                         <h1 class="d-block d-sm-none">{{ with .Params.title }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</h1>
 
@@ -74,6 +73,8 @@
                                     <div class="col-md-3 offset-md-1">
                                     </div>
                                     <div class="col-md-8">
+                                        <h2>{{ .Params.description }}</h2>
+                                        <br>
                                         <div id="learn-more-img-3">
                                             <img src="img/{{ .Params.img }}" class="img-fluid add-shadow">
                                         </div>
