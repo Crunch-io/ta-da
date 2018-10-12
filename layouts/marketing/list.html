@@ -1,0 +1,24 @@
+{{ partial "head.html" . }}
+
+    <div id="post-box">
+        <div class="wrap spacer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div id="learn-more-img-1">
+                            <div style="position: relative; padding-bottom: 48.25%; padding-top: 30px; height: 0; overflow: hidden;" class="add-shadow">
+                                <iframe src="{{ .Params.video }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
+                            </div>
+                        </div>
+
+                        <div class="marketing-btn">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" id="openForm">Speak to an Expert</button>
+                            <button type="button" class="btn btn-primary" onclick="location.href='index.html';">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{{ partial "footer.html" . }}
