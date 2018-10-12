@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Data, Smarter.</title>
+    <title>Modern survey data analysis</title>
     <link>/</link>
-    <description>Recent content on Data, Smarter.</description>
+    <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Apr 2018 09:28:41 -0400</lastBuildDate>
@@ -378,6 +378,16 @@ To that end, we’ve recently developed a draft and publish feature that allows 
       
       <guid>/dev/features/tab-book-improvements/</guid>
       <description>We first released the tab book feature a while back, and since then, we’ve collected a number of great suggestions for how to enrich the feature. Tab books produce a static set of tables out of many variables and put results in an Excel sheet, for offline use when you don’t need interactive features like new filters or different weights. Our recent release includes several of those enhancements, most of which are new options available to you in the “export tab book” panel.</description>
+    </item>
+    
+    <item>
+      <title>Account Executive, New Business</title>
+      <link>/jobs/account-executive/</link>
+      <pubDate>Fri, 12 Oct 2018 14:08:35 +0200</pubDate>
+      
+      <guid>/jobs/account-executive/</guid>
+      <description>Reporting to: VP of Sales Location: United States
+Crunch.io is a market-defining company in the analytics SaaS marketplace. We’re a company on the rise. We offer revolutionary products that transform our customers’ ability to drive insight from market research and survey data. Crunch offers a complete survey data analysis platform that allows market researchers, analysts, and marketers to collaborate in a secure, cloud-based environment, using a simple, intuitive drag-and-drop interface to prepare, analyze, visualize and deliver survey data and analysis.</description>
     </item>
     
     <item>
