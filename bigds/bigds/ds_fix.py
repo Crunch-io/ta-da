@@ -25,7 +25,6 @@ Options:
     --zz9repo=DIRNAME         Location of root of zz9 repositories, used when
                               backing up dataset repo dir.
                               [default: /var/lib/crunch.io/zz9repo]
-    --formats=FORMATS         List of supported zz9 formats [default: 25,26]
     --include-failed          Also list or save actions that did not succeed
     --yes                     Bypass "Are you sure?" prompts
     --no-replay-from          Don't do the automatic replay-from when doing
@@ -77,9 +76,6 @@ from cr.lib import stores
 from zz9lib.errors import ZZ9Timeout
 
 this_module = sys.modules[__name__]
-
-# TODO: Query zz9 for supported formats, because we can't do this from
-# cr.server: from zz9d.stores.datamaps import Datamap; Datamap.formats
 
 
 def _cr_lib_init(args):
@@ -457,12 +453,6 @@ def _get_vtag_actions_list(ds, from_version, only_successful=True):
     return vtag, actions_list
 
 
-def _get_supported_formats(args):
-    """Return list of integers that are the expected zz9 format numbers"""
-    formats_str = args['--formats']
-    return [int(s) for s in formats_str.split(',')]
-
-
 def do_diagnose(args):
     ds_id = args['<ds-id>']
     ds_version = args['<ds-version>'] or 'master__tip'
@@ -471,7 +461,6 @@ def do_diagnose(args):
     except ValueError:
         print("Invalid timeout value", file=sys.stderr)
         return 1
-    formats = _get_supported_formats(args)
     _cr_lib_init(args)
     try:
         ds = Dataset.find_by_id(id=ds_id, version=ds_version)
@@ -481,7 +470,7 @@ def do_diagnose(args):
     try:
         info = _diagnose(ds, timeout=timeout)
         pprint.pprint(info)
-        _check_ds_diagnosis(info, formats)
+        _check_ds_diagnosis(info)
         print('OK')
         return 0
     except Exception as err:
@@ -501,7 +490,6 @@ def do_diagnose_fromfile(args):
     except ValueError:
         print("Invalid timeout value", file=sys.stderr)
         return 1
-    formats = _get_supported_formats(args)
     _cr_lib_init(args)
     with open(filename) as f:
         for line in f:
@@ -517,7 +505,7 @@ def do_diagnose_fromfile(args):
                 try:
                     ds = Dataset.find_by_id(id=ds_id, version=version)
                     info = _diagnose(ds, timeout=timeout)
-                    _check_ds_diagnosis(info, formats)
+                    _check_ds_diagnosis(info)
                     print('OK')
                 except Exception as err:
                     print(err)
@@ -530,13 +518,9 @@ def _diagnose(ds, timeout=600):
     return ds.query(q, timeout=timeout)["result"]
 
 
-def _check_ds_diagnosis(info, formats=None):
+def _check_ds_diagnosis(info):
     if info['writeflag']:
         raise Exception("Non-empty writeflag present.")
-    if formats:
-        if info['format'] not in formats:
-            raise Exception("Format {} in diagnosis not in supported formats {}"
-                            .format(info['format'], formats))
     errors = _check_dict_for_errors(info)
     if errors:
         raise Exception("Errors found in diagnosis: {}".format(errors))
