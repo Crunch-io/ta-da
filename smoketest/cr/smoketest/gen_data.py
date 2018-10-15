@@ -84,11 +84,13 @@ def _gen_random_datetime():
     return datetime.datetime.utcfromtimestamp(t)
 
 
-def _iter_metadata(metadata):
+def _iter_metadata(metadata, skip_derived=True):
     """
     Yield (alias, vardef) for all variables or sub-variables in the metadata.
     """
     for vardef in six.itervalues(metadata):
+        if skip_derived and vardef.get('derived', None):
+            continue
         if 'subvariables' in vardef:
             subreferences = vardef['subreferences']
             for subvar_id in vardef['subvariables']:

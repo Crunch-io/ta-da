@@ -32,6 +32,7 @@ import sys
 
 import docopt
 import six
+from six.moves.urllib import parse as urllib_parse
 import yaml
 
 from .crunch_util import append_csv_file_to_dataset, connect_pycrunch
@@ -61,7 +62,7 @@ def pick_random_dataset(zz9repo='/var/lib/crunch.io/zz9repo'):
     raise Exception("No datasets to choose from.")
 
 
-def get_ds_metadata(ds):
+def get_ds_metadata(ds, set_derived_field=True):
     """
     ds: pycrunch dataset returned by site.datasets.by('id')[ds_id].entity
     Return a dictionary containing metadata for this dataset, see:
@@ -80,6 +81,11 @@ def get_ds_metadata(ds):
     body["name"] = ds.body['name']
     body["description"] = ds.body['description']
     body["table"] = table
+    if set_derived_field:
+        for var_url, var_info in six.iteritems(ds.variables.index):
+            if var_info['derived']:
+                var_id = urllib_parse.urlparse(var_url).path.rsplit('/', 2)[-2]
+                table['metadata'][var_id]['derived'] = True
     return result
 
 
