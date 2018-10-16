@@ -391,12 +391,13 @@ Crunch.io is a market-defining company in the analytics SaaS marketplace. We’r
     </item>
     
     <item>
-      <title>Backend Engineer</title>
+      <title>Python Systems Engineer</title>
       <link>/jobs/backend-engineer/</link>
       <pubDate>Thu, 27 Jul 2017 14:08:35 +0200</pubDate>
       
       <guid>/jobs/backend-engineer/</guid>
-      <description>Crunch is looking for experienced Python developers who want to be part of a team building a large-scale cloud-based analytics platform. Based on your talents, you will find yourself a member of one of our small teams helping move our platform forward. This means adding value to our product by reducing friction in our client&amp;rsquo;s workflows, providing new and interesting ways to manipulate their data, and allow them to publish their results with the expectation of massive scale.</description>
+      <description>Crunch is looking for a Python DevOps Engineers who want to be part of our team building a large-scale cloud-based platform for survey analytics. Based on your talents, you will find yourself a member of one of our small teams helping move our platform forward. You would help us deliver new features and build the future for how we deploy our products faster and safer.
+We are looking for someone who is a quick study, eager to learn and grow with us, and willing to write Python code as well as helping us with our operational challenges.</description>
     </item>
     
     <item>
@@ -415,15 +416,6 @@ Crunch.io is a market-defining company in the analytics SaaS marketplace. We’r
       
       <guid>/jobs/support-developer/</guid>
       <description>Crunch is seeking a highly motivated person to join our development team in a delivery and support role. We have a growing product and user base, and we need an organized, detail-oriented person to help us better serve our users. We must ensure that all support requests are handled in a timely, professional manner, and that we provide enough rich online documentation and examples that our users can answer many questions themselves.</description>
-    </item>
-    
-    <item>
-      <title>UI/UX Developer</title>
-      <link>/jobs/ux-developer/</link>
-      <pubDate>Tue, 18 Jul 2017 14:08:35 +0200</pubDate>
-      
-      <guid>/jobs/ux-developer/</guid>
-      <description>Crunch is looking for a skilled frontend developer/designer that takes pride in having extreme attention to detail and understands how to marry aesthetics and usability. You should be passionate about creating great user experiences and always advocate for them. We are looking for people who lives in the intersection of design and coding. You enjoy turning conceptual ideas into sketches or wireframes using a visual editor but also love to bring those designs to the web using HTML, CSS, and some JavaScript.</description>
     </item>
     
     <item>
