@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Modern survey data analysis. on Modern survey data analysis</title>
-    <link>/marketing/</link>
+    <link>//crunch.io/marketing/</link>
     <description>Recent content in Modern survey data analysis. on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="/marketing/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//crunch.io/marketing/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

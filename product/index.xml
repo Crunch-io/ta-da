@@ -2,49 +2,49 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Products on Modern survey data analysis</title>
-    <link>/product/</link>
+    <link>//crunch.io/product/</link>
     <description>Recent content in Products on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="/product/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//crunch.io/product/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Everyone analyzes.</title>
-      <link>/product/everyone-analyzes/</link>
+      <link>//crunch.io/product/everyone-analyzes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/product/everyone-analyzes/</guid>
+      <guid>//crunch.io/product/everyone-analyzes/</guid>
       <description>Crunch ends the version control nightmare. Work off the same live data as everyone else, simultaneously. Empower customers and clients to answer their own questions. You control who sees what.  
 Request a Demo</description>
     </item>
     
     <item>
       <title>Introducing CrunchBox</title>
-      <link>/product/intro-crunchbox/</link>
+      <link>//crunch.io/product/intro-crunchbox/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/product/intro-crunchbox/</guid>
+      <guid>//crunch.io/product/intro-crunchbox/</guid>
       <description>The easiest and quickest way for anyone, with zero training, to slice and dice survey data.
 Try a live CrunchBox &amp;#10230;</description>
     </item>
     
     <item>
       <title>Powerful analytics.</title>
-      <link>/product/powerful-analytics/</link>
+      <link>//crunch.io/product/powerful-analytics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/product/powerful-analytics/</guid>
+      <guid>//crunch.io/product/powerful-analytics/</guid>
       <description>No more 2-day turnarounds to answer simple questions. Check awareness among female, millennial, Californians... in 1 minute. Create and export a complete set of tabs in 2 minutes.  Speak to an Expert</description>
     </item>
     
     <item>
       <title>Real-time surveys</title>
-      <link>/product/real-time-surveys/</link>
+      <link>//crunch.io/product/real-time-surveys/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/product/real-time-surveys/</guid>
+      <guid>//crunch.io/product/real-time-surveys/</guid>
       <description>Shorter, more frequent surveys are the future.
 “Did yesterday’s ad increase awareness?”
 Speed up your data preparation:  Combine categories Organize and relabel variables Estimate weights 
@@ -54,10 +54,10 @@ Speak to an Expert</description>
     
     <item>
       <title>Trackers tamed</title>
-      <link>/product/trackers-tamed/</link>
+      <link>//crunch.io/product/trackers-tamed/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/product/trackers-tamed/</guid>
+      <guid>//crunch.io/product/trackers-tamed/</guid>
       <description>All your survey data, past and present, lives inside CrunchDB. Easily append tracking study waves.  No more digging around to find past data files.
 Learn more &amp;#10230;</description>
     </item>
