@@ -28,8 +28,8 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     else
         # Dev
         # Sub in the staging URL into the config so the site URLs are built correctly
-        STAGING_URL=https://crunch-io.github.io/crunchy/newsite/
-        sed -i 's@http://crunch.io/@'"$STAGING_URL"'@g' config.toml
+        STAGING_URL=//crunch-io.github.io/crunchy/newsite/
+        perl -pe 's@\Q//crunch.io/@'"${STAGING_URL}"'@' -i config.toml
         npm install
         npm run build:scss
         hugo
