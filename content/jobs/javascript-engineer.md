@@ -21,7 +21,7 @@ Frontend developers on our platform are first-class team members. Even though yo
 * End-to-end testing (we use Nightwatch.js and Sauce Labs)
 * Mobile design / touch interfaces
 
-### Qualifications:
+## Qualifications:
 
 * Skill in JavaScript and, more importantly, an appetite for continual improvement
 * Familiarity with JavaScript frameworks, preferably but not necessarily Angular

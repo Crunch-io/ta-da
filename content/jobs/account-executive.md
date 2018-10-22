@@ -21,11 +21,11 @@ Our customers include some of the largest market research companies and largest 
 Our culture is casual and high-energy. We are passionate about our product and our mission. We are loyal to each other and our company. We value work/life balance, efficiency, simplicity, and fantastic customer service!
 Crunch is an Equal Opportunity Employer and we value diversity at our company. We do not discriminate on the basis of race, religion, color, national origin, gender, gender expression, sexual orientation, age, marital status, veteran status, or disability status.
 
-### Account Executive
+## Account Executive
 What you’ll be doing…
 The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.
 
-### Some of the things you’ll be doing include:
+## Some of the things you’ll be doing include:
 * Define and execute territory / account sales plans for the geographic territory and then meet and exceed sales goals (quotas) through prospecting, qualifying, managing and closing sales opportunities within the assigned territory.
 * Develop and manage sales pipeline, prospect and assess sales and move many transactions simultaneously through the sales pipeline.
 * Manage and track customer and transactional information in a CRM system.
