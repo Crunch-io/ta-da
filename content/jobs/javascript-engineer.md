@@ -24,7 +24,7 @@ Front-end developers on our platform are first-class team members. Although your
 * Webpack + Babel (ES6 modules)
 * React + Redux
 * Immutable data objects
-* AngularJS 1
+* AngularJS 1.5 (legacy code)
 * Styled Components
 * Stylus (legacy code)
 
