@@ -21,7 +21,7 @@ In an intermediate engineering role, you will immediately begin to add value to 
 Front-end developers on our platform are first-class team members. Although your focus is primarily on JavaScript, you will gain familiarity with the entire system. Some of the technologies that enable us to achieve our well-designed, efficient, and performant applications are:
 
 * ECMAScript (latest specification, as needed)
-* Webpack
+* Webpack + Babel (ES6 modules)
 * React + Redux
 * Immutable data objects
 * AngularJS 1
