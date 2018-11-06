@@ -25,7 +25,8 @@ Front-end developers on our platform are first-class team members. Although your
 * React + Redux
 * Immutable data objects
 * AngularJS 1
-* Stylus
+* Styled Components
+* Stylus (legacy code)
 
 If you have experience or interest in these additional areas, you may have the opportunity to work with them as part of your role:
 
