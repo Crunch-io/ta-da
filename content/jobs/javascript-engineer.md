@@ -13,7 +13,7 @@ Crunch is seeking talented, motivated front-end engineers to build our interacti
 In an intermediate engineering role, you will immediately begin to add value to a complex application that clients depend on to get their jobs done. You will learn to refine not only your own code but the Crunch APIs that this application is built upon. Your responsibilities will grow to include ownership of new features, the resolution of bugs, and regression-proofing both through comprehensive test coverage. In any given week, you might:
 
 * work on new features with other frontend team members
-* triage, unravel, test, and resolve client-reported bugs
+* triage, unravel, test, and resolve bugs and issues - we use Sentry for automated issues tracking and UserSnap for user reports
 * update existing code in parallel with backend changes to ensure uninterrupted operation
 * review peer code contributions to the codebase
 * discuss and debate changes to technology, code organization, design patterns, and conventions employed in the front-end development environment
