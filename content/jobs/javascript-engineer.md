@@ -15,7 +15,7 @@ In an intermediate engineering role, you will immediately begin to add value to 
 * work on new features with other frontend team members
 * triage, unravel, test, and resolve bugs and issues - we use Sentry for automated issues tracking and UserSnap for user reports
 * update existing code in parallel with backend changes to ensure uninterrupted operation
-* review peer code contributions to the codebase
+* review your colleagues' work on GitHub Pull Requests
 * discuss and debate changes to technology, code organization, design patterns, and conventions employed in the front-end development environment
 
 Front-end developers on our platform are first-class team members. Although your focus is primarily on JavaScript, you will gain familiarity with the entire system. Some of the technologies that enable us to achieve our well-designed, efficient, and performant applications are:
