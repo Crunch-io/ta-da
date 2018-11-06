@@ -27,6 +27,8 @@ Front-end developers on our platform are first-class team members. Although your
 * AngularJS 1.5 (legacy code)
 * Styled Components
 * Stylus (legacy code)
+* unit testing with Jest + Enzyme for React (we have over 5500 unit tests across our app)
+* Jenkins for Continuous Integration and Continuous Deployment
 
 If you have experience or interest in these additional areas, you may have the opportunity to work with them as part of your role:
 
