@@ -2,11 +2,19 @@ Crunch Smoke Test Suite
 =======================
 
 "Smoke tests" are tests that are run against a *real* environment, either Alpha
-or production. Unless its name begins with ``destructive-``, each smoke test in
-this suite is non-destructive, meaning that it does not delete nor or alter any
-pre-existing data or metadata in a pre-existing dataset. It may, however, leave
-a trace of Actions in the action history (e.g. adding new rows and then deleting
-them again.)
+or production. This is different than functional tests, which are run against a
+test environment that is created fresh each test run and torn down afterwards.
+In contrast, smoke tests can run continuously on alpha or production
+environments and are good for finding ("smoking out") issues with legacy data.
+
+There are different kinds of smoke tests in this suite, or planned for this
+suite:
+
+- Only do queries, don't modify the dataset in any way
+- Modify datasets but restore them afterwards (e.g. add and remove rows, add
+  and remove columns)
+- Modify datasets (e.g. add rows with random cell values)
+- Create new datasets, modify them, and delete them afterwards
 
 The tests use pycrunch and the Crunch API. Other than pycrunch there should be
 no dependencies on Crunch code in this test suite. The smoketests can be run
