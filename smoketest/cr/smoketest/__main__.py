@@ -5,12 +5,15 @@ Usage:
     cr.smoketest [options] pick-random-dataset [--zz9repo=REPODIR]
     cr.smoketest [options] append-random-rows [--num-rows=NUMROWS] <dataset-id>
     cr.smoketest [options] get-metadata <dataset-id> [<output-filename>]
+    cr.smoketest [options] list-datasets
 
 Options:
     -c CONFIG_FILENAME      [default: config.yaml]
     -p PROFILE_NAME         Profile section in config [default: local]
     -v                      Print verbose messages
     -i                      Start ipython after some commands
+    --projects              List projects, not datasets
+    --project=PROJNAME      List datasets in a project
     --num-rows=NUMROWS      [default: 10]
     --zz9repo=REPODIR       [default: /var/lib/crunch.io/zz9repo]
 
@@ -151,6 +154,35 @@ def do_append_random_rows(args):
         write_random_rows(var_defs, pk, num_rows, f)
         f.seek(0)
         append_csv_file_to_dataset(site, ds, f, verbose=args['-v'])
+
+
+def do_list_datasets(args):
+    with open(args['-c']) as f:
+        config = yaml.safe_load(f)[args['-p']]
+    verbose = args['-v']
+    site = connect_pycrunch(config['connection'], verbose=verbose)
+    if args['-i']:
+        import IPython
+        IPython.embed()
+    if args['--projects']:
+        for proj_url, proj in six.iteritems(site.projects.index):
+            print(u"{proj.id} {proj.name}".format(proj=proj))
+        return 0
+    if args['--project']:
+        proj_name_or_id = args['--project']
+        try:
+            proj = site.projects.by('id')[proj_name_or_id]
+        except KeyError:
+            proj = site.projects.by('name')[proj_name_or_id]
+        url = urllib_parse.urljoin(proj.entity_url, 'datasets/')
+        response = site.session.get(url)
+        datasets_index = response.json()['index']
+        for ds_url, ds_info in six.iteritems(datasets_index):
+            print(u"{ds[id]} {ds[name]}".format(ds=ds_info))
+        return 0
+    for ds_url, ds in six.iteritems(site.datasets.index):
+        print(u"{ds.id} {ds.name}".format(ds=ds))
+    return 0
 
 
 def main():
