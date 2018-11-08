@@ -15,11 +15,11 @@ We are looking for someone who is a quick study, eager to learn and grow with us
 ## Qualifications:
 
 * A commitment to producing robust, well tested code that meets industry standards
-Experience using Python
-* Demonstrable ability to communicate with a team including other developers, managers, product owners
+* Experience using Python
+* Demonstrable ability to communicate with a team including other developers, managers, and product owners
 * Ability to work independently; all of Crunch works remotely across numerous time zones
 * Experience with or interest in learning how to deploy multi-server applications using devops practices
-* Someone who can take a step back from a problem and be able to look at how that fits into a larger system.
+* Someone who can take a step back from a problem and be able to look at how that fits into a larger system
 * Linux system administration
 
 ## Experience with any of the following are nice to have, but are not required:
