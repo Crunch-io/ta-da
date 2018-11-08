@@ -1,0 +1,9 @@
+# Use the -F option to rsync to activate this file.
+# Leading "/" means "relative to this .rsync-filter file"
+
+# These are  Python bytecode files; they shouldn't be copied.
+exclude __pycache__/
+exclude *.pyc
+
+# And let's not copy vim swap files
+exclude *.swp
