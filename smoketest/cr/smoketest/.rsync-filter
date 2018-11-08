@@ -7,3 +7,6 @@ exclude *.pyc
 
 # And let's not copy vim swap files
 exclude *.swp
+
+# Transfer everything else
+include *

@@ -2,6 +2,7 @@
 Common library for operations using the Crunch API
 """
 from __future__ import print_function
+from collections import OrderedDict
 import copy
 import os
 import time
@@ -214,3 +215,50 @@ def wait_for_progress(site, progress_response, timeout_sec, retry_delay,
     else:
         if verbose:
             print("Timeout after", timeout_sec, "seconds.")
+
+
+def get_ds_metadata(ds, set_derived_field=True):
+    """
+    ds: pycrunch dataset returned by site.datasets.by('id')[ds_id].entity
+    Return a dictionary containing metadata for this dataset, see:
+        http://docs.crunch.io/feature-guide/feature-importing.html#example
+    """
+    response = ds.session.get(ds.table.self)
+    response.raise_for_status()
+    table = response.json()
+    if 'description' in table:
+        del table['description']
+    if 'self' in table:
+        del table['self']
+    result = OrderedDict()
+    result["element"] = "shoji:entity"
+    result["body"] = body = OrderedDict()
+    body["name"] = ds.body['name']
+    body["description"] = ds.body['description']
+    body["table"] = table
+    if set_derived_field:
+        for var_url, var_info in six.iteritems(ds.variables.index):
+            if var_info['derived']:
+                var_id = urllib_parse.urlparse(var_url).path.rsplit('/', 2)[-2]
+                table['metadata'][var_id]['derived'] = True
+    return result
+
+
+def get_pk_alias(ds):
+    """
+    ds: pycrunch dataset returned by site.datasets.by('id')[ds_id].entity
+    Return the alias of the PK column, or None if no Primary Key.
+    Raise an exception if there are multiple PKs (is that allowed?)
+    """
+    pk_info = ds.pk
+    pk_url_list = pk_info.body.pk
+    if not pk_url_list:
+        return None
+    if len(pk_url_list) > 1:
+        raise RuntimeError("Can't handle {} PKs in dataset {}"
+                           .format(len(pk_url_list), ds.id))
+    pk_url = pk_url_list[0]
+    response = ds.session.get(pk_url)
+    response.raise_for_status()
+    pk_alias = response.json()['body']['alias']
+    return pk_alias

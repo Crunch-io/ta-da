@@ -6,6 +6,7 @@ Usage:
     cr.smoketest [options] append-random-rows [--num-rows=NUMROWS] <dataset-id>
     cr.smoketest [options] get-metadata <dataset-id> [<output-filename>]
     cr.smoketest [options] list-datasets
+    cr.smoketest [options] stress
 
 Options:
     -c CONFIG_FILENAME      [default: config.yaml]
@@ -16,6 +17,7 @@ Options:
     --project=PROJNAME      List datasets in a project
     --num-rows=NUMROWS      [default: 10]
     --zz9repo=REPODIR       [default: /var/lib/crunch.io/zz9repo]
+    --num-threads=N         [default: 4]
 
 Commands:
     pick-random-dataset
@@ -25,9 +27,10 @@ Commands:
         append those rows to the dataset.
     get-metadata
         Query dataset metadata and save it in JSON format
+    stress:
+        Run in a loop creating, updating, and deleting datasets
 """
 from __future__ import print_function
-from collections import OrderedDict
 import json
 import os
 import random
@@ -38,8 +41,14 @@ import six
 from six.moves.urllib import parse as urllib_parse
 import yaml
 
-from .crunch_util import append_csv_file_to_dataset, connect_pycrunch
+from .crunch_util import (
+    append_csv_file_to_dataset,
+    connect_pycrunch,
+    get_ds_metadata,
+    get_pk_alias,
+)
 from .gen_data import open_csv_tempfile, write_random_rows
+from .stress import run_stress_loop
 
 this_module = sys.modules[__name__]
 
@@ -63,53 +72,6 @@ def pick_random_dataset(zz9repo='/var/lib/crunch.io/zz9repo'):
         if dataset_dirs:
             return random.choice(dataset_dirs)
     raise Exception("No datasets to choose from.")
-
-
-def get_ds_metadata(ds, set_derived_field=True):
-    """
-    ds: pycrunch dataset returned by site.datasets.by('id')[ds_id].entity
-    Return a dictionary containing metadata for this dataset, see:
-        http://docs.crunch.io/feature-guide/feature-importing.html#example
-    """
-    response = ds.session.get(ds.table.self)
-    response.raise_for_status()
-    table = response.json()
-    if 'description' in table:
-        del table['description']
-    if 'self' in table:
-        del table['self']
-    result = OrderedDict()
-    result["element"] = "shoji:entity"
-    result["body"] = body = OrderedDict()
-    body["name"] = ds.body['name']
-    body["description"] = ds.body['description']
-    body["table"] = table
-    if set_derived_field:
-        for var_url, var_info in six.iteritems(ds.variables.index):
-            if var_info['derived']:
-                var_id = urllib_parse.urlparse(var_url).path.rsplit('/', 2)[-2]
-                table['metadata'][var_id]['derived'] = True
-    return result
-
-
-def get_pk_alias(ds):
-    """
-    ds: pycrunch dataset returned by site.datasets.by('id')[ds_id].entity
-    Return the alias of the PK column, or None if no Primary Key.
-    Raise an exception if there are multiple PKs (is that allowed?)
-    """
-    pk_info = ds.pk
-    pk_url_list = pk_info.body.pk
-    if not pk_url_list:
-        return None
-    if len(pk_url_list) > 1:
-        raise RuntimeError("Can't handle {} PKs in dataset {}"
-                           .format(len(pk_url_list), ds.id))
-    pk_url = pk_url_list[0]
-    response = ds.session.get(pk_url)
-    response.raise_for_status()
-    pk_alias = response.json()['body']['alias']
-    return pk_alias
 
 
 ###########################
@@ -183,6 +145,14 @@ def do_list_datasets(args):
     for ds_url, ds in six.iteritems(site.datasets.index):
         print(u"{ds.id} {ds.name}".format(ds=ds))
     return 0
+
+
+def do_stress(args):
+    with open(args['-c']) as f:
+        config = yaml.safe_load(f)[args['-p']]
+    num_threads = int(args['--num-threads'])
+    assert num_threads >= 1
+    run_stress_loop(config, num_threads=num_threads, verbose=args['-v'])
 
 
 def main():
