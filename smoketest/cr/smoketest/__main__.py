@@ -17,7 +17,8 @@ Options:
     --project=PROJNAME      List datasets in a project
     --num-rows=NUMROWS      [default: 10]
     --zz9repo=REPODIR       [default: /var/lib/crunch.io/zz9repo]
-    --num-threads=N         [default: 4]
+    --num-threads=N         [default: 1]
+    --idle-timeout=N        [default: 120]
 
 Commands:
     pick-random-dataset
@@ -151,8 +152,14 @@ def do_stress(args):
     with open(args['-c']) as f:
         config = yaml.safe_load(f)[args['-p']]
     num_threads = int(args['--num-threads'])
+    idle_timeout = int(args['--idle-timeout'])
     assert num_threads >= 1
-    run_stress_loop(config, num_threads=num_threads, verbose=args['-v'])
+    run_stress_loop(
+        config,
+        num_threads=num_threads,
+        verbose=args['-v'],
+        idle_timeout=idle_timeout,
+    )
 
 
 def main():

@@ -2,12 +2,14 @@
 Stress Crunch by creating, updating, and deleting datasets continously
 """
 from __future__ import print_function
+import collections
 import datetime
 import json
 import os
 import random
 import string
 import sys
+import threading
 import time
 
 import six
@@ -25,9 +27,37 @@ this_module = sys.modules[__name__]
 this_dir = os.path.dirname(os.path.abspath(this_module.__file__))
 
 
-def run_stress_loop(config, num_threads=1, verbose=False):
-    # TODO: Actually use num_threads
-    print("Running stress loop, press Ctr-C to stop.")
+def run_stress_loop(config, num_threads=1, verbose=False, idle_timeout=120):
+    print("Running", num_threads, "stress loop thread(s), press Ctr-C to stop.")
+    threads = []
+    event = threading.Event()
+    try:
+        for loop_id in range(num_threads):
+            t = threading.Thread(target=_run_stress_loop,
+                                 args=(config, loop_id, event),
+                                 kwargs=dict(idle_timeout=idle_timeout,
+                                             verbose=verbose))
+            t.daemon = True
+            t.start()
+            threads.append(t)
+            # Delay to avoid hitting race condition creating datasets
+            # Filed ticket: https://www.pivotaltracker.com/story/show/162001536
+            time.sleep(1.0)
+        while True:
+            # Wait for Ctrl-C
+            time.sleep(idle_timeout)
+    except KeyboardInterrupt:
+        print("\nCtrl-C received, quitting main stress loop...")
+        event.set()
+        for t in threads:
+            t.join()
+    finally:
+        print("Finished main stress loop.")
+
+
+def _run_stress_loop(config, loop_id, event,
+                     idle_timeout=120, cleaner_delay=30, verbose=False):
+    print("{}:".format(loop_id), "Beginning stress loop")
     site = connect_pycrunch(config['connection'], verbose=verbose)
     metadata_path = os.path.join(this_dir, 'data', 'dataset.json')
     with open(metadata_path) as f:
@@ -35,28 +65,42 @@ def run_stress_loop(config, num_threads=1, verbose=False):
     f = None  # create dataset with no rows
     t = datetime.datetime.now()
     dataset_name = "Stress Test {}".format(t.isoformat(' '))
-    ds = create_dataset_from_csv(site, metadata, f, verbose=False,
+    ds = create_dataset_from_csv(site, metadata, f, verbose=verbose,
                                  dataset_name=dataset_name)
-    print("Created dataset:", ds.self)
+    print("{}:".format(loop_id), "Created dataset:", ds.self)
     try:
-        _run_stress_loop(site, ds)
-    finally:
-        print("Deleting dataset:", ds.self)
-        site.session.delete(ds.self)
-
-
-def _run_stress_loop(site, ds):
-    num_rows = 10000
-    print("Appending", num_rows, "rows to dataset", ds.self)
-    _append_random_rows(site, ds, num_rows)
-    cycle_delay = 10.0  # seconds
-    try:
-        while True:
+        num_rows = 1000
+        max_cols = 100
+        print("{}:".format(loop_id),
+              "Appending", num_rows, "rows to dataset", ds.self)
+        _append_random_rows(site, ds, num_rows)
+        var_aliases = collections.deque()
+        num_deletes_since_clean = 0
+        while not event.is_set():
             var_alias, n = _append_random_numeric_column(ds)
-            print("Added column", var_alias, "with", n, "rows.")
-            time.sleep(cycle_delay)
-    except KeyboardInterrupt:
-        print("\nCtrl-C received, quitting...")
+            print("{}:".format(loop_id),
+                  "Added column", var_alias, "with", n, "rows.")
+            var_aliases.append(var_alias)
+            if len(var_aliases) > max_cols:
+                # We have all the columns we need, remove one
+                var_alias = var_aliases.popleft()
+                v = ds.variables.by('alias')[var_alias]
+                print("{}:".format(loop_id),
+                      "Deleting variable", var_alias)
+                r = v.entity.delete()
+                r.raise_for_status()
+                num_deletes_since_clean += 1
+            if num_deletes_since_clean >= max_cols:
+                # We've deleted a bunch of columns, now let cleaner run
+                num_deletes_since_clean = 0
+                clean_wait = idle_timeout + cleaner_delay + 150
+                print("{}:".format(loop_id),
+                      "Waiting", clean_wait, "seconds for cleaner run.")
+                event.wait(clean_wait)
+    finally:
+        print("{}:".format(loop_id),
+              "Leaving stress loop, deleting dataset:", ds.self)
+        site.session.delete(ds.self)
 
 
 def _append_random_rows(site, ds, num_rows):
