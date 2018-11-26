@@ -2,12 +2,13 @@
 set -ev
 if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     git clone --branch v2 https://github.com/go-yaml/yaml $GOPATH/src/gopkg.in/yaml.v2
-    go get github.com/magefile/mage
-    go get -d github.com/gohugoio/hugo
-    cd $GOPATH/src/github.com/gohugoio/hugo
-    mage vendor
-    mage install
-    cd $GOPATH/src/github.com/Crunch-io/ta-da
+    mkdir ${TRAVIS_HOME}/src
+    cd ${TRAVIS_HOME}/src
+    git clone https://github.com/gohugoio/hugo.git
+    cd hugo
+    go install
+
+    cd ${GOPATH}/src/github.com/Crunch-io/ta-da
     git config --global user.email "systems+crunchbot@crunch.io"
     git config --global user.name "Crunchbot"
 
@@ -27,8 +28,8 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     else
         # Dev
         # Sub in the staging URL into the config so the site URLs are built correctly
-        STAGING_URL=https://crunch-io.github.io/crunchy/newsite/
-        sed -i 's@http://crunch.io/@'"$STAGING_URL"'@g' config.toml
+        STAGING_URL=//crunch-io.github.io/crunchy/newsite/
+        perl -pe 's@\Q//crunch.io/@'"${STAGING_URL}"'@' -i config.toml
         npm install
         npm run build:scss
         hugo

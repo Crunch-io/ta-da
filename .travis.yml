@@ -1,8 +1,11 @@
+os: osx
 branches:
   only:
   - src
   - dev
 language: go
+go:
+  - "1.11"
 script: ./build-and-deploy.sh
 env:
   global:
