@@ -20,7 +20,7 @@ In this position, you will
 * Identify and replicate bugs with the software and help our development team understand and prioritize resolutions
 * Take ownership over the customer support to ensure that none of our users fall through the cracks
 * Analyze customer behavior to identify and prioritize areas of the app which need improvement
-* Help publicize and communicate new features to customers
+* Help publicize and communicate new features to customers by writing blog posts, user-friendly release announcements, etc.
 
 
 Professional experience in software development is not a requirement for this position. This is an ideal role for someone who may not be an experienced programmer but who thinks critically and methodically, who has an intuitive sense of good user experience, and who can communicate with and translate between software developers and everyone else. Some experience with writing code will help you succeed in the role, and if you want to become a better programmer, you will have plenty of opportunities to grow.
