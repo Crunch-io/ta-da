@@ -19,7 +19,7 @@ In this position, you will
 * Develop user-training materials and documentation
 * Identify and replicate bugs with the software and help our development team understand and prioritize resolutions
 * Take ownership over the customer support to ensure that none of our users fall through the cracks
-* Analyze customer behavior to Identify and prioritize areas of the app which need improvement
+* Analyze customer behavior to identify and prioritize areas of the app which need improvement
 * Help publicize and communicate new features to customers
 
 
