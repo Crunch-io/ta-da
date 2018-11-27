@@ -30,16 +30,16 @@ Professional experience in software development is not a requirement for this po
 Required skills:
 
 * 2 - 5 years experience in market research, survey analysis, or customer support
-* Bachelor’s degree in a quantitative field, or equivalent experience
+* Educational or work experience in a quantitative field
 * Excellent verbal and written communication skills, including the ability to clearly explain complex topics to a variety of audiences
 * Self-motivated and able to manage and prioritize your work
-* Experience providing technical support to system administrators, developers, or data scientists
-* Unflagging empathy for users
+* Uhnwaverring empathy for users
 
-Nice to have, but not required experience:
+Nice to have, but not required:
 
-* Programming, ideally in R or Python
-* Product management
-* Remote work environments
+* Programming skills, or an interest in developing programming skills
+* Interest in quantitative analysis (especially using R and Python)
+* Product management experience
+* Experience in remote work environments
 
 
