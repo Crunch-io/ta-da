@@ -36,7 +36,7 @@ Required skills:
 * Experience providing technical support to system administrators, developers, or data scientists
 * Unflagging empathy for users
 
-In addition we prefer experience in: 
+Nice to have, but not required experience:
 
 * Programming, ideally in R or Python
 * Product management
