@@ -8,7 +8,7 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-Crunch.io is an innovative analytics company in the market research industry. We offer a survey data analysis platform that allows market researchers, analysts, and marketers to collaborate in a secure, cloud-based environment, using an intuitive drag-and-drop interface. Crunch users can quickly gain insights from their data and communicate them to their clients. We are hiring a Customer Experience Manager to help us better understand our customers and to improve the product to meet their needs.
+Crunch.io is an innovative analytics company in the market research industry. We offer a survey data analysis platform that allows market researchers, analysts, and marketers to collaborate in a secure, cloud-based environment, using an intuitive drag-and-drop interface. Crunch users can quickly gain insights from their data and communicate them to their clients. We are hiring a Customer Experience Manager to help us better support our customers and to improve the product to meet their needs.
 
 In this position, you will
 
@@ -38,4 +38,4 @@ Nice to have, but not required:
 * Product management experience
 * Experience in remote work environments
 
-Crunch is a well-funded, remote-first company with a collaborative and open culture. We are passionate about our product and our mission, and value work/life balance, efficiency, simplicity, and fantastic customer service. 
+Crunch is a well-funded, remote-first company with a collaborative and open culture. We are passionate about our product and our mission, and value work/life balance, efficiency, simplicity, and fantastic customer service.
