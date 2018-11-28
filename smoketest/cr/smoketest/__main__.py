@@ -3,7 +3,7 @@ Crunch Smoke Test Suite
 
 Usage:
     cr.smoketest [options] pick-random-dataset [--zz9repo=REPODIR]
-    cr.smoketest [options] append-random-rows [--num-rows=NUMROWS] <dataset-id>
+    cr.smoketest [options] append-random-rows <dataset-id>
     cr.smoketest [options] get-metadata <dataset-id> [<output-filename>]
     cr.smoketest [options] list-datasets
     cr.smoketest [options] stress
@@ -15,6 +15,7 @@ Options:
     -i                      Start ipython after some commands
     --projects              List projects, not datasets
     --project=PROJNAME      List datasets in a project
+    --sparse-data           Make > 80% of new values system missing
     --num-rows=NUMROWS      [default: 10]
     --zz9repo=REPODIR       [default: /var/lib/crunch.io/zz9repo]
     --num-threads=N         [default: 1]
@@ -114,7 +115,8 @@ def do_append_random_rows(args):
     pk = get_pk_alias(ds)
     num_rows = int(args['--num-rows'])
     with open_csv_tempfile() as f:
-        write_random_rows(var_defs, pk, num_rows, f)
+        write_random_rows(var_defs, pk, num_rows, f,
+                          sparse_data=args['--sparse-data'])
         f.seek(0)
         append_csv_file_to_dataset(site, ds, f, verbose=args['-v'])
 
@@ -153,12 +155,15 @@ def do_stress(args):
         config = yaml.safe_load(f)[args['-p']]
     num_threads = int(args['--num-threads'])
     idle_timeout = int(args['--idle-timeout'])
+    num_rows = int(args['--num-rows'])
     assert num_threads >= 1
     run_stress_loop(
         config,
         num_threads=num_threads,
         verbose=args['-v'],
         idle_timeout=idle_timeout,
+        sparse_data=args['--sparse-data'],
+        num_rows=num_rows,
     )
 
 

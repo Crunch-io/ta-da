@@ -6,6 +6,7 @@ Usage:
     gen_data.py [options] <input-filename-json> <output-filename-csv>
 
 Options:
+    --sparse-data       Make > 80% of the values system missing
     --num-rows=NUMROWS  [default: 10]
     --pk=ALIAS
 
@@ -43,10 +44,13 @@ DATETIME_FORMATS = {
 }
 
 
-def _gen_random_value(vardef, pk=None):
+def _gen_random_value(vardef, pk=None, sparse_data=False):
     if pk == vardef['alias']:
         assert vardef['type'] == 'numeric'
         return random.randint(1, 999999999)
+    if sparse_data and random.random() <= 0.9:
+        # Assume empty string in CSV file gets treated as system missing
+        return ""
     if 'categories' in vardef:
         return str(random.choice(_get_category_ids(vardef)))
     if vardef['type'] == 'text':
@@ -124,7 +128,7 @@ def open_csv_tempfile(prefix='tmp', suffix='.csv', dir=None):
                                   prefix=prefix, dir=dir)
 
 
-def write_random_rows(metadata, pk, num_rows, f):
+def write_random_rows(metadata, pk, num_rows, f, sparse_data=False):
     """
     metadata: Object returned by get_var_defs() containing variable definitions
     pk: Name of primary key alias, or None if no PK
@@ -134,8 +138,11 @@ def write_random_rows(metadata, pk, num_rows, f):
     w = csv.writer(f)
     w.writerow([alias for (alias, _) in _iter_metadata(metadata)])
     for i in six.moves.range(num_rows):
-        w.writerow([_gen_random_value(vardef, pk=pk)
-                    for (_, vardef) in _iter_metadata(metadata)])
+        row = [
+            _gen_random_value(vardef, pk=pk, sparse_data=sparse_data)
+            for (_, vardef) in _iter_metadata(metadata)
+        ]
+        w.writerow(row)
 
 
 def main():
@@ -151,7 +158,9 @@ def main():
     else:
         f = open_csv_writefile(output_filename)
     try:
-        write_random_rows(metadata, args['--pk'], num_rows, f)
+        write_random_rows(
+            metadata, args['--pk'], num_rows, f,
+            sparse_data=args['--sparse-data'])
     finally:
         f.flush()
         if output_filename != '-':

@@ -27,16 +27,19 @@ this_module = sys.modules[__name__]
 this_dir = os.path.dirname(os.path.abspath(this_module.__file__))
 
 
-def run_stress_loop(config, num_threads=1, verbose=False, idle_timeout=120):
+def run_stress_loop(config, num_threads=1, verbose=False, idle_timeout=120,
+                    sparse_data=False, num_rows=1000):
     print("Running", num_threads, "stress loop thread(s), press Ctr-C to stop.")
     threads = []
     event = threading.Event()
+    kwargs = dict(idle_timeout=idle_timeout, verbose=verbose,
+                  sparse_data=sparse_data,
+                  num_rows=num_rows)
     try:
         for loop_id in range(num_threads):
-            t = threading.Thread(target=_run_stress_loop,
-                                 args=(config, loop_id, event),
-                                 kwargs=dict(idle_timeout=idle_timeout,
-                                             verbose=verbose))
+            args = (config, loop_id, event)
+            t = threading.Thread(target=_run_stress_loop, args=args,
+                                 kwargs=kwargs)
             t.daemon = True
             t.start()
             threads.append(t)
@@ -56,7 +59,9 @@ def run_stress_loop(config, num_threads=1, verbose=False, idle_timeout=120):
 
 
 def _run_stress_loop(config, loop_id, event,
-                     idle_timeout=120, cleaner_delay=30, verbose=False):
+                     idle_timeout=120, cleaner_delay=30, verbose=False,
+                     sparse_data=False,
+                     num_rows=1000):
     print("{}:".format(loop_id), "Beginning stress loop")
     site = connect_pycrunch(config['connection'], verbose=verbose)
     metadata_path = os.path.join(this_dir, 'data', 'dataset.json')
@@ -69,11 +74,11 @@ def _run_stress_loop(config, loop_id, event,
                                  dataset_name=dataset_name)
     print("{}:".format(loop_id), "Created dataset:", ds.self)
     try:
-        num_rows = 1000
         max_cols = 100
         print("{}:".format(loop_id),
               "Appending", num_rows, "rows to dataset", ds.self)
-        _append_random_rows(site, ds, num_rows)
+        _append_random_rows(site, ds, num_rows,
+                            sparse_data=sparse_data)
         var_aliases = collections.deque()
         num_deletes_since_clean = 0
         while not event.is_set():
@@ -103,12 +108,13 @@ def _run_stress_loop(config, loop_id, event,
         site.session.delete(ds.self)
 
 
-def _append_random_rows(site, ds, num_rows):
+def _append_random_rows(site, ds, num_rows, sparse_data=False):
     metadata = get_ds_metadata(ds)
     var_defs = metadata['body']['table']['metadata']
     pk = get_pk_alias(ds)
     with open_csv_tempfile() as f:
-        write_random_rows(var_defs, pk, num_rows, f)
+        write_random_rows(var_defs, pk, num_rows, f,
+                          sparse_data=sparse_data)
         f.seek(0)
         append_csv_file_to_dataset(site, ds, f, verbose=False)
 
