@@ -52,3 +52,7 @@ slack_linkify <- function (href, text) {
 }
 
 b <- function (x) paste0("*", x, "*")
+
+short_field <- function (title, value) {
+    list(title=title, value=value, short=TRUE)
+}
