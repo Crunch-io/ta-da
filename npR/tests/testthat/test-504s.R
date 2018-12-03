@@ -4,20 +4,37 @@ with_mock(
     `superadmin::getDatasets`=function (dsid) {
         list(name=list(
             a159d0c4e26fef8ea371a2d9338ceb91="foo ELB summary for November 26 to December 02",
-            b159d0c4e26fef8ea371a2d9338ceb91="bar"
+            b159d0c4e26fef8ea371a2d9338ceb91="bar",
+            c159d0c4e26fef8ea371a2d9338ceb91="baz",
+            d159d0c4e26fef8ea371a2d9338ceb91="ds1",
+            e159d0c4e26fef8ea371a2d9338ceb91="ds4"
         )[[dsid]])
-    },
-    test_that("We get table with dataset names (ellipsized)", {
+    }, {
         urls <- c("/datasets/a159d0c4e26fef8ea371a2d9338ceb91/",
                 "/datasets/b159d0c4e26fef8ea371a2d9338ceb91/",
+                "/datasets/b159d0c4e26fef8ea371a2d9338ceb91/",
+                "/datasets/c159d0c4e26fef8ea371a2d9338ceb91/",
+                "/datasets/d159d0c4e26fef8ea371a2d9338ceb91/",
+                "/datasets/a159d0c4e26fef8ea371a2d9338ceb91/",
                 "/datasets/b159d0c4e26fef8ea371a2d9338ceb91/")
-        expect_equal(tablulateDatasetsByName(urls),
-            structure(list(
-                timeouts = 2:1,
-                name = c("bar", "foo ELB summary for... 26 to December 02")),
-                row.names = c("b159d0c4e26fef8ea371a2d9338ceb91", "a159d0c4e26fef8ea371a2d9338ceb91"),
-            class = "data.frame"))
-    })
+        test_that("We get table with dataset names (ellipsized)", {
+            expect_equal(tablulateDatasetsByName(urls),
+                structure(list(
+                    N = c(3, 2, 1, 1),
+                    name = c("bar", "foo ELB summary f...6 to December 02", "baz", "ds1")),
+                    row.names = c("b159d0c4e26fef8ea371a2d9338ceb91", "a159d0c4e26fef8ea371a2d9338ceb91", "c159d0c4e26fef8ea371a2d9338ceb91", "d159d0c4e26fef8ea371a2d9338ceb91"),
+                class = "data.frame")
+            )
+        })
+        test_that("We truncate the table", {
+            expect_equal(tablulateDatasetsByName(urls, rows=3),
+                structure(list(
+                    N = c(3, 2, 2),
+                    name = c("bar", "foo ELB summary f...6 to December 02", "[2 others]")),
+                    row.names = c("b159d0c4e26fef8ea371a2d9338ceb91", "a159d0c4e26fef8ea371a2d9338ceb91", "and"),
+                class = "data.frame"))
+        })
+    }
 )
 
 urls <- c("https://beta.crunch.io:443/api/datasets/bca1e06094b24bb2a0e377ad2d96a3cd/variables/?nosubvars=1&relative=on",

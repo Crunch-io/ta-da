@@ -32,14 +32,21 @@ summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
     }
 }
 
-tablulateDatasetsByName <- function (urls) {
+tablulateDatasetsByName <- function (urls, rows=20) {
     tab <- sort(table(superadmin::extractDatasetID(urls)), decreasing=TRUE)
     out <- as.data.frame(tab, stringsAsFactors=FALSE, row.names="Var1")
-    names(out) <- "timeouts"
+    names(out) <- "N"
     out$name <- sapply(rownames(out), function (x) {
         # Look up the dataset name, and ellipsize it if it's long
-        ellipsize_middle(superadmin::getDatasets(dsid=x)$name, 40)
+        ellipsize_middle(superadmin::getDatasets(dsid=x)$name, 36)
     })
+    if (nrow(out) > rows) {
+        # Truncate the list
+        out$N[rows] <- sum(out$N[rows:nrow(out)])
+        out$name[rows] <- paste0("[", nrow(out) - rows + 1, " others]")
+        rownames(out)[rows] <- "and"
+        out <- out[seq_len(rows),]
+    }
     return(out)
 }
 
