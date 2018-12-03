@@ -16,7 +16,7 @@ summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
     if (nrow(df)) {
         require(superadmin)
         reqs <- parse_request(df$request)
-        t1 <- table(standardizeURLs(reqs$request_url), reqs$request_verb)
+        t1 <- tabulatedRequests(reqs)
         t2 <- tablulateDatasetsByName(reqs$request_url)
 
         reportToSlack <- function (obj, send=TRUE) {
@@ -33,11 +33,18 @@ summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
 }
 
 tablulateDatasetsByName <- function (urls) {
-    out <- as.data.frame(sort(table(superadmin::extractDatasetID(urls)), decreasing=TRUE),
-        stringsAsFactors=FALSE, row.names="Var1")
+    tab <- sort(table(superadmin::extractDatasetID(urls)), decreasing=TRUE)
+    out <- as.data.frame(tab, stringsAsFactors=FALSE, row.names="Var1")
     names(out) <- "timeouts"
     out$name <- sapply(rownames(out), function (x) {
-        superadmin::getDatasets(dsid=x)$name
+        # Look up the dataset name, and ellipsize it if it's long
+        ellipsize_middle(superadmin::getDatasets(dsid=x)$name, 40)
     })
     return(out)
+}
+
+tabulatedRequests <- function (reqs) {
+    req_urls <- paste(reqs$request_verb, standardizeURLs(reqs$request_url))
+    tab <- sort(table(req_urls), decreasing=TRUE)
+    return(data.frame(N=as.numeric(tab), row.names=names(tab)))
 }

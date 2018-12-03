@@ -3,18 +3,18 @@ context("summarize504s")
 with_mock(
     `superadmin::getDatasets`=function (dsid) {
         list(name=list(
-            a159d0c4e26fef8ea371a2d9338ceb91="foo",
+            a159d0c4e26fef8ea371a2d9338ceb91="foo ELB summary for November 26 to December 02",
             b159d0c4e26fef8ea371a2d9338ceb91="bar"
         )[[dsid]])
     },
-    test_that("We get table with dataset names", {
+    test_that("We get table with dataset names (ellipsized)", {
         urls <- c("/datasets/a159d0c4e26fef8ea371a2d9338ceb91/",
                 "/datasets/b159d0c4e26fef8ea371a2d9338ceb91/",
                 "/datasets/b159d0c4e26fef8ea371a2d9338ceb91/")
         expect_equal(tablulateDatasetsByName(urls),
             structure(list(
                 timeouts = 2:1,
-                name = c("bar", "foo")),
+                name = c("bar", "foo ELB summary for... 26 to December 02")),
                 row.names = c("b159d0c4e26fef8ea371a2d9338ceb91", "a159d0c4e26fef8ea371a2d9338ceb91"),
             class = "data.frame"))
     })
@@ -50,4 +50,23 @@ test_that("standardizeURLs", {
           "/datasets/ID/permissions/",
           "/progress/tabbook/",
           "/dataset/ID/filter/edit/WHAAM"))
+})
+
+reqs <- data.frame(
+    request_url=urls[1:5],
+    request_verb=c("GET", "GET", "POST", "GET", "POST")
+)
+
+test_that("tabulatedRequests", {
+    expect_identical(tabulatedRequests(reqs),
+        data.frame(
+            N=c(2, 1, 1, 1),
+            row.names=c(
+                "POST /datasets/ID/batches/",
+                "GET /datasets/ID/batches/ID/",
+                "GET /datasets/ID/variables/?QUERY",
+                "GET /datasets/ID/variables/ID/"
+            )
+        )
+    )
 })
