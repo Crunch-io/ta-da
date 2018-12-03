@@ -88,7 +88,7 @@ formatSRmeta <- function (req, threshold=119) {
         u <- try(getUser(id=i))
         return(ifelse(inherits(u, "try-error"), i, u$user$email))
     }, character(1))
-    base <- superadminURL("/tagging")
+    base <- superadminURL("/tracing")
 
     out <- list(
         times=length(meta$actual_total_time),
