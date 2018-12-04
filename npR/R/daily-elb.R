@@ -81,17 +81,23 @@ computeELBSummary <- function (start, end) {
 }
 
 slackELBBody <- function (results) {
+    pct_reqs <- function (num, denom=results$n_requests, ...) {
+        pct <- format(100*num/denom, ...)
+        paste(
+            format(num, big.mark=","),
+            paste0("(", pct, "%)")
+        )
+    }
     fields <- list(
-        short_field("Total request count", results$n_requests),
-        short_field("Number of 5XXs", results$n_5xx),
-        short_field("Number of 504s", results$n_504),
-        short_field("5XX error rate (%)", round(results$pct_5xx, 4)),
-        short_field("Profiles request count", results$n_profiles),
-        short_field("Other Web app requests", results$n_web),
-        short_field("Stream request count", results$n_stream),
-        short_field("Requests under 200ms (%)", round(results$pct_under200ms, 1)),
-        short_field("Mean request time", round(results$mean_time, 3)),
-        short_field("Max request time", round(results$max_time, 3))
+        short_field("Total request count", format(results$n_requests, big.mark=",")),
+        short_field("Number of 5XXs", pct_reqs(results$n_5xx, nsmall=4)),
+        short_field("Number of 504s", format(results$n_504, big.mark=",")),
+        short_field("Profiles request count", pct_reqs(results$n_profiles, nsmall=1)),
+        short_field("Other Web app requests", pct_reqs(results$n_web, nsmall=1)),
+        short_field("Stream request count", pct_reqs(results$n_stream, nsmall=1)),
+        short_field("Requests under 200ms (%)", format(results$pct_under200ms, nsmall=1)),
+        short_field("Mean request time", format(results$mean_time, nsmall=3)),
+        short_field("Max request time", format(results$max_time, nsmall=3))
     )
     color <- nines_to_color(results$pct_5xx)
     return(list(list(
