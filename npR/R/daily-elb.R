@@ -61,7 +61,8 @@ computeELBSummary <- function (start, end) {
                     n_under200ms=sum(time < .2),
                     n_stream=sum(segment == "Stream"),
                     n_profiles=sum(segment == "Profiles"),
-                    n_web=sum(segment == "Web app")
+                    n_web=sum(segment == "Web app"),
+                    n_state=sum(grepl("GET.*/state/", request))
                 )
             }
         ) %>%
@@ -73,6 +74,7 @@ computeELBSummary <- function (start, end) {
             n_stream=sum(n_stream),
             n_profiles=sum(n_profiles),
             n_web=sum(n_web),
+            n_state=sum(n_state),
             max_time=max(max_time),
             pct_5xx=100*n_5xx/n_requests,
             pct_under200ms=100*sum(n_under200ms)/n_requests,
@@ -92,10 +94,11 @@ slackELBBody <- function (results) {
         short_field("Total request count", format(results$n_requests, big.mark=",")),
         short_field("Number of 5XXs", pct_reqs(results$n_5xx, nsmall=4)),
         short_field("Number of 504s", format(results$n_504, big.mark=",")),
+        short_field("Requests under 200ms (%)", format(results$pct_under200ms, nsmall=1)),
         short_field("Profiles request count", pct_reqs(results$n_profiles, nsmall=1)),
         short_field("Other Web app requests", pct_reqs(results$n_web, nsmall=1)),
         short_field("Stream request count", pct_reqs(results$n_stream, nsmall=1)),
-        short_field("Requests under 200ms (%)", format(results$pct_under200ms, nsmall=1)),
+        short_field("State polling count", pct_reqs(results$n_state, nsmall=1)),
         short_field("Mean request time", format(results$mean_time, nsmall=3)),
         short_field("Max request time", format(results$max_time, nsmall=3))
     )
