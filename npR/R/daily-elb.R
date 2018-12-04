@@ -9,12 +9,12 @@ elbSummary <- function (days, before.date=Sys.Date(), send=TRUE, ...) {
 
     results <- computeELBSummary(start, end)
     body <- slackELBBody(results)
-    body$title <- paste("ELB summary for", date_range_label(start, end))
+    body[[1]]$title <- paste("ELB summary for", date_range_label(start, end))
     icon <- elb_icon_emoji(body[[1]]$color, perfect = results$n_5xx == 0)
     if (send) {
         slack(
             channel="systems",
-            username="jenkins",
+            username="crunchbot",
             icon_emoji=icon,
             attachments=body,
             ...
