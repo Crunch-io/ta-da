@@ -97,7 +97,7 @@ slackELBReport <- function (results) {
             short_field("Stream request count", n_stream),
             short_field("Requests under 200ms (%)", round(pct_under200ms, 1)),
             short_field("Mean request time", round(mean_time, 3)),
-            short_field("Max request time", round(max_time, 3)),
+            short_field("Max request time", round(max_time, 3))
         )
     )
     body <- list(list(
