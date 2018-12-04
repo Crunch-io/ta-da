@@ -1,0 +1,2 @@
+2016-01-01T22:40:04.416289Z eu-vpc 192.99.107.190:14311 10.30.0.5:80 0.000036 0.000605 0.000022 301 301 0 185 "GET http://eu.crunch.io:80/robots.txt HTTP/1.1" "Mozilla/5.0 (compatible; meanpathbot/1.0; +http://www.meanpath.com/meanpathbot.html)" - -
+2016-01-01T22:40:05.837728Z eu-vpc 192.99.107.190:44303 10.30.0.5:443 0.000044 0.000584 0.000025 200 200 0 1273 "GET https://beta.crunch.io:443/ HTTP/1.1" "Mozilla/5.0 (compatible; meanpathbot/1.0; +http://www.meanpath.com/meanpathbot.html)" DHE-RSA-AES128-SHA TLSv1.2

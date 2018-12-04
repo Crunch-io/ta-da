@@ -2,7 +2,7 @@
 #' @inheritParams summarize504s
 #' @export
 #' @importFrom dplyr mutate summarize case_when if_else
-elbSummary <- function (days, before.date=Sys.Date(), send=TRUE) {
+elbSummary <- function (days, before.date=Sys.Date(), send=TRUE, ...) {
     before.date <- as.Date(before.date)
     start <- before.date - days
     end <- before.date - 1
@@ -88,17 +88,15 @@ slackELBReport <- function (results) {
         icon_emoji <- ":scream_cat:"
     }
 
-    with(results,
-        fields <- list(
-            short_field("Total request count", n_requests),
-            short_field("Number of 5XXs", n_5xx),
-            short_field("Number of 504s", n_504),
-            short_field("5XX error rate (%)", round(pct_5xx, 4)),
-            short_field("Stream request count", n_stream),
-            short_field("Requests under 200ms (%)", round(pct_under200ms, 1)),
-            short_field("Mean request time", round(mean_time, 3)),
-            short_field("Max request time", round(max_time, 3))
-        )
+    fields <- list(
+        short_field("Total request count", results$n_requests),
+        short_field("Number of 5XXs", results$n_5xx),
+        short_field("Number of 504s", results$n_504),
+        short_field("5XX error rate (%)", round(results$pct_5xx, 4)),
+        short_field("Stream request count", results$n_stream),
+        short_field("Requests under 200ms (%)", round(results$pct_under200ms, 1)),
+        short_field("Mean request time", round(results$mean_time, 3)),
+        short_field("Max request time", round(results$max_time, 3))
     )
     body <- list(list(
         fallback=paste("ELB summary:", color),
