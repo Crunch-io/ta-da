@@ -6,8 +6,22 @@ elbSummary <- function (days, before.date=Sys.Date(), send=TRUE) {
     before.date <- as.Date(before.date)
     start <- before.date - days
     end <- before.date - 1
+
+    results <- computeELBSummary(start, end)
+    report <- slackELBReport(results)
+    body <- report$body
+    body$title <- paste("ELB summary for", date_range_label(start, end))
+    if (send) {
+        slack(channel="systems", username="jenkins",
+            icon_emoji=report$icon_emoji, attachments=body, ...)
+    } else {
+        print(body)
+    }
+}
+
+computeELBSummary <- function (start, end) {
     # Map over the log files and get the data
-    df <- ELBLog(start, end) %>%
+    ELBLog(start, end) %>%
         select(
             request,
             elb_status_code,
@@ -55,16 +69,6 @@ elbSummary <- function (days, before.date=Sys.Date(), send=TRUE) {
             pct_under200ms=100*sum(n_under200ms)/n_requests,
             mean_time=sum(total_time)/n_requests
         )
-
-    report <- slackELBReport(results)
-    body <- report$body
-    body$title <- paste("ELB summary for", date_range_label(start, end))
-    if (send) {
-        slack(channel="systems", username="jenkins",
-            icon_emoji=report$icon_emoji, attachments=body, ...)
-    } else {
-        print(body)
-    }
 }
 
 slackELBReport <- function (results) {
