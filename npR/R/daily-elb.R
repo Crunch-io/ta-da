@@ -8,12 +8,17 @@ elbSummary <- function (days, before.date=Sys.Date(), send=TRUE, ...) {
     end <- before.date - 1
 
     results <- computeELBSummary(start, end)
-    report <- slackELBReport(results)
-    body <- report$body
+    body <- slackELBBody(results)
     body$title <- paste("ELB summary for", date_range_label(start, end))
+    icon <- elb_icon_emoji(body[[1]]$color, perfect = results$n_5xx == 0)
     if (send) {
-        slack(channel="systems", username="jenkins",
-            icon_emoji=report$icon_emoji, attachments=body, ...)
+        slack(
+            channel="systems",
+            username="jenkins",
+            icon_emoji=icon,
+            attachments=body,
+            ...
+        )
     } else {
         print(body)
     }
@@ -71,23 +76,7 @@ computeELBSummary <- function (start, end) {
         )
 }
 
-slackELBReport <- function (results) {
-    if (results$pct_5xx < 0.001) {
-        ## Five nines!
-        color <- "good"
-        icon_emoji <- ifelse(summary['sum_500s'] == 0, ":parrot:", ":sunglasses:")
-    } else if (results$pct_5xx < 0.01) {
-        color <- "good"
-        icon_emoji <- ":simple_smile:"
-    } else if (results$pct_5xx < 0.1) {
-        ## Three nines
-        color <- "warning"
-        icon_emoji <- ":worried:"
-    } else {
-        color <- "danger"
-        icon_emoji <- ":scream_cat:"
-    }
-
+slackELBBody <- function (results) {
     fields <- list(
         short_field("Total request count", results$n_requests),
         short_field("Number of 5XXs", results$n_5xx),
@@ -98,12 +87,34 @@ slackELBReport <- function (results) {
         short_field("Mean request time", round(results$mean_time, 3)),
         short_field("Max request time", round(results$max_time, 3))
     )
-    body <- list(list(
+    return(list(list(
         fallback=paste("ELB summary:", color),
         fields=fields,
-        color=color
-    ))
-    return(list(body=body, icon_emoji=icon_emoji))
+        color=nines_to_color(results$pct_5xx)
+    )))
+}
+
+nines_to_color <- function (error_pct) {
+    if (error_pct < 0.01) {
+        return("good")
+    } else if (error_pct < 0.1) {
+        return("warning")
+    } else {
+        return("danger")
+    }
+}
+
+elb_icon_emoji <- function (color, perfect=FALSE) {
+    if (perfect) {
+        base <- "parrot"
+    } else {
+        base <- list(
+            good="simple_smile",
+            warning="worried",
+            danger="scream_cat"
+        )[[color]]
+    }
+    return(paste0(":", base, ":"))
 }
 
 date_range_label <- function (start, end) {
