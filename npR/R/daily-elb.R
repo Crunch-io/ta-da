@@ -87,10 +87,11 @@ slackELBBody <- function (results) {
         short_field("Mean request time", round(results$mean_time, 3)),
         short_field("Max request time", round(results$max_time, 3))
     )
+    color <- nines_to_color(results$pct_5xx)
     return(list(list(
         fallback=paste("ELB summary:", color),
         fields=fields,
-        color=nines_to_color(results$pct_5xx)
+        color=color
     )))
 }
 
