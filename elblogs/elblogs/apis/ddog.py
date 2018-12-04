@@ -22,7 +22,8 @@ def query(query, start, end):
     response = api.Metric.query(start=start, end=end, query=query)
     if 'series' in response and len(response['series']):
         # We have data. Sum the points.
-        return sum(int(val[1]) for val in response['series'][0]['pointlist'])
+        # `or 0` is because apparently 0 is now coming back as `null`
+        return sum(int(val[1] or 0) for val in response['series'][0]['pointlist'])
     else:
         # No values found in this range, which means 0 count
         return 0
