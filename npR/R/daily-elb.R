@@ -57,9 +57,11 @@ computeELBSummary <- function (start, end) {
                     n_5xx=sum(elb_status_code > 499),
                     n_504=sum(elb_status_code == 504),
                     total_time=sum(time),
-                    max_time=max(time),
+                    max_time=max(time[elb_status_code != 504]),
                     n_under200ms=sum(time < .2),
-                    n_stream=sum(segment == "Stream")
+                    n_stream=sum(segment == "Stream"),
+                    n_profiles=sum(segment == "Profiles"),
+                    n_web=sum(segment == "Web app")
                 )
             }
         ) %>%
@@ -69,6 +71,8 @@ computeELBSummary <- function (start, end) {
             n_5xx=sum(n_5xx),
             n_504=sum(n_504),
             n_stream=sum(n_stream),
+            n_profiles=sum(n_profiles),
+            n_web=sum(n_web),
             max_time=max(max_time),
             pct_5xx=100*n_5xx/n_requests,
             pct_under200ms=100*sum(n_under200ms)/n_requests,
@@ -82,6 +86,8 @@ slackELBBody <- function (results) {
         short_field("Number of 5XXs", results$n_5xx),
         short_field("Number of 504s", results$n_504),
         short_field("5XX error rate (%)", round(results$pct_5xx, 4)),
+        short_field("Profiles request count", results$n_profiles),
+        short_field("Other Web app requests", results$n_web),
         short_field("Stream request count", results$n_stream),
         short_field("Requests under 200ms (%)", round(results$pct_under200ms, 1)),
         short_field("Mean request time", round(results$mean_time, 3)),
