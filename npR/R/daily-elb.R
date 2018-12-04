@@ -1,6 +1,7 @@
 #' Generate a daily, weekly, whatever summary of web traffic
 #' @inheritParams summarize504s
 #' @export
+#' @importFrom dplyr mutate summarize case_when if_else
 elbSummary <- function (days, before.date=Sys.Date(), send=TRUE) {
     before.date <- as.Date(before.date)
     start <- before.date - days

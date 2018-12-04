@@ -8,10 +8,7 @@ Description: A longer statement about what this does. It must have at least one
     may not report on these, but see  <https://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file>.
     Failure to obey may result in CRAN rejecting your package submission.
 Version: 0.1.0
-Date: 2017-06-11
 Authors@R: person("Neal", "Richardson", role=c("aut", "cre"), email="neal@crunch.io")
-Author: Neal Richardson [aut, cre]
-Maintainer: Neal Richardson <neal@crunch.io>
 URL: https://github.com/Crunch-io/tools/npR
 License: MIT + file LICENSE
 Depends:
@@ -27,5 +24,5 @@ Suggests:
     httptest,
     superadmin,
     useRsnap
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)

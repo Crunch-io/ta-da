@@ -4,8 +4,8 @@
 \alias{supportReport}
 \title{Support Reports}
 \usage{
-supportReport(date = "yesterday", subtitle = paste("Date range:", date),
-  ...)
+supportReport(date = "yesterday", subtitle = paste("Date range:",
+  date), ...)
 }
 \arguments{
 \item{date}{string a Pivotal date query. See
