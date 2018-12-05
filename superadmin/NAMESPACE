@@ -3,6 +3,7 @@
 S3method(print,SlowRequest)
 export("featureFlags<-")
 export(SlowRequest)
+export(crunchbot)
 export(extractDatasetID)
 export(featureFlags)
 export(formatSRmeta)

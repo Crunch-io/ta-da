@@ -5,8 +5,8 @@
 \alias{superDisconnect}
 \title{Connect and Disconnect to the Admin Server}
 \usage{
-superConnect(host = "eu", local.port = getOption("superadmin.local.port"),
-  remote.port = 8081)
+superConnect(host = "eu",
+  local.port = getOption("superadmin.local.port"), remote.port = 8081)
 
 superDisconnect(local.port = getOption("superadmin.local.port"))
 }

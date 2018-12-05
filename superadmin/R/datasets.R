@@ -14,11 +14,12 @@ getDatasets <- function (...) {
     }
     out <- content(out)$datasets
     col.names <- c("id", "name", "description", "archived",
-        "owner_name", "owner_type", "owner_id")
+        "project_name", "project_id")
     if (length(out)) {
         df <- as.data.frame(do.call(rbind, lapply(out,
             function (x) {
-                x$owner_name <- x$owner$name
+                x$project_name <- x$project$name
+                x$project_id <- x$project$id
                 return(x)
             })), stringsAsFactors=FALSE)
         ## Return the ones we care about. Intersect in order to future proof
