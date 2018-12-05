@@ -11,4 +11,6 @@ test_that("pretty", {
     expect_identical(pretty(1234.123123), "1,234")
     expect_identical(pretty(1234.123123, 2), "1,234.12")
     expect_identical(pretty(1234.1, 2), "1,234.10")
+    expect_identical(pretty(0.000082123, 4), "<0.0001")
+    expect_identical(pretty(0.000082123, 5), "0.00008")
 })

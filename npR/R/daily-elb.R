@@ -111,7 +111,11 @@ slackELBBody <- function (results) {
 }
 
 pretty <- function (num, digits=0, ...) {
-    format(round(num, digits), big.mark=",", nsmall=digits)
+    threshold <- 10^-digits
+    if (num < threshold) {
+        return(paste0("<", format(threshold, nsmall=digits, scientific=FALSE)))
+    }
+    format(round(num, digits), big.mark=",", nsmall=digits, scientific=FALSE, ...)
 }
 
 nines_to_color <- function (error_pct) {
