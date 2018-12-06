@@ -3,11 +3,12 @@ date = "2018-12-05T23:20:47-04:00"
 draft = false
 title = "Improved organization and navigation of Crunch datasets"
 description = "For our early access users: we're moving to a folder-based, nested organization scheme for datasets; this should make datasets easier to organize and easier to navigate."
+news_description = "For our early access users: we're moving to a folder-based, nested organization scheme for datasets; this should make datasets easier to organize and easier to navigate. Click for more information."
 weight = 20
 tags = ["organization", "early access", "datasets"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-
+labs_only = true
 
 +++
 
