@@ -17,7 +17,7 @@
                             {{ range first 1 .Data.Pages }}
                             <div class="col-md-8" onclick="location.href='{{ .Permalink }}'" style="cursor: pointer;">
                                 <h2>{{ .Title | emojify }}</h2>
-                                <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+                                <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
                                 <p class="lead">{{ slicestr .Summary 0 80 | emojify }}...</p>
                                 <a href="{{ .Permalink }}">Learn More &#10230;</a>
                             </div>
@@ -44,7 +44,7 @@
                                   <div class="posts">
                                       {{ if gt (len .Summary) 90 }}
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
-                                      <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+                                      <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
                                       <p>{{ .Params.description }}</p>
                                       <a href="{{ .Permalink }}">Learn More &#10230;</a>
                                       {{ end }}

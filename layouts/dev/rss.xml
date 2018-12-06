@@ -19,7 +19,8 @@
       <pubDate>{{ .PublishDate.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</pubDate>
       {{ with .Site.Author.email }}<author>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</author>{{end}}
       <guid>{{ .Permalink }}</guid>
-      <other>Foo</other>
+      <labsOnly>{{ .Params.labs_only | default false}}</labsOnly>
+      <noProfiles>{{ .Params.no_profiles | default false}}</noProfiles>
       <description>{{ .Params.news_description | default .Description | emojify | html }}</description>
     </item>
     {{ end }}

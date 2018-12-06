@@ -4,6 +4,7 @@ draft = false
 title = "Deliver New Data When You’re Ready"
 description = "Our new draft-and-publish feature allows you to prepare and review changes to data before pushing them to everyone."
 weight = 20
+no_profiles = true
 tags = ["draft and publish", "clients"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
