@@ -1,0 +1,103 @@
+{{ partial "head.html" . }}
+
+<div id="first-content"></div>
+
+{{ partial "header.html" . }}
+
+<div id="dot-nav" class="float-right">
+     <ul>
+        <li><a href="crunchbox/#first-content">1</a></li>
+        <li><a href="crunchbox/#second-content">2</a></li>
+        <li><a href="crunchbox/#third-content">3</a></li>
+     </ul>
+</div>
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="crunchbox-content">
+
+                <div class="page-scroll intro-marketing-pages green">
+                    <div class="jumbotron">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3 position-fixed d-none d-sm-block">
+                                    <h1>{{ .Params.title }}</h1>
+                                </div>
+
+                                <div class="col-sm-12 col-md-8 offset-md-4">
+                                    <h1 class="d-block d-sm-none">{{ .Params.title }}</h1>
+
+                                    <h2>{{ .Params.description }}</h2>
+
+                                    <div id="learn-more-img-2">
+                                        <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;" class="add-shadow">
+                                             <iframe src="{{ .Params.video }}"
+                                             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
+                                         </div>
+                                    </div>
+
+                                    <p style="margin-top:40px;">{{ .Content }}</p>
+                                </div>
+                            </div> <!-- /.row -->
+                        </div> <!-- /.container -->
+                    </div> <!-- /.jumbotron -->
+                </div> <!-- /.intro-marketing-pages -->
+
+                <section id="second-content" class="page-scroll content-two">
+                    <div class="jumbotron">
+                        <div class="container">
+                        {{ range .Data.Pages }}
+                            {{ if and (eq .Type "crunchbox") (eq .Title "Try crunchbox") }}
+                            <div class="row">
+                                <div class="col-md-3"></div>
+
+                                <div class="col-md-8 offset-md-1">
+                                    <h2>{{ .Params.description }}</h2>
+                                    <br>
+                                    <div class="crunchbox-container">
+                                        <div class="crunchbox">
+                                            <iframe src="{{ .Params.crunchbox }}" width="100%" height="450"></iframe>
+                                        </div>
+                                    </div> <!-- /.crunchbox -->
+                                    <p>{{ .Content }}</p>
+                                </div>
+                            </div>
+                            {{ end }}
+                        {{ end }}
+                        </div> <!-- /.container -->
+                    </div> <!-- /.jumbotron -->
+                </section>
+
+                <section id="third-content" class="page-scroll content-three">
+                    <div class="jumbotron">
+                        <div class="container">
+                        {{ range .Data.Pages }}
+                            {{ if and (eq .Type "crunchbox") (eq .Title "Create crunchbox") }}
+                            <div class="row">
+                                <div class="col-md-3"></div>
+
+                                <div class="col-md-8 offset-md-1">
+                                    <div id="learn-more-img-2">
+                                        <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
+                                             <iframe src="{{ .Params.video }}"
+                                             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
+                                         </div>
+                                    </div>
+
+                                    <p>{{ .Content }}</p>
+                                </div>
+                            </div>
+                            {{ end }}
+                        {{ end }}
+                        </div> <!-- /.container -->
+                    </div> <!-- /.jumbotron -->
+                </section>
+
+            </div> <!-- /.crunchbox-content -->
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

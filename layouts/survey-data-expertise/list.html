@@ -1,0 +1,94 @@
+{{ partial "head.html" . }}
+
+<div id="first-content"></div>
+
+{{ partial "header.html" . }}
+
+    <div id="dot-nav" class="float-right">
+         <ul>
+            <li><a href="survey-data-expertise/#first-content">1</a></li>
+            <li><a href="survey-data-expertise/#second-content">2</a></li>
+            <li><a href="survey-data-expertise/#third-content">3</a></li>
+         </ul>
+    </div>
+
+    <div id="wrapper">
+
+        <div id="secondary-pages-wrapper">
+            <div class="container-fluid">
+
+                <div class="survey-data-expertise">
+
+                    <div class="page-scroll intro-marketing-pages green">
+                        <div class="jumbotron">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3 position-fixed d-none d-sm-block">
+                                        <h1>{{ with .Params.title }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</h1>
+                                    </div>
+
+                                    <div class="col-md-8 offset-md-4">
+                                        <h1 class="d-block d-sm-none">{{ with .Params.title }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</h1>
+
+                                        <h2>{{ .Params.description }}</h2>
+
+                                        <div id="learn-more-img-1">
+                                            <img src="img/{{ .Params.img }}" class="img-fluid add-shadow">
+                                        </div>
+
+                                        <p>{{ .Content }}</p>
+                                    </div>
+                                </div> <!-- /.row -->
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </div> <!-- /.intro-marketing-pages -->
+
+                    <section id="second-content" class="page-scroll content-two">
+                        <div class="jumbotron">
+                            <div class="container">
+                            {{ range .Data.Pages }}
+                                {{ if and (eq .Type "survey-data-expertise") (eq .Title "Survey data effortlessly") }}
+                                <div class="row">
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-8 offset-md-1">
+                                        <div id="learn-more-img-2">
+                                            <img src="img/{{ .Params.img }}" class="img-fluid add-shadow">
+                                        </div>
+                                        <p>{{ .Content }}</p>
+                                    </div>
+                                </div>
+                                {{ end }}
+                            {{ end }}
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                    <section id="third-content" class="page-scroll content-three">
+                        <div class="jumbotron">
+                            <div class="container">
+                            {{ range .Data.Pages }}
+                                {{ if and (eq .Type "survey-data-expertise") (eq .Title "Crunch is extensive") }}
+                                <div class="row">
+                                    <div class="col-md-3 offset-md-1">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h2>{{ .Params.description }}</h2>
+                                        <br>
+                                        <div id="learn-more-img-3">
+                                            <img src="img/{{ .Params.img }}" class="img-fluid add-shadow">
+                                        </div>
+                                        <p>{{ .Content }}</p>
+                                    </div>
+                                </div> <!-- /.row. -->
+                                {{ end }}
+                            {{ end }}
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </section>
+
+                </div> <!-- /.survey-data-expertise -->
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

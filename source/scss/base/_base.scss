@@ -1,0 +1,27 @@
+body {
+    color: $color-off-black;
+    font-family: ProximaNova, sans-serif;
+    line-height: 1.7;
+    height: 100%;
+    @include font-smoothing(antialiased);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 100;
+}
+
+p {
+    font-weight: 400;
+}
+
+a, a:hover, a:active {
+    color: $color-blue;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.down-arrow {
+    margin-left: -15px;
+}

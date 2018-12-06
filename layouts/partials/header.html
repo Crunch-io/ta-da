@@ -1,55 +1,54 @@
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-top" role="navigation">
-    <div class="container navbar-content">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img class="d-inline-block align-top" src="img/crunch_logo.svg" alt="" width="140"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="page-scroll" href="/"><img class="header-logo" src="/img/crunch_logo_reversed.png" height=40></a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" href="/#product">Product</a>
-                </li>
-                <li>
-                    <a href="/team">Team</a>
-                </li>
-                <li>
-                    <a href="/jobs">Jobs</a>
-                </li>
-                <!-- <li>
-                    <a href="/dev">Blog</a>
-                </li> -->
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                    Blog
 
-                    <span class="caret"></span>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Capabilities
                   </a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li>
-                      <a href="/dev/features" class="dropdown-menu-element">New Features</a>
-                    </li>
-                    <li>
-                      <a href="/dev/blog" class="dropdown-menu-element">Dev Blog</a>
-                    </li>
-                  </ul>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="powerful-survey-analytics">Powerful Survey Analytics</a>
+                      <a class="dropdown-item" href="visualization">Visualization and Delivery</a>
+                      <a class="dropdown-item" href="crunchbox">CrunchBox</a>
+                      <a class="dropdown-item" href="survey-data-expertise">Survey Data Expertise</a>
+                      <a class="dropdown-item" href="crunchdb">CrunchDB</a>
+                      <a class="dropdown-item" href="api">API</a>
+                  </div>
                 </li>
-                <li>
-                    <a href="http://support.crunch.io/">Support</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Company
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="about">About</a>
+                      <a class="dropdown-item" href="team">Team</a>
+                      <a class="dropdown-item" href="jobs">Careers</a>
+                  </div>
                 </li>
-                <li>
-                    <a href="http://app.crunch.io/">Sign in</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Support
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="http://support.crunch.io/" target="_blank">Help Pages</a>
+                      <a class="dropdown-item" href="http://docs.crunch.io/" target="_blank">API Documentation</a>
+                  </div>
                 </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#Modal" id="openForm">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://app.crunch.io/" target="_blank">Sign In</a>
+                </li>
+                <li class="nav-item">
+                  <a class="btn btn-secondary" href="#" data-toggle="modal" data-target="#Modal" id="openForm">Get a trial</a>
+                </li>
+              </ul>
+            </div>
+        </div> <!-- /.container -->
+    </nav>

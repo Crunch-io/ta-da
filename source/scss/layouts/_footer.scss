@@ -1,0 +1,50 @@
+// Footer
+.footer {
+    position: relative;
+    z-index: 10;
+    padding: 20px 0;
+
+    .nav {
+        .nav-item a {
+            color: $font-color-dark-grey;
+
+            &:hover {
+                color: $font-color-light-grey;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(xs) {
+
+    .footer {
+
+        & ul.list-inline {
+
+            .list-inline-item {
+                display: block;
+            }
+
+        }
+    }
+
+}
+
+.bg-black {
+    background-color: $color-off-black;
+
+    .nav-link {
+        color: $color-white;
+
+        &:hover {
+            color: $color-grey-darker;
+        }
+    }
+}
+
+// Modal
+.modal {
+    .modal-body {
+        padding: 2rem;
+    }
+}

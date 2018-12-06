@@ -1,0 +1,43 @@
+{{ partial "head.html" . }}
+
+<div id="first-content"></div>
+
+{{ partial "header.html" . }}
+
+    <div id="wrapper">
+
+        <div id="secondary-pages-wrapper">
+            <div class="container-fluid">
+
+                <div class="api-content">
+
+                    <div class="intro-marketing-pages">
+                        <div class="jumbotron">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h1>The Crunch {{ .Params.title }}</h1>
+                                    </div>
+
+                                    <div class="col-md-8 offset-md-1">
+                                        <h2>{{ .Params.description }}</h2>
+
+                                        <div id="learn-more-img-1">
+                                            <img src="img/{{ .Params.img }}" alt="" class="img-fluid">
+                                        </div>
+
+                                        <p style="margin-top:40px;">{{ .Content }}</p>
+
+                                        <a href="http://docs.crunch.io/">Learn more &#10230;</a>
+                                    </div>
+                                </div> <!-- /.row -->
+                            </div> <!-- /.container -->
+                        </div> <!-- /.jumbotron -->
+                    </div> <!-- /.intro-marketing-pages -->
+
+                </div> <!-- /.api-content -->
+
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

@@ -1,23 +1,69 @@
 {{ partial "head.html" . }}
+
 {{ partial "header.html" . }}
 
-{{ partial "container-intro.html" . }}
+<div id="wrapper">
 
-<div id="post-box">
-<div class="wrap">
-    <p>{{.Content}}</p>
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
 
-    {{ partial "equal-opportunity.html" }}
+            <div class="jobs-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-7">
+                                <h1 class="display-4"><span>{{ .Title }}</span></h1>
+                            </div>
 
-</div>
+                            <div class="col-md-4">
+                                <p>{{ .Content }}</p>
+                                <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
+                            </div>
 
-<ul>
-    {{ range .Data.Pages.ByWeight }}
-        <li>
-            <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-        </li>
-    {{ end }}
-</ul>
-</div>
+                        </div> <!-- /.row -->
 
-{{ partial "footer" . }}
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.jobs-content -->
+
+            <div class="secondary-content">
+              <div class="container">
+
+                  <div class="row spacer-top spacer-bottom justify-content-md-center">
+                      <div class="col-md-5">
+                          <h2 class="text-center"><span>{{ .Params.description }}</span></h2>
+                      </div>
+                  </div>
+
+                  <div class="row spacer-bottom">
+                      {{ range .Pages.ByWeight }}
+                          <div class="col-md-6 col-lg-4">
+                              <div class="post-card post-job" onclick="location.href='{{ .Permalink }}'">
+                                  <div class="posts">
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                      <a href="{{ .Permalink }}">Learn More &#10230;</a>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+                  </div>
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+            <div class="footer-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Learn about <span>our team</span></h1>
+                                <a href="team" class="btn btn-link">Our team &#10230;</a>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

@@ -6,6 +6,8 @@ draft = false
 tags = ["automation"]
 title = "Using Travis-CI to Build Static Sites"
 weight = 20
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
 
 +++
 

@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i');
+
+h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2em;
+
+    span {
+        font-style: italic;
+    }
+}
+
+h2 {
+    font-size: 1.5em;
+
+    &.quotes {
+        font-family: 'Libre Baskerville', serif;
+        font-size: 1.8em;
+        color: $color-green;
+
+        span {
+            font-style: italic;
+        }
+    }
+}
+
+h4 {
+    font-size: 1.2em;
+}
+
+.lead {
+    font-size: 1.2em;
+    line-height: 1.5em;
+}
+
+@include media-breakpoint-down(xs) {
+    h1 {
+        font-size: 2em;
+    }
+}
+
+.subtitle {
+    color: $font-color-off-black;
+    font-weight: 700;
+    margin-bottom: 30px;
+}

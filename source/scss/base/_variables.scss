@@ -1,0 +1,41 @@
+// Crunch Colors
+$color-purple:                     #722580;
+$color-blue:                       #0064a4;
+$color-green:                      #107f65;
+$color-white:                      #ffffff;
+$color-off-black:                  #1D1D26;
+
+// 7 shades of grey
+$color-grey-lighest:               #f9f9f9;
+$color-grey-ligher:                #f1f1f1;
+$color-grey-light:                 #efefef;
+$color-grey-normal:                #e5e5e5;
+$color-grey-dark:                  #d3d3d3;
+$color-grey-darker:                #cccccc;
+$color-grey-darkest:               #bbbbbb;
+
+// text colors
+$font-color-dark-grey:             #444444;
+$font-color-off-black:             #1D1D26;
+$font-color-light-grey:            #888;
+$font-color-lighter-grey:          #aaa;
+
+// percent
+$darker-color-percent:             10%;
+
+// css variables for primary colors used in the application
+$--primary-color: $color-blue;
+$--secondary-color: $color-green;
+$--message-color: $color-purple;
+
+$--darker-primary-color: darken($color-blue, $darker-color-percent);
+$--light-primary-color: desaturate(lighten($color-blue, 30%), 50%);
+$--lighter-primary-color: desaturate(lighten($color-blue, 80%), 50%);
+
+$--darker-secondary-color: darken($color-green, $darker-color-percent);
+$--light-secondary-color: desaturate(lighten($color-green, 30%), 50%);
+$--lighter-secondary-color: desaturate(lighten($color-green, 80%), 50%);
+
+$--darker-message-color: darken($color-purple, $darker-color-percent);
+$--light-message-color: desaturate(lighten($color-purple, 30%), 50%);
+$--lighter-message-color: desaturate(lighten($color-purple, 80%), 50%);

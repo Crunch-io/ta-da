@@ -1,14 +1,12 @@
-baseURL = "http://crunch.io/"
+baseURL = "//crunch.io/"
 googleAnalytics = "UA-50332119-2"
 
 languageCode = "en-us"
-title = "Crunch"
-theme = "landing-page-hugo"
-relativeURLs = true
-
-sectionPagesMenu = "main"
+title = "Modern survey data analysis"
+MetaDataFormat = "toml"
 
 [params]
-description = "A modern platform"
-description2 = "for analytics"
-copyofbaseURL = "http://crunch.io/"
+description = "Prepare and analyze survey data quickly and easily."
+product = "xtabs_intro.gif"
+arrow = "arrow.png"
+images = ["//crunch.io/img/logo-1200x630.png"]

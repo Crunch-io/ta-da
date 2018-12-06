@@ -6,25 +6,29 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Crunch Internals • Crunch</title>
-<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="../extra.css" rel="stylesheet">
+<meta property="og:title" content="Crunch Internals">
+<meta property="og:description" content="Here are some details on how the Crunch API works, which may be useful to know if you’re looking to do complex actions or trying to understand how to improve performance of your R code.">
+<meta property="og:image" content="http://crunch.io/r/crunch/logo.png">
+<meta name="twitter:card" content="summary">
+<!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><!-- Google analytics --><script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+<![endif]--><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-50332119-2"></script><script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  ga('create', 'UA-50332119-2', 'auto');
-  ga('send', 'pageview');
-
+  gtag('config', 'UA-50332119-2');
 </script>
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -33,15 +37,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">crunch</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">Crunch</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.24.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../articles/getting-started.html">Intro</a>
+  <a href="../articles/crunch.html">Intro</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -51,7 +59,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/getting-started.html">Getting Started</a>
+      <a href="../articles/crunch.html">Getting Started</a>
     </li>
     <li>
       <a href="../articles/datasets.html">Datasets</a>
@@ -63,10 +71,13 @@
       <a href="../articles/array-variables.html">Array Variables</a>
     </li>
     <li>
-      <a href="../articles/variable-order.html">Reorder Variables</a>
+      <a href="../articles/variable-order.html">Organize Variables</a>
     </li>
     <li>
       <a href="../articles/derive.html">Derive Variables</a>
+    </li>
+    <li>
+      <a href="../articles/analyze.html">Analyze Data</a>
     </li>
     <li>
       <a href="../articles/filters.html">Filter Data</a>
@@ -75,9 +86,24 @@
       <a href="../articles/export.html">Export Data</a>
     </li>
     <li>
+      <a href="../articles/projects.html">Projects</a>
+    </li>
+    <li>
+      <a href="../articles/fork-and-merge.html">Fork and Merge</a>
+    </li>
+    <li>
+      <a href="../articles/subtotals.html">Subtotals and Headings</a>
+    </li>
+    <li>
       <a href="../articles/crunch-internals.html">Crunch Internals</a>
     </li>
+    <li>
+      <a href="../articles/abstract-categories.html">Abstract Categories</a>
+    </li>
   </ul>
+</li>
+<li>
+  <a href="../news/">News</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -88,7 +114,13 @@
   </a>
 </li>
       </ul>
+<form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
+      </form>
+      
+    </div>
 <!--/.nav-collapse -->
   </div>
 <!--/.container -->
@@ -97,15 +129,19 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Crunch Internals</h1>
             
-          </div>
+      
+      <small class="dont-index">Source: <a href="https://github.com/Crunch-io/rcrunch/blob/master/vignettes/crunch-internals.Rmd"><code>vignettes/crunch-internals.Rmd</code></a></small>
+      <div class="hidden name"><code>crunch-internals.Rmd</code></div>
+
+    </div>
 
     
     
-<div class="contents">
+<p><a href="subtotals.html">Previous: subtotals</a></p>
 <p>The Crunch web app and the <code>crunch</code> package are both built on a <a href="http://docs.crunch.io/">REST API</a>. Users can interact with very large datasets because most of the heavy computation is done on the Crunch servers and not on the users computer. In most cases, you don’t need to know how the API works—the R package handles the HTTP requests and responses and presents meaningful objects and methods to you. To go beyond the basics, though, it can be useful to understand how the API works so that you can make more complex or more efficient (read: faster) operations.</p>
 <div id="catalogs" class="section level3">
 <h3 class="hasAnchor">
@@ -125,25 +161,85 @@ datasets(proj)</code></pre>
 datasets(proj) &lt;- ds</code></pre>
 <p>Internally there is actually a second method <code>datasets&lt;-</code> that takes the value on the right hand side of the <code>&lt;-</code> operator and posts that value to the datasets attribute of the project catalog. The projects catalog will then update to reflect that a dataset belongs to a particular catalog, and that will be reflected in the web app. Similar patterns happen when you get and set attributes on objects, like “names”.</p>
 </div>
+<div id="cube-subsetting" class="section level2">
+<h2 class="hasAnchor">
+<a href="#cube-subsetting" class="anchor"></a>Cube Subsetting</h2>
+<p>Crunch cubes are generally used to cross tabulate different variables in a crunch dataset. For instance if you cross tabulate two variables with <code><a href="../reference/crtabs.html">crtabs(~cyl + gear, data = ds)</a></code>, you get a 2 dimensional cube which looks just like a matrix. Cross tabbing three variables leads to a 3d cube, etc. This simple case gets quite a bit more complicated when you add array variables to the cube:</p>
+<p><em>Multiple response</em></p>
+<p>Multiple response variables are themselves 2d arrays with the items or responses on one dimension and the selection status on the second dimension. The result is that a categorical-by-MR cube ends up with three dimensions: the categorical variable categories, the MR items/responses, and the MR selection status.</p>
+<p><em>Categorical array</em> Categorical arrays are also represented cubes as 2d arrays. With the items/responses (the subvariable labels) on one dimension, and their categories on another dimension.</p>
+<div id="cube-to-array" class="section level3">
+<h3 class="hasAnchor">
+<a href="#cube-to-array" class="anchor"></a>Cube to Array</h3>
+<p>The main feature of representing these counts as high dimensional arrays is that it makes a number of computational tasks a lot easier, but the problem is that you can quickly end up with cubes which are difficult for humans to conceptualize. For example if you created a cube with one MR variable which had 5 categories, one MR variable with 6 categories, and a categorical variable with 10 categories it would have 5 dimensions with 2700 <code>(5*3 * 6*3 * 10)</code> entries. This is hard to understand and to print, and as a result we try to figure out the parts of the cube which the user is interested in and print that sub-cube. For the purposes of this document we need three terms for cubes:</p>
+<p><em>Real cube</em>: The cube with all of the underlying data <em>User cube</em>: The cube the user thinks they’re interacting with. This is the same as the real cube without MR selection dimensions <em>Printed cube</em> The cube which prints to the console. The same as the the user cube but with missing categories suppressed.</p>
+<p>The user cube differs from the real cube in that it doesn’t include MR selection dimensions. We assume that when the user is including an MR in a cube, they really only care about the parts of the cube where the MR is selected. So the 5d real cube listed above would become a 3d user cube with 300 entries (<code>5 * 6 * 10</code>) because we are selecting the slices of the cube where each MR selection dimension is equal to “Selected” and are able to drop the selections dimensions</p>
+<p>The printed cube differs from the user cube in that it doesn’t include missing categories. We assume that the user mostly wants to look at categories which are not-missing, and that they don’t care that much about the parts of the cube which represent missing categories. If the categorical variable above had two missing categories: “No Data” and “Not Answered” it would reduce the number of entries to 240 (<code>5 * 6 * 8</code>) . This behavior can be changed by setting the <code>cube@useNA</code> slot to <code>“always”</code>. The function <code>setCubeNa()</code> handles setting this slot on the cube.</p>
+</div>
+<div id="cube-subsetting-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#cube-subsetting-1" class="anchor"></a>Cube subsetting</h3>
+<p>This structure gets a little tricky when we subset the cube. For instance the cube we’ve been working with has 5 dimensions, but to the user appears to only have 3, so should they subset it as a 5 dimensional array like <code>cube[1, 1,  2:3, 1, 5]</code> or a 3 dimensional array <code>cube[1, 2:3, 5]</code>. Similarly, if a dimension is missing, should that be included in the subset. For example if a cube has three entries A, B, C, along one dimension, and B is hidden, should <code>cube[ , 1:2]</code> return A, A &amp; B, or A &amp;C? Similarly should <code>dim(cube)</code> show the dimensions of the real cube or the printed cube?</p>
+<p>We resolve this problem by allowing the user to select whether they want the cube to represent the user cube or the printed cube, and make all of the behavior of those cubes consistent. The <code>cube@useNA</code> controls whether the user wanted to interact with the printed cube or the user cube and they can <code><a href="../reference/cube-missingness.html">showMissing()</a></code> and <code><a href="../reference/cube-missingness.html">hideMissing()</a></code> functions to control which cube they are interacting with</p>
+<pre><code>&gt; dim(cube)
+[1] 5 6 8
+&gt; dim(showMissing(cube))
+[1] 5 6 10</code></pre>
+<p>This makes subsetting a bit easier because we can enforce the dimensions of the printed cube. For instance</p>
+<pre><code>cube[5, 6, 10] </code></pre>
+<p>Errors because the user supplied the wrong number of dimensions while</p>
+<pre><code>showMissing(cube)[cube[5, 6, 10] </code></pre>
+<p>Returns the correct data they were looking for.</p>
+<p>Subsetting the printed cube</p>
+<p>There are two cases for dropping dimensions from the printed and user cubes which need special handling.</p>
+<p><em>Dropping MR variable</em></p>
+<p>MR dimensions are always dropped together. Consider a cube composed of a multiple response variable and a categorical variable. The real cube has three dimensions, and the printed cube has two, the first of which represents the multiple response variable. If the user asks for <code>cube[1, ]</code> both MR dimensions are dropped and a one dimensional cube is returned.</p>
+<p><em>Subsetting dimensions with missing values</em></p>
+<p>When the user is interacting with the the printed cube, they are relating to a cube without missing categories. As a result when they subset this cube, missing categories should not be carried forward. For instance if a cube has two categorical dimensions with one missing category each, <code>dim(cube)</code> will return <code>c(2, 2)</code> <code>dim(showMissing(cube))</code>, will return <code>c(3, 3)</code>. If the user subsets either of these dimensions, for instance with cube[ , 2] the missing categories of the second dimension will be dropped (because the user is explicitly not selecting that category), and that dimension will be dropped. If the user wants to subset a cube to preserve missing categories, they need to subset the user cube with <code>showMissing(cube)[, c(2, 4)]</code></p>
+<p><a href="abstract-categories.html">Next: Category objects</a></p>
+</div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#cube-subsetting">Cube Subsetting</a></li>
+      </ul>
+</div>
       </div>
 
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Neal Richardson.</p>
+  <p>Developed by Neal Richardson, Jonathan Keane, Gordon Shotwell.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
 </div>
 
-  </body>
+  
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script>
+  docsearch({
+    
+    
+    apiKey: '9fbcb3ae4d05600402e31f66b9b9501e',
+    indexName: 'crunch',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+</body>
 </html>

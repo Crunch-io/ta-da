@@ -2,13 +2,20 @@
 set -ev
 if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     git clone --branch v2 https://github.com/go-yaml/yaml $GOPATH/src/gopkg.in/yaml.v2
-    go get -u -v github.com/spf13/hugo
+    mkdir ${TRAVIS_HOME}/src
+    cd ${TRAVIS_HOME}/src
+    git clone https://github.com/gohugoio/hugo.git
+    cd hugo
+    go install
+
+    cd ${GOPATH}/src/github.com/Crunch-io/ta-da
     git config --global user.email "systems+crunchbot@crunch.io"
     git config --global user.name "Crunchbot"
-    git clone https://github.com/crakjie/landing-page-hugo.git ./themes/landing-page-hugo
 
     if [ "${TRAVIS_BRANCH}" = "src" ]; then
         # Production
+        npm install
+        npm run build:scss
         hugo
 
         git clone -b master https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG.git OUTPUT
@@ -21,9 +28,10 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     else
         # Dev
         # Sub in the staging URL into the config so the site URLs are built correctly
-        STAGING_URL=https://crunch-io.github.io/crunchy/newsite/
-        sed -i 's@http://crunch.io/@'"$STAGING_URL"'@g' config.toml
-
+        STAGING_URL=//crunch-io.github.io/crunchy/newsite/
+        perl -pe 's@\Q//crunch.io/@'"${STAGING_URL}"'@' -i config.toml
+        npm install
+        npm run build:scss
         hugo
 
         git clone --branch gh-pages https://${GH_TOKEN}@github.com/Crunch-io/crunchy.git ../crunchy

@@ -1,4 +1,6 @@
-themes/
 public/
-*.orig$
+static/css/
+*.orig
 .DS_Store
+node_modules/
+yarn.lock

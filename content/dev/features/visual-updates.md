@@ -6,6 +6,9 @@ description = "Our new visual updates make Crunch easier to use and let your dat
 weight = 20
 tags = ["graphs", "design"]
 categories = ["feature"]
+images = ["https://crunch.io/img/logo-1200x630.png"]
+
+
 +++
 
 We’ve been working on updating and improving the look of Crunch, and we wanted to take moment to call out a few of the recent improvements.
@@ -14,7 +17,7 @@ We’ve been working on updating and improving the look of Crunch, and we wanted
 
 You may have noticed that we recently updated the Crunch header.
 
-{{< figure src="../images/VizNewHeader.png" class="centered-image">}}
+{{< figure src="dev/features/images/VizNewHeader.png" class="img-fluid mx-auto md-block" width="100%">}}
 
 This new top bar provides a more unified look throughout the application, and allows us to move user settings, dataset settings, and project settings into unobtrusive and consistently located dropdown menus. Now, you can click the dataset or project name for actions related to it, while user settings and signing out are accessed by clicking the 3 vertical dots in the upper right.
 
@@ -24,7 +27,7 @@ We are very excited to be rolling out a complete refresh to all of our graphs �
 
 ### Bar plots
 
-{{< figure src="../images/VizBarPlots.png" class="floating-right">}}
+{{< figure src="dev/features/images/VizBarPlots.png" class="img-fluid mx-auto md-block" width="100%">}}
 
 Our bar plots now benefit from clearer labeling and improved interactivity. Hovering on a bar gives you the category label and the value.
 
@@ -32,16 +35,16 @@ In addition, you will now notice a third option available in the display control
 
 ### Stacked Bars
 
-{{< figure src="../images/VizStackedBars1.png" class="floating-left">}}
+{{< figure src="dev/features/images/VizStackedBars1.png" class="img-fluid mx-auto md-block" width="100%">}}
 When viewing a 2-way analysis, the display controller now offers two options for graphs – a grouped bar chart (seen above), as well as stacked bars. Stacked bars offer another way to see the data and make comparisons, and they offer greater information density, allowing you to make comparisons across more groups.
 
 <p style="clear:both"></p>
 
-{{< figure src="../images/VizStackedBars2.png" class="floating-right">}}
+{{< figure src="dev/features/images/VizStackedBars2.png" class="img-fluid mx-auto md-block" width="100%">}}
 You can toggle the base used for the stacked bars (i.e. whether the second variable is shown relative to the first variable or relative to the base as a whole), using the percentage-direction control.
 
 ### Time plots
-{{< figure src="../images/VizTimePlots.png" class="floating-left">}}
+{{< figure src="dev/features/images/VizTimePlots.png" class="img-fluid mx-auto md-block" width="100%">}}
 While time plots are not new to Crunch, we’ve made some major improvements. In addition to increased legibility, you can now click categories in the axis to hide them from the graph, or double-click one to show only that category. Hovering on the graph lets you see the value at any point along the line, allowing you to see broad trends or to zero in on individual values.
 
 ## Proxima Nova: New look, new typeface

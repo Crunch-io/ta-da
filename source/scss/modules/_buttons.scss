@@ -1,0 +1,62 @@
+.btn {
+    padding: 10px 50px;
+    border-radius: 2px;
+}
+
+.btn-link {
+    color: $font-color-dark-grey;
+
+    &:hover, &:active, &:focus {
+        color: $color-blue;
+        text-decoration: none;
+    }
+}
+
+.btn-primary {
+    background-color: $color-blue;
+    border-color: $color-blue;
+    @include box_shadow("blue");
+
+    &:hover {
+        background-color: $--darker-primary-color;
+        border-color: $--darker-primary-color;
+    }
+}
+
+.btn-secondary {
+    background-color: $color-purple;
+    border-color: $color-purple;
+    @include box_shadow("purple");
+
+    &:hover {
+        background-color: $--darker-message-color;
+        border-color: $--darker-message-color;
+    }
+}
+
+.btn-success {
+    background-color: $color-green;
+    border-color: $color-green;
+    @include box_shadow("green");
+
+    &:hover {
+        background-color: $--darker-secondary-color;
+        border-color: $--darker-secondary-color;
+    }
+}
+
+.btn-light {
+    background-color: transparent;
+    border-color: $color-white;
+    color: $color-white;
+}
+
+.a-link {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+
+    &:hover {
+        text-decoration: none;
+        color: $color-blue;
+    }
+}
