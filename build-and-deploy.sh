@@ -47,8 +47,8 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
             git push
         else
             # Build and publish the site
-            install_hugo()
-            build_site()
+            install_hugo
+            build_site
 
             git clone -b master https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG.git OUTPUT
             cd OUTPUT
@@ -67,8 +67,8 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
         find ./content/dev -name "*.md" | xargs -n 1 -I{} bash -c "publish {}"
 
         # Just publish to the dev site
-        install_hugo()
-        build_site()
+        install_hugo
+        build_site
 
         git clone --branch gh-pages https://${GH_TOKEN}@github.com/Crunch-io/crunchy.git ../crunchy
         rm -rf ../crunchy/newsite
