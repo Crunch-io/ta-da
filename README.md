@@ -32,6 +32,8 @@ Our web app uses the [RSS feed](https://crunch.io/dev/features/index.xml) of the
 * Description: likewise, it uses `description` unless you provide an alternative `news_description`. For blog posts, `description` is often a summary sentence or two, while for in-app announcements, you may want a "click here for more" type of call to action.
 * Date: the feed will prefer a `publishdate` and fall back to `date`. If the date listed for the item in the RSS feed is newer than the web app user's date of last reading of the notification feed, the user will be alerted that there is a new item. Date fields are a little tricky in Hugo, so the convention we follow is _fill in `date` as the time you start writing the post and do not specify `publishdate`_. When the blog is built and deployed to production, Travis will fill in the `publishdate` as the current time for any new posts--that way, `publishdate` accurately reflects when the post was deployed.
 
+(TODO: add the automatic publishdate to the Travis script)
+
 Note that emoji using the `:notation:` are valid in the title and description (but not in `date` ;).
 
 If there is a feature announcement blog post you want to exclude from in-app announcements, include `show_news = false` in the front matter. (TODO: implement this filtering)
