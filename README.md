@@ -36,7 +36,7 @@ Our web app uses the [RSS feed](https://crunch.io/dev/features/index.xml) of the
 
 Note that emoji using the `:notation:` are valid in the title and description (but not in `date` ;).
 
-If there is a feature announcement blog post you want to exclude from in-app announcements, include `show_news = false` in the front matter. (TODO: implement this filtering)
+If there is a feature announcement blog post you want to exclude from in-app announcements, include `show_news = false` in the front matter.
 
 ### Targeting audiences
 

@@ -13,6 +13,7 @@
         {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{ end }}
     {{ range .Pages.ByPublishDate.Reverse }}
+    {{ if .Params.show_news | default true }}
     <item>
       <title>{{ .Params.news_title | default .Title | emojify }}</title>
       <link>{{ .Permalink }}</link>
@@ -23,6 +24,7 @@
       <noProfiles>{{ .Params.no_profiles | default false}}</noProfiles>
       <description>{{ .Params.news_description | default .Description | emojify | html }}</description>
     </item>
+    {{ end }}
     {{ end }}
   </channel>
 </rss>
