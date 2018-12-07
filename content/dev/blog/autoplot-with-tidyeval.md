@@ -1,11 +1,11 @@
 +++
 categories = ["general"]
 date = "2018-08-03T12:12:10-07:00"
+publishdate = "2018-08-03T12:12:10-07:00"
 description = ""
 draft = false
 tags = ["R", "data visualization", "ggplot2", "tidyeval", "crplyr"]
 title = "Making Graphs Look Easy with ggplot2 and Tidy Evaluation"
-weight = 20
 images = ["https://crunch.io/img/logo-1200x630.png"]
 +++
 

@@ -1,9 +1,9 @@
 +++
 date = "2017-10-17T23:20:47-04:00"
+publishdate = "2017-10-17T23:20:47-04:00"
 draft = false
 title = "Introducing Dashboards"
 description = "Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings."
-weight = 20
 tags = ["dashboards", "clients", "graphs"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]

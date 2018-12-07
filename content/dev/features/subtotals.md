@@ -2,8 +2,8 @@
 title = "Subtotals for Categorical Data"
 description = "Enhance your analyses by adding subtotals to your tables. See summary statistics of interest at a glance."
 date = "2018-01-14T13:20:47-04:00"
+publishdate = "2018-01-14T13:20:47-04:00"
 draft = false
-weight = 20
 tags = ["analysis", "nets", "subtotals"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
