@@ -1,11 +1,11 @@
 +++
 categories = ["general"]
 date = "2017-05-18T21:12:10-07:00"
+publishdate = "2017-05-18T21:12:10-07:00"
 description = "Life is short. Here are seven tips to help you automate your static-site building so that you can focus on more important things."
 draft = false
 tags = ["automation"]
 title = "Using Travis-CI to Build Static Sites"
-weight = 20
 images = ["https://crunch.io/img/logo-1200x630.png"]
 
 

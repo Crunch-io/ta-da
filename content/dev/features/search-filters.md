@@ -2,7 +2,7 @@
 title = "Refine your searches on Crunch"
 description = "With these new search filters, you can refine your queries and find the datasets or variables you are looking for faster."
 date = "2017-07-10T12:59:58-04:00"
-weight = 20
+publishdate = "2017-07-10T12:59:58-04:00"
 draft = false
 tags = ["search"]
 categories = ["feature"]
