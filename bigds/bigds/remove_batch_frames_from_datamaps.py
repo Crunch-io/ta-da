@@ -9,6 +9,7 @@ Usage:
 
 Options:
     --dry-run               Just print statistics, don't make changes
+    --verbose               Print more messages
     --config=CONFIG         [default: /var/lib/crunch.io/zz9-0.conf]
     --repo-trash=TRASHDIR   [default: /remote/eu/trash]
 
@@ -75,7 +76,7 @@ def create_store(args):
 
 
 class DatasetFixer(object):
-    def __init__(self, store, dispatcher, repo_trash, dry_run):
+    def __init__(self, store, dispatcher, repo_trash, dry_run, verbose):
         if dry_run:
             repo_trash = None  # just in case
         else:
@@ -94,6 +95,7 @@ class DatasetFixer(object):
         self.dispatcher = dispatcher
         self.repo_trash = repo_trash
         self.dry_run = dry_run
+        self.verbose = verbose
 
     def _list_nodes(self, ds_id):
         node_ids = []
@@ -172,11 +174,12 @@ class DatasetFixer(object):
                 # Probably the variants.zz9 file
                 continue
             for name in os.listdir(variant_dir):
-                if not name.startswith("/__batch_"):
+                if not name.startswith("__batch_"):
                     continue
                 num_changes += 1
+                p = os.path.join(variant_dir, name)
                 if not self.dry_run:
-                    remove_func(os.path.join(variant_dir, name))
+                    remove_func(p)
         return num_changes
 
     def _move_to_repo_trash(self, target):
@@ -236,11 +239,12 @@ class DatasetFixer(object):
         # Now that the datamaps are updated we remove batch frame dirs
         num_removes = self._move_batch_frame_dirs_to_trash(ds_id)
         status["num_removes"] = num_removes
-        print("dataset:", ds_id, "status:", json.dumps(status, sort_keys=True))
         num_changes = 0
         for k, v in status.items():
             if k.startswith("num_"):
                 num_changes += status[k]
+        if self.verbose or num_changes:
+            print("dataset:", ds_id, "status:", json.dumps(status, sort_keys=True))
         return num_changes
 
 
@@ -266,6 +270,7 @@ def main():
         dispatcher=dispatcher,
         repo_trash=repo_trash,
         dry_run=args["--dry-run"],
+        verbose=args["--verbose"],
     )
     num_changed_datasets = 0
     for ds_id in ds_ids:
