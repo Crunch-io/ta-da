@@ -168,12 +168,21 @@ class DatasetFixer(object):
 
     def _find_and_remove_batch_frame_dirs(self, datafiles_dir, remove_func):
         num_changes = 0
-        for variant in os.listdir(datafiles_dir):
-            variant_dir = os.path.join(datafiles_dir, variant)
-            if not os.path.isdir(variant_dir):
-                # Probably the variants.zz9 file
+        try:
+            variants = os.listdir(datafiles_dir)
+        except OSError:
+            # Probably a dataset that has been deleted since the scan
+            return 0
+        for variant in variants:
+            if variant in ('variants.zz9', 'variants.zz9.lz4'):
                 continue
-            for name in os.listdir(variant_dir):
+            variant_dir = os.path.join(datafiles_dir, variant)
+            try:
+                names = os.listdir(variant_dir)
+            except OSError:
+                # Not a directory, some unexpected file
+                continue
+            for name in names:
                 if not name.startswith("__batch_"):
                     continue
                 num_changes += 1
@@ -202,10 +211,9 @@ class DatasetFixer(object):
         address = {"dataset": ds_id}
         local_datafiles = os.path.join(self.store.local_root_path(address), "datafiles")
         num_changes = 0
-        if os.path.exists(local_datafiles):
-            num_changes += self._find_and_remove_batch_frame_dirs(
-                local_datafiles, self.store.move_to_local_trash
-            )
+        num_changes += self._find_and_remove_batch_frame_dirs(
+            local_datafiles, self.store.move_to_local_trash
+        )
         repo_datafiles = self.store.repo_datafiles_path(address)
         num_changes += self._find_and_remove_batch_frame_dirs(
             repo_datafiles, self._move_to_repo_trash
