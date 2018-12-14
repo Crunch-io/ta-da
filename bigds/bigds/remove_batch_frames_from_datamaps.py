@@ -74,17 +74,22 @@ def create_store(args):
     return store
 
 
-def DatasetFixer(object):
+class DatasetFixer(object):
     def __init__(self, store, dispatcher, repo_trash, dry_run):
-        # Ensure that the repo trash is on the same filesystem as the main repo dir
-        repodir_dev = os.stat(store.repodir).st_dev
-        repo_trash_dev = os.stat(repo_trash).st_dev
-        if repodir_dev != repo_trash_dev:
-            raise ValueError(
-                "Repo trash dir '{}' not on same filesytem as repo '{}'".format(
-                    repo_trash, store.repodir
+        if dry_run:
+            repo_trash = None  # just in case
+        else:
+            if not os.path.isdir(repo_trash):
+                raise ValueError("Repo trash dir dis not exist: {}".format(repo_trash))
+            # Ensure that the repo trash is on the same filesystem as the main repo dir
+            repodir_dev = os.stat(store.repodir).st_dev
+            repo_trash_dev = os.stat(repo_trash).st_dev
+            if repodir_dev != repo_trash_dev:
+                raise ValueError(
+                    "Repo trash dir '{}' not on same filesytem as repo '{}'".format(
+                        repo_trash, store.repodir
+                    )
                 )
-            )
         self.store = store
         self.dispatcher = dispatcher
         self.repo_trash = repo_trash
@@ -163,6 +168,9 @@ def DatasetFixer(object):
         num_changes = 0
         for variant in os.listdir(datafiles_dir):
             variant_dir = os.path.join(datafiles_dir, variant)
+            if not os.path.isdir(variant_dir):
+                # Probably the variants.zz9 file
+                continue
             for name in os.listdir(variant_dir):
                 if not name.startswith("/__batch_"):
                     continue
@@ -228,7 +236,7 @@ def DatasetFixer(object):
         # Now that the datamaps are updated we remove batch frame dirs
         num_removes = self._move_batch_frame_dirs_to_trash(ds_id)
         status["num_removes"] = num_removes
-        print("dataset:", ds_id, "status:", status)
+        print("dataset:", ds_id, "status:", json.dumps(status, sort_keys=True))
         num_changes = 0
         for k, v in status.items():
             if k.startswith("num_"):
@@ -242,10 +250,15 @@ def main():
         with open(args["<dataset-ids-file>"]) as f:
             ds_ids = f.read().split()
     else:
+        if os.path.isfile(args["<dataset-id>"]):
+            raise ValueError(
+                "Dataset parameter '{}' is a file. "
+                "Did you mean to pass the --from-file option?".format(
+                    args["<dataset-id>"]
+                )
+            )
         ds_ids = [args["<dataset-id>"]]
     repo_trash = args["--repo-trash"]
-    if not os.path.exists(repo_trash):
-        os.makedirs(repo_trash)
     store = create_store(args)
     dispatcher = create_dispatcher(args)
     dataset_fixer = DatasetFixer(
