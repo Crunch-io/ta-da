@@ -1,5 +1,6 @@
 +++
 date = "2018-12-05T23:20:47-04:00"
+publishdate = "2018-12-17T16:14:37-0800"
 draft = false
 title = "Improved organization and navigation of Crunch datasets"
 description = "For our early access users: we're moving to a folder-based, nested organization scheme for datasets; this should make datasets easier to organize and easier to navigate."
