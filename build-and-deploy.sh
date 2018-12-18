@@ -38,6 +38,9 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
     if [ "${TRAVIS_BRANCH}" = "src" ]; then
         # Production
 
+        # checkout the branch so we're not on a detached head, in case we need
+        # to push
+        git checkout src
         # Add publishdate
         find ./content/dev -name "*.md" | xargs -n 1 -I{} bash -c "publish {}"
         git add .
