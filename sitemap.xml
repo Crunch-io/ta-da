@@ -133,6 +133,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/dev/features/dataset-folders/</loc>
+    <lastmod>2018-12-05T23:20:47-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/jobs/backend-engineer/</loc>
     <lastmod>2018-11-30T14:08:35+02:00</lastmod>
   </url>
@@ -354,6 +359,12 @@
   </url>
   
   <url>
+    <loc>//crunch.io/tags/datasets/</loc>
+    <lastmod>2018-12-05T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//crunch.io/tags/deck/</loc>
     <lastmod>2018-09-25T10:20:47-04:00</lastmod>
     <priority>0</priority>
@@ -378,6 +389,12 @@
   </url>
   
   <url>
+    <loc>//crunch.io/tags/early-access/</loc>
+    <lastmod>2018-12-05T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//crunch.io/product/everyone-analyzes/</loc>
   </url>
   
@@ -389,7 +406,7 @@
   
   <url>
     <loc>//crunch.io/categories/feature/</loc>
-    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
+    <lastmod>2018-12-05T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -434,6 +451,12 @@
   <url>
     <loc>//crunch.io/tags/nets/</loc>
     <lastmod>2018-01-14T13:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/organization/</loc>
+    <lastmod>2018-12-05T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   

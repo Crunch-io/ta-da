@@ -228,6 +228,16 @@
     </item>
     
     <item>
+      <title>Improved organization and navigation of Crunch datasets</title>
+      <link>//crunch.io/dev/features/dataset-folders/</link>
+      <pubDate>Wed, 05 Dec 2018 23:20:47 -0400</pubDate>
+      
+      <guid>//crunch.io/dev/features/dataset-folders/</guid>
+      <description>What are Dataset Folders? Dataset folders allow datasets to be organized into folders similar to what you would see in a file system like Windows Explorer or MacOS Finder. Folders make finding, organizing, and sharing data more intuitive. Here are some key differences from the old interface.
+Navigating 1. Project icons have been replaced by folders  Folders can be sorted by clicking the column headers at the top of the list.</description>
+    </item>
+    
+    <item>
       <title>Python Systems Engineer</title>
       <link>//crunch.io/jobs/backend-engineer/</link>
       <pubDate>Fri, 30 Nov 2018 14:08:35 +0200</pubDate>
