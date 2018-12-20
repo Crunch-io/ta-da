@@ -19,7 +19,8 @@ Options:
     --num-rows=NUMROWS      [default: 10]
     --zz9repo=REPODIR       [default: /var/lib/crunch.io/zz9repo]
     --num-threads=N         [default: 1]
-    --idle-timeout=N        [default: 120]
+    --idle-timeout=N        Seconds to wait for dataset release [default: 120]
+    --cleaner-delay=N       Seconds to wait for cleaner loop [default: 180]
 
 Commands:
     pick-random-dataset
@@ -155,6 +156,7 @@ def do_stress(args):
         config = yaml.safe_load(f)[args['-p']]
     num_threads = int(args['--num-threads'])
     idle_timeout = int(args['--idle-timeout'])
+    cleaner_delay = int(args['--cleaner-delay'])
     num_rows = int(args['--num-rows'])
     assert num_threads >= 1
     run_stress_loop(
@@ -162,6 +164,7 @@ def do_stress(args):
         num_threads=num_threads,
         verbose=args['-v'],
         idle_timeout=idle_timeout,
+        cleaner_delay=cleaner_delay,
         sparse_data=args['--sparse-data'],
         num_rows=num_rows,
     )
