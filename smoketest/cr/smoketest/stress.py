@@ -35,6 +35,7 @@ def run_stress_loop(
     cleaner_delay=180,
     sparse_data=False,
     num_rows=1000,
+    do_cleanup=True,
 ):
     print("Running", num_threads, "stress loop thread(s), press Ctr-C to stop.")
     threads = []
@@ -45,6 +46,7 @@ def run_stress_loop(
         verbose=verbose,
         sparse_data=sparse_data,
         num_rows=num_rows,
+        do_cleanup=do_cleanup,
     )
     try:
         for loop_id in range(num_threads):
@@ -77,6 +79,7 @@ def _run_stress_loop(
     verbose=False,
     sparse_data=False,
     num_rows=1000,
+    do_cleanup=True,
 ):
     print("{}:".format(loop_id), "Beginning stress loop")
     site = connect_pycrunch(config["connection"], verbose=verbose)
@@ -92,25 +95,21 @@ def _run_stress_loop(
     print("{}:".format(loop_id), "Created dataset:", ds.self)
     try:
         max_cols = 100
-        print("{}:".format(loop_id), "Appending", num_rows, "rows to dataset", ds.self)
-        _append_random_rows(site, ds, num_rows, sparse_data=sparse_data)
         var_aliases = collections.deque()
-        num_deletes_since_clean = 0
-        while not event.is_set():
+        while not event.is_set() and len(var_aliases) < max_cols:
             var_alias, n = _append_random_numeric_column(ds)
             print("{}:".format(loop_id), "Added column", var_alias, "with", n, "rows.")
             var_aliases.append(var_alias)
-            if len(var_aliases) > max_cols:
-                # We have all the columns we need, remove one
-                var_alias = var_aliases.popleft()
-                v = ds.variables.by("alias")[var_alias]
-                print("{}:".format(loop_id), "Deleting variable", var_alias)
-                r = v.entity.delete()
-                r.raise_for_status()
-                num_deletes_since_clean += 1
-            if num_deletes_since_clean >= max_cols:
-                # We've deleted a bunch of columns, now let cleaner run
-                num_deletes_since_clean = 0
+        num_appends_between_cleans = 10
+        num_appends_since_clean = 0
+        while not event.is_set():
+            print(
+                "{}:".format(loop_id), "Appending", num_rows, "rows to dataset", ds.self
+            )
+            _append_random_rows(site, ds, num_rows, sparse_data=sparse_data)
+            num_appends_since_clean += 1
+            if num_appends_since_clean >= num_appends_between_cleans:
+                # Pause to let cleaner run
                 clean_wait = idle_timeout + cleaner_delay
                 print(
                     "{}:".format(loop_id),
@@ -119,9 +118,14 @@ def _run_stress_loop(
                     "seconds for cleaner run.",
                 )
                 event.wait(clean_wait)
+                num_appends_since_clean = 0
     finally:
-        print("{}:".format(loop_id), "Leaving stress loop, deleting dataset:", ds.self)
-        site.session.delete(ds.self)
+        print(
+            "{}:".format(loop_id), "Leaving loop that was stressing dataset:", ds.self
+        )
+        if do_cleanup:
+            print("{}:".format(loop_id), "Deleting dataset:", ds.self)
+            site.session.delete(ds.self)
 
 
 def _append_random_rows(site, ds, num_rows, sparse_data=False):

@@ -21,6 +21,7 @@ Options:
     --num-threads=N         [default: 1]
     --idle-timeout=N        Seconds to wait for dataset release [default: 120]
     --cleaner-delay=N       Seconds to wait for cleaner loop [default: 180]
+    --skip-cleanup          Don't delete test datasets on exit
 
 Commands:
     pick-random-dataset
@@ -167,6 +168,7 @@ def do_stress(args):
         cleaner_delay=cleaner_delay,
         sparse_data=args['--sparse-data'],
         num_rows=num_rows,
+        do_cleanup=(not args['--skip-cleanup']),
     )
 
 
