@@ -18,7 +18,7 @@ Options:
     --sparse-data           Make > 80% of new values system missing
     --num-rows=NUMROWS      [default: 10]
     --zz9repo=REPODIR       [default: /var/lib/crunch.io/zz9repo]
-    --num-threads=N         [default: 1]
+    --num-agents=N          [default: 1]
     --idle-timeout=N        Seconds to wait for dataset release [default: 120]
     --cleaner-delay=N       Seconds to wait for cleaner loop [default: 180]
     --skip-cleanup          Don't delete test datasets on exit
@@ -157,14 +157,15 @@ def do_list_datasets(args):
 def do_stress(args):
     with open(args["-c"]) as f:
         config = yaml.safe_load(f)[args["-p"]]
-    num_threads = int(args["--num-threads"])
+    num_agents = int(args["--num-agents"])
+    if num_agents < 1:
+        raise ValueError("Need at least one agent.")
     idle_timeout = int(args["--idle-timeout"])
     cleaner_delay = int(args["--cleaner-delay"])
     num_rows = int(args["--num-rows"])
-    assert num_threads >= 1
     run_stress_loop(
         config,
-        num_threads=num_threads,
+        num_agents=num_agents,
         verbose=args["-v"],
         idle_timeout=idle_timeout,
         cleaner_delay=cleaner_delay,
