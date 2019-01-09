@@ -62,12 +62,12 @@ this_module = sys.modules[__name__]
 
 
 def load_config(args):
-    with open(args['-c']) as f:
-        config = yaml.safe_load(f)[args['-p']]
+    with open(args["-c"]) as f:
+        config = yaml.safe_load(f)[args["-p"]]
     return config
 
 
-def pick_random_dataset(zz9repo='/var/lib/crunch.io/zz9repo'):
+def pick_random_dataset(zz9repo="/var/lib/crunch.io/zz9repo"):
     prefix_dirs = os.listdir(zz9repo)
     while prefix_dirs:
         prefix = random.choice(prefix_dirs)
@@ -81,69 +81,71 @@ def pick_random_dataset(zz9repo='/var/lib/crunch.io/zz9repo'):
 ###########################
 # Command functions
 
+
 def do_pick_random_dataset(args):
-    zz9repo = args['--zz9repo']
+    zz9repo = args["--zz9repo"]
     print(pick_random_dataset(zz9repo))
 
 
 def do_get_metadata(args):
     config = load_config(args)
-    site = connect_pycrunch(config['connection'], verbose=args['-v'])
-    ds_id = args['<dataset-id>']
-    ds = site.datasets.by('id')[ds_id].entity
+    site = connect_pycrunch(config["connection"], verbose=args["-v"])
+    ds_id = args["<dataset-id>"]
+    ds = site.datasets.by("id")[ds_id].entity
     metadata = get_ds_metadata(ds)
-    if not args['<output-filename>']:
+    if not args["<output-filename>"]:
         out = sys.stdout
     else:
-        out = open(args['<output-filename>'], 'w')
+        out = open(args["<output-filename>"], "w")
     try:
         json.dump(metadata, out, indent=4, sort_keys=True)
-        out.write('\n')
+        out.write("\n")
     finally:
-        if args['<output-filename>']:
+        if args["<output-filename>"]:
             out.close()
-    if args['-i']:
+    if args["-i"]:
         import IPython
+
         IPython.embed()
 
 
 def do_append_random_rows(args):
     config = load_config(args)
-    site = connect_pycrunch(config['connection'], verbose=args['-v'])
-    ds_id = args['<dataset-id>']
-    ds = site.datasets.by('id')[ds_id].entity
+    site = connect_pycrunch(config["connection"], verbose=args["-v"])
+    ds_id = args["<dataset-id>"]
+    ds = site.datasets.by("id")[ds_id].entity
     metadata = get_ds_metadata(ds)
-    var_defs = metadata['body']['table']['metadata']
+    var_defs = metadata["body"]["table"]["metadata"]
     pk = get_pk_alias(ds)
-    num_rows = int(args['--num-rows'])
+    num_rows = int(args["--num-rows"])
     with open_csv_tempfile() as f:
-        write_random_rows(var_defs, pk, num_rows, f,
-                          sparse_data=args['--sparse-data'])
+        write_random_rows(var_defs, pk, num_rows, f, sparse_data=args["--sparse-data"])
         f.seek(0)
-        append_csv_file_to_dataset(site, ds, f, verbose=args['-v'])
+        append_csv_file_to_dataset(site, ds, f, verbose=args["-v"])
 
 
 def do_list_datasets(args):
-    with open(args['-c']) as f:
-        config = yaml.safe_load(f)[args['-p']]
-    verbose = args['-v']
-    site = connect_pycrunch(config['connection'], verbose=verbose)
-    if args['-i']:
+    with open(args["-c"]) as f:
+        config = yaml.safe_load(f)[args["-p"]]
+    verbose = args["-v"]
+    site = connect_pycrunch(config["connection"], verbose=verbose)
+    if args["-i"]:
         import IPython
+
         IPython.embed()
-    if args['--projects']:
+    if args["--projects"]:
         for proj_url, proj in six.iteritems(site.projects.index):
             print(u"{proj.id} {proj.name}".format(proj=proj))
         return 0
-    if args['--project']:
-        proj_name_or_id = args['--project']
+    if args["--project"]:
+        proj_name_or_id = args["--project"]
         try:
-            proj = site.projects.by('id')[proj_name_or_id]
+            proj = site.projects.by("id")[proj_name_or_id]
         except KeyError:
-            proj = site.projects.by('name')[proj_name_or_id]
-        url = urllib_parse.urljoin(proj.entity_url, 'datasets/')
+            proj = site.projects.by("name")[proj_name_or_id]
+        url = urllib_parse.urljoin(proj.entity_url, "datasets/")
         response = site.session.get(url)
-        datasets_index = response.json()['index']
+        datasets_index = response.json()["index"]
         for ds_url, ds_info in six.iteritems(datasets_index):
             print(u"{ds[id]} {ds[name]}".format(ds=ds_info))
         return 0
@@ -153,36 +155,36 @@ def do_list_datasets(args):
 
 
 def do_stress(args):
-    with open(args['-c']) as f:
-        config = yaml.safe_load(f)[args['-p']]
-    num_threads = int(args['--num-threads'])
-    idle_timeout = int(args['--idle-timeout'])
-    cleaner_delay = int(args['--cleaner-delay'])
-    num_rows = int(args['--num-rows'])
+    with open(args["-c"]) as f:
+        config = yaml.safe_load(f)[args["-p"]]
+    num_threads = int(args["--num-threads"])
+    idle_timeout = int(args["--idle-timeout"])
+    cleaner_delay = int(args["--cleaner-delay"])
+    num_rows = int(args["--num-rows"])
     assert num_threads >= 1
     run_stress_loop(
         config,
         num_threads=num_threads,
-        verbose=args['-v'],
+        verbose=args["-v"],
         idle_timeout=idle_timeout,
         cleaner_delay=cleaner_delay,
-        sparse_data=args['--sparse-data'],
+        sparse_data=args["--sparse-data"],
         num_rows=num_rows,
-        do_cleanup=(not args['--skip-cleanup']),
+        do_cleanup=(not args["--skip-cleanup"]),
     )
 
 
 def main():
     args = docopt.docopt(__doc__)
     for key, value in six.iteritems(args):
-        if not key[:1] in ('-', '<') and value:
-            command_name = key.lower().replace('-', '_')
-            command_func = getattr(this_module, 'do_' + command_name, None)
+        if not key[:1] in ("-", "<") and value:
+            command_name = key.lower().replace("-", "_")
+            command_func = getattr(this_module, "do_" + command_name, None)
             if command_func:
                 return command_func(args)
             raise ValueError("Invalid subcommand: {}".format(command_name))
     raise ValueError("Invalid or missing subcommand.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
