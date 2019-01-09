@@ -95,9 +95,9 @@ class StressAgent:
         self.reader_thread = None
 
     def start(self):
-        self.writer_thread = t = threading.Thread(target=self._run_writer)
-        t.daemon = True
-        t.start()
+        self.writer_thread = threading.Thread(target=self._run_writer)
+        self.writer_thread.daemon = True
+        self.writer_thread.start()
 
     def join(self):
         if self.writer_thread is not None:
@@ -108,7 +108,7 @@ class StressAgent:
             self.reader_thread = None
 
     def _run_writer(self):
-        print("Agent {}:".format(self.agent_id), "Beginning main thread")
+        print("Agent {}:".format(self.agent_id), "Writer thread started")
         site = connect_pycrunch(self.config["connection"], verbose=self.verbose)
         metadata_path = os.path.join(this_dir, "data", "dataset.json")
         with open(metadata_path) as f:
@@ -119,16 +119,19 @@ class StressAgent:
         ds = create_dataset_from_csv(
             site, metadata, f, verbose=self.verbose, dataset_name=dataset_name
         )
-        print("Agent {}:".format(self.agent_id), "Created dataset:", ds.self)
-        event = self.stop_event
+        ds_id = ds.body["id"]
+        print("Agent {}:".format(self.agent_id), "Writer created dataset:", ds_id)
+        self.reader_thread = threading.Thread(target=self._run_reader, args=(ds_id,))
+        self.reader_thread.daemon = True
+        self.reader_thread.start()
         try:
             max_cols = 100
             var_aliases = collections.deque()
-            while not event.is_set() and len(var_aliases) < max_cols:
+            while not self.stop_event.is_set() and len(var_aliases) < max_cols:
                 var_alias, n = _append_random_numeric_column(ds)
                 print(
                     "Agent {}:".format(self.agent_id),
-                    "Added column",
+                    "Writer added column",
                     var_alias,
                     "with",
                     n,
@@ -137,10 +140,10 @@ class StressAgent:
                 var_aliases.append(var_alias)
             num_appends_between_cleans = 10
             num_appends_since_clean = 0
-            while not event.is_set():
+            while not self.stop_event.is_set():
                 print(
                     "Agent {}:".format(self.agent_id),
-                    "Appending",
+                    "Writer appending",
                     self.num_rows,
                     "rows to dataset",
                     ds.self,
@@ -154,21 +157,40 @@ class StressAgent:
                     clean_wait = self.idle_timeout + self.cleaner_delay
                     print(
                         "Agent {}:".format(self.agent_id),
-                        "Waiting",
+                        "Writer waiting",
                         clean_wait,
                         "seconds for cleaner run.",
                     )
-                    event.wait(clean_wait)
+                    self.stop_event.wait(clean_wait)
                     num_appends_since_clean = 0
         finally:
             print(
                 "Agent {}:".format(self.agent_id),
-                "Leaving loop that was stressing dataset:",
+                "Writer leaving loop that was stressing dataset:",
                 ds.self,
             )
             if self.do_cleanup:
-                print("Agent {}:".format(self.agent_id), "Deleting dataset:", ds.self)
+                print(
+                    "Agent {}:".format(self.agent_id),
+                    "Writer deleting dataset:",
+                    ds.self,
+                )
                 site.session.delete(ds.self)
+
+    def _run_reader(self, ds_id):
+        print("Agent {}:".format(self.agent_id), "Reader thread started")
+        site = connect_pycrunch(self.config["connection"], verbose=self.verbose)
+        ds = site.datasets.by("id")[ds_id].entity
+        while not self.stop_event.is_set():
+            print(
+                "Agent {}:".format(self.agent_id),
+                "Reader fetching metadata from dataset",
+                ds.self,
+            )
+            get_ds_metadata(ds)
+            delay = random.random() * 10
+            print("Agent {}:".format(self.agent_id), "Reader waiting", delay, "seconds")
+            self.stop_event.wait(delay)
 
 
 def _append_random_rows(site, ds, num_rows, sparse_data=False):
