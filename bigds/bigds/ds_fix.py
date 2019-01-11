@@ -285,7 +285,6 @@ class _DatasetTipRestorer(object):
         self._write_restore_tip_file()
         try:
             with actionslib.dataset_lock('restore_tip', self.target_ds.id,
-                                         dataset_branch=self.target_ds.branch,
                                          exclusive=True):
                 self._restore_savepoint()
             self.datetime_finished = datetime.datetime.utcnow()
@@ -684,7 +683,6 @@ def _save_actions(ds, from_version, filename):
             raise ValueError(
                 'Start and End versions must be on same branch.')
     with actionslib.dataset_lock('save_actions', ds.id,
-                                 dataset_branch=ds.branch,
                                  exclusive=False):
         _, actions_to_save = _get_vtag_actions_list(ds, from_version)
     print("Saving", len(actions_to_save), "actions to", filename)
@@ -714,7 +712,6 @@ def do_apply_actions(args):
     _cr_lib_init(args)
     ds = Dataset.find_by_id(id=ds_id, version='master__tip')
     with actionslib.dataset_lock('apply_actions', ds.id,
-                                 dataset_branch=ds.branch,
                                  exclusive=True):
         print("Replaying", len(actions_to_replay), "actions")
         # Note: At some point we may need an option to replay with rehash=True
