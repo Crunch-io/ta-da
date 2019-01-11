@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/var/lib/crunch.io/venv/bin/python
 """
 Helper script for examining and fixing datasets.
 
