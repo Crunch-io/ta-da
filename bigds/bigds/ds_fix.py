@@ -12,7 +12,7 @@ Usage:
     ds.fix [options] save-actions <ds-id> <ds-version> <filename>
     ds.fix [options] save-all-actions <ds-id> <filename>
     ds.fix [options] show-actions <filename>
-    ds.fix [options] apply-actions <ds-id> <filename> [--offset=N]
+    ds.fix [options] apply-actions <ds-id> <filename> [--offset=N] [--count=C] [--rehash]
     ds.fix [options] delete-savepoint <ds-id> <ds-version>
 
 Options:
@@ -644,7 +644,6 @@ def _abbreviate_action(action):
     for key in ('key', 'utc', 'hash'):
         if key in action:
             d[key] = action[key]
-    params = action['params']
     d['dataset_id'] = action['dataset_id']
     d['segment'] = action['segment']
     state = action['state']
@@ -692,6 +691,7 @@ def _save_actions(ds, from_version, filename):
 
 def do_apply_actions(args):
     """Replay some or all of the actions saved in a pickle file."""
+    # Get and check parameters
     ds_id = args['<ds-id>']
     filename = args['<filename>']
     with open(filename, 'rb') as f:
@@ -701,14 +701,24 @@ def do_apply_actions(args):
     offset = 0
     if args['--offset']:
         offset = int(args['--offset'])
-        assert offset >= 0
+        assert 0 <= offset < len(actions_to_replay)
     print("Skipping", offset, "actions from beginning of file.")
     actions_to_replay = actions_to_replay[offset:]
+    action_replay_count = args['--count']
+    if action_replay_count is not None:
+        action_replay_count = int(action_replay_count)
+        assert 0 <= action_replay_count <= len(actions_to_replay)
+        actions_to_replay = actions_to_replay[:action_replay_count]
     if not actions_to_replay:
         print("No actions to replay.")
         return
-    log.info("ds.fix apply-actions {} {} --offset={}"
-             .format(ds_id, filename, offset))
+    # Adjust the dataset ID on each action
+    for action in actions_to_replay:
+        action["dataset_id"] = ds_id
+
+    log.info("ds.fix apply-actions {} {} --offset={} --count={} --rehash={}"
+             .format(ds_id, filename, offset, action_replay_count, args['--rehash']))
+
     _cr_lib_init(args)
     ds = Dataset.find_by_id(id=ds_id, version='master__tip')
     with actionslib.dataset_lock('apply_actions', ds.id,
@@ -719,6 +729,7 @@ def do_apply_actions(args):
             None,
             actions_to_replay,
             autorollback=ds.AutorollbackType.LastAction,
+            rehash=bool(args["--rehash"]),
             task=None,
         )
 
