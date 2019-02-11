@@ -1,5 +1,6 @@
 +++
 date = "2019-02-01T23:20:47-04:00"
+publishdate = "2019-02-01T23:20:47-04:00"
 draft = false
 title = "Improved organization and navigation of Crunch datasets"
 description = "We're moving to a folder-based, nested organization scheme for datasets; this should make datasets easier to organize and easier to navigate."
@@ -13,9 +14,9 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 ## What are Dataset Folders?
 
-Dataset folders allow datasets to be organized into folders similar to what you would see in a file system like Windows Explorer or MacOS Finder. Folders make finding, organizing, and sharing data more intuitive:
+Dataset folders allow datasets to be organized into folders in a similar manner to a file system such as Windows Explorer or MacOS Finder. Folders make finding, organizing, and sharing data more intuitive:
 
-* Folders can be used to organize large collections of datasets into more manageable units. If your organization imports data from many sources or has a large archive of previously imported data, now you can organize the datasets by source, time of import, subject, etc.
+* Folders can be used to organize large collections of datasets into more manageable units. If your organization imports data from many sources or has a large archive of previously imported data, now you can organize the datasets by source, time of import/survey, subject, etc.
 
 * Editors can grant access to different folders to different sets of users. Multiple clients (or multiple groups or teams within a client) can be granted access to just the data you want to show them, and furthermore, you can move a dataset into a folder to instantly make it available to all users who have access to that folder.
 
