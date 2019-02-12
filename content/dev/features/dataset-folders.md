@@ -25,16 +25,21 @@ The first thing you'll notice is that the stripe of icons at the left have been 
 
 Click on a folder's name to enter it. When you do, you'll see at the top of the screen the folder you are currently in and the path to that folder.
 
-{{< figure src="dev/features/images/folders-breadcrumb.png" class="img-fluid">}}
-
 To jump back to a higher folder, just click on it in the header.
 
-Within a folder, you can sort the list of datasets and folders by clicking the column headers at the top of the list. By right-clicking on the header, you can customize which columns appear in the list, so you can sort the view by most-recently accessed, or alphabetical, or whatever you want.
+{{< figure src="dev/features/images/folders-breadcrumb.png" class="img-fluid">}}
 
-The other major change to navigation involves the "Personal Project".
-Previously, any datasets that were shared with you, as well as any datasets that you had imported yourself, were bundled together in the personal project. This was confusing to some, and it meant that some users' personal projects were full of lots of data that belonged elsewhere.
+Within a folder, you can sort the list of datasets and folders by clicking the column headers at the top of the list. Right-click on the header to select which sortable columns appear in the list.
 
-We've simplified where datasets are presented in folders to you. If you have access to a folder, you'll see that listed at the top level, and everything contained inside that folder will show up inside that folder. **Personal** now contains any datasets you have imported and not moved to another folder. Only users who have permission to import data will see Personal. The other special folder, **Shared with Me**, contains datasets that have been shared with you without access being granted to the folder that contains it. If no datasets have been shared with you in this way, this folder won't appear.
+The other major change to navigation involves the **Personal** folder, previously called the **Personal Project**. This folder used to contain any datasets that were shared with you as well as any datasets that you had imported yourself, which for some users resulted in a long list of datasets with no clear logic grouping them together.
+
+With this update, we've simplified where you can find the data you have access to.
+
+* If you have access to a folder, you'll see it listed under **All Datasets**, and everything contained inside that folder (including other folders) will be available inside that folder.
+* **Personal** now contains any datasets you have imported and not moved to another folder. Only users who have permission to import data will see the Personal folder.
+* The other special folder, **Shared with Me**, contains datasets that have been shared with you without access being granted to the folder that contains it. If no datasets have been shared with you in this way, this folder won't appear.
+
+The **Personal** and **Shared with Me** folders will be pinned to the top of the **All Datasets** list to allow them to be easily found and accessed.
 
 As always, when you’re not sure where to find a dataset, use the search bar at the top of screen. If you're looking for a specific dataset by name, you can narrow your search criteria to match only on dataset names.
 
@@ -42,4 +47,24 @@ For more details on navigating dataset folders, see [the support page](http://su
 
 ## Organizing
 
-If you are a data owner, you now have new abilities to create folders and move datasets between folders. See [the help site](http://support.crunch.io/articles/ceXXoAEi/Organizing-Datasets-Early-Access) for more information on these features.
+If you are a data owner, you can create folders, move datasets between folders, and grant other users access to a specific folder.
+
+To create a folder, click the dataset name and select **New Folder** from the dropdown.
+
+{{< figure src="dev/features/images/folders-add-folder.png" class="img-fluid">}}
+
+This opens the **New Folder** dialog, where you can name the new folder.
+
+{{< figure src="dev/features/images/folders-create-folder.png" class="img-fluid">}}
+
+To move a dataset or folder to a new folder, hover over it in the dataset list, click the down-arrow to open a dropdown, and select **Move to...**.
+
+{{< figure src="dev/features/images/folders-move-to-menu.png" class="img-fluid">}}
+
+This opens the **Move to** dialog that you can use to move the selected dataset or folder to any folder where you have write access (including your **Personal** folder).
+
+{{< figure src="dev/features/images/move-to-dialog.png" class="img-fluid">}}
+
+To give other users access to a folder you have created, open that folder and then click its name in the header and select **Members**. Add users or teams who should have access to this folder. Note that any users who have access to the parent folder will automatically have access to this one, but they will not appear in the list.
+
+See [the help site](http://support.crunch.io/articles/ceXXoAEi/Organizing-Datasets-Early-Access) for more information on these features.
