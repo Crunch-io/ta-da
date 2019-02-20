@@ -34,6 +34,7 @@ setup(name='datasetreplay',
               'dataset.savepoints=datasetreplay.datasetsavepoint:main',
               'crtracefile.report=datasetreplay.crtracefilereport:main',
               'dataset.oldclean=datasetreplay.datasetoldclean:main',
+              'dataset.verify=datasetreplay.datasetverify:main'
          ]
       }
 )
