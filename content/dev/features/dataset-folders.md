@@ -1,7 +1,7 @@
 +++
 date = "2019-02-10T23:20:47-04:00"
 draft = false
-title = "Improved Organization of Crunch Datasets"
+title = "Improved Organization of Datasets"
 description = "We've moved to a folder-based, nested organization for datasets in order to make it easier to navigate and manage permissions on datasets."
 weight = 20
 tags = ["organization", "datasets"]
