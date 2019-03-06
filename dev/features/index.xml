@@ -6,21 +6,21 @@
     <description>Recent content in Feature Announcements on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2019-03-04T20:08:49+00:00</lastBuildDate>
+    <lastBuildDate>2019-03-06T19:53:14+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
     
     
     
     <item>
-      <title>Improved organization and navigation of Crunch datasets</title>
+      <title>Improved Organization of Datasets</title>
       <link>//crunch.io/dev/features/dataset-folders/</link>
-      <pubDate>2018-12-17T16:14:37-08:00</pubDate>
+      <pubDate>2019-03-06T19:49:40+00:00</pubDate>
       
       <guid>//crunch.io/dev/features/dataset-folders/</guid>
-      <labsOnly>true</labsOnly>
+      <labsOnly>false</labsOnly>
       <noProfiles>false</noProfiles>
-      <description>For our early access users: we&#39;re moving to a folder-based, nested organization scheme for datasets; this should make datasets easier to organize and easier to navigate. Click for more information.</description>
+      <description>We&#39;ve moved to a folder-based, nested organization for datasets in order to make it easier to navigate and manage permissions on datasets.</description>
     </item>
     
     
