@@ -21,7 +21,7 @@ These new features in turn bring some changes to our web application. Here are s
 
 The first thing you'll notice is that the stripe of icons at the left have been replaced by folders. The flat list of project icons didn't work well with a model where folders could nest within each other, so we changed the display to more closely match the underlying model. (Note that while we have removed the custom icons from display for now, we will be reintroducing them with additional branding settings in the near future.)
 
-{{< figure src="dev/features/images/folders-before-and-after.png" class="img-fluid">}}
+{{< figure src="dev/features/images/folders-before-and-after.png" title="A Crunch project before and after the updated folders feature" class="img-fluid bordered">}}
 
 Click on a folder's name to enter it. When you do, you'll see at the top of the screen the folder you are currently in and the path to that folder.
 
@@ -47,23 +47,25 @@ For more details on navigating dataset folders, see [the support page](http://su
 
 ## Organizing
 
-If you are a data owner, you can create folders, move datasets between folders, and grant other users access to a specific folder.
+If you have permission to import data in a folder, you can create folders within that folder, move datasets between folders, and grant other users access to folders.
+
+Importing data is now accomplished by clicking the dataset name and selecting **New dataset**.
 
 To create a folder, click the dataset name and select **New Folder** from the dropdown.
 
-{{< figure src="dev/features/images/folders-add-folder.png" class="img-fluid">}}
+{{< figure src="dev/features/images/folders-add-folder.png" class="img-fluid bordered">}}
 
 This opens the **New Folder** dialog, where you can name the new folder.
 
-{{< figure src="dev/features/images/folders-create-folder.png" class="img-fluid">}}
+{{< figure src="dev/features/images/folders-create-folder.png" class="img-fluid bordered">}}
 
 To move a dataset or folder to a new folder, hover over it in the dataset list, click the down-arrow to open a dropdown, and select **Move to...**.
 
-{{< figure src="dev/features/images/folders-move-to-menu.png" class="img-fluid">}}
+{{< figure src="dev/features/images/folders-move-to-menu.png" class="img-fluid bordered">}}
 
 This opens the **Move to** dialog that you can use to move the selected dataset or folder to any folder where you have write access (including your **Personal** folder).
 
-{{< figure src="dev/features/images/move-to-dialog.png" class="img-fluid">}}
+{{< figure src="dev/features/images/move-to-dialog.png" class="img-fluid bordered">}}
 
 To give other users access to a folder you have created, open that folder and then click its name in the header and select **Members**. Add users or teams who should have access to this folder. Note that any users who have access to the parent folder will automatically have access to this one, but they will not appear in the list.
 
