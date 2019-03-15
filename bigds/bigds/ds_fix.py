@@ -14,6 +14,8 @@ Usage:
     ds.fix [options] show-actions <filename>
     ds.fix [options] apply-actions <ds-id> <filename> [--offset=N] [--count=C] [--rehash]
     ds.fix [options] delete-savepoint <ds-id> <ds-version>
+    ds.fix [options] fork-from <source-ds-id> <source-version>
+                               [--maintainer-id=U] [--project-id=P]
 
 Options:
     -i                        Run interactive prompt after the command
@@ -764,6 +766,32 @@ def do_delete_savepoint(args):
         except ZZ9Timeout:
             print("Query timeout while deleting {}@{}".format(ds_id, ds_version))
             return 1
+
+
+def do_fork_from(args):
+    source_ds_id = args["<source-ds-id>"]
+    source_version = args["<source-version>"]
+    source_ds = Dataset.find_by_id(id=source_ds_id, version=source_version)
+    maintainer_id = args["--maintainer-id"]
+    project_id = args["--project-id"]
+    if not maintainer_id:
+        maintainer_id = source_ds.maintainer_id
+    if not project_id:
+        project_id = source_ds.project_id
+    print(
+        "About to fork dataset {}@{} with maintainer_id={}, project_id={}".format(
+            source_ds.id, source_ds.version, maintainer_id, project_id
+        )
+    )
+    target_ds = Dataset(maintainer_id=maintainer_id, project_id=project_id)
+    # See cr/lib/entities/datasets/versions/forking.py
+    with actionslib.dataset_lock(
+        "fork_from", source_ds.id, version=source_ds.version, exclusive=False
+    ):
+        # Acquire a read lock on source dataset when forking.
+        result = target_ds._fork_from(source_ds.id, source_ds.version)
+    pprint.pprint(result)
+    print(target_ds)
 
 
 def _do_command(args):
