@@ -1,5 +1,5 @@
 """
-Stress Crunch by creating, updating, and deleting datasets continously
+Stress Crunch by streaming messages to a dataset continously
 """
 from __future__ import print_function
 import collections
@@ -7,50 +7,26 @@ import datetime
 import json
 import os
 import random
-import string
 import sys
 import threading
 import time
 
 import six
 
-from .crunch_util import (
-    append_csv_file_to_dataset,
-    connect_pycrunch,
-    create_dataset_from_csv,
-    get_ds_metadata,
-    get_pk_alias,
-)
-from .gen_data import open_csv_tempfile, write_random_rows
+from .crunch_util import connect_pycrunch, create_dataset_from_csv, set_pk_alias
 
 this_module = sys.modules[__name__]
 this_dir = os.path.dirname(os.path.abspath(this_module.__file__))
 
 
-def run_stress_loop(
-    config,
-    num_agents=1,
-    verbose=False,
-    idle_timeout=120,
-    cleaner_delay=180,
-    sparse_data=False,
-    num_rows=1000,
-    do_cleanup=True,
-):
+def run_stream_loop(config, num_agents=1, verbose=False, do_cleanup=True):
     print("Running", num_agents, "stress agents(s), press Ctr-C to stop.")
     stop_event = threading.Event()
-    kwargs = dict(
-        idle_timeout=idle_timeout,
-        cleaner_delay=cleaner_delay,
-        verbose=verbose,
-        sparse_data=sparse_data,
-        num_rows=num_rows,
-        do_cleanup=do_cleanup,
-    )
+    kwargs = dict(verbose=verbose, do_cleanup=do_cleanup)
     agents = []
     try:
         for agent_id in range(num_agents):
-            agent = StressAgent(agent_id, config, stop_event, **kwargs)
+            agent = StreamAgent(agent_id, config, stop_event, **kwargs)
             agent.start()
             agents.append(agent)
             # Delay to avoid hitting race condition creating datasets
@@ -58,7 +34,7 @@ def run_stress_loop(
             time.sleep(1.0)
         while True:
             # Wait for Ctrl-C
-            time.sleep(idle_timeout)
+            time.sleep(1.0)
     except KeyboardInterrupt:
         print("\nCtrl-C received, quitting main stress loop...")
         stop_event.set()
@@ -68,27 +44,12 @@ def run_stress_loop(
         print("Finished main stress loop.")
 
 
-class StressAgent:
-    def __init__(
-        self,
-        agent_id,
-        config,
-        stop_event,
-        idle_timeout=120,
-        cleaner_delay=180,
-        verbose=False,
-        sparse_data=False,
-        num_rows=1000,
-        do_cleanup=True,
-    ):
+class StreamAgent:
+    def __init__(self, agent_id, config, stop_event, verbose=False, do_cleanup=True):
         self.agent_id = agent_id
         self.config = config
         self.stop_event = stop_event
-        self.idle_timeout = idle_timeout
-        self.cleaner_delay = cleaner_delay
         self.verbose = verbose
-        self.sparse_data = sparse_data
-        self.num_rows = num_rows
         self.do_cleanup = do_cleanup
         #####
         self.writer_thread = None
@@ -107,21 +68,30 @@ class StressAgent:
             self.reader_thread.join()
             self.reader_thread = None
 
-    def _run_writer(self):
-        print("Agent {}:".format(self.agent_id), "Writer thread started")
-        site = connect_pycrunch(self.config["connection"], verbose=self.verbose)
-        metadata_path = os.path.join(this_dir, "data", "dataset.json")
+    def _create_dataset(self, site):
+        metadata_path = os.path.join(this_dir, "data", "dataset-with-pk.json")
         with open(metadata_path) as f:
             metadata = json.load(f)
         f = None  # create dataset with no rows
         t = datetime.datetime.now()
-        dataset_name = "Stress Test {}".format(t.isoformat(" "))
+        dataset_name = "Stream Test {}".format(t.isoformat(" "))
         ds = create_dataset_from_csv(
             site, metadata, f, verbose=self.verbose, dataset_name=dataset_name
         )
         ds_id = ds.body["id"]
         print("Agent {}:".format(self.agent_id), "Writer created dataset:", ds_id)
-        self.reader_thread = threading.Thread(target=self._run_reader, args=(ds_id,))
+        pk_alias = "personid"
+        set_pk_alias(ds, pk_alias)
+        print("Agent {}:".format(self.agent_id), "Writer set PK alias:", pk_alias)
+        return ds
+
+    def _run_writer(self):
+        print("Agent {}:".format(self.agent_id), "Writer thread started")
+        site = connect_pycrunch(self.config["connection"], verbose=self.verbose)
+        ds = self._create_dataset(site)
+        self.reader_thread = threading.Thread(
+            target=self._run_reader, args=(ds.body["id"],)
+        )
         self.reader_thread.daemon = True
         self.reader_thread.start()
         try:
@@ -201,14 +171,6 @@ def _append_random_rows(site, ds, num_rows, sparse_data=False):
         write_random_rows(var_defs, pk, num_rows, f, sparse_data=sparse_data)
         f.seek(0)
         append_csv_file_to_dataset(site, ds, f, verbose=False)
-
-
-def _make_varname(prefix="v_"):
-    t = datetime.datetime.now()
-    characters = string.ascii_lowercase + string.digits
-    choice = random.choice
-    suffix = "".join(choice(characters) for _ in range(5))
-    return "".join([prefix, t.strftime("%Y%m%d%H%M%S_%f"), "_", suffix])
 
 
 def _append_random_numeric_column(ds):

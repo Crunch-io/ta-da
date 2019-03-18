@@ -16,10 +16,10 @@ import urllib3.exceptions
 
 # Certificate for local.crunch.io has no `subjectAltName`, which causes warnings
 # See  https://github.com/shazow/urllib3/issues/497 for details.
-warnings.simplefilter('ignore', urllib3.exceptions.SubjectAltNameWarning)
+warnings.simplefilter("ignore", urllib3.exceptions.SubjectAltNameWarning)
 
 # Turn off warnings if server certificate validation is turned off.
-warnings.simplefilter('ignore', urllib3.exceptions.InsecureRequestWarning)
+warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 
 
 def connect_pycrunch(connection_info, verbose=False):
@@ -34,30 +34,41 @@ def connect_pycrunch(connection_info, verbose=False):
         is derived from requests.sessions.Session, which can be used for making
         HTTP requests to the API server.
     """
-    api_url = connection_info['api_url']
-    if connection_info.get('token'):
+    api_url = connection_info["api_url"]
+    if connection_info.get("token"):
         if verbose:
             print("Connecting to", api_url, "using token.")
-        session = pycrunch.Session(token=connection_info['token'],
-                                   domain=urllib.parse.urlparse(api_url).netloc)
+        session = pycrunch.Session(
+            token=connection_info["token"], domain=urllib.parse.urlparse(api_url).netloc
+        )
     else:
         if verbose:
-            print("Connecting to", api_url, "as", connection_info['username'])
-        session = pycrunch.Session(connection_info['username'],
-                                   connection_info['password'])
+            print("Connecting to", api_url, "as", connection_info["username"])
+        session = pycrunch.Session(
+            connection_info["username"], connection_info["password"]
+        )
     # If this session hook is not installed, you get an error from lemonpy.py:
     # AttributeError: No handler found for response status 301
     # This happens on alpha but not on a local dev VM.
-    session.hooks['response'].status_301 = lambda r: r
-    response = session.get(api_url,
-                           verify=connection_info.get('verify', False),
-                           cert=connection_info.get('cert'))
+    session.hooks["response"].status_301 = lambda r: r
+    response = session.get(
+        api_url,
+        verify=connection_info.get("verify", False),
+        cert=connection_info.get("cert"),
+    )
     site = response.payload
     return site
 
 
-def create_dataset_from_csv(site, metadata, fileobj_or_url, timeout_sec=300.0,
-                            retry_delay=0.25, verbose=False, dataset_name=None):
+def create_dataset_from_csv(
+    site,
+    metadata,
+    fileobj_or_url,
+    timeout_sec=300.0,
+    retry_delay=0.25,
+    verbose=False,
+    dataset_name=None,
+):
     """
     site:
         pycrunch.shoji.Catalog object returned by connect_pycrunch()
@@ -81,41 +92,36 @@ def create_dataset_from_csv(site, metadata, fileobj_or_url, timeout_sec=300.0,
         print("Creating dataset")
     if dataset_name is not None:
         metadata = copy.deepcopy(metadata)
-        metadata['body']['name'] = dataset_name
+        metadata["body"]["name"] = dataset_name
     ds = site.datasets.create(metadata).refresh()
     if fileobj_or_url is not None:
         if isinstance(fileobj_or_url, six.string_types):
             data_url = fileobj_or_url
             response = site.session.post(
                 ds.batches.self,
-                json={
-                    "element": "shoji:entity",
-                    "body": {
-                        "url": data_url
-                    }
-                },
-                headers={'Content-Type': 'application/shoji'}
+                json={"element": "shoji:entity", "body": {"url": data_url}},
+                headers={"Content-Type": "application/shoji"},
             )
         else:
             data_fileobj = fileobj_or_url
-            filename = getattr(data_fileobj, 'name', 'dataset.csv')
+            filename = getattr(data_fileobj, "name", "dataset.csv")
             response = site.session.post(
-                ds.batches.self,
-                files={
-                    'file': (filename, data_fileobj, 'text/csv'),
-                },
+                ds.batches.self, files={"file": (filename, data_fileobj, "text/csv")}
             )
-        wait_for_progress(site, response, timeout_sec, retry_delay,
-                          verbose=verbose)
+        wait_for_progress(site, response, timeout_sec, retry_delay, verbose=verbose)
     if verbose:
         print("Created dataset", ds.body.id)
     return ds
 
 
-def append_csv_file_to_dataset(site, ds, file_obj_or_name_or_url,
-                               timeout_sec=300.0,
-                               retry_delay=0.25,
-                               verbose=False):
+def append_csv_file_to_dataset(
+    site,
+    ds,
+    file_obj_or_name_or_url,
+    timeout_sec=300.0,
+    retry_delay=0.25,
+    verbose=False,
+):
     """
     Append a CSV file to an existing dataset. The CSV file must be compatible
     with the existing dataset metadata.
@@ -135,9 +141,7 @@ def append_csv_file_to_dataset(site, ds, file_obj_or_name_or_url,
     def _post_fileobj(filename, f):
         return site.session.post(
             site.sources.self,
-            files={
-                'uploaded_file': (os.path.basename(filename), f, 'text/csv'),
-            },
+            files={"uploaded_file": (os.path.basename(filename), f, "text/csv")},
         )
 
     if isinstance(file_obj_or_name_or_url, six.string_types):
@@ -146,47 +150,43 @@ def append_csv_file_to_dataset(site, ds, file_obj_or_name_or_url,
             data_url = file_obj_or_name_or_url
             if verbose:
                 print("Creating source from URL {}".format(data_url))
-            response = site.sources.post({
-                "element": "shoji:entity",
-                "body": {
-                    "location": data_url,
-                    "description":
-                        "Source created from URL {}".format(data_url)
+            response = site.sources.post(
+                {
+                    "element": "shoji:entity",
+                    "body": {
+                        "location": data_url,
+                        "description": "Source created from URL {}".format(data_url),
+                    },
                 }
-            })
+            )
         else:
             filename = file_obj_or_name_or_url
             if verbose:
                 print("Creating source from file:", filename)
-            with open(filename, 'rb') as f:
+            with open(filename, "rb") as f:
                 response = _post_fileobj(filename, f)
     else:
         f = file_obj_or_name_or_url
         if verbose:
             print("Creating source from file object:", f)
         # temp filename could be an integer
-        filename = str(getattr(f, 'name', 'dataset.csv'))
+        filename = str(getattr(f, "name", "dataset.csv"))
         response = _post_fileobj(filename, f)
 
     response.raise_for_status()
-    source_url = response.headers['Location']
+    source_url = response.headers["Location"]
     if verbose:
         print("Source created with URL:", source_url)
         print("Appending batch")
-    response = ds.batches.post({
-        "element": "shoji:entity",
-        "body": {
-            "source": source_url
-        }
-    })
-    wait_for_progress(site, response, timeout_sec, retry_delay,
-                      verbose=verbose)
+    response = ds.batches.post(
+        {"element": "shoji:entity", "body": {"source": source_url}}
+    )
+    wait_for_progress(site, response, timeout_sec, retry_delay, verbose=verbose)
     if verbose:
         print("Finished appending to dataset", ds.body.id)
 
 
-def wait_for_progress(site, progress_response, timeout_sec, retry_delay,
-                      verbose=False):
+def wait_for_progress(site, progress_response, timeout_sec, retry_delay, verbose=False):
     """
     Wait for an API call to finish that returned a progress response.
     site: The result of calling connect_pycrunch()
@@ -195,7 +195,7 @@ def wait_for_progress(site, progress_response, timeout_sec, retry_delay,
     retry_delay: Seconds to wait in between calls to the progress endpoint
     """
     progress_response.raise_for_status()
-    progress_url = progress_response.json()['value']
+    progress_url = progress_response.json()["value"]
     t0 = t = time.time()
     if verbose:
         print("Waiting on progress URL ...")
@@ -203,10 +203,10 @@ def wait_for_progress(site, progress_response, timeout_sec, retry_delay,
     while t - t0 < timeout_sec:
         response = site.session.get(progress_url)
         response.raise_for_status()
-        progress = response.json()['value']
+        progress = response.json()["value"]
         if verbose:
             print(progress)
-        progress_amount = progress.get('progress')
+        progress_amount = progress.get("progress")
         if progress_amount in (100, -1, None):
             break
         time.sleep(retry_delay)
@@ -226,21 +226,21 @@ def get_ds_metadata(ds, set_derived_field=True):
     response = ds.session.get(ds.table.self)
     response.raise_for_status()
     table = response.json()
-    if 'description' in table:
-        del table['description']
-    if 'self' in table:
-        del table['self']
+    if "description" in table:
+        del table["description"]
+    if "self" in table:
+        del table["self"]
     result = OrderedDict()
     result["element"] = "shoji:entity"
     result["body"] = body = OrderedDict()
-    body["name"] = ds.body['name']
-    body["description"] = ds.body['description']
+    body["name"] = ds.body["name"]
+    body["description"] = ds.body["description"]
     body["table"] = table
     if set_derived_field:
         for var_url, var_info in six.iteritems(ds.variables.index):
-            if var_info['derived']:
-                var_id = urllib_parse.urlparse(var_url).path.rsplit('/', 2)[-2]
-                table['metadata'][var_id]['derived'] = True
+            if var_info["derived"]:
+                var_id = urllib_parse.urlparse(var_url).path.rsplit("/", 2)[-2]
+                table["metadata"][var_id]["derived"] = True
     return result
 
 
@@ -255,10 +255,28 @@ def get_pk_alias(ds):
     if not pk_url_list:
         return None
     if len(pk_url_list) > 1:
-        raise RuntimeError("Can't handle {} PKs in dataset {}"
-                           .format(len(pk_url_list), ds.id))
+        raise RuntimeError(
+            "Can't handle {} PKs in dataset {}".format(len(pk_url_list), ds.id)
+        )
     pk_url = pk_url_list[0]
     response = ds.session.get(pk_url)
     response.raise_for_status()
-    pk_alias = response.json()['body']['alias']
+    pk_alias = response.json()["body"]["alias"]
     return pk_alias
+
+
+def set_pk_alias(ds, alias):
+    """
+    ds: pycrunch dataset returned by site.datasets.by('id')[ds_id].entity
+    alias: The alias of the variable that will become the Primary Key
+    Set the PK column by alias.
+    Raise an error if unsuccessful, otherwise return the response.
+    """
+    v = ds.variables.by('alias')[alias]
+    response = site.session.post(
+        ds.pk.self,
+        json={"element": "shoji:entity", "body": {"pk": [v.entity_url]}},
+        headers={"Content-Type": "application/shoji"},
+    )
+    response.raise_for_status()
+    return response
