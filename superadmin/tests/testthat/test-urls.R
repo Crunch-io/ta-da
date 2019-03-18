@@ -1,8 +1,10 @@
 context("URLs")
 
 test_that("superadminURL concatenates correctly", {
-    expect_identical(superadminURL("/users"), "http://localhost:28081/users")
-    expect_identical(superadminURL("users"), "http://localhost:28081/users")
+    expect_identical(superadminURL("users"), "http://localhost:28081/users/")
+    expect_identical(superadminURL("users", 24), "http://localhost:28081/users/24/")
+    expect_identical(superadminURL("users", 24, host="http://test.com/"), "http://test.com/users/24/")
+    expect_identical(superadminURL("users", 24, host="http://test.com"), "http://test.com/users/24/")
 })
 
 urls <- c("https://beta.crunch.io:443/api/datasets/bca1e06094b24bb2a0e377ad2d96a3cd/variables/?nosubvars=1&relative=on",

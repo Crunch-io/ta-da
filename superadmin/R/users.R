@@ -7,9 +7,9 @@
 #' @export
 getUsers <- function (query=NULL) {
     if (is.null(query)) {
-        out <- superGET(superadminURL("/users"))
+        out <- superGET(superadminURL("users"))
     } else {
-        out <- superGET(superadminURL("/users"), query=list(query=query))
+        out <- superGET(superadminURL("users"), query=list(query=query))
     }
     out <- content(out)$users
     if (length(out)) {
@@ -39,7 +39,7 @@ getUser <- function (id, query) {
             stop("Query matched more than one user: ", paste(users$email, sep=", "))
         }
     }
-    out <- superGET(superadminURL(paste0("/users/", id)))
+    out <- superGET(superadminURL("users", id))
     return(content(out))
 }
 
@@ -64,7 +64,7 @@ featureFlags <- function (x) {
 #' @export
 `featureFlags<-` <- function (x, value) {
     x$user$preferences <- modifyList(x$user$preferences, value)
-    superPOST(superadminURL(paste0("/users/", x$user$id, "/edit/")),
+    superPOST(superadminURL("users", x$user$id, "edit"),
         query=list(preferences_json=toJSON(x$user$preferences)))
     return(x)
 }

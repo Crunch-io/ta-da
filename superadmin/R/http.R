@@ -29,10 +29,14 @@ superPOST <- function (...) {
 #' @param host character path that `path` is relative to
 #' @return A valid URL.
 #' @export
-superadminURL <- function (path,
+superadminURL <- function (...,
         host=paste0("http://localhost:", getOption("superadmin.local.port"))) {
 
-    paste(host, path, sep=ifelse(substr(path, 1, 1) == "/", "", "/"))
+    # Remove trailing slash, if present
+    # We'll join on "/" so it will get added back.
+    host <- sub("/$", "", host)
+    segments <- c(host, ..., "") # Add an empty segment so we end with /
+    paste(segments, collapse="/")
 }
 
 retryWithNewTunnel <- function (call, envir) {
