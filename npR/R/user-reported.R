@@ -8,7 +8,6 @@
 #' @param ... additional arguments passed to `slack`
 #' @return A `httr` response from the slack POST. Called for side effect of
 #' posting in Slack.
-#' @importFrom pivotaltrackR getStories
 #' @examples
 #' \dontrun{
 #' supportReport("2017/08/14..2017/09/13", channel="#support")
@@ -17,8 +16,8 @@
 #' @export
 supportReport <- function (date="yesterday", subtitle=paste("Date range:", date), ...) {
     search <- paste(date, "label:user-reported")
-    accepted <- as.data.frame(getStories(accepted=search))
-    created <- as.data.frame(getStories(created=search))
+    accepted <- as.data.frame(pivotaltrackR::getStories(accepted=search))
+    created <- as.data.frame(pivotaltrackR::getStories(created=search))
 
     ## Assess net support stack (created and not iceboxed - accepted)
     new <- sum(created$current_state != "unscheduled")

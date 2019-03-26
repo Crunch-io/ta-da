@@ -17,12 +17,14 @@ Imports:
     dplyr,
     elbr,
     httr,
-    jsonlite,
-    pivotaltrackR
+    jsonlite
 Suggests:
     covr,
     httptest,
-    superadmin,
-    useRsnap
+    pivotaltrackR,
+    superadmin
+Remotes:
+    nealrichardson/elbr,
+    nealrichardson/pivotaltrackR
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
