@@ -5,7 +5,7 @@ branches:
   - dev
 language: go
 go:
-  - "1.11"
+  - "1.12"
 script: ./build-and-deploy.sh
 env:
   global:
