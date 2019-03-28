@@ -148,6 +148,42 @@
   </url>
   
   <url>
+    <loc>//crunch.io/</loc>
+    <lastmod>2019-03-04T14:08:35+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/categories/</loc>
+    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/</loc>
+    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/datasets/</loc>
+    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/categories/feature/</loc>
+    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/organization/</loc>
+    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//crunch.io/jobs/marketing-manager/</loc>
     <lastmod>2018-10-22T10:54:06+01:00</lastmod>
   </url>
@@ -178,18 +214,79 @@
   </url>
   
   <url>
-    <loc>//crunch.io/visualization/</loc>
-    <lastmod>2018-10-05T10:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//crunch.io/dev/features/pptx-exports/</loc>
     <lastmod>2018-09-25T10:20:47-04:00</lastmod>
   </url>
   
   <url>
+    <loc>//crunch.io/tags/analysis/</loc>
+    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/charts/</loc>
+    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/deck/</loc>
+    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/graphs/</loc>
+    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/powerpoint/</loc>
+    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//crunch.io/dev/blog/autoplot-with-tidyeval/</loc>
     <lastmod>2018-08-03T12:12:10-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/r/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/crplyr/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/data-visualization/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/categories/general/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/ggplot2/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/tidyeval/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -223,13 +320,49 @@
   </url>
   
   <url>
+    <loc>//crunch.io/tags/nets/</loc>
+    <lastmod>2018-01-14T13:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/subtotals/</loc>
+    <lastmod>2018-01-14T13:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//crunch.io/dev/features/dataset-dashboard/</loc>
     <lastmod>2017-10-17T23:20:47-04:00</lastmod>
   </url>
   
   <url>
+    <loc>//crunch.io/tags/clients/</loc>
+    <lastmod>2017-10-17T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/dashboards/</loc>
+    <lastmod>2017-10-17T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//crunch.io/dev/blog/nightwatch-selenium-docker/</loc>
     <lastmod>2017-10-10T09:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/automation/</loc>
+    <lastmod>2017-10-10T09:00:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/testing/</loc>
+    <lastmod>2017-10-10T09:00:00-07:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -243,8 +376,38 @@
   </url>
   
   <url>
+    <loc>//crunch.io/tags/geo/</loc>
+    <lastmod>2017-08-25T18:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/release/</loc>
+    <lastmod>2017-08-25T18:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//crunch.io/dev/features/sentiment-analysis/</loc>
     <lastmod>2017-08-21T23:20:47-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/derived-variables/</loc>
+    <lastmod>2017-08-21T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/sentiment-analysis/</loc>
+    <lastmod>2017-08-21T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/text/</loc>
+    <lastmod>2017-08-21T23:20:47-04:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -268,13 +431,31 @@
   </url>
   
   <url>
+    <loc>//crunch.io/tags/search/</loc>
+    <lastmod>2017-07-10T12:59:58-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//crunch.io/dev/features/visual-updates/</loc>
     <lastmod>2017-07-05T11:20:47-04:00</lastmod>
   </url>
   
   <url>
+    <loc>//crunch.io/tags/design/</loc>
+    <lastmod>2017-07-05T11:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>//crunch.io/dev/features/draft-and-publish/</loc>
     <lastmod>2017-06-12T23:20:47-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/draft-and-publish/</loc>
+    <lastmod>2017-06-12T23:20:47-04:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -288,203 +469,8 @@
   </url>
   
   <url>
-    <loc>//crunch.io/about/</loc>
-    <lastmod>2015-07-18T14:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/analysis/</loc>
-    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/automation/</loc>
-    <lastmod>2017-10-10T09:00:00-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/charts/</loc>
-    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/clients/</loc>
-    <lastmod>2017-10-17T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/crunchbox/create-crunchbox/</loc>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/crplyr/</loc>
-    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/dashboards/</loc>
-    <lastmod>2017-10-17T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/data-visualization/</loc>
-    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/datasets/</loc>
-    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/deck/</loc>
-    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/derived-variables/</loc>
-    <lastmod>2017-08-21T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/design/</loc>
-    <lastmod>2017-07-05T11:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/draft-and-publish/</loc>
-    <lastmod>2017-06-12T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/product/everyone-analyzes/</loc>
-  </url>
-  
-  <url>
     <loc>//crunch.io/tags/export/</loc>
     <lastmod>2017-05-01T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/categories/feature/</loc>
-    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/categories/general/</loc>
-    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/geo/</loc>
-    <lastmod>2017-08-25T18:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/ggplot2/</loc>
-    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/graphs/</loc>
-    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/product/intro-crunchbox/</loc>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/</loc>
-    <lastmod>2019-03-04T14:08:35+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/marketing/</loc>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/nets/</loc>
-    <lastmod>2018-01-14T13:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/organization/</loc>
-    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/product/powerful-analytics/</loc>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/powerpoint/</loc>
-    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/product/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/r/</loc>
-    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/product/real-time-surveys/</loc>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/release/</loc>
-    <lastmod>2017-08-25T18:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/search/</loc>
-    <lastmod>2017-07-10T12:59:58-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/sentiment-analysis/</loc>
-    <lastmod>2017-08-21T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/subtotals/</loc>
-    <lastmod>2018-01-14T13:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -495,27 +481,37 @@
   </url>
   
   <url>
-    <loc>//crunch.io/tags/</loc>
-    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
+    <loc>//crunch.io/about/</loc>
+    <lastmod>2015-07-18T14:08:35+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/crunchbox/create-crunchbox/</loc>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/product/everyone-analyzes/</loc>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/product/intro-crunchbox/</loc>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/marketing/</loc>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/product/powerful-analytics/</loc>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/product/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//crunch.io/tags/testing/</loc>
-    <lastmod>2017-10-10T09:00:00-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/text/</loc>
-    <lastmod>2017-08-21T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/tidyeval/</loc>
-    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
-    <priority>0</priority>
+    <loc>//crunch.io/product/real-time-surveys/</loc>
   </url>
   
   <url>
@@ -524,6 +520,10 @@
   
   <url>
     <loc>//crunch.io/crunchbox/try-crunchbox/</loc>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/visualization/</loc>
   </url>
   
 </urlset>
