@@ -1,13 +1,13 @@
 +++
 date = "2017-08-21T23:20:47-04:00"
+publishdate = "2017-08-21T23:20:47-04:00"
 draft = false
 title = "Sentiment Analysis"
 description = "At the press of a button, you can classify text data with natural language processing."
-weight = 20
 tags = ["text", "derived variables", "sentiment analysis"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-
+no_profiles = true
 
 +++
 

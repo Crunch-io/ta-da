@@ -6,6 +6,6 @@ lastname = "Suárez"
 description = ""
 weight = 1
 img = "natalia.jpg"
-location = "Santo Domingo"
+location = "London"
 position = "UI/UX Developer"
 +++

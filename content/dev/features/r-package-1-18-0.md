@@ -1,9 +1,10 @@
 +++
 date = "2017-08-25T18:20:47-04:00"
+publishdate = "2017-08-25T18:20:47-04:00"
 draft = false
 title = "Crunch R Package 1.18.0 Released"
 description = "New tools for working with maps, derived variables, multitables, and more."
-weight = 20
+show_news = false
 tags = ["R", "release", "geo"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]

@@ -1,9 +1,9 @@
 +++
 date = "2017-07-05T11:20:47-04:00"
+publishdate = "2017-07-05T11:20:47-04:00"
 draft = false
 title = ":bar_chart: New Header, New Font, New Graphs :chart_with_upwards_trend: "
 description = "Our new visual updates make Crunch easier to use and let your data speak more clearly than ever"
-weight = 20
 tags = ["graphs", "design"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]

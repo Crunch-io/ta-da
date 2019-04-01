@@ -643,3 +643,19 @@
     }
 
 }
+
+// Marketing page with video
+.marketing-page {
+    background-color: $color-blue;
+    background-image: linear-gradient( $color-blue, $--darker-primary-color);
+
+    button {
+        margin-bottom: 20px;
+    }
+
+    a {
+        font-family: 'Libre Baskerville', serif;
+        color: $color-white;
+        font-style: italic;
+    }
+}
