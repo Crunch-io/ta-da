@@ -24,7 +24,7 @@ To learn more about working with Crunch from R, check out our packages:
 -   [crplyr](/r/crplyr): A `dplyr` interface for the
     Crunch backend, allowing for easy data analysis
 
--   [crunchy](https://github.com/Crunch-io/crunchy): For building Shiny apps on
+-   [crunchy](/r/crunchy/): For building Shiny apps on
     Crunch
 
 -   [crunchgeo](https://github.com/Crunch-io/crunchgeo): For working with
