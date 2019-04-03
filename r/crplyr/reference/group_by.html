@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return the unweighted counts from summarize — unweighted_n • crplyr</title>
+<title>Group-by for Crunch datasets — group_by • crplyr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,11 +32,10 @@
 
   <link href="../extra.css" rel="stylesheet">
   
-<meta property="og:title" content="Return the unweighted counts from summarize — unweighted_n" />
+<meta property="og:title" content="Group-by for Crunch datasets — group_by" />
 
-<meta property="og:description" content="This function allows you to return the unweighted counts from a Crunch dataset
-or grouped crunch dataset. It can only be used from within a summarise()
-call. If your dataset is unweighted, then unweighted_n() is equivalent to n()." />
+<meta property="og:description" content="group_by() sets grouping variables that affect what summarize() computes.
+ungroup() removes any grouping variables." />
 
 <meta property="og:image" content="https://crunch.io/r/crplyr/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -124,36 +123,78 @@ call. If your dataset is unweighted, then unweighted_n() is equivalent to n()." 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return the unweighted counts from summarize</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Crunch-io/crplyr/blob/master/R/summarize.R'><code>R/summarize.R</code></a></small>
-    <div class="hidden name"><code>unweighted_n.Rd</code></div>
+    <h1>Group-by for Crunch datasets</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Crunch-io/crplyr/blob/master/R/group-by.R'><code>R/group-by.R</code></a></small>
+    <div class="hidden name"><code>group_by.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function allows you to return the unweighted counts from a Crunch dataset
-or grouped crunch dataset. It can only be used from within a <code>summarise()</code>
-call. If your dataset is unweighted, then unweighted_n() is equivalent to n().</p>
+    <p><code>group_by()</code> sets grouping variables that affect what <code><a href='summarize.html'>summarize()</a></code> computes.
+<code>ungroup()</code> removes any grouping variables.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>unweighted_n</span>()</pre>
-        
+    <pre class="usage"><span class='co'># S3 method for CrunchDataset</span>
+<span class='fu'>group_by</span>(<span class='no'>.data</span>, <span class='no'>...</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='co'># S3 method for CrunchDataset</span>
+<span class='fu'>ungroup</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>.data</th>
+      <td><p>For <code>group_by()</code>, a Crunch Dataset</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>references to variables to group by, passed to
+<code><a href='https://dplyr.tidyverse.org/reference/group_by_prepare.html'>dplyr::group_by_prepare()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>add</th>
+      <td><p>Logical: add the variables in <code>...</code> to any existing grouping
+variables, or replace them (the default).</p></td>
+    </tr>
+    <tr>
+      <th>x</th>
+      <td><p>For <code>ungroup()</code>, a Crunch Dataset</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>group_by()</code> returns a <code>GroupedCrunchDataset</code> object (a
+<code>CrunchDataset</code> with grouping annotations). <code>ungroup()</code> returns a
+<code>CrunchDataset</code>.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Note that <code>group_by()</code> only supports grouping on variables that exist in the
+dataset, not ones that are derived on the fly. <code><a href='https://dplyr.tidyverse.org/reference/group_by.html'>dplyr::group_by()</a></code> supports
+that by calling <code><a href='mutate.html'>mutate()</a></code> internally, but <code>mutate</code> is not yet supported in
+<code>crplyr</code>.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='no'>ds</span> <span class='kw'>%&gt;%</span>
-   <span class='fu'><a href='group_by.html'>group_by</a></span>(<span class='no'>cyl</span>) <span class='kw'>%&gt;%</span>
-   <span class='fu'><a href='summarize.html'>summarize</a></span>(
-       <span class='kw'>raw_counts</span> <span class='kw'>=</span> <span class='fu'>unweighted_n</span>(),
-       <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean</a></span>(<span class='no'>wt</span>)
-   )
+   <span class='fu'>group_by</span>(<span class='no'>cyl</span>) <span class='kw'>%&gt;%</span>
+   <span class='fu'><a href='select.html'>select</a></span>(<span class='no'>cyl</span>, <span class='no'>gear</span>) <span class='kw'>%&gt;%</span>
+   <span class='fu'><a href='collect.html'>collect</a></span>()
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-            
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
