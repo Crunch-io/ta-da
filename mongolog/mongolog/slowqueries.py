@@ -66,7 +66,7 @@ class CrunchMLogFilterTool(MLogFilterTool):
             return
 
         if "oplog.rs" in line_str:
-            # We don't care for replication queries right now
+            # We don't care for replication queries right now
             return
 
         self.LINES.append(data)
