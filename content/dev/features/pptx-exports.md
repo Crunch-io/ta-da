@@ -12,7 +12,7 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-We know that for many, PowerPoint slides remain central to delivering results and to paraphrase Mark Twain, "reports of PowerPoint's death have been greatly exagerated". Crunch has long offered exports of analyses and tab books to Excel files, which, in addition to their own value, enabled people to get results from Crunch to PowerPoint by copying a cell range from Excel into a slide. That’s a bit tedious, though, and we wanted to do better, which is why we are excited to announce that PowerPoint exports from Crunch are now available if you have [‘Early access’](http://support.crunch.io/crunch/crunch_user-display-settings.html#early-access) enabled in the app. We’re eager for feedback, so please try it and let us know how we can improve it to make it truly awesome for you.
+We know that for many, PowerPoint slides remain central to delivering results and to paraphrase Mark Twain, "reports of PowerPoint's death have been greatly exagerated". Crunch has long offered exports of analyses and tab books to Excel files, which, in addition to their own value, enabled people to get results from Crunch to PowerPoint by copying a cell range from Excel into a slide. That’s a bit tedious, though, and we wanted to do better, which is why we are excited to announce that PowerPoint exports from Crunch are now available. We’re eager for feedback, so please try it and let us know how we can improve it to make it truly awesome for you.
 
 {{< figure src="dev/features/images/pptx-export-menu.png" class="float-md-left img-fluid" width="250px">}}
 
