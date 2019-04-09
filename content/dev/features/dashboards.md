@@ -16,7 +16,7 @@ A dashboard is a special view of your data that has been prepared with pre-made 
 
 Here is an example of the kinds of dashboards you can create in minutes using Crunch...
 
-{{< figure src="dev/features/images/newdashboards.png" class="img-fluid" width="100%">}}
+{{< figure src="dev/features/images/new-dashboards.png" class="img-fluid" width="100%">}}
 
 ## Didn’t Crunch already have dashboards?
 
