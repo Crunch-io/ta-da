@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/jobs/</loc>
+    <lastmod>2018-10-22T10:54:06+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/team/members/chrisj/</loc>
     <lastmod>2018-04-27T09:28:41-04:00</lastmod>
   </url>
@@ -35,16 +40,6 @@
   <url>
     <loc>//crunch.io/team/members/david/</loc>
     <lastmod>2017-09-22T14:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/jobs/</loc>
-    <lastmod>2017-07-18T14:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/r/</loc>
-    <lastmod>2017-07-18T14:08:35+02:00</lastmod>
   </url>
   
   <url>
@@ -133,6 +128,10 @@
   </url>
   
   <url>
+    <loc>//crunch.io/r/</loc>
+  </url>
+  
+  <url>
     <loc>//crunch.io/dev/features/dataset-folders/</loc>
     <lastmod>2019-02-10T23:20:47-04:00</lastmod>
   </url>
@@ -154,9 +153,19 @@
   </url>
   
   <url>
+    <loc>//crunch.io/team/</loc>
+    <lastmod>2019-03-04T14:08:35+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/categories/</loc>
     <lastmod>2019-02-10T23:20:47-04:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/dev/features/</loc>
+    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
   </url>
   
   <url>
@@ -186,31 +195,6 @@
   <url>
     <loc>//crunch.io/jobs/marketing-manager/</loc>
     <lastmod>2018-10-22T10:54:06+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/api/</loc>
-    <lastmod>2018-10-05T10:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/crunchbox/</loc>
-    <lastmod>2018-10-05T10:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/crunchdb/</loc>
-    <lastmod>2018-10-05T10:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/powerful-survey-analytics/</loc>
-    <lastmod>2018-10-05T10:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/survey-data-expertise/</loc>
-    <lastmod>2018-10-05T10:08:35+02:00</lastmod>
   </url>
   
   <url>
@@ -260,6 +244,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/dev/blog/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/tags/crplyr/</loc>
     <lastmod>2018-08-03T12:12:10-07:00</lastmod>
     <priority>0</priority>
@@ -290,6 +279,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/api/</loc>
+    <lastmod>2018-04-25T14:59:57-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/api/api-libraries/</loc>
     <lastmod>2018-04-25T14:59:57-04:00</lastmod>
   </url>
@@ -300,18 +294,23 @@
   </url>
   
   <url>
+    <loc>//crunch.io/survey-data-expertise/</loc>
+    <lastmod>2018-04-25T12:34:11-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/survey-data-expertise/survey-data-effortlessly/</loc>
     <lastmod>2018-04-25T12:27:04-04:00</lastmod>
   </url>
   
   <url>
-    <loc>//crunch.io/about/privacy/</loc>
+    <loc>//crunch.io/about/</loc>
     <lastmod>2018-04-11T14:08:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>//crunch.io/team/</loc>
-    <lastmod>2018-02-08T00:00:00+00:00</lastmod>
+    <loc>//crunch.io/about/privacy/</loc>
+    <lastmod>2018-04-11T14:08:35+02:00</lastmod>
   </url>
   
   <url>
@@ -411,21 +410,6 @@
   </url>
   
   <url>
-    <loc>//crunch.io/dev/features/</loc>
-    <lastmod>2017-07-18T14:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/dev/</loc>
-    <lastmod>2017-07-18T14:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/dev/blog/</loc>
-    <lastmod>2017-07-18T14:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//crunch.io/dev/features/search-filters/</loc>
     <lastmod>2017-07-10T12:59:58-04:00</lastmod>
   </url>
@@ -481,12 +465,15 @@
   </url>
   
   <url>
-    <loc>//crunch.io/about/</loc>
-    <lastmod>2015-07-18T14:08:35+02:00</lastmod>
+    <loc>//crunch.io/crunchbox/create-crunchbox/</loc>
   </url>
   
   <url>
-    <loc>//crunch.io/crunchbox/create-crunchbox/</loc>
+    <loc>//crunch.io/crunchbox/</loc>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/crunchdb/</loc>
   </url>
   
   <url>
@@ -502,7 +489,15 @@
   </url>
   
   <url>
+    <loc>//crunch.io/dev/</loc>
+  </url>
+  
+  <url>
     <loc>//crunch.io/product/powerful-analytics/</loc>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/powerful-survey-analytics/</loc>
   </url>
   
   <url>
