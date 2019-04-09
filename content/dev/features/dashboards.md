@@ -1,12 +1,13 @@
 +++
 date = "2019-04-08T23:20:47-04:00"
 title = "Customizable dashboards"
-description = "Crunch dashboards have just had a **major** upgrade. Check out all the great customizations you can now make. Click here to learn more."
+news_description = "Crunch dashboards have just had a **major** upgrade. Check out all the great customizations you can now make. Click here to learn more."
 weight = 20
 tags = ["dashboards"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
 labs_only = true
+no_profiles = true
 +++
 
 
