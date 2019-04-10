@@ -1,7 +1,7 @@
 +++
 date = "2019-04-08T23:20:47-04:00"
 title = "Customizable dashboards"
-news_description = "Crunch dashboards have just had a <b>major</b> upgrade. Check out all the great customizations you can now make. Click here to learn more."
+news_description = "Crunch dashboards have just had a <b>major</b> upgrade, availble now for our Early Access users. Check out all the great customizations you can now make. Click here to learn more."
 weight = 20
 tags = ["dashboards"]
 categories = ["feature"]
@@ -10,6 +10,7 @@ labs_only = true
 no_profiles = true
 +++
 
+Currently available just for our Early Access users, we'll be rolling this out to everyone soon.
 
 ## What are Crunch dashboards?
 
