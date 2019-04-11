@@ -137,6 +137,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/dev/features/dashboards/</loc>
+    <lastmod>2019-04-08T23:20:47-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/dev/features/dataset-folders/</loc>
     <lastmod>2019-02-10T23:20:47-04:00</lastmod>
   </url>
@@ -152,8 +157,37 @@
   </url>
   
   <url>
+    <loc>//crunch.io/categories/</loc>
+    <lastmod>2019-04-08T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/dev/features/</loc>
+    <lastmod>2019-04-08T23:20:47-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/</loc>
-    <lastmod>2019-03-20T07:08:35+02:00</lastmod>
+    <lastmod>2019-04-08T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/</loc>
+    <lastmod>2019-04-08T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/dashboards/</loc>
+    <lastmod>2019-04-08T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/categories/feature/</loc>
+    <lastmod>2019-04-08T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -163,30 +197,7 @@
   </url>
   
   <url>
-    <loc>//crunch.io/categories/</loc>
-    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/dev/features/</loc>
-    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/</loc>
-    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>//crunch.io/tags/datasets/</loc>
-    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/categories/feature/</loc>
     <lastmod>2019-02-10T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
@@ -342,12 +353,6 @@
   
   <url>
     <loc>//crunch.io/tags/clients/</loc>
-    <lastmod>2017-10-17T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/dashboards/</loc>
     <lastmod>2017-10-17T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>

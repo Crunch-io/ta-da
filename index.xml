@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Mar 2019 07:08:35 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2019 23:20:47 -0400</lastBuildDate>
     
 	<atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -234,6 +234,16 @@
       
       <guid>//crunch.io/team/board/doug/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Customizable dashboards</title>
+      <link>//crunch.io/dev/features/dashboards/</link>
+      <pubDate>Mon, 08 Apr 2019 23:20:47 -0400</pubDate>
+      
+      <guid>//crunch.io/dev/features/dashboards/</guid>
+      <description>Currently available just for our Early Access users, we&amp;rsquo;ll be rolling this out to everyone soon.
+What are Crunch dashboards? A dashboard is a special view of your data that has been prepared with pre-made analyses — tables and graphs — designed to highlight key points for instant insight. Dashboards are great for conveying key information, drawn from your data, for users who don’t have the time (or the inclination) to do their own analysis.</description>
     </item>
     
     <item>
