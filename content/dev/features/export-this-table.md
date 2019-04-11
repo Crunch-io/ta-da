@@ -1,7 +1,8 @@
 +++
 date = "2019-04-05T23:20:47-04:00"
 title = "Quick Multitable Export"
-description = "Export only what you see to XLSX or use saved settings to include more."
+description = "Export only what you see in a multitable to XLSX or use saved settings to include more."
+news_description = "Export only what you see in a multitable to XLSX or use saved settings to include more."
 weight = 20
 tags = ["exports", "tab books"]
 categories = ["feature"]
