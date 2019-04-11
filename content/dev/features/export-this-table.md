@@ -1,6 +1,5 @@
 +++
 date = "2019-04-05T23:20:47-04:00"
-draft = true
 title = "Quick Multitable Export"
 description = "Export only what you see to XLSX or use saved settings to include more."
 weight = 20
