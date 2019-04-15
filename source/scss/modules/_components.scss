@@ -251,8 +251,15 @@ figure {
     &.img-fluid {
         img {
             max-width: 100%;
-            padding: 30px;
+            margin-top: 15px;
+            margin-bottom: 15px;
         }
+    }
+    figcaption h4 {
+        margin-top: -15px;
+        font-weight: 500;
+        font-size: 1em;
+        font-style: italic;
     }
 }
 

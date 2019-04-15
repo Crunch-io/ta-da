@@ -1,7 +1,7 @@
 +++
 date = "2018-11-01T16:45:00+05:00"
-draft = false
-title = "JavaScript Engineer"
+draft = true
+title = "Intermediate JavaScript Engineer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 application_url = "http://smrtr.io/Rxmr"
