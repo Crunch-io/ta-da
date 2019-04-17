@@ -14,8 +14,8 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 Multitables are a great way to quickly find key relationships in your data. When _exporting_ multitables, you now have three choices, allowing you to create just the right export for your needs.
 
-* “Export this table” – instantly grab an XLSX file of just what you see on screen, using whatever display settings you have currently selected.
-* “Export this table (saved settings)” – instantly grab an XLSX file of the table that you see on screen but with whatever settings you’ve chosen in the Export tab book > Customize panel. This allows you to use your favorite settings (counts, percentages, unweighted bases, etc.) without selecting them each time. Just choose them once and then you’ll be able to use them every time with this option.
-* “Export tab book…” – export several variables or a whole dataset in a single or multi-page layout, complete with customizable settings via the Customize… button.
+* **Export this table** – instantly grab an XLSX file of just what you see on screen, using whatever display settings you have currently selected.
+* **Export this table (saved settings)** – instantly grab an XLSX file of the table that you see on screen but with whatever settings you’ve chosen in the Export tab book > Customize panel. This allows you to use your favorite settings (counts, percentages, unweighted bases, etc.) without selecting them each time. Just choose them once and then you’ll be able to use them every time with this option.
+* **Export tab book…”** – export several variables or a whole dataset in a single or multi-page layout, complete with customizable settings via the Customize… button.
 
 Now it is easier than ever to take those insights away and build your data story with XLSX exports.
