@@ -5,9 +5,22 @@
     <description>Recent content in Feature Announcements on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2019-04-15T18:40:08+00:00</lastBuildDate>
+    <lastBuildDate>2019-04-18T11:49:49+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>Quick Multitable Export</title>
+      <link>//crunch.io/dev/features/export-this-table/</link>
+      <pubDate>2019-04-18T11:43:35+00:00</pubDate>
+      
+      <guid>//crunch.io/dev/features/export-this-table/</guid>
+      <labsOnly>false</labsOnly>
+      <noProfiles>false</noProfiles>
+      <description>Export only what you see to XLSX or use saved settings to include more.</description>
+    </item>
     
     
     
