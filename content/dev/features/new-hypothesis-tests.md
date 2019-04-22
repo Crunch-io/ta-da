@@ -11,7 +11,7 @@ labs_only = true
 no_profiles = true
 +++
 
-Crunch tab book exports now include a new hypothesis testing option that computes all possible comparisons between columns of a two-way table. When users select the "Column t-test" option in the “Export tab book… > Customize” panel, columns in output will be lettered and differences that are significant at the .05 significance level are indicated by letters underneath the cell with the higher percentage. [See here for details]().
+Crunch tab book exports now include a new hypothesis testing option that computes all possible comparisons between columns of a two-way table. When users select the "Column t-test" option in the “Export tab book… > Customize” panel, columns in output will be lettered and differences that are significant at the .05 significance level are indicated by letters underneath the cell with the higher percentage. [See here for details](http://support.crunch.io/articles/c9e4yRRi/Hypothesis-testing-in-Crunch).
 
 {{< figure src="dev/features/images/tab-book-export-panel.png" class="img-fluid">}}
 
