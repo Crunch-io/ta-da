@@ -143,6 +143,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/dev/features/new-hypothesis-tests/</loc>
+    <lastmod>2019-04-21T23:20:47-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/dev/features/dashboards/</loc>
     <lastmod>2019-04-08T23:20:47-04:00</lastmod>
   </url>
@@ -169,19 +174,43 @@
   
   <url>
     <loc>//crunch.io/categories/</loc>
-    <lastmod>2019-04-08T23:20:47-04:00</lastmod>
+    <lastmod>2019-04-21T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//crunch.io/</loc>
-    <lastmod>2019-04-08T23:20:47-04:00</lastmod>
+    <lastmod>2019-04-21T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//crunch.io/tags/</loc>
-    <lastmod>2019-04-08T23:20:47-04:00</lastmod>
+    <lastmod>2019-04-21T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/export/</loc>
+    <lastmod>2019-04-21T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/categories/feature/</loc>
+    <lastmod>2019-04-21T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/tab-books/</loc>
+    <lastmod>2019-04-21T23:20:47-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/xlsx/</loc>
+    <lastmod>2019-04-21T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -192,19 +221,7 @@
   </url>
   
   <url>
-    <loc>//crunch.io/categories/feature/</loc>
-    <lastmod>2019-04-08T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>//crunch.io/tags/exports/</loc>
-    <lastmod>2019-04-05T23:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/tab-books/</loc>
     <lastmod>2019-04-05T23:20:47-04:00</lastmod>
     <priority>0</priority>
   </url>
@@ -503,12 +520,6 @@
   <url>
     <loc>//crunch.io/dev/features/tab-book-improvements/</loc>
     <lastmod>2017-05-01T23:20:47-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/export/</loc>
-    <lastmod>2017-05-01T23:20:47-04:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
