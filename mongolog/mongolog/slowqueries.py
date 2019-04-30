@@ -65,6 +65,14 @@ class CrunchMLogFilterTool(MLogFilterTool):
             # For now focus on reads, will have to monitor more once reads are sane
             return
 
+        if "oplog.rs" in line_str or "local.system.replset" in line_str:
+            # We don't care for replication queries right now
+            return
+
+        if "io_crunch_celery_broker" in line_str or "celery_taskmeta" in line_str:
+            # Avoid tracking queries by the tasks datadog agent
+            return
+
         self.LINES.append(data)
 
 
