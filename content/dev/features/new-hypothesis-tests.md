@@ -1,14 +1,13 @@
 +++
-date = "2019-04-21T23:20:47-04:00"
-publishdate = "2019-04-22T21:41:20+0000"
+date = "2019-05-04T23:20:47-04:00"
 title = "New hypothesis testing features in Crunch"
-news_description = "Crunch tab book exports now include a new hypothesis testing option that computes all possible comparisons between columns of a two-way table, available now for our Early Access users. Click here to learn more."
+news_description = "Crunch tab book exports now include a new hypothesis testing option that computes all possible comparisons between columns of a two-way table. Click here to learn more."
 description = "Crunch tab book exports now include a new hypothesis testing option that computes all possible comparisons between columns of a two-way table."
 weight = 20
 tags = ["tab books", "export", "xlsx"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+no_profiles = true
 +++
 
 Crunch tab book exports now include a new hypothesis testing option that computes all possible comparisons between columns of a two-way table. When users select the "Column t-test" option in the “Export tab book… > Customize” panel, columns in output will be lettered and differences that are significant at the .05 significance level are indicated by letters underneath the cell with the higher percentage. [See here for details](http://support.crunch.io/articles/c9e4yRRi/Hypothesis-testing-in-Crunch).
