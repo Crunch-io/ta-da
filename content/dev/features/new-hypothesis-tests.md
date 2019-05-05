@@ -1,5 +1,6 @@
 +++
 date = "2019-05-04T23:20:47-04:00"
+publishdate = "2019-05-05T15:57:10+0000"
 title = "New hypothesis testing features in Crunch"
 news_description = "Crunch tab book exports now include a new hypothesis testing option that computes all possible comparisons between columns of a two-way table. Click here to learn more."
 description = "Crunch tab book exports now include a new hypothesis testing option that computes all possible comparisons between columns of a two-way table."
