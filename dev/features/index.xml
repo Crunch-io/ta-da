@@ -5,7 +5,7 @@
     <description>Recent content in Feature Announcements on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2019-05-05T21:31:00+00:00</lastBuildDate>
+    <lastBuildDate>2019-05-08T12:03:38+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,7 @@
       <guid>//crunch.io/dev/features/new-hypothesis-tests/</guid>
       <labsOnly>false</labsOnly>
       <noProfiles>true</noProfiles>
+      <pinned>false</pinned>
       <description>Crunch tab book exports now include a new hypothesis testing option that computes all possible comparisons between columns of a two-way table. Click here to learn more.</description>
     </item>
     
@@ -32,6 +33,7 @@
       <guid>//crunch.io/dev/features/export-this-table/</guid>
       <labsOnly>false</labsOnly>
       <noProfiles>false</noProfiles>
+      <pinned>false</pinned>
       <description>Export only what you see to XLSX or use saved settings to include more.</description>
     </item>
     
@@ -45,6 +47,7 @@
       <guid>//crunch.io/dev/features/dashboards/</guid>
       <labsOnly>true</labsOnly>
       <noProfiles>true</noProfiles>
+      <pinned>false</pinned>
       <description>Crunch dashboards have just had a &lt;b&gt;major&lt;/b&gt; upgrade, available now for our Early Access users. Check out all the great customizations you can now make. Click here to learn more.</description>
     </item>
     
@@ -58,6 +61,7 @@
       <guid>//crunch.io/dev/features/dataset-folders/</guid>
       <labsOnly>false</labsOnly>
       <noProfiles>false</noProfiles>
+      <pinned>false</pinned>
       <description>We&#39;ve moved to a folder-based, nested organization for datasets in order to make it easier to navigate and manage permissions on datasets.</description>
     </item>
     
@@ -71,6 +75,7 @@
       <guid>//crunch.io/dev/features/pptx-exports/</guid>
       <labsOnly>false</labsOnly>
       <noProfiles>false</noProfiles>
+      <pinned>false</pinned>
       <description>Decks can now be downloaded directly to PowerPoint. Click here to learn more.</description>
     </item>
     
@@ -84,6 +89,7 @@
       <guid>//crunch.io/dev/features/subtotals/</guid>
       <labsOnly>false</labsOnly>
       <noProfiles>false</noProfiles>
+      <pinned>false</pinned>
       <description>Enhance your analyses by adding subtotals to your tables. See summary statistics of interest at a glance.</description>
     </item>
     
@@ -97,6 +103,7 @@
       <guid>//crunch.io/dev/features/dataset-dashboard/</guid>
       <labsOnly>false</labsOnly>
       <noProfiles>false</noProfiles>
+      <pinned>false</pinned>
       <description>Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings.</description>
     </item>
     
@@ -112,6 +119,7 @@
       <guid>//crunch.io/dev/features/sentiment-analysis/</guid>
       <labsOnly>false</labsOnly>
       <noProfiles>true</noProfiles>
+      <pinned>false</pinned>
       <description>At the press of a button, you can classify text data with natural language processing.</description>
     </item>
     
@@ -125,6 +133,7 @@
       <guid>//crunch.io/dev/features/search-filters/</guid>
       <labsOnly>false</labsOnly>
       <noProfiles>false</noProfiles>
+      <pinned>false</pinned>
       <description>With these new search filters, you can refine your queries and find the datasets or variables you are looking for faster.</description>
     </item>
     
@@ -138,6 +147,7 @@
       <guid>//crunch.io/dev/features/visual-updates/</guid>
       <labsOnly>false</labsOnly>
       <noProfiles>false</noProfiles>
+      <pinned>false</pinned>
       <description>Our new visual updates make Crunch easier to use and let your data speak more clearly than ever</description>
     </item>
     
@@ -151,6 +161,7 @@
       <guid>//crunch.io/dev/features/draft-and-publish/</guid>
       <labsOnly>false</labsOnly>
       <noProfiles>true</noProfiles>
+      <pinned>false</pinned>
       <description>Our new draft-and-publish feature allows you to prepare and review changes to data before pushing them to everyone.</description>
     </item>
     
@@ -164,6 +175,7 @@
       <guid>//crunch.io/dev/features/tab-book-improvements/</guid>
       <labsOnly>false</labsOnly>
       <noProfiles>false</noProfiles>
+      <pinned>false</pinned>
       <description>By popular demand, Excel tab books just gained a bunch of new capabilities.</description>
     </item>
     
