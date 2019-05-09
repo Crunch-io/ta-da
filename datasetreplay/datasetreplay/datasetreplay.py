@@ -46,12 +46,15 @@ class tunnel(object):
         subprocess.call('pkill -f "ssh -A -f -N -L %s"' % self.local_port, shell=True)
 
 
-def admin_url(connection, path):
+def admin_url(connection, path, data=None):
     if not path.startswith('/'):
         path = '/' + path
-    return dict(url='http://%s:%s%s' % (connection[0], connection[1], path),
+    r = dict(url='http://%s:%s%s' % (connection[0], connection[1], path),
                 headers={'Accept': 'application/json'})
 
+    if data:
+        r['data'] = data
+    return r
 
 def notify(dataset_id, dataset_name, from_version, message, success=True, skipped=False,
            tracefile=None):

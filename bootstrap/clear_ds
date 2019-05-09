@@ -1,5 +1,5 @@
 #!/bin/bash
-/var/lib/crunch.io/venv/bin/cr.server.load_data /var/lib/crunch.io/cr.server-0.conf /var/lib/crunch.io/src/backend-http/cr/server/fixtures/
+/var/lib/crunch.io/venv/bin/cr.server.load_data /var/lib/crunch.io/cr.server-0.conf /var/lib/crunch.io/src/server/src/cr/server/fixtures/
 curl -XDELETE 'http://localhost:9200/crunch_app_db_prod_variables*'
 mongo crunch_app_db_prod reset_mongo.js
 s3cmd rm --recursive s3://percioustest/ --force

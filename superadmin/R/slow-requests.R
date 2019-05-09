@@ -13,7 +13,7 @@ getSlowRequests <- function (method="ANY", path=NULL, threshold=NULL, limit=10) 
         threshold=threshold,
         limit=limit
     ))
-    out <- superGET(superadminURL("/tracing"), query=query)
+    out <- superGET(superadminURL("tracing"), query=query)
     out <- content(out)$logs
     if (length(out)) {
         # Parse the results into "SlowRequest" data.frames with metadata
@@ -88,7 +88,7 @@ formatSRmeta <- function (req, threshold=119) {
         u <- try(getUser(id=i))
         return(ifelse(inherits(u, "try-error"), i, u$user$email))
     }, character(1))
-    base <- superadminURL("/tracing/", host="https://eu.superadmin.crint.net")
+    base <- superadminURL("tracing", host="https://eu.superadmin.crint.net")
 
     out <- list(
         times=length(meta$actual_total_time),

@@ -61,7 +61,7 @@ def load_dataset_from_file(file_name, name=None, team=None, project=None, user=N
     if name is None:
         name = os.path.basename(file_name).split('.')[0]
 
-    file_name = '/var/lib/crunch.io/src/swoosh/files/' + file_name
+    file_name = '/var/lib/crunch.io/src/server/tests/files/' + file_name
 
     captain = User.find_by_id(id='00002')
 
@@ -71,9 +71,9 @@ def load_dataset_from_file(file_name, name=None, team=None, project=None, user=N
     source = create_source_from_file(file_name, user)
 
     print 'creating dataset'
-    ds = Dataset(owner_type='User', owner_id=user.id).create()
-    ds.name = name
-    ds.save()
+    ds = create_dataset(user, name=name)
+    #ds.name = name
+    #ds.save()
 
     print 'appending source'
     # Add it to the dataset
@@ -100,7 +100,12 @@ def create_dataset(user=None, **kwargs):
     print 'creating dataset: %s' % kwargs
     captain = User.find_by_id(id='00002')
     user = user or captain
-    ds = Dataset(owner=user, **kwargs).create()
+
+    personal = Project.personal_for(user.account_id, user)
+    ds = Dataset(project=personal, maintainer_id=user.id, **kwargs)
+
+    ds.create()
+    #ds = Dataset(owner=user, **kwargs).create()
     ds.save()
 
     return ds
@@ -246,14 +251,15 @@ def initial_setup():
                            'create_datasets': True,
                            'alter_users': True}
     captain.save()
-
-    project = Project(
-            name='a_test_project',
-            owner_id=captain.id,
-            account_id='00001',
-            id='08ed498c0aa1422491b95a6b04c69653'
-        ).create()
-
+    #
+    # project = Project(
+    #         name='a_test_project',
+    #         owner_id=captain.id,
+    #         #account_id='00001',
+    #         id='08ed498c0aa1422491b95a6b04c69653',
+    #         path=['ahe_path']
+    #     ).create()
+    #
 
     users = []
     for name in ('captain',
@@ -280,7 +286,7 @@ def initial_setup():
 
         user.save()
         users.append(user)
-        project.members.add(user)
+       # project.members.add(user)
 
         if 'navigation' in email:
             navigation_user = user
@@ -303,6 +309,7 @@ def initial_setup():
 
     print 'done.'
     geodata = create_geodata()
+    return users, None, team, geodata
     return users, project, team, geodata
 
 
@@ -356,15 +363,15 @@ def load_search_load_testing_datasets(project, team):
 
 def load_functional_testing_datasets(project, team, geodata):
     load_dataset_from_file('simple_alltypes.sav', name='a_simple_alltypes', project=project)
-    load_dataset_from_file('UCBAdmissions.csv', name='Admissions', team=team, project=project)
-    load_dataset_from_file('ECON_few_columns.sav', name='a_econ_few_columns', team=team, project=project)
+    #load_dataset_from_file('UCBAdmissions.csv', name='Admissions', team=team, project=project)
+    #load_dataset_from_file('ECON_few_columns.sav', name='a_econ_few_columns', team=team, project=project)
 
     navigation_user = User.find_many_by_email(['test.navigation@crunch.io'])[0]
 
-    load_dataset_from_file('UCBAdmissions.csv', name='test-navigation_admissions', team=team, project=project, user=navigation_user)
-    load_dataset_from_file('simple_alltypes.sav', name='test-navigation_simple-alltypes', team=team, project=project, user=navigation_user)
+    #load_dataset_from_file('UCBAdmissions.csv', name='test-navigation_admissions', team=team, project=project, user=navigation_user)
+    #load_dataset_from_file('simple_alltypes.sav', name='test-navigation_simple-alltypes', team=team, project=project, user=navigation_user)
 
-    load_geodata_dataset(project, team, geodata)
+    #load_geodata_dataset(project, team, geodata)
 
 
 def main():
@@ -377,16 +384,16 @@ def main():
 
     load_settings(settings_file)
 
-    #users, project, team, geodata = initial_setup()
+    users, project, team, geodata = initial_setup()
 
-    project = Project.find_by_id(id='08ed498c0aa1422491b95a6b04c69653')
-    team = Team.find_one({'account_id': '00001'})
+    #project = Project.find_by_id(id='08ed498c0aa1422491b95a6b04c69653')
+    #team = Team.find_one({'account_id': '00001'})
     captain = User.find_by_id(id='00002')
     users = [captain]
     geodata = {'us': GeoDatum.find_one({'location': 'https://s.crunch.io/geodata/leafletjs/us-states.geojson' })}
 
-    #load_functional_testing_datasets(project, team, geodata)
-    load_search_load_testing_datasets(project, team)
+    load_functional_testing_datasets(project, team, geodata)
+    #load_search_load_testing_datasets(project, team)
     #for i in range(10):
     #    create_dataset_with_derivation('dataset_with_derivation_%d' % (i))
 

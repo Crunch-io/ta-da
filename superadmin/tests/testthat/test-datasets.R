@@ -15,5 +15,10 @@ public({
             expect_is(df3, "data.frame")
             expect_identical(dim(df3), c(0L, 6L))
         })
+        test_that("getDatasets query has a trailing slash (so no 301 redirect)", {
+            expect_GET(getDatasets(dsid="fake"),
+                "http://localhost:28081/datasets/?dsid=fake"
+            )
+        })
     })
 })

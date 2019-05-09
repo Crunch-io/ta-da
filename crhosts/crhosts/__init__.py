@@ -81,9 +81,11 @@ def main():
     tunnelparser = subparsers.add_parser('connect')      
     tunnelparser.add_argument('ROLE', help='Work on hosts for given ROLE ' 
                                            '(dbservers, webservers, ...)')                      
-    tunnelparser.add_argument('INDEX', type=int,
+    tunnelparser.add_argument('INDEX',
                               help='Tunnel to the given server '
-                                   'as listed by list subcommand')
+                                   'as listed by list subcommand '
+                                   '(or to server matching a predicate '
+                                   'in the form namespace:name. IE: mongodb:primary)')
     tunnelparser.add_argument('-i', dest='IDENTITY', 
                               help='Which SSH key to use (IE: ~/.ssh/id_rsa)')
     tunnelparser.add_argument('-p', '--port', dest='PORT', default='2222',
@@ -109,13 +111,24 @@ def main():
     elif args.subcommand == 'connect':
         servers = gather_servers(args.environment, args.ROLE)
         try:
-            server = servers[args.INDEX]
-        except IndexError:
-            print('Invalid Server, valid indexes are:')
-            for idx, s in enumerate(servers):
-                print('\t', idx, s)
-            return
-        print('Connecting to', server)
+            server_index = int(args.INDEX)
+        except ValueError:
+            # User requested a predicate
+            server = HostPropertyDetector(args).detect(servers, args.INDEX)
+            if server is None:
+                print("No server matched predicate")
+                return
+        else:
+            # User requested a specific index
+            try:
+                server = servers[server_index]
+            except IndexError:
+                print('Invalid Server, valid indexes are:')
+                for idx, s in enumerate(servers):
+                    print('\t', idx, s)
+                return
+
+        print('> Connecting to', server)
         with tunnel(server, 22, args.PORT) as dest:
             command = ('ssh'
                        ' -o UserKnownHostsFile=/dev/null' 
@@ -138,3 +151,62 @@ def main():
                     killonexit=False) as dest:
             webbrowser.open('http://{}:{}/'.format(*dest))
     
+
+class HostPropertyDetector(object):
+    """Detects properties of an host you are trying to connect to.
+
+    The ``connect`` command allows connecting to a host that has
+    a specific property instead of connecting to a given index.
+
+    That is supported by this property detector that checks the host
+    properties.
+
+    Each method implemented in this class is a predicate that
+    returns ``False`` or ``True`` to verify if the host has
+    that property or not.
+
+    All methods accept a ``dest`` argument, which is the pair (address, port)
+    you should connect to to reach the host (after tunneling is already in place)
+    and a ``user`` argument, which is the user you must use to connect.
+    Methods also receive a ``command`` argument, which is the ssh command
+    that must be executed to connect to that host. You can append to this
+    command to execute scripts on the remote host.
+    """
+    def __init__(self, args):
+        self._args = args
+
+    def detect(self, servers, predicate):
+        """Detect a server out of the provided that matches predicate.
+
+        Predicates are provided in the form ``namespace:name`` and
+        are verified by ``_namespace_name`` method of this object.
+        """
+        try:
+            predicate = getattr(self, '_'+predicate.replace(':', '_'))
+        except AttributeError:
+            raise ValueError("Predicate %s not supported" % predicate)
+
+        for server in servers:
+            print('> Checking', server)
+            with tunnel(server, 22, self._args.PORT) as dest:
+                command = ('ssh'
+                           ' -o UserKnownHostsFile=/dev/null' 
+                           ' -o StrictHostKeyChecking=no'
+                           ' -p {}'
+                           ' {}@{}'.format(dest[1], self._args.USER, dest[0]))
+                if self._args.IDENTITY:
+                    command += ' -i {}'.format(self._args.IDENTITY)
+                if predicate(dest, self._args.USER, command):
+                    return server
+
+    def _mongodb_secondary(self, dest, user, command):
+        """Check that the host we are trying to connect to is a mongodb secondary."""
+        command = command + """ 'mongo --quiet --eval "rs.status()[\\\""myState\\\""]"'"""
+        res = subprocess.check_output(command, shell=True).strip()
+        return res == "2"
+
+    def _mongodb_primary(self, dest, user, command):
+        """Check that the host we are trying to connect to is a mongodb primary."""
+        command = command + """ 'mongo --quiet --eval "rs.status()[\\\""myState\\\""]"'"""
+        res = subprocess.check_output(command, shell=True).strip()
+        return res == "1"

@@ -4,7 +4,7 @@
 \alias{elbSummary}
 \title{Generate a daily, weekly, whatever summary of web traffic}
 \usage{
-elbSummary(days, before.date = Sys.Date(), send = TRUE)
+elbSummary(days, before.date = Sys.Date(), send = TRUE, ...)
 }
 \arguments{
 \item{days}{Integer number of days to aggregate}

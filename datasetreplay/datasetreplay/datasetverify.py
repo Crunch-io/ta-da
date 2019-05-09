@@ -64,9 +64,10 @@ def main():
 
         dataset_integrity = dataset_info["verify_integrity"]
         if dataset_integrity is None:
-            notify(dataset_id, dataset['name'],
-                'Skipped: Never had a transaction', 
-                success=False, skipped=True, tracefile=tracefile)
+            return
+            # notify(dataset_id, dataset['name'],
+            #       'Skipped: Never had a transaction', 
+            #        success=False, skipped=True, tracefile=tracefile)
         elif dataset_integrity is False:
             notify(dataset_id, dataset['name'], 'Broken: %s - %s' % (
                 dataset_info.get("last_transaction"),

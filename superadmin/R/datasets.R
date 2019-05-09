@@ -8,9 +8,9 @@
 getDatasets <- function (...) {
     query <- list(...)
     if (length(query)) {
-        out <- superGET(superadminURL("/datasets"), query=query)
+        out <- superGET(superadminURL("datasets"), query=query)
     } else {
-        out <- superGET(superadminURL("/datasets"))
+        out <- superGET(superadminURL("datasets"))
     }
     out <- content(out)$datasets
     col.names <- c("id", "name", "description", "archived",
