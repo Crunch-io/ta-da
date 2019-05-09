@@ -83,7 +83,9 @@ def main():
                                            '(dbservers, webservers, ...)')                      
     tunnelparser.add_argument('INDEX',
                               help='Tunnel to the given server '
-                                   'as listed by list subcommand')
+                                   'as listed by list subcommand '
+                                   '(or to server matching a predicate '
+                                   'in the form namespace:name. IE: mongodb:primary)')
     tunnelparser.add_argument('-i', dest='IDENTITY', 
                               help='Which SSH key to use (IE: ~/.ssh/id_rsa)')
     tunnelparser.add_argument('-p', '--port', dest='PORT', default='2222',
