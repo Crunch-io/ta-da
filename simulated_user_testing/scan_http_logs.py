@@ -12,7 +12,8 @@ Options:
     --subdir-pattern=PATTERN    [default: eu-backend-*]
     --logfile-pattern=PATTERN   [default: other.log*]
     --verbose                   Print debug messages to stderr
-    --num-days=N                Show last N days of log files. [default: 7]
+    --num-days=N                Scan last N days of log files. [default: 7]
+    --include-undated           Scan files without date in name
 
 Commands:
     list        Print names of files that would be scanned
@@ -40,7 +41,7 @@ import docopt
 PY2 = sys.version_info.major == 2
 
 
-CREATE_TABLE_QUERY = """
+SQL_SETUP_SCRIPT = """
 CREATE TABLE IF NOT EXISTS cr_server_requests (
     id INTEGER PRIMARY KEY,
     user_id TEXT,
@@ -51,15 +52,18 @@ CREATE TABLE IF NOT EXISTS cr_server_requests (
     http_status INTEGER,
     user_agent TEXT,
     dataset_id TEXT
-)
-""".strip()
+);
 
-CREATE_TS_INDEX_QUERY = """
-CREATE INDEX IF NOT EXISTS cr_server_requests_ts_idx ON cr_server_requests(req_timestamp)
-"""
+CREATE INDEX IF NOT EXISTS cr_server_requests_ts_idx ON cr_server_requests(req_timestamp);
 
-CREATE_DS_INDEX_QUERY = """
-CREATE INDEX IF NOT EXISTS cr_server_requests_ds_idx ON cr_server_requests(dataset_id)
+CREATE INDEX IF NOT EXISTS cr_server_requests_ds_idx ON cr_server_requests(dataset_id);
+
+CREATE TABLE IF NOT EXISTS cr_server_logfiles (
+    id INTEGER PRIMARY KEY,
+    filename TEXT NOT NULL UNIQUE,
+    num_requests INTEGER NOT NULL,
+    parsed_timestamp TIMESTAMP
+);
 """
 
 # Example log line:
@@ -103,7 +107,7 @@ def main():
 
 
 def do_list(args):
-    for log_filename in list_latest_logfiles(args):
+    for log_filename in list_filtered_logfiles(args):
         print(log_filename)
 
 
@@ -116,11 +120,11 @@ def do_scan(args):
     )
     try:
         ensure_schema(conn)
-        log_filenames = list_latest_logfiles(args)
+        log_root_dir = get_root_dir(args)
+        print("Scanning log files under", log_root_dir)
+        log_filenames = list_filtered_logfiles(args)
         for log_filename in log_filenames:
-            print("Parsing log file:", log_filename)
             num_requests += parse_log_file(conn, log_filename)
-            conn.commit()
     finally:
         conn.close()
     print("Recorded {} requests found in the log files.".format(num_requests))
@@ -134,16 +138,16 @@ def do_test(args):
 
 
 ################################################################################
-# Command implementations
+# Helper functions
 
 # The date embedded in a log filename reflects the timestamps in the
 # lines at the end of that file, not the beginning.
 DATE_PATTERN = re.compile(r"-(?P<year>20\d{2})(?P<month>\d{2})(?P<day>\d{2})")
 
 
-def list_latest_logfiles(args):
+def list_filtered_logfiles(args):
     verbose = args["--verbose"]
-    log_root_dir = os.path.expanduser(args["--log-root-dir"])
+    log_root_dir = get_root_dir(args)
     if not os.path.exists(log_root_dir):
         raise ValueError("Missing log root dir: {}".format(log_root_dir))
     full_pattern = os.path.join(
@@ -158,6 +162,10 @@ def list_latest_logfiles(args):
     for log_filename in glob.glob(full_pattern):
         m = DATE_PATTERN.search(os.path.basename(log_filename))
         if not m:
+            if not args["--include-undated"]:
+                if verbose:
+                    print("Skipping undated log file:", log_filename, file=sys.stderr)
+                continue
             # No date in filename, assume it is from today
             logfile_date = today
         else:
@@ -172,24 +180,58 @@ def list_latest_logfiles(args):
     return [i[1] for i in result]
 
 
+def get_root_dir(args):
+    return os.path.abspath(os.path.expanduser(args["--log-root-dir"]))
+
+
 def ensure_schema(conn):
     with closing(conn.cursor()) as cur:
-        cur.execute(CREATE_TABLE_QUERY)
-        cur.execute(CREATE_TS_INDEX_QUERY)
-        cur.execute(CREATE_DS_INDEX_QUERY)
+        cur.executescript(SQL_SETUP_SCRIPT)
     conn.commit()
 
 
 def parse_log_file(conn, log_filename):
-    fileobj = open(log_filename, "rb")
-    if log_filename.endswith(".gz"):
-        line_iter = gzip.GzipFile(log_filename, "rb", fileobj=fileobj)
-    else:
-        line_iter = iter(fileobj)
+    with closing(conn.cursor()) as cur:
+        cur.execute(
+            """
+            SELECT num_requests, parsed_timestamp FROM cr_server_logfiles
+            WHERE filename=?
+            """,
+            (log_filename,),
+        )
+        row = cur.fetchone()
+        if row is not None:
+            print(
+                "Already parsed {} requests from {} on {}".format(
+                    row[0], log_filename, row[1]
+                )
+            )
+            return 0
+    print("Parsing log file:", log_filename)
     try:
-        return parse_log_lines(conn, line_iter)
-    finally:
-        fileobj.close()
+        fileobj = open(log_filename, "rb")
+        if log_filename.endswith(".gz"):
+            line_iter = gzip.GzipFile(log_filename, "rb", fileobj=fileobj)
+        else:
+            line_iter = iter(fileobj)
+        try:
+            num_requests = parse_log_lines(conn, line_iter)
+        finally:
+            fileobj.close()
+        with closing(conn.cursor()) as cur:
+            cur.execute(
+                """
+                INSERT INTO cr_server_logfiles (filename, num_requests, parsed_timestamp)
+                VALUES (?, ?, ?)
+                """,
+                (log_filename, num_requests, datetime.now()),
+            )
+    except Exception:
+        conn.rollback()
+        raise
+    else:
+        conn.commit()
+    return num_requests
 
 
 def parse_log_lines(conn, line_iter):
