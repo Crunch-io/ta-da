@@ -127,7 +127,7 @@ def do_scan(args):
     log_root_dir = get_root_dir(args)
     print("Scanning log files under", log_root_dir)
     log_filenames = list_filtered_logfiles(args)
-    use_multiprocessing = True
+    use_multiprocessing = False
     if use_multiprocessing:
         p = Pool(2)
         param_list = [(args, log_filename) for log_filename in log_filenames]
