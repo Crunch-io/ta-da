@@ -32,6 +32,7 @@ import glob
 import os
 import re
 import gzip
+from multiprocessing import Pool
 import sqlite3
 import sys
 
@@ -54,7 +55,8 @@ CREATE TABLE IF NOT EXISTS cr_server_requests (
     dataset_id TEXT
 );
 
-CREATE INDEX IF NOT EXISTS cr_server_requests_ts_idx ON cr_server_requests(req_timestamp);
+CREATE INDEX IF NOT EXISTS cr_server_requests_ts_idx
+ON cr_server_requests(req_timestamp);
 
 CREATE INDEX IF NOT EXISTS cr_server_requests_ds_idx ON cr_server_requests(dataset_id);
 
@@ -112,7 +114,6 @@ def do_list(args):
 
 
 def do_scan(args):
-    num_requests = 0
     db_filename = args["--db-filename"]
     print("Opening database file:", db_filename)
     conn = sqlite3.connect(
@@ -120,13 +121,20 @@ def do_scan(args):
     )
     try:
         ensure_schema(conn)
-        log_root_dir = get_root_dir(args)
-        print("Scanning log files under", log_root_dir)
-        log_filenames = list_filtered_logfiles(args)
-        for log_filename in log_filenames:
-            num_requests += parse_log_file(conn, log_filename)
     finally:
         conn.close()
+    log_root_dir = get_root_dir(args)
+    print("Scanning log files under", log_root_dir)
+    log_filenames = list_filtered_logfiles(args)
+    use_multiprocessing = False
+    if use_multiprocessing:
+        p = Pool(2)
+        param_list = [(args, log_filename) for log_filename in log_filenames]
+        num_requests = sum(p.imap_unordered(parse_log_file, param_list))
+    else:
+        num_requests = sum(
+            [parse_log_file((args, log_filename)) for log_filename in log_filenames]
+        )
     print("Recorded {} requests found in the log files.".format(num_requests))
     return 0
 
@@ -190,39 +198,41 @@ def ensure_schema(conn):
     conn.commit()
 
 
-def parse_log_file(conn, log_filename):
-    with closing(conn.cursor()) as cur:
-        cur.execute(
-            """
-            SELECT num_requests, parsed_timestamp FROM cr_server_logfiles
-            WHERE filename=?
-            """,
-            (log_filename,),
-        )
-        row = cur.fetchone()
-        if row is not None:
-            print(
-                "Already parsed {} requests from {} on {}".format(
-                    row[0], log_filename, row[1]
-                )
-            )
-            return 0
-    print("Parsing log file:", log_filename)
+def parse_log_file(param):
+    args, log_filename = param
+    db_filename = args["--db-filename"]
+    conn = sqlite3.connect(
+        db_filename, detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES
+    )
     try:
-        fileobj = open(log_filename, "rb")
-        if log_filename.endswith(".gz"):
-            line_iter = gzip.GzipFile(log_filename, "rb", fileobj=fileobj)
-        else:
-            line_iter = iter(fileobj)
-        try:
-            num_requests = parse_log_lines(conn, line_iter)
-        finally:
-            fileobj.close()
+        _parse_log_file(conn, log_filename)
+    finally:
+        conn.close()
+
+
+def _parse_log_file(conn, log_filename):
+    try:
         with closing(conn.cursor()) as cur:
+            cur.execute("BEGIN")
+            if not check_log_filename(conn, log_filename):
+                # Diagnostic message already printed
+                return 0
+            print("Parsing log file:", log_filename)
+            fileobj = open(log_filename, "rb")
+            if log_filename.endswith(".gz"):
+                line_iter = gzip.GzipFile(log_filename, "rb", fileobj=fileobj)
+            else:
+                line_iter = iter(fileobj)
+            try:
+                num_requests = parse_log_lines(conn, line_iter)
+            finally:
+                fileobj.close()
             cur.execute(
                 """
-                INSERT INTO cr_server_logfiles (filename, num_requests, parsed_timestamp)
-                VALUES (?, ?, ?)
+                INSERT INTO cr_server_logfiles
+                (filename, num_requests, parsed_timestamp)
+                VALUES
+                (?, ?, ?)
                 """,
                 (log_filename, num_requests, datetime.now()),
             )
@@ -234,6 +244,35 @@ def parse_log_file(conn, log_filename):
     return num_requests
 
 
+def check_log_filename(conn, log_filename):
+    """
+    Return True iff this log file has already been ingested
+    If log_filename ends with ".gz", check without that extension also
+    """
+    filenames = [log_filename]
+    if log_filename.endswith(".gz"):
+        filenames.append(log_filename[:-3])
+    with closing(conn.cursor()) as cur:
+        for filename in filenames:
+            cur.execute(
+                """
+                SELECT num_requests, parsed_timestamp FROM cr_server_logfiles
+                WHERE filename=?
+                """,
+                (filename,),
+            )
+            row = cur.fetchone()
+            if row is None:
+                continue
+            print(
+                "Already parsed {} requests from {} on {}".format(
+                    row[0], filename, row[1]
+                )
+            )
+            return False
+    return True
+
+
 def parse_log_lines(conn, line_iter):
     num_requests = 0
     with closing(conn.cursor()) as cur:
@@ -243,7 +282,7 @@ def parse_log_lines(conn, line_iter):
             if not m:
                 continue
             try:
-                record_request(cur, m.groupdict())
+                record_request_in_db(cur, m.groupdict())
             except Exception:
                 print("Error on line", line_num, file=sys.stderr)
                 raise
@@ -257,10 +296,20 @@ def to_str(b):
     return codecs.decode(b, "utf-8", "backslashreplace")
 
 
-def record_request(cur, data):
+def record_request_in_db(cur, data):
     req_timestamp = parse_timestamp(data["req_timestamp"])
     http_status = int(data["http_status"])
     generate_crunch_info(data)
+    row = (
+        data["user_id"],
+        data["auth_token_prefix"],
+        req_timestamp,
+        data["http_verb"],
+        data["req_path"],
+        http_status,
+        data["user_agent"],
+        data["dataset_id"],
+    )
     cur.execute(
         """
         INSERT INTO
@@ -276,16 +325,7 @@ def record_request(cur, data):
         )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """,
-        (
-            data["user_id"],
-            data["auth_token_prefix"],
-            req_timestamp,
-            data["http_verb"],
-            data["req_path"],
-            http_status,
-            data["user_agent"],
-            data["dataset_id"],
-        ),
+        row,
     )
 
 
