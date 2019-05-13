@@ -35,6 +35,7 @@ import gzip
 from multiprocessing import Pool
 import sqlite3
 import sys
+import traceback
 
 import docopt
 
@@ -126,7 +127,7 @@ def do_scan(args):
     log_root_dir = get_root_dir(args)
     print("Scanning log files under", log_root_dir)
     log_filenames = list_filtered_logfiles(args)
-    use_multiprocessing = False
+    use_multiprocessing = True
     if use_multiprocessing:
         p = Pool(2)
         param_list = [(args, log_filename) for log_filename in log_filenames]
@@ -199,15 +200,19 @@ def ensure_schema(conn):
 
 
 def parse_log_file(param):
-    args, log_filename = param
-    db_filename = args["--db-filename"]
-    conn = sqlite3.connect(
-        db_filename, detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES
-    )
     try:
-        _parse_log_file(conn, log_filename)
-    finally:
-        conn.close()
+        args, log_filename = param
+        db_filename = args["--db-filename"]
+        conn = sqlite3.connect(
+            db_filename, detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES
+        )
+        try:
+            return _parse_log_file(conn, log_filename)
+        finally:
+            conn.close()
+    except Exception:
+        traceback.print_exc()
+        return 0
 
 
 def _parse_log_file(conn, log_filename):
