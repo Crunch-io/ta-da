@@ -1,18 +1,14 @@
 +++
-date = "2019-04-08T23:20:47-04:00"
-publishdate = "2019-04-11T20:29:07+0000"
+date = "2019-05-14T09:56:47-04:00"
 title = "Customizable dashboards"
-news_description = "Crunch dashboards have just had a <b>major</b> upgrade, available now for our Early Access users. Check out all the great customizations you can now make. Click here to learn more."
-description = "Crunch dashboards have just had a major upgrade, available now for our Early Access users. Check out all the great customizations you can now make."
+news_description = "Crunch dashboards have just had a <b>major</b> upgrade, available now for all dataset editors. Check out all the great customizations you can now make. Click here to learn more."
+description = "Crunch dashboards have just had a major upgrade, available now for all dataset editors. Check out all the great customizations you can now make."
 weight = 20
 tags = ["dashboards"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
 no_profiles = true
 +++
-
-Currently available just for our Early Access users, we'll be rolling this out to everyone soon.
 
 ## What are Crunch dashboards?
 
