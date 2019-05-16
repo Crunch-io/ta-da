@@ -5,9 +5,23 @@
     <description>Recent content in Feature Announcements on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2019-05-13T16:42:28+00:00</lastBuildDate>
+    <lastBuildDate>2019-05-16T16:22:17+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>Customizable dashboards</title>
+      <link>//crunch.io/dev/features/dashboards/</link>
+      <pubDate>2019-05-16T16:15:53+00:00</pubDate>
+      
+      <guid>//crunch.io/dev/features/dashboards/</guid>
+      <labsOnly>false</labsOnly>
+      <noProfiles>true</noProfiles>
+      <pinned>false</pinned>
+      <description>Crunch dashboards have just had a &lt;b&gt;major&lt;/b&gt; upgrade, available now for all dataset editors. Check out all the great customizations you can now make. Click here to learn more.</description>
+    </item>
     
     
     
@@ -35,20 +49,6 @@
       <noProfiles>false</noProfiles>
       <pinned>false</pinned>
       <description>Export only what you see to XLSX or use saved settings to include more.</description>
-    </item>
-    
-    
-    
-    <item>
-      <title>Customizable dashboards</title>
-      <link>//crunch.io/dev/features/dashboards/</link>
-      <pubDate>2019-04-11T20:29:07+00:00</pubDate>
-      
-      <guid>//crunch.io/dev/features/dashboards/</guid>
-      <labsOnly>true</labsOnly>
-      <noProfiles>true</noProfiles>
-      <pinned>false</pinned>
-      <description>Crunch dashboards have just had a &lt;b&gt;major&lt;/b&gt; upgrade, available now for our Early Access users. Check out all the great customizations you can now make. Click here to learn more.</description>
     </item>
     
     
