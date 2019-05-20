@@ -12,11 +12,13 @@ Options:
     --subdir-pattern=PATTERN    [default: eu-backend-*]
     --logfile-pattern=PATTERN   [default: other.log*]
     --verbose                   Print debug messages to stderr
-    --num-days=N                Scan last N days of log files. [default: 7]
+    --num-days=N                Scan N days of log files. [default: 7]
+    --start-date=YYYYMMDD       Starting date pattern
+                                (default: N days before today)
     --include-undated           Scan files without date in name
 
 Commands:
-    list        Print names of files that would be scanned
+    list        Print names of files that could be scanned
     scan        Scan log files and store records in DB
     test        Run limited internal self-check
 
@@ -69,8 +71,10 @@ CREATE TABLE IF NOT EXISTS cr_server_logfiles (
 );
 """
 
-# Example log line:
-'''2019-05-09T18:30:46.281931+00:00 alpha-backend-4-212 supervisord: cr.server-03 73.78.228.168 - token:1085023f74234916a962ec08fe9b9382/userid:2558f05f81df4684917f4205452daa76 [2019-05-09 18:30:46.280942] "GET /api/projects/d273f4ddb6b94b63a4f05609cb5fdb89/ HTTP/1.0" 200 1001 "http://local.crunch.io:8000/d273f4ddb6b94b63a4f05609cb5fdb89" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"'''  # noqa: B950
+# Example log lines (see test_parse_log_lines()):
+line1 = '''2019-05-09T18:30:46.281931+00:00 alpha-backend-4-212 supervisord: cr.server-03 73.78.228.168 - token:1085023f74234916a962ec08fe9b9382/userid:2558f05f81df4684917f4205452daa76 [2019-05-09 18:30:46.280942] "GET /api/projects/d273f4ddb6b94b63a4f05609cb5fdb89/ HTTP/1.0" 200 1001 "http://local.crunch.io:8000/d273f4ddb6b94b63a4f05609cb5fdb89" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"'''  # noqa: B950
+line2 = '''May  6 15:02:08 eu-backend-5-171 supervisord: cr.server-14 38.99.85.65 - token:5bd2dd2ca32d4d8dbbaae6201ef60fc8/userid:80899091624a41a8b96331a369f1bd88 [06/May/2019:15:02:08] "POST /api/datasets/fa19d320ae2f461ea555043700d692d5/stream/ HTTP/1.0" 204 - "" "pycrunch/0.4.11"'''  # noqa: B950
+line3 = """blah"""
 
 HTTP_REQUEST_PATTERN = re.compile(
     r"""
@@ -86,7 +90,7 @@ HTTP_REQUEST_PATTERN = re.compile(
     \s+
     (?P<http_status>\d{3})
     \s+
-    (?P<resp_size>\d+)
+    (?P<resp_size>\d+|-)
     \s+
     "(?P<http_referrer>.*?)"
     \s+
@@ -115,7 +119,7 @@ def do_list(args):
 
 
 def do_scan(args):
-    db_filename = args["--db-filename"]
+    db_filename = os.path.expanduser(args["--db-filename"])
     print("Opening database file:", db_filename)
     conn = sqlite3.connect(
         db_filename, detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES
@@ -142,6 +146,7 @@ def do_scan(args):
 
 def do_test(args):
     test_parse_timestamp()
+    test_parse_log_lines()
     print("Ok")
     return 0
 
@@ -163,8 +168,13 @@ def list_filtered_logfiles(args):
         log_root_dir, args["--subdir-pattern"], args["--logfile-pattern"]
     )
     num_days = int(args["--num-days"])
-    today = date.today()
-    interval = timedelta(num_days)
+    start_date_str = args["--start-date"]
+    if start_date_str:
+        start_date = datetime.strptime(start_date_str, "%Y%m%d").date()
+        end_date = start_date + timedelta(num_days)
+    else:
+        end_date = date.today()
+        start_date = end_date - timedelta(num_days)
     result = []
     if verbose:
         print("Log filename pattern:", full_pattern, file=sys.stderr)
@@ -175,16 +185,17 @@ def list_filtered_logfiles(args):
                 if verbose:
                     print("Skipping undated log file:", log_filename, file=sys.stderr)
                 continue
-            # No date in filename, assume it is from today
-            logfile_date = today
+            # No date in filename - give it an arbitrary date for sorting purposes
+            logfile_date = end_date
         else:
             logfile_date = date(
                 int(m.group("year")), int(m.group("month")), int(m.group("day"))
             )
-        if today - logfile_date <= interval:
-            result.append((logfile_date, log_filename))
-        elif verbose:
-            print("Filtered out by date:", log_filename, file=sys.stderr)
+            if not (start_date <= logfile_date <= end_date):
+                if verbose:
+                    print("Filtered out by date:", log_filename, file=sys.stderr)
+                continue
+        result.append((logfile_date, log_filename))
     result.sort()
     return [i[1] for i in result]
 
@@ -202,7 +213,7 @@ def ensure_schema(conn):
 def parse_log_file(param):
     try:
         args, log_filename = param
-        db_filename = args["--db-filename"]
+        db_filename = os.path.expanduser(args["--db-filename"])
         conn = sqlite3.connect(
             db_filename, detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES
         )
@@ -434,6 +445,44 @@ def test_parse_timestamp():
         pass
     else:
         raise AssertionError("blah is not a valid timestamp")
+
+
+def test_parse_log_lines():
+    print("test_parse_log_lines")
+    m = HTTP_REQUEST_PATTERN.search(line1)
+    assert m.group("ip_addr") == "73.78.228.168"
+    assert (
+        m.group("user_id")
+        == "token:1085023f74234916a962ec08fe9b9382/userid:2558f05f81df4684917f4205452daa76"  # noqa: B950
+    )
+    assert m.group("req_timestamp") == "2019-05-09 18:30:46.280942"
+    assert m.group("http_verb") == "GET"
+    assert m.group("req_path") == "/api/projects/d273f4ddb6b94b63a4f05609cb5fdb89/"
+    assert m.group("http_status") == "200"
+    assert m.group("resp_size") == "1001"
+    assert (
+        m.group("user_agent")
+        == "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"  # noqa: B950
+    )
+
+    m = HTTP_REQUEST_PATTERN.search(line2)
+    assert m.group("ip_addr") == "38.99.85.65"
+    assert (
+        m.group("user_id")
+        == "token:5bd2dd2ca32d4d8dbbaae6201ef60fc8/userid:80899091624a41a8b96331a369f1bd88"  # noqa: B950
+    )
+    assert m.group("req_timestamp") == "06/May/2019:15:02:08"
+    assert m.group("http_verb") == "POST"
+    assert (
+        m.group("req_path")
+        == "/api/datasets/fa19d320ae2f461ea555043700d692d5/stream/"  # noqa: B950
+    )
+    assert m.group("http_status") == "204"
+    assert m.group("resp_size") == "-"
+    assert m.group("user_agent") == "pycrunch/0.4.11"
+
+    m = HTTP_REQUEST_PATTERN.search(line3)
+    assert m is None
 
 
 DATASET_ID_PATTERN = re.compile(r"/datasets/(.*?)/")
