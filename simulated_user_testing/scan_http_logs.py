@@ -4,7 +4,6 @@ Read backend server logs and save HTTP request history to sqlite DB
 Usage:
     scan_http_logs.py [options] <command>
 
-
 Options:
     --db-filename=DB_FILENAME   [default: cr-server-requests.db]
     --test                      Run some internal self-checks
@@ -279,7 +278,7 @@ def create_parse_param_list(conn, log_filenames, db_filename):
     """Create a list of parameters, each suitable for parse_log_file"""
     parse_param_list = []
     for sequence_num, log_filename in enumerate(log_filenames, 1):
-        file_id, prev_state = get_set_log_state(conn, log_filename, "PARSING")
+        file_id, prev_state = begin_parsing_log(conn, log_filename)
         if prev_state is not None:
             print(
                 "Log file {} state is '{}', skipping".format(log_filename, prev_state),
@@ -292,20 +291,14 @@ def create_parse_param_list(conn, log_filenames, db_filename):
 
 def ingest_parsed_files(conn, parse_results, cleanup_csv_files=True):
     for _, file_id, csv_filename in parse_results:
-        _, prev_state = get_set_log_state(
-            conn, file_id, "INGESTING", "PARSING", raise_on_error=True
-        )
+        update_log_state(conn, file_id, "INGESTING", "PARSING")
         try:
             ingest_csv_file(conn, csv_filename)
         except BaseException:
-            _, prev_state = get_set_log_state(
-                conn, file_id, "ERROR", "INGESTING", raise_on_error=True
-            )
+            update_log_state(conn, file_id, "ERROR", "INGESTING")
             raise
         else:
-            _, prev_state = get_set_log_state(
-                conn, file_id, "DONE", "INGESTING", raise_on_error=True
-            )
+            update_log_state(conn, file_id, "DONE", "INGESTING")
             if cleanup_csv_files:
                 print("Removing:", csv_filename)
                 os.remove(csv_filename)
@@ -320,54 +313,32 @@ def ingest_csv_file(conn, csv_filename):
                 cur.execute("BEGIN")  # start a transaction
                 for row in r:
                     record_request_in_db(cur, row)
-        except Exception:
+        except BaseException:
             conn.rollback()
             raise
         else:
             conn.commit()
 
 
-def get_set_log_state(
-    conn, log_filename_or_id, new_state, expected_prev_state=None, raise_on_error=False
-):
+def begin_parsing_log(conn, log_filename):
     """
-    Set the parsing state of a log file if the previous state is as expected.
-    new_state:
-        "PARSING" to start parsing log file
-        "INGESTING" for ingesting parse result csv files
-        "DONE" to record that it is finished
-        "ERROR" to record that it couldn't be parsed
-    expected_prev_state:
-        None means the log record doesn't exist or the state is NULL.
-        If the state doesn't match expected_prev_state, don't change it.
-    raise_on_error:
-        If state doesn't match expected prev state, raise RuntimeError.
+    Record the fact that we are beginning to parse a log file.
+    If the log file record already exists and has a non-NULL, non-empty state,
+    don't change the state.  Otherwise, change the state to "PARSING".
     Return (file_id, prev_state) of the log file record.
     """
-    if isinstance(log_filename_or_id, int):
-        file_id = log_filename_or_id
-        filename_key = None
-    else:
-        file_id = None
-        filename_key = normalize_log_filename(log_filename_or_id)
+    filename_key = normalize_log_filename(log_filename)
+    new_state = "PARSING"
     try:
         with closing(conn.cursor()) as cur:
             cur.execute("BEGIN")  # start a transaction
-            if file_id is None:
-                cur.execute(
-                    "SELECT id, state FROM cr_server_logfiles WHERE filename=?",
-                    (filename_key,),
-                )
-            else:
-                cur.execute(
-                    "SELECT id, state FROM cr_server_logfiles WHERE id=?", (file_id,)
-                )
+            cur.execute(
+                "SELECT id, state FROM cr_server_logfiles WHERE filename=?",
+                (filename_key,),
+            )
             row = cur.fetchone()
             if row is None:
                 # No record for this log file exists
-                if expected_prev_state is not None:
-                    # We were expecting this record to exist, don't set state
-                    new_state = None
                 cur.execute(
                     """
                     INSERT INTO cr_server_logfiles
@@ -381,7 +352,7 @@ def get_set_log_state(
                 prev_state = None
             else:
                 file_id, prev_state = row
-                if prev_state == expected_prev_state:
+                if not prev_state:
                     cur.execute(
                         """
                         UPDATE cr_server_logfiles SET state=?, updated_timestamp=?
@@ -391,12 +362,48 @@ def get_set_log_state(
                     )
     finally:
         conn.commit()
-    if prev_state != expected_prev_state and raise_on_error:
-        msg = "Log file {} in unexpected state '{}'".format(
-            log_filename_or_id, prev_state
-        )
-        raise RuntimeError(msg)
     return file_id, prev_state
+
+
+def update_log_state(conn, file_id, new_state, expected_prev_state):
+    """
+    Set the parsing state of a log file if the previous state is as expected.
+    new_state:
+        "PARSING" to start parsing log file
+        "INGESTING" for ingesting parse result csv files
+        "DONE" to record that it is finished
+        "ERROR" to record that it couldn't be parsed
+    expected_prev_state:
+        If the state doesn't match expected_prev_state, raise RuntimeError.
+    """
+    try:
+        with closing(conn.cursor()) as cur:
+            cur.execute("BEGIN")  # start a transaction
+            cur.execute("SELECT state FROM cr_server_logfiles WHERE id=?", (file_id,))
+            row = cur.fetchone()
+            if row is None:
+                # No record for this log file exists
+                raise RuntimeError(
+                    "Record for Log file ID {} disappeared".format(file_id)
+                )
+            prev_state = row[0]
+            if prev_state != expected_prev_state:
+                msg = "Log file ID {} in unexpected state '{}'".format(
+                    file_id, prev_state
+                )
+                raise RuntimeError(msg)
+            cur.execute(
+                """
+                UPDATE cr_server_logfiles SET state=?, updated_timestamp=?
+                WHERE id=?
+                """,
+                (new_state, datetime.now(), file_id),
+            )
+    except BaseException:
+        conn.rollback()
+        raise
+    else:
+        conn.commit()
 
 
 def normalize_log_filename(log_filename):
@@ -434,6 +441,7 @@ def to_str(b):
 
 
 def record_request_in_db(cur, data):
+    """Store a CSV row in the requests database table"""
     file_id = int(data["file_id"])
     line_num = int(data["line_num"])
     req_timestamp = datetime.strptime(data["req_timestamp"], "%Y-%m-%d %H:%M:%S.%f")
