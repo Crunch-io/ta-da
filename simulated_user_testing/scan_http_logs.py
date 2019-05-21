@@ -16,6 +16,8 @@ Options:
     --start-date=YYYYMMDD       Starting date pattern
                                 (default: N days before today)
     --include-undated           Scan files without date in name
+    --pool-size=N               Run N parsing processes [default: 1]
+    --skip-cleanup              Don't remove intermediate files
 
 Commands:
     list        Print names of files that could be scanned
@@ -29,6 +31,7 @@ Notes:
 from __future__ import print_function
 import codecs
 from contextlib import closing
+import csv
 from datetime import date, datetime, timedelta
 import glob
 import os
@@ -37,6 +40,8 @@ import gzip
 from multiprocessing import Pool
 import sqlite3
 import sys
+import tempfile
+import time
 import traceback
 
 import docopt
@@ -46,8 +51,17 @@ PY2 = sys.version_info.major == 2
 
 
 SQL_SETUP_SCRIPT = """
+CREATE TABLE IF NOT EXISTS cr_server_logfiles (
+    id INTEGER PRIMARY KEY,
+    filename TEXT NOT NULL UNIQUE,
+    state TEXT,
+    updated_timestamp TIMESTAMP
+);
+
 CREATE TABLE IF NOT EXISTS cr_server_requests (
     id INTEGER PRIMARY KEY,
+    file_id INTEGER REFERENCES cr_server_logfiles(id),
+    line_num INTEGER,
     user_id TEXT,
     auth_token_prefix TEXT,
     req_timestamp TIMESTAMP,
@@ -62,14 +76,20 @@ CREATE INDEX IF NOT EXISTS cr_server_requests_ts_idx
 ON cr_server_requests(req_timestamp);
 
 CREATE INDEX IF NOT EXISTS cr_server_requests_ds_idx ON cr_server_requests(dataset_id);
-
-CREATE TABLE IF NOT EXISTS cr_server_logfiles (
-    id INTEGER PRIMARY KEY,
-    filename TEXT NOT NULL UNIQUE,
-    num_requests INTEGER NOT NULL,
-    parsed_timestamp TIMESTAMP
-);
 """
+
+CSV_FIELD_NAMES = [
+    "file_id",
+    "line_num",
+    "user_id",
+    "auth_token_prefix",
+    "req_timestamp",
+    "http_verb",
+    "req_path",
+    "http_status",
+    "user_agent",
+    "dataset_id",
+]
 
 # Example log lines (see test_parse_log_lines()):
 line1 = '''2019-05-09T18:30:46.281931+00:00 alpha-backend-4-212 supervisord: cr.server-03 73.78.228.168 - token:1085023f74234916a962ec08fe9b9382/userid:2558f05f81df4684917f4205452daa76 [2019-05-09 18:30:46.280942] "GET /api/projects/d273f4ddb6b94b63a4f05609cb5fdb89/ HTTP/1.0" 200 1001 "http://local.crunch.io:8000/d273f4ddb6b94b63a4f05609cb5fdb89" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36"'''  # noqa: B950
@@ -120,27 +140,31 @@ def do_list(args):
 
 def do_scan(args):
     db_filename = os.path.expanduser(args["--db-filename"])
+    pool_size = int(args["--pool-size"])
+    log_root_dir = get_root_dir(args)
     print("Opening database file:", db_filename)
     conn = sqlite3.connect(
         db_filename, detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES
     )
     try:
         ensure_schema(conn)
+        print("Scanning log files under", log_root_dir)
+        log_filenames = list_filtered_logfiles(args)
+        t0 = time.time()
+        param_list = create_parse_param_list(conn, log_filenames, db_filename)
+        if pool_size > 1:
+            p = Pool(pool_size)
+            result = sorted(p.imap_unordered(parse_log_file, param_list))
+        else:
+            result = sorted(parse_log_file(param) for param in param_list)
+        print("Parsed", len(result), "files in", time.time() - t0, "seconds")
+        t0 = time.time()
+        ingest_parsed_files(
+            conn, result, cleanup_csv_files=(not args["--skip-cleanup"])
+        )
+        print("Ingested", len(result), "files in", time.time() - t0, "seconds")
     finally:
         conn.close()
-    log_root_dir = get_root_dir(args)
-    print("Scanning log files under", log_root_dir)
-    log_filenames = list_filtered_logfiles(args)
-    use_multiprocessing = False
-    if use_multiprocessing:
-        p = Pool(2)
-        param_list = [(args, log_filename) for log_filename in log_filenames]
-        num_requests = sum(p.imap_unordered(parse_log_file, param_list))
-    else:
-        num_requests = sum(
-            [parse_log_file((args, log_filename)) for log_filename in log_filenames]
-        )
-    print("Recorded {} requests found in the log files.".format(num_requests))
     return 0
 
 
@@ -211,98 +235,195 @@ def ensure_schema(conn):
 
 
 def parse_log_file(param):
+    """
+    param: (sequence_num, file_id, log_filename, db_filename)
+    Return (sequence_num, file_id, temp_csv_filename)
+    """
     try:
-        args, log_filename = param
-        db_filename = os.path.expanduser(args["--db-filename"])
-        conn = sqlite3.connect(
-            db_filename, detect_types=sqlite3.PARSE_DECLTYPES | sqlite3.PARSE_COLNAMES
+        sequence_num, file_id, log_filename, db_filename = param
+        temp_csv_filename = _parse_log_file(log_filename, file_id, db_filename)
+        return (sequence_num, file_id, temp_csv_filename)
+    except Exception:
+        # If we don't print the stack trace here, multiprocessing will swallow
+        # the traceback and we'll never see it, only the exception type.
+        traceback.print_exc()
+        raise
+
+
+def _parse_log_file(log_filename, file_id, db_filename):
+    """Return temp_csv_filename"""
+    print("Parsing:", log_filename)
+    csv_prefix = os.path.splitext(os.path.basename(db_filename))[0]
+    with tempfile.NamedTemporaryFile(
+        "wb",
+        prefix=csv_prefix + "-",
+        suffix=".csv",
+        dir=os.path.dirname(db_filename),
+        delete=False,
+    ) as f:
+        csv_writer = csv.DictWriter(f, CSV_FIELD_NAMES, extrasaction="ignore")
+        csv_writer.writeheader()
+        fileobj = open(log_filename, "rb")
+        if log_filename.endswith(".gz"):
+            line_iter = gzip.GzipFile(log_filename, "rb", fileobj=fileobj)
+        else:
+            line_iter = iter(fileobj)
+        try:
+            parse_log_lines(csv_writer, file_id, line_iter)
+        finally:
+            fileobj.close()
+    return f.name
+
+
+def create_parse_param_list(conn, log_filenames, db_filename):
+    """Create a list of parameters, each suitable for parse_log_file"""
+    parse_param_list = []
+    for sequence_num, log_filename in enumerate(log_filenames, 1):
+        file_id, prev_state = get_set_log_state(conn, log_filename, "PARSING")
+        if prev_state is not None:
+            print(
+                "Log file {} state is '{}', skipping".format(log_filename, prev_state),
+                file=sys.stderr,
+            )
+            continue
+        parse_param_list.append((sequence_num, file_id, log_filename, db_filename))
+    return parse_param_list
+
+
+def ingest_parsed_files(conn, parse_results, cleanup_csv_files=True):
+    for _, file_id, csv_filename in parse_results:
+        _, prev_state = get_set_log_state(
+            conn, file_id, "INGESTING", "PARSING", raise_on_error=True
         )
         try:
-            return _parse_log_file(conn, log_filename)
-        finally:
-            conn.close()
-    except Exception:
-        traceback.print_exc()
-        return 0
+            ingest_csv_file(conn, csv_filename)
+        except BaseException:
+            _, prev_state = get_set_log_state(
+                conn, file_id, "ERROR", "INGESTING", raise_on_error=True
+            )
+            raise
+        else:
+            _, prev_state = get_set_log_state(
+                conn, file_id, "DONE", "INGESTING", raise_on_error=True
+            )
+            if cleanup_csv_files:
+                print("Removing:", csv_filename)
+                os.remove(csv_filename)
 
 
-def _parse_log_file(conn, log_filename):
+def ingest_csv_file(conn, csv_filename):
+    print("Ingesting:", csv_filename)
+    with open(csv_filename, "rb") as f:
+        r = csv.DictReader(f)
+        try:
+            with closing(conn.cursor()) as cur:
+                cur.execute("BEGIN")  # start a transaction
+                for row in r:
+                    record_request_in_db(cur, row)
+        except Exception:
+            conn.rollback()
+            raise
+        else:
+            conn.commit()
+
+
+def get_set_log_state(
+    conn, log_filename_or_id, new_state, expected_prev_state=None, raise_on_error=False
+):
+    """
+    Set the parsing state of a log file if the previous state is as expected.
+    new_state:
+        "PARSING" to start parsing log file
+        "INGESTING" for ingesting parse result csv files
+        "DONE" to record that it is finished
+        "ERROR" to record that it couldn't be parsed
+    expected_prev_state:
+        None means the log record doesn't exist or the state is NULL.
+        If the state doesn't match expected_prev_state, don't change it.
+    raise_on_error:
+        If state doesn't match expected prev state, raise RuntimeError.
+    Return (file_id, prev_state) of the log file record.
+    """
+    if isinstance(log_filename_or_id, int):
+        file_id = log_filename_or_id
+        filename_key = None
+    else:
+        file_id = None
+        filename_key = normalize_log_filename(log_filename_or_id)
     try:
         with closing(conn.cursor()) as cur:
-            cur.execute("BEGIN")
-            if not check_log_filename(conn, log_filename):
-                # Diagnostic message already printed
-                return 0
-            print("Parsing log file:", log_filename)
-            fileobj = open(log_filename, "rb")
-            if log_filename.endswith(".gz"):
-                line_iter = gzip.GzipFile(log_filename, "rb", fileobj=fileobj)
+            cur.execute("BEGIN")  # start a transaction
+            if file_id is None:
+                cur.execute(
+                    "SELECT id, state FROM cr_server_logfiles WHERE filename=?",
+                    (filename_key,),
+                )
             else:
-                line_iter = iter(fileobj)
-            try:
-                num_requests = parse_log_lines(conn, line_iter)
-            finally:
-                fileobj.close()
-            cur.execute(
-                """
-                INSERT INTO cr_server_logfiles
-                (filename, num_requests, parsed_timestamp)
-                VALUES
-                (?, ?, ?)
-                """,
-                (log_filename, num_requests, datetime.now()),
-            )
-    except Exception:
-        conn.rollback()
-        raise
-    else:
-        conn.commit()
-    return num_requests
-
-
-def check_log_filename(conn, log_filename):
-    """
-    Return True iff this log file has already been ingested
-    If log_filename ends with ".gz", check without that extension also
-    """
-    filenames = [log_filename]
-    if log_filename.endswith(".gz"):
-        filenames.append(log_filename[:-3])
-    with closing(conn.cursor()) as cur:
-        for filename in filenames:
-            cur.execute(
-                """
-                SELECT num_requests, parsed_timestamp FROM cr_server_logfiles
-                WHERE filename=?
-                """,
-                (filename,),
-            )
+                cur.execute(
+                    "SELECT id, state FROM cr_server_logfiles WHERE id=?", (file_id,)
+                )
             row = cur.fetchone()
             if row is None:
-                continue
-            print(
-                "Already parsed {} requests from {} on {}".format(
-                    row[0], filename, row[1]
+                # No record for this log file exists
+                if expected_prev_state is not None:
+                    # We were expecting this record to exist, don't set state
+                    new_state = None
+                cur.execute(
+                    """
+                    INSERT INTO cr_server_logfiles
+                    (filename, state, updated_timestamp)
+                    VALUES
+                    (?, ?, ?)
+                    """,
+                    (filename_key, new_state, datetime.now()),
                 )
-            )
-            return False
-    return True
+                file_id = cur.lastrowid
+                prev_state = None
+            else:
+                file_id, prev_state = row
+                if prev_state == expected_prev_state:
+                    cur.execute(
+                        """
+                        UPDATE cr_server_logfiles SET state=?, updated_timestamp=?
+                        WHERE id=?
+                        """,
+                        (new_state, datetime.now(), file_id),
+                    )
+    finally:
+        conn.commit()
+    if prev_state != expected_prev_state and raise_on_error:
+        msg = "Log file {} in unexpected state '{}'".format(
+            log_filename_or_id, prev_state
+        )
+        raise RuntimeError(msg)
+    return file_id, prev_state
 
 
-def parse_log_lines(conn, line_iter):
+def normalize_log_filename(log_filename):
+    if log_filename.endswith(".gz"):
+        log_filename = log_filename[:-3]
+    return os.path.normpath(os.path.abspath(log_filename))
+
+
+def parse_log_lines(csv_writer, file_id, line_iter):
     num_requests = 0
-    with closing(conn.cursor()) as cur:
-        for line_num, line in enumerate(line_iter, 1):
-            line = to_str(line)
-            m = HTTP_REQUEST_PATTERN.search(line)
-            if not m:
-                continue
-            try:
-                record_request_in_db(cur, m.groupdict())
-            except Exception:
-                print("Error on line", line_num, file=sys.stderr)
-                raise
-            num_requests += 1
+    for line_num, line in enumerate(line_iter, 1):
+        line = to_str(line)
+        m = HTTP_REQUEST_PATTERN.search(line)
+        if not m:
+            continue
+        try:
+            data = m.groupdict()
+            t = parse_timestamp(data["req_timestamp"])
+            data["file_id"] = file_id
+            data["line_num"] = line_num
+            data["req_timestamp"] = t.strftime("%Y-%m-%d %H:%M:%S.%f")
+            generate_crunch_info(data)
+            csv_writer.writerow(data)
+        except Exception:
+            print("Error parsing file ID", file_id, "line", line_num, file=sys.stderr)
+            raise
+        num_requests += 1
     return num_requests
 
 
@@ -313,10 +434,13 @@ def to_str(b):
 
 
 def record_request_in_db(cur, data):
-    req_timestamp = parse_timestamp(data["req_timestamp"])
+    file_id = int(data["file_id"])
+    line_num = int(data["line_num"])
+    req_timestamp = datetime.strptime(data["req_timestamp"], "%Y-%m-%d %H:%M:%S.%f")
     http_status = int(data["http_status"])
-    generate_crunch_info(data)
     row = (
+        file_id,
+        line_num,
         data["user_id"],
         data["auth_token_prefix"],
         req_timestamp,
@@ -328,8 +452,10 @@ def record_request_in_db(cur, data):
     )
     cur.execute(
         """
-        INSERT INTO
-        cr_server_requests(
+        INSERT INTO cr_server_requests
+        (
+            file_id,
+            line_num,
             user_id,
             auth_token_prefix,
             req_timestamp,
@@ -339,7 +465,7 @@ def record_request_in_db(cur, data):
             user_agent,
             dataset_id
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         row,
     )
