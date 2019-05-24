@@ -9,6 +9,7 @@ import time
 import warnings
 
 import pycrunch
+import pycrunch.shoji
 import six
 from six.moves import urllib
 from six.moves.urllib import parse as urllib_parse
@@ -58,6 +59,23 @@ def connect_pycrunch(connection_info, verbose=False):
     )
     site = response.payload
     return site
+
+
+def get_dataset_by_id(site, dataset_id):
+    """
+    Return the pycrunch.shoji.Entity object corresponding to the dataset ID
+
+    This function does the same thing as site.datasets.by('id')[ds_id].entity
+    except that it can also access datasets outside of the user's personal
+    project.
+
+    site:
+        pycrunch.shoji.Catalog object returned by connect_pycrunch()
+    dataset_id:
+        ID of the dataset to fetch
+    """
+    dataset_url = "{}{}/".format(site.datasets.self, dataset_id)
+    return site.session.get(dataset_url).payload
 
 
 def create_dataset_from_csv(
@@ -129,7 +147,8 @@ def append_csv_file_to_dataset(
         pycrunch.shoji.Catalog object returned by connect_pycrunch()
     ds:
         A dataset as returned by site.datasets.create() or by
-        site.datasets.by('id')[ds_id].entity
+        site.datasets.by('id')[ds_id].entity or by
+        get_dataset(site, dataset_id)
     file_obj_or_name_or_url:
         File-like object (perhaps a temp file) containing <= 100MB CSV data,
         or name of local file containing <= 100MB CSV data,
@@ -193,6 +212,7 @@ def wait_for_progress(site, progress_response, timeout_sec, retry_delay, verbose
     progress_response: The result of posting to an API that returns progress.
     timeout_sec: Total seconds to wait for API call completion.
     retry_delay: Seconds to wait in between calls to the progress endpoint
+    Return True if progress finishes, False if it times out.
     """
     progress_response.raise_for_status()
     progress_url = progress_response.json()["value"]
@@ -208,13 +228,14 @@ def wait_for_progress(site, progress_response, timeout_sec, retry_delay, verbose
             print(progress)
         progress_amount = progress.get("progress")
         if progress_amount in (100, -1, None):
-            break
+            return True
         time.sleep(retry_delay)
         retry_delay *= 2
         t = time.time()
     else:
         if verbose:
             print("Timeout after", timeout_sec, "seconds.")
+        return False
 
 
 def get_ds_metadata(ds, set_derived_field=True):
@@ -273,7 +294,7 @@ def set_pk_alias(ds, alias):
     Raise an error if unsuccessful, otherwise return the response.
     """
     v = ds.variables.by('alias')[alias]
-    response = site.session.post(
+    response = ds.session.post(
         ds.pk.self,
         json={"element": "shoji:entity", "body": {"pk": [v.entity_url]}},
         headers={"Content-Type": "application/shoji"},
