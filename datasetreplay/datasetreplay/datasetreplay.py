@@ -15,8 +15,8 @@ USE_SLACK = False
 ENVIRONS = {
     'unstable': ('localhost', 'ubuntu@unstable-backend.crunch.io'),
     'stable': ('localhost', 'ubuntu@stable-backend.crunch.io'),
-    'alpha': ('alpha-backend-39.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io'),
-    'eu': ('eu-backend-3-155.priveu.crunch.io', 'ec2-user@vpc-nat.eu.crunch.io'),
+    'alpha': ('alpha-backend-39.priveu.crunch.io', 'ec2-user@jump.eu.crint.net'),
+    'eu': ('eu-backend-3-155.priveu.crunch.io', 'ec2-user@jump.eu.crint.net'),
     'vagrant': (None, None)
 }
 

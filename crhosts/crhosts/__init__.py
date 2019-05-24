@@ -19,7 +19,7 @@ class tunnel(object):
       if not self.killonexit:
           # There might be a previous instance running, quit it.
           self._kill_running()
-      subprocess.call('ssh -A -f -N -L %s:%s:%s ec2-user@vpc-nat.eu.crunch.io' % (self.local_port, self.target, self.target_port), shell=True)
+      subprocess.call('ssh -A -f -N -L %s:%s:%s ec2-user@jump.eu.crint.net' % (self.local_port, self.target, self.target_port), shell=True)
       return ('127.0.0.1', self.local_port)
 
   def __exit__(self, *args, **kwargs):
