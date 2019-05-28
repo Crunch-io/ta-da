@@ -48,6 +48,7 @@ import yaml
 from .crunch_util import (
     append_csv_file_to_dataset,
     connect_pycrunch,
+    get_dataset_by_id,
     get_ds_metadata,
     get_pk_alias,
 )
@@ -91,7 +92,7 @@ def do_get_metadata(args):
     config = load_config(args)
     site = connect_pycrunch(config["connection"], verbose=args["-v"])
     ds_id = args["<dataset-id>"]
-    ds = site.datasets.by("id")[ds_id].entity
+    ds = get_dataset_by_id(site, ds_id)
     metadata = get_ds_metadata(ds)
     if not args["<output-filename>"]:
         out = sys.stdout
