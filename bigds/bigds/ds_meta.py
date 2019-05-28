@@ -47,13 +47,11 @@ Example config.yaml file:
             verify: false
 """
 from __future__ import print_function
+import codecs
 from collections import defaultdict, OrderedDict
-import copy
 import io
 import json
-import random
 import re
-import string
 import sys
 import time
 import uuid
@@ -63,6 +61,18 @@ import yaml
 import six
 
 from .crunch_util import connect_pycrunch, create_dataset_from_csv
+
+CRITICAL_KEYS = (
+    "name",
+    "description",
+    "alias",
+    "entity_name",
+    "notes",
+    "origin_entity",
+    "origin_metric",
+    "origin_source",
+)
+VALUES_TO_PRESERVE = ("No Data",)
 
 
 def make_cats_key(categories_list, remove_ids=True):
@@ -75,28 +85,24 @@ def make_cats_key(categories_list, remove_ids=True):
         for d in categories_list)
 
 
-class TextScrambler(object):
-
-    def __init__(self, seed=None):
-        r = random.Random(seed)
-        digits = list(string.digits)
-        uppercase = list(string.ascii_uppercase)
-        lowercase = list(string.ascii_lowercase)
-        random.shuffle(digits, r.random)
-        random.shuffle(uppercase, r.random)
-        random.shuffle(lowercase, r.random)
-        x = "{}{}{}".format(string.digits, string.ascii_uppercase,
-                            string.ascii_lowercase)
-        y = "{}{}{}".format(''.join(digits), ''.join(uppercase),
-                            ''.join(lowercase))
-        if six.PY2:
-            self.trans = u''.join(unichr(ord(c))
-                                  for c in string.maketrans(x, y))
-        else:
-            self.trans = str.maketrans(x, y)
-
-    def __call__(self, s):
-        return s.translate(self.trans)
+def obfuscate_metadata(metadata):
+    """
+    metadata is a dict containing Crunch dataset metadata.
+    Modify it in-place, replacing most string values with gibberish of the same length.
+    """
+    if isinstance(metadata, dict):
+        for key, value in six.iteritems(metadata):
+            if isinstance(value, (dict, list)):
+                obfuscate_metadata(value)
+            elif isinstance(value, six.string_types):
+                if key not in CRITICAL_KEYS:
+                    continue
+                if value in VALUES_TO_PRESERVE:
+                    continue
+                metadata[key] = codecs.encode(value, "rot13")
+    elif isinstance(metadata, list):
+        for item in metadata:
+            obfuscate_metadata(item)
 
 
 class MetadataModel(object):
@@ -134,28 +140,10 @@ class MetadataModel(object):
         self._meta['name'] = ds['body']['name']
         self._meta['description'] = ds['body']['description']
         self._meta['size'] = ds['body']['size']
-        # Get variables
-        if self.verbose:
-            print("Fetching variables")
-        variables_url = "{}variables/".format(ds_url)
-        response = site.session.get(variables_url)
-        variables_info = response.payload
-        self._meta['variables'] = variables = {}
-        variables['index'] = variables_info['index']
-        # Get weights
-        if self.verbose:
-            print("Fetching weights")
-        weights_url = "{}variables/weights/".format(ds_url)
-        response = site.session.get(weights_url)
-        weights_info = response.payload
-        variables['weights'] = weights_info['graph']
-        # Get settings
-        if self.verbose:
-            print("Fetching settings")
-        settings_url = "{}settings/".format(ds_url)
-        response = site.session.get(settings_url)
-        settings_info = response.payload
-        self._meta['settings'] = settings_info['body']
+        self._meta['variables'] = {}
+        self._get_variables(site, ds_url)
+        self._get_weights(site, ds_url)
+        self._get_settings(site, ds_url)
         # Get preferences
         if self.verbose:
             print("Fetching preferences")
@@ -186,10 +174,34 @@ class MetadataModel(object):
         if self.verbose:
             print("Getting hierarchical order")
         hier = ds.variables.hier['graph']
-        variables['hier'] = hier
+        self._meta['variables']['hier'] = hier
         # That's all
         if self.verbose:
             print("Done.")
+
+    def _get_variables(self, site, ds_url):
+        if self.verbose:
+            print("Fetching variables")
+        variables_url = "{}variables/".format(ds_url)
+        response = site.session.get(variables_url)
+        variables_info = response.payload
+        self._meta['variables']['index'] = variables_info['index']
+
+    def _get_weights(self, site, ds_url):
+        if self.verbose:
+            print("Fetching weights")
+        weights_url = "{}variables/weights/".format(ds_url)
+        response = site.session.get(weights_url)
+        weights_info = response.payload
+        self._meta['variables']['weights'] = weights_info['graph']
+
+    def _get_settings(self, site, ds_url):
+        if self.verbose:
+            print("Fetching settings")
+        settings_url = "{}settings/".format(ds_url)
+        response = site.session.get(settings_url)
+        settings_info = response.payload
+        self._meta['settings'] = settings_info['body']
 
     @staticmethod
     def convert_var_def(var_def):
@@ -252,7 +264,7 @@ class MetadataModel(object):
 
     def post(self, site, name=None):
         if not self._meta:
-            raise RuntimeException("Must load metadata before POSTing dataset")
+            raise RuntimeError("Must load metadata before POSTing dataset")
         if not name:
             name = self._meta['name']
         new_meta = {
@@ -332,7 +344,7 @@ class MetadataModel(object):
         if self.verbose:
             print("Setting preferences")
         preferences = self._meta['preferences'].copy()
-        preferences['weight'] = _translate_var_url(
+        preferences['weight'] = self._translate_var_url(
             ds, preferences['weight'], variables_by_alias=variables_by_alias)
         ds.preferences.patch(preferences)
         # Set hierarchical order
@@ -414,7 +426,7 @@ class MetadataModel(object):
         tot_subvars = 0
         min_subvars = None
         max_subvars = None
-        for var_id, var_def in six.iteritems(table):
+        for var_def in six.itervalues(table):
             var_type = var_def['type']
             var_type_count_map[var_type] += 1
             if 'categories' in var_def:
@@ -448,8 +460,8 @@ class MetadataModel(object):
         print("  total categories:", tot_categories)
         print("  min. categories per variable:", min_categories)
         if num_vars_with_categories > 0:
-            print("  ave. categories per variable:", float(tot_categories) /
-                  num_vars_with_categories)
+            print("  ave. categories per variable:",
+                  float(tot_categories) / num_vars_with_categories)
         print("  max. categories per variable:", max_categories)
         print("  alias of variable with most categories:", max_categories_var_alias)
         print("  num. unique category lists:")
@@ -466,27 +478,7 @@ class MetadataModel(object):
         print("    max. subvariables per variable:", max_subvars)
 
     def anonymize(self):
-        meta = self._meta
-        scramble = TextScrambler(42)
-        meta['name'] = scramble(meta['name'])
-        meta['description'] = scramble(meta['description'])
-        table = meta['table']
-        for var_id, var_def in six.iteritems(table):
-            var_def['alias'] = scramble(var_def['alias'])
-            var_def['name'] = scramble(var_def['name'])
-            var_def['description'] = scramble(var_def['description'])
-            if 'categories' in var_def:
-                for cat_def in var_def['categories']:
-                    cat_def['name'] = scramble(cat_def['name'])
-            if 'subreferences' in var_def:
-                for subvar_id, subvar_def in six.iteritems(
-                        var_def['subreferences']):
-                    subvar_def['alias'] = scramble(subvar_def['alias'])
-                    subvar_def['name'] = scramble(subvar_def['name'])
-                    if 'view' in subvar_def:
-                        view_name = subvar_def['view']['entity_name']
-                        view_name = scramble(view_name)
-                        subvar_def['view']['entity_name'] = view_name
+        obfuscate_metadata(self._meta)
 
 
 def do_get(args):
@@ -540,7 +532,7 @@ def _generate_unique_subvar_aliases(var_meta):
     Modify variable metadata in-place, replacing the alias of each subvarible
     (if any) with a guaranteed unique identifier.
     """
-    if not 'subreferences' in var_meta:
+    if 'subreferences' not in var_meta:
         return
     for subref in six.itervalues(var_meta['subreferences']):
         subref['alias'] = uuid.uuid4().hex
