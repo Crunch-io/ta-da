@@ -4,11 +4,14 @@ Common library for operations using the Crunch API
 from __future__ import print_function
 from collections import OrderedDict
 import copy
+import io
+import json
 import os
 import time
 import warnings
 
 import pycrunch
+import pycrunch.shoji
 import six
 from six.moves import urllib
 from six.moves.urllib import parse as urllib_parse
@@ -60,20 +63,91 @@ def connect_pycrunch(connection_info, verbose=False):
     return site
 
 
+def get_dataset_by_id(site, dataset_id):
+    """
+    Return the pycrunch.shoji.Entity object corresponding to the dataset ID
+
+    This function does the same thing as site.datasets.by('id')[ds_id].entity
+    except that it can also access datasets outside of the user's personal
+    project.
+
+    site:
+        pycrunch.shoji.Catalog object returned by connect_pycrunch()
+    dataset_id:
+        ID of the dataset to fetch
+    """
+    dataset_url = "{}{}/".format(site.datasets.self, dataset_id)
+    return site.session.get(dataset_url).payload
+
+
+def create_dataset(
+    site,
+    metadata,
+    dataset_name=None,
+    timeout_sec=300.0,
+    retry_delay=0.25,
+    verbose=False,
+):
+    """
+    Create a new dataset with just metadata, no rows of data yet.
+    site:
+        pycrunch.shoji.Catalog object returned by connect_pycrunch()
+    metadata:
+        A filename or dict or file object containing dataset metadata.
+    dataset_name:
+        If metadata is a dict and this parameter is not None or empty string,
+        use it to override the dataset name in metadata.
+    """
+    if verbose:
+        print("Creating dataset...")
+    post_url = site.datasets.self
+    headers = {"Content-Type": "application/json"}
+    if isinstance(metadata, six.string_types):
+        metadata_filename = metadata
+        f = open(metadata_filename, "rb")
+    elif isinstance(metadata, dict):
+        metadata_filename = "-"
+        if dataset_name:
+            metadata = copy.deepcopy(metadata)
+            metadata["body"]["name"] = dataset_name
+        f = io.BytesIO(json.dumps(metadata).encode("utf-8"))
+    else:
+        # Assume metadata is a file-like object
+        f = metadata
+        metadata_filename = f.name
+    try:
+        if metadata_filename.endswith(".gz"):
+            headers["Content-Encoding"] = "gzip"
+        r = site.session.post(post_url, data=f, headers=headers)
+    finally:
+        f.close()
+    r.raise_for_status()
+    dataset_url = r.headers["Location"]
+    if r.status_code == 202:
+        if not wait_for_progress(
+            site, r, timeout_sec=600.0, retry_delay=0.25, verbose=verbose
+        ):
+            raise Exception("Timed out creating dataset: {}".format(dataset_url))
+    ds = site.session.get(dataset_url).payload
+    if verbose:
+        print("Created dataset", ds.body.id)
+    return ds
+
+
 def create_dataset_from_csv(
     site,
     metadata,
     fileobj_or_url,
+    dataset_name=None,
     timeout_sec=300.0,
     retry_delay=0.25,
     verbose=False,
-    dataset_name=None,
 ):
     """
     site:
         pycrunch.shoji.Catalog object returned by connect_pycrunch()
     metadata:
-        A dict containing dataset metadata.
+        A filename or dict or file object containing dataset metadata.
     fileobj_or_url:
         If a string, a URL pointing to the CSV data. The URL must be
         accessible from the Crunch server. If None, don't create the data,
@@ -81,6 +155,9 @@ def create_dataset_from_csv(
         (binary), containing CSV data compatible with the metadata. For CSV
         data greater than 100MB, pass None and then follow up with a call to
         append_csv_file_to_dataset().
+    dataset_name:
+        If metadata is a dict and this parameter is not None or empty string,
+        use it to override the dataset name in metadata.
     See:
         http://docs.crunch.io/feature-guide/feature-importing.html#example
         http://docs.crunch.io/_static/examples/dataset.json
@@ -88,29 +165,22 @@ def create_dataset_from_csv(
     Poll the progress URL to make sure the upload is complete.
     Return the dataset entity
     """
-    if verbose:
-        print("Creating dataset")
-    if dataset_name is not None:
-        metadata = copy.deepcopy(metadata)
-        metadata["body"]["name"] = dataset_name
-    ds = site.datasets.create(metadata).refresh()
-    if fileobj_or_url is not None:
-        if isinstance(fileobj_or_url, six.string_types):
-            data_url = fileobj_or_url
-            response = site.session.post(
-                ds.batches.self,
-                json={"element": "shoji:entity", "body": {"url": data_url}},
-                headers={"Content-Type": "application/shoji"},
-            )
-        else:
-            data_fileobj = fileobj_or_url
-            filename = getattr(data_fileobj, "name", "dataset.csv")
-            response = site.session.post(
-                ds.batches.self, files={"file": (filename, data_fileobj, "text/csv")}
-            )
-        wait_for_progress(site, response, timeout_sec, retry_delay, verbose=verbose)
-    if verbose:
-        print("Created dataset", ds.body.id)
+    ds = create_dataset(
+        site,
+        metadata,
+        dataset_name=dataset_name,
+        timeout_sec=timeout_sec,
+        retry_delay=retry_delay,
+        verbose=verbose,
+    )
+    append_csv_file_to_dataset(
+        site,
+        ds,
+        fileobj_or_url,
+        timeout_sec=timeout_sec,
+        retry_delay=retry_delay,
+        verbose=verbose,
+    )
     return ds
 
 
@@ -129,7 +199,8 @@ def append_csv_file_to_dataset(
         pycrunch.shoji.Catalog object returned by connect_pycrunch()
     ds:
         A dataset as returned by site.datasets.create() or by
-        site.datasets.by('id')[ds_id].entity
+        site.datasets.by('id')[ds_id].entity or by
+        get_dataset(site, dataset_id)
     file_obj_or_name_or_url:
         File-like object (perhaps a temp file) containing <= 100MB CSV data,
         or name of local file containing <= 100MB CSV data,
@@ -181,9 +252,11 @@ def append_csv_file_to_dataset(
     response = ds.batches.post(
         {"element": "shoji:entity", "body": {"source": source_url}}
     )
-    wait_for_progress(site, response, timeout_sec, retry_delay, verbose=verbose)
-    if verbose:
-        print("Finished appending to dataset", ds.body.id)
+    if wait_for_progress(site, response, timeout_sec, retry_delay, verbose=verbose):
+        if verbose:
+            print("Finished appending to dataset", ds.body.id)
+    else:
+        raise Exception("Timed out appending to dataset {}".format(ds.body.id))
 
 
 def wait_for_progress(site, progress_response, timeout_sec, retry_delay, verbose=False):
@@ -193,6 +266,7 @@ def wait_for_progress(site, progress_response, timeout_sec, retry_delay, verbose
     progress_response: The result of posting to an API that returns progress.
     timeout_sec: Total seconds to wait for API call completion.
     retry_delay: Seconds to wait in between calls to the progress endpoint
+    Return True if progress finishes, False if it times out.
     """
     progress_response.raise_for_status()
     progress_url = progress_response.json()["value"]
@@ -208,13 +282,14 @@ def wait_for_progress(site, progress_response, timeout_sec, retry_delay, verbose
             print(progress)
         progress_amount = progress.get("progress")
         if progress_amount in (100, -1, None):
-            break
+            return True
         time.sleep(retry_delay)
         retry_delay *= 2
         t = time.time()
     else:
         if verbose:
             print("Timeout after", timeout_sec, "seconds.")
+        return False
 
 
 def get_ds_metadata(ds, set_derived_field=True):
@@ -272,8 +347,8 @@ def set_pk_alias(ds, alias):
     Set the PK column by alias.
     Raise an error if unsuccessful, otherwise return the response.
     """
-    v = ds.variables.by('alias')[alias]
-    response = site.session.post(
+    v = ds.variables.by("alias")[alias]
+    response = ds.session.post(
         ds.pk.self,
         json={"element": "shoji:entity", "body": {"pk": [v.entity_url]}},
         headers={"Content-Type": "application/shoji"},

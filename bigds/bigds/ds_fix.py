@@ -14,6 +14,8 @@ Usage:
     ds.fix [options] show-actions <filename>
     ds.fix [options] apply-actions <ds-id> <filename> [--offset=N] [--count=C] [--rehash]
     ds.fix [options] delete-savepoint <ds-id> <ds-version>
+    ds.fix [options] fork-from <source-ds-id> <source-version>
+                               [--maintainer-id=U] [--project-id=P]
 
 Options:
     -i                        Run interactive prompt after the command
@@ -766,6 +768,48 @@ def do_delete_savepoint(args):
             return 1
 
 
+def do_fork_from(args):
+    source_ds_id = args["<source-ds-id>"]
+    source_version = args["<source-version>"]
+    _cr_lib_init(args)
+    source_ds = Dataset.find_by_id(id=source_ds_id, version=source_version)
+    maintainer_id = args["--maintainer-id"]
+    project_id = args["--project-id"]
+    if not maintainer_id:
+        maintainer_id = source_ds.maintainer_id
+    if not project_id:
+        project_id = source_ds.project_id
+    print(
+        "About to fork dataset {}@{} with maintainer_id={}, project_id={}".format(
+            source_ds.id, source_ds.version, maintainer_id, project_id
+        )
+    )
+
+    target_ds = Dataset(maintainer_id=maintainer_id, project_id=project_id)
+    # See cr/lib/entities/datasets/versions/forking.py
+    # We're duplicating some but not all of the functionality in fork_from
+    # before calling _fork_from. We do this to allow creating a fork from
+    # any savepoint instead of from tip.
+    target_ds.family_id = source_ds.family_id
+
+    try:
+        target_ds.find_one(target_ds.identity)
+    except exceptions.NotFound:
+        # Not overwriting an existing fork, we can proceed!
+        pass
+    else:
+        raise ValueError("Dataset already exists %s" % target_ds.id)
+
+    with actionslib.dataset_lock(
+        "fork_from", source_ds.id, version=source_ds.version, exclusive=False
+    ):
+        # Acquire a read lock on source dataset when forking.
+        result = target_ds._fork_from(source_ds.id, source_ds.version)
+
+    # The result includes the target dataset ID, which is important info!
+    pprint.pprint(result)
+
+
 def _do_command(args):
     t0 = time.time()
     try:
@@ -776,6 +820,14 @@ def _do_command(args):
                 if func:
                     return func(args)
         print("No command, or command not implemented yet.", file=sys.stderr)
+        return 1
+    except KeyboardInterrupt:
+        traceback.print_exc()
+        print("\nBreak", file=sys.stderr)
+        return 2
+    except Exception:
+        # Catch and print most exceptions to avoid generating Sentry reports
+        traceback.print_exc()
         return 1
     finally:
         print("Elapsed time:", time.time() - t0, "seconds", file=sys.stderr)
