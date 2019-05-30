@@ -7,7 +7,6 @@ of a crunch virtualenv.
 """
 import sys
 import os
-import pprint
 import time
 import requests_cache
 
@@ -20,6 +19,9 @@ from cr.lib.entities.datasets import Dataset
 
 from mock import MagicMock
 
+import cr.lib.integrations.decipher as decipher
+decipher.DEBUG_DECIPHER_LIMIT_ROWS = 5
+decipher.DEBUG_PRINT_DECIPHER_DATA = False
 
 import logging
 logger = logging.getLogger('cr.lib')
@@ -46,42 +48,37 @@ DECIPHER_COMPANY_NAME = os.environ["DECIPHER_COMPANY_NAME"]
 #CRUNCH_PASSWORD = os.environ["CRUNCH_PASSWORD"]
 #CRUNCH_API_URL = os.environ.get("CRUNCH_API_URL", "https://alpha.crunch.io/api")
 
-#sm = DecipherIntegration(SM_ACCESS_TOKEN)
-#survey = sm.get_survey(SM_SURVEY_ID)
-
-decipher_connect_error = """
-selfserve%2F548%2F150227
-selfserve%2F548%2F141212
-selfserve%2F548%2F140827
-selfserve%2F548%2F150224
-selfserve%2F548%2F130704
-selfserve%2F548%2F170719
-selfserve%2F548%2F130318"""
-
-retry = """
-selfserve%2F548%2F160320
-selfserve%2F548%2F131234
-selfserve%2F548%2F150932"""
-
-error13 = """
-selfserve%2F548%2F161114
-selfserve%2F548%2F140121
-selfserve%2F548%2F150337"""
-
-dup_cats = """
-selfserve%2F548%2F160120
-selfserve%2F548%2F170209
-selfserve%2F548%2F160605"""
 
 no_rows = """
 selfserve%2F548%2F130309
 selfserve%2F548%2F150924
-selfserve%2F548%2F141218"""
+selfserve%2F548%2F141218""".split("\n")[1:]
+
+def get_benchmark():
+    SM_SURVEY_ID = "selfserve%2F548%2F171201"
+
+    sm = DecipherIntegration(company_name=DECIPHER_COMPANY_NAME,
+                             apikey=DECIPHER_APIKEY)
+    survey = sm.get_survey(SM_SURVEY_ID)
 
 
-values_error = """
-selfserve%2F548%2F160412
-selfserve%2F548%2Fyg14001"""
+    def set_progress(self, *args, **kwargs):
+        print args, kwargs
+
+
+    task = MagicMock()
+
+    task.set_progress = set_progress
+
+
+    print 'getting csv'
+
+    import time
+
+    now = time.time()
+    survey.crunch_csv(task)
+
+    print 'done in %s seconds' % (time.time() - now)
 
 
 integration = DecipherIntegration(company_name=DECIPHER_COMPANY_NAME,
@@ -101,11 +98,16 @@ print 'done'
 
 
 def get_survey(survey_id):
+    survey = surveys_by_paths[survey_id]
 
-    print "Getting survey: %s with id %s" % (surveys_by_paths[survey_id]['title'], survey_id)
+    print "Getting survey: %s with id %s (%s responses, %s questions)" % (survey["title"],
+                                                                          survey_id,
+                                                                          survey["response_count"],
+                                                                          survey["question_count"])
+
     import uuid
     new_dsid = uuid.uuid4().hex
-    survey_name = 'All Types Survey'
+    survey_name = survey["title"]
     request_info = {}
     user_id = '000001'  # captain
 
@@ -115,17 +117,28 @@ def get_survey(survey_id):
     task = MagicMock()
 
     task.set_progress = set_progress
+    survey = integration.get_survey(survey_id)
+
+    #metadata = survey.crunch_metadata(MagicMock())
+
+    if survey._errors:
+        print '*'*89
+        print "warning: survey metadata had errors: %s" % survey._errors
+        print '*' * 89
+    #import ipdb; ipdb.set_trace()
 
     append_source_from_integration(
         integration, task, new_dsid, survey_id, survey_name, user_id, request_info
     )
+
+
     print 'done'
     return new_dsid
 
+landmines = ['selfserve%2F548%2F150616']
 
 win_for_life_id = "selfserve%2F548%2F130917"
 all_types_id = "selfserve%2F548%2F190404"
-failed_id = "selfserve%2F548%2Fyg14001"
 
 surveys = "failures here".split('\n')[1:]
 
@@ -136,47 +149,68 @@ for survey in surveys:
         ds = Dataset.find_by_id(id=ds_id, version="master__tip")
 
         # check that the first variable loaded
-        assert len(ds.select(limit=1)['data']['000001']) == 1
+        assert len(ds.primary.select(limit=1)['data']['000001']) == 1
     except:
         print 'failed'
         #import ipdb; ipdb.set_trace()
         continue
     print 'passed'
 
-ds_id = get_survey(failed_id)
+
+# failed_id = "selfserve%2F548%2F130309"
+#
+# ds_id = get_survey(failed_id)
 # ds = Dataset.find_by_id(id=ds_id, version="master__tip")
-# print ds.select(limit=100)['data']['000001']
-# import ipdb; ipdb.set_trace()
-exit()
-
-#get_survey(all_types_id)
-#exit()
-#get_survey(win_for_life_id)
-
-#exit()
-
-#import ipdb; ipdb.set_trace()
-#exit()
-
-#survey_id = 'selfserve%2F548%2F181103'
-#survey_id = 'selfserve%2F548%2F130630'
-
+# print ds.primary.select(limit=100)['data']['000001']
+# # import ipdb; ipdb.set_trace()
+# exit()
 
 #survey_entry = [x for x in survey_list if x['id'] == survey_id][0]
 
-four_oh_threes = ['selfserve%2F548%2F150224', 'selfserve%2F548%2F150227',
-                  'selfserve%2F548%2F150209', 'selfserve%2F548%2F141212',
-                  'selfserve%2F548%2F130318', 'selfserve%2F548%2F170719',
-                  'selfserve%2F548%2F130704', 'selfserve%2F548%2F151139',
-                  'selfserve%2F548%2F180203', 'selfserve%2F548%2F141215',
-                  ]
+decipher_500_failures = ["selfserve%2F548%2F150720", "selfserve/548/150720",
+                                 "selfserve%2F548%2F160505", "selfserve%2F548%2F161221",
+                                 "selfserve%2F548%2F161201"
+                                 ] # -- Decipher 500 on this DS
+
+decipher_communication_failures = ["selfserve%2F548%2F150224", "selfserve%2F548%2F141212",
+                                   "selfserve%2F548%2F150227", "selfserve%2F548%2F150224",
+                                   "selfserve%2F548%2F141212", "selfserve%2F548%2F150227",
+                                   "selfserve%2F548%2F130318", "selfserve%2F548%2F141215",
+                                   "selfserve%2F548%2F151139", "selfserve%2F548%2F190405",
+                                   "selfserve%2F548%2F161103", "selfserve%2F548%2F150209"]
+
+gets_killed_failures = ["selfserve%2F548%2F131239"] #88110 responses - did eventually load on the last try
+
+# still need to check these
+expected_column_not_found = ["selfserve%2F548%2F160111", "selfserve%2F548%2F161021",
+                             "selfserve%2F548%2F150202", "selfserve%2F548%2F170117"]
+
+##################################
+# working set of failures
+
+category_not_defined = ["selfserve%2F548%2F130424"]
+
+########################
+
+known_failures = decipher_communication_failures + decipher_500_failures + gets_killed_failures
+
+for survey_id in expected_column_not_found:
+    try:
+        print '*' * 89
+        ds_id = get_survey(survey_id)
+        ds = Dataset.find_by_id(id=ds_id, version="master__tip")
+        assert len(ds.primary.select(limit=1)['data']['000001']) == 1
+    except Exception as e:
+        print e
+
+exit()
 
 def get_all_metadatas(surveys):
 
     for s in surveys:
         #if s['response_count'] > 100:
         #    continue
-        if s['id'] in four_oh_threes:
+        if s['id'] in known_failures:
             continue
         survey_id = s['id']
         print 'trying metadata for survey: %s ' % s['title'],
@@ -197,10 +231,27 @@ def get_all_surveys():
     num_failures = 0
     for i, s in enumerate(surveys):
         survey_id = s['id']
+        responses = int(s['response_count'])
         #if survey_id in four_oh_threes:
         #    continue
-        if i < 301:
+        if i < 1378:
             continue
+
+        if survey_id in known_failures:
+            continue
+
+        if responses < 2:
+            print '*' * 89
+            print 'skipping', survey_id, "not enough responses"
+            print '*' * 89
+            continue
+
+        # skip large responses
+        if responses > 10000:
+             print '*'*89
+             print 'skipping', survey_id, "too many responses."
+             print '*'*89
+             continue
 
         #import ipdb; ipdb.set_trace()
         print '*' * 89
@@ -220,8 +271,8 @@ def get_all_surveys():
         ds = Dataset.find_by_id(id=ds_id, version="master__tip")
         try:
             # check that the first variable loaded
-            if s['question_count'] != 0:
-                assert len(ds.select(limit=1)['data']['000001']) == 1
+            if int(s['response_count']) != 0:
+                assert len(ds.primary.select(limit=1)['data']['000001']) == 1
         except:
             num_failures +=1
             import traceback
