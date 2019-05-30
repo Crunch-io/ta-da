@@ -2,10 +2,12 @@
 Big Dataset metadata helper script
 
 Usage:
+    ds.meta list-datasets [options] [--projects] [--project=PROJECT]
     ds.meta get [options] <ds-id> <filename>
     ds.meta info [options] <filename>
     ds.meta anonymize [options] <filename> <output-filename>
     ds.meta post [options] <filename>
+    ds.meta raw-request [options] <method> <uri-path> <filename>
     ds.meta addvar [options] <ds-id> <filename>
     ds.meta folderize [options] <ds-id> <filename>
     ds.meta loadsave [options] <filename> <output-filename>
@@ -59,8 +61,9 @@ import uuid
 import docopt
 import yaml
 import six
+from six.moves.urllib import parse as urllib_parse
 
-from .crunch_util import connect_pycrunch, create_dataset_from_csv
+from crunch_util import connect_pycrunch, create_dataset_from_csv
 
 CRITICAL_KEYS = (
     "name",
@@ -283,6 +286,7 @@ class MetadataModel(object):
         table = self._meta['table']
         new_table = new_meta['body']['table']['metadata']
         var_ids_to_create = set(table)
+
         # First pass: Create all the variables with IDs like "000000"
         # in the same request used to create the dataset.
         for i in six.moves.range(100000):
@@ -300,6 +304,7 @@ class MetadataModel(object):
                                      verbose=self.verbose,
                                      gzip_metadata=True)
         print("New dataset ID:", ds.body.id)
+
         # Second pass: Create all the variables with longer IDs
         if self.verbose:
             print("Adding {} more variables to dataset"
@@ -315,6 +320,7 @@ class MetadataModel(object):
             })
             if self.verbose:
                 print()
+
         # Set the list of weight variables
         weight_urls = []
         ds.variables.refresh()
@@ -329,6 +335,7 @@ class MetadataModel(object):
         ds.variables.weights.patch({
             'graph': weight_urls,
         })
+
         # Set settings
         if self.verbose:
             print("Setting settings")
@@ -340,6 +347,7 @@ class MetadataModel(object):
                   " which is probably not valid for this dataset."
                   .format(settings['dashboard_deck']), file=sys.stderr)
         ds.settings.patch(settings)
+
         # Set preferences
         if self.verbose:
             print("Setting preferences")
@@ -347,6 +355,7 @@ class MetadataModel(object):
         preferences['weight'] = self._translate_var_url(
             ds, preferences['weight'], variables_by_alias=variables_by_alias)
         ds.preferences.patch(preferences)
+
         # Set hierarchical order
         self.folderize(ds)
 
@@ -587,6 +596,75 @@ def do_folderize(args):
     meta.folderize(ds)
 
 
+def do_list_datasets(args):
+    with open(args["-c"]) as f:
+        config = yaml.safe_load(f)[args["-p"]]
+    verbose = args["-v"]
+    site = connect_pycrunch(config["connection"], verbose=verbose)
+    if args["-i"]:
+        import IPython
+
+        IPython.embed()
+    if args["--projects"]:
+        for proj in six.itervalues(site.projects.index):
+            print(u"{proj.id} {proj.name}".format(proj=proj))
+        return 0
+    if args["--project"]:
+        proj_name_or_id = args["--project"]
+        try:
+            proj = site.projects.by("id")[proj_name_or_id]
+        except KeyError:
+            proj = site.projects.by("name")[proj_name_or_id]
+        url = urllib_parse.urljoin(proj.entity_url, "datasets/")
+        response = site.session.get(url)
+        datasets_index = response.json()["index"]
+        for ds_info in six.itervalues(datasets_index):
+            print(u"{ds[id]} {ds[name]}".format(ds=ds_info))
+        return 0
+    for ds in six.itervalues(site.datasets.index):
+        print(u"{ds.id} {ds.name}".format(ds=ds))
+    return 0
+
+
+def do_raw_request(args):
+    with open(args["-c"]) as f:
+        config = yaml.safe_load(f)[args["-p"]]
+    verbose = args["-v"]
+    method = args["<method>"]
+    uri_path = args["<uri-path>"]
+    filename = args["<filename>"]
+    site = connect_pycrunch(config["connection"], verbose=verbose)
+    request_url = "{}{}".format(site.self, uri_path)
+    query = None  # TODO
+    headers = None
+    data = None
+    if method in ('PATCH', 'POST', 'PUT'):
+        # Request has a body
+        headers = {'Content-Type': 'application/json'}
+        if filename == "-":
+            data = sys.stdin.read().encode('utf-8')
+        else:
+            data = open(filename, "rb")
+            if filename.endswith(".gz"):
+                headers["Content-Encoding"] = "gzip"
+    t0 = time.time()
+    response = site.session.request(method, request_url, params=query,
+                                    headers=headers, data=data)
+    duration_sec = time.time() - t0
+    print(duration_sec, "seconds", file=sys.stderr)
+    location = response.headers.get('location')
+    print("HTTP/1.1 {} {}".format(response.status_code, response.reason))
+    if location is not None:
+        print("Location:", location)
+    print()
+    json.dump(response.payload, sys.stdout, indent=4)
+    sys.stdout.write('\n')
+    sys.stdout.flush()
+    if args['-i']:
+        import IPython
+        IPython.embed()
+
+
 def main():
     args = docopt.docopt(__doc__)
     t0 = time.time()
@@ -605,6 +683,10 @@ def main():
             return do_folderize(args)
         elif args['loadsave']:
             return do_loadsave(args)
+        elif args['list-datasets']:
+            return do_list_datasets(args)
+        elif args['raw-request']:
+            return do_raw_request(args)
         else:
             raise NotImplementedError(
                 "Sorry, that command is not yet implemented.")
