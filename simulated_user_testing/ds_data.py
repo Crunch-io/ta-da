@@ -120,6 +120,8 @@ def do_append_sources(args):
             source_url = line.strip()
             if not source_url:
                 continue
+            if not validate_url(source_url):
+                raise AssertionError("Invalid source URL: {}".format(source_url))
             if verbose:
                 print(
                     "Appending", source_url, "to dataset", dataset_id, file=sys.stderr
@@ -134,6 +136,22 @@ def do_append_sources(args):
                     print("Finished appending to dataset", ds.body.id, file=sys.stderr)
             else:
                 raise Exception("Timed out appending to dataset {}".format(ds.body.id))
+
+
+def validate_url(url):
+    """Return True if it looks like a real HTTP URL, False otherwise"""
+    p = urllib_parse.urlparse(url)
+    if p.scheme not in ("http", "https"):
+        return False
+    if (not p.netloc) or (" " in p.netloc):
+        return False
+    if (not p.path) or (" " in p.path):
+        return False
+    try:
+        p.port
+    except ValueError:
+        return False
+    return True
 
 
 def main():
