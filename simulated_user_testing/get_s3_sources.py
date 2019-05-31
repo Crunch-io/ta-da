@@ -1,11 +1,10 @@
 #!/var/lib/crunch.io/venv/bin/python
 """
-Script to list/download/upload S3 sources for a dataset
+Script to list or download the S3 append sources for a dataset
 
 Usage:
-    move_s3_sources.py [options] list <dataset-id>
-    move_s3_sources.py [options] download <dataset-id> <directory-name>
-    move_s3_sources.py [options] upload <directory-name>
+    get_s3_sources.py [options] list <dataset-id>
+    get_s3_sources.py [options] download <dataset-id> <directory-name>
 
 Options:
     --cr-lib-config=FILENAME  [default: /var/lib/crunch.io/cr.server-0.conf]
@@ -16,6 +15,7 @@ import sys
 import traceback
 
 import boto
+import boto.s3.key
 import docopt
 from magicbus import bus
 from magicbus.plugins import loggers
