@@ -3,23 +3,30 @@
 Big Dataset data helper script
 
 Usage:
-    ds.meta list-datasets [options] [--projects] [--project=PROJECT]
+    ds_data.py list-datasets [options] [--projects] [--project=PROJECT]
+    ds_data.py upload-chunks [options] <chunk-data-file>...
+    ds_data.py append-sources [options] <input-file> <dataset-id>
 
 Options:
     -c CONFIG_FILENAME      [default: config.yaml]
     -p PROFILE_NAME         Profile section in config [default: local]
     -i                      Run interactive prompt after executing command
     -v                      Print verbose messages
-    --name=NAME             Override name in JSON file (post, addvar)
-    --alias=ALIAS           Override alias in JSON file (addvar)
-    -u --unique-subvar-aliases
-                            Generate unique subvariable aliases (addvar)
+    --timeout=SECONDS       [default: 3600]
 
 Commands:
     list-datasets
         Print list of datasets (tests pycrunch connection)
+    upload-chunks
+        Create a Source from each <chunk-data-file>
+        Print one Source URL per line to stdout
+        The data files were previously downloaded by ds_meta.py
+    append-sources
+        Append to dataset each source listed in <input-file>,
+        One Source HTTP URL per line.
 """
 from __future__ import print_function
+import os
 import sys
 
 import docopt
@@ -27,7 +34,7 @@ import yaml
 import six
 from six.moves.urllib import parse as urllib_parse
 
-from crunch_util import connect_pycrunch
+from crunch_util import connect_pycrunch, wait_for_progress
 
 
 def do_list_datasets(args):
@@ -60,10 +67,83 @@ def do_list_datasets(args):
     return 0
 
 
+def do_upload_chunks(args):
+    with open(args["-c"]) as f:
+        config = yaml.safe_load(f)[args["-p"]]
+    verbose = args["-v"]
+    chunk_filenames = args["<chunk-data-file>"]
+    site = connect_pycrunch(config["connection"], verbose=verbose)
+    for filename in chunk_filenames:
+        if verbose:
+            print("Creating source from file {}".format(filename), file=sys.stderr)
+        with open(filename, "rb") as f:
+            # TODO: detect and handle non-CSV data chunks?
+            content_type = "text/csv"
+            # Detect if chunk is gzipped
+            ext = os.path.splitext(filename)[1]
+            if not ext:
+                magic = f.read(2)
+                f.seek(0)
+                if magic == b"\x1f\x8b":
+                    ext = ".gz"
+            if ext == ".gz":
+                file_info = (
+                    os.path.basename(filename),
+                    f,
+                    content_type,
+                    {"Content-Encoding": "gzip"},
+                )
+            else:
+                file_info = (os.path.basename(filename), f, content_type)
+            response = site.session.post(
+                site.sources.self, files={"uploaded_file": file_info}
+            )
+            response.raise_for_status()
+            if verbose:
+                print(response, file=sys.stderr)
+            source_url = response.headers["Location"]
+            print(source_url)
+
+
+def do_append_sources(args):
+    with open(args["-c"]) as f:
+        config = yaml.safe_load(f)[args["-p"]]
+    verbose = args["-v"]
+    timeout = float(args["--timeout"])
+    filename = args["<input-file>"]
+    dataset_id = args["<dataset-id>"]
+    site = connect_pycrunch(config["connection"], verbose=verbose)
+    dataset_url = "{}{}/".format(site.datasets.self, dataset_id)
+    ds = site.session.get(dataset_url).payload
+    with open(filename) as f:
+        for line in f:
+            source_url = line.strip()
+            if not source_url:
+                continue
+            if verbose:
+                print(
+                    "Appending", source_url, "to dataset", dataset_id, file=sys.stderr
+                )
+            response = ds.batches.post(
+                {"element": "shoji:entity", "body": {"source": source_url}}
+            )
+            if wait_for_progress(
+                site, response, timeout_sec=timeout, verbose=verbose, retry_delay=0.125
+            ):
+                if verbose:
+                    print("Finished appending to dataset", ds.body.id, file=sys.stderr)
+            else:
+                raise Exception("Timed out appending to dataset {}".format(ds.body.id))
+
+
 def main():
     args = docopt.docopt(__doc__)
     if args["list-datasets"]:
         return do_list_datasets(args)
+    elif args["upload-chunks"]:
+        return do_upload_chunks(args)
+    elif args["append-sources"]:
+        return do_append_sources(args)
     else:
         raise NotImplementedError("Sorry, that command is not yet implemented.")
 
