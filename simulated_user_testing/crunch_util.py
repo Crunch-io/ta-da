@@ -42,13 +42,19 @@ def connect_pycrunch(connection_info, verbose=False):
     api_url = connection_info["api_url"]
     if connection_info.get("token"):
         if verbose:
-            print("Connecting to", api_url, "using token.")
+            print("Connecting to", api_url, "using token.", file=sys.stderr)
         session = pycrunch.Session(
             token=connection_info["token"], domain=urllib.parse.urlparse(api_url).netloc
         )
     else:
         if verbose:
-            print("Connecting to", api_url, "as", connection_info["username"])
+            print(
+                "Connecting to",
+                api_url,
+                "as",
+                connection_info["username"],
+                file=sys.stderr,
+            )
         session = pycrunch.Session(
             connection_info["username"], connection_info["password"]
         )
@@ -249,8 +255,8 @@ def append_csv_file_to_dataset(
     response.raise_for_status()
     source_url = response.headers["Location"]
     if verbose:
-        print("Source created with URL:", source_url)
-        print("Appending batch")
+        print("Source created with URL:", source_url, file=sys.stderr)
+        print("Appending batch", file=sys.stderr)
     response = ds.batches.post(
         {"element": "shoji:entity", "body": {"source": source_url}}
     )
@@ -315,7 +321,7 @@ def create_dataset_from_csv2(
     Return the dataset entity
     """
     if verbose:
-        print("Creating dataset")
+        print("Creating dataset", file=sys.stderr)
     if dataset_name is not None:
         metadata = copy.deepcopy(metadata)
         metadata["body"]["name"] = dataset_name
@@ -356,7 +362,7 @@ def create_dataset_from_csv2(
             )
         wait_for_progress(site, response, timeout_sec, retry_delay, verbose=verbose)
     if verbose:
-        print("Created dataset", ds.body.id)
+        print("Created dataset", ds.body.id, file=sys.stderr)
     return ds
 
 
