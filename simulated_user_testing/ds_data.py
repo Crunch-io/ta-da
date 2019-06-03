@@ -12,7 +12,7 @@ Options:
     -p PROFILE_NAME         Profile section in config [default: local]
     -i                      Run interactive prompt after executing command
     -v                      Print verbose messages
-    --timeout=SECONDS       [default: 3600]
+    --timeout=SECONDS       [default: 36000]
 
 Commands:
     list-datasets
@@ -103,6 +103,7 @@ def do_upload_chunks(args):
                 print(response, file=sys.stderr)
             source_url = response.headers["Location"]
             print(source_url)
+            sys.stdout.flush()  # Make sure progress shows up on stdout
 
 
 def do_append_sources(args):
@@ -126,12 +127,12 @@ def do_append_sources(args):
                 print(
                     "Appending", source_url, "to dataset", dataset_id, file=sys.stderr
                 )
+            print(source_url)
+            sys.stdout.flush()  # Make sure progress shows up on stdout
             response = ds.batches.post(
                 {"element": "shoji:entity", "body": {"source": source_url}}
             )
-            if wait_for_progress(
-                site, response, timeout_sec=timeout, verbose=verbose, retry_delay=0.125
-            ):
+            if wait_for_progress(site, response, timeout_sec=timeout, verbose=verbose):
                 if verbose:
                     print("Finished appending to dataset", ds.body.id, file=sys.stderr)
             else:

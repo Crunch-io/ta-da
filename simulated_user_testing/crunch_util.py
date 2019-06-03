@@ -6,6 +6,7 @@ from collections import OrderedDict
 import copy
 import gzip
 import io
+import itertools
 import json
 import os
 import sys
@@ -366,22 +367,67 @@ def create_dataset_from_csv2(
     return ds
 
 
-def wait_for_progress(site, progress_response, timeout_sec, retry_delay, verbose=False):
+def exponential_interval_generator(starting_delay):
+    """
+    Generate delay values in seconds, each twice as big as the previous.
+    """
+    while True:
+        yield starting_delay
+        starting_delay *= 2
+
+
+def table_interval_generator(delay_count_table=None):
+    """
+    Generate retry interval values in seconds using a lookup table.
+    If table is not given, use this default:
+    - Every 0.25 seconds * 4
+    - Every 1.0 seconds * 20
+    - Every 2.0 seconds * 20
+    - Every 10.0 seconds * 30
+    - Every 30.0 seconds * 60
+    - Every 60.0 seconds * 60
+    - Every 300.0 seconds * forever
+    """
+    if delay_count_table is None:
+        delay_count_table = [
+            (0.25, 4),
+            (1.0, 20),
+            (2.0, 20),
+            (10.0, 30),
+            (30.0, 60),
+            (60.0, 60),
+            (300.0,),
+        ]
+    for delay in itertools.chain(
+        *(itertools.repeat(*args) for args in delay_count_table)
+    ):
+        yield delay
+
+
+def wait_for_progress(
+    site, progress_response, timeout_sec, retry_delay=None, verbose=False
+):
     """
     Wait for an API call to finish that returned a progress response.
     site: The result of calling connect_pycrunch()
     progress_response: The result of posting to an API that returns progress.
     timeout_sec: Total seconds to wait for API call completion.
-    retry_delay: Seconds to wait in between calls to the progress endpoint
+    retry_delay: Starting seconds between polling progress endpoint
     Return True if progress finishes, False if it times out.
     """
     progress_response.raise_for_status()
     progress_url = progress_response.json()["value"]
-    t0 = t = time.time()
     if verbose:
         print("Waiting on progress URL ...", file=sys.stderr)
     progress_amount = None
-    while t - t0 < timeout_sec:
+    if isinstance(retry_delay, (int, float)):
+        retry_delay_generator = exponential_interval_generator(retry_delay)
+    elif retry_delay is None:
+        retry_delay_generator = table_interval_generator()
+    else:
+        raise TypeError("Invalid retry_delay")
+    t0 = t = time.time()
+    while t - t0 <= timeout_sec:
         response = site.session.get(progress_url)
         response.raise_for_status()
         progress = response.json()["value"]
@@ -390,9 +436,11 @@ def wait_for_progress(site, progress_response, timeout_sec, retry_delay, verbose
         progress_amount = progress.get("progress")
         if progress_amount in (100, -1, None):
             return True
-        time.sleep(retry_delay)
-        retry_delay *= 2
+        next_t = t + next(retry_delay_generator)
         t = time.time()
+        if t < next_t:
+            time.sleep(next_t - t)
+            t = time.time()
     else:
         if verbose:
             print("Timeout after", timeout_sec, "seconds.", file=sys.stderr)
