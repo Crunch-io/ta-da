@@ -1,5 +1,5 @@
 +++
-date = "2019-05-16T11:16:05+01:00"
+date = "2019-06-03T11:16:05+01:00"
 title = "Applying Filters to Dashboards"
 news_description = "Crunch dashboards now include applying filters. Editors can select variables to display different analyses throughout their dashboard. Available now for our Early Access users. Click here to learn more."
 description = "Crunch dashboards now include applying filters. Editors can select variables to display different analyses throughout their dashboard. Available now for our Early Access users."
@@ -14,7 +14,7 @@ no_profiles = true
 
 Currently available just for our Early Access users, we'll be rolling this out to everyone soon.
 
-Crunch now allows editors to add interactivity to their dashboards by applying filters. To get richer insights the editor can apply selected variables to display different analyses throughout a dashboard. Applying filters moves dashboards from static to a more actively engaging product for all users. Dashboard editors can now offer greater depth and create dashboards that are ready to interact with. See here for more details.
+Crunch now allows editors to add interactivity to their dashboards by applying filters. To get richer insights the editor can apply selected variables to display different analyses throughout a dashboard. Applying filters moves dashboards from static to a more actively engaging product for all users. Dashboard editors can now offer greater depth and create dashboards that are ready to interact with. See [here](http://support.crunch.io/articles/ckEAdgji/How-to-apply-filters-to-a-dataset-dashboard) for more details.
 
 ## How Dashboard Filters work
 
@@ -27,3 +27,4 @@ Crunch now allows editors to add interactivity to their dashboards by applying f
 * For now, you can only filter a dashboard by clicking on one option per variable.
 
 An example of how a dashboard looks like with filters applied is shown below.
+{{< figure src="dev/features/images/dashboard-filters.png" class="img-fluid" width="300px">}}
