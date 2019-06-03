@@ -45,13 +45,13 @@
         {{ range .Data.Pages }}
             {{ if and (eq .Type "product") (eq .Title "Introducing CrunchBox") }}
             <div class="row spacer share-insights">
-                <div class="col-12 col-md-5 order-1 order-md-0">
+                <div class="col-12 col-md-5 order-0 order-md-0">
                     <h2 class="quotes">{{ .Title }}</h2>
                     <h2 class="subtitle">{{ .Description }}</h2>
                     <p>{{ .Content }}</p>
                 </div>
 
-                <div class="col-12 col-md-6 offset-md-1 order-0 order-md-1">
+                <div class="col-12 col-md-6 offset-md-1 order-1 order-md-1">
                     <div class="crunchbox-container">
                         <div class="crunchbox">
                             <iframe src="{{ .Params.crunchbox }}" width="100%" height="450"></iframe>

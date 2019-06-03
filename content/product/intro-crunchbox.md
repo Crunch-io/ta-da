@@ -9,4 +9,4 @@ crunchbox = "https://s.crunch.io/widget/index.html#/ds/e35bc1d262a0438d96c2c5714
 
 The easiest and quickest way for anyone, with zero training, to slice and dice survey data.
 
-<a class="a-link" href="crunchbox">Try a live CrunchBox &#10230;</a>
+<a class="a-link" href="crunchbox">Try a live CrunchBox</a>
