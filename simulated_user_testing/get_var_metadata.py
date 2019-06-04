@@ -1,15 +1,16 @@
 #!/var/lib/crunch.io/venv/bin/python
 """
-Script to list or download the S3 append sources for a dataset
+Script to list or download the Variables.add_from_metadata action LOBs.
+Meant to be run on the backend HTTP server.
 
 Usage:
-    get_s3_sources.py [options] list <dataset-id>
-    get_s3_sources.py [options] download <dataset-id> <directory-name>
+    get_var_metadata.py [options] list <dataset-id>
+    get_var_metadata.py [options] download <dataset-id> <directory-name>
 
 Options:
     --cr-lib-config=FILENAME  [default: /var/lib/crunch.io/cr.server-0.conf]
 
-Suggested directory name pattern: s3data-<short-dataset-name>
+Suggested directory name pattern: metadata-<short-dataset-name>
 """
 from __future__ import print_function
 import os
@@ -25,7 +26,6 @@ from magicbus.plugins import loggers
 import cr.lib.actions
 from cr.lib.commands.common import load_settings, startup
 from cr.lib.entities.datasets.dataset import Dataset
-from cr.lib.entities.sources import Source
 from cr.lib.loglib import log_to_stdout
 from cr.lib.settings import settings
 
@@ -50,37 +50,28 @@ def main():
 
 def do_list(args, config):
     dataset_id = args["<dataset-id>"]
-    source_bucket_name = config["SOURCE_STORE"]["BUCKET"]
-    for source in _get_append_sources_for_dataset(dataset_id):
-        s3_url = _get_s3_url(source_bucket_name, source.location)
-        if not s3_url:
+    for action in _get_var_add_from_metadata_actions(dataset_id):
+        metadata = action["params"]["variables_metadata"]
+        if "LOB" in metadata:
+            print(action["key"], action["hash"], "LOB", metadata["LOB"])
             continue
-        print(s3_url, source.type)
+        print(action["key"], action["hash"], "<no LOB>")
 
 
 def do_download(args, config):
     dataset_id = args["<dataset-id>"]
     directory_name = args["<directory-name>"]
-    sources = _get_append_sources_for_dataset(dataset_id)
-    source_config = config["SOURCE_STORE"]
+    lob_ids = list(_get_var_add_from_metadata_lobs(dataset_id))
+    lob_config = config["ACTION_LOB_STORE"]
     s3_conn = boto.connect_s3(
-        aws_access_key_id=source_config["KEY"],
-        aws_secret_access_key=source_config["SECRET"],
+        aws_access_key_id=lob_config["KEY"], aws_secret_access_key=lob_config["SECRET"]
     )
-    source_bucket = s3_conn.get_bucket(source_config["BUCKET"])
-    for source in sources:
-        s3_filename = _get_s3_filename(source.location)
-        if not s3_filename:
-            continue
-        dest_filename = s3_filename
-        s3_ext = source.type
-        if s3_ext:
-            if not dest_filename.endswith("." + s3_ext):
-                dest_filename += "." + s3_ext
-        s3_path = "sourcefiles/{}".format(s3_filename)
-        dest_path = os.path.join(directory_name, dest_filename)
+    lob_bucket = s3_conn.get_bucket(lob_config["BUCKET"])
+    for lob_id in lob_ids:
+        s3_path = "sourcefiles/{}".format(lob_id)
+        dest_path = os.path.join(directory_name, lob_id + "-lob.json")
         print("Downloading", s3_path, "to", dest_path)
-        s3_key = source_bucket.get_key(s3_path, validate=False)
+        s3_key = lob_bucket.get_key(s3_path, validate=False)
         s3_key.get_contents_to_filename(dest_path)
 
 
@@ -95,31 +86,25 @@ def _cr_lib_init(args):
     return config
 
 
-def _get_s3_filename(source_location):
-    if not source_location.startswith("crunchfile:///"):
-        return None
-    return source_location[14:]
-
-
-def _get_s3_url(source_bucket_name, source_location):
-    s3_filename = _get_s3_filename(source_location)
-    if not s3_filename:
-        return None
-    return "s3://{}/sourcefiles/{}".format(source_bucket_name, s3_filename)
-
-
-def _get_append_sources_for_dataset(dataset_id):
+def _get_var_add_from_metadata_actions(dataset_id):
     dataset = Dataset.find_by_id(id=dataset_id, version="master__tip")
     actions = cr.lib.actions.for_dataset(
         dataset,
         None,
         only_successful=True,
-        keys=["Source.append"],
+        keys=["Variables.add_from_metadata"],
         exclude_keys=None,
         replay_order=True,
     )
-    source_ids = [action["params"]["source"] for action in actions]
-    return Source.find_all({"id": {"$in": source_ids}})
+    return actions
+
+
+def _get_var_add_from_metadata_lobs(dataset_id):
+    for action in _get_var_add_from_metadata_actions(dataset_id):
+        metadata = action["params"]["variables_metadata"]
+        if "LOB" not in metadata:
+            continue
+        yield metadata["LOB"]
 
 
 if __name__ == "__main__":

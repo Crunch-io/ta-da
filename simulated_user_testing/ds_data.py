@@ -4,6 +4,7 @@ Big Dataset data helper script
 
 Usage:
     ds_data.py list-datasets [options] [--projects] [--project=PROJECT]
+    ds_data.py obfuscate-chunks [options] <metadata-file> <chunk-data-file>...
     ds_data.py upload-chunks [options] <chunk-data-file>...
     ds_data.py append-sources [options] <input-file> <dataset-id>
 
@@ -26,6 +27,9 @@ Commands:
         One Source HTTP URL per line.
 """
 from __future__ import print_function
+import csv
+import codecs
+import gzip
 import os
 import sys
 
@@ -35,6 +39,7 @@ import six
 from six.moves.urllib import parse as urllib_parse
 
 from crunch_util import connect_pycrunch, wait_for_progress
+from ds_meta import MetadataModel
 
 
 def do_list_datasets(args):
@@ -65,6 +70,26 @@ def do_list_datasets(args):
     for ds in six.itervalues(site.datasets.index):
         print(u"{ds.id} {ds.name}".format(ds=ds))
     return 0
+
+
+def do_obfuscate_chunks(args):
+    verbose = args["-v"]
+    metadata_filename = args["<metadata-file>"]
+    chunk_filenames = args["<chunk-data-file>"]
+    meta = MetadataModel(verbose=verbose)
+    meta.load(metadata_filename)
+    alias_map = meta.alias_map
+    for chunk_filename in chunk_filenames:
+        print("Looking at", chunk_filename)
+        with gzip.open(chunk_filename, "rt") as f:
+            r = csv.reader(f)
+            for line_num, row in enumerate(r, 1):
+                if line_num == 1:
+                    cur_aliases = [codecs.decode(a, "rot13") for a in row]
+                    aliases_not_found = sorted(set(cur_aliases) - set(alias_map))
+                    print("Aliases in CSV file but not in metadata:", aliases_not_found)
+                    break
+        break  # XXX
 
 
 def do_upload_chunks(args):
@@ -163,6 +188,8 @@ def main():
         return do_upload_chunks(args)
     elif args["append-sources"]:
         return do_append_sources(args)
+    elif args["obfuscate-chunks"]:
+        return do_obfuscate_chunks(args)
     else:
         raise NotImplementedError("Sorry, that command is not yet implemented.")
 

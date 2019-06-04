@@ -110,7 +110,37 @@ def obfuscate_metadata(metadata):
 class MetadataModel(object):
     def __init__(self, verbose=False):
         self.verbose = verbose
-        self._meta = {}
+        self._meta = None
+        # {alias: {"var_id": var_id, "subvar_id": subar_id_or_none}
+        self._alias_map = None
+
+    @property
+    def alias_map(self):
+        if self._alias_map is not None:
+            return self._alias_map
+        if self._meta is None:
+            raise RuntimeError("Call get() or load() first")
+        table = self._meta["table"]
+        alias_map = self._alias_map = {}
+        for var_id, var_def in six.iteritems(table):
+            alias = var_def["alias"]
+            if alias in alias_map:
+                raise ValueError(
+                    "Variable '{}' has duplicate alias '{}'".format(var_id, alias)
+                )
+            alias_map[alias] = {"var_id": var_id, "subvar_id": None}
+            if "subreferences" not in var_def:
+                continue
+            for subvar_id, subvar_def in six.iteritems(var_def["subreferences"]):
+                subvar_alias = subvar_def["alias"]
+                if subvar_alias in alias_map:
+                    raise ValueError(
+                        "Subvariable '{}.{}' () has duplicate alias '{}'".format(
+                            var_id, subvar_id, alias, subvar_alias
+                        )
+                    )
+                alias_map[subvar_alias] = {"var_id": var_id, "subvar_id": subvar_id}
+        return alias_map
 
     @staticmethod
     def _var_has_non_default_missing_reasons(var_def):
