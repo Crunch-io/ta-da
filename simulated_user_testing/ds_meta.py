@@ -61,6 +61,7 @@ from six.moves.urllib import parse as urllib_parse
 
 from crunch_util import connect_pycrunch, create_dataset_from_csv2
 
+
 CRITICAL_KEYS = (
     "name",
     "description",
@@ -70,10 +71,58 @@ CRITICAL_KEYS = (
     "origin_entity",
     "origin_metric",
     "origin_source",
-    "group",  # folder names
     "variable",  # args that refer to variable aliases
 )
-VALUES_TO_PRESERVE = ("No Data",)
+VALUES_TO_PRESERVE = [("name", "No Data"), ("group", "__hidden__")]
+
+
+def obfuscate_string(value, path):
+    parent = path[-1] if path else None
+    for k, v in VALUES_TO_PRESERVE:
+        if k == parent and v == value:
+            return value
+    if parent in CRITICAL_KEYS:
+        return codecs.encode(value, "rot13")
+    if path[:3] == ["body", "table", "order"]:
+        return codecs.encode(value, "rot13")
+    if path == ["body", "settings", "weight"]:
+        return codecs.encode(value, "rot13")
+    if len(path) == 3 and path[:2] == ["body", "weight_variables"]:
+        return codecs.encode(value, "rot13")
+    return value
+
+
+def obfuscate_metadata(metadata, path=None):
+    """
+    metadata is a dict containing Crunch dataset metadata.
+    Modify it in-place, replacing most string values with gibberish of the same length.
+    This is tuned for the create dataset payload JSON.
+    """
+    if path is None:
+        path = []
+    if isinstance(metadata, dict):
+        if path == ["body", "table", "metadata"]:
+            # The keys are variable aliases that must be obfuscated
+            new_metadata = {}
+            for key, value in six.iteritems(metadata):
+                new_key = codecs.encode(key, "rot13")
+                path.append(new_key)
+                new_metadata[new_key] = obfuscate_metadata(value, path)
+                path.pop()
+            metadata = new_metadata
+        else:
+            for key, value in six.iteritems(metadata):
+                path.append(key)
+                metadata[key] = obfuscate_metadata(value, path)
+                path.pop()
+    elif isinstance(metadata, list):
+        for i, item in enumerate(metadata):
+            path.append(i)
+            metadata[i] = obfuscate_metadata(item, path)
+            path.pop()
+    elif isinstance(metadata, six.string_types):
+        metadata = obfuscate_string(metadata, path)
+    return metadata
 
 
 def make_cats_key(categories_list, remove_ids=True):
@@ -90,30 +139,10 @@ def get_id_from_url(url):
     in the form ../<id>/, return id. Otherwise, return None
     """
     p = urllib_parse.urlparse(url)
-    parts = p.path.split('/')
+    parts = p.path.split("/")
     if len(parts) >= 3 and not parts[-1]:
         return parts[-2]
     return None
-
-
-def obfuscate_metadata(metadata):
-    """
-    metadata is a dict containing Crunch dataset metadata.
-    Modify it in-place, replacing most string values with gibberish of the same length.
-    """
-    if isinstance(metadata, dict):
-        for key, value in six.iteritems(metadata):
-            if isinstance(value, (dict, list)):
-                obfuscate_metadata(value)
-            elif isinstance(value, six.string_types):
-                if key not in CRITICAL_KEYS:
-                    continue
-                if value in VALUES_TO_PRESERVE:
-                    continue
-                metadata[key] = codecs.encode(value, "rot13")
-    elif isinstance(metadata, list):
-        for item in metadata:
-            obfuscate_metadata(item)
 
 
 class MetadataModel(object):
@@ -177,7 +206,7 @@ class MetadataModel(object):
         ds_url = "{}{}/".format(site.datasets["self"], ds_id)
         response = site.session.get(ds_url)
         ds = response.payload
-        self._dump(ds, dirname, 'dataset-main.json')
+        self._dump(ds, dirname, "dataset-main.json")
         # Download various additional types of dataset metadata
         self._get_variables(site, ds_url, dirname)
         self._get_weights(site, ds_url, dirname)
@@ -190,9 +219,9 @@ class MetadataModel(object):
             print("Done.")
 
     def _dump(self, obj, dirname, base_filename):
-        with open(os.path.join(dirname, base_filename), 'w') as f:
+        with open(os.path.join(dirname, base_filename), "w") as f:
             json.dump(obj, f, indent=2, sort_keys=True)
-            f.write('\n')
+            f.write("\n")
 
     def _get_variables(self, site, ds_url, dirname):
         if self.verbose:
@@ -200,33 +229,33 @@ class MetadataModel(object):
         variables_url = "{}variables/".format(ds_url)
         response = site.session.get(variables_url)
         dataset_vars = response.payload
-        self._dump(dataset_vars, dirname, 'dataset-variables.json')
+        self._dump(dataset_vars, dirname, "dataset-variables.json")
         # Fetch details for derived variables
         for var_url, var_info in six.iteritems(dataset_vars["index"]):
             if not var_info["derived"]:
                 continue
             var_id = get_id_from_url(var_url)
             response = site.session.get(var_url)
-            self._dump(response.payload, dirname, 'var-{}-detail.json'.format(var_id))
+            self._dump(response.payload, dirname, "var-{}-detail.json".format(var_id))
 
     def _get_weights(self, site, ds_url, dirname):
         if self.verbose:
             print("Fetching weights")
         weights_url = "{}variables/weights/".format(ds_url)
         response = site.session.get(weights_url)
-        self._dump(response.payload, dirname, 'dataset-weights.json')
+        self._dump(response.payload, dirname, "dataset-weights.json")
 
     def _get_settings(self, site, ds_url, dirname):
         if self.verbose:
             print("Fetching settings")
         settings_url = "{}settings/".format(ds_url)
         response = site.session.get(settings_url)
-        self._dump(response.payload, dirname, 'dataset-settings.json')
+        self._dump(response.payload, dirname, "dataset-settings.json")
 
     def _get_preferences(self, site, ds, dirname):
         if self.verbose:
             print("Fetching preferences")
-        self._dump(ds.preferences, dirname, 'dataset-preferences.json')
+        self._dump(ds.preferences, dirname, "dataset-preferences.json")
 
     def _get_table(self, site, ds_url, dirname):
         # Get "table" of variable definitions
@@ -237,7 +266,7 @@ class MetadataModel(object):
         # We need to temporarily keep the table payload in memory
         # in order to figure out what to load next.
         response_payload = response.payload
-        self._dump(response_payload, dirname, 'dataset-table.json')
+        self._dump(response_payload, dirname, "dataset-table.json")
 
         # Get missing_rules for variables with non-default missing_reason
         # codes.
@@ -254,13 +283,14 @@ class MetadataModel(object):
         for var_id in var_ids_needing_missing_rules:
             missing_rules_url = "{}variables/{}/missing_rules/".format(ds_url, var_id)
             response = site.session.get(missing_rules_url)
-            self._dump(response.payload, dirname,
-                       "var-{}-missing-rules.json".format(var_id))
+            self._dump(
+                response.payload, dirname, "var-{}-missing-rules.json".format(var_id)
+            )
 
     def _get_variable_hierarchy(self, site, ds, dirname):
         if self.verbose:
             print("Getting variable folder hierarchy")
-        self._dump(ds.variables.hier, dirname, 'variables-hier.json')
+        self._dump(ds.variables.hier, dirname, "variables-hier.json")
 
     @staticmethod
     def convert_var_def(var_def):
@@ -336,8 +366,15 @@ class MetadataModel(object):
                 "weight_variables": [],
             },
         }
-        for k in ('size', 'end_date', 'notes', 'start_date', 'streaming',
-                  'is_published', 'description'):
+        for k in (
+            "size",
+            "end_date",
+            "notes",
+            "start_date",
+            "streaming",
+            "is_published",
+            "description",
+        ):
             if k in self._meta["main"]:
                 new_meta["body"][k] = self._meta["main"][k]
 
@@ -348,7 +385,7 @@ class MetadataModel(object):
         # add them to the payload in alias order.
         alias_varid_map = {}
         for var_id, var_def in six.iteritems(table):
-            alias_varid_map[var_def['alias']] = var_id
+            alias_varid_map[var_def["alias"]] = var_id
         for var_alias in sorted(alias_varid_map):
             var_id = alias_varid_map[var_alias]
             var_def = table[var_id]
@@ -362,7 +399,8 @@ class MetadataModel(object):
             var_detail = self._meta["variables"]["detail"][var_id]
             var_alias = var_info["alias"]
             new_table[var_alias]["derivation"] = self._convert_var_derivation(
-                var_detail["derivation"])
+                var_detail["derivation"]
+            )
 
         # Set aliases of starting weight variables
         for orig_weight_url in self._meta["variables"]["weights"]:
@@ -379,10 +417,10 @@ class MetadataModel(object):
 
         # Set up order
         order = self._translate_hier_to_order()
-        new_meta['body']['table']['order'] = order
+        new_meta["body"]["table"]["order"] = order
 
         # Save the payload
-        self._dump(new_meta, dirname, 'dataset-payload.json')
+        self._dump(new_meta, dirname, "dataset-payload.json")
 
     def _convert_var_derivation(self, derivation_expr):
         """Return a copy of derivation_expr converted from GET to POST format"""
@@ -411,10 +449,10 @@ class MetadataModel(object):
         return settings
 
     def create(self, site, dirname, name=None):
-        with open(os.path.join(dirname, 'dataset-payload.json'), 'r') as f:
+        with open(os.path.join(dirname, "dataset-payload.json"), "r") as f:
             new_meta = json.load(f)
         if name:
-            new_meta['body']['name'] = name
+            new_meta["body"]["name"] = name
         ds = create_dataset_from_csv2(
             site, new_meta, None, verbose=self.verbose, gzip_metadata=True
         )
@@ -451,7 +489,7 @@ class MetadataModel(object):
         to POST to /datasets/ .
         """
         if item is None:
-            item = self._meta['variables']['hier'].copy()
+            item = self._meta["variables"]["hier"].copy()
         if isinstance(item, list):
             return [self._translate_hier_to_order(i) for i in item]
         elif isinstance(item, dict):
@@ -491,19 +529,19 @@ class MetadataModel(object):
                 return json.load(f)
 
         # Load main metadata
-        self._meta["main"] = _load_file('dataset-main.json')["body"]
+        self._meta["main"] = _load_file("dataset-main.json")["body"]
 
         # Load settings
-        self._meta["settings"] = _load_file('dataset-settings.json')["body"]
+        self._meta["settings"] = _load_file("dataset-settings.json")["body"]
 
         # Load preferences
-        self._meta["preferences"] = _load_file('dataset-preferences.json')["body"]
+        self._meta["preferences"] = _load_file("dataset-preferences.json")["body"]
 
         # Varible-related info
         self._meta["variables"] = {}
 
         # Load list of variables for this dataset
-        self._meta["variables"]["index"] = _load_file('dataset-variables.json')["index"]
+        self._meta["variables"]["index"] = _load_file("dataset-variables.json")["index"]
 
         # Load details of derived variables
         self._meta["variables"]["detail"] = {}
@@ -512,17 +550,18 @@ class MetadataModel(object):
                 continue
             var_id = get_id_from_url(var_url)
             self._meta["variables"]["detail"][var_id] = _load_file(
-                'var-{}-detail.json'.format(var_id))["body"]
+                "var-{}-detail.json".format(var_id)
+            )["body"]
 
         # Load weights
-        self._meta["variables"]["weights"] = _load_file('dataset-weights.json')["graph"]
+        self._meta["variables"]["weights"] = _load_file("dataset-weights.json")["graph"]
 
         # Load variable hierarchy
-        hier = _load_file('variables-hier.json')["graph"]
+        hier = _load_file("variables-hier.json")["graph"]
         self._meta["variables"]["hier"] = hier
 
         # Load table of variable definitions
-        self._meta["table"] = _load_file('dataset-table.json')["metadata"]
+        self._meta["table"] = _load_file("dataset-table.json")["metadata"]
 
         # Load missing_rules for variables with non-default missing_reason codes
         var_ids_needing_missing_rules = []
@@ -624,19 +663,19 @@ class MetadataModel(object):
         print("    max. subvariables per variable:", max_subvars)
 
     def anonymize_payload(self, dirname):
-        filename = os.path.join(dirname, 'dataset-payload.json')
+        filename = os.path.join(dirname, "dataset-payload.json")
         print("Reading", filename)
-        with open(filename, 'r') as f:
+        with open(filename, "r") as f:
             payload = json.load(f)
         print("Obfuscating...")
         # Save the name so it doesn't get scrambled
-        name = payload['body']['name']
+        name = payload["body"]["name"]
         obfuscate_metadata(payload)
-        payload['body']['name'] = name
+        payload["body"]["name"] = name
         print("Writing", filename)
-        with open(filename, 'w') as f:
+        with open(filename, "w") as f:
             json.dump(payload, f, indent=2)
-            f.write('\n')
+            f.write("\n")
 
 
 def do_get(args):
@@ -680,7 +719,7 @@ def do_create(args):
     site = connect_pycrunch(config["connection"], verbose=args["-v"])
     meta = MetadataModel(verbose=args["-v"])
     meta.load(dirname)
-    meta.create(site, name=args["--name"])
+    meta.create(site, dirname, name=args["--name"])
 
 
 def _generate_unique_subvar_aliases(var_meta):
@@ -816,14 +855,18 @@ def do_raw_request(args):
 
 
 def do_sample_config(args):
-    print(textwrap.dedent("""
+    print(
+        textwrap.dedent(
+            """
     local:
         connection:
             username: 'captain@crunch.io'
             password: 'asdfasdf'
             api_url: 'https://local.crunch.io:8443/api'
             verify: false
-    """).strip())
+    """
+        ).strip()
+    )
 
 
 def main():
