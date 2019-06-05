@@ -70,6 +70,8 @@ CRITICAL_KEYS = (
     "origin_entity",
     "origin_metric",
     "origin_source",
+    "group",  # folder names
+    "variable",  # args that refer to variable aliases
 )
 VALUES_TO_PRESERVE = ("No Data",)
 
@@ -171,15 +173,11 @@ class MetadataModel(object):
         """
         if self.verbose:
             print("Downloading metadata for dataset", ds_id)
-        # Clear previously-loaded metadata if any
-        self._meta = {}
         # Download the main dataset metadata
         ds_url = "{}{}/".format(site.datasets["self"], ds_id)
         response = site.session.get(ds_url)
-        main_file = os.path.join(dirname, 'dataset-main.json')
-        with open(main_file, "w") as f:
-            f.write(response.text)
         ds = response.payload
+        self._dump(ds, dirname, 'dataset-main.json')
         # Download various additional types of dataset metadata
         self._get_variables(site, ds_url, dirname)
         self._get_weights(site, ds_url, dirname)
@@ -191,36 +189,44 @@ class MetadataModel(object):
         if self.verbose:
             print("Done.")
 
+    def _dump(self, obj, dirname, base_filename):
+        with open(os.path.join(dirname, base_filename), 'w') as f:
+            json.dump(obj, f, indent=2, sort_keys=True)
+            f.write('\n')
+
     def _get_variables(self, site, ds_url, dirname):
         if self.verbose:
             print("Fetching variables")
         variables_url = "{}variables/".format(ds_url)
         response = site.session.get(variables_url)
-        with open(os.path.join(dirname, 'dataset-variables.json'), 'w') as f:
-            f.write(response.text)
+        dataset_vars = response.payload
+        self._dump(dataset_vars, dirname, 'dataset-variables.json')
+        # Fetch details for derived variables
+        for var_url, var_info in six.iteritems(dataset_vars["index"]):
+            if not var_info["derived"]:
+                continue
+            var_id = get_id_from_url(var_url)
+            response = site.session.get(var_url)
+            self._dump(response.payload, dirname, 'var-{}-detail.json'.format(var_id))
 
     def _get_weights(self, site, ds_url, dirname):
         if self.verbose:
             print("Fetching weights")
         weights_url = "{}variables/weights/".format(ds_url)
         response = site.session.get(weights_url)
-        with open(os.path.join(dirname, 'dataset-weights.json'), 'w') as f:
-            f.write(response.text)
+        self._dump(response.payload, dirname, 'dataset-weights.json')
 
     def _get_settings(self, site, ds_url, dirname):
         if self.verbose:
             print("Fetching settings")
         settings_url = "{}settings/".format(ds_url)
         response = site.session.get(settings_url)
-        with open(os.path.join(dirname, 'dataset-settings.json'), 'w') as f:
-            f.write(response.text)
+        self._dump(response.payload, dirname, 'dataset-settings.json')
 
     def _get_preferences(self, site, ds, dirname):
         if self.verbose:
             print("Fetching preferences")
-        with open(os.path.join(dirname, 'dataset-preferences.json'), 'w') as f:
-            json.dump(ds.preferences, f, indent=4, sort_keys=True)
-            f.write('\n')
+        self._dump(ds.preferences, dirname, 'dataset-preferences.json')
 
     def _get_table(self, site, ds_url, dirname):
         # Get "table" of variable definitions
@@ -228,16 +234,15 @@ class MetadataModel(object):
             print("Fetching metadata table")
         table_url = "{}table/".format(ds_url)
         response = site.session.get(table_url)
-        with open(os.path.join(dirname, 'dataset-table.json'), 'w') as f:
-            f.write(response.text)
-        # We need to temporarily keep the table metadata in memory
+        # We need to temporarily keep the table payload in memory
         # in order to figure out what to load next.
-        meta_table = response.payload["metadata"]
+        response_payload = response.payload
+        self._dump(response_payload, dirname, 'dataset-table.json')
 
         # Get missing_rules for variables with non-default missing_reason
         # codes.
         var_ids_needing_missing_rules = []
-        for var_id, var_def in six.iteritems(meta_table):
+        for var_id, var_def in six.iteritems(response_payload["metadata"]):
             if self._var_has_non_default_missing_reasons(var_def):
                 var_ids_needing_missing_rules.append(var_id)
         if self.verbose:
@@ -249,16 +254,13 @@ class MetadataModel(object):
         for var_id in var_ids_needing_missing_rules:
             missing_rules_url = "{}variables/{}/missing_rules/".format(ds_url, var_id)
             response = site.session.get(missing_rules_url)
-            with open(os.path.join(dirname, "var-{}-missing-rules.json".format(var_id)),
-                      'w') as f:
-                f.write(response.text)
+            self._dump(response.payload, dirname,
+                       "var-{}-missing-rules.json".format(var_id))
 
     def _get_variable_hierarchy(self, site, ds, dirname):
         if self.verbose:
             print("Getting variable folder hierarchy")
-        with open(os.path.join(dirname, 'variables-hier.json'), 'w') as f:
-            json.dump(ds.variables.hier, f, indent=4, sort_keys=True)
-            f.write('\n')
+        self._dump(ds.variables.hier, dirname, 'variables-hier.json')
 
     @staticmethod
     def convert_var_def(var_def):
@@ -352,6 +354,16 @@ class MetadataModel(object):
             var_def = table[var_id]
             new_table[var_alias] = self.convert_var_def(var_def)
 
+        # Add variable derivations to the payload
+        for var_url, var_info in six.iteritems(self._meta["variables"]["index"]):
+            if not var_info["derived"]:
+                continue
+            var_id = get_id_from_url(var_url)
+            var_detail = self._meta["variables"]["detail"][var_id]
+            var_alias = var_info["alias"]
+            new_table[var_alias]["derivation"] = self._convert_var_derivation(
+                var_detail["derivation"])
+
         # Set aliases of starting weight variables
         for orig_weight_url in self._meta["variables"]["weights"]:
             var_id = get_id_from_url(orig_weight_url)
@@ -361,7 +373,32 @@ class MetadataModel(object):
             new_meta["body"]["weight_variables"].append(var_def["alias"])
 
         # Set settings
-        settings = self._meta["settings"].copy()
+        settings = self._convert_settings(self._meta["settings"])
+        if settings:
+            new_meta["body"]["settings"] = settings
+
+        # Set up order
+        order = self._translate_hier_to_order()
+        new_meta['body']['table']['order'] = order
+
+        # Save the payload
+        self._dump(new_meta, dirname, 'dataset-payload.json')
+
+    def _convert_var_derivation(self, derivation_expr):
+        """Return a copy of derivation_expr converted from GET to POST format"""
+        new_expr = {"function": derivation_expr["function"], "args": []}
+        for arg in derivation_expr["args"]:
+            if "variable" in arg:
+                var_id = get_id_from_url(arg["variable"])
+                var_alias = self._meta["table"][var_id]["alias"]
+                arg = arg.copy()
+                arg["variable"] = var_alias
+            new_expr["args"].append(arg)
+        return new_expr
+
+    def _convert_settings(self, settings):
+        """Return a copy of dataset settings converted from GET to POST format"""
+        settings = settings.copy()
         var_id = get_id_from_url(settings.get("weight"))
         if var_id:
             var_def = self._meta["table"][var_id]
@@ -371,17 +408,7 @@ class MetadataModel(object):
             if dashboard_deck:
                 # Any dashboard_deck setting is probably not valid for the new dataset.
                 del settings["dashboard_deck"]
-        if settings:
-            new_meta["body"]["settings"] = settings
-
-        # Set up order
-        order = self._translate_hier_to_order()
-        new_meta['body']['table']['order'] = order
-
-        # Save the payload
-        with open(os.path.join(dirname, 'dataset-payload.json'), 'w') as f:
-            json.dump(new_meta, f, indent=2)
-            f.write('\n')
+        return settings
 
     def create(self, site, dirname, name=None):
         with open(os.path.join(dirname, 'dataset-payload.json'), 'r') as f:
@@ -472,12 +499,24 @@ class MetadataModel(object):
         # Load preferences
         self._meta["preferences"] = _load_file('dataset-preferences.json')["body"]
 
-        # Load variable-related info
+        # Varible-related info
         self._meta["variables"] = {}
+
         # Load list of variables for this dataset
         self._meta["variables"]["index"] = _load_file('dataset-variables.json')["index"]
+
+        # Load details of derived variables
+        self._meta["variables"]["detail"] = {}
+        for var_url, var_info in six.iteritems(self._meta["variables"]["index"]):
+            if not var_info["derived"]:
+                continue
+            var_id = get_id_from_url(var_url)
+            self._meta["variables"]["detail"][var_id] = _load_file(
+                'var-{}-detail.json'.format(var_id))["body"]
+
         # Load weights
         self._meta["variables"]["weights"] = _load_file('dataset-weights.json')["graph"]
+
         # Load variable hierarchy
         hier = _load_file('variables-hier.json')["graph"]
         self._meta["variables"]["hier"] = hier
