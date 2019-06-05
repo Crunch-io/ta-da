@@ -1,8 +1,8 @@
 +++
 date = "2019-06-03T11:16:05+01:00"
-title = "Applying Filters to Dashboards"
-news_description = "Crunch dashboards now include applying filters. Editors can select variables to display different analyses throughout their dashboard. Available now for our Early Access users. Click here to learn more."
-description = "Crunch dashboards now include applying filters. Editors can select variables to display different analyses throughout their dashboard. Available now for our Early Access users."
+title = "Filtering dashboards"
+news_description = "Dataset editors can now specify variables that can be used to filter all analyses in the dashboard at once – let your users customize their view data by gender, age, brand, and more with a single click. Available now for our Early Access users. Click here to learn more."
+description = "Dataset editors can now specify variables that can be used to filter all analyses in the dashboard at once – let your users customize their view data by gender, age, brand, and more with a single click. Available now for our Early Access users."
 weight = 20
 tags = ["dashboards"]
 categories = ["feature"]
@@ -12,19 +12,14 @@ no_profiles = true
 
 +++
 
-Currently available just for our Early Access users, we'll be rolling this out to everyone soon.
+{{< figure src="dev/features/images/dashboard-filters.png" class="img-fluid">}}
 
-Crunch now allows editors to add interactivity to their dashboards by applying filters. To get richer insights the editor can apply selected variables to display different analyses throughout a dashboard. Applying filters moves dashboards from static to a more actively engaging product for all users. Dashboard editors can now offer greater depth and create dashboards that are ready to interact with. See [here](http://support.crunch.io/articles/ckEAdgji/How-to-apply-filters-to-a-dataset-dashboard) for more details.
+Dataset editors can add one or more variables to be used as filters across an entire dashboard with a simple drag-and-drop interface. This allows all dashboard viewers to get more out of your dashboards by customizing their view of the data. For example:
 
-## How Dashboard Filters work
+* Add demographic variables such as gender, age, education level, region, and ethnicity to allow your viewers to drill down on the customer populations that interest them.
 
-* As a dataset editor, you can set which filter variables are available to other users.
+* Add brands or products to create a dashboard that lets your viewers quickly understand the customer awareness, attitude, and usage of their products and competitors.
 
-* As a dataset editor, you can apply filters to a dashboard that contains analyses that are already filtered. These will only accumulate.
+See [our support documentation](http://support.crunch.io/articles/ckEAdgji/How-to-apply-filters-to-a-dataset-dashboard) to get started.
 
-* As a user without editing permissions you are able to filter an entire dashboard using filter options set by a dataset editor.
-
-* For now, you can only filter a dashboard by clicking on one option per variable.
-
-An example of how a dashboard looks like with filters applied is shown below.
-{{< figure src="dev/features/images/dashboard-filters.png" class="img-fluid" width="300px">}}
+This feature is currently in early access. We'd love your feedback at support@crunch.io.
