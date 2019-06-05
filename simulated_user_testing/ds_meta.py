@@ -3,59 +3,54 @@
 Big Dataset metadata helper script
 
 Usage:
-    ds.meta list-datasets [options] [--projects] [--project=PROJECT]
-    ds.meta get [options] <ds-id> <filename>
-    ds.meta info [options] <filename>
-    ds.meta anonymize [options] <filename> <output-filename>
-    ds.meta post [options] <filename>
-    ds.meta raw-request [options] <method> <uri-path> <filename>
-    ds.meta addvar [options] <ds-id> <filename>
-    ds.meta folderize [options] <ds-id> <filename>
-    ds.meta loadsave [options] <filename> <output-filename>
+    ds_meta.py list-datasets [options] [--projects] [--project=PROJECT]
+    ds_meta.py get [options] <ds-id> <dirname>
+    ds_meta.py info [options] <dirname>
+    ds_meta.py create-payload [options] <dirname>
+    ds_meta.py anonymize-payload [options] <dirname>
+    ds_meta.py create [options] <dirname>
+    ds_meta.py addvar [options] <ds-id> <filename>
+    ds_meta.py folderize [options] <ds-id> <filename>
+    ds_meta.py raw-request [options] <method> <uri-path> <filename>
+    ds_meta.py sample-config
 
 Options:
     -c CONFIG_FILENAME      [default: config.yaml]
     -p PROFILE_NAME         Profile section in config [default: local]
     -i                      Run interactive prompt after executing command
     -v                      Print verbose messages
-    --name=NAME             Override name in JSON file (post, addvar)
+    --name=NAME             Override name in JSON file (create-payload, create, addvar)
     --alias=ALIAS           Override alias in JSON file (addvar)
     -u --unique-subvar-aliases
                             Generate unique subvariable aliases (addvar)
 
 Commands:
     get
-        Download dataset metadata and save in JSON file
+        Download dataset metadata and save in JSON files
     info
-        Print stats about metadata in JSON file
-    anonymize
-        Convert names and aliases in metadata to anonymized unique strings of
+        Print stats about metadata in JSON files
+    anonymize-payload
+        Convert names and aliases in metadata payload to anonymized unique strings of
         the same length.
-    post
-        Create an empty dataset with metadata from JSON file
+    create
+        Create an empty dataset with metadata from -payload.json file
     addvar
         Create a variable with metadata from JSON file
     folderize
         Organize the variables in dataset <ds-id> into folders according to
         the structure in the JSON metadata file.
-    loadsave
-        Just load the JSON file and save it again, for testing
-
-Example config.yaml file:
-    local:
-        connection:
-            username: 'captain@crunch.io'
-            password: 'asdfasdf'
-            api_url: 'https://local.crunch.io:8443/api'
-            verify: false
+    sample-config
+        Print sample config.yaml file contents to stdout
 """
 from __future__ import print_function
 import codecs
 from collections import defaultdict, OrderedDict
 import io
 import json
+import os
 import re
 import sys
+import textwrap
 import time
 import uuid
 
@@ -85,6 +80,18 @@ def make_cats_key(categories_list, remove_ids=True):
         for d in categories_list:
             d.pop("id", None)
     return tuple(json.dumps(d, sort_keys=True) for d in categories_list)
+
+
+def get_id_from_url(url):
+    """
+    For a URL in the form https://hostname/blah/<id>/ or
+    in the form ../<id>/, return id. Otherwise, return None
+    """
+    p = urllib_parse.urlparse(url)
+    parts = p.path.split('/')
+    if len(parts) >= 3 and not parts[-1]:
+        return parts[-2]
+    return None
 
 
 def obfuscate_metadata(metadata):
@@ -155,41 +162,82 @@ class MetadataModel(object):
             return False
         return True
 
-    def get(self, site, ds_id):
+    def get(self, site, ds_id, dirname):
         """
-        Download dataset metadata into an internal data structure
+        Download dataset metadata to local files
         site: Crunch API object returned by connect_pycrunch
         ds_id: Dataset ID
+        dirname: Directory into which the files will be saved
         """
         if self.verbose:
             print("Downloading metadata for dataset", ds_id)
-        self._meta.clear()
-        self._meta["id"] = ds_id
+        # Clear previously-loaded metadata if any
+        self._meta = {}
+        # Download the main dataset metadata
         ds_url = "{}{}/".format(site.datasets["self"], ds_id)
         response = site.session.get(ds_url)
+        main_file = os.path.join(dirname, 'dataset-main.json')
+        with open(main_file, "w") as f:
+            f.write(response.text)
         ds = response.payload
-        self._meta["name"] = ds["body"]["name"]
-        self._meta["description"] = ds["body"]["description"]
-        self._meta["size"] = ds["body"]["size"]
-        self._meta["variables"] = {}
-        self._get_variables(site, ds_url)
-        self._get_weights(site, ds_url)
-        self._get_settings(site, ds_url)
-        # Get preferences
+        # Download various additional types of dataset metadata
+        self._get_variables(site, ds_url, dirname)
+        self._get_weights(site, ds_url, dirname)
+        self._get_settings(site, ds_url, dirname)
+        self._get_preferences(site, ds, dirname)
+        self._get_table(site, ds_url, dirname)
+        self._get_variable_hierarchy(site, ds, dirname)
+        # That's all
+        if self.verbose:
+            print("Done.")
+
+    def _get_variables(self, site, ds_url, dirname):
+        if self.verbose:
+            print("Fetching variables")
+        variables_url = "{}variables/".format(ds_url)
+        response = site.session.get(variables_url)
+        with open(os.path.join(dirname, 'dataset-variables.json'), 'w') as f:
+            f.write(response.text)
+
+    def _get_weights(self, site, ds_url, dirname):
+        if self.verbose:
+            print("Fetching weights")
+        weights_url = "{}variables/weights/".format(ds_url)
+        response = site.session.get(weights_url)
+        with open(os.path.join(dirname, 'dataset-weights.json'), 'w') as f:
+            f.write(response.text)
+
+    def _get_settings(self, site, ds_url, dirname):
+        if self.verbose:
+            print("Fetching settings")
+        settings_url = "{}settings/".format(ds_url)
+        response = site.session.get(settings_url)
+        with open(os.path.join(dirname, 'dataset-settings.json'), 'w') as f:
+            f.write(response.text)
+
+    def _get_preferences(self, site, ds, dirname):
         if self.verbose:
             print("Fetching preferences")
-        self._meta["preferences"] = ds.preferences["body"]
+        with open(os.path.join(dirname, 'dataset-preferences.json'), 'w') as f:
+            json.dump(ds.preferences, f, indent=4, sort_keys=True)
+            f.write('\n')
+
+    def _get_table(self, site, ds_url, dirname):
         # Get "table" of variable definitions
         if self.verbose:
             print("Fetching metadata table")
         table_url = "{}table/".format(ds_url)
         response = site.session.get(table_url)
-        table_info = response.payload
-        self._meta["table"] = table_info["metadata"]
+        with open(os.path.join(dirname, 'dataset-table.json'), 'w') as f:
+            f.write(response.text)
+        # We need to temporarily keep the table metadata in memory
+        # in order to figure out what to load next.
+        meta_table = response.payload["metadata"]
+
         # Get missing_rules for variables with non-default missing_reason
         # codes.
         var_ids_needing_missing_rules = []
-        for var_id, var_def in six.iteritems(self._meta["table"]):
+        for var_id, var_def in six.iteritems(meta_table):
             if self._var_has_non_default_missing_reasons(var_def):
                 var_ids_needing_missing_rules.append(var_id)
         if self.verbose:
@@ -201,40 +249,16 @@ class MetadataModel(object):
         for var_id in var_ids_needing_missing_rules:
             missing_rules_url = "{}variables/{}/missing_rules/".format(ds_url, var_id)
             response = site.session.get(missing_rules_url)
-            missing_rules = response.payload["body"]["rules"]
-            self._meta["table"][var_id]["missing_rules"] = missing_rules
-        # Get hierarchical order
-        if self.verbose:
-            print("Getting hierarchical order")
-        hier = ds.variables.hier["graph"]
-        self._meta["variables"]["hier"] = hier
-        # That's all
-        if self.verbose:
-            print("Done.")
+            with open(os.path.join(dirname, "var-{}-missing-rules.json".format(var_id)),
+                      'w') as f:
+                f.write(response.text)
 
-    def _get_variables(self, site, ds_url):
+    def _get_variable_hierarchy(self, site, ds, dirname):
         if self.verbose:
-            print("Fetching variables")
-        variables_url = "{}variables/".format(ds_url)
-        response = site.session.get(variables_url)
-        variables_info = response.payload
-        self._meta["variables"]["index"] = variables_info["index"]
-
-    def _get_weights(self, site, ds_url):
-        if self.verbose:
-            print("Fetching weights")
-        weights_url = "{}variables/weights/".format(ds_url)
-        response = site.session.get(weights_url)
-        weights_info = response.payload
-        self._meta["variables"]["weights"] = weights_info["graph"]
-
-    def _get_settings(self, site, ds_url):
-        if self.verbose:
-            print("Fetching settings")
-        settings_url = "{}settings/".format(ds_url)
-        response = site.session.get(settings_url)
-        settings_info = response.payload
-        self._meta["settings"] = settings_info["body"]
+            print("Getting variable folder hierarchy")
+        with open(os.path.join(dirname, 'variables-hier.json'), 'w') as f:
+            json.dump(ds.variables.hier, f, indent=4, sort_keys=True)
+            f.write('\n')
 
     @staticmethod
     def convert_var_def(var_def):
@@ -295,16 +319,13 @@ class MetadataModel(object):
             # Handle absolute URL
             return "{}{}/".format(ds.variables.self, var_id)
 
-    def post(self, site, name=None):
-        if not self._meta:
-            raise RuntimeError("Must load metadata before POSTing dataset")
+    def create_payload(self, dirname, name=None):
         if not name:
-            name = self._meta["name"]
+            name = self._meta["main"]["name"]
         new_meta = {
             "element": "shoji:entity",
             "body": {
                 "name": name,
-                "description": self._meta["description"],
                 "table": {
                     "element": "crunch:table",
                     "metadata": OrderedDict(),
@@ -313,87 +334,64 @@ class MetadataModel(object):
                 "weight_variables": [],
             },
         }
+        for k in ('size', 'end_date', 'notes', 'start_date', 'streaming',
+                  'is_published', 'description'):
+            if k in self._meta["main"]:
+                new_meta["body"][k] = self._meta["main"][k]
+
         table = self._meta["table"]
         new_table = new_meta["body"]["table"]["metadata"]
-        var_ids_to_create = set(table)
 
-        # First pass: Create all the variables with IDs like "000000"
-        # in the same request used to create the dataset.
-        for i in six.moves.range(100000):
-            var_id = str(i).zfill(6)
-            if var_id in var_ids_to_create:
-                var_ids_to_create.remove(var_id)
-            else:
-                continue
+        # Convert the variable definitions from GET format to POST format and
+        # add them to the payload in alias order.
+        alias_varid_map = {}
+        for var_id, var_def in six.iteritems(table):
+            alias_varid_map[var_def['alias']] = var_id
+        for var_alias in sorted(alias_varid_map):
+            var_id = alias_varid_map[var_alias]
             var_def = table[var_id]
-            new_table[var_def["alias"]] = self.convert_var_def(var_def)
-        if self.verbose:
-            print(
-                "Creating dataset with its {} original variables".format(len(new_table))
-            )
+            new_table[var_alias] = self.convert_var_def(var_def)
+
+        # Set aliases of starting weight variables
+        for orig_weight_url in self._meta["variables"]["weights"]:
+            var_id = get_id_from_url(orig_weight_url)
+            if not var_id:
+                raise ValueError("Weight URL missing ID: {}".format(orig_weight_url))
+            var_def = self._meta["table"][var_id]
+            new_meta["body"]["weight_variables"].append(var_def["alias"])
+
+        # Set settings
+        settings = self._meta["settings"].copy()
+        var_id = get_id_from_url(settings.get("weight"))
+        if var_id:
+            var_def = self._meta["table"][var_id]
+            settings["weight"] = var_def["alias"]
+        if "dashboard_deck" in settings:
+            dashboard_deck = settings["dashboard_deck"]
+            if dashboard_deck:
+                # Any dashboard_deck setting is probably not valid for the new dataset.
+                del settings["dashboard_deck"]
+        if settings:
+            new_meta["body"]["settings"] = settings
+
+        # Set up order
+        order = self._translate_hier_to_order()
+        new_meta['body']['table']['order'] = order
+
+        # Save the payload
+        with open(os.path.join(dirname, 'dataset-payload.json'), 'w') as f:
+            json.dump(new_meta, f, indent=2)
+            f.write('\n')
+
+    def create(self, site, dirname, name=None):
+        with open(os.path.join(dirname, 'dataset-payload.json'), 'r') as f:
+            new_meta = json.load(f)
+        if name:
+            new_meta['body']['name'] = name
         ds = create_dataset_from_csv2(
             site, new_meta, None, verbose=self.verbose, gzip_metadata=True
         )
         print("New dataset ID:", ds.body.id)
-
-        # Second pass: Create all the variables with longer IDs
-        if self.verbose:
-            print("Adding {} more variables to dataset".format(len(var_ids_to_create)))
-        for i, var_id in enumerate(sorted(var_ids_to_create), 1):
-            if self.verbose:
-                print(
-                    "\rCreating variable {:04d} of {:04d}".format(
-                        i, len(var_ids_to_create)
-                    ),
-                    end="",
-                )
-            var_def = self.convert_var_def(self._meta["table"][var_id])
-            ds.variables.create({"body": var_def})
-            if self.verbose:
-                print()
-
-        # Set the list of weight variables
-        weight_urls = []
-        ds.variables.refresh()
-        variables_by_alias = ds.variables.by("alias")
-        for orig_weight_url in self._meta["variables"]["weights"]:
-            weight_url = self._translate_var_url(
-                ds, orig_weight_url, variables_by_alias=variables_by_alias
-            )
-            if weight_url:
-                weight_urls.append(weight_url)
-        if self.verbose:
-            print("Setting {} weight variable(s)".format(len(weight_urls)))
-        ds.variables.weights.patch({"graph": weight_urls})
-
-        # Set settings
-        if self.verbose:
-            print("Setting settings")
-        settings = self._meta["settings"].copy()
-        settings["weight"] = self._translate_var_url(
-            ds, settings["weight"], variables_by_alias=variables_by_alias
-        )
-        if settings["dashboard_deck"]:
-            print(
-                "WARNING: dashboard_deck is set to '{}'"
-                " which is probably not valid for this dataset.".format(
-                    settings["dashboard_deck"]
-                ),
-                file=sys.stderr,
-            )
-        ds.settings.patch(settings)
-
-        # Set preferences
-        if self.verbose:
-            print("Setting preferences")
-        preferences = self._meta["preferences"].copy()
-        preferences["weight"] = self._translate_var_url(
-            ds, preferences["weight"], variables_by_alias=variables_by_alias
-        )
-        ds.preferences.patch(preferences)
-
-        # Set hierarchical order
-        self.folderize(ds)
 
     def _translate_hier(self, ds, hier_list, variables_by_alias=None):
         # ds: Dataset object
@@ -419,44 +417,100 @@ class MetadataModel(object):
                 new_hier_list.append(new_node)
         return new_hier_list
 
+    def _translate_hier_to_order(self, item=None):
+        """
+        Translate the variable folder hierarchy from the format downloaded
+        by GET /datasets/<dataset-id>/variables/hier/ to the format used
+        to POST to /datasets/ .
+        """
+        if item is None:
+            item = self._meta['variables']['hier'].copy()
+        if isinstance(item, list):
+            return [self._translate_hier_to_order(i) for i in item]
+        elif isinstance(item, dict):
+            # Expecting a dictionary with one key, which is the folder name
+            # The value is a list of items inside that folder
+            assert len(item) == 1
+            folder_name = list(item.keys())[0]
+            folder_contents = item[folder_name]
+            assert isinstance(folder_contents, list)
+            return {
+                "entities": self._translate_hier_to_order(folder_contents),
+                "group": folder_name,
+            }
+        else:
+            # Expecting a relative URL in the form "../000716/"
+            # Convert the variable ID to variable alias
+            var_id = get_id_from_url(item)
+            assert var_id
+            var_def = self._meta["table"][var_id]
+            return var_def["alias"]
+
     def folderize(self, ds):
         if self.verbose:
             print("Setting hierarchical order")
         hier = self._translate_hier(ds, self._meta["variables"]["hier"])
         ds.variables.hier.put({"graph": hier})
 
-    @staticmethod
-    def _open_json(filename, mode):
-        if six.PY2:
-            return open(filename, mode + "b")
-        else:
-            return io.open(filename, mode, encoding="UTF-8")
+    def load(self, dirname):
+        """Load combined metadata info from JSON files"""
+        self._meta = {}
 
-    def save(self, filename):
-        """Save downloaded metadata to JSON file"""
-        if self.verbose:
-            print("Saving metadata to:", filename)
-        with self._open_json(filename, "w") as f:
-            json.dump(self._meta, f, indent=2, sort_keys=True)
-            f.write("\n")
+        def _load_file(base_filename):
+            filename = os.path.join(dirname, base_filename)
+            if self.verbose:
+                print("Loading", filename)
+            with open(filename, "r") as f:
+                return json.load(f)
 
-    def load(self, filename):
-        """Load downloaded metadata from JSON file"""
+        # Load main metadata
+        self._meta["main"] = _load_file('dataset-main.json')["body"]
+
+        # Load settings
+        self._meta["settings"] = _load_file('dataset-settings.json')["body"]
+
+        # Load preferences
+        self._meta["preferences"] = _load_file('dataset-preferences.json')["body"]
+
+        # Load variable-related info
+        self._meta["variables"] = {}
+        # Load list of variables for this dataset
+        self._meta["variables"]["index"] = _load_file('dataset-variables.json')["index"]
+        # Load weights
+        self._meta["variables"]["weights"] = _load_file('dataset-weights.json')["graph"]
+        # Load variable hierarchy
+        hier = _load_file('variables-hier.json')["graph"]
+        self._meta["variables"]["hier"] = hier
+
+        # Load table of variable definitions
+        self._meta["table"] = _load_file('dataset-table.json')["metadata"]
+
+        # Load missing_rules for variables with non-default missing_reason codes
+        var_ids_needing_missing_rules = []
+        for var_id, var_def in six.iteritems(self._meta["table"]):
+            if self._var_has_non_default_missing_reasons(var_def):
+                var_ids_needing_missing_rules.append(var_id)
         if self.verbose:
-            print("Loading metadata from:", filename)
-        with self._open_json(filename, "r") as f:
-            self._meta = json.load(f)
+            print(
+                "Loading missing_rules for {} variables".format(
+                    len(var_ids_needing_missing_rules)
+                )
+            )
+        for var_id in var_ids_needing_missing_rules:
+            base_filename = "var-{}-missing-rules.json".format(var_id)
+            missing_rules = _load_file(base_filename)["body"]["rules"]
+            self._meta["table"][var_id]["missing_rules"] = missing_rules
 
     def report(self):
         # general info
         meta = self._meta
-        print("Dataset ID:", meta["id"])
-        print("name:", meta["name"])
-        print("description:", meta["description"])
+        print("Dataset ID:", meta["main"]["id"])
+        print("name:", meta["main"]["name"])
+        print("description:", meta["main"]["description"])
         print("size:")
-        print("  columns:", meta["size"]["columns"])
-        print("  rows:", meta["size"]["rows"])
-        print("  unfiltered_rows:", meta["size"]["rows"])
+        print("  columns:", meta["main"]["size"]["columns"])
+        print("  rows:", meta["main"]["size"]["rows"])
+        print("  unfiltered_rows:", meta["main"]["size"]["unfiltered_rows"])
         # variable info
         table = meta["table"]
         var_type_count_map = defaultdict(int)
@@ -530,19 +584,30 @@ class MetadataModel(object):
             )
         print("    max. subvariables per variable:", max_subvars)
 
-    def anonymize(self):
-        obfuscate_metadata(self._meta)
+    def anonymize_payload(self, dirname):
+        filename = os.path.join(dirname, 'dataset-payload.json')
+        print("Reading", filename)
+        with open(filename, 'r') as f:
+            payload = json.load(f)
+        print("Obfuscating...")
+        # Save the name so it doesn't get scrambled
+        name = payload['body']['name']
+        obfuscate_metadata(payload)
+        payload['body']['name'] = name
+        print("Writing", filename)
+        with open(filename, 'w') as f:
+            json.dump(payload, f, indent=2)
+            f.write('\n')
 
 
 def do_get(args):
     ds_id = args["<ds-id>"]
-    filename = args["<filename>"]
+    dirname = args["<dirname>"]
     with io.open(args["-c"], "r", encoding="UTF-8") as f:
         config = yaml.safe_load(f)[args["-p"]]
     site = connect_pycrunch(config["connection"], verbose=args["-v"])
     meta = MetadataModel(verbose=args["-v"])
-    meta.get(site, ds_id)
-    meta.save(filename)
+    meta.get(site, ds_id, dirname)
     if args["-i"]:
         import IPython
 
@@ -550,35 +615,33 @@ def do_get(args):
 
 
 def do_info(args):
-    filename = args["<filename>"]
+    dirname = args["<dirname>"]
     meta = MetadataModel(verbose=args["-v"])
-    meta.load(filename)
+    meta.load(dirname)
     meta.report()
 
 
-def do_anonymize(args):
-    filename = args["<filename>"]
+def do_create_payload(args):
+    dirname = args["<dirname>"]
     meta = MetadataModel(verbose=args["-v"])
-    meta.load(filename)
-    meta.anonymize()
-    meta.save(args["<output-filename>"])
+    meta.load(dirname)
+    meta.create_payload(dirname, name=args["--name"])
 
 
-def do_loadsave(args):
-    filename = args["<filename>"]
+def do_anonymize_payload(args):
+    dirname = args["<dirname>"]
     meta = MetadataModel(verbose=args["-v"])
-    meta.load(filename)
-    meta.save(args["<output-filename>"])
+    meta.anonymize_payload(dirname)
 
 
-def do_post(args):
-    filename = args["<filename>"]
+def do_create(args):
+    dirname = args["<dirname>"]
     with io.open(args["-c"], "r", encoding="UTF-8") as f:
         config = yaml.safe_load(f)[args["-p"]]
     site = connect_pycrunch(config["connection"], verbose=args["-v"])
     meta = MetadataModel(verbose=args["-v"])
-    meta.load(filename)
-    meta.post(site, name=args["--name"])
+    meta.load(dirname)
+    meta.create(site, name=args["--name"])
 
 
 def _generate_unique_subvar_aliases(var_meta):
@@ -630,7 +693,7 @@ def do_addvar(args):
 
 def do_folderize(args):
     ds_id = args["<ds-id>"]
-    filename = args["<filename>"]
+    dirname = args["<dirname>"]
     with io.open(args["-c"], "r", encoding="UTF-8") as f:
         config = yaml.safe_load(f)[args["-p"]]
     site = connect_pycrunch(config["connection"], verbose=args["-v"])
@@ -638,7 +701,7 @@ def do_folderize(args):
     response = site.session.get(ds_url)
     ds = response.payload
     meta = MetadataModel(verbose=args["-v"])
-    meta.load(filename)
+    meta.load(dirname)
     meta.folderize(ds)
 
 
@@ -713,32 +776,48 @@ def do_raw_request(args):
         IPython.embed()
 
 
+def do_sample_config(args):
+    print(textwrap.dedent("""
+    local:
+        connection:
+            username: 'captain@crunch.io'
+            password: 'asdfasdf'
+            api_url: 'https://local.crunch.io:8443/api'
+            verify: false
+    """).strip())
+
+
 def main():
     args = docopt.docopt(__doc__)
     t0 = time.time()
+    show_elapsed_time = True
     try:
-        if args["get"]:
+        if args["list-datasets"]:
+            return do_list_datasets(args)
+        elif args["get"]:
             return do_get(args)
         elif args["info"]:
             return do_info(args)
-        elif args["anonymize"]:
-            return do_anonymize(args)
-        elif args["post"]:
-            return do_post(args)
+        elif args["create-payload"]:
+            return do_create_payload(args)
+        elif args["anonymize-payload"]:
+            return do_anonymize_payload(args)
+        elif args["create"]:
+            return do_create(args)
         elif args["addvar"]:
             return do_addvar(args)
         elif args["folderize"]:
             return do_folderize(args)
-        elif args["loadsave"]:
-            return do_loadsave(args)
-        elif args["list-datasets"]:
-            return do_list_datasets(args)
         elif args["raw-request"]:
             return do_raw_request(args)
+        elif args["sample-config"]:
+            show_elapsed_time = False
+            return do_sample_config(args)
         else:
             raise NotImplementedError("Sorry, that command is not yet implemented.")
     finally:
-        print("Elapsed time:", time.time() - t0, "seconds", file=sys.stderr)
+        if show_elapsed_time:
+            print("Elapsed time:", time.time() - t0, "seconds", file=sys.stderr)
 
 
 if __name__ == "__main__":
