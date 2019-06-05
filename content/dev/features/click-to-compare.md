@@ -10,7 +10,7 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 labs_only = true
 +++
 
-Tables in the app now let you set a column as the basis of comparison, shading the table to show which other columns are higher or lower than the reference column, and to what level of statistical significance. The test is a two-tailed _t_ test comparing each column proportion in turn to the proportion in the reference column. In a multitable, the test is conducted between categories within each column variable, and not across column variables. [See here for more details](http://support.crunch.io/articles/c9e4yRRi/Hypothesis-testing-in-Crunch).
+Tables in the application now let you set a column as the basis of comparison, shading the table to show which other columns are higher or lower than the reference column, and to what level of statistical significance. The test is a two-tailed _t_ test comparing each column proportion in turn to the proportion in the reference column. In a multitable, the test is conducted between categories within each column variable, and not across column variables. [See here for more details](http://support.crunch.io/articles/c9e4yRRi/Hypothesis-testing-in-Crunch).
 
 {{< figure src="dev/features/images/compare-columns.gif" class="img-fluid">}}
 
