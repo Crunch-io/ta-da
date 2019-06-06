@@ -138,6 +138,8 @@ def get_id_from_url(url):
     For a URL in the form https://hostname/blah/<id>/ or
     in the form ../<id>/, return id. Otherwise, return None
     """
+    if url is None:
+        return None
     p = urllib_parse.urlparse(url)
     parts = p.path.split("/")
     if len(parts) >= 3 and not parts[-1]:
@@ -151,6 +153,10 @@ class MetadataModel(object):
         self._meta = None
         # {alias: {"var_id": var_id, "subvar_id": subar_id_or_none}
         self._alias_map = None
+
+    def _trace(self, *args):
+        if self.verbose:
+            print(*args)
 
     @property
     def alias_map(self):
@@ -215,8 +221,7 @@ class MetadataModel(object):
         self._get_table(site, ds_url, dirname)
         self._get_variable_hierarchy(site, ds, dirname)
         # That's all
-        if self.verbose:
-            print("Done.")
+        self._trace("Done.")
 
     def _dump(self, obj, dirname, base_filename):
         with open(os.path.join(dirname, base_filename), "w") as f:
@@ -224,8 +229,7 @@ class MetadataModel(object):
             f.write("\n")
 
     def _get_variables(self, site, ds_url, dirname):
-        if self.verbose:
-            print("Fetching variables")
+        self._trace("Fetching variables")
         variables_url = "{}variables/".format(ds_url)
         response = site.session.get(variables_url)
         dataset_vars = response.payload
@@ -239,28 +243,24 @@ class MetadataModel(object):
             self._dump(response.payload, dirname, "var-{}-detail.json".format(var_id))
 
     def _get_weights(self, site, ds_url, dirname):
-        if self.verbose:
-            print("Fetching weights")
+        self._trace("Fetching weights")
         weights_url = "{}variables/weights/".format(ds_url)
         response = site.session.get(weights_url)
         self._dump(response.payload, dirname, "dataset-weights.json")
 
     def _get_settings(self, site, ds_url, dirname):
-        if self.verbose:
-            print("Fetching settings")
+        self._trace("Fetching settings")
         settings_url = "{}settings/".format(ds_url)
         response = site.session.get(settings_url)
         self._dump(response.payload, dirname, "dataset-settings.json")
 
     def _get_preferences(self, site, ds, dirname):
-        if self.verbose:
-            print("Fetching preferences")
+        self._trace("Fetching preferences")
         self._dump(ds.preferences, dirname, "dataset-preferences.json")
 
     def _get_table(self, site, ds_url, dirname):
         # Get "table" of variable definitions
-        if self.verbose:
-            print("Fetching metadata table")
+        self._trace("Fetching metadata table")
         table_url = "{}table/".format(ds_url)
         response = site.session.get(table_url)
         # We need to temporarily keep the table payload in memory
@@ -274,12 +274,11 @@ class MetadataModel(object):
         for var_id, var_def in six.iteritems(response_payload["metadata"]):
             if self._var_has_non_default_missing_reasons(var_def):
                 var_ids_needing_missing_rules.append(var_id)
-        if self.verbose:
-            print(
-                "Fetching missing_rules for {} variables".format(
-                    len(var_ids_needing_missing_rules)
-                )
+        self._trace(
+            "Fetching missing_rules for {} variables".format(
+                len(var_ids_needing_missing_rules)
             )
+        )
         for var_id in var_ids_needing_missing_rules:
             missing_rules_url = "{}variables/{}/missing_rules/".format(ds_url, var_id)
             response = site.session.get(missing_rules_url)
@@ -288,8 +287,7 @@ class MetadataModel(object):
             )
 
     def _get_variable_hierarchy(self, site, ds, dirname):
-        if self.verbose:
-            print("Getting variable folder hierarchy")
+        self._trace("Getting variable folder hierarchy")
         self._dump(ds.variables.hier, dirname, "variables-hier.json")
 
     @staticmethod
@@ -517,8 +515,7 @@ class MetadataModel(object):
             return var_def["alias"]
 
     def folderize(self, ds):
-        if self.verbose:
-            print("Setting hierarchical order")
+        self._trace("Setting hierarchical order")
         hier = self._translate_hier(ds, self._meta["variables"]["hier"])
         ds.variables.hier.put({"graph": hier})
 
@@ -528,8 +525,7 @@ class MetadataModel(object):
 
         def _load_file(base_filename):
             filename = os.path.join(dirname, base_filename)
-            if self.verbose:
-                print("Loading", filename)
+            self._trace("Loading", filename)
             with open(filename, "r") as f:
                 return json.load(f)
 
@@ -575,12 +571,11 @@ class MetadataModel(object):
         for var_id, var_def in six.iteritems(self._meta["table"]):
             if self._var_has_non_default_missing_reasons(var_def):
                 var_ids_needing_missing_rules.append(var_id)
-        if self.verbose:
-            print(
-                "Loading missing_rules for {} variables".format(
-                    len(var_ids_needing_missing_rules)
-                )
+        self._trace(
+            "Loading missing_rules for {} variables".format(
+                len(var_ids_needing_missing_rules)
             )
+        )
         for var_id in var_ids_needing_missing_rules:
             base_filename = "var-{}-missing-rules.json".format(var_id)
             missing_rules = _load_file(base_filename)["body"]["rules"]
@@ -593,10 +588,11 @@ class MetadataModel(object):
         variables whose aliases end with "#".
         If that doesn't result in exactly one variable with that name, raise an error.
         """
+        self._trace("Removing variables with duplicate names")
         name_varid_map = defaultdict(list)
-        for var_id, var_def in self._meta["table"]:
+        for var_id, var_def in six.iteritems(self._meta["table"]):
             name_varid_map[var_def["name"]].append(var_id)
-        vars_to_delete = []
+        var_ids_to_delete = []
         error_msgs = []
         for name, var_ids in six.iteritems(name_varid_map):
             if len(var_ids) == 1:
@@ -606,9 +602,9 @@ class MetadataModel(object):
             for var_id in var_ids:
                 var_def = self._meta["table"][var_id]
                 if var_def["alias"].endswith("#"):
-                    deletable_vars.append((var_id, var_def))
+                    deletable_vars.append(var_id)
                 else:
-                    non_deletable_vars.append((var_id, var_def))
+                    non_deletable_vars.append(var_id)
             if len(non_deletable_vars) != 1:
                 error_msgs = (
                     "Could not delete extra vars named '{}': "
@@ -617,70 +613,84 @@ class MetadataModel(object):
                     )
                 )
             else:
-                vars_to_delete.extend(deletable_vars)
+                var_ids_to_delete.extend(deletable_vars)
         if error_msgs:
             raise RuntimeError("\n".join(error_msgs))
-        if self.verbose:
-            print(
-                "Removing {} variables that look like duplicates".format(
-                    len(vars_to_delete)
-                )
-            )
-        self._delete_variables(vars_to_delete)
+        self._delete_variables(var_ids_to_delete)
 
-    def _delete_variables(self, var_list):
+    def _delete_variables(self, var_ids_to_delete):
         """
-        var_list: [(var_id, var_def), ...]
-        Remove each variable in var_list from whereever it appears in the loaded
-        metadata. This fails if one of the variables to be deleted is referred to by a
-        derived variable that is NOT on this list.
+        Remove each variable in var_ids_to_delete from whereever it appears in the
+        loaded metadata. This fails if one of the variables to be deleted is referred to
+        by a derived variable that is NOT on this list.
         """
-        var_ids_to_delete = [v[0] for v in var_list]
+        self._trace("Removing {} variables".format(len(var_ids_to_delete)))
         self._check_var_dependencies(var_ids_to_delete)
 
-        if get_id_from_url(self._meta["settings"]["weight"]) in var_ids_to_delete:
+        weight_var_id = get_id_from_url(self._meta["settings"]["weight"])
+        if weight_var_id in var_ids_to_delete:
+            self._trace("Removing weight variable:", weight_var_id)
             self._meta["settings"]["weight"] = None
 
         var_index = self._meta["variables"]["index"]
         var_url_prefix = self._meta["catalogs"]["variables"]
         for var_id in var_ids_to_delete:
             var_url = "{}{}/".format(var_url_prefix, var_id)
+            self._trace("Removing from variable index:", var_url)
             del var_index[var_url]
 
         var_detail = self._meta["variables"]["detail"]
         for var_id in var_ids_to_delete:
+            self._trace("Removing from variable detail:", var_id)
             del var_detail[var_id]
 
-        self._meta["weights"] = [
+        weights_before = self._meta["variables"]["weights"]
+        weights_after = [
             item
-            for item in self._meta["weights"]
+            for item in self._meta["variables"]["weights"]
             if get_id_from_url(item) not in var_ids_to_delete
         ]
+        if weights_before != weights_after:
+            self._trace(
+                "Removing from weights:", set(weights_before) - set(weights_after)
+            )
+            self._meta["variables"]["weights"] = weights_after
 
-        def _delete_var_ids_from_hierarchy(hier):
-            # Modifies hier in-place
-            if isinstance(hier, list):
-                result = []
-                for item in hier:
-                    if isinstance(item, six.string_types):
-                        if get_id_from_url(item) not in var_ids_to_delete:
-                            result.append(item)
-                    else:
-                        _delete_var_ids_from_hierarchy(item)
-                hier[:] = result
-            elif isinstance(hier, dict):
-                for value in six.itervalues(hier):
-                    _delete_var_ids_from_hierarchy(value)
-            else:
-                raise AssertionError(
-                    "Unexpected data type while traversing hier: {}".format(hier)
-                )
-
-        _delete_var_ids_from_hierarchy(self._meta["variables"]["hier"])
+        self._delete_var_ids_from_hierarchy(
+            self._meta["variables"]["hier"], var_ids_to_delete
+        )
 
         var_table = self._meta["table"]
         for var_id in var_ids_to_delete:
+            self._trace("Removing from table:", var_id)
             del var_table[var_id]
+
+    def _delete_var_ids_from_hierarchy(self, hier, var_ids_to_delete, level=0):
+        # Modifies hier in-place
+        if isinstance(hier, list):
+            result = []
+            for item in hier:
+                if isinstance(item, six.string_types):
+                    if get_id_from_url(item) in var_ids_to_delete:
+                        self._trace("Level:", level, "Filtering from order:", item)
+                        continue
+                else:
+                    assert isinstance(item, dict)
+                    self._delete_var_ids_from_hierarchy(
+                        item, var_ids_to_delete, level=level + 1
+                    )
+                result.append(item)
+            if hier != result:
+                hier[:] = result
+        elif isinstance(hier, dict):
+            for value in six.itervalues(hier):
+                self._delete_var_ids_from_hierarchy(
+                    value, var_ids_to_delete, level=level + 1
+                )
+        else:
+            raise AssertionError(
+                "Unexpected data type while traversing hier: {}".format(hier)
+            )
 
     def _check_var_dependencies(self, var_ids_to_delete):
         """
@@ -688,9 +698,8 @@ class MetadataModel(object):
         expression depending on it, and the referring variable is not also in that list.
         """
         error_msgs = []
-        for var_id, var_info in self._meta["variables"]["detail"]:
-            var_info = self._meta["variables"]["detail"]
-            expr = var_info.get("derivation", {"args": []})
+        for var_id, var_detail in six.iteritems(self._meta["variables"]["detail"]):
+            expr = var_detail.get("derivation", {"args": []})
             for arg in expr["args"]:
                 arg_var_id = get_id_from_url(arg.get("variable"))
                 if arg_var_id in var_ids_to_delete and var_id not in var_ids_to_delete:
