@@ -606,7 +606,7 @@ class MetadataModel(object):
                 else:
                     non_deletable_vars.append(var_id)
             if len(non_deletable_vars) != 1:
-                error_msgs = (
+                error_msgs.append(
                     "Could not delete extra vars named '{}': "
                     "{} deletable, {} non-deletable.".format(
                         name, len(deletable_vars), len(non_deletable_vars)
