@@ -8,7 +8,7 @@ Usage:
     ds_meta.py info [options] <dirname>
     ds_meta.py create-payload [options] <dirname>
     ds_meta.py anonymize-payload [options] <dirname>
-    ds_meta.py create [options] <dirname>
+    ds_meta.py create [options] <dirname-or-filename>
     ds_meta.py addvar [options] <ds-id> <filename>
     ds_meta.py folderize [options] <ds-id> <filename>
     ds_meta.py raw-request [options] <method> <uri-path> <filename>
@@ -352,6 +352,8 @@ class MetadataModel(object):
             return "{}{}/".format(ds.variables.self, var_id)
 
     def create_payload(self, dirname, name=None):
+        self.remove_variables_with_duplicate_names()
+
         if not name:
             name = self._meta["main"]["name"]
         new_meta = {
@@ -367,7 +369,6 @@ class MetadataModel(object):
             },
         }
         for k in (
-            "size",
             "end_date",
             "notes",
             "start_date",
@@ -448,8 +449,12 @@ class MetadataModel(object):
                 del settings["dashboard_deck"]
         return settings
 
-    def create(self, site, dirname, name=None):
-        with open(os.path.join(dirname, "dataset-payload.json"), "r") as f:
+    def create(self, site, dirname_or_filename, name=None):
+        if os.path.isdir(dirname_or_filename):
+            filename = os.path.join(dirname_or_filename, "dataset-payload.json")
+        else:
+            filename = dirname_or_filename
+        with open(filename, "r") as f:
             new_meta = json.load(f)
         if name:
             new_meta["body"]["name"] = name
@@ -529,7 +534,9 @@ class MetadataModel(object):
                 return json.load(f)
 
         # Load main metadata
-        self._meta["main"] = _load_file("dataset-main.json")["body"]
+        main = _load_file("dataset-main.json")
+        self._meta["main"] = main["body"]
+        self._meta["catalogs"] = main["catalogs"]
 
         # Load settings
         self._meta["settings"] = _load_file("dataset-settings.json")["body"]
@@ -537,7 +544,7 @@ class MetadataModel(object):
         # Load preferences
         self._meta["preferences"] = _load_file("dataset-preferences.json")["body"]
 
-        # Varible-related info
+        # Variable-related info
         self._meta["variables"] = {}
 
         # Load list of variables for this dataset
@@ -578,6 +585,122 @@ class MetadataModel(object):
             base_filename = "var-{}-missing-rules.json".format(var_id)
             missing_rules = _load_file(base_filename)["body"]["rules"]
             self._meta["table"][var_id]["missing_rules"] = missing_rules
+
+    def remove_variables_with_duplicate_names(self):
+        """
+        Find any variables with duplicate names.
+        For any group of duplicate-named variables, remove from the loaded metadata  all
+        variables whose aliases end with "#".
+        If that doesn't result in exactly one variable with that name, raise an error.
+        """
+        name_varid_map = defaultdict(list)
+        for var_id, var_def in self._meta["table"]:
+            name_varid_map[var_def["name"]].append(var_id)
+        vars_to_delete = []
+        error_msgs = []
+        for name, var_ids in six.iteritems(name_varid_map):
+            if len(var_ids) == 1:
+                continue
+            deletable_vars = []
+            non_deletable_vars = []
+            for var_id in var_ids:
+                var_def = self._meta["table"][var_id]
+                if var_def["alias"].endswith("#"):
+                    deletable_vars.append((var_id, var_def))
+                else:
+                    non_deletable_vars.append((var_id, var_def))
+            if len(non_deletable_vars) != 1:
+                error_msgs = (
+                    "Could not delete extra vars named '{}': "
+                    "{} deletable, {} non-deletable.".format(
+                        name, len(deletable_vars), len(non_deletable_vars)
+                    )
+                )
+            else:
+                vars_to_delete.extend(deletable_vars)
+        if error_msgs:
+            raise RuntimeError("\n".join(error_msgs))
+        if self.verbose:
+            print(
+                "Removing {} variables that look like duplicates".format(
+                    len(vars_to_delete)
+                )
+            )
+        self._delete_variables(vars_to_delete)
+
+    def _delete_variables(self, var_list):
+        """
+        var_list: [(var_id, var_def), ...]
+        Remove each variable in var_list from whereever it appears in the loaded
+        metadata. This fails if one of the variables to be deleted is referred to by a
+        derived variable that is NOT on this list.
+        """
+        var_ids_to_delete = [v[0] for v in var_list]
+        self._check_var_dependencies(var_ids_to_delete)
+
+        if get_id_from_url(self._meta["settings"]["weight"]) in var_ids_to_delete:
+            self._meta["settings"]["weight"] = None
+
+        var_index = self._meta["variables"]["index"]
+        var_url_prefix = self._meta["catalogs"]["variables"]
+        for var_id in var_ids_to_delete:
+            var_url = "{}{}/".format(var_url_prefix, var_id)
+            del var_index[var_url]
+
+        var_detail = self._meta["variables"]["detail"]
+        for var_id in var_ids_to_delete:
+            del var_detail[var_id]
+
+        self._meta["weights"] = [
+            item
+            for item in self._meta["weights"]
+            if get_id_from_url(item) not in var_ids_to_delete
+        ]
+
+        def _delete_var_ids_from_hierarchy(hier):
+            # Modifies hier in-place
+            if isinstance(hier, list):
+                result = []
+                for item in hier:
+                    if isinstance(item, six.string_types):
+                        if get_id_from_url(item) not in var_ids_to_delete:
+                            result.append(item)
+                    else:
+                        _delete_var_ids_from_hierarchy(item)
+                hier[:] = result
+            elif isinstance(hier, dict):
+                for value in six.itervalues(hier):
+                    _delete_var_ids_from_hierarchy(value)
+            else:
+                raise AssertionError(
+                    "Unexpected data type while traversing hier: {}".format(hier)
+                )
+
+        _delete_var_ids_from_hierarchy(self._meta["variables"]["hier"])
+
+        var_table = self._meta["table"]
+        for var_id in var_ids_to_delete:
+            del var_table[var_id]
+
+    def _check_var_dependencies(self, var_ids_to_delete):
+        """
+        Raise RuntimeError if any of the variables in var_ids_to_delete has a derivation
+        expression depending on it, and the referring variable is not also in that list.
+        """
+        error_msgs = []
+        for var_id, var_info in self._meta["variables"]["detail"]:
+            var_info = self._meta["variables"]["detail"]
+            expr = var_info.get("derivation", {"args": []})
+            for arg in expr["args"]:
+                arg_var_id = get_id_from_url(arg.get("variable"))
+                if arg_var_id in var_ids_to_delete and var_id not in var_ids_to_delete:
+                    error_msgs.append(
+                        "Variable {} is referred to by variable {}".format(
+                            arg_var_id, var_id
+                        )
+                    )
+        if error_msgs:
+            raise RuntimeError("Cannot delete variables:\n" + "\n".join(error_msgs))
 
     def report(self):
         # general info
@@ -713,13 +836,12 @@ def do_anonymize_payload(args):
 
 
 def do_create(args):
-    dirname = args["<dirname>"]
+    dirname_or_filename = args["<dirname-or-filename>"]
     with io.open(args["-c"], "r", encoding="UTF-8") as f:
         config = yaml.safe_load(f)[args["-p"]]
     site = connect_pycrunch(config["connection"], verbose=args["-v"])
     meta = MetadataModel(verbose=args["-v"])
-    meta.load(dirname)
-    meta.create(site, dirname, name=args["--name"])
+    meta.create(site, dirname_or_filename, name=args["--name"])
 
 
 def _generate_unique_subvar_aliases(var_meta):
