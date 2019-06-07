@@ -389,6 +389,9 @@ class MetadataModel(object):
             var_id = alias_varid_map[var_alias]
             var_def = table[var_id]
             new_table[var_alias] = self.convert_var_def(var_def)
+            if "alias" in new_table[var_alias]:
+                # Delete redundant alias, the key is the alias
+                del new_table[var_alias]["alias"]
 
         # Add variable derivations to the payload
         for var_url, var_info in six.iteritems(self._meta["variables"]["index"]):
@@ -397,9 +400,12 @@ class MetadataModel(object):
             var_id = get_id_from_url(var_url)
             var_detail = self._meta["variables"]["detail"][var_id]
             var_alias = var_info["alias"]
-            new_table[var_alias]["derivation"] = self._convert_var_derivation(
-                var_detail["derivation"]
-            )
+            derived_var = {
+                "name": var_info["name"],
+                "description": var_info.get("description", ""),
+                "derivation": self._convert_var_derivation(var_detail["derivation"]),
+            }
+            new_table[var_alias] = derived_var
 
         # Set aliases of starting weight variables
         for orig_weight_url in self._meta["variables"]["weights"]:
