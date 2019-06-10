@@ -6,6 +6,6 @@ lastname = "Arbitrio"
 description = ""
 weight = 1
 img = "ernesto.jpg"
-location = "Treno, Italy"
+location = "Trento, Italy"
 position = ""
 +++
