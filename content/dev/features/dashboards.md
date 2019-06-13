@@ -49,4 +49,4 @@ Here are some highlights from this latest release…
 
 Most of this should be nice and intuitive and just work, but if you get stuck there’s documentation you can find [here](http://support.crunch.io/articles/ckEAdgji/How-to-Configure-a-Dataset-Dashboard).
 
-=========================================================================
+
