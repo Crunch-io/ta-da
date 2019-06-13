@@ -9,6 +9,7 @@ import io
 import itertools
 import json
 import os
+import random
 import sys
 import time
 import warnings
@@ -287,6 +288,171 @@ else:
             self.f.close()
 
 
+class CompressionWrapper:
+    """
+    Wrap any file object opened for binary reading.
+    Compress bytes on the fly as they are read.
+    Closing this object closes the wrapped file.
+    """
+
+    @staticmethod
+    def open(cls, filename):
+        """
+        Open the file for binary reading and wrap it with this class.
+        If filename ends with ".gz", blindly trust that it is already compressed and
+        return the regular fileobj.
+        Otherwise, wrap the fileobj with this class and return the wrapped instance.
+        """
+        f = open(filename, "rb")
+        if filename.endswith(".gz"):
+            return f
+        return cls(f)
+
+    def __init__(self, f, name=None):
+        self.f = f
+        self.name = name if name else getattr(f, "name", None)
+        self._buffer = io.BytesIO()
+        self._gzipper = gzip.GzipFile(self.name, mode="wb", fileobj=self._buffer)
+
+    def read(self, size=-1):
+        if self.closed:
+            raise ValueError("I/O operation on closed file")
+        if size is None or size < 0:
+            return self.readall()
+        return self._read(size)
+
+    def readall(self):
+        chunk_size = io.DEFAULT_BUFFER_SIZE
+        compressed_chunks = []
+        while True:
+            data = self._read(chunk_size)
+            if not data:
+                break
+            compressed_chunks.append(data)
+        return b"".join(compressed_chunks)
+
+    def _read(self, n):
+        result = b""
+        while n > 0 and not result:
+            # Work until we get *something* in the buffer or exhaust input
+            data = self.f.read(n)
+            if data:
+                self._gzipper.write(data)
+                self._gzipper.flush()
+            elif n > 0:
+                # Flush remaining buffered compressed data, then stop reading
+                self._gzipper.close()
+                n = 0
+            result = self._buffer.getvalue()
+            self._buffer.seek(0)
+            self._buffer.truncate()
+        return result
+
+    def close(self):
+        self._gzipper.close()
+        self._buffer.close()
+        self.f.close()
+
+    @property
+    def closed(self):
+        return self.f.closed
+
+
+def test_compression_wrapper():
+    print("test_compression_wrapper...", end="")
+    # Compress stream using CompressionWrapper
+    original_content = b"abcdef123456\n"
+    f1 = io.BytesIO(original_content)
+    f2 = CompressionWrapper(f1, "test.txt")
+    assert f2.name == "test.txt"  # setting name worked
+    compressed_content = f2.read()
+    assert compressed_content  # contents not empty
+    assert compressed_content != f1.getvalue()  # contents transformed
+    assert f1.tell() == len(f1.getvalue())  # input exhausted
+    assert f2.read() == b""  # reading after EOF returns empty bytes
+    f2.close()
+    assert f2.closed
+    assert f1.closed  # closing wrapper closes wrapped file
+    try:
+        f2.read()
+    except ValueError:
+        pass  # reading after closed is an error
+    else:
+        raise AssertionError("Expected ValueError when reading closed file")
+    # Uncompress and verify contents
+    f3 = io.BytesIO(compressed_content)
+    g = gzip.GzipFile(mode="rb", fileobj=f3)
+    decompressed_content = g.read()
+    assert decompressed_content == original_content
+    print("Ok")
+
+
+def test_compression_wrapper_random_data_small_reads():
+    print("test_compression_wrapper_random_data_small_reads...")
+    # Generate a an amount of data bigger than the default block size,
+    # randomized so it's harder to compress.
+    num_bytes = io.DEFAULT_BUFFER_SIZE * 2
+    original_content = "".join(
+        chr(random.randrange(32, 128)) for i in six.moves.xrange(num_bytes)
+    ).encode("utf-8")
+    f1 = io.BytesIO(original_content)
+    f2 = CompressionWrapper(f1, "test.txt")
+    # Read and compress the data in small pieces
+    compressed_parts = []
+    read_size = 8
+    while True:
+        data = f2.read(read_size)
+        if data:
+            compressed_parts.append(data)
+        else:
+            break
+    min_bytes = num_bytes
+    max_bytes = 0
+    total_bytes = 0
+    for part in compressed_parts:
+        min_bytes = min(min_bytes, len(part))
+        max_bytes = max(max_bytes, len(part))
+        total_bytes += len(part)
+    num_reads = len(compressed_parts)
+    ave_bytes = total_bytes / num_reads
+    print("Total uncompressed bytes:", num_bytes)
+    print("Number of read(size={}) calls:".format(read_size), num_reads)
+    print("Total compressed bytes read:", total_bytes)
+    print("Min. bytes per read:", min_bytes)
+    print("Ave. bytes per read:", ave_bytes)
+    print("Max. bytes per read:", max_bytes)
+    # Uncompress and verify contents
+    f3 = io.BytesIO(b"".join(compressed_parts))
+    g = gzip.GzipFile(mode="rb", fileobj=f3)
+    decompressed_content = g.read()
+    assert decompressed_content == original_content
+    print("Ok")
+
+
+def test_compression_wrapper_zero_read():
+    print("test_compression_wrapper_zero_read...", end="")
+    # Compress stream using CompressionWrapper
+    # Do a zero-byte read, then read the rest
+    original_content = b"abcdef123456\n"
+    f1 = io.BytesIO(original_content)
+    f2 = CompressionWrapper(f1, "test.txt")
+    assert f2.read(0) == b""
+    compressed_content = f2.read()
+    f2.close()
+    try:
+        f2.read(0)
+    except ValueError:
+        pass  # Even zero-byte read on closed file is an error
+    else:
+        raise AssertionError("Expected ValueError when reading closed file")
+    # Uncompress and verify contents
+    f3 = io.BytesIO(compressed_content)
+    g = gzip.GzipFile(mode="rb", fileobj=f3)
+    decompressed_content = g.read()
+    assert decompressed_content == original_content
+    print("Ok")
+
+
 def create_dataset_from_csv2(
     site,
     metadata,
@@ -510,3 +676,9 @@ def set_pk_alias(ds, alias):
     )
     response.raise_for_status()
     return response
+
+
+if __name__ == "__main__":
+    test_compression_wrapper()
+    test_compression_wrapper_random_data_small_reads()
+    test_compression_wrapper_zero_read()
