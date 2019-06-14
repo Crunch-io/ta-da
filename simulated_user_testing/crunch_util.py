@@ -3,6 +3,7 @@ Common library for operations using the Crunch API
 """
 from __future__ import print_function
 from collections import OrderedDict
+import codecs
 import copy
 import gzip
 import io
@@ -269,31 +270,18 @@ def append_csv_file_to_dataset(
         raise Exception("Timed out appending to dataset {}".format(ds.body.id))
 
 
-if six.PY2:
-
-    def _StrToBytesFileAdapter(f):
-        return f
-
-
-else:
-
-    class _StrToBytesFileAdapter(object):
-        def __init__(self, f):
-            self.f = f
-
-        def write(self, s):
-            self.f.write(s.encode("utf-8"))
-
-        def close(self):
-            self.f.close()
-
-
 class CompressionWrapper:
     """
-    Wrap any file object opened for binary reading.
+    Wrap any file-like object opened for binary reading.
     Compress bytes on the fly as they are read.
     Closing this object closes the wrapped file.
+
+    When you iterate on this object, it returns chunks of bytes sized
+    roughly around io.DEFAULT_BUFFER_SIZE, instead of the usual file
+    behavior of returning strings of bytes ending with ASCII newline.
     """
+
+    mode = "rb"
 
     @staticmethod
     def open(cls, filename):
@@ -339,7 +327,7 @@ class CompressionWrapper:
             if data:
                 self._gzipper.write(data)
                 self._gzipper.flush()
-            elif n > 0:
+            else:
                 # Flush remaining buffered compressed data, then stop reading
                 self._gzipper.close()
                 n = 0
@@ -347,6 +335,25 @@ class CompressionWrapper:
             self._buffer.seek(0)
             self._buffer.truncate()
         return result
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        data = self._read(io.DEFAULT_BUFFER_SIZE)
+        if not data:
+            raise StopIteration()
+        return data
+
+    def next(self):
+        # For Python 2 compatibility
+        return self.__next__()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.close()
 
     def close(self):
         self._gzipper.close()
@@ -359,7 +366,6 @@ class CompressionWrapper:
 
 
 def test_compression_wrapper():
-    print("test_compression_wrapper...", end="")
     # Compress stream using CompressionWrapper
     original_content = b"abcdef123456\n"
     f1 = io.BytesIO(original_content)
@@ -388,13 +394,9 @@ def test_compression_wrapper():
 
 
 def test_compression_wrapper_random_data_small_reads():
-    print("test_compression_wrapper_random_data_small_reads...")
     # Generate a an amount of data bigger than the default block size,
     # randomized so it's harder to compress.
-    num_bytes = io.DEFAULT_BUFFER_SIZE * 2
-    original_content = "".join(
-        chr(random.randrange(32, 128)) for i in six.moves.xrange(num_bytes)
-    ).encode("utf-8")
+    original_content = _create_random_bytes(io.DEFAULT_BUFFER_SIZE * 2)
     f1 = io.BytesIO(original_content)
     f2 = CompressionWrapper(f1, "test.txt")
     # Read and compress the data in small pieces
@@ -406,7 +408,18 @@ def test_compression_wrapper_random_data_small_reads():
             compressed_parts.append(data)
         else:
             break
-    min_bytes = num_bytes
+    _check_compression_wrapper_parts(compressed_parts, original_content)
+
+
+def _create_random_bytes(num_bytes):
+    return "".join(
+        chr(random.randrange(32, 128)) for i in six.moves.xrange(num_bytes)
+    ).encode("utf-8")
+
+
+def _check_compression_wrapper_parts(compressed_parts, original_content):
+    num_bytes = len(original_content)
+    min_bytes = num_bytes + 1
     max_bytes = 0
     total_bytes = 0
     for part in compressed_parts:
@@ -416,7 +429,7 @@ def test_compression_wrapper_random_data_small_reads():
     num_reads = len(compressed_parts)
     ave_bytes = total_bytes / num_reads
     print("Total uncompressed bytes:", num_bytes)
-    print("Number of read(size={}) calls:".format(read_size), num_reads)
+    print("Number of read()/next() calls:", num_reads)
     print("Total compressed bytes read:", total_bytes)
     print("Min. bytes per read:", min_bytes)
     print("Ave. bytes per read:", ave_bytes)
@@ -430,7 +443,6 @@ def test_compression_wrapper_random_data_small_reads():
 
 
 def test_compression_wrapper_zero_read():
-    print("test_compression_wrapper_zero_read...", end="")
     # Compress stream using CompressionWrapper
     # Do a zero-byte read, then read the rest
     original_content = b"abcdef123456\n"
@@ -451,6 +463,114 @@ def test_compression_wrapper_zero_read():
     decompressed_content = g.read()
     assert decompressed_content == original_content
     print("Ok")
+
+
+def test_compression_wrapper_iterator():
+    original_content = _create_random_bytes(io.DEFAULT_BUFFER_SIZE * 2)
+    f1 = io.BytesIO(original_content)
+    f2 = CompressionWrapper(f1, "test.txt")
+    # Read and compress the data in small pieces
+    compressed_parts = list(f2)
+    _check_compression_wrapper_parts(compressed_parts, original_content)
+
+
+def test_compression_wrapper_context_manager():
+    original_content = b"abcdef123456\n"
+    f1 = io.BytesIO(original_content)
+    with CompressionWrapper(f1, "test.txt") as f2:
+        compressed_content = f2.read()
+    assert f2.closed
+    # Uncompress and verify contents
+    f3 = io.BytesIO(compressed_content)
+    g = gzip.GzipFile(mode="rb", fileobj=f3)
+    decompressed_content = g.read()
+    assert decompressed_content == original_content
+    print("Ok")
+
+
+class JSONReader:
+    """
+    Wrap a JSON-serializable object in a file-like reader.
+    If text=True is passed to the constructor (the default) then read()
+    calls return strings. If text=False then read() returns UTF-8 bytes.
+    """
+
+    def __init__(self, obj, **kwargs):
+        self.name = kwargs.pop("name", None)
+        text = kwargs.pop("text", True)
+        self._iter = json.JSONEncoder(**kwargs).iterencode(obj)
+        self.mode = "r"
+        self._empty = ""
+        if not text:
+            self._iter = codecs.iterencode(self._iter, encoding="utf-8")
+            self.mode = "rb"
+            self._empty = b""
+
+    def read(self, size=-1):
+        """
+        Like the read() method on a file object, except if size > 0 then more than
+        size characters/bytes could be returned.
+        """
+        if self.closed:
+            raise ValueError("I/O operation on closed file")
+        if size is None or size < 0:
+            return self._empty.join(self._iter)
+        if size == 0:
+            return self._empty
+        return next(self._iter, self._empty)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.close()
+
+    def close(self):
+        self._iter = None
+
+    @property
+    def closed(self):
+        return self._iter is None
+
+
+def test_json_reader_text():
+    obj = {"a": 1.23, "b": ["one", "two", "three"], "c": {"k1": 12, "k2": None}}
+    jr = JSONReader(obj, name="test.json", indent=4, sort_keys=True)
+    assert jr.name == "test.json"
+    assert jr.read(0) == ""
+    chunks = [jr.read(4), jr.read()]
+    # Make sure both reads were non-empty
+    assert chunks[0]
+    assert chunks[-1]
+    result = "".join(chunks)
+    assert isinstance(result, str)  # text mode by default
+    print(result)
+    assert json.loads(result) == obj
+    assert jr.read() == ""
+    assert not jr.closed
+    jr.close()
+    assert jr.closed
+    try:
+        jr.read()
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("Expected ValueError when reading closed file")
+
+
+def test_json_reader_binary():
+    obj = {"a": 1.23, "b": ["one", "two", "three"], "c": {"k1": 12, "k2": None}}
+    jr = JSONReader(obj, name="test.json", text=False, indent=4, sort_keys=True)
+    jr.read(0) == b""
+    chunks = [jr.read(4), jr.read()]
+    # Make sure all reads were non-empty bytes
+    for chunk in chunks:
+        assert chunk
+        assert isinstance(chunk, bytes)
+    result = b"".join(chunks)
+    print(result)
+    assert json.loads(result.decode("utf-8")) == obj
+    assert jr.read() == b""
 
 
 def create_dataset_from_csv2(
@@ -478,8 +598,7 @@ def create_dataset_from_csv2(
     dataset_name:
         If not None, override dataset name in metadata. (Default is None.)
     gzip_metadata:
-        If true, gzip the metadata in the JSON request body.
-        Default is True.
+        If true (the default), gzip the metadata in the JSON request body.
     See:
         http://docs.crunch.io/feature-guide/feature-importing.html#example
         http://docs.crunch.io/_static/examples/dataset.json
@@ -493,11 +612,9 @@ def create_dataset_from_csv2(
         metadata = copy.deepcopy(metadata)
         metadata["body"]["name"] = dataset_name
     if gzip_metadata:
-        with io.BytesIO() as f:
-            g = _StrToBytesFileAdapter(gzip.GzipFile(mode="w", fileobj=f))
-            json.dump(metadata, g)
-            g.close()
-            f.seek(0)
+        with CompressionWrapper(
+            JSONReader(metadata, text=False), name="metadata.json"
+        ) as f:
             response = site.session.post(
                 site.datasets.self,
                 data=f,
@@ -505,6 +622,7 @@ def create_dataset_from_csv2(
                     "Content-Type": "application/json",
                     "Content-Encoding": "gzip",
                 },
+                stream=True,
             )
         response.raise_for_status()
         ds_url = response.headers["Location"]
@@ -676,9 +794,3 @@ def set_pk_alias(ds, alias):
     )
     response.raise_for_status()
     return response
-
-
-if __name__ == "__main__":
-    test_compression_wrapper()
-    test_compression_wrapper_random_data_small_reads()
-    test_compression_wrapper_zero_read()
