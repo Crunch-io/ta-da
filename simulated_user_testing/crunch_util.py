@@ -299,8 +299,8 @@ class CompressionWrapper:
     def __init__(self, f, name=None):
         self.f = f
         self.name = name if name else getattr(f, "name", None)
-        self._buffer = io.BytesIO()
-        self._gzipper = gzip.GzipFile(self.name, mode="wb", fileobj=self._buffer)
+        self._gz_buffer = io.BytesIO()
+        self._gzipper = gzip.GzipFile(self.name, mode="wb", fileobj=self._gz_buffer)
 
     def read(self, size=-1):
         """
@@ -313,21 +313,20 @@ class CompressionWrapper:
             return self.readall()
         if size == 0:
             return b""
-        return self._read_and_compress(size)
+        return self._read_and_compress_chunk()
 
     def readall(self):
-        chunk_size = io.DEFAULT_BUFFER_SIZE
         compressed_chunks = []
         while True:
-            data = self._read_and_compress(chunk_size)
+            data = self._read_and_compress_chunk()
             if not data:
                 break
             compressed_chunks.append(data)
         return b"".join(compressed_chunks)
 
-    def _read_and_compress(self, n):
-        # Work until we've read and compressed n bytes or exhausted input
-        # May return more or less than n bytes
+    def _read_and_compress_chunk(self):
+        # Work until we've read and compressed a chunk of bytes or exhausted input
+        n = io.DEFAULT_BUFFER_SIZE
         while n > 0:
             data = self.f.read(n)
             if data:
@@ -338,16 +337,16 @@ class CompressionWrapper:
                 # Flush remaining buffered compressed data, then stop reading
                 self._gzipper.close()
                 n = 0
-        result = self._buffer.getvalue()
-        self._buffer.seek(0)
-        self._buffer.truncate()
+        result = self._gz_buffer.getvalue()
+        self._gz_buffer.seek(0)
+        self._gz_buffer.truncate()
         return result
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        data = self._read_and_compress(io.DEFAULT_BUFFER_SIZE)
+        data = self._read_and_compress_chunk()
         if not data:
             raise StopIteration()
         return data
@@ -364,7 +363,7 @@ class CompressionWrapper:
 
     def close(self):
         self._gzipper.close()
-        self._buffer.close()
+        self._gz_buffer.close()
         self.f.close()
 
     @property
