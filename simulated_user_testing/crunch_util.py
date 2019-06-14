@@ -303,44 +303,51 @@ class CompressionWrapper:
         self._gzipper = gzip.GzipFile(self.name, mode="wb", fileobj=self._buffer)
 
     def read(self, size=-1):
+        """
+        Read and compress size bytes from the underlying stream, or compress the whole
+        stream if size == -1. May return more or less than size.
+        """
         if self.closed:
             raise ValueError("I/O operation on closed file")
         if size is None or size < 0:
             return self.readall()
-        return self._read(size)
+        if size == 0:
+            return b""
+        return self._read_and_compress(size)
 
     def readall(self):
         chunk_size = io.DEFAULT_BUFFER_SIZE
         compressed_chunks = []
         while True:
-            data = self._read(chunk_size)
+            data = self._read_and_compress(chunk_size)
             if not data:
                 break
             compressed_chunks.append(data)
         return b"".join(compressed_chunks)
 
-    def _read(self, n):
-        result = b""
-        while n > 0 and not result:
-            # Work until we get *something* in the buffer or exhaust input
+    def _read_and_compress(self, n):
+        # Work until we've read and compressed n bytes or exhausted input
+        # May return more or less than n bytes
+        while n > 0:
             data = self.f.read(n)
             if data:
                 self._gzipper.write(data)
                 self._gzipper.flush()
+                n -= len(data)
             else:
                 # Flush remaining buffered compressed data, then stop reading
                 self._gzipper.close()
                 n = 0
-            result = self._buffer.getvalue()
-            self._buffer.seek(0)
-            self._buffer.truncate()
+        result = self._buffer.getvalue()
+        self._buffer.seek(0)
+        self._buffer.truncate()
         return result
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        data = self._read(io.DEFAULT_BUFFER_SIZE)
+        data = self._read_and_compress(io.DEFAULT_BUFFER_SIZE)
         if not data:
             raise StopIteration()
         return data
