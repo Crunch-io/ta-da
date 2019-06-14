@@ -632,9 +632,7 @@ def create_dataset_from_csv2(
             )
         response.raise_for_status()
         ds_url = response.headers["Location"]
-        ds_id = ds_url.rstrip("/").rpartition("/")[-1]
-        ds = site.datasets.by("id")[ds_id]
-        ds = ds.fetch()
+        ds = site.session.get(ds_url).payload
     else:
         ds = site.datasets.create(metadata).refresh()
     if fileobj_or_url is not None:
