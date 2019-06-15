@@ -282,6 +282,7 @@ class CompressionWrapper:
     """
 
     mode = "rb"
+    chunk_size = io.DEFAULT_BUFFER_SIZE
 
     @staticmethod
     def open(cls, filename):
@@ -326,17 +327,18 @@ class CompressionWrapper:
 
     def _read_and_compress_chunk(self):
         # Work until we've read and compressed a chunk of bytes or exhausted input
-        n = io.DEFAULT_BUFFER_SIZE
+        n = self.chunk_size
         while n > 0:
             data = self.f.read(n)
             if data:
                 self._gzipper.write(data)
-                self._gzipper.flush()
                 n -= len(data)
             else:
                 # Flush remaining buffered compressed data, then stop reading
                 self._gzipper.close()
                 n = 0
+        if not self._gzipper.closed:
+            self._gzipper.flush()
         result = self._gz_buffer.getvalue()
         self._gz_buffer.seek(0)
         self._gz_buffer.truncate()
@@ -402,7 +404,7 @@ def test_compression_wrapper():
 def test_compression_wrapper_random_data_small_reads():
     # Generate a an amount of data bigger than the default block size,
     # randomized so it's harder to compress.
-    original_content = _create_random_bytes(io.DEFAULT_BUFFER_SIZE * 2)
+    original_content = _create_random_bytes(CompressionWrapper.chunk_size * 2)
     f1 = io.BytesIO(original_content)
     f2 = CompressionWrapper(f1, "test.txt")
     # Read and compress the data in small pieces
@@ -472,7 +474,7 @@ def test_compression_wrapper_zero_read():
 
 
 def test_compression_wrapper_iterator():
-    original_content = _create_random_bytes(io.DEFAULT_BUFFER_SIZE * 2)
+    original_content = _create_random_bytes(CompressionWrapper.chunk_size * 2)
     f1 = io.BytesIO(original_content)
     f2 = CompressionWrapper(f1, "test.txt")
     # Read and compress the data in small pieces
@@ -491,7 +493,19 @@ def test_compression_wrapper_context_manager():
     g = gzip.GzipFile(mode="rb", fileobj=f3)
     decompressed_content = g.read()
     assert decompressed_content == original_content
-    print("Ok")
+
+
+def test_compression_wrapper_zero_bytes_one_by_one():
+    original_content = b"\x00" * int(CompressionWrapper.chunk_size * 4.5)
+    f1 = io.BytesIO(original_content)
+    compressed_parts = []
+    with CompressionWrapper(f1) as f2:
+        while True:
+            data = f2.read(1)
+            if not data:
+                break
+            compressed_parts.append(data)
+    _check_compression_wrapper_parts(compressed_parts, original_content)
 
 
 class JSONReader:
