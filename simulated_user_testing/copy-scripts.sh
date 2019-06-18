@@ -9,6 +9,6 @@ remote_hostname="$1"
 remote_user=centos
 remote_dir=/remote/simulated_user_testing
 
-script_files="README.rst *.py"
+script_files="README.rst requirements.txt *.py"
 
 rsync -vv $script_files "$remote_user@$remote_hostname:$remote_dir/"
