@@ -194,16 +194,16 @@ category_not_defined = ["selfserve%2F548%2F130424"]
 
 known_failures = decipher_communication_failures + decipher_500_failures + gets_killed_failures
 
-for survey_id in expected_column_not_found:
-    try:
-        print '*' * 89
-        ds_id = get_survey(survey_id)
-        ds = Dataset.find_by_id(id=ds_id, version="master__tip")
-        assert len(ds.primary.select(limit=1)['data']['000001']) == 1
-    except Exception as e:
-        print e
-
-exit()
+# for survey_id in expected_column_not_found:
+#     try:
+#         print '*' * 89
+#         ds_id = get_survey(survey_id)
+#         ds = Dataset.find_by_id(id=ds_id, version="master__tip")
+#         assert len(ds.primary.select(limit=1)['data']['000001']) == 1
+#     except Exception as e:
+#         print e
+#
+# exit()
 
 def get_all_metadatas(surveys):
 
@@ -234,10 +234,11 @@ def get_all_surveys():
         responses = int(s['response_count'])
         #if survey_id in four_oh_threes:
         #    continue
-        if i < 1378:
-            continue
+        #if i < 1378:
+        #    continue
 
         if survey_id in known_failures:
+            print 'skipping', survey_id, "known failure"
             continue
 
         if responses < 2:
