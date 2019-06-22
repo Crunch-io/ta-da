@@ -11,6 +11,7 @@ Usage:
 Options:
     -c CONFIG_FILENAME      [default: config.yaml]
     -p PROFILE_NAME         Profile section in config [default: local]
+    -u USER_ALIAS           Key to section inside profile [default: default]
     -i                      Run interactive prompt after executing command
     -v                      Print verbose messages
     --timeout=SECONDS       [default: 36000]
@@ -38,15 +39,29 @@ import yaml
 import six
 from six.moves.urllib import parse as urllib_parse
 
-from crunch_util import connect_pycrunch, wait_for_progress
+from crunch_util import wait_for_progress
 from ds_meta import MetadataModel
+from sim_util import connect_api
 
 
-def do_list_datasets(args):
+def main():
+    args = docopt.docopt(__doc__)
     with open(args["-c"]) as f:
-        config = yaml.safe_load(f)[args["-p"]]
-    verbose = args["-v"]
-    site = connect_pycrunch(config["connection"], verbose=verbose)
+        config = yaml.safe_load(f)
+    if args["list-datasets"]:
+        return do_list_datasets(config, args)
+    elif args["upload-chunks"]:
+        return do_upload_chunks(config, args)
+    elif args["append-sources"]:
+        return do_append_sources(config, args)
+    elif args["obfuscate-chunks"]:
+        return do_obfuscate_chunks(config, args)
+    else:
+        raise NotImplementedError("Sorry, that command is not yet implemented.")
+
+
+def do_list_datasets(config, args):
+    site = connect_api(config, args)
     if args["-i"]:
         import IPython
 
@@ -72,7 +87,8 @@ def do_list_datasets(args):
     return 0
 
 
-def do_obfuscate_chunks(args):
+def do_obfuscate_chunks(config, args):
+    raise NotImplementedError("TODO: work-in-progress")
     verbose = args["-v"]
     metadata_filename = args["<metadata-file>"]
     chunk_filenames = args["<chunk-data-file>"]
@@ -89,58 +105,53 @@ def do_obfuscate_chunks(args):
                     aliases_not_found = sorted(set(cur_aliases) - set(alias_map))
                     print("Aliases in CSV file but not in metadata:", aliases_not_found)
                     break
-        break  # XXX
 
 
-def do_upload_chunks(args):
-    with open(args["-c"]) as f:
-        config = yaml.safe_load(f)[args["-p"]]
-    verbose = args["-v"]
+def do_upload_chunks(config, args):
     chunk_filenames = args["<chunk-data-file>"]
-    site = connect_pycrunch(config["connection"], verbose=verbose)
+    verbose = args["-v"]
+    site = connect_api(config, args)
     for filename in chunk_filenames:
         if verbose:
             print("Creating source from file {}".format(filename), file=sys.stderr)
-        with open(filename, "rb") as f:
-            # TODO: detect and handle non-CSV data chunks?
-            content_type = "text/csv"
-            # Detect if chunk is gzipped
-            ext = os.path.splitext(filename)[1]
-            if not ext:
-                magic = f.read(2)
-                f.seek(0)
-                if magic == b"\x1f\x8b":
-                    ext = ".gz"
-            if ext == ".gz":
-                file_info = (
-                    os.path.basename(filename),
-                    f,
-                    content_type,
-                    {"Content-Encoding": "gzip"},
-                )
-            else:
-                file_info = (os.path.basename(filename), f, content_type)
-            response = site.session.post(
-                site.sources.self, files={"uploaded_file": file_info}
+        source_url = upload_source(site, filename, verbose=verbose)
+        print(source_url)
+        sys.stdout.flush()  # Make sure progress shows up on stdout
+
+
+def upload_source(site, filename, verbose=False):
+    with open(filename, "rb") as f:
+        # TODO: detect and handle non-CSV data chunks?
+        content_type = "text/csv"
+        # Detect if chunk is gzipped
+        ext = os.path.splitext(filename)[1]
+        if not ext:
+            magic = f.read(2)
+            f.seek(0)
+            if magic == b"\x1f\x8b":
+                ext = ".gz"
+        if ext == ".gz":
+            file_info = (
+                os.path.basename(filename),
+                f,
+                content_type,
+                {"Content-Encoding": "gzip"},
             )
-            response.raise_for_status()
-            if verbose:
-                print(response, file=sys.stderr)
-            source_url = response.headers["Location"]
-            print(source_url)
-            sys.stdout.flush()  # Make sure progress shows up on stdout
+        else:
+            file_info = (os.path.basename(filename), f, content_type)
+        response = site.session.post(
+            site.sources.self, files={"uploaded_file": file_info}
+        )
+        response.raise_for_status()
+        if verbose:
+            print(response, file=sys.stderr)
+        source_url = response.headers["Location"]
+    return source_url
 
 
-def do_append_sources(args):
-    with open(args["-c"]) as f:
-        config = yaml.safe_load(f)[args["-p"]]
-    verbose = args["-v"]
-    timeout = float(args["--timeout"])
+def do_append_sources(config, args):
     filename = args["<input-file>"]
-    dataset_id = args["<dataset-id>"]
-    site = connect_pycrunch(config["connection"], verbose=verbose)
-    dataset_url = "{}{}/".format(site.datasets.self, dataset_id)
-    ds = site.session.get(dataset_url).payload
+    source_urls = []
     with open(filename) as f:
         for line in f:
             source_url = line.strip()
@@ -148,20 +159,37 @@ def do_append_sources(args):
                 continue
             if not validate_url(source_url):
                 raise AssertionError("Invalid source URL: {}".format(source_url))
-            if verbose:
-                print(
-                    "Appending", source_url, "to dataset", dataset_id, file=sys.stderr
-                )
-            print(source_url)
-            sys.stdout.flush()  # Make sure progress shows up on stdout
-            response = ds.batches.post(
-                {"element": "shoji:entity", "body": {"source": source_url}}
+            source_urls.append(source_url)
+    verbose = args["-v"]
+    timeout = float(args["--timeout"])
+    dataset_id = args["<dataset-id>"]
+    site = connect_api(config, args)
+    dataset_url = "{}{}/".format(site.datasets.self, dataset_id)
+    ds = site.session.get(dataset_url).payload
+    for i, source_url in enumerate(source_urls, 1):
+        if verbose:
+            print(
+                "({}/{})".format(i, len(source_urls)),
+                "Appending",
+                source_url,
+                "to dataset",
+                dataset_id,
+                file=sys.stderr,
             )
-            if wait_for_progress(site, response, timeout_sec=timeout, verbose=verbose):
-                if verbose:
-                    print("Finished appending to dataset", ds.body.id, file=sys.stderr)
-            else:
-                raise Exception("Timed out appending to dataset {}".format(ds.body.id))
+        print(source_url)
+        sys.stdout.flush()  # Make sure progress shows up on stdout
+        append_source(site, ds, source_url, timeout=timeout, verbose=verbose)
+
+
+def append_source(site, ds, source_url, timeout=3600.0, verbose=False):
+    response = ds.batches.post(
+        {"element": "shoji:entity", "body": {"source": source_url}}
+    )
+    if wait_for_progress(site, response, timeout_sec=timeout, verbose=verbose):
+        if verbose:
+            print("Finished appending to dataset", ds.body.id, file=sys.stderr)
+    else:
+        raise Exception("Timed out appending to dataset {}".format(ds.body.id))
 
 
 def validate_url(url):
@@ -178,20 +206,6 @@ def validate_url(url):
     except ValueError:
         return False
     return True
-
-
-def main():
-    args = docopt.docopt(__doc__)
-    if args["list-datasets"]:
-        return do_list_datasets(args)
-    elif args["upload-chunks"]:
-        return do_upload_chunks(args)
-    elif args["append-sources"]:
-        return do_append_sources(args)
-    elif args["obfuscate-chunks"]:
-        return do_obfuscate_chunks(args)
-    else:
-        raise NotImplementedError("Sorry, that command is not yet implemented.")
 
 
 if __name__ == "__main__":

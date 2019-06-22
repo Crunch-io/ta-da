@@ -5,8 +5,127 @@ See Pivotal epic "simulated user testing on alpha"
 
 Notion page: https://www.notion.so/crunch/Simulated-User-Testing-f9dba6b175144b888854625950c187fc
 
-Script Descriptions
--------------------
+Setup Steps
+-----------
+
+Deployment
+..........
+
+Copy the code in this directory to /remote/simulated_user_testing on the Alpha system.
+
+Configuration
+.............
+
+Create a ``config.yaml`` file in /remote/simulated_user_testing with contents like this.
+Get the token value by logging in to the web UI and copying it from your browser cookies::
+
+    profiles:
+        prod:
+            api_url: 'https://apps.crunch.io/api'
+            users:
+                default:
+                    email: '<your-username>@crunch.io'
+                    token: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+        alpha:
+            api_url: 'https://alpha.crunch.io/api'
+            users:
+                default:
+                    email: '<your-username>@crunch.io'
+                    token: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+Run ``./ds_meta.py -v -p alpha list-datasets`` to verify you can connect to the Alpha API.
+
+Run ``./ds_meta.py -p prod -v list-datasets`` to verify you can connect to the Production API
+(this is only used for making copies of production dataset metadata during setup).
+
+Go to the Alpha superadmin page at https://alpha.superadmin.crint.net/projects/ and
+create a project named "Quad". This is where all newly-created datasets are staged.
+
+Go to your account page in Alpha superadmin
+(https://alpha.superadmin.crint.net/accounts/00001/ for developers)
+and create the following users. Uncheck the "Send invite" checkbox when creating each
+user. Put your own Crunch email address in the "From email" box since the default
+support@crunch.io will result in an error message.
+
+Email:  sim-editor-1@crunch.io
+Name:   Sim Editor 1 
+Auth:   Password
+Role:   advanced
+
+Name:   Sim User 1
+Email:  sim-user-1@crunch.io
+Auth:   Password
+Role:   basic
+
+To set the password for each test user, go to https://alpha.superadmin.crint.net/users/
+and search on the (fake) email address of the test user. Click the link to go to that
+user's page in superadmin. Click "Generate link". Copy the link that gets generated. Paste
+that link into a new incognito browser window and follow the directions. Note the password
+that you create so you can put it into the config file.
+
+Update your config.yaml and add these additional users to the ``profiles.alpha.users``
+section. Make sure the indentation of ``sim-editor-1`` matches the indentation of the
+``default`` key above it::
+
+    sim-editor-1:
+        username: 'sim-editor-1@crunch.io'
+        password: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    sim-user-1:
+        username: 'sim-user-1@crunch.io'
+        password: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+Test this new configuration by making sure these commands run without errors.
+Of course no datasets will be listed because these users don't have any yet::
+
+    ./ds_meta.py -p alpha -u sim-editor-1 -v list-datasets
+    ./ds_meta.py -p alpha -u sim-user-1 -v list-datasets
+
+Create a directory: ``/remote/simulated_user_testing/metadata``
+
+Put in this directory a large Profiles dataset payload to use as a template.
+Example: ``Profiles-plus-GB-Feb-2019-metadata.json.gz``
+
+Find the ID of the dataset in production that goes with your sample payload.
+
+Copy the scripts in this directory to one of the production backend servers.
+
+On that server, create a directory: ``s3data-gb-plus``
+
+Run this command to download the import files used to populate that dataset::
+
+    ./get_s3_sources.py download <dataset-id> s3data-gb-plus
+
+Copy (by any means necessary) the ``s3data-gb-plus`` directory with its contents
+to ``/remote/simulated_user_testing/`` on the Alpha system.
+
+Add these lines to ``config.yaml``::
+
+    dataset_templates:
+        gb_plus:
+            create_payload: "metadata/Profiles-plus-GB-Feb-2019-metadata.json.gz"
+            data_dir: "s3data-gb-plus"
+
+In this case "gb_plus" is the alias for the series of datasets that will be created
+from this metadata template file.
+
+
+Main Scripts
+------------
+
+- ``editor_bot.py``: Simulate what a Profiles editor would do to set up a dataset
+- ``user_bot.py``: Simulates analysis done by Profiles customers
+
+
+Helper Scripts
+--------------
+
+- ``ds_meta.py``: Works with dataset metadata, creates large datasets from template
+- ``ds_data.py``: Uploads data to datasets
+- ``get_s3_sources.py``: Download contents of Sources related to dataset
+
+
+Other Scripts
+-------------
 
 Scripts used for research:
 
@@ -18,3 +137,4 @@ Scripts for moving data (under ``moving-data/``):
 
 - ``extractdatasets.py``: Use the Sentry API to extract the IDs of recent problem datasets
 - ``movedatasets.py``: Use datasetreplay package to connect to superadmin and bundle a dataset
+

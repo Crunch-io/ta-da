@@ -17,11 +17,12 @@ Usage:
 Options:
     -c CONFIG_FILENAME      [default: config.yaml]
     -p PROFILE_NAME         Profile section in config [default: local]
+    -u USER_ALIAS           Key to section inside profile [default: default]
     -i                      Run interactive prompt after executing command
     -v                      Print verbose messages
     --name=NAME             Override name in JSON file (create-payload, create, addvar)
     --alias=ALIAS           Override alias in JSON file (addvar)
-    -u --unique-subvar-aliases
+    --unique-subvar-aliases
                             Generate unique subvariable aliases (addvar)
 
 Commands:
@@ -59,7 +60,10 @@ import yaml
 import six
 from six.moves.urllib import parse as urllib_parse
 
-from crunch_util import connect_pycrunch, create_dataset_from_csv2
+from crunch_util import create_dataset_from_csv2, maybe_uncompress_and_load_json
+from sim_util import connect_api, get_command_name
+
+this_module = sys.modules[__name__]
 
 
 CRITICAL_KEYS = (
@@ -74,6 +78,26 @@ CRITICAL_KEYS = (
     "variable",  # args that refer to variable aliases
 )
 VALUES_TO_PRESERVE = [("name", "No Data"), ("group", "__hidden__")]
+
+
+def main():
+    args = docopt.docopt(__doc__)
+    with io.open(args["-c"], "r", encoding="UTF-8") as f:
+        config = yaml.safe_load(f)
+    command_name = get_command_name(args)
+    method_name = "do_" + command_name.replace("-", "_")
+    method = getattr(this_module, method_name, None)
+    if method is None:
+        raise NotImplementedError(
+            "Sorry, {!r} is not yet implemented".format(command_name)
+        )
+    t0 = time.time()
+    show_elapsed_time = command_name != "sample-config"
+    try:
+        return method(config, args)
+    finally:
+        if show_elapsed_time:
+            print("Elapsed time:", time.time() - t0, "seconds", file=sys.stderr)
 
 
 def obfuscate_string(value, path):
@@ -454,18 +478,20 @@ class MetadataModel(object):
         return settings
 
     def create(self, site, dirname_or_filename, name=None):
+        """Create dataset given a metadata file. Return dataset URL."""
         if os.path.isdir(dirname_or_filename):
             filename = os.path.join(dirname_or_filename, "dataset-payload.json")
         else:
             filename = dirname_or_filename
-        with open(filename, "r") as f:
-            new_meta = json.load(f)
+        with open(filename, "rb") as f:
+            new_meta = maybe_uncompress_and_load_json(f)
         if name:
             new_meta["body"]["name"] = name
         ds = create_dataset_from_csv2(
             site, new_meta, None, verbose=self.verbose, gzip_metadata=True
         )
         print("New dataset ID:", ds.body.id)
+        return ds.body.id
 
     def _translate_hier(self, ds, hier_list, variables_by_alias=None):
         # ds: Dataset object
@@ -803,8 +829,8 @@ class MetadataModel(object):
     def anonymize_payload(self, dirname):
         filename = os.path.join(dirname, "dataset-payload.json")
         print("Reading", filename)
-        with open(filename, "r") as f:
-            payload = json.load(f)
+        with open(filename, "rb") as f:
+            payload = maybe_uncompress_and_load_json(f)
         print("Obfuscating...")
         # Save the name so it doesn't get scrambled
         name = payload["body"]["name"]
@@ -816,12 +842,10 @@ class MetadataModel(object):
             f.write("\n")
 
 
-def do_get(args):
+def do_get(config, args):
     ds_id = args["<ds-id>"]
     dirname = args["<dirname>"]
-    with io.open(args["-c"], "r", encoding="UTF-8") as f:
-        config = yaml.safe_load(f)[args["-p"]]
-    site = connect_pycrunch(config["connection"], verbose=args["-v"])
+    site = connect_api(config, args)
     meta = MetadataModel(verbose=args["-v"])
     meta.get(site, ds_id, dirname)
     if args["-i"]:
@@ -830,31 +854,29 @@ def do_get(args):
         IPython.embed()
 
 
-def do_info(args):
+def do_info(config, args):
     dirname = args["<dirname>"]
     meta = MetadataModel(verbose=args["-v"])
     meta.load(dirname)
     meta.report()
 
 
-def do_create_payload(args):
+def do_create_payload(config, args):
     dirname = args["<dirname>"]
     meta = MetadataModel(verbose=args["-v"])
     meta.load(dirname)
     meta.create_payload(dirname, name=args["--name"])
 
 
-def do_anonymize_payload(args):
+def do_anonymize_payload(config, args):
     dirname = args["<dirname>"]
     meta = MetadataModel(verbose=args["-v"])
     meta.anonymize_payload(dirname)
 
 
-def do_create(args):
+def do_create(config, args):
     dirname_or_filename = args["<dirname-or-filename>"]
-    with io.open(args["-c"], "r", encoding="UTF-8") as f:
-        config = yaml.safe_load(f)[args["-p"]]
-    site = connect_pycrunch(config["connection"], verbose=args["-v"])
+    site = connect_api(config, args)
     meta = MetadataModel(verbose=args["-v"])
     meta.create(site, dirname_or_filename, name=args["--name"])
 
@@ -870,13 +892,11 @@ def _generate_unique_subvar_aliases(var_meta):
         subref["alias"] = uuid.uuid4().hex
 
 
-def do_addvar(args):
+def do_addvar(config, args):
     ds_id = args["<ds-id>"]
     filename = args["<filename>"]
     verbose = args["-v"]
-    with io.open(args["-c"], "r", encoding="UTF-8") as f:
-        config = yaml.safe_load(f)[args["-p"]]
-    site = connect_pycrunch(config["connection"], verbose=verbose)
+    site = connect_api(config, args)
     ds_url = "{}{}/".format(site.datasets["self"], ds_id)
     response = site.session.get(ds_url)
     ds = response.payload
@@ -906,12 +926,10 @@ def do_addvar(args):
         print("POST /variables duration:", time.time() - t1)
 
 
-def do_folderize(args):
+def do_folderize(config, args):
     ds_id = args["<ds-id>"]
     dirname = args["<dirname>"]
-    with io.open(args["-c"], "r", encoding="UTF-8") as f:
-        config = yaml.safe_load(f)[args["-p"]]
-    site = connect_pycrunch(config["connection"], verbose=args["-v"])
+    site = connect_api(config, args)
     ds_url = "{}{}/".format(site.datasets["self"], ds_id)
     response = site.session.get(ds_url)
     ds = response.payload
@@ -920,11 +938,8 @@ def do_folderize(args):
     meta.folderize(ds)
 
 
-def do_list_datasets(args):
-    with open(args["-c"]) as f:
-        config = yaml.safe_load(f)[args["-p"]]
-    verbose = args["-v"]
-    site = connect_pycrunch(config["connection"], verbose=verbose)
+def do_list_datasets(config, args):
+    site = connect_api(config, args)
     if args["-i"]:
         import IPython
 
@@ -950,14 +965,11 @@ def do_list_datasets(args):
     return 0
 
 
-def do_raw_request(args):
-    with open(args["-c"]) as f:
-        config = yaml.safe_load(f)[args["-p"]]
-    verbose = args["-v"]
+def do_raw_request(config, args):
     method = args["<method>"]
     uri_path = args["<uri-path>"]
     filename = args["<filename>"]
-    site = connect_pycrunch(config["connection"], verbose=verbose)
+    site = connect_api(config, args)
     request_url = "{}{}".format(site.self, uri_path)
     query = None  # TODO
     headers = None
@@ -991,52 +1003,20 @@ def do_raw_request(args):
         IPython.embed()
 
 
-def do_sample_config(args):
+def do_sample_config(config, args):
     print(
         textwrap.dedent(
             """
-    local:
-        connection:
-            username: 'captain@crunch.io'
-            password: 'asdfasdf'
+    profiles:
+        local:
             api_url: 'https://local.crunch.io:8443/api'
-            verify: false
+            users:
+                default:
+                    username: 'captain@crunch.io'
+                    password: 'asdfasdf'
     """
         ).strip()
     )
-
-
-def main():
-    args = docopt.docopt(__doc__)
-    t0 = time.time()
-    show_elapsed_time = True
-    try:
-        if args["list-datasets"]:
-            return do_list_datasets(args)
-        elif args["get"]:
-            return do_get(args)
-        elif args["info"]:
-            return do_info(args)
-        elif args["create-payload"]:
-            return do_create_payload(args)
-        elif args["anonymize-payload"]:
-            return do_anonymize_payload(args)
-        elif args["create"]:
-            return do_create(args)
-        elif args["addvar"]:
-            return do_addvar(args)
-        elif args["folderize"]:
-            return do_folderize(args)
-        elif args["raw-request"]:
-            return do_raw_request(args)
-        elif args["sample-config"]:
-            show_elapsed_time = False
-            return do_sample_config(args)
-        else:
-            raise NotImplementedError("Sorry, that command is not yet implemented.")
-    finally:
-        if show_elapsed_time:
-            print("Elapsed time:", time.time() - t0, "seconds", file=sys.stderr)
 
 
 if __name__ == "__main__":

@@ -3,6 +3,7 @@ Common library for operations using the Crunch API
 """
 from __future__ import print_function
 from collections import OrderedDict
+from contextlib import contextmanager
 import codecs
 import copy
 import gzip
@@ -10,8 +11,9 @@ import io
 import itertools
 import json
 import os
-import random
+import shutil
 import sys
+import tempfile
 import time
 import warnings
 
@@ -270,327 +272,146 @@ def append_csv_file_to_dataset(
         raise Exception("Timed out appending to dataset {}".format(ds.body.id))
 
 
-class CompressionWrapper:
+@contextmanager
+def stream_and_compress_json(obj, use_tempfile=False):
     """
-    Wrap any file-like object opened for binary reading.
-    Compress bytes on the fly as they are read.
-    Closing this object closes the wrapped file.
+    Convert obj to JSON and stream it as a file, compressing it on the way.
+    If use_tempfile is true, use temporary files to save RAM, cleaning them up
+    automatically (about 4 to 5 times slower for large objects.)
 
-    When you iterate on this object, it returns chunks of bytes sized
-    roughly around io.DEFAULT_BUFFER_SIZE, instead of the usual file
-    behavior of returning strings of bytes ending with ASCII newline.
+    This context manager yields a binary file-like object open for reading.
     """
+    if use_tempfile:
+        with stream_and_compress_json_with_backing_tempfiles(obj) as f:
+            yield f
+        return
 
-    mode = "rb"
-    chunk_size = io.DEFAULT_BUFFER_SIZE
-
-    @staticmethod
-    def open(cls, filename):
-        """
-        Open the file for binary reading and wrap it with this class.
-        If filename ends with ".gz", blindly trust that it is already compressed and
-        return the regular fileobj.
-        Otherwise, wrap the fileobj with this class and return the wrapped instance.
-        """
-        f = open(filename, "rb")
-        if filename.endswith(".gz"):
-            return f
-        return cls(f)
-
-    def __init__(self, f, name=None):
-        self.f = f
-        self.name = name if name else getattr(f, "name", None)
-        self._gz_buffer = io.BytesIO()
-        self._gzipper = gzip.GzipFile(self.name, mode="wb", fileobj=self._gz_buffer)
-
-    def read(self, size=-1):
-        """
-        Read and compress size bytes from the underlying stream, or compress the whole
-        stream if size == -1. May return more or less than size.
-        """
-        if self.closed:
-            raise ValueError("I/O operation on closed file")
-        if size is None or size < 0:
-            return self.readall()
-        if size == 0:
-            return b""
-        return self._read_and_compress_chunk()
-
-    def readall(self):
-        compressed_chunks = []
-        while True:
-            data = self._read_and_compress_chunk()
-            if not data:
-                break
-            compressed_chunks.append(data)
-        return b"".join(compressed_chunks)
-
-    def _read_and_compress_chunk(self):
-        # Work until we've read and compressed a chunk of bytes or exhausted input
-        n = self.chunk_size
-        while n > 0:
-            data = self.f.read(n)
-            if data:
-                self._gzipper.write(data)
-                n -= len(data)
-            else:
-                # Flush remaining buffered compressed data, then stop reading
-                self._gzipper.close()
-                n = 0
-        if not self._gzipper.closed:
-            self._gzipper.flush()
-        result = self._gz_buffer.getvalue()
-        self._gz_buffer.seek(0)
-        self._gz_buffer.truncate()
-        return result
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        data = self._read_and_compress_chunk()
-        if not data:
-            raise StopIteration()
-        return data
-
-    def next(self):
-        # For Python 2 compatibility
-        return self.__next__()
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        self.close()
-
-    def close(self):
-        self._gzipper.close()
-        self._gz_buffer.close()
-        self.f.close()
-
-    @property
-    def closed(self):
-        return self.f.closed
-
-
-def test_compression_wrapper():
-    # Compress stream using CompressionWrapper
-    original_content = b"abcdef123456\n"
-    f1 = io.BytesIO(original_content)
-    f2 = CompressionWrapper(f1, "test.txt")
-    assert f2.name == "test.txt"  # setting name worked
-    compressed_content = f2.read()
-    assert compressed_content  # contents not empty
-    assert compressed_content != f1.getvalue()  # contents transformed
-    assert f1.tell() == len(f1.getvalue())  # input exhausted
-    assert f2.read() == b""  # reading after EOF returns empty bytes
-    f2.close()
-    assert f2.closed
-    assert f1.closed  # closing wrapper closes wrapped file
+    # Serialize to JSON, then encode to UTF-8 bytes
+    f1 = io.BytesIO(json.dumps(obj).encode("utf-8"))
+    f2 = None
     try:
-        f2.read()
-    except ValueError:
-        pass  # reading after closed is an error
-    else:
-        raise AssertionError("Expected ValueError when reading closed file")
-    # Uncompress and verify contents
-    f3 = io.BytesIO(compressed_content)
-    g = gzip.GzipFile(mode="rb", fileobj=f3)
-    decompressed_content = g.read()
-    assert decompressed_content == original_content
-    print("Ok")
+        # Set f2 to a file containing the compressed UTF-8 bytes
+        f2 = io.BytesIO()
+        with gzip.GzipFile(mode="wb", fileobj=f2) as g:
+            shutil.copyfileobj(f1, g)
+        f1.close()
+        f2.seek(0)
+
+        # Yield the compressed JSON byte stream
+        yield f2
+
+        # All done, cleanup in finally block
+    finally:
+        f1.close()
+        if f2 is not None:
+            f2.close()
 
 
-def test_compression_wrapper_random_data_small_reads():
-    # Generate a an amount of data bigger than the default block size,
-    # randomized so it's harder to compress.
-    original_content = _create_random_bytes(CompressionWrapper.chunk_size * 2)
-    f1 = io.BytesIO(original_content)
-    f2 = CompressionWrapper(f1, "test.txt")
-    # Read and compress the data in small pieces
-    compressed_parts = []
-    read_size = 8
-    while True:
-        data = f2.read(read_size)
-        if data:
-            compressed_parts.append(data)
+@contextmanager
+def stream_and_compress_json_with_backing_tempfiles(obj):
+    """
+    Like stream_and_compress_json(), only uses tempfiles instead of
+    big strings and io.BytesIO objects, to save RAM. 4 to 5 times slower
+    on big objects.
+    """
+    f1 = None  # the object serialized to JSON text
+    f2 = None  # the JSON text converted to UTF-8 bytes (on Python 3+)
+    f3 = None  # the UTF-8 bytes compressed using gzip
+    try:
+        # Set up file f1 that will hold JSON text
+        params = {"prefix": "tmp-", "suffix": ".json", "delete": False}
+        if six.PY2:
+            params["mode"] = "w+b"
         else:
-            break
-    _check_compression_wrapper_parts(compressed_parts, original_content)
+            params["mode"] = "w+t"
+            params["encoding"] = "utf-8"
+        f1 = tempfile.NamedTemporaryFile(**params)
+
+        # Serialize to JSON
+        json.dump(obj, f1)
+
+        # Set f2 to a file containing the JSON text as UTF-8 bytes
+        if six.PY2:
+            f1.seek(0)
+            f2 = f1
+        else:
+            f1.close()
+            f2 = open(f1.name, "rb")
+
+        # Set f3 to a file containing the compressed UTF-8 bytes
+        f3 = gzip.open(f2.name + ".gz", "wb")
+        shutil.copyfileobj(f2, f3)
+        f2.close()
+        f3.close()
+        f3 = open(f3.name, "rb")
+
+        # Yield the compressed JSON byte stream
+        yield f3
+
+        # All done, cleanup in finally block
+    finally:
+        for f in (f1, f2, f3):
+            if f is not None:
+                try:
+                    f.close()
+                    os.remove(f.name)
+                except BaseException:
+                    pass
 
 
-def _create_random_bytes(num_bytes):
-    return "".join(
-        chr(random.randrange(32, 128)) for i in six.moves.xrange(num_bytes)
-    ).encode("utf-8")
+def test_stream_and_compress_json():
+    print("\nstream_and_compress_json: Testing on PY2?", six.PY2)
+    d = {"a": 1, "b": 2, "c": [123.5, True, False, None, {"answer": u"s\u00ed"}]}
+    with stream_and_compress_json(d) as f:
+        assert isinstance(f, io.BytesIO)
+        with gzip.GzipFile(mode="rb", fileobj=f) as g:
+            assert json.load(g) == d
+
+    # Try again with tempfile
+    with stream_and_compress_json(d, use_tempfile=True) as f:
+        with gzip.GzipFile(mode="rb", fileobj=f) as g:
+            assert json.load(g) == d
+    # Check cleanup
+    assert f.closed
+    assert not os.path.exists(f.name)
 
 
-def _check_compression_wrapper_parts(compressed_parts, original_content):
-    num_bytes = len(original_content)
-    min_bytes = num_bytes + 1
-    max_bytes = 0
-    total_bytes = 0
-    for part in compressed_parts:
-        min_bytes = min(min_bytes, len(part))
-        max_bytes = max(max_bytes, len(part))
-        total_bytes += len(part)
-    num_reads = len(compressed_parts)
-    ave_bytes = total_bytes / num_reads
-    print("Total uncompressed bytes:", num_bytes)
-    print("Number of read()/next() calls:", num_reads)
-    print("Total compressed bytes read:", total_bytes)
-    print("Min. bytes per read:", min_bytes)
-    print("Ave. bytes per read:", ave_bytes)
-    print("Max. bytes per read:", max_bytes)
-    # Uncompress and verify contents
-    f3 = io.BytesIO(b"".join(compressed_parts))
-    g = gzip.GzipFile(mode="rb", fileobj=f3)
-    decompressed_content = g.read()
-    assert decompressed_content == original_content
-    print("Ok")
-
-
-def test_compression_wrapper_zero_read():
-    # Compress stream using CompressionWrapper
-    # Do a zero-byte read, then read the rest
-    original_content = b"abcdef123456\n"
-    f1 = io.BytesIO(original_content)
-    f2 = CompressionWrapper(f1, "test.txt")
-    assert f2.read(0) == b""
-    compressed_content = f2.read()
-    f2.close()
-    try:
-        f2.read(0)
-    except ValueError:
-        pass  # Even zero-byte read on closed file is an error
-    else:
-        raise AssertionError("Expected ValueError when reading closed file")
-    # Uncompress and verify contents
-    f3 = io.BytesIO(compressed_content)
-    g = gzip.GzipFile(mode="rb", fileobj=f3)
-    decompressed_content = g.read()
-    assert decompressed_content == original_content
-    print("Ok")
-
-
-def test_compression_wrapper_iterator():
-    original_content = _create_random_bytes(CompressionWrapper.chunk_size * 2)
-    f1 = io.BytesIO(original_content)
-    f2 = CompressionWrapper(f1, "test.txt")
-    # Read and compress the data in small pieces
-    compressed_parts = list(f2)
-    _check_compression_wrapper_parts(compressed_parts, original_content)
-
-
-def test_compression_wrapper_context_manager():
-    original_content = b"abcdef123456\n"
-    f1 = io.BytesIO(original_content)
-    with CompressionWrapper(f1, "test.txt") as f2:
-        compressed_content = f2.read()
-    assert f2.closed
-    # Uncompress and verify contents
-    f3 = io.BytesIO(compressed_content)
-    g = gzip.GzipFile(mode="rb", fileobj=f3)
-    decompressed_content = g.read()
-    assert decompressed_content == original_content
-
-
-def test_compression_wrapper_zero_bytes_one_by_one():
-    original_content = b"\x00" * int(CompressionWrapper.chunk_size * 4.5)
-    f1 = io.BytesIO(original_content)
-    compressed_parts = []
-    with CompressionWrapper(f1) as f2:
-        while True:
-            data = f2.read(1)
-            if not data:
-                break
-            compressed_parts.append(data)
-    _check_compression_wrapper_parts(compressed_parts, original_content)
-
-
-class JSONReader:
+def maybe_uncompress_and_load_json(fileobj):
     """
-    Wrap a JSON-serializable object in a file-like reader.
-    If text=True is passed to the constructor (the default) then read()
-    calls return strings. If text=False then read() returns UTF-8 bytes.
+    fileobj: A seekable file-like object opened for binary reading
+    Return the JSON object read from that stream, decompressing if necessary
     """
-
-    def __init__(self, obj, **kwargs):
-        self.name = kwargs.pop("name", None)
-        text = kwargs.pop("text", True)
-        self._iter = json.JSONEncoder(**kwargs).iterencode(obj)
-        self.mode = "r"
-        self._empty = ""
-        if not text:
-            self._iter = codecs.iterencode(self._iter, encoding="utf-8")
-            self.mode = "rb"
-            self._empty = b""
-
-    def read(self, size=-1):
-        """
-        Like the read() method on a file object, except if size > 0 then more than
-        size characters/bytes could be returned.
-        """
-        if self.closed:
-            raise ValueError("I/O operation on closed file")
-        if size is None or size < 0:
-            return self._empty.join(self._iter)
-        if size == 0:
-            return self._empty
-        return next(self._iter, self._empty)
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        self.close()
-
-    def close(self):
-        self._iter = None
-
-    @property
-    def closed(self):
-        return self._iter is None
+    p = fileobj.tell()
+    magic = fileobj.read(2)
+    fileobj.seek(p)  # rewind to original position
+    if magic == b"\x1f\x8b":
+        # It's gzip format
+        fileobj = gzip.GzipFile(mode="rb", fileobj=fileobj)
+    if not six.PY2:
+        fileobj = codecs.EncodedFile(fileobj, "utf-8")
+    return json.load(fileobj)
 
 
-def test_json_reader_text():
-    obj = {"a": 1.23, "b": ["one", "two", "three"], "c": {"k1": 12, "k2": None}}
-    jr = JSONReader(obj, name="test.json", indent=4, sort_keys=True)
-    assert jr.name == "test.json"
-    assert jr.read(0) == ""
-    chunks = [jr.read(4), jr.read()]
-    # Make sure both reads were non-empty
-    assert chunks[0]
-    assert chunks[-1]
-    result = "".join(chunks)
-    assert isinstance(result, str)  # text mode by default
-    print(result)
-    assert json.loads(result) == obj
-    assert jr.read() == ""
-    assert not jr.closed
-    jr.close()
-    assert jr.closed
-    try:
-        jr.read()
-    except ValueError:
-        pass
-    else:
-        raise AssertionError("Expected ValueError when reading closed file")
+def test_maybe_uncompress_and_load_json_gzipped():
+    print("\nmaybe_compress_and_load_json - gzipped: Testing on PY2?", six.PY2)
+    d = {"a": 1, "b": 2, "c": [123.5, True, False, None, {"answer": u"s\u00ed"}]}
+    f = io.BytesIO()
+    with gzip.GzipFile(mode="wb", fileobj=f) as g:
+        g.write(json.dumps(d).encode("utf-8"))
+    assert f.tell() > 2
+    f.seek(0)
+    assert f.read(2) == b"\x1f\x8b"  # gzip magic marker
+    f.seek(0)
+    assert maybe_uncompress_and_load_json(f) == d
 
 
-def test_json_reader_binary():
-    obj = {"a": 1.23, "b": ["one", "two", "three"], "c": {"k1": 12, "k2": None}}
-    jr = JSONReader(obj, name="test.json", text=False, indent=4, sort_keys=True)
-    jr.read(0) == b""
-    chunks = [jr.read(4), jr.read()]
-    # Make sure all reads were non-empty bytes
-    for chunk in chunks:
-        assert chunk
-        assert isinstance(chunk, bytes)
-    result = b"".join(chunks)
-    print(result)
-    assert json.loads(result.decode("utf-8")) == obj
-    assert jr.read() == b""
+def test_maybe_uncompress_and_load_json_uncompressed():
+    print("\nmaybe_compress_and_load_json - uncompressed: Testing on PY2?", six.PY2)
+    d = {"a": 1, "b": 2, "c": [123.5, True, False, None, {"answer": u"s\u00ed"}]}
+    f = io.BytesIO(json.dumps(d).encode("utf-8"))
+    assert f.read(1) == b"\x7b"  # left curly brace
+    f.seek(0)
+    assert maybe_uncompress_and_load_json(f) == d
 
 
 def create_dataset_from_csv2(
@@ -598,7 +419,7 @@ def create_dataset_from_csv2(
     metadata,
     fileobj_or_url,
     timeout_sec=300.0,
-    retry_delay=0.25,
+    retry_delay=None,
     verbose=False,
     dataset_name=None,
     gzip_metadata=True,
@@ -632,9 +453,9 @@ def create_dataset_from_csv2(
         metadata = copy.deepcopy(metadata)
         metadata["body"]["name"] = dataset_name
     if gzip_metadata:
-        with CompressionWrapper(
-            JSONReader(metadata, text=False), name="metadata.json"
-        ) as f:
+        with stream_and_compress_json(metadata) as f:
+            # We have to call site.session.post() or else pycrunch tries to be
+            # overly helpful and re-do the JSON serialization.
             response = site.session.post(
                 site.datasets.self,
                 data=f,
@@ -644,8 +465,9 @@ def create_dataset_from_csv2(
                 },
                 stream=True,
             )
-        response.raise_for_status()
-        ds_url = response.headers["Location"]
+        ds_url = wait_for_progress2(
+            site, response, timeout_sec, retry_delay=retry_delay, verbose=verbose
+        )
         ds = site.session.get(ds_url).payload
     else:
         ds = site.datasets.create(metadata).refresh()
@@ -663,7 +485,9 @@ def create_dataset_from_csv2(
             response = site.session.post(
                 ds.batches.self, files={"file": (filename, data_fileobj, "text/csv")}
             )
-        wait_for_progress(site, response, timeout_sec, retry_delay, verbose=verbose)
+        wait_for_progress2(
+            site, response, timeout_sec, retry_delay=retry_delay, verbose=verbose
+        )
     if verbose:
         print("Created dataset", ds.body.id, file=sys.stderr)
     return ds
@@ -747,6 +571,94 @@ def wait_for_progress(
         if verbose:
             print("Timeout after", timeout_sec, "seconds.", file=sys.stderr)
         return False
+
+
+try:
+    TimeoutError
+except NameError:
+    # Python 2 doesn't have TimeoutError built in
+    class TimeoutError(OSError):
+        pass
+
+
+def wait_for_progress2(
+    site, progress_response, timeout_sec, retry_delay=None, verbose=False
+):
+    """
+    Wait for an API call to finish that may return either a 201 or 202 response.
+
+    site: The result of calling connect_pycrunch()
+    progress_response: The response object returned by posting.
+    timeout_sec: Total seconds to wait for API call completion.
+    retry_delay: Starting seconds between polling progress endpoint
+    verbose: If true, print messages while polling progress
+
+    If the response status code is initially 201 (Created), immediately return
+    resource_url
+
+    Otherwise, get the progress URL out of the response and poll that URL until
+    it returns a progress of 100, -1, or None (-1 or None mean error).
+
+    If the final progress is 100, return resource_url.
+
+    If the final progress is -1 or None, raise a pyrcrunch.TaskError exception
+    containing the error message returned by the progress API. Also set a
+    resource_url attribute on the exception object.
+
+    If timeout_sec seconds pass without the progress API returning a progress
+    indicating completion, raise TimeoutError. Also set a resource_url attribute
+    on the exception object.
+    """
+    progress_response.raise_for_status()
+    resource_url = progress_response.headers["Location"]
+    if progress_response.status_code == 201:  # Created
+        return resource_url
+    elif progress_response.status_code != 202:  # Accepted
+        raise ValueError("progress_response is not a 202 response")
+    progress_url = progress_response.json()["value"]
+    if verbose:
+        print("Waiting on progress API ...", file=sys.stderr)
+    if isinstance(retry_delay, (int, float)):
+        retry_delay_generator = exponential_interval_generator(retry_delay)
+    elif retry_delay is None:
+        retry_delay_generator = table_interval_generator()
+    else:
+        raise TypeError("Invalid retry_delay")
+    t0 = t = time.time()
+    while t - t0 <= timeout_sec:
+        response = site.session.get(progress_url)
+        response.raise_for_status()
+        progress = response.json()["value"]
+        if verbose:
+            print(progress, file=sys.stderr)
+        progress_amount = progress.get("progress")
+        if progress_amount == 100:
+            # Successful completion
+            return resource_url
+        if progress_amount in (-1, None):
+            # Error
+            msg = {
+                "resource_url": resource_url,
+                "message": progress.get("message", "<no message returned>"),
+            }
+            err = pycrunch.TaskError(json.dumps(msg))
+            err.resource_url = resource_url
+            raise err
+        next_t = t + next(retry_delay_generator)
+        t = time.time()
+        if t < next_t:
+            time.sleep(next_t - t)
+            t = time.time()
+    else:
+        if verbose:
+            print("Timeout after", timeout_sec, "seconds.", file=sys.stderr)
+        msg = {
+            "resource_url": resource_url,
+            "message": "Timeout after {} seconds".format(timeout_sec),
+        }
+        err = TimeoutError(json.dumps(msg))
+        err.resource_url = resource_url
+        raise err
 
 
 def get_ds_metadata(ds, set_derived_field=True):
