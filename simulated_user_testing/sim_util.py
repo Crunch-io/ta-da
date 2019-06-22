@@ -31,3 +31,18 @@ def get_command_name(args):
             return key
     else:
         return None
+
+
+def get_project_by_name(site, project_name):
+    projects = [
+        p for p in six.itervalues(site.projects.index) if p.name == project_name
+    ]
+    if not projects:
+        raise IndexError(
+            'No project named "{}" visible to this user'.format(project_name)
+        )
+    if len(projects) > 1:
+        raise ValueError(
+            'Multiple projects named "{}" visible to this user'.format(project_name)
+        )
+    return projects[0]

@@ -16,8 +16,10 @@ Copy the code in this directory to /remote/simulated_user_testing on the Alpha s
 Configuration
 .............
 
-Create a ``config.yaml`` file in /remote/simulated_user_testing with contents like this.
-Get the token value by logging in to the web UI and copying it from your browser cookies::
+Create a ``config.yaml`` file in /remote/simulated_user_testing with contents
+like this.  Get the the default user (your) login token value by logging in to
+the web UI and copying it from your browser cookies. Make up passwords for the
+sim-editor-1 and sim-user-1 users; you will set those passwords later::
 
     profiles:
         prod:
@@ -32,20 +34,25 @@ Get the token value by logging in to the web UI and copying it from your browser
                 default:
                     email: '<your-username>@crunch.io'
                     token: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+                sim-editor-1:
+                    username: 'sim-editor-1@crunch.io'
+                    password: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+                sim-user-1:
+                    username: 'sim-user-1@crunch.io'
+                    password: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
-Run ``./ds_meta.py -v -p alpha list-datasets`` to verify you can connect to the Alpha API.
+Run ``./ds_meta.py -p alpha -v list-datasets`` to verify you can connect to the
+Alpha API as the default user.
 
-Run ``./ds_meta.py -p prod -v list-datasets`` to verify you can connect to the Production API
-(this is only used for making copies of production dataset metadata during setup).
-
-Go to the Alpha superadmin page at https://alpha.superadmin.crint.net/projects/ and
-create a project named "Quad". This is where all newly-created datasets are staged.
+Run ``./ds_meta.py -p prod -v list-datasets`` to verify you can connect to the
+Production API as the default user (this is only used for making copies of
+production dataset metadata during setup).
 
 Go to your account page in Alpha superadmin
-(https://alpha.superadmin.crint.net/accounts/00001/ for developers)
-and create the following users. Uncheck the "Send invite" checkbox when creating each
-user. Put your own Crunch email address in the "From email" box since the default
-support@crunch.io will result in an error message.
+(https://alpha.superadmin.crint.net/accounts/00001/ for developers) and create the
+following users. Uncheck the "Send invite" checkbox when creating each user. Put your own
+Crunch email address in the "From email" box since the default support@crunch.io will
+result in an error message.
 
 Email:  sim-editor-1@crunch.io
 Name:   Sim Editor 1 
@@ -60,25 +67,28 @@ Role:   basic
 To set the password for each test user, go to https://alpha.superadmin.crint.net/users/
 and search on the (fake) email address of the test user. Click the link to go to that
 user's page in superadmin. Click "Generate link". Copy the link that gets generated. Paste
-that link into a new incognito browser window and follow the directions. Note the password
-that you create so you can put it into the config file.
-
-Update your config.yaml and add these additional users to the ``profiles.alpha.users``
-section. Make sure the indentation of ``sim-editor-1`` matches the indentation of the
-``default`` key above it::
-
-    sim-editor-1:
-        username: 'sim-editor-1@crunch.io'
-        password: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-    sim-user-1:
-        username: 'sim-user-1@crunch.io'
-        password: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+that link into a new incognito browser window and follow the directions. Enter the same
+passwords for these users as you put in the ``config.yaml`` file.
 
 Test this new configuration by making sure these commands run without errors.
 Of course no datasets will be listed because these users don't have any yet::
 
     ./ds_meta.py -p alpha -u sim-editor-1 -v list-datasets
     ./ds_meta.py -p alpha -u sim-user-1 -v list-datasets
+
+Go to the Alpha superadmin page at https://alpha.superadmin.crint.net/projects/ and create the
+following projects.
+
+- Quad
+
+  - Enter ``sim-editor-1@crunch.io`` for "Owner email"
+
+- Sim Profiles
+
+  - Enter ``sim-editor-1@crunch.io`` for "Owner email"
+  - After the project is created, add user ``sim-user-1@crunch.io`` to the project
+
+TODO: Adding users gives them "view" access. Need to make sure that is sufficient.
 
 Create a directory: ``/remote/simulated_user_testing/metadata``
 
@@ -116,25 +126,12 @@ Main Scripts
 - ``user_bot.py``: Simulates analysis done by Profiles customers
 
 
-Helper Scripts
---------------
+Helper Scripts/Modules
+----------------------
 
 - ``ds_meta.py``: Works with dataset metadata, creates large datasets from template
 - ``ds_data.py``: Uploads data to datasets
 - ``get_s3_sources.py``: Download contents of Sources related to dataset
-
-
-Other Scripts
--------------
-
-Scripts used for research:
-
-- ``scan_http_logs.py``: Parse cr.backend log files and save info in sqlite DB
-- ``copy_from_times_query.py``: Query Dataset.copy_from times for Profiles USA datasets
-- ``copy_from_times_graph.py``: Graph data generated by copy_from_times_query.py
-
-Scripts for moving data (under ``moving-data/``):
-
-- ``extractdatasets.py``: Use the Sentry API to extract the IDs of recent problem datasets
-- ``movedatasets.py``: Use datasetreplay package to connect to superadmin and bundle a dataset
-
+- ``crunch_util.py``: Utilities for working with pycrunch
+- ``sim_util.py``: Utilities used by multiple scripts in this project
+- ``time_*.py``: Performance testing scripts

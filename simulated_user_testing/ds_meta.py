@@ -477,7 +477,7 @@ class MetadataModel(object):
                 del settings["dashboard_deck"]
         return settings
 
-    def create(self, site, dirname_or_filename, name=None):
+    def create(self, site, dirname_or_filename, name=None, project=None):
         """Create dataset given a metadata file. Return dataset URL."""
         if os.path.isdir(dirname_or_filename):
             filename = os.path.join(dirname_or_filename, "dataset-payload.json")
@@ -487,6 +487,8 @@ class MetadataModel(object):
             new_meta = maybe_uncompress_and_load_json(f)
         if name:
             new_meta["body"]["name"] = name
+        if project:
+            new_meta["body"]["owner"] = project.entity_url
         ds = create_dataset_from_csv2(
             site, new_meta, None, verbose=self.verbose, gzip_metadata=True
         )

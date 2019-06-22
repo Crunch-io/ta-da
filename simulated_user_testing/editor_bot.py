@@ -24,7 +24,7 @@ import yaml
 
 import ds_meta
 import ds_data
-from sim_util import connect_api
+from sim_util import connect_api, get_project_by_name
 
 
 def main():
@@ -45,10 +45,12 @@ def simulate_editor(config, args):
     data_dir = ds_template["data_dir"]
     site = connect_api(config, args)
 
+    project_quad = get_project_by_name(site, "Quad")
+
     # Create the dataset
     print('Creating dataset "{}" from metadata: {}'.format(ds_name, payload_filename))
     meta = ds_meta.MetadataModel(verbose=verbose)
-    dataset_url = meta.create(site, payload_filename, name=ds_name)
+    dataset_url = meta.create(site, payload_filename, name=ds_name, project=project_quad)
     print("Created dataset:", dataset_url)
 
     # Upload the source data and create sources
