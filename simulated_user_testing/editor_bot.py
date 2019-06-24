@@ -46,12 +46,13 @@ def simulate_editor(config, args):
     site = connect_api(config, args)
 
     project_quad = get_project_by_name(site, "Quad")
+    print("Found project Quad; entity_url:", project_quad.entity_url)
 
     # Create the dataset
     print('Creating dataset "{}" from metadata: {}'.format(ds_name, payload_filename))
     meta = ds_meta.MetadataModel(verbose=verbose)
-    dataset_url = meta.create(site, payload_filename, name=ds_name, project=project_quad)
-    print("Created dataset:", dataset_url)
+    ds = meta.create(site, payload_filename, name=ds_name, project=project_quad)
+    print("Created dataset:", ds.self)
 
     # Upload the source data and create sources
     chunk_filenames = glob.glob(os.path.join(data_dir, "*"))
@@ -60,7 +61,7 @@ def simulate_editor(config, args):
         return
     source_urls = []
     for i, filename in enumerate(chunk_filenames, 1):
-        source_url = ds_data.upload_source(site, filename, verbose=verbose)
+        source_url = ds_data.upload_source(site, filename)
         source_urls.append(source_url)
         print(
             "({}/{})".format(i, len(chunk_filenames)),
@@ -72,7 +73,6 @@ def simulate_editor(config, args):
         sys.stdout.flush()
 
     # Append the data sources (could take up to 1.5 days)
-    ds = site.session.get(dataset_url).payload
     for i, source_url in enumerate(source_urls, 1):
         print(
             "({}/{})".format(i, len(source_urls)),

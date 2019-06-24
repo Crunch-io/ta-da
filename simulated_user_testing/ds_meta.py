@@ -478,7 +478,7 @@ class MetadataModel(object):
         return settings
 
     def create(self, site, dirname_or_filename, name=None, project=None):
-        """Create dataset given a metadata file. Return dataset URL."""
+        """Create dataset given a metadata file. Return the dataset entity."""
         if os.path.isdir(dirname_or_filename):
             filename = os.path.join(dirname_or_filename, "dataset-payload.json")
         else:
@@ -492,8 +492,7 @@ class MetadataModel(object):
         ds = create_dataset_from_csv2(
             site, new_meta, None, verbose=self.verbose, gzip_metadata=True
         )
-        print("New dataset ID:", ds.body.id)
-        return ds.body.id
+        return ds
 
     def _translate_hier(self, ds, hier_list, variables_by_alias=None):
         # ds: Dataset object

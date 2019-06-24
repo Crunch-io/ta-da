@@ -114,12 +114,12 @@ def do_upload_chunks(config, args):
     for filename in chunk_filenames:
         if verbose:
             print("Creating source from file {}".format(filename), file=sys.stderr)
-        source_url = upload_source(site, filename, verbose=verbose)
+        source_url = upload_source(site, filename)
         print(source_url)
         sys.stdout.flush()  # Make sure progress shows up on stdout
 
 
-def upload_source(site, filename, verbose=False):
+def upload_source(site, filename):
     with open(filename, "rb") as f:
         # TODO: detect and handle non-CSV data chunks?
         content_type = "text/csv"
@@ -143,8 +143,6 @@ def upload_source(site, filename, verbose=False):
             site.sources.self, files={"uploaded_file": file_info}
         )
         response.raise_for_status()
-        if verbose:
-            print(response, file=sys.stderr)
         source_url = response.headers["Location"]
     return source_url
 
