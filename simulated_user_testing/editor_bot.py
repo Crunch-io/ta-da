@@ -55,10 +55,28 @@ def simulate_editor(config, args):
     print("Created dataset:", ds.self)
 
     # Upload the source data and create sources
+    source_urls = upload_sources(site, data_dir)
+
+    # Append the data sources (could take up to 1.5 days)
+    append_data_sources(site, ds, source_urls, verbose=verbose)
+
+    print("Done.")
+    # TODO: Send Slack notification
+
+
+def generate_ds_name(ds_template_id):
+    t = datetime.now()
+    return "Sim {} {}".format(ds_template_id, t.strftime("%Y-%m-%d %H:%M:%S"))
+
+
+def upload_sources(site, data_dir):
+    """
+    Return list of created source URLs
+    """
     chunk_filenames = glob.glob(os.path.join(data_dir, "*"))
     if not chunk_filenames:
         print("No data files in", data_dir)
-        return
+        return []
     source_urls = []
     for i, filename in enumerate(chunk_filenames, 1):
         source_url = ds_data.upload_source(site, filename)
@@ -71,8 +89,10 @@ def simulate_editor(config, args):
             source_url,
         )
         sys.stdout.flush()
+    return source_urls
 
-    # Append the data sources (could take up to 1.5 days)
+
+def append_data_sources(site, ds, source_urls, verbose=False):
     for i, source_url in enumerate(source_urls, 1):
         print(
             "({}/{})".format(i, len(source_urls)),
@@ -83,14 +103,6 @@ def simulate_editor(config, args):
         )
         sys.stdout.flush()  # Make sure progress shows up on stdout
         ds_data.append_source(site, ds, source_url, verbose=verbose)
-
-    print("Done.")
-    # TODO: Send Slack notification
-
-
-def generate_ds_name(ds_template_id):
-    t = datetime.now()
-    return "Sim {} {}".format(ds_template_id, t.strftime("%Y-%m-%d %H:%M:%S"))
 
 
 if __name__ == "__main__":

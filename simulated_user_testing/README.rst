@@ -88,8 +88,6 @@ following projects.
   - Enter ``sim-editor-1@crunch.io`` for "Owner email"
   - After the project is created, add user ``sim-user-1@crunch.io`` to the project
 
-TODO: Adding users gives them "view" access. Need to make sure that is sufficient.
-
 Create a directory: ``/remote/simulated_user_testing/metadata``
 
 Put in this directory a large Profiles dataset payload to use as a template.
