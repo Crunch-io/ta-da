@@ -11,7 +11,7 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 Tables in the application now let you set a column as the basis of comparison, shading the table to show which other columns are higher or lower than the reference column, and to what level of statistical significance. The test is a two-tailed _t_ test comparing each column proportion in turn to the proportion in the reference column. In a multitable, the test is conducted between categories within each column variable, and not across column variables. [See here for more details](http://support.crunch.io/articles/c9e4yRRi/Hypothesis-testing-in-Crunch).
 
-To enable column comparisons, first turn on significance shading using the display controls at the bottom of the screen. Then move your mouse over any column of a table or multitable. A new button appears beneath the column: “Set comparison.”
+First turn on significance shading using the display controls at the bottom of the screen. The coloring ranges from dark green (much higher) to dark red (much lower) according to the P-value of the difference of what would be expected if the row and column variables were independent, based on the standardized residuals of the crosstab. To base all comparisons on a specific column, move your mouse over any column of a table or multitable. A new button appears beneath the column: “Set comparison.”
 
 {{< figure src="dev/features/images/click-to-compare-static.png" class="img-fluid">}}
 
