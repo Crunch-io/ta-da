@@ -13,11 +13,11 @@ Tables in the application now let you set a column as the basis of comparison, s
 
 First turn on significance shading using the display controls at the bottom of the screen. The coloring ranges from dark green (much higher) to dark red (much lower) according to the P-value of the difference of what would be expected if the row and column variables were independent, based on the standardized residuals of the crosstab. To base all comparisons on a specific column, move your mouse over any column of a table or multitable. A new button appears beneath the column: “Set comparison.”
 
-{{< figure src="dev/features/images/click-to-compare-static.png" class="img-fluid">}}
+{{< figure src="dev/features/images/click-to-compare-static.png" class="img-fluid bordered">}}
 
 When a column comparison is set, the reference column becomes grey and the other categories of its variable are colored by the _P_-value of their column percentage compared to the reference column. The reference column will remain set as long as the same column variable is in place, or you click Reset in the same column or select a different reference column.
 
-{{< figure src="dev/features/images/click-to-compare-result-static.png" class="img-fluid">}}
+{{< figure src="dev/features/images/click-to-compare-result-static.png" class="img-fluid bordered">}}
 
 
 {{< figure src="dev/features/images/compare-columns.gif" class="img-fluid">}}
