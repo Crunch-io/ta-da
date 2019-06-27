@@ -66,15 +66,14 @@ def simulate_editor(config, args):
 
     # Do the infamous Dataset.copy_from
     project = sim_util.get_project_by_name(site, "Sim Profiles")
-    copy_from_last_successful_ds(site, project, ds_name_prefix, ds, verbose=verbose)
+    prev_ds = sim_util.find_latest_good_dataset_in_project(project, ds_name_prefix)
+    assert prev_ds.entity_url != ds.self
+    copy_from(site, prev_ds, ds, verbose=verbose)
 
     # Create the "Master Fork"
     create_master_fork(site, ds)
 
     # Move into the project where it will be published
-    # But first save a reference to the previous latest good dataset there
-    prev_ds = sim_util.find_latest_good_dataset_in_project(project, ds_name_prefix)
-    assert prev_ds.entity_url != ds.self
     move_ds_into_project(ds, project)
 
     # Publish the dataset
@@ -138,18 +137,14 @@ def append_data_sources(site, ds, source_urls, verbose=False):
         ds_data.append_source(site, ds, source_url, verbose=verbose)
 
 
-def copy_from_last_successful_ds(site, project, ds_name_prefix, ds, verbose=False):
-    prev_ds_tuple = sim_util.find_latest_good_dataset_in_project(
-        project, ds_name_prefix
-    )
-    if prev_ds_tuple is None:
-        print("No previous dataset found, no copy_from will be performed.")
-        return
+def copy_from(site, src_ds, dst_ds, verbose=False):
+    dst_ds = sim_util.get_entity(dst_ds)
+    src_ds_url = sim_util.get_entity_url(src_ds)
     print(
-        "Running copy_from src={!r}, dst={!r}".format(ds.self, prev_ds_tuple.entity_url)
+        "Running copy_from src={!r}, dst={!r}".format(src_ds_url, dst_ds.self)
     )
-    response = ds.patch(
-        {"element": "shoji:entity", "body": {"copy_from": prev_ds_tuple.entity_url}}
+    response = dst_ds.patch(
+        {"element": "shoji:entity", "body": {"copy_from": src_ds_url}}
     )
     timeout = 3600.0 * 6  # copy_from can take a long time
     crunch_util.wait_for_progress2(site, response, timeout, verbose=verbose)
