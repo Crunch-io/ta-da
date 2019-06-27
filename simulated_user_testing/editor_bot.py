@@ -18,6 +18,7 @@ from datetime import datetime
 import glob
 import io
 import os
+import re
 import sys
 
 import docopt
@@ -45,6 +46,7 @@ def simulate_editor(config, args):
     ds_template = config["dataset_templates"][ds_template_id]
     payload_filename = ds_template["create_payload"]
     ds_name_prefix = get_ds_name_prefix(ds_template_id)
+    ds_name_pattern = r"^{}".format(re.escape(ds_name_prefix))
     ds_name = generate_ds_name(ds_name_prefix)
     data_dir = ds_template["data_dir"]
     site = sim_util.connect_api(config, args)
@@ -66,12 +68,19 @@ def simulate_editor(config, args):
 
     # Do the infamous Dataset.copy_from
     project = sim_util.get_project_by_name(site, "Sim Profiles")
-    prev_ds = sim_util.find_latest_good_dataset_in_project(project, ds_name_prefix)
+    prev_ds = sim_util.find_latest_good_dataset_in_project(project, ds_name_pattern)
     assert prev_ds.entity_url != ds.self
     copy_from(site, prev_ds, ds, verbose=verbose)
 
     # Create the "Master Fork"
-    create_master_fork(site, ds)
+    fork_name_suffix = " - Master Fork"
+    create_fork(site, ds, quad_project, fork_name_suffix)
+
+    # Delete older dataset forks in this series
+    forked_ds_name_pattern = r"^{}.*{}$".format(
+        re.escape(ds_name_prefix), re.escape(fork_name_suffix)
+    )
+    trim_older_datasets(site, quad_project, forked_ds_name_pattern, keep_prev_datasets)
 
     # Move into the project where it will be published
     move_ds_into_project(ds, project)
@@ -86,10 +95,10 @@ def simulate_editor(config, args):
         move_ds_into_project(prev_ds, prev_project)
 
     # Delete older datasets in Previous project
-    trim_older_datasets(prev_project, ds_name_prefix, keep_prev_datasets)
+    trim_older_datasets(site, prev_project, ds_name_pattern, keep_prev_datasets)
 
-    print("Done.")
     # TODO: Send Slack notification
+    print("Done.")
 
 
 def get_ds_name_prefix(template_id):
@@ -140,9 +149,7 @@ def append_data_sources(site, ds, source_urls, verbose=False):
 def copy_from(site, src_ds, dst_ds, verbose=False):
     dst_ds = sim_util.get_entity(dst_ds)
     src_ds_url = sim_util.get_entity_url(src_ds)
-    print(
-        "Running copy_from src={!r}, dst={!r}".format(src_ds_url, dst_ds.self)
-    )
+    print("Running copy_from src={!r}, dst={!r}".format(src_ds_url, dst_ds.self))
     response = dst_ds.patch(
         {"element": "shoji:entity", "body": {"copy_from": src_ds_url}}
     )
@@ -150,10 +157,11 @@ def copy_from(site, src_ds, dst_ds, verbose=False):
     crunch_util.wait_for_progress2(site, response, timeout, verbose=verbose)
 
 
-def create_master_fork(site, ds):
-    fork_name = "{} - Master Fork".format(ds.body.name)
-    print("Creating", fork_name)
-    ds.forks.create({"body": {"name": fork_name}})
+def create_fork(site, ds, project, fork_name_suffix):
+    fork_name = "{}{}".format(ds.body.name, fork_name_suffix)
+    project_url = sim_util.get_entity_url(project)
+    print("Creating", fork_name, "in project", project_url)
+    ds.forks.create({"body": {"name": fork_name, "owner": project_url}})
 
 
 def move_ds_into_project(ds, project):
@@ -169,30 +177,43 @@ def publish_ds(ds):
     ds.patch({"is_published": True})
 
 
-def trim_older_datasets(project, prefix, keep_prev_datasets):
+def trim_older_datasets(site, project, ds_name_pattern, keep_prev_datasets):
     """
-    keep_prev_datasets: Number of datasets to keep in project metching name prefix
+    keep_prev_datasets: Number of datasets to keep in project metching name regex
     """
-    assert keep_prev_datasets >= 1
-    datasets = [
-        ds_tuple
-        for _, ds_tuple in sim_util.sort_project_datasets_by_creation_datetime(
-            project, reverse=False
-        )
-        if ds_tuple.name.startswith(prefix)
-    ]
-    if len(datasets) > keep_prev_datasets:
-        num_datasets_to_delete = len(datasets) - keep_prev_datasets
+    if keep_prev_datasets < 1:
+        raise ValueError("keep_prev_datasets must be >= 1")
+    datasets = sim_util.sort_ds_tuples_by_creation_datetime(
+        sim_util.yield_project_datasets_matching_name(project, ds_name_pattern),
+        reverse=False,
+    )
+    if len(datasets) <= keep_prev_datasets:
         print(
-            "Deleting",
-            num_datasets_to_delete,
-            "old datasets in project",
-            project.body.name,
+            "Keeping",
+            len(datasets),
+            "datasets matching pattern",
+            repr(ds_name_pattern),
+            "in project",
+            sim_util.get_entity_name(project),
+            "(limit is {})".format(keep_prev_datasets),
         )
-        for ds_tuple in datasets[:num_datasets_to_delete]:
-            ds = ds_tuple.entity
-            print("Deleting", ds.body.name)
-            ds.delete()
+        return
+    num_datasets_to_delete = len(datasets) - keep_prev_datasets
+    print(
+        "Deleting",
+        num_datasets_to_delete,
+        "old datasets matching pattern",
+        repr(ds_name_pattern),
+        "in project",
+        sim_util.get_entity_name(project),
+        "(limit is {})".format(keep_prev_datasets),
+    )
+    for ds_tuple in datasets[:num_datasets_to_delete]:
+        ds = ds_tuple.entity
+        print("Deleting", ds.body.name)
+        # You can't delete a dataset unless you are the current editor
+        ds.patch({"current_editor": site.user.self})
+        ds.delete()
 
 
 if __name__ == "__main__":

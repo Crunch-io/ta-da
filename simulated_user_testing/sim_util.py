@@ -2,6 +2,7 @@
 Code used by multiple Simulated User Testing modules and scripts
 """
 from datetime import datetime
+import re
 
 import pycrunch
 import pycrunch.shoji
@@ -82,16 +83,28 @@ def subprojects_in_project(project):
         yield (proj_url, proj_tuple)
 
 
-def sort_project_datasets_by_creation_datetime(project, reverse=True):
-    def _sort_key(item):
-        ds_tuple = item[1]
+def yield_project_datasets_matching_name(project, ds_name_pattern):
+    """
+    ds_name_pattern: A regular expression to be matched against dataset names
+    """
+    compiled_ds_name_pattern = re.compile(ds_name_pattern)
+    project = get_entity(project).refresh()
+    for ds_tuple in six.itervalues(project.datasets.index):
+        if ds_tuple.type != "dataset":
+            continue
+        if compiled_ds_name_pattern.search(ds_tuple.name):
+            yield ds_tuple
+
+
+def sort_ds_tuples_by_creation_datetime(ds_tuples, reverse=True):
+    def _sort_key(ds_tuple):
         datetime_str = ds_tuple.creation_time
         if datetime_str.endswith("+00:00"):
             datetime_str = datetime_str[:-6]
         t = datetime.strptime(datetime_str, "%Y-%m-%dT%H:%M:%S.%f")
         return (t, ds_tuple.name)
 
-    return sorted(datasets_in_project(project), key=_sort_key, reverse=reverse)
+    return sorted(ds_tuples, key=_sort_key, reverse=reverse)
 
 
 def ds_is_good(ds):
@@ -100,17 +113,14 @@ def ds_is_good(ds):
     return ds.body.size.columns > 0 and ds.body.size.rows > 0
 
 
-def find_latest_good_dataset_in_project(project, ds_name_prefix):
+def find_latest_good_dataset_in_project(project, ds_name_pattern):
     """
     Return a dataset tuple for the most recent dataset entity in the given
     project that has a name matching ds_name_prefix and looks like it isn't
     hosed (has non-zero columns and rows), or None if there aren't any.
     """
-    if isinstance(project, pycrunch.shoji.Tuple):
-        project = project.entity
-    for _, ds_tuple in sort_project_datasets_by_creation_datetime(project):
-        if not ds_tuple.name.startswith(ds_name_prefix):
-            continue
+    ds_tuples = yield_project_datasets_matching_name(project, ds_name_pattern)
+    for ds_tuple in sort_ds_tuples_by_creation_datetime(ds_tuples):
         if ds_is_good(ds_tuple):
             return ds_tuple
     return None
@@ -121,6 +131,13 @@ def get_entity_url(obj):
         return obj.entity_url
     else:
         return obj.self
+
+
+def get_entity_name(obj):
+    if isinstance(obj, pycrunch.shoji.Tuple):
+        return obj.name
+    else:
+        return obj.body.name
 
 
 def get_entity(obj):
