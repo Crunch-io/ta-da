@@ -16,7 +16,7 @@ Usage:
 
 Options:
     -c CONFIG_FILENAME      [default: config.yaml]
-    -p PROFILE_NAME         Profile section in config [default: local]
+    -p PROFILE_NAME         Profile section in config [default: alpha]
     -u USER_ALIAS           Key to section inside profile [default: default]
     -i                      Run interactive prompt after executing command
     -v                      Print verbose messages
