@@ -18,9 +18,8 @@ import time
 import warnings
 
 import pycrunch
-import pycrunch.shoji
+import pycrunch.progress
 import six
-from six.moves import urllib
 from six.moves.urllib import parse as urllib_parse
 import urllib3.exceptions
 
@@ -34,22 +33,39 @@ warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 
 def connect_pycrunch(connection_info, verbose=False):
     """
-    connection_info:
-        dict containing the key 'api_url' for connecting to the Crunch API,
-        and also credentials in 'username' and 'password' keys, or a 'token'
-        key containing an authentication token. (Optional 'token' and 'cert'
-        keys used to pass parameters through to the requests library.)
+    connection_info: dictionary containing connection parameters:
+        api_url: URL of the Crunch API
+        token: If given, used for token authentication
+        username, password: Supply these for password authentication
+        cert: Passed through to requests library if given
+        progress_timeout: Number of seconds to wait before giving up
+        progress_interval: Number of seconds to sleep between retries
     Return:
         a pycrunch.shoji.Catalog "site" object. It has a session attribute that
         is derived from requests.sessions.Session, which can be used for making
         HTTP requests to the API server.
     """
     api_url = connection_info["api_url"]
+    progress_timeout = float(
+        connection_info.get(
+            "progress_timeout", pycrunch.progress.DEFAULT_PROGRESS_TIMEOUT
+        )
+    )
+    progress_interval = float(
+        connection_info.get(
+            "progress_interval", pycrunch.progress.DEFAULT_PROGRESS_INTERVAL
+        )
+    )
+    progress_tracking = pycrunch.progress.DefaultProgressTracking(
+        timeout=progress_timeout, interval=progress_interval
+    )
     if connection_info.get("token"):
         if verbose:
             print("Connecting to", api_url, "using token.", file=sys.stderr)
         session = pycrunch.Session(
-            token=connection_info["token"], domain=urllib.parse.urlparse(api_url).netloc
+            token=connection_info["token"],
+            domain=urllib_parse.urlparse(api_url).netloc,
+            progress_tracking=progress_tracking,
         )
     else:
         if verbose:
@@ -61,7 +77,9 @@ def connect_pycrunch(connection_info, verbose=False):
                 file=sys.stderr,
             )
         session = pycrunch.Session(
-            connection_info["username"], connection_info["password"]
+            email=connection_info["username"],
+            password=connection_info["password"],
+            progress_tracking=progress_tracking,
         )
     # If this session hook is not installed, you get an error from lemonpy.py:
     # AttributeError: No handler found for response status 301

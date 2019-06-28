@@ -69,8 +69,8 @@ def simulate_editor(config, args):
     # Do the infamous Dataset.copy_from
     project = sim_util.get_project_by_name(site, "Sim Profiles")
     prev_ds = sim_util.find_latest_good_dataset_in_project(project, ds_name_pattern)
-    assert prev_ds.entity_url != ds.self
-    copy_from(site, prev_ds, ds, verbose=verbose)
+    if prev_ds is not None:
+        copy_from(site, prev_ds, ds, verbose=verbose)
 
     # Create the "Master Fork"
     fork_name_suffix = " - Master Fork"

@@ -23,6 +23,9 @@ def connect_api(config, args):
     user_alias = args["-u"]
     profile = config["profiles"][profile_name]
     connect_params = {"api_url": profile["api_url"]}
+    for field_name in ("progress_timeout", "progress_interval"):
+        if field_name in profile:
+            connect_params[field_name] = profile[field_name]
     connect_params.update(profile["users"][user_alias])
     return connect_pycrunch(connect_params, verbose=args["-v"])
 
