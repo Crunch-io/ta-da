@@ -2,7 +2,9 @@
 Code used by multiple Simulated User Testing modules and scripts
 """
 from datetime import datetime
+import json
 import re
+import requests
 
 import pycrunch
 import pycrunch.shoji
@@ -148,3 +150,25 @@ def get_entity(obj):
         return obj.entity
     else:
         return obj
+
+
+# Copied from pow/clang/apis/slack.py
+def message(**kwargs):
+    ''' Send a message to our Slack team
+
+        kwargs:
+        * `text` message
+        * `channel` to post in
+        * `username` to post as
+        * `icon_emoji` to use for username
+        * `parse` to control what Slack does with it ('full' is default; use
+            None to do things like sending formatted links)
+    '''
+    u = "https://hooks.slack.com/services/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"
+    if kwargs['channel'][0] not in ["#", "@"]:
+        kwargs['channel'] = "#" + kwargs['channel']
+    if not 'parse' in kwargs:
+        kwargs['parse'] = 'full'
+    payload = {"payload": json.dumps(kwargs)}
+    r = requests.post(u, data=payload)
+    return r

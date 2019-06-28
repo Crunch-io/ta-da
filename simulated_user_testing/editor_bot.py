@@ -12,6 +12,7 @@ Options:
     -v                      Print verbose messages
     --dataset-template=TEMPLATE_ID  [default: gb_plus]
     --keep-prev-datasets=N  Number of previous datasets to keep [default: 10]
+    --slack-notify          Send Slack message when done
 """
 from __future__ import print_function
 from datetime import datetime
@@ -20,6 +21,8 @@ import io
 import os
 import re
 import sys
+import textwrap
+import time
 
 import docopt
 import yaml
@@ -40,6 +43,7 @@ def main():
 
 
 def simulate_editor(config, args):
+    t0 = time.time()
     verbose = args["-v"]
     ds_template_id = args["--dataset-template"]
     keep_prev_datasets = int(args["--keep-prev-datasets"])
@@ -49,6 +53,7 @@ def simulate_editor(config, args):
     ds_name_pattern = r"^{}".format(re.escape(ds_name_prefix))
     ds_name = generate_ds_name(ds_name_prefix)
     data_dir = ds_template["data_dir"]
+    environment = args["-p"]  # profile name == environment (e.g. alpha)
     site = sim_util.connect_api(config, args)
 
     quad_project = sim_util.get_project_by_name(site, "Quad")
@@ -74,7 +79,7 @@ def simulate_editor(config, args):
 
     # Create the "Master Fork"
     fork_name_suffix = " - Master Fork"
-    create_fork(site, ds, quad_project, fork_name_suffix)
+    fork_ds = create_fork(site, ds, quad_project, fork_name_suffix)
 
     # Delete older dataset forks in this series
     forked_ds_name_pattern = r"^{}.*{}$".format(
@@ -97,7 +102,43 @@ def simulate_editor(config, args):
     # Delete older datasets in Previous project
     trim_older_datasets(site, prev_project, ds_name_pattern, keep_prev_datasets)
 
-    # TODO: Send Slack notification
+    # Send Slack notification
+    msg = (
+        textwrap.dedent(
+            """
+        *Simulated User Testing*
+        _editor_bot_ ran in {environment} environment in {duration:.1f} seconds
+
+        Created dataset "{ds_name}"
+        Appended {num_batches} batches
+        Ran Dataset.copy_from({prev_ds_name})
+        Created fork: "{fork_ds_name}"
+        Published to "{project_name}"
+        """
+        )
+        .strip()
+        .format(
+            environment=environment,
+            duration=(time.time() - t0),
+            ds_name=ds.body.name,
+            num_batches=len(source_urls),
+            prev_ds_name=("" if prev_ds is None else sim_util.get_entity_name(prev_ds)),
+            fork_ds_name=sim_util.get_entity_name(fork_ds),
+            project_name=sim_util.get_entity_name(project),
+        )
+    )
+    print(msg)
+    if args["--slack-notify"]:
+        response = sim_util.message(
+            text=msg, channel="#systems", username="crunchbot", icon_emoji=":pizza:"
+        )
+        if not response.ok:
+            print("ERROR sending Slack notification:", response)
+        else:
+            print("Sent Slack notification")
+    else:
+        print("Not sending Slack notification because --slack-notify not set")
+
     print("Done.")
 
 
@@ -161,7 +202,9 @@ def create_fork(site, ds, project, fork_name_suffix):
     fork_name = "{}{}".format(ds.body.name, fork_name_suffix)
     project_url = sim_util.get_entity_url(project)
     print("Creating", fork_name, "in project", project_url)
-    ds.forks.create({"body": {"name": fork_name, "owner": project_url}})
+    fork_ds = ds.forks.create({"body": {"name": fork_name, "owner": project_url}})
+    fork_ds.refresh()
+    return fork_ds
 
 
 def move_ds_into_project(ds, project):
