@@ -137,7 +137,6 @@ def _simulate_editor(config, args):
             """
         *Simulated User Testing*
         _editor_bot_ ran in {environment} environment in {duration:.1f} seconds
-
         Created dataset "{ds_name}"
         Appended {num_batches} batches
         Ran Dataset.copy_from({prev_ds_name})
