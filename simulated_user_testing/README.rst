@@ -26,7 +26,7 @@ Then, run these commands on a backend machine in the Alpha environment::
     venv3/bin/pip install -r requirements.txt
 
     mkdir log
-    sudo chown centos:crunchweb log
+    sudo chown $USER:crunchweb log
     chmod ug+rw log
 
 
@@ -58,18 +58,18 @@ sim-editor-1 and sim-user-1 users; you will set those passwords later::
                     username: 'sim-user-1@crunch.io'
                     password: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
-Run ``./ds_meta.py -p alpha -v list-datasets`` to verify you can connect to the
-Alpha API as the default user.
+Run ``venv3/bin/python ds_meta.py -p alpha -v list-datasets`` to verify you can connect
+to the Alpha API as the default user.
 
-Run ``./ds_meta.py -p prod -v list-datasets`` to verify you can connect to the
-Production API as the default user (this is only used for making copies of
-production dataset metadata during setup).
+(Optional) Run ``venv3/bin/python ds_meta.py -p prod -v list-datasets`` to verify you
+can connect to the Production API as the default user (this is only used for making
+copies of production dataset metadata during setup).
 
 Go to your account page in Alpha superadmin
 (https://alpha.superadmin.crint.net/accounts/00001/ for developers) and create the
-following users. Uncheck the "Send invite" checkbox when creating each user. Put your own
-Crunch email address in the "From email" box since the default support@crunch.io will
-result in an error message.
+following users. Uncheck the "Send invite" checkbox when creating each user. Put your
+own Crunch email address in the "From email" box since the default support@crunch.io
+will result in an error message.
 
 Email:  sim-editor-1@crunch.io
 Name:   Sim Editor 1 
@@ -90,8 +90,8 @@ passwords for these users as you put in the ``config.yaml`` file.
 Test this new configuration by making sure these commands run without errors.
 Of course no datasets will be listed because these users don't have any yet::
 
-    ./ds_meta.py -p alpha -u sim-editor-1 -v list-datasets
-    ./ds_meta.py -p alpha -u sim-user-1 -v list-datasets
+    venv3/bin/python ds_meta.py -p alpha -u sim-editor-1 -v list-datasets
+    venv3/bin/python ds_meta.py -p alpha -u sim-user-1 -v list-datasets
 
 Go to the Alpha superadmin page at https://alpha.superadmin.crint.net/projects/ and create the
 following projects.

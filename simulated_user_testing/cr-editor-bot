@@ -2,7 +2,7 @@
 MAILTO=david@crunch.io
 
 # Dev config: Run every hour at 15 minutes past the hour
-15 * * * *  crunchweb   /remote/simulated_user_testing/editor-bot.sh
+#15 * * * *  crunchweb   /remote/simulated_user_testing/editor-bot.sh --slack-notify
 
 # Regular testing: Run every week on Monday 8:15AM UTC
-#15 8 * * 1  crunchweb   /remote/simulated_user_testing/editor-bot.sh
+15 8 * * 1  crunchweb   /remote/simulated_user_testing/editor-bot.sh --slack-notify

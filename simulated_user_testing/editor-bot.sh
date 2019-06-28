@@ -11,5 +11,5 @@ if [ -f /var/lib/crunch.io/maintenance -o -f /var/lib/crunch.io/maintenance-stre
     exit 0;
 else
     logfile=$TESTING_HOME/log/editor-bot-$(date +%Y-%m-%d-%H%M%S).log
-    exec $TESTING_HOME/venv3/bin/python $TESTING_HOME/editor_bot.py simulate-editor -v --slack-notify 2>&1 > $logfile
+    exec $TESTING_HOME/venv3/bin/python $TESTING_HOME/editor_bot.py simulate-editor -v "$@" > $logfile 2>&1
 fi
