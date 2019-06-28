@@ -11,7 +11,24 @@ Setup Steps
 Deployment
 ..........
 
-Copy the code in this directory to /remote/simulated_user_testing on the Alpha system.
+On one of the backend machines in the Alpha environment run::
+
+    mkdir /remote/simulated_user_testing
+
+Copy the files in this directory to that directory you just created.
+Then, run these commands on a backend machine in the Alpha environment::
+
+    cd /remote/simulated_user_testing
+
+    # Calling it "venv3" to emphasizes it uses Python 3
+    virtualenv -p python3 venv3
+    venv3/bin/pip install -U pip
+    venv3/bin/pip install -r requirements.txt
+
+    mkdir log
+    sudo chown centos:crunchweb log
+    chmod ug+rw log
+
 
 Configuration
 .............

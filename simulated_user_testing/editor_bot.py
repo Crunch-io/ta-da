@@ -23,6 +23,7 @@ import re
 import sys
 import textwrap
 import time
+import traceback
 
 import docopt
 import yaml
@@ -43,6 +44,34 @@ def main():
 
 
 def simulate_editor(config, args):
+    try:
+        rc = 0
+        msg = _simulate_editor(config, args)
+    except BaseException as err:
+        rc = 1
+        msg = "Simulated User Testing: FAILED\n{err}".format(err=err)
+        traceback.print_exc()
+    finally:
+        print(msg)
+        if args["--slack-notify"]:
+            response = sim_util.message(
+                text=msg, channel="#systems", username="crunchbot", icon_emoji=":pizza:"
+            )
+            if not response.ok:
+                print("ERROR sending Slack notification:", response)
+            else:
+                print("Sent Slack notification")
+        else:
+            print("Not sending Slack notification because --slack-notify not set")
+        print("Done.")
+        return rc
+
+
+def _simulate_editor(config, args):
+    """
+    Do what an Editor does to set up a new Profiles dataset
+    Return a string status message formatted for Slack
+    """
     t0 = time.time()
     verbose = args["-v"]
     ds_template_id = args["--dataset-template"]
@@ -127,19 +156,7 @@ def simulate_editor(config, args):
             project_name=sim_util.get_entity_name(project),
         )
     )
-    print(msg)
-    if args["--slack-notify"]:
-        response = sim_util.message(
-            text=msg, channel="#systems", username="crunchbot", icon_emoji=":pizza:"
-        )
-        if not response.ok:
-            print("ERROR sending Slack notification:", response)
-        else:
-            print("Sent Slack notification")
-    else:
-        print("Not sending Slack notification because --slack-notify not set")
-
-    print("Done.")
+    return msg
 
 
 def get_ds_name_prefix(template_id):
