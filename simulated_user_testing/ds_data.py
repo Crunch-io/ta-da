@@ -187,7 +187,11 @@ def append_source(site, ds, source_url, timeout=3600.0, verbose=False):
         if verbose:
             print("Finished appending to dataset", ds.body.id, file=sys.stderr)
     else:
-        raise Exception("Timed out appending to dataset {}".format(ds.body.id))
+        raise Exception(
+            "Timed out appending to dataset {} after {} seconds".format(
+                ds.body.id, timeout
+            )
+        )
 
 
 def validate_url(url):

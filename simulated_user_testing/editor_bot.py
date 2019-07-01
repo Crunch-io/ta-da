@@ -200,7 +200,8 @@ def append_data_sources(site, ds, source_urls, verbose=False):
             ds.body.id,
         )
         sys.stdout.flush()  # Make sure progress shows up on stdout
-        ds_data.append_source(site, ds, source_url, verbose=verbose)
+        timeout = 3600.0 * 6  # Batch append can take a long time
+        ds_data.append_source(site, ds, source_url, timeout=timeout, verbose=verbose)
 
 
 def copy_from(site, src_ds, dst_ds, verbose=False):
