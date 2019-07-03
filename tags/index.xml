@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Jun 2019 11:16:05 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jul 2019 15:20:47 -0400</lastBuildDate>
     
 	<atom:link href="//crunch.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>statistics</title>
+      <link>//crunch.io/tags/statistics/</link>
+      <pubDate>Wed, 03 Jul 2019 15:20:47 -0400</pubDate>
+      
+      <guid>//crunch.io/tags/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tables</title>
+      <link>//crunch.io/tags/tables/</link>
+      <pubDate>Wed, 03 Jul 2019 15:20:47 -0400</pubDate>
+      
+      <guid>//crunch.io/tags/tables/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>dashboards</title>
