@@ -21,6 +21,6 @@ Dataset editors can add one or more variables to be used as filters across an en
 
 * Add brands or products to create a dashboard that lets your viewers quickly understand the customer awareness, attitude, and usage of their products and competitors.
 
-See [our support documentation](https://app.getguru.com/card/i4EBoLeT/How-to-apply-filters-to-a-dataset-dashboard) to get started.
+See [our support documentation](http://support.crunch.io/articles/iMEzb6zT/How-to-apply-filters-to-a-dataset-dashboard) to get started.
 
 This feature is currently in early access. We'd love your feedback at support@crunch.io.
