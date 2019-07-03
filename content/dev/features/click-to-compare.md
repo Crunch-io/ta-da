@@ -1,5 +1,5 @@
 +++
-date = "2019-06-04T23:20:47-04:00"
+date = "2019-07-03T15:20:47-04:00"
 title = "Click to set the comparison column for hypothesis tests"
 news_description = "You can now click to set a reference column for hypothesis testing in tables. Click here to learn more."
 description = "Tables are shaded to show which other columns are higher or lower than the reference column for each row."
