@@ -200,7 +200,7 @@ def append_data_sources(site, ds, source_urls, verbose=False):
             ds.body.id,
         )
         sys.stdout.flush()  # Make sure progress shows up on stdout
-        timeout = 3600.0 * 6  # Batch append can take a long time
+        timeout = 36000.0  # Batch append can take a long time, giving it 10 hours
         ds_data.append_source(site, ds, source_url, timeout=timeout, verbose=verbose)
 
 
@@ -211,7 +211,7 @@ def copy_from(site, src_ds, dst_ds, verbose=False):
     response = dst_ds.patch(
         {"element": "shoji:entity", "body": {"copy_from": src_ds_url}}
     )
-    timeout = 3600.0 * 6  # copy_from can take a long time
+    timeout = 36000.0  # copy_from can take a long time, giving it 10 hours
     crunch_util.wait_for_progress2(site, response, timeout, verbose=verbose)
 
 
