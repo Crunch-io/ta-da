@@ -1,5 +1,6 @@
 +++
 date = "2019-07-16T10:16:05+01:00"
+publishdate = "2019-07-16T11:37:11+0000"
 title = "Filtering dashboards"
 news_description = "Dataset editors can now specify variables that can be used to filter all analyses in the dashboard at once – let your users customize their view data by gender, age, brand, and more with a single click. Click here to learn more."
 description = "Dataset editors can now specify variables that can be used to filter all analyses in the dashboard at once – let your users customize their view data by gender, age, brand, and more with a single click."
