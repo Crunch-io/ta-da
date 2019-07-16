@@ -153,13 +153,13 @@
   </url>
   
   <url>
-    <loc>//crunch.io/dev/features/click-to-compare/</loc>
-    <lastmod>2019-07-03T15:20:47-04:00</lastmod>
+    <loc>//crunch.io/dev/features/dashboard-filtering/</loc>
+    <lastmod>2019-07-16T10:16:05+01:00</lastmod>
   </url>
   
   <url>
-    <loc>//crunch.io/dev/features/dashboard-filtering/</loc>
-    <lastmod>2019-06-03T11:16:05+01:00</lastmod>
+    <loc>//crunch.io/dev/features/click-to-compare/</loc>
+    <lastmod>2019-07-03T15:20:47-04:00</lastmod>
   </url>
   
   <url>
@@ -194,25 +194,31 @@
   
   <url>
     <loc>//crunch.io/categories/</loc>
-    <lastmod>2019-07-03T15:20:47-04:00</lastmod>
+    <lastmod>2019-07-16T10:16:05+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//crunch.io/</loc>
-    <lastmod>2019-07-03T15:20:47-04:00</lastmod>
+    <lastmod>2019-07-16T10:16:05+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//crunch.io/tags/</loc>
-    <lastmod>2019-07-03T15:20:47-04:00</lastmod>
+    <lastmod>2019-07-16T10:16:05+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/dashboards/</loc>
+    <lastmod>2019-07-16T10:16:05+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//crunch.io/categories/feature/</loc>
-    <lastmod>2019-07-03T15:20:47-04:00</lastmod>
+    <lastmod>2019-07-16T10:16:05+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -225,12 +231,6 @@
   <url>
     <loc>//crunch.io/tags/tables/</loc>
     <lastmod>2019-07-03T15:20:47-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/dashboards/</loc>
-    <lastmod>2019-06-03T11:16:05+01:00</lastmod>
     <priority>0</priority>
   </url>
   
