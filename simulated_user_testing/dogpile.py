@@ -40,12 +40,19 @@ def main():
     controller = DogpileController(config, args, dataset_id, loop_sleep)
     runners = []
     try:
-        for client_id in range(1, num_runners + 1):
-            runners.append(controller.create_runner(client_id))
+        for i in range(1, num_runners + 1):
+            name = "Runner-{:02}".format(i)
+            runners.append(controller.create_runner(name))
         for runner in runners:
             runner.start()
         while runners:
-            runners = [r for r in runners if r.is_alive()]
+            runners_copy = runners[:]
+            runners = []
+            for runner in runners_copy:
+                if runner.is_alive():
+                    runners.append(runner)
+                else:
+                    print("{}: died".format(runner.name))
             time.sleep(loop_sleep)
     except KeyboardInterrupt:
         print("\nStarting normal shutdown")
@@ -57,7 +64,7 @@ def main():
         print("Signaling runners to stop")
         controller.stop()
         while runners:
-            print("Waiting for runners to exit...")
+            print("Waiting for {} runners to exit...".format(len(runners)))
             for runner in runners:
                 runner.join(loop_sleep)
             runners = [r for r in runners if r.is_alive()]
@@ -72,8 +79,8 @@ class DogpileController:
         self.loop_sleep = loop_sleep
         self.stop_event = threading.Event()
 
-    def create_runner(self, client_id):
-        return DogpileRunner(self, client_id)
+    def create_runner(self, name):
+        return DogpileRunner(self, name)
 
     def connect_api(self):
         """
@@ -95,13 +102,13 @@ class DogpileRunner:
     Repeat until stop event is signaled.
     """
 
-    def __init__(self, controller, client_id):
+    def __init__(self, controller, name):
         self.controller = controller
-        self.client_id = client_id
+        self.name = name
         self._thread = None
 
     def start(self):
-        self._thread = threading.Thread(target=self.run)
+        self._thread = threading.Thread(name=self.name, target=self.run)
         self._thread.daemon = True
         self._thread.start()
 
@@ -135,7 +142,7 @@ class DogpileRunner:
                 "weight": None,
             }
             params_str = json.dumps(params, indent=None, separators=(",", ":"))
-            print("Client #{:02} Cube {}".format(self.client_id, var_url))
+            print("{}: Cube {}".format(self.name, var_url))
             r = site.session.get(
                 ds.views.cube, params={"query": params_str, "filter": "[]"}
             )
