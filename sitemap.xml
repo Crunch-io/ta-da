@@ -183,6 +183,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/jobs/senior-r-developer/</loc>
+    <lastmod>2019-07-18T14:08:35+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/jobs/business-development-manager/</loc>
     <lastmod>2018-10-22T10:39:29+01:00</lastmod>
   </url>
@@ -193,13 +198,13 @@
   </url>
   
   <url>
-    <loc>//crunch.io/categories/</loc>
-    <lastmod>2019-07-16T10:16:05+01:00</lastmod>
+    <loc>//crunch.io/</loc>
+    <lastmod>2019-07-18T14:08:35+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//crunch.io/</loc>
+    <loc>//crunch.io/categories/</loc>
     <lastmod>2019-07-16T10:16:05+01:00</lastmod>
     <priority>0</priority>
   </url>

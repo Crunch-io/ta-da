@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Jul 2019 10:16:05 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 18 Jul 2019 14:08:35 +0200</lastBuildDate>
     
 	<atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -319,6 +319,16 @@
       <guid>//crunch.io/dev/features/dataset-folders/</guid>
       <description>Dataset folders allow you to organize your data hierarchically, similar to a file system as you might see in Windows Explorer or MacOS Finder. Folders make finding, organizing, and sharing data more intuitive.
  Folders can be used to organize large collections of datasets into more manageable units. If your organization imports data from many sources or has a large archive of previously imported data, you can organize them by source, time of import/survey, subject, etc.</description>
+    </item>
+    
+    <item>
+      <title>Senior R Developer</title>
+      <link>//crunch.io/jobs/senior-r-developer/</link>
+      <pubDate>Thu, 18 Jul 2019 14:08:35 +0200</pubDate>
+      
+      <guid>//crunch.io/jobs/senior-r-developer/</guid>
+      <description>Reporting to: VP of Product  Location: Anywhere
+Crunch.io is seeking a talented, motivated, and versatile human to help lead the development of our R data science products. Crunch provides a modern platform for survey data analysis, and a central feature of our product is the ability to manipulate and analyze datasets stored in the cloud using R. As senior R developer, you will have three main responsibilities. First, you will work with the rest of our team to design and implement novel features that deliver real value and change our clients’ workflows for the better.</description>
     </item>
     
     <item>
