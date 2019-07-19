@@ -37,23 +37,9 @@ def main():
     dataset_id = args["<dataset-id>"]
     loop_sleep = float(args["--loop-sleep"])
     num_runners = int(args["--num-runners"])
-    controller = DogpileController(config, args, dataset_id, loop_sleep)
-    runners = []
+    controller = DogpileController(config, args, dataset_id, loop_sleep, num_runners)
     try:
-        for i in range(1, num_runners + 1):
-            name = "Runner-{:02}".format(i)
-            runners.append(controller.create_runner(name))
-        for runner in runners:
-            runner.start()
-        while runners:
-            runners_copy = runners[:]
-            runners = []
-            for runner in runners_copy:
-                if runner.is_alive():
-                    runners.append(runner)
-                else:
-                    print("{}: died".format(runner.name))
-            time.sleep(loop_sleep)
+        controller.run()
     except KeyboardInterrupt:
         print("\nStarting normal shutdown")
         return 0
@@ -63,24 +49,63 @@ def main():
     finally:
         print("Signaling runners to stop")
         controller.stop()
-        while runners:
-            print("Waiting for {} runners to exit...".format(len(runners)))
-            for runner in runners:
-                runner.join(loop_sleep)
-            runners = [r for r in runners if r.is_alive()]
         print("Done.")
 
 
 class DogpileController:
-    def __init__(self, config, args, dataset_id, loop_sleep):
+    def __init__(self, config, args, dataset_id, loop_sleep, num_runners):
         self.config = config
         self.args = args
         self.dataset_id = dataset_id
         self.loop_sleep = loop_sleep
+        self.num_runners = num_runners
+        #####
+        self.cat_var_ids = []
+        self.variables = None
+        self.runners = []
         self.stop_event = threading.Event()
 
-    def create_runner(self, name):
-        return DogpileRunner(self, name)
+    def run(self):
+        self.fetch_metadata()
+        runners = self.runners
+        for i in range(1, self.num_runners + 1):
+            name = "Runner-{:02}".format(i)
+            runners.append(DogpileRunner(self, name))
+        for runner in runners:
+            runner.start()
+        while runners:
+            runners_copy = runners[:]
+            runners[:] = []
+            for runner in runners_copy:
+                if runner.is_alive():
+                    runners.append(runner)
+                else:
+                    print("{}: died".format(runner.name))
+            time.sleep(self.loop_sleep)
+
+    def stop(self):
+        self.stop_event.set()
+        runners = self.runners
+        while runners:
+            print("Waiting for {} runners to exit...".format(len(runners)))
+            for runner in runners:
+                runner.join(self.loop_sleep)
+            runners[:] = [r for r in runners if r.is_alive()]
+
+    def fetch_metadata(self):
+        print("Connecting to API")
+        site, ds = self.connect_api()
+        print("Fetching metadata...", end="")
+        t0 = time.time()
+        metadata = ds.table["metadata"]
+        if not metadata:
+            raise AssertionError("Dataset must have variables!")
+        cat_vars = _get_cat_vars(metadata)
+        if not cat_vars:
+            raise AssertionError("Dataset must have at least one categorical variable")
+        self.cat_var_ids = list(cat_vars)
+        self.variables = ds.variables.by("id")
+        print(" took {:.3f} seconds".format(time.time() - t0))
 
     def connect_api(self):
         """
@@ -90,9 +115,6 @@ class DogpileController:
         site = sim_util.connect_api(self.config, self.args)
         ds = crunch_util.get_dataset_by_id(site, self.dataset_id)
         return (site, ds)
-
-    def stop(self):
-        self.stop_event.set()
 
 
 class DogpileRunner:
@@ -123,19 +145,10 @@ class DogpileRunner:
     def run(self):
         print("{}: Connecting to API".format(self.name))
         site, ds = self.controller.connect_api()
-        print("{}: Fetching metadata".format(self.name))
-        metadata = ds.table["metadata"]
-        if not metadata:
-            raise AssertionError("Dataset must have variables!")
-        cat_vars = _get_cat_vars(metadata)
-        if not metadata:
-            raise AssertionError("Dataset must have at least one categorical variable")
-        cat_var_ids = list(cat_vars)
         # Generate random cube requests using single categorical variables
-        variables = ds.variables.by("id")
         while not self.controller.stop_event.is_set():
-            var_id = random.choice(cat_var_ids)
-            var_url = variables[var_id].entity_url
+            var_id = random.choice(self.controller.cat_var_ids)
+            var_url = self.controller.variables[var_id].entity_url
             params = {
                 "dimensions": [{"variable": var_url}],
                 "measures": {"count": {"function": "cube_count", "args": []}},
