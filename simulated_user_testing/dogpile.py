@@ -121,7 +121,9 @@ class DogpileRunner:
         self._thread.join(timeout)
 
     def run(self):
+        print("{}: Connecting to API".format(self.name))
         site, ds = self.controller.connect_api()
+        print("{}: Fetching metadata".format(self.name))
         metadata = ds.table["metadata"]
         if not metadata:
             raise AssertionError("Dataset must have variables!")
@@ -130,24 +132,36 @@ class DogpileRunner:
             raise AssertionError("Dataset must have at least one categorical variable")
         cat_var_ids = list(cat_vars)
         # Generate random cube requests using single categorical variables
+        variables = ds.variables.by("id")
         while not self.controller.stop_event.is_set():
             var_id = random.choice(cat_var_ids)
-            # print(var_id)
-            # print(json.dumps(var_info, indent=4))
-            # @jj would hate this code, oh well
-            var_url = ds.variables.by("id")[var_id].entity_url
+            var_url = variables[var_id].entity_url
             params = {
                 "dimensions": [{"variable": var_url}],
                 "measures": {"count": {"function": "cube_count", "args": []}},
                 "weight": None,
             }
             params_str = json.dumps(params, indent=None, separators=(",", ":"))
-            print("{}: Cube {}".format(self.name, var_url))
+            t0 = time.time()
             r = site.session.get(
                 ds.views.cube, params={"query": params_str, "filter": "[]"}
             )
+            cube_time = time.time() - t0
+            print(
+                "{}: Cube var={} cube_time={:.3f}".format(
+                    self.name, self._shorten_url(site, var_url), cube_time
+                )
+            )
             r.raise_for_status()
             time.sleep(self.controller.loop_sleep)
+
+    def _shorten_url(self, site, url):
+        site_url = site.self
+        if site_url.endswith("/"):
+            site_url = site_url[:-1]
+        if url.startswith(site_url):
+            return url[len(site_url) :]
+        return url
 
 
 def _get_cat_vars(metadata):
