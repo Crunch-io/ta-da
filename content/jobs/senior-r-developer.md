@@ -49,4 +49,4 @@ Qualifications:
 
 * Eagerness to take ownership of projects and deliver results on schedule
 
-* Experience in a "data science", such as social science, market research, or data visualization, is a plus.
+* Experience in a “data science,” such as social science, market research, or data visualization, is a plus.

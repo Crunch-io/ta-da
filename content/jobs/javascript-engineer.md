@@ -4,9 +4,6 @@ draft = true
 title = "Intermediate JavaScript Engineer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
-application_url = "http://smrtr.io/Rxmr"
-
-
 +++
 
 Crunch is seeking talented, motivated engineers to join our fully remote team building interactive data applications. As a part of growing front-end team, you will work with four experienced JavaScript developers and two designers constantly improving our users’ experience. You will also collaborate with others throughout our organization and technology stack to build products that are revolutionizing the way our clients achieve their business goals.
@@ -35,7 +32,7 @@ Front-end developers on our platform are first-class team members. Although your
 
 If you have experience or interest in these additional areas, you may have the opportunity to work with them as part of your role:
 
-* End-to-end testing (we use Nightwatch.js and Docker)
+* End-to-end testing
 * Mobile design / touch interfaces
 
 ## Qualifications:
