@@ -6,7 +6,7 @@ weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 +++
 
-Crunch is seeking talented, motivated engineers to join our fully remote team building interactive data applications. As a part of growing front-end team, you will work with four experienced JavaScript developers and two designers constantly improving our users’ experience. You will also collaborate with others throughout our organization and technology stack to build products that are revolutionizing the way our clients achieve their business goals.
+Crunch is seeking talented, motivated engineers to join our fully remote team building interactive data applications. As a part of growing front-end team, you will work with five experienced JavaScript developers and two designers constantly improving our users’ experience. You will also collaborate with others throughout our organization and technology stack to build products that are revolutionizing the way our clients achieve their business goals.
 
 On the front-end team, we feel strongly about developing solutions that are both technically and aesthetically sound. We invite you to bring your experience and perspective to conversations about the future growth of our applications and environment. We work closely together, with a healthy and non-combative review process aimed at improving code as well as developing each other’s skills. In short, we strive to write solid, thoroughly tested, and readable code; and we are seeking a new contributor to our already highly effective team.
 
@@ -23,11 +23,9 @@ Front-end developers on our platform are first-class team members. Although your
 * ECMAScript (latest specification, as needed)
 * Webpack + Babel (ES6 modules)
 * React + Redux
-* Immutable data objects
-* AngularJS 1.5
 * Styled Components
-* Stylus
-* Unit testing with Jest + Enzyme for React (we have over 5500 unit tests across our app)
+* AngularJS 1.5 & Stylus (for parts of the app that aren’t using React yet)
+* Unit testing with Jest (we have over 5500 unit tests across our app)
 * Jenkins for continuous integration and deployment
 
 If you have experience or interest in these additional areas, you may have the opportunity to work with them as part of your role:
