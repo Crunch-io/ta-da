@@ -73,7 +73,7 @@ def main():
         elif dataset_integrity is False:
             notify(dataset_id, dataset['name'], 'Broken: %s - %s - %s' % (
                 dataset_info.get("last_transaction"),
-                dataset_info.get("last_action")
+                dataset_info.get("last_action"),
                 dataset_info.get("datamap")
             ), success=False, tracefile=tracefile)
         elif dataset_integrity is True:
