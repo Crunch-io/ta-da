@@ -138,15 +138,6 @@
     </item>
     
     <item>
-      <title>R</title>
-      <link>//crunch.io/tags/r/</link>
-      <pubDate>Fri, 03 Aug 2018 12:12:10 -0700</pubDate>
-      
-      <guid>//crunch.io/tags/r/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>crplyr</title>
       <link>//crunch.io/tags/crplyr/</link>
       <pubDate>Fri, 03 Aug 2018 12:12:10 -0700</pubDate>
@@ -170,6 +161,15 @@
       <pubDate>Fri, 03 Aug 2018 12:12:10 -0700</pubDate>
       
       <guid>//crunch.io/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>//crunch.io/tags/r/</link>
+      <pubDate>Fri, 03 Aug 2018 12:12:10 -0700</pubDate>
+      
+      <guid>//crunch.io/tags/r/</guid>
       <description></description>
     </item>
     

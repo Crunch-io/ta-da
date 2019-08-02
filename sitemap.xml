@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>//crunch.io/team/members/nick/</loc>
+    <lastmod>2019-08-02T14:26:35-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/team/members/shaloo/</loc>
     <lastmod>2019-06-18T11:45:34+01:00</lastmod>
   </url>
@@ -204,18 +209,12 @@
   
   <url>
     <loc>//crunch.io/</loc>
-    <lastmod>2019-07-18T14:08:35+02:00</lastmod>
+    <lastmod>2019-08-02T14:26:35-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//crunch.io/categories/</loc>
-    <lastmod>2019-07-16T10:16:05+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/</loc>
     <lastmod>2019-07-16T10:16:05+01:00</lastmod>
     <priority>0</priority>
   </url>
@@ -228,6 +227,12 @@
   
   <url>
     <loc>//crunch.io/categories/feature/</loc>
+    <lastmod>2019-07-16T10:16:05+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/</loc>
     <lastmod>2019-07-16T10:16:05+01:00</lastmod>
     <priority>0</priority>
   </url>
@@ -316,11 +321,6 @@
   </url>
   
   <url>
-    <loc>//crunch.io/dev/features/pptx-exports/</loc>
-    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//crunch.io/tags/analysis/</loc>
     <lastmod>2018-09-25T10:20:47-04:00</lastmod>
     <priority>0</priority>
@@ -351,14 +351,8 @@
   </url>
   
   <url>
-    <loc>//crunch.io/dev/blog/autoplot-with-tidyeval/</loc>
-    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/r/</loc>
-    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
-    <priority>0</priority>
+    <loc>//crunch.io/dev/features/pptx-exports/</loc>
+    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
   </url>
   
   <url>
@@ -381,6 +375,17 @@
   
   <url>
     <loc>//crunch.io/tags/ggplot2/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/dev/blog/autoplot-with-tidyeval/</loc>
+    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/r/</loc>
     <lastmod>2018-08-03T12:12:10-07:00</lastmod>
     <priority>0</priority>
   </url>
@@ -417,11 +422,6 @@
   </url>
   
   <url>
-    <loc>//crunch.io/dev/features/subtotals/</loc>
-    <lastmod>2018-01-14T13:20:47-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//crunch.io/tags/nets/</loc>
     <lastmod>2018-01-14T13:20:47-04:00</lastmod>
     <priority>0</priority>
@@ -434,8 +434,8 @@
   </url>
   
   <url>
-    <loc>//crunch.io/dev/features/dataset-dashboard/</loc>
-    <lastmod>2017-10-17T23:20:47-04:00</lastmod>
+    <loc>//crunch.io/dev/features/subtotals/</loc>
+    <lastmod>2018-01-14T13:20:47-04:00</lastmod>
   </url>
   
   <url>
@@ -445,8 +445,8 @@
   </url>
   
   <url>
-    <loc>//crunch.io/dev/blog/nightwatch-selenium-docker/</loc>
-    <lastmod>2017-10-10T09:00:00-07:00</lastmod>
+    <loc>//crunch.io/dev/features/dataset-dashboard/</loc>
+    <lastmod>2017-10-17T23:20:47-04:00</lastmod>
   </url>
   
   <url>
@@ -459,6 +459,11 @@
     <loc>//crunch.io/tags/testing/</loc>
     <lastmod>2017-10-10T09:00:00-07:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/dev/blog/nightwatch-selenium-docker/</loc>
+    <lastmod>2017-10-10T09:00:00-07:00</lastmod>
   </url>
   
   <url>
@@ -484,14 +489,14 @@
   </url>
   
   <url>
-    <loc>//crunch.io/dev/features/sentiment-analysis/</loc>
-    <lastmod>2017-08-21T23:20:47-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//crunch.io/tags/derived-variables/</loc>
     <lastmod>2017-08-21T23:20:47-04:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/dev/features/sentiment-analysis/</loc>
+    <lastmod>2017-08-21T23:20:47-04:00</lastmod>
   </url>
   
   <url>
