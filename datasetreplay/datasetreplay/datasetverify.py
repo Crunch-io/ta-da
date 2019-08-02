@@ -63,15 +63,18 @@ def main():
             return
 
         dataset_integrity = dataset_info["verify_integrity"]
+        if dataset_info.get("datamap"):
+            # The datamap is corrupted
+            dataset_integrity = False
+
         if dataset_integrity is None:
+            # Never had a transaction committed
             return
-            # notify(dataset_id, dataset['name'],
-            #       'Skipped: Never had a transaction', 
-            #        success=False, skipped=True, tracefile=tracefile)
         elif dataset_integrity is False:
-            notify(dataset_id, dataset['name'], 'Broken: %s - %s' % (
+            notify(dataset_id, dataset['name'], 'Broken: %s - %s - %s' % (
                 dataset_info.get("last_transaction"),
                 dataset_info.get("last_action")
+                dataset_info.get("datamap")
             ), success=False, tracefile=tracefile)
         elif dataset_integrity is True:
             notify(dataset_id, dataset['name'], 'OK',
