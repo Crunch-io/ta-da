@@ -24,7 +24,7 @@ def notify(title, date, success, text, ratio, skipped, skiptext):
                 'text': '```%s```' % skiptext,
                 "mrkdwn_in": ["text"]
             })
-        r = slack.message(channel="api", username="crunchbot",
+        r = slack.message(channel=USE_SLACK, username="crunchbot",
                           icon_emoji=":grinning:" if success else ':worried:',
                           attachments=message_parts)
         r.raise_for_status()
@@ -40,7 +40,7 @@ def main():
     helpstr = """Report a tracefile content from a specific day
 
     Usage:
-      %(script)s <tracefile> <date> <title> [--slack] [--failures]
+      %(script)s <tracefile> <date> <title> [--slack=CHANNEL] [--failures]
       %(script)s (-h | --help)
 
     Arguments:
@@ -50,7 +50,7 @@ def main():
 
     Options:
       -h --help               Show this screen
-      --slack                 Send the output to slack
+      --slack=CHANNEL         Send the output to slack channel
       --failures              Only report failures and skips
     """ % dict(script=sys.argv[0])
 
