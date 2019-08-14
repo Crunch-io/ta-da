@@ -103,3 +103,6 @@ def _fetch_dataset_info(hosts, dataset_id):
 
         # wait 30 seconds between each retry
         time.sleep(30)
+    else:
+        # Retries exhausted, just return last dataset info.
+        return dataset_info
