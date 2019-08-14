@@ -163,10 +163,10 @@ def main():
 
         print('Replaying %s actions (expected %s seconds)...' % (actions_count, total_time))
         if timelimit is not None and total_time > timelimit:
-            notify(dataset_id, dataset['name'], from_revision,
-                   'Skipped: Expected to take %s seconds to replay %s actions' % (
-                       total_time, actions_count
-                   ), success=False, skipped=True, tracefile=tracefile)
+            # notify(dataset_id, dataset['name'], from_revision,
+            #       'Skipped: Expected to take %s seconds to replay %s actions' % (
+            #           total_time, actions_count
+            #       ), success=False, skipped=True, tracefile=tracefile)
             return
 
         resp = requests.post(
@@ -197,9 +197,6 @@ def main():
                     return
                 elif status['message'].startswith('Trying to modify a deleted dataset'):
                     # If the dataset was deleted we just skip it
-                    notify(dataset_id, dataset['name'], from_revision,
-                           'Skipped: Dataset deleted before we could start replaying from it',
-                           success=False, skipped=True, tracefile=tracefile)
                     return
 
                 notify(dataset_id, dataset['name'], from_revision,

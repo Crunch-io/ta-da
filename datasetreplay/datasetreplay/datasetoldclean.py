@@ -38,8 +38,8 @@ def main():
 
         datasets = resp.json()['datasets']
         for ds in datasets:
-            if ds['owner']['email'] != user:
-                print('Dataset %s does not match with expected owner' % ds['id'],
+            if 'AUTOREPLAY' not in ds['name']:
+                print('Dataset %s does not seems to be an AUTOREPLAY' % ds['id'],
                       file=sys.stderr)
                 continue
 
@@ -53,7 +53,7 @@ def main():
 
             dataset_age = today - day
             if dataset_age >= datetime.timedelta(days=age):
-                print('Deleting dataset %s (age: %s)' % (ds['id'], dataset_age))
+                print('Deleting dataset %s (age: %s) - %s' % (ds['id'], dataset_age, ds["name"]))
                 resp = requests.post(**admin_url(connection, '/datasets/delete/%s' % ds['id']))
                 if resp.status_code != 200:
                     print('ERROR: %s' % resp.text, file=sys.stderr)
