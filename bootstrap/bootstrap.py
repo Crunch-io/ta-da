@@ -12,7 +12,13 @@ from cr.lib.entities.geodata import GeoDatum, VariableGeoDatum
 from cr.lib.entities.variables import VariableDefinition
 from cr.lib.stores import stores
 from cr.lib.exceptions import NotFound
-from cr.lib.index.indexer import index_dataset
+from cr.lib.index.indexer import DatasetIndexer, VariableIndexer
+
+
+def index_dataset(dataset):
+    DatasetIndexer(dataset).index_dataset()
+    VariableIndexer.index_dataset_variables(dataset)
+
 
 import logging
 
@@ -87,11 +93,10 @@ def load_dataset_from_file(file_name, name=None, team=None, project=None, user=N
     if team:
         ds.permissions.assign_team(team, {'view': ['add_users', 'change_weight']})
 
-    if project:
-        project.datasets.add(ds)
+    #if project:
+    #    project.datasets.add(ds)
 
-    ds.reindex()
-    ds.release()
+    index_dataset(ds)
     return ds
 
 
@@ -241,7 +246,7 @@ def create_geodata():
 
 
 def initial_setup():
-    team = create_team()
+    #team = create_team()
 
     print 'setting up test users',
 
@@ -259,7 +264,7 @@ def initial_setup():
     #         id='08ed498c0aa1422491b95a6b04c69653',
     #         path=['ahe_path']
     #     ).create()
-    #
+    # project.save()
 
     users = []
     for name in ('captain',
@@ -384,10 +389,11 @@ def main():
 
     load_settings(settings_file)
 
-    users, project, team, geodata = initial_setup()
+    #users, project, team, geodata = initial_setup()
 
-    #project = Project.find_by_id(id='08ed498c0aa1422491b95a6b04c69653')
-    #team = Team.find_one({'account_id': '00001'})
+    project = Project.find_by_id(id='08ed498c0aa1422491b95a6b04c69653')
+    team = Team.find_one({'account_id': '00001'})
+
     captain = User.find_by_id(id='00002')
     users = [captain]
     geodata = {'us': GeoDatum.find_one({'location': 'https://s.crunch.io/geodata/leafletjs/us-states.geojson' })}
