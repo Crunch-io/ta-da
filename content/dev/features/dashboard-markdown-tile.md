@@ -20,6 +20,6 @@ Dataset editors can now add rich-text tiles to a dashboard. This can be used for
 * Move, resize and delete rich-text tiles.
 
 
-See [our support documentation](provide link here) to get started.
+See [our support documentation](http://support.crunch.io/articles/TAB7n65c/How-to-add-a-richtext-tile-to-a-dashboard) to get started.
 
 We'd love your feedback at support@crunch.io.
