@@ -57,6 +57,9 @@ NOW = time.time()
 ONE_WEEK_AGO = NOW - (86400 * 7)
 ONE_MINUTE_OF_MS = 60 * 1000
 ONE_HOUR_OF_MS = ONE_MINUTE_OF_MS * 60
+K = 1000
+M = 1000 * K
+G = 1000 * M
 
 
 def get_weekly_series(q):
@@ -64,12 +67,12 @@ def get_weekly_series(q):
 
 
 def friendly_count(num):
-    if num >= 1000000000:
-        return "%dG" % (num / 1000000000)
-    if num >= 1000000:
-        return "%dM" % (num / 1000000)
-    if num >= 1000:
-        return "%dK" % (num / 1000)
+    if num >= G:
+        return "%dG" % (num / G)
+    if num >= M:
+        return "%dM" % (num / M)
+    if num >= K:
+        return "%dK" % (num / K)
     return "%d" % num
 
 
@@ -170,7 +173,7 @@ def api_times():
     ):
         scope = dict(atom.split(":") for atom in s["scope"].split(","))
         values = [
-            int(value / ONE_HOUR_OF_MS)
+            value / ONE_HOUR_OF_MS
             for timestamp, value in s["pointlist"]
             if value is not None
         ]
@@ -182,7 +185,7 @@ def api_times():
         (
             int((slow_requests.get(k, 0) * 100 / slow_total)),
             int((lost_hours.get(k, 0) * 100 / lost_total)),
-            lost_hours.get(k, 0),
+            int(lost_hours.get(k, 0)),
             k,
         )
         for k in worst
@@ -279,7 +282,7 @@ def task_times():
         output.append(tmpl.format(*item))
     output.append("```")
 
-    max_task_minutes = max(task_max.itervalues()) / (60 * 1000)
+    max_task_minutes = max(task_max.itervalues()) / ONE_MINUTE_OF_MS
     return (
         output,
         "good"
