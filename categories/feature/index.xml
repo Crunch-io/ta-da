@@ -6,10 +6,21 @@
     <description>Recent content in feature on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 16 Jul 2019 10:16:05 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 03 Sep 2019 13:07:21 +0100</lastBuildDate>
     
 	<atom:link href="//crunch.io/categories/feature/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Adding rich-text tiles to dashboards</title>
+      <link>//crunch.io/dev/features/dashboard-text-tile/</link>
+      <pubDate>Tue, 03 Sep 2019 13:07:21 +0100</pubDate>
+      
+      <guid>//crunch.io/dev/features/dashboard-text-tile/</guid>
+      <description>Dataset editors can now add rich-text tiles to a dashboard. This can be used for dashboard analysis, terms and conditions, privacy notices, fieldwork dates and anything else the editor may wish to display. As an editor you are now able to:
+ Compose text content to display as tiles using a WYSIWYG editor - no coding skills required.
+ See a real-time preview of how your tile is going to look as you type and make formatting changes.</description>
+    </item>
     
     <item>
       <title>Filtering dashboards</title>

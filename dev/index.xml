@@ -5,9 +5,37 @@
     <description>Recent content in Our Blogs on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2019-08-06T09:44:25+00:00</lastBuildDate>
+    <lastBuildDate>2019-09-03T13:21:46+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>The Dev Blog</title>
+      <link>//crunch.io/dev/blog/</link>
+      <pubDate>2017-07-18T14:08:35+02:00</pubDate>
+      
+      <guid>//crunch.io/dev/blog/</guid>
+      <labsOnly>false</labsOnly>
+      <noProfiles>false</noProfiles>
+      <pinned>false</pinned>
+      <description>Stories from the dev team about how we do things at Crunch</description>
+    </item>
+    
+    
+    
+    <item>
+      <title>Feature Announcements</title>
+      <link>//crunch.io/dev/features/</link>
+      <pubDate>2017-07-18T14:08:35+02:00</pubDate>
+      
+      <guid>//crunch.io/dev/features/</guid>
+      <labsOnly>false</labsOnly>
+      <noProfiles>false</noProfiles>
+      <pinned>false</pinned>
+      <description>What&#39;s new and exciting at Crunch</description>
+    </item>
     
     
   </channel>
