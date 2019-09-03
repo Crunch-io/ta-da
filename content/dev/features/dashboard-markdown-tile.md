@@ -1,11 +1,13 @@
 +++
-date = "2019-08-07T00:05:11+01:00"
-draft = true
+date = "2019-09-03T00:05:11+01:00"
+draft = false
 title = "Adding rich-text tiles to dashboards"
 description = "Dataset editors can add rich-text tiles to a dashboard to display information such as terms and conditions, fieldwork dates, privacy notices, commentary and analysis, or any other content. Click here to learn more."
 tags = ["dashboards"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
+labs_only = true
+no_profiles = false
 
 +++
 
