@@ -1,8 +1,8 @@
 +++
 date = "2019-09-03T11:34:40+01:00"
-draft = false
 title = "Adding rich-text tiles to dashboards"
-description = "Dataset editors can add rich-text tiles to a dashboard to display information such as terms and conditions, fieldwork dates, privacy notices, commentary and analysis, or any other content. Click here to learn more."
+news_description = "Dataset editors can add rich-text tiles to a dashboard to display information such as terms and conditions, fieldwork dates, privacy notices, commentary and analysis, or any other content. Click here to learn more."
+description = "Dataset editors can add rich-text tiles to a dashboard to display information such as terms and conditions, fieldwork dates, privacy notices, commentary and analysis, or any other content."
 tags = ["dashboards"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
@@ -10,7 +10,6 @@ labs_only = true
 no_profiles = false
 
 +++
-
 
 Dataset editors can now add rich-text tiles to a dashboard. This can be used for dashboard analysis, terms and conditions, privacy notices, fieldwork dates and anything else the editor may wish to display. As an editor you are now able to:
 
@@ -22,7 +21,9 @@ Dataset editors can now add rich-text tiles to a dashboard. This can be used for
 
 * Move, resize and delete rich-text tiles.
 
+* Delete all tile types.
+
 
 See [our support documentation](http://support.crunch.io/articles/TAB7n65c/How-to-add-a-richtext-tile-to-a-dashboard) to get started.
 
-We'd love your feedback at support@crunch.io.
+Available now for our Early Access users. We'd love your feedback at support@crunch.io.
