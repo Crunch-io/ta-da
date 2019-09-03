@@ -1,5 +1,6 @@
 +++
 date = "2019-09-03T11:34:40+01:00"
+publishdate = "2019-09-03T11:43:51+0000"
 title = "Adding rich-text tiles to dashboards"
 news_description = "Dataset editors can add rich-text tiles to a dashboard to display information such as terms and conditions, fieldwork dates, privacy notices, commentary and analysis, or any other content. Click here to learn more."
 description = "Dataset editors can add rich-text tiles to a dashboard to display information such as terms and conditions, fieldwork dates, privacy notices, commentary and analysis, or any other content."
