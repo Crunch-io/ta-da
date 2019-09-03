@@ -1,13 +1,14 @@
 +++
-date = "2019-06-03T11:16:05+01:00"
+date = "2019-07-16T10:16:05+01:00"
+publishdate = "2019-07-16T11:37:11+0000"
 title = "Filtering dashboards"
-news_description = "Dataset editors can now specify variables that can be used to filter all analyses in the dashboard at once – let your users customize their view data by gender, age, brand, and more with a single click. Available now for our Early Access users. Click here to learn more."
-description = "Dataset editors can now specify variables that can be used to filter all analyses in the dashboard at once – let your users customize their view data by gender, age, brand, and more with a single click. Available now for our Early Access users."
+news_description = "Dataset editors can now specify variables that can be used to filter all analyses in the dashboard at once – let your users customize their view data by gender, age, brand, and more with a single click. Click here to learn more."
+description = "Dataset editors can now specify variables that can be used to filter all analyses in the dashboard at once – let your users customize their view data by gender, age, brand, and more with a single click."
 weight = 20
 tags = ["dashboards"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 
 +++
@@ -20,6 +21,6 @@ Dataset editors can add one or more variables to be used as filters across an en
 
 * Add brands or products to create a dashboard that lets your viewers quickly understand the customer awareness, attitude, and usage of their products and competitors.
 
-See [our support documentation](http://support.crunch.io/articles/ckEAdgji/How-to-apply-filters-to-a-dataset-dashboard) to get started.
+See [our support documentation](http://support.crunch.io/articles/iMEzb6zT/How-to-apply-filters-to-a-dataset-dashboard) to get started.
 
-This feature is currently in early access. We'd love your feedback at support@crunch.io.
+We'd love your feedback at support@crunch.io.
