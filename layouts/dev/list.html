@@ -18,7 +18,7 @@
                             <div class="col-md-8" onclick="location.href='{{ .Permalink }}'" style="cursor: pointer;">
                                 <h2>{{ .Title | emojify }}</h2>
                                 <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
-                                <p class="lead">{{ slicestr .Summary 0 80 | emojify }}...</p>
+                                <p class="lead">{{ .Summary | emojify }}...</p>
                                 <a href="{{ .Permalink }}">Learn More &#10230;</a>
                             </div>
                             {{ end }}
