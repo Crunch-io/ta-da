@@ -154,14 +154,20 @@ slack = Slack()
 
 def api_times():
     output = []
+
+    total_requests = sum(
+        sum(int(value) for ts, value in s["pointlist"] if value is not None)
+        for s in get_weekly_series(
+            "sum:cr.server.request.time.ms.count{system:eu}.as_count().rollup(sum)"
+        )
+    )
+
     slow_requests = {}
     for s in get_weekly_series(
         "sum:cr.server.request.time.ms.count{system:eu,slow:yes} by {controller,method}.as_count().rollup(sum)"
     ):
         scope = dict(atom.split(":") for atom in s["scope"].split(","))
-        values = [
-            int(value) for timestamp, value in s["pointlist"] if value is not None
-        ]
+        values = [int(value) for ts, value in s["pointlist"] if value is not None]
         slow_requests[(scope["controller"], scope["method"])] = sum(values)
     slow_total = float(sum(slow_requests.itervalues()))
     worst = set([k for k, v in slow_requests.iteritems() if v / slow_total > 0.05])
@@ -173,9 +179,7 @@ def api_times():
     ):
         scope = dict(atom.split(":") for atom in s["scope"].split(","))
         values = [
-            value / ONE_HOUR_OF_MS
-            for timestamp, value in s["pointlist"]
-            if value is not None
+            value / ONE_HOUR_OF_MS for ts, value in s["pointlist"] if value is not None
         ]
         lost_hours[(scope["controller"], scope["method"])] = sum(values)
     lost_total = float(sum(lost_hours.itervalues()))
@@ -195,6 +199,11 @@ def api_times():
         "https://app.datadoghq.com/dashboard/f52-a52-7hv/slo-violators"
         "?from_ts=%d&to_ts=%d&fullscreen_widget=408300294"
         % (ONE_WEEK_AGO * 1000, NOW * 1000)
+    )
+
+    fast_percent = (total_requests - slow_total) * 100 / total_requests
+    output.append(
+        "%.2f%% of queries completed in time. Target is 99.99%%." % (fast_percent,)
     )
     output.append(
         "%d %s to slow queries" % (int(lost_total), slack.linkify(href, "hours lost"))
@@ -219,7 +228,11 @@ def api_times():
 
     return (
         output,
-        "good" if lost_total < 1 else "warning" if lost_total < 5 else "danger",
+        "good"
+        if fast_percent >= 99.99
+        else "warning"
+        if fast_percent >= 99.9
+        else "danger",
     )
 
 
@@ -231,14 +244,14 @@ def task_times():
         "sum:task.run.ms.count{system:eu} by {task}.as_count().rollup(sum)"
     ):
         scope = dict(atom.split(":") for atom in s["scope"].split(","))
-        values = [value for timestamp, value in s["pointlist"] if value is not None]
+        values = [value for ts, value in s["pointlist"] if value is not None]
         task_times[scope["task"]] = sum(values)
     task_total = float(sum(task_times.itervalues()))
 
     task_count = dict(
         (
             dict(atom.split(":") for atom in s["scope"].split(","))["task"],
-            sum(int(value) for timestamp, value in s["pointlist"] if value is not None),
+            sum(int(value) for ts, value in s["pointlist"] if value is not None),
         )
         for s in get_weekly_series(
             "sum:task.run.ms.count{system:eu} by {task}.as_count().rollup(sum)"
@@ -248,7 +261,7 @@ def task_times():
     task_max = dict(
         (
             dict(atom.split(":") for atom in s["scope"].split(","))["task"],
-            max(int(value) for timestamp, value in s["pointlist"] if value is not None),
+            max(int(value) for ts, value in s["pointlist"] if value is not None),
         )
         for s in get_weekly_series(
             "max:task.run.ms.max{system:eu} by {task}.as_count().rollup(max)"
@@ -301,9 +314,7 @@ def api_errors():
         "sum:cr.server.request.time.ms.count{system:eu,api_status_class:5xx} by {controller,method,api_status_code}.as_count().rollup(sum)"
     ):
         scope = dict(atom.split(":") for atom in s["scope"].split(","))
-        values = [
-            int(value) for timestamp, value in s["pointlist"] if value is not None
-        ]
+        values = [int(value) for ts, value in s["pointlist"] if value is not None]
         code = scope["api_status_code"]
         req_errors[code][(scope["controller"], scope["method"])] = sum(values)
     req_errors_total = float(sum(sum(v.itervalues()) for v in req_errors.itervalues()))
@@ -354,9 +365,7 @@ def task_errors():
         "sum:task.run.ms.count{system:eu} by {task,task_status}.as_count().rollup(sum)"
     ):
         scope = dict(atom.split(":") for atom in s["scope"].split(","))
-        values = [
-            int(value) for timestamp, value in s["pointlist"] if value is not None
-        ]
+        values = [int(value) for ts, value in s["pointlist"] if value is not None]
         code = scope["task_status"]
         tasks[code][scope["task"]] = sum(values)
     tasks_total = float(sum(sum(v.itervalues()) for v in tasks.itervalues()))
