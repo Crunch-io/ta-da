@@ -1,0 +1,11 @@
++++
+date = "2019-09-09T07:08:35+02:00"
+draft = false
+firstname = "Gjergji"
+lastname = "Dojce"
+description = "DevOps Engineer. I love sports."
+weight = 1
+img = "gjergji.jpg"
+location = "Tirana"
+position = "Systems Administrator"
++++
