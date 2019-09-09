@@ -238,46 +238,45 @@ def api_times():
 
 def task_times():
     output = []
-    task_times = {}
+
+    total_tasks = sum(
+        sum(int(value) for ts, value in s["pointlist"] if value is not None)
+        for s in get_weekly_series(
+            "sum:task.run.ms.count{system:eu}.as_count().rollup(sum)"
+        )
+    )
+
+    slow_tasks = {}
     for s in get_weekly_series(
-        "avg:task.run.ms.avg{system:eu} by {task}.rollup(avg) * "
-        "sum:task.run.ms.count{system:eu} by {task}.as_count().rollup(sum)"
+        "sum:task.run.ms.count{system:eu,slow:yes} by {task}.as_count().rollup(sum)"
     ):
         scope = dict(atom.split(":") for atom in s["scope"].split(","))
-        values = [value for ts, value in s["pointlist"] if value is not None]
-        task_times[scope["task"]] = sum(values)
-    task_total = float(sum(task_times.itervalues()))
+        values = [int(value) for ts, value in s["pointlist"] if value is not None]
+        slow_tasks[scope["task"]] = sum(values)
+    slow_total = float(sum(slow_tasks.itervalues()))
+    worst = set([k for k, v in slow_tasks.iteritems() if v / slow_total > 0.05])
 
-    task_count = dict(
-        (
-            dict(atom.split(":") for atom in s["scope"].split(","))["task"],
-            sum(int(value) for ts, value in s["pointlist"] if value is not None),
-        )
-        for s in get_weekly_series(
-            "sum:task.run.ms.count{system:eu} by {task}.as_count().rollup(sum)"
-        )
-    )
-
-    task_max = dict(
-        (
-            dict(atom.split(":") for atom in s["scope"].split(","))["task"],
-            max(int(value) for ts, value in s["pointlist"] if value is not None),
-        )
-        for s in get_weekly_series(
-            "max:task.run.ms.max{system:eu} by {task}.as_count().rollup(max)"
-        )
-    )
+    lost_hours = {}
+    for s in get_weekly_series(
+        "avg:task.run.ms.avg{system:eu,slow:yes} by {task}.rollup(avg) * "
+        "sum:task.run.ms.count{system:eu,slow:yes} by {task}.as_count().rollup(sum)"
+    ):
+        scope = dict(atom.split(":") for atom in s["scope"].split(","))
+        values = [
+            value / ONE_HOUR_OF_MS for ts, value in s["pointlist"] if value is not None
+        ]
+        lost_hours[scope["task"]] = sum(values)
+    lost_total = float(sum(lost_hours.itervalues()))
+    worst.update(set([k for k, v in lost_hours.iteritems() if v / lost_total > 0.05]))
 
     worst = [
         (
-            int(v / ONE_HOUR_OF_MS),
-            int((v * 100 / task_total)),
-            friendly_duration(v / task_count.get(k, 0)) if task_count.get(k, 0) else "",
-            friendly_duration(task_max.get(k, "")),
+            int((slow_tasks.get(k, 0) * 100 / slow_total)),
+            int((lost_hours.get(k, 0) * 100 / lost_total)),
+            int(lost_hours.get(k, 0)),
             k,
         )
-        for k, v in task_times.iteritems()
-        if v / task_total > 0.01
+        for k in worst
     ]
 
     href = (
@@ -285,24 +284,25 @@ def task_times():
         "?from_ts=%d&to_ts=%d&fullscreen_widget=354299717"
         % (ONE_WEEK_AGO * 1000, NOW * 1000)
     )
+    fast_percent = (total_tasks - slow_total) * 100 / total_tasks
     output.append(
-        "%d %s total" % (int(task_total / ONE_HOUR_OF_MS), slack.linkify(href, "hours"))
+        "%.2f%% of tasks completed in time. Target is 99%%." % (fast_percent,)
+    )
+    output.append(
+        "%d %s to slow tasks" % (int(lost_total), slack.linkify(href, "hours lost"))
     )
     output.append("```")
-    output.append("Hours    % hours        Avg       Max    Task")
-    tmpl = " {:4}       {:3}%    {:>7}   {:>7}    {}"
-    for item in reversed(sorted(worst)):
-        output.append(tmpl.format(*item))
+    output.append("% count   Lost hours   % hours   Task")
+    tmpl = "   {:3}%         {:4}      {}   {}"
+    for sp, lp, lh, k in reversed(sorted(worst)):
+        output.append(
+            tmpl.format(sp, lh or "", "{:3}%".format(lp) if lp else "    ", k)
+        )
     output.append("```")
 
-    max_task_minutes = max(task_max.itervalues()) / ONE_MINUTE_OF_MS
     return (
         output,
-        "good"
-        if max_task_minutes < 10
-        else "warning"
-        if max_task_minutes < 20
-        else "danger",
+        "good" if fast_percent >= 99 else "warning" if fast_percent >= 95 else "danger",
     )
 
 
