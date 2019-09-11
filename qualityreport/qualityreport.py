@@ -256,6 +256,16 @@ def task_times():
     slow_total = float(sum(slow_tasks.itervalues()))
     worst = set([k for k, v in slow_tasks.iteritems() if v / slow_total > 0.05])
 
+    max_tasks = {}
+    for s in get_weekly_series(
+        "max:task.run.ms.max{system:eu,slow:yes} by {task}.rollup(max)"
+    ):
+        scope = dict(atom.split(":") for atom in s["scope"].split(","))
+        values = [int(value) for ts, value in s["pointlist"] if value is not None]
+        max_tasks[scope["task"]] = max(values)
+    worst_max_tasks = list(reversed(sorted((v, k) for k, v in max_tasks.iteritems())))
+    worst.update(set([k for v, k in worst_max_tasks[: int(len(worst_max_tasks) / 10)]]))
+
     lost_hours = {}
     for s in get_weekly_series(
         "avg:task.run.ms.avg{system:eu,slow:yes} by {task}.rollup(avg) * "
@@ -274,6 +284,7 @@ def task_times():
             int((slow_tasks.get(k, 0) * 100 / slow_total)),
             int((lost_hours.get(k, 0) * 100 / lost_total)),
             int(lost_hours.get(k, 0)),
+            int(max_tasks.get(k, 0)),
             k,
         )
         for k in worst
@@ -292,11 +303,17 @@ def task_times():
         "%d %s to slow tasks" % (int(lost_total), slack.linkify(href, "hours lost"))
     )
     output.append("```")
-    output.append("% count   Lost hours   % hours   Task")
-    tmpl = "   {:3}%         {:4}      {}   {}"
-    for sp, lp, lh, k in reversed(sorted(worst)):
+    output.append("% count   Lost hours   % hours   Max      Task")
+    tmpl = "   {:3}%         {:4}      {}   {:>6}   {}"
+    for sp, lp, lh, maxt, k in reversed(sorted(worst)):
         output.append(
-            tmpl.format(sp, lh or "", "{:3}%".format(lp) if lp else "    ", k)
+            tmpl.format(
+                sp,
+                lh or "",
+                "{:3}%".format(lp) if lp else "    ",
+                friendly_duration(maxt),
+                k,
+            )
         )
     output.append("```")
 
