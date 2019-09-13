@@ -3,6 +3,7 @@ date = "2019-09-03T15:20:47-04:00"
 title = "Crunch's updated Member panels make it easy to see who has access to a dataset or folder"
 news_description = "You can now see all users who have permissions on a dataset or folder by clicking the name in the header and selecting Members. Click here to learn more."
 description = "Click the dataset or folder name and select Members in the dropdown."
+no_profiles = "true"
 weight = 20
 tags = ["permissions"]
 categories = ["feature"]
