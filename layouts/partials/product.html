@@ -1,7 +1,7 @@
     <div class="secondary-content intro-xs-margin" style="position: relative; z-index: 10; background-color: white;">
 
         <div class="container" id="intro-video" style="padding-top:40px; margin-top: -40px">
-        {{ range .Data.Pages }}
+        {{ range .Site.Pages }}
             {{ if and (eq .Type "product") (eq .Title "Powerful analytics.") }}
             <div class="row spacer-top">
                 <div class="col-md-8 offset-md-2">
@@ -42,7 +42,7 @@
         </div> <!-- /.modern-platform -->
 
         <div class="container">
-        {{ range .Data.Pages }}
+        {{ range .Site.Pages }}
             {{ if and (eq .Type "product") (eq .Title "Introducing CrunchBox") }}
             <div class="row spacer share-insights">
                 <div class="col-12 col-md-5 order-0 order-md-0">
@@ -65,7 +65,7 @@
         </div> <!-- /.container -->
 
         <div class="container">
-        {{ range .Data.Pages }}
+        {{ range .Site.Pages }}
             {{ if and (eq .Type "product") (eq .Title "Real-time surveys") }}
             <div class="row spacer-top">
                 <div class="col-md-6 offset-md-3">
@@ -90,7 +90,7 @@
         {{ end }}
 
             <div class="row spacer-top">
-            {{ range .Data.Pages }}
+            {{ range .Site.Pages }}
                 {{ if and (eq .Type "product") (eq .Title "Trackers tamed") }}
                 <div class="col-md-6 offset-md-3">
                     <h2 class="text-center quotes">“I can track <span>awareness</span> across survey <span>waves</span> with one click.”</h2>
@@ -115,7 +115,7 @@
             </div> <!-- /.row. -->
 
 
-        {{ range .Data.Pages }}
+        {{ range .Site.Pages }}
             {{ if and (eq .Type "product") (eq .Title "Everyone analyzes.") }}
             <div class="row spacer-top">
                 <div class="col-md-8 offset-md-2">
