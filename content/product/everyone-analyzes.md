@@ -1,9 +1,7 @@
 +++
-draft = false
 title = "Everyone analyzes."
 img = "sharing-mock.png"
 images = ["https://crunch.io/img/logo-1200x630.png"]
-
 
 +++
 
