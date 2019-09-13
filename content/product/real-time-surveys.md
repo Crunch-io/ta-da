@@ -1,5 +1,4 @@
 +++
-draft = false
 title = "Real-time surveys"
 img = "data-speed.png"
 images = ["https://crunch.io/img/logo-1200x630.png"]

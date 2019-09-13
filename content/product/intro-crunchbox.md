@@ -1,5 +1,4 @@
 +++
-draft = false
 title = "Introducing CrunchBox"
 description = "Our new dashboard component"
 images = ["https://crunch.io/img/logo-1200x630.png"]

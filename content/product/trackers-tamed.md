@@ -1,5 +1,4 @@
 +++
-draft = false
 title = "Trackers tamed"
 img = "time_variable_change_rollup.gif"
 images = ["https://crunch.io/img/logo-1200x630.png"]
