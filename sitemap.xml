@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>//crunch.io/team/members/christine/</loc>
+    <lastmod>2019-09-25T12:32:25+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/team/members/gjergji/</loc>
     <lastmod>2019-09-09T07:08:35+02:00</lastmod>
   </url>
@@ -218,6 +223,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/</loc>
+    <lastmod>2019-09-25T12:32:25+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/categories/</loc>
     <lastmod>2019-09-13T13:07:21+01:00</lastmod>
   </url>
@@ -229,11 +239,6 @@
   
   <url>
     <loc>//crunch.io/categories/feature/</loc>
-    <lastmod>2019-09-13T13:07:21+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/</loc>
     <lastmod>2019-09-13T13:07:21+01:00</lastmod>
   </url>
   
