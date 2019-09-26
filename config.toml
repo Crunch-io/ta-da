@@ -1,5 +1,4 @@
 baseURL = "//crunch.io/"
-googleAnalytics = "UA-50332119-2"
 
 languageCode = "en-us"
 title = "Modern survey data analysis"
