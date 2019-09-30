@@ -678,4 +678,16 @@
         border-radius: 5px;
     }
 
+    @include media-breakpoint-up(md) {
+        .request-demo-copy {
+            margin-left: 40px;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .request-demo-copy {
+            margin-top: 40px;
+        }
+    }
+
 }
