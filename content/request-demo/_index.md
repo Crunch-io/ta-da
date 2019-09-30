@@ -11,7 +11,7 @@ video = "https://www.youtube.com/embed/OqUCgApf9dY?rel=0&amp;showinfo=0"
 
 With Crunch.io, you can:
 
-<ul class="marketing-list">
+<ul class="marketing-list" style="margin-left: 10px;">
     <li>Get rid of two day turnarounds to answer questions.</li>
 
     <li>Build crosstabs with a drag-and-drop.</li>
