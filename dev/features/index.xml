@@ -5,9 +5,23 @@
     <description>Recent content in Feature Announcements on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2019-09-26T11:51:40+00:00</lastBuildDate>
+    <lastBuildDate>2019-10-01T18:38:17+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>Crunch&#39;s updated Member panels make it easy to see who has access to a dataset or folder</title>
+      <link>//crunch.io/dev/features/new-permissions-september-2019/</link>
+      <pubDate>2019-10-01T18:30:04+00:00</pubDate>
+      
+      <guid>//crunch.io/dev/features/new-permissions-september-2019/</guid>
+      <labsOnly>false</labsOnly>
+      <noProfiles>true</noProfiles>
+      <pinned>false</pinned>
+      <description>You can now see all users who have permissions on a dataset or folder by clicking the name in the header and selecting Members. Click here to learn more.</description>
+    </item>
     
     
     
