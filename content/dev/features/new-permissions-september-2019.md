@@ -18,4 +18,4 @@ When viewing dataset members, this panel will show all users who have access to 
 
 When viewing folder members, you will not only see everyone who has access to this folder, you will also see any users who have access to *anything* within this folder. Users who have access to some, but not all, folder contents (or who have non-uniform access) will show up as having **Mixed** access. You can change this to **Viewer** or **Editor** to grant that user uniform access to this folder and all its contents (including subfolders).
 
-For more information about permissions, see LINK TBD AFTER GURU PAGE IS PUBLISHED.
+For more information about permissions, see [Managing Permissions on Folders and Datasets]http://support.crunch.io/articles/iozMAKdT/Managing-Permissions-on-Folders-and-Datasets.
