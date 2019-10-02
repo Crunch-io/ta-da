@@ -659,3 +659,35 @@
         font-style: italic;
     }
 }
+
+// Request a Demo
+.request-demo-content {
+
+    .jumbotron {
+        h1 {
+            font-family: ProximaNova, sans-serif;
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+    }
+
+    .hbspt-form {
+        background-color: $color-white;
+        padding: 30px 10px 10px 25px;
+        border-radius: 5px;
+    }
+
+    @include media-breakpoint-up(md) {
+        .request-demo-copy {
+            margin-left: 40px;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        .request-demo-copy {
+            margin-top: 40px;
+        }
+    }
+
+}
