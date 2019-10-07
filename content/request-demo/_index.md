@@ -5,7 +5,7 @@ title = "Request a 10 Minute Demo"
 subtitle = "Power made simple"
 description = "Crunch.io is a modern survey data analysis platform. We focus on simplicity and usability, so all your researchers and clients can easily collaborate."
 images = ["https://crunch.io/img/logo-1200x630.png"]
-video = "https://www.youtube.com/embed/OqUCgApf9dY?rel=0&amp;showinfo=0"
+video = "https://player.vimeo.com/video/343376948"
 
 +++
 
