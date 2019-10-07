@@ -11,4 +11,4 @@ video = "https://player.vimeo.com/video/343376948"
     <li>Create and export a complete set of tabs in 2 minutes.</li>
 </ul>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" id="openForm">Speak to an Expert</button>
+<button type="button" class="btn btn-primary" onclick="window.location.href='/request-demo'">Speak to an Expert</button>
