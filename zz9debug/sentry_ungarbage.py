@@ -98,7 +98,7 @@ def _process_input(blob):
     try:
         obj = json.loads(blob)
     except ValueError as err:
-        return ParsingError("JSON parsing error: {}".format(err))
+        raise ParsingError("JSON parsing error: {}".format(err))
 
     # Un-str() everything that looks like it has been str()'d
     result = _un_str(obj)
