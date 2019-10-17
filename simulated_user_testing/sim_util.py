@@ -106,7 +106,10 @@ def sort_ds_tuples_by_creation_datetime(ds_tuples, reverse=True):
         datetime_str = ds_tuple.creation_time
         if datetime_str.endswith("+00:00"):
             datetime_str = datetime_str[:-6]
-        t = datetime.strptime(datetime_str, "%Y-%m-%dT%H:%M:%S.%f")
+        if len(datetime_str) > 19:
+            t = datetime.strptime(datetime_str, "%Y-%m-%dT%H:%M:%S.%f")
+        else:
+            t = datetime.strptime(datetime_str, "%Y-%m-%dT%H:%M:%S")
         return (t, ds_tuple.name)
 
     return sorted(ds_tuples, key=_sort_key, reverse=reverse)
@@ -154,7 +157,7 @@ def get_entity(obj):
 
 # Copied from pow/clang/apis/slack.py
 def message(**kwargs):
-    ''' Send a message to our Slack team
+    """ Send a message to our Slack team
 
         kwargs:
         * `text` message
@@ -163,12 +166,12 @@ def message(**kwargs):
         * `icon_emoji` to use for username
         * `parse` to control what Slack does with it ('full' is default; use
             None to do things like sending formatted links)
-    '''
+    """
     u = "https://hooks.slack.com/services/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"
-    if kwargs['channel'][0] not in ["#", "@"]:
-        kwargs['channel'] = "#" + kwargs['channel']
-    if not 'parse' in kwargs:
-        kwargs['parse'] = 'full'
+    if kwargs["channel"][0] not in ["#", "@"]:
+        kwargs["channel"] = "#" + kwargs["channel"]
+    if "parse" not in kwargs:
+        kwargs["parse"] = "full"
     payload = {"payload": json.dumps(kwargs)}
     r = requests.post(u, data=payload)
     return r
