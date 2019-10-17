@@ -1,0 +1,9 @@
+# Leading "/" means "relative to this .rsync-filter file"
+# Run rsync with "-F" to make it use this filter control file.
+
+# Don't copy compiled Python bytecode files
+exclude __pycache__/
+exclude *.pyc
+
+# Don't copy vim swap files
+exclude *.swp
