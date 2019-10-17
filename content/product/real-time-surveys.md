@@ -19,4 +19,4 @@ Speed up your data preparation:
 Then, stream data into Crunch, every 30 minutes.
 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" id="openForm">Speak to an Expert</button>
+<button type="button" class="btn btn-primary" onclick="window.location.href='/request-demo'">Speak to an Expert</button>
