@@ -1,0 +1,11 @@
++++
+date = "2019-03-04T14:08:35+02:00"
+draft = false
+firstname = "Steve"
+lastname = "Canny"
+description = ''
+weight = 1
+img = "steve-canny.jpg"
+location = "Seattle, Washington (USA)"
+position = ""
++++
