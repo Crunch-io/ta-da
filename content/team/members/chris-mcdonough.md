@@ -5,7 +5,7 @@ firstname = "Chris"
 lastname = "McDonough"
 description = 'I write Python code on the backend team, often related to our "streaming" feature'
 weight = 1
-img = "chris-mcdonough.jpg"
+img = "chris-mcdonough.jpeg"
 location = "Fredricksburg, Virginia (USA)"
 position = "Developer"
 +++
