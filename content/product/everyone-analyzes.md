@@ -14,4 +14,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 <br>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" id="openForm">Request a Demo</button>
+<button type="button" class="btn btn-primary" onclick="window.location.href='/request-demo'">Request a Demo</button>
