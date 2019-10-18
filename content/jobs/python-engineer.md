@@ -6,10 +6,6 @@ weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 +++
 
-# The Company
-Crunch.io is an innovative analytics company in the market research industry. We offer a survey data analysis platform that allows market researchers, analysts, and marketers to collaborate in a secure, cloud-based environment, using an intuitive drag-and-drop interface. Crunch users can quickly gain insights from their data and communicate them to their clients.
-
-# The Opportunity
 We are hiring a Python Engineer to help develop our platform. We are inviting you to join our small, fully remote team of developers and operators helping make our platform faster, more secure, and more reliable. You would help us deliver new features and build the future for how we deploy our products faster and safer while increasing the availability and reliability of our systems. You will explore different ways of problem solving and discover, explain, and defend your choices in implementation. You will be self-motivated and disciplined in order to work with our fully distributed team.
 
 We are looking for someone who is a quick study, who is eager to learn and grow with us, and who has experience in in DevOps or Agile cultures. At Crunch, we believe in learning together: we recognize that we don’t have all the answers, and we try to ask each other the right questions. Some of the ways that we accomplish that include paired programming to tackle a hard problem, transparent code reviews, and discussions about design and architecture. Since Crunch’s employees are completely distributed, it’s crucial that you can work well independently, and keep yourself motivated and focused. We move fast but carefully, with an earnest commitment to not breaking things… well, not too much.
