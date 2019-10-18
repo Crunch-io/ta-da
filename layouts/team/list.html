@@ -55,7 +55,7 @@
                             {{ range where (.Data.Pages.ByParam "firstname") ".File.Dir" "in" "/team/members/" }}
                             <figure class="figure p-3">
                               <!-- <a href="#" data-toggle="popover"> -->
-                                  <img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="185" width="185"></a>
+                                  <img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="230" width="230"></a>
                               <!-- <div class="popover-title d-none">
                                   {{ .Params.firstname }} {{ .Params.lastname }}
                                   <br>
@@ -67,7 +67,8 @@
                               <figcaption class="figure-caption">
                                   <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
                                   <br>
-                                  <img src="img/location_icon.svg" alt="Location"> {{ .Params.location }}
+<!--                                  <img src="img/location_icon.svg" alt="Location"> -->
+                                  {{ .Params.location }}
                               </figcaption>
                             </figure>
                             {{ end }}
