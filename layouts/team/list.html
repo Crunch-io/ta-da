@@ -2,94 +2,94 @@
 
 {{ partial "header.html" . }}
 
-      <div id="wrapper">
+<div id="wrapper">
 
-          <div id="secondary-pages-wrapper">
-              <div class="container-fluid">
+  <div id="secondary-pages-wrapper">
+    <div class="container-fluid">
 
-                  <div class="team-content">
-                      <div class="jumbotron">
-                          <div class="container">
-                              <div class="row justify-content-md-center">
-                                  <div class="col-md-4">
-                                      <h1 class="display-4">The <span>team</span></h1>
-                                  </div>
+      <div class="team-content">
+        <div class="jumbotron">
+          <div class="container">
+            <div class="row justify-content-md-center">
+              <div class="col-md-4">
+                <h1 class="display-4">The <span>team</span></h1>
+              </div>
 
-                                  <div class="col-md-5">
-                                      <p>{{ .Content }}</p>
-                                  </div>
-                              </div> <!-- /.row -->
-                          </div> <!-- /.container -->
-                      </div> <!-- /.jumbotron -->
+              <div class="col-md-5">
+                <p>{{ .Content }}</p>
+              </div>
+            </div> <!-- /.row -->
+          </div> <!-- /.container -->
+        </div> <!-- /.jumbotron -->
 
-                      <div class="container team-leads">
-                        <div class="row justify-content-center">
-                            {{ range where .Data.Pages.ByDate "File.Dir" "in" "/team/board/" }}
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                                <figure class="figure">
-                                  <!-- <a href="#" data-toggle="popover" data-placement="right"> -->
-                                      <img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="320" width="320"></a>
-                                  <!-- <div class="popover-title d-none">
-                                      <h4>{{ .Params.firstname }} {{ .Params.lastname }}</h4>
-                                      <p>{{ .Params.position }}</p>
-                                  </div>
-                                  <div class="popover-content d-none">
-                                      <p>{{ .Params.description  }}</p>
-                                  </div> -->
-                                  <figcaption class="figure-caption">
-                                      <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
-                                      <br>
-                                      <img src="img/location_icon.svg" alt="Location"> {{ .Params.location }}
-                                  </figcaption>
-                                </figure>
-                            </div>
-                            {{ end }}
-                        </div> <!-- /.row -->
-                      </div> <!-- /.container -->
-                  </div> <!-- /.about-content -->
+        <div class="container team-leads">
+          <div class="row justify-content-center">
+            {{ range where .Data.Pages.ByDate "File.Dir" "in" "/team/board/" }}
+            <div class="col-xs-12 col-sm-6 col-md-4">
+              <figure class="figure">
+                <img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="320" width="320">
+                <!--<a href="#" data-toggle="popover" data-placement="right">-->
+                <!--</a>-->
+                <!--<div class="popover-title d-none">-->
+                <!--<h4>{{ .Params.firstname }} {{ .Params.lastname }}</h4>-->
+                <!--<p>{{ .Params.position }}</p>-->
+                <!--</div>-->
+                <!--<div class="popover-content d-none">-->
+                <!--<p>{{ .Params.description }}</p>-->
+                <!--</div>-->
+                <figcaption class="figure-caption">
+                  <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
+                  <p>{{ .Params.location }}</p>
+                  <!--<br>-->
+                  <!--<img src="img/location_icon.svg" alt="Location"> {{ .Params.location }}-->
+                </figcaption>
+              </figure>
+            </div>
+            {{ end }}
+          </div> <!-- /.row -->
+        </div> <!-- /.container -->
+      </div> <!-- /.about-content -->
 
-                  <div class="secondary-content">
-                    <div class="container">
+      <div class="secondary-content">
+        <div class="container">
+          <div class="team-members">
+            {{ range where (.Data.Pages.ByParam "firstname") ".File.Dir" "in" "/team/members/" }}
+            <figure class="figure p-3">
+              <img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="230" width="230">
+              <!--<a href="#" data-toggle="popover">-->
+              <!--</a>-->
+              <!--<div class="popover-title d-none">-->
+              <!--{{ .Params.firstname }} {{ .Params.lastname }}-->
+              <!--<br>-->
+              <!--<span>{{ .Params.position }}</span>-->
+              <!--</div>-->
+              <!--<div class="popover-content d-none">-->
+              <!--{{ .Params.description }}-->
+              <!--</div>-->
+              <figcaption class="figure-caption">
+                <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
+                <p>{{ .Params.location }}</p>
+                <!--<img src="img/location_icon.svg" alt="Location">-->
+              </figcaption>
+            </figure>
+            {{ end }}
+          </div>
+        </div> <!-- /.container -->
+      </div> <!-- /.secondary-content -->
 
-                        <div class="team-members">
-                            {{ range where (.Data.Pages.ByParam "firstname") ".File.Dir" "in" "/team/members/" }}
-                            <figure class="figure p-3">
-                              <!-- <a href="#" data-toggle="popover"> -->
-                                  <img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="230" width="230"></a>
-                              <!-- <div class="popover-title d-none">
-                                  {{ .Params.firstname }} {{ .Params.lastname }}
-                                  <br>
-                                  <span>{{ .Params.position }}</span>
-                              </div>
-                              <div class="popover-content d-none">
-                                  {{ .Params.description  }}
-                              </div> -->
-                              <figcaption class="figure-caption">
-                                  <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
-                                  <br>
-<!--                                  <img src="img/location_icon.svg" alt="Location"> -->
-                                  {{ .Params.location }}
-                              </figcaption>
-                            </figure>
-                            {{ end }}
-                        </div>
+      <div class="footer-content">
+        <div class="jumbotron">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <h1>Modern survey data analysis.</h1>
+                <a href="mailto:info@crunch.io" class="btn btn-link">Try now &#10230;</a>
+              </div>
+            </div> <!-- /.row. -->
+          </div> <!-- /.container -->
+        </div> <!-- /.jumbotron -->
+      </div>
 
-                    </div> <!-- /.container -->
-                  </div> <!-- /.secondary-content -->
+      {{ partial "footer-nav.html" . }}
 
-                  <div class="footer-content">
-                      <div class="jumbotron">
-                          <div class="container">
-                              <div class="row">
-                                  <div class="col-md-6">
-                                      <h1>Modern survey data analysis.</h1>
-                                      <a href="mailto:info@crunch.io" class="btn btn-link">Try now &#10230;</a>
-                                  </div>
-                              </div> <!-- /.row. -->
-                          </div> <!-- /.container -->
-                      </div> <!-- /.jumbotron -->
-                  </div>
-
-{{ partial "footer-nav.html" . }}
-
-{{ partial "footer.html" . }}
+      {{ partial "footer.html" . }}
