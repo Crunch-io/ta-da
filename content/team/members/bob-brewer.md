@@ -1,0 +1,11 @@
++++
+date = "2012-11-30T14:08:35+02:00"
+draft = false
+firstname = "Bob"
+lastname = "Brewer"
+description = "I analyze and communicate why we do what we do, so we can make a consistently high-quality product and work together better."
+weight = 1
+img = "bob-brewer.jpg"
+location = "Garden Valley, California (USA)"
+position = "Chief Architect"
++++
