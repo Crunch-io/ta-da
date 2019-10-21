@@ -9,6 +9,6 @@ video = "https://player.vimeo.com/video/343376948"
 
 +++
 
-Did you know you can use Crunch.io for other data sets besides YouGov Profiles? With Crunch.io, you can easily slice and dice data to glean deeper insights.
+Did you know you can use Crunch.io for other survey data sets besides YouGov Profiles? With Crunch.io, you can easily slice and dice to uncover insights.
 
 Fill out the form or give us a call at <a href="tel:202-780-5550">202.780.5550</a> to get started today.
