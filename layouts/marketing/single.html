@@ -2,13 +2,12 @@
 
 <div id="first-content"></div>
 
-{{ partial "header.html" . }}
 
 <div id="dot-nav" class="float-right">
      <ul>
-        <li><a href="marketing/interactive-data-visualization/#first-content">1</a></li>
-        <li><a href="marketing/interactive-data-visualization/#second-content">2</a></li>
-        <li><a href="marketing/interactive-data-visualization/#third-content">3</a></li>
+        <li><a href="marketing/opinion-matters/#first-content">1</a></li>
+        <li><a href="marketing/opinion-matters/#second-content">2</a></li>
+        <li><a href="marketing/opinion-matters/#third-content">3</a></li>
      </ul>
 </div>
 
@@ -19,18 +18,16 @@
 
             <div class="crunchbox-content">
 
-                <div class="page-scroll intro-marketing-pages green">
+                <div class="page-scroll">
                     <div class="jumbotron">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-3 position-fixed d-none d-sm-block">
-                                    <h1>{{ .Params.title }}</h1>
+                                    <h1><img src="img/marketing/opinion_matters.png" alt=""></h1>
                                 </div>
 
                                 <div class="col-sm-12 col-md-8 offset-md-4">
                                     <h1 class="d-block d-sm-none">{{ .Params.title }}</h1>
-
-                                    <h2>{{ .Params.description }}</h2>
 
                                     <div class="crunchbox-container">
                                         <div class="crunchbox">
@@ -45,7 +42,7 @@
                     </div> <!-- /.jumbotron -->
                 </div> <!-- /.intro-marketing-pages -->
 
-                <section id="second-content" class="page-scroll content-two">
+                <section id="second-content" class="page-scroll">
                     <div class="jumbotron">
                         <div class="container">
 
@@ -65,7 +62,7 @@
                     </div> <!-- /.jumbotron -->
                 </section>
 
-                <section id="third-content" class="page-scroll content-three">
+                <section id="third-content" class="page-scroll">
                     <div class="jumbotron">
                         <div class="container">
 
@@ -87,7 +84,3 @@
                 </section>
 
             </div> <!-- /.crunchbox-content -->
-
-{{ partial "footer-nav.html" . }}
-
-{{ partial "footer.html" . }}
