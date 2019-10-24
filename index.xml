@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Oct 2019 14:09:35 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 22 Oct 2019 14:08:35 +0200</lastBuildDate>
     
 	<atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -430,6 +430,18 @@
       <guid>//crunch.io/dev/features/dataset-folders/</guid>
       <description>Dataset folders allow you to organize your data hierarchically, similar to a file system as you might see in Windows Explorer or MacOS Finder. Folders make finding, organizing, and sharing data more intuitive.
  Folders can be used to organize large collections of datasets into more manageable units. If your organization imports data from many sources or has a large archive of previously imported data, you can organize them by source, time of import/survey, subject, etc.</description>
+    </item>
+    
+    <item>
+      <title>Software Project Manager</title>
+      <link>//crunch.io/jobs/software-project-manager/</link>
+      <pubDate>Tue, 22 Oct 2019 14:08:35 +0200</pubDate>
+      
+      <guid>//crunch.io/jobs/software-project-manager/</guid>
+      <description>Reports to: VP Software Engineering
+Work location: Anywhere
+Direct reports: 6-10
+We are hiring a Software Project Manager to help expand our platform and operations excellence, someone who has been a software engineer and has graduated into a project manager role. We are inviting you to join our small, fully remote team of developers and operators helping make our platform faster, more secure, and more reliable. You will be self-motivated and disciplined in order to work with our fully distributed team.</description>
     </item>
     
     <item>
