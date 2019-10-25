@@ -18,7 +18,7 @@ We are looking for someone who is a quick study, who is eager to learn and grow 
 
 # Our stack
 
-We currently run our in-house production Python code against Redis, MongoDB, and ElasticSearch services. We proxy API requests through NGINX, load balance with ELBs, and deploy our React web application to AWS CloudFront CDN.Our currently CI/CD process is built around GitHub, Jenkins, BlueOcean including unit, integration, and end to end tests and automated system deployments. We deploy to Auto Scaling Groups using Ansible and Cloud-Init.
+We currently run our in-house production Python code against Redis, MongoDB, and ElasticSearch services. We proxy API requests through NGINX, load balance with ELBs, and deploy our React web application to AWS CloudFront CDN. Our current CI/CD process is built around GitHub, Jenkins, BlueOcean including unit, integration, and end to end tests and automated system deployments. We deploy to auto-scaling Groups using Ansible and Cloud-Init.
 
 In the future, all or part of our platform may be deployed via DroneCI, Kubernetes, nginx ingress, Helm, and Spinnaker.
 
