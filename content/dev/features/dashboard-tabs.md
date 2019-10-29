@@ -22,6 +22,6 @@ Dashboard tiles can now be placed across multiple tabs, making it easier to navi
 
 * Delete tabs, choosing whether to delete any tiles or move them to another tab
 
-See [our support documentation]() to get started.
+See [our support documentation](http://support.crunch.io/articles/co4jqnGi/How-to-add-tabs-to-a-dashboard) to get started.
 
 Available now for our early access users. We'd love your feedback at support@crunch.io.
