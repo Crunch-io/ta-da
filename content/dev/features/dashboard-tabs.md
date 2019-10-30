@@ -1,5 +1,5 @@
 +++
-date = 2019-10-28T14:02:27+02:00
+date = "2019-10-30T11:19:42Z"
 title = "Dashboard tabs"
 news_description = "Dataset editors can now add tabs to their dashboards to display analyses on different pages. Click here to learn more."
 description = "Dataset editors can now add tabs to their dashboards to display analyses on different pages. Click here to learn more."
