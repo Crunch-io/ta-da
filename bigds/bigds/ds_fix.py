@@ -66,9 +66,10 @@ from cr.lib.commands.common import load_settings, startup
 from cr.lib import actions as actionslib
 from cr.lib.entities.datasets.dataset import Dataset
 from cr.lib.entities.datasets.versions.versioning import version_health, VersionTag
+from cr.lib.entities.projects.projects import Project
 from cr.lib.entities.users import User
 from cr.lib import exceptions
-from cr.lib.index.indexer import index_dataset, index_dataset_variables
+from cr.lib.index.indexer import DatasetIndexer, VariableIndexer
 from cr.lib.loglib import log, log_to_stdout
 from cr.lib.settings import settings
 from cr.lib import stores
@@ -149,9 +150,8 @@ def _replay_from(source_dataset, from_version, owner_email):
     except exceptions.NotFound:
         print('Owner email "{}" not found.'.format(owner_email), file=sys.stderr)
         return None, False
-    newds = Dataset(
-        id=newds_id, name=dataset_name, owner_type="User", owner_id=dataset_owner.id
-    )
+    personal = Project.personal_for(dataset_owner.account_id, dataset_owner)
+    newds = Dataset(dataset_owner.id, project=personal, id=newds_id, name=dataset_name)
     succeeded = True
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
@@ -348,8 +348,8 @@ class _DatasetTipRestorer(object):
         )
 
         print("Indexing dataset metadata and variables")
-        index_dataset(self.target_ds)
-        index_dataset_variables(self.target_ds)
+        DatasetIndexer(self.target_ds).index_dataset()
+        VariableIndexer.index_dataset_variables(self.target_ds)
 
     def _save_actions(self, actions_list):
         self.actions_filename = join(
