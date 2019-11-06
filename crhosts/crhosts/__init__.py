@@ -257,7 +257,7 @@ class HostPropertyDetector(object):
 
 
             try:
-                stat_command = command + """ 'stat -c '%Y' {}/__zz9_dirty__*'""".format(
+                stat_command = command + """ sudo 'stat -c '%Y' {}/__zz9_dirty__*'""".format(
                     dataset_path
                 )
                 res = subprocess.check_output(stat_command, shell=True).strip()
