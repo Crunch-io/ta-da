@@ -16,13 +16,15 @@ Usage:
     ds.fix [options] delete-savepoint <ds-id> <ds-version>
     ds.fix [options] fork-from <source-ds-id> <source-version>
                                [--maintainer-id=U] [--project-id=P]
+    ds.fix [options] create-empty-dataset <dataset-name>
 
 Options:
     -i                        Run interactive prompt after the command
     --long                    Output data in longer format if applicable.
     --cr-lib-config=FILENAME  [default: /var/lib/crunch.io/cr.server-0.conf]
     --owner-email=EMAIL       Email address of new dataset owner when doing
-                              replay-from. [default: captain@crunch.io]
+                              replay-from or create-empty-dataset.
+                              [default: captain@crunch.io]
     --backup-repo-dir         Back up dataset repo dir before doing restore-tip
     --zz9repo=DIRNAME         Location of root of zz9 repositories, used when
                               backing up dataset repo dir.
@@ -808,6 +810,27 @@ def do_fork_from(args):
 
     # The result includes the target dataset ID, which is important info!
     pprint.pprint(result)
+
+
+def do_create_empty_dataset(args):
+    dataset_name = args["<dataset-name>"]
+    owner_email = args["--owner-email"]
+    _cr_lib_init(args)
+    newds_id = stores.gen_id()
+    try:
+        dataset_owner = User.get_by_email(owner_email)
+    except exceptions.NotFound:
+        print('Owner email "{}" not found'.format(owner_email), file=sys.stderr)
+        return 1
+    personal = Project.personal_for(dataset_owner.account_id, dataset_owner)
+    newds = Dataset(dataset_owner.id, project=personal, id=newds_id, name=dataset_name)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        newds.create()
+    print('{} "{}"'.format(newds.id, newds.name))
+    print("Indexing the dataset")
+    DatasetIndexer(newds).index_dataset()
+    return 0
 
 
 def _do_command(args):
