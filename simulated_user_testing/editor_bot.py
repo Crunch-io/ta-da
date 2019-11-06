@@ -55,7 +55,7 @@ def simulate_editor(config, args):
         print(msg)
         if args["--slack-notify"]:
             response = sim_util.message(
-                text=msg, channel="#systems", username="crunchbot", icon_emoji=":pizza:"
+                text=msg, channel="#sentry-alpha", username="crunchbot", icon_emoji=":pizza:"
             )
             if not response.ok:
                 print("ERROR sending Slack notification:", response)
