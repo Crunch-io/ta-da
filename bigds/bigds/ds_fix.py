@@ -354,15 +354,20 @@ def do_save_all_actions(args):
 
 
 def _save_actions(ds, from_version, filename):
+    with open(filename, "wb") as f:
+        save_actions(ds, from_version, f, verbose=True)
+
+
+def save_actions(ds, from_version, fileobj, verbose=True):
     if from_version is not None:
         from_branch = Dataset.version_branch(from_version)
         if from_branch != ds.branch:
             raise ValueError("Start and End versions must be on same branch.")
     with actionslib.dataset_lock("save_actions", ds.id, exclusive=False):
         _, actions_to_save = _get_vtag_actions_list(ds, from_version)
-    print("Saving", len(actions_to_save), "actions to", filename)
-    with open(filename, "wb") as f:
-        pickle.dump(actions_to_save, f, 2)
+    if verbose:
+        print("Saving", len(actions_to_save), "actions to", fileobj.name)
+    pickle.dump(actions_to_save, fileobj, 2)
 
 
 def do_apply_actions(args):
@@ -400,19 +405,28 @@ def do_apply_actions(args):
 
     _cr_lib_init(args)
     ds = Dataset.find_by_id(id=ds_id, version="master__tip")
+    apply_actions(ds, actions_to_replay, rehash=bool(args["--rehash"]))
+
+
+def apply_actions(ds, actions_to_replay, rehash=False, verbose=True, do_index=True):
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         with actionslib.dataset_lock("apply_actions", ds.id, exclusive=True):
-            print("Replaying", len(actions_to_replay), "actions")
+            if verbose:
+                print("Replaying", len(actions_to_replay), "actions on dataset", ds.id)
+                sys.stdout.flush()
             ds.play_workflow(
                 None,
                 actions_to_replay,
                 autorollback=ds.AutorollbackType.LastAction,
-                rehash=bool(args["--rehash"]),
+                rehash=rehash,
                 task=None,
             )
-        print("Indexing variables")
-        VariableIndexer.index_dataset_variables(ds)
+        if do_index:
+            if verbose:
+                print("Indexing variables")
+                sys.stdout.flush()
+            VariableIndexer.index_dataset_variables(ds)
 
 
 def do_delete_savepoint(args):
@@ -490,21 +504,30 @@ def do_create_empty_dataset(args):
     dataset_name = args["<dataset-name>"]
     owner_email = args["--owner-email"]
     _cr_lib_init(args)
-    newds_id = stores.gen_id()
     try:
         dataset_owner = User.get_by_email(owner_email)
     except exceptions.NotFound:
         print('Owner email "{}" not found'.format(owner_email), file=sys.stderr)
         return 1
     personal = Project.personal_for(dataset_owner.account_id, dataset_owner)
-    newds = Dataset(dataset_owner.id, project=personal, id=newds_id, name=dataset_name)
+    create_empty_dataset(dataset_name, dataset_owner, personal)
+    return 0
+
+
+def create_empty_dataset(name, owner, project, verbose=True, do_index=True):
+    newds_id = stores.gen_id()
+    newds = Dataset(owner.id, project=project, id=newds_id, name=name)
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         newds.create()
-    print('{} "{}"'.format(newds.id, newds.name))
-    print("Indexing the dataset")
-    DatasetIndexer(newds).index_dataset()
-    return 0
+    if verbose:
+        print('{} "{}"'.format(newds.id, newds.name))
+    if do_index:
+        if verbose:
+            print("Indexing the dataset")
+            sys.stdout.flush()
+        DatasetIndexer(newds).index_dataset()
+    return newds
 
 
 def _do_command(args):
