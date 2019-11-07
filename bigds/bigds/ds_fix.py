@@ -514,9 +514,13 @@ def do_create_empty_dataset(args):
     return 0
 
 
-def create_empty_dataset(name, owner, project, verbose=True, do_index=True):
+def create_empty_dataset(
+    name, owner, project, family_id=None, verbose=True, do_index=True
+):
     newds_id = stores.gen_id()
     newds = Dataset(owner.id, project=project, id=newds_id, name=name)
+    if family_id is not None:
+        newds.family_id = family_id
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         newds.create()
