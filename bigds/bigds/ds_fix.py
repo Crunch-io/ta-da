@@ -14,7 +14,7 @@ Usage:
     ds.fix [options] delete-savepoint <ds-id> <ds-version>
     ds.fix [options] fork-from <source-ds-id> <source-version>
                                [--maintainer-id=U] [--project-id=P]
-    ds.fix [options] create-empty-dataset <dataset-name>
+    ds.fix [options] create-empty-dataset [--based-on=DS-ID] [<dataset-name>]
 
 Options:
     -i                        Run interactive prompt after the command
@@ -28,6 +28,13 @@ Options:
     --include-failed          Also list or save actions that did not succeed
     --yes                     Bypass "Are you sure?" prompts
     --timeout=SECONDS         Timeout value for diagnose [default: 600]
+    --show-time               Print how long the command took
+
+Command details:
+    create-empty-dataset      Must pass --based-on, <dataset-name>, or both.
+                              Use --based-on=DS-ID before doing apply-actions from
+                              dataset DS-ID or you will run into problems later
+                              even trying to delete the dataset.
 
 WARNING!!! these commands are currently experimental and/or dangerous.
 """
@@ -502,15 +509,26 @@ def do_fork_from(args):
 
 def do_create_empty_dataset(args):
     dataset_name = args["<dataset-name>"]
+    based_on_ds_id = args["--based-on"]
+    if not (dataset_name or based_on_ds_id):
+        raise ValueError("Must pass --based-on or <dataset-name> or both")
     owner_email = args["--owner-email"]
     _cr_lib_init(args)
+    if based_on_ds_id:
+        ds = Dataset.find_by_id(id=based_on_ds_id, version="master__tip")
+        family_id = ds.family_id
+    else:
+        ds = None
+        family_id = None
+    if not dataset_name:
+        dataset_name = "REPLAY: " + ds.name
     try:
         dataset_owner = User.get_by_email(owner_email)
     except exceptions.NotFound:
         print('Owner email "{}" not found'.format(owner_email), file=sys.stderr)
         return 1
     personal = Project.personal_for(dataset_owner.account_id, dataset_owner)
-    create_empty_dataset(dataset_name, dataset_owner, personal)
+    create_empty_dataset(dataset_name, dataset_owner, personal, family_id=family_id)
     return 0
 
 
@@ -554,7 +572,8 @@ def _do_command(args):
         traceback.print_exc()
         return 1
     finally:
-        print("Elapsed time:", time.time() - t0, "seconds", file=sys.stderr)
+        if args["--show-time"]:
+            print("Elapsed time:", time.time() - t0, "seconds", file=sys.stderr)
 
 
 def main():
