@@ -22,9 +22,6 @@ Options:
     --cr-lib-config=FILENAME  [default: /var/lib/crunch.io/cr.server-0.conf]
     --owner-email=EMAIL       Email address of new dataset owner when doing
                               create-empty-dataset. [default: captain@crunch.io]
-    --zz9repo=DIRNAME         Location of root of zz9 repositories, used when
-                              backing up dataset repo dir.
-                              [default: /var/lib/crunch.io/zz9repo]
     --include-failed          Also list or save actions that did not succeed
     --yes                     Bypass "Are you sure?" prompts
     --timeout=SECONDS         Timeout value for diagnose [default: 600]
