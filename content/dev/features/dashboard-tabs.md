@@ -1,5 +1,6 @@
 +++
 date = "2019-11-12T11:19:42Z"
+publishdate = "2019-11-12T13:52:28+0000"
 title = "Dashboard tabs"
 news_description = "Dataset editors can now add tabs to their dashboards to display analyses on different pages. Click here to learn more."
 description = "Dataset editors can now add tabs to their dashboards to display analyses on different pages."
