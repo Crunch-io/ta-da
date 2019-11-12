@@ -45,7 +45,7 @@ def main():
         with launch_ipdb_on_exception():
             summary = dog_summary_stats(start, end)
     elif send_to_slack:
-        with errors_to_slack(channel="systems", text="Oops! Error running dog.summary on ahsoka:"):
+        with errors_to_slack(channel="app-status", text="Oops! Error running dog.summary on ahsoka:"):
             summary = dog_summary_stats(start, end)
     else:
         summary = dog_summary_stats(start, end)
@@ -53,7 +53,7 @@ def main():
     if send_to_slack:
         ## Send the output there too!
         body, icon_emoji = slackify_dog_summary(summary, daterange)
-        r = message(channel="systems", username="crunchbot",
+        r = message(channel="app-status", username="crunchbot",
             icon_emoji=icon_emoji, attachments=body)
         r.raise_for_status()
     else:
