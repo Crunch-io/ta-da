@@ -90,15 +90,16 @@ def do_list_versions(args):
             print("{}:".format(version_id))
             pprint.pprint(version_info)
     else:
-        print("version-id                               ds ver date")
-        print("---------------------------------------- -- ---", "-" * 19)
+        print("version-id                           ds ver zz9 date")
+        print("------------------------------------ -- --- ---", "-" * 19)
         for version_id, version_info in version_list:
-            version_date = str(version_info["date"])
+            version_date = str(version_info.get("date", ""))
             print(
-                "{:40} {:2} {:3} {:19}".format(
+                "{:36} {:2} {:3} {:3} {:19}".format(
                     version_id,
                     version_info.get("datasets", 0),
                     version_info.get("version_tags", 0),
+                    int(version_info.get("zz9", 0)),
                     version_date,
                 )
             )
