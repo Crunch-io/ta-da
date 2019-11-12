@@ -49,7 +49,7 @@ def main():
         with launch_ipdb_on_exception():
             summary, errors = elb_summary_stats(start, end, source_dir)
     elif send_to_slack:
-        with errors_to_slack(channel="systems", text="Oops! Error running elb.summary on ahsoka:"):
+        with errors_to_slack(channel="app-status", text="Oops! Error running elb.summary on ahsoka:"):
             summary, errors = elb_summary_stats(start, end, source_dir)
     else:
         summary, errors = elb_summary_stats(start, end, source_dir)
@@ -57,7 +57,7 @@ def main():
     if send_to_slack:
         ## Send the output there too!
         if summary['sum_reqs'] == 0:
-            message(channel="systems", username="crunchbot", icon_emoji=":interrobang:",
+            message(channel="app-status", username="crunchbot", icon_emoji=":interrobang:",
                 text="@npr: elb.summary reports no requests for %s" % (daterange))
         else:
             if summary['pct_500s'] < 0.001:
@@ -92,7 +92,7 @@ def main():
                     "fallback": "Log entries for >500 status requests",
                     "color": color
                 }]
-            r = message(channel="systems", username="crunchbot",
+            r = message(channel="app-status", username="crunchbot",
                 icon_emoji=icon_emoji, attachments=body)
             r.raise_for_status()
     else:

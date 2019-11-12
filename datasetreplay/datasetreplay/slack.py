@@ -24,7 +24,7 @@ def message(**kwargs):
 
 
 @contextlib.contextmanager
-def errors_to_slack(channel="systems", username="crunchbot", icon_emoji=":cry:", **kwargs):
+def errors_to_slack(channel="app-status", username="crunchbot", icon_emoji=":cry:", **kwargs):
     '''Catch any errors that happen and send them to slack'''
     try:
         yield
