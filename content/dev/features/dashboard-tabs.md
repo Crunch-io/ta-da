@@ -8,7 +8,7 @@ weight = 20
 tags = ["dashboards"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 
 +++
@@ -25,4 +25,4 @@ Dashboard tiles can now be placed across multiple tabs, making it easier to navi
 
 See [our support documentation](http://support.crunch.io/articles/TjK4EoLc/How-to-add-tabs-to-a-dashboard) to get started.
 
-Available now for our early access users. We'd love your feedback at support@crunch.io.
+We'd love your feedback at support@crunch.io.
