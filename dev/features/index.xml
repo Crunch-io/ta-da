@@ -5,7 +5,7 @@
     <description>Recent content in Feature Announcements on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2019-11-01T10:51:16+00:00</lastBuildDate>
+    <lastBuildDate>2019-11-12T13:56:05+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,10 @@
     <item>
       <title>Dashboard tabs</title>
       <link>//crunch.io/dev/features/dashboard-tabs/</link>
-      <pubDate>2019-10-30T11:32:02+00:00</pubDate>
+      <pubDate>2019-11-12T13:52:28+00:00</pubDate>
       
       <guid>//crunch.io/dev/features/dashboard-tabs/</guid>
-      <labsOnly>true</labsOnly>
+      <labsOnly>false</labsOnly>
       <noProfiles>true</noProfiles>
       <pinned>false</pinned>
       <description>Dataset editors can now add tabs to their dashboards to display analyses on different pages. Click here to learn more.</description>
