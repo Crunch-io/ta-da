@@ -5,9 +5,23 @@
     <description>Recent content in Feature Announcements on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2019-11-12T14:02:38+00:00</lastBuildDate>
+    <lastBuildDate>2019-11-14T22:05:47+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>Combine all the categories from two variables</title>
+      <link>//crunch.io/dev/features/interaction-builder/</link>
+      <pubDate>2019-11-14T21:51:50+00:00</pubDate>
+      
+      <guid>//crunch.io/dev/features/interaction-builder/</guid>
+      <labsOnly>true</labsOnly>
+      <noProfiles>true</noProfiles>
+      <pinned>false</pinned>
+      <description>Cross one variable by another and fill all categories in 3 clicks with the new ‘combination of categories’ variable builder.</description>
+    </item>
     
     
     
