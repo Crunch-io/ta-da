@@ -14,11 +14,11 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 We are hiring a Team Lead over Systems Engineering and Operations to help expand our platform and operations excellence. We are inviting you to join our small, fully remote team of developers and operators helping make our platform faster, more secure, and more reliable. You will be self-motivated and disciplined in order to work with our fully distributed team.
 
-We are looking for someone who is a quick study, who is eager to learn and grow with us, and who has experience in in DevOps and Agile cultures. At Crunch, we believe in learning together: we recognize that we don’t have all the answers, and we try to ask each other the right questions. As Crunch employees are completely distributed, it’s crucial that you can work well independently, and keep yourself motivated and focused.
+We are looking for someone who is a quick study, who is eager to learn and grow with us, and who has experience in DevOps and Agile cultures. At Crunch, we believe in learning together: we recognize that we don’t have all the answers, and we try to ask each other the right questions. As Crunch employees are completely distributed, it’s crucial that you can work well independently, and keep yourself motivated and focused.
 
 # Our stack
 
-We currently run our in-house production Python code against Redis, MongoDB, and ElasticSearch services. We proxy API requests through NGINX, load balance with ELBs, and deploy our React web application to AWS CloudFront CDN.Our currently CI/CD process is built around GitHub, Jenkins, BlueOcean including unit, integration, and end to end tests and automated system deployments. We deploy to Auto Scaling Groups using Ansible and Cloud-Init.
+We currently run our in-house production Python code against Redis, MongoDB, and ElasticSearch services. We proxy API requests through NGINX, load balance with ELBs, and deploy our React web application to AWS CloudFront CDN. Our current CI/CD process is built around GitHub, Jenkins, BlueOcean including unit, integration, and end to end tests and automated system deployments. We deploy to auto-scaling Groups using Ansible and Cloud-Init.
 
 In the future, all or part of our platform may be deployed via DroneCI, Kubernetes, nginx ingress, Helm, and Spinnaker.
 
