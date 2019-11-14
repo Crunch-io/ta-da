@@ -19,7 +19,7 @@ To look in detail at your data, you sometimes need to create a variable that is 
 {{< figure src="dev/features/images/new-variable-chooser.png" class="img-fluid">}}
 
 
-To get started, click +New Variable at the bottom of the variable list, and select “Create combination of categories.” Then select input variables, give it a name, and click Save. If you are a dataset editor, you can choose to share it with the whole dataset. The whole procedure is shown at reduced speed in the animation below.
+To get started, click **+ New Variable** at the bottom of the variable list, and select “Create combination of categories.” Then select input variables, give it a name, and click Save. If you are a dataset editor, you can choose to share it with the whole dataset. The whole procedure is shown at reduced speed in the animation below.
 
 {{< figure src="dev/features/images/interaction-builder.gif" class="img-fluid">}}
 
@@ -28,4 +28,4 @@ Interactions can only be made with categorical variables. In future releases you
 
 {{< figure src="dev/features/images/combine-interacted-variable.png" class="img-fluid">}}
 
-We welcome your feedback at support@crunch.io.
+We welcome your feedback at <support@crunch.io>.
