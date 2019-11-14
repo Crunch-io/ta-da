@@ -1,5 +1,6 @@
 +++
 date = "2019-11-14T11:19:42Z"
+publishdate = "2019-11-14T21:51:50+0000"
 title = "Combine all the categories from two variables"
 description = "Cross one variable by another and fill all categories in 3 clicks with the new ‘combination of categories’ variable builder."
 weight = 20
