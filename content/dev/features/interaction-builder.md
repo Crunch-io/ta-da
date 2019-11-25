@@ -1,5 +1,5 @@
 +++
-date = "2019-11-21"
+date = "2019-11-25"
 title = "Create the interaction of two variables"
 description = "Cross one variable by another to fill all categories in 3 clicks with the new Interaction variable builder."
 weight = 20
