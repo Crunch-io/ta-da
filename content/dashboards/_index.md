@@ -10,10 +10,8 @@ video = "https://player.vimeo.com/video/374781211"
 
 Revolutionize the way you deliver survey data and insights. It’s so easy and quick, you’ll use them all the time.
 
-<ul class="marketing-list">
-    <li>Drag-and-drop. No coding.</li>
+• Drag-and-drop. No coding.
 
-    <li>Add filters, tables, graphs.</li>
+• Add filters, tables, graphs.
 
-    <li>Make changes in a few clicks.</li>
-</ul>
+• Make changes in a few clicks.
