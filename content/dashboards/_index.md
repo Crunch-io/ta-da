@@ -10,8 +10,8 @@ video = "https://player.vimeo.com/video/374781211"
 
 Revolutionize the way you deliver survey data and insights. It’s so easy and quick, you’ll use them all the time.
 
-• Drag-and-drop. No coding.
+* Drag-and-drop. No coding.
 
-• Add filters, tables, graphs.
+* Add filters, tables, graphs.
 
-• Make changes in a few clicks.
+* Make changes in a few clicks.
