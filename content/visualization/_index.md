@@ -9,12 +9,10 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-<ul class="marketing-list">
-    <li>Create interactive tables, charts, and graphs inside Crunch.</li>
+* Create interactive tables, charts, and graphs inside Crunch.
 
-    <li>Place them in a custom dashboard.</li>
+* Place them in a custom dashboard.
 
-    <li>Export editable charts to PowerPoint or Excel.</li>
+* Export editable charts to PowerPoint or Excel.
 
-    <li>With a few clicks, deliver a CrunchBox.</li>
-</ul>
+* With a few clicks, deliver a CrunchBox.
