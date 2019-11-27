@@ -11,16 +11,14 @@ video = "https://player.vimeo.com/video/343376948"
 
 With Crunch.io, you can:
 
-<ul class="marketing-list" style="margin-left: 10px;">
-    <li>Get rid of two day turnarounds to answer questions.</li>
+* Get rid of two day turnarounds to answer questions.
 
-    <li>Build crosstabs with a drag-and-drop.</li>
+* Build crosstabs with a drag-and-drop.
 
-    <li>Build a graph with one click.</li>
+* Build a graph with one click.
 
-    <li>Export real PowerPoint objects.</li>
+* Export real PowerPoint objects.
 
-    <li>Build and deliver a dashboard in 5 minutes.</li>
-</ul>
+* Build and deliver a dashboard in 5 minutes.
 
 Fill out the form or give us a call at <a href="tel:202-780-5550">202.780.5550</a> to see why one market researcher called Crunch.io sorcerers. Let us show you the possibilities in 10 minutes.
