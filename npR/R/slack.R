@@ -32,7 +32,7 @@ with_slack_errors <- function (expr) {
     tryCatch(expr, error=function (e) {
         code <- deparse(tail(sys.calls(), 5)[[1]][[2]])
         msg <- paste0("Error in `", code, "`: ", e$message)
-        slack(channel="systems", username="jenkins", icon_emoji=":interrobang:",
+        slack(channel="app-status", username="jenkins", icon_emoji=":interrobang:",
             text=msg)
     })
 }

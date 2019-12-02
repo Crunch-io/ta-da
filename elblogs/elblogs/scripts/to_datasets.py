@@ -41,7 +41,7 @@ def main():
         with launch_ipdb_on_exception():
             out = reshape_datasets(start, end, dest, source_dir)
     elif send_to_slack:
-        with errors_to_slack(channel="systems", text="Oops! Error running elb.ds on ahsoka:"):
+        with errors_to_slack(channel="app-status", text="Oops! Error running elb.ds on ahsoka:"):
             out = reshape_datasets(start, end, dest, source_dir)
     else:
         out = reshape_datasets(start, end, dest, source_dir)

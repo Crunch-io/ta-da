@@ -9,7 +9,7 @@
 #' @return If `send`, the Slack API response object. If not, then whatever `print`' returns.
 #' @export
 slowRequestReport <- function (minutes=60, threshold=119, max.reports=5, send=TRUE,
-                               channel="#systems", ...) {
+                               channel="#app-status", ...) {
     ## Query slow requests, check timestamps, go `minutes` back
     require(superadmin)
     ## Assume no more than 100

@@ -21,7 +21,7 @@ summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
 
         reportToSlack <- function (obj, send=TRUE) {
             if (send) {
-                slack(channel="systems", username="jenkins", icon_emoji=":timer_clock:",
+                slack(channel="app-status", username="jenkins", icon_emoji=":timer_clock:",
                     text=md(obj))
             } else {
                 print(obj)

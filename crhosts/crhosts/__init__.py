@@ -9,6 +9,13 @@ from paramiko.client import SSHClient, WarningPolicy
 
 
 class tunnel(object):
+  JUMP_HOSTS = {
+      "alpha": "ec2-user@jump.eu.crint.net",
+      "eu": "ec2-user@jump.eu.crint.net",
+      "unstable": "ubuntu@c3po.aws.crunch.io",
+      "stable": "ubuntu@c3po.aws.crunch.io"
+  }
+
   def __init__(self, target, target_port, local_port, killonexit=True):
       self.target = target
       self.target_port = target_port
@@ -19,7 +26,9 @@ class tunnel(object):
       if not self.killonexit:
           # There might be a previous instance running, quit it.
           self._kill_running()
-      subprocess.call('ssh -A -f -N -L %s:%s:%s ec2-user@jump.eu.crint.net' % (self.local_port, self.target, self.target_port), shell=True)
+      hostgroup = self.target.split('-', 1)[0]
+      jumphost = self.JUMP_HOSTS[hostgroup]
+      subprocess.call('ssh -A -f -N -L %s:%s:%s %s' % (self.local_port, self.target, self.target_port, jumphost), shell=True)
       return ('127.0.0.1', self.local_port)
 
   def __exit__(self, *args, **kwargs):

@@ -13,7 +13,7 @@ elbSummary <- function (days, before.date=Sys.Date(), send=TRUE, ...) {
     icon <- elb_icon_emoji(body[[1]]$color, perfect = results$n_5xx == 0)
     if (send) {
         slack(
-            channel="systems",
+            channel="app-status",
             username="crunchbot",
             icon_emoji=icon,
             attachments=body,
