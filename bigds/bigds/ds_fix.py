@@ -413,7 +413,11 @@ def do_apply_actions(args):
     apply_actions(ds, actions_to_replay, rehash=bool(args["--rehash"]))
 
 
-def apply_actions(ds, actions_to_replay, rehash=False, verbose=True, do_index=True):
+def apply_actions(
+    ds, actions_to_replay, autorollback=None, rehash=False, verbose=True, do_index=True
+):
+    if autorollback is None:
+        autorollback = ds.AutorollbackType.LastAction
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         with actionslib.dataset_lock("apply_actions", ds.id, exclusive=True):
@@ -423,7 +427,7 @@ def apply_actions(ds, actions_to_replay, rehash=False, verbose=True, do_index=Tr
             ds.play_workflow(
                 None,
                 actions_to_replay,
-                autorollback=ds.AutorollbackType.LastAction,
+                autorollback=autorollback,
                 rehash=rehash,
                 task=None,
             )
