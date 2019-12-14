@@ -24,10 +24,10 @@
 
         <div class="container team-leads">
           <div class="row justify-content-center">
-            {{ range where .Data.Pages.ByDate "File.Dir" "in" "/team/board/" }}
+            {{ range sort $.Site.Data.team.board "date" }}
             <div class="col-xs-12 col-sm-6 col-md-4">
               <figure class="figure">
-                <img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="320" width="320">
+                <img src="img/team/{{.img}}" alt="{{ .firstname }}" class="img-fluid" height="320" width="320">
                 <!--<a href="#" data-toggle="popover" data-placement="right">-->
                 <!--</a>-->
                 <!--<div class="popover-title d-none">-->
@@ -38,8 +38,8 @@
                 <!--<p>{{ .Params.description }}</p>-->
                 <!--</div>-->
                 <figcaption class="figure-caption">
-                  <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
-                  <p>{{ .Params.location }}</p>
+                  <strong>{{ .firstname }} {{ .lastname }}</strong>
+                  <p>{{ .location }}</p>
                   <!--<br>-->
                   <!--<img src="img/location_icon.svg" alt="Location"> {{ .Params.location }}-->
                 </figcaption>
@@ -53,9 +53,9 @@
       <div class="secondary-content">
         <div class="container">
           <div class="team-members">
-            {{ range where (.Data.Pages.ByParam "firstname") ".File.Dir" "in" "/team/members/" }}
+            {{ range sort $.Site.Data.team.members "firstname" }}
             <figure class="figure p-3">
-              <img src="img/team/{{.Params.img}}" alt="{{ .Params.firstname }}" class="img-fluid" height="230" width="230">
+              <img src="img/team/{{.img}}" alt="{{ .firstname }}" class="img-fluid" height="230" width="230">
               <!--<a href="#" data-toggle="popover">-->
               <!--</a>-->
               <!--<div class="popover-title d-none">-->
@@ -67,8 +67,8 @@
               <!--{{ .Params.description }}-->
               <!--</div>-->
               <figcaption class="figure-caption">
-                <strong>{{ .Params.firstname }} {{ .Params.lastname }}</strong>
-                <p>{{ .Params.location }}</p>
+                <strong>{{ .firstname }} {{ .lastname }}</strong>
+                <p>{{ .location }}</p>
                 <!--<img src="img/location_icon.svg" alt="Location">-->
               </figcaption>
             </figure>
