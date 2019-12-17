@@ -8,7 +8,7 @@ weight = 20
 tags = ["dashboards"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = false
+labs_only = true
 no_profiles = true
 
 +++
