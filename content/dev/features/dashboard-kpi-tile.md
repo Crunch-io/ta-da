@@ -30,8 +30,6 @@ To create one, simply save an analysis of any kind – table, chart or variable 
 Make optional changes to the titles, number type and decimal places, and click Save.
 KPI tiles can be moved and resized like other tiles, but they have a maximum size of 4x4 cells.
 
-Full support documentation can be found [here](url).
-
 As an added bonus, editors can now also switch between tables and graphs when editing dashboards, as well as change the basic metadata (titles, description etc) for tiles that contain tables.
 
 We'd love your feedback at <support@crunch.io>.
