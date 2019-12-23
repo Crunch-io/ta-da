@@ -6,6 +6,6 @@ label = "Event | April 14-16"
 hubspot = "https://info.crunch.io/iiex-na-2020"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
-link = "Book a meeting"
+link = "Book a Meeting"
 
 +++
