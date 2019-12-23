@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Dec 2019 12:27:04 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 19 Dec 2019 12:08:14 -0400</lastBuildDate>
     
 	<atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -122,6 +122,42 @@ To create one, simply save an analysis of any kind – table, chart or variable 
       <guid>//crunch.io/dev/features/dataset-folders/</guid>
       <description>Dataset folders allow you to organize your data hierarchically, similar to a file system as you might see in Windows Explorer or MacOS Finder. Folders make finding, organizing, and sharing data more intuitive.
   Folders can be used to organize large collections of datasets into more manageable units. If your organization imports data from many sources or has a large archive of previously imported data, you can organize them by source, time of import/survey, subject, etc.</description>
+    </item>
+    
+    <item>
+      <title>Break the Mold: Build an Interactive Dashboard for Survey Data in 5 Minutes</title>
+      <link>//crunch.io/resources/break-the-mold/</link>
+      <pubDate>Thu, 19 Dec 2019 12:08:14 -0400</pubDate>
+      
+      <guid>//crunch.io/resources/break-the-mold/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Quirks London</title>
+      <link>//crunch.io/resources/quirks-london/</link>
+      <pubDate>Thu, 19 Dec 2019 11:39:35 -0400</pubDate>
+      
+      <guid>//crunch.io/resources/quirks-london/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Quirks Brooklyn</title>
+      <link>//crunch.io/resources/quirks-london-2/</link>
+      <pubDate>Thu, 19 Dec 2019 11:00:50 -0400</pubDate>
+      
+      <guid>//crunch.io/resources/quirks-london-2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IIeX North America</title>
+      <link>//crunch.io/resources/iiex-north-america/</link>
+      <pubDate>Thu, 19 Dec 2019 10:40:11 -0400</pubDate>
+      
+      <guid>//crunch.io/resources/iiex-north-america/</guid>
+      <description></description>
     </item>
     
     <item>
