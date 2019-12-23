@@ -6,6 +6,6 @@ label = "Event | February 11-12"
 hubspot = "https://info.crunch.io/quirks-london-2020"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
-link = "Book a meeting"
+link = "Book a Meeting"
 
 +++
