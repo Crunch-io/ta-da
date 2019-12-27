@@ -1,0 +1,125 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="jobs-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-7">
+                                <h1 class="display-4"><span>{{ .Title }}</span></h1>
+                            </div>
+
+                            <div class="col-md-4">
+                                <p>{{ .Content }}</p>
+                                <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
+                            </div>
+
+                        </div> <!-- /.row -->
+
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.jobs-content -->
+
+            <div class="secondary-content">
+              <div class="container">
+
+                  <div class="row spacer-top spacer-bottom justify-content-md-center">
+                      <div class="col-md-7">
+                          <h2 class="text-center"><span>{{ .Params.description }}</span></h2>
+                      </div>
+                  </div>
+
+                  <div class="row spacer justify-content-md-center">
+                      {{ range .Data.Pages }}
+                          {{ if and (eq .Type "case-studies") (eq .Title "YouGov") }}
+                              <div class="col-md-4">
+                                  <h1>{{ .Params.title }}</h1>
+                                  <p><strong>Industry: </strong>{{ .Params.industry }}</p>
+                                  <p><strong>About: </strong>{{ .Params.about }}</p>
+                                  <p><strong>Region: </strong>{{ .Params.region }}</p>
+                              </div>
+
+                              <div class="col-md-5 offset-md-2">
+                                  <p>{{ .Content }}</p>
+                              </div>
+                          {{ end }}
+                      {{ end }}
+                  </div> <!-- /.row. -->
+
+                  <div class="row spacer justify-content-md-center">
+                      {{ range .Data.Pages }}
+                          {{ if and (eq .Type "case-studies") (eq .Title "Metrixlab") }}
+                              <div class="col-md-4">
+                                  <h1>{{ .Params.title }}</h1>
+                                  <p><strong>Industry: </strong>{{ .Params.industry }}</p>
+                                  <p><strong>About: </strong>{{ .Params.about }}</p>
+                                  <p><strong>Region: </strong>{{ .Params.region }}</p>
+                              </div>
+
+                              <div class="col-md-5 offset-md-2">
+                                  <p>{{ .Content }}</p>
+                              </div>
+                          {{ end }}
+                      {{ end }}
+                  </div> <!-- /.row. -->
+
+                  <div class="row spacer justify-content-md-center">
+                      {{ range .Data.Pages }}
+                          {{ if and (eq .Type "case-studies") (eq .Title "Gojek") }}
+                              <div class="col-md-4">
+                                  <h1>{{ .Params.title }}</h1>
+                                  <p><strong>Industry: </strong>{{ .Params.industry }}</p>
+                                  <p><strong>About: </strong>{{ .Params.about }}</p>
+                                  <p><strong>Region: </strong>{{ .Params.region }}</p>
+                              </div>
+
+                              <div class="col-md-5 offset-md-2">
+                                  <p>{{ .Content }}</p>
+                              </div>
+                          {{ end }}
+                      {{ end }}
+                  </div> <!-- /.row. -->
+
+                  <div class="row spacer justify-content-md-center">
+                      {{ range .Data.Pages }}
+                          {{ if and (eq .Type "case-studies") (eq .Title "Activision Blizzard") }}
+                              <div class="col-md-4">
+                                  <h1>{{ .Params.title }}</h1>
+                                  <p><strong>Industry: </strong>{{ .Params.industry }}</p>
+                                  <p><strong>About: </strong>{{ .Params.about }}</p>
+                                  <p><strong>Region: </strong>{{ .Params.region }}</p>
+                              </div>
+
+                              <div class="col-md-5 offset-md-2">
+                                  <p>{{ .Content }}</p>
+                              </div>
+                          {{ end }}
+                      {{ end }}
+                  </div> <!-- /.row. -->
+
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+            <div class="footer-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Learn about <span>our platform</span></h1>
+                                <a href="request-demo" class="btn btn-link">Request a demo &#10230;</a>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}
