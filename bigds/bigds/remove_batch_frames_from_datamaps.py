@@ -8,7 +8,7 @@ Usage:
     remove_batch_frames_from_datamap.py [options] --from-file <dataset-ids-file>
 
 Options:
-    --dry-run               Just print statistics, don't make changes
+    --for-real              Actually make changes to disk files
     --verbose               Print more messages
     --config=CONFIG         [default: /var/lib/crunch.io/zz9-0.conf]
     --repo-trash=TRASHDIR   [default: /remote/eu/trash]
@@ -76,10 +76,8 @@ def create_store(args):
 
 
 class DatasetFixer(object):
-    def __init__(self, store, dispatcher, repo_trash, dry_run, verbose):
-        if dry_run:
-            repo_trash = None  # just in case
-        else:
+    def __init__(self, store, dispatcher, repo_trash, for_real, verbose):
+        if for_real:
             if not os.path.isdir(repo_trash):
                 raise ValueError("Repo trash dir dis not exist: {}".format(repo_trash))
             # Ensure that the repo trash is on the same filesystem as the main repo dir
@@ -91,10 +89,12 @@ class DatasetFixer(object):
                         repo_trash, store.repodir
                     )
                 )
+        else:
+            repo_trash = None  # just in case
         self.store = store
         self.dispatcher = dispatcher
         self.repo_trash = repo_trash
-        self.dry_run = dry_run
+        self.for_real = for_real
         self.verbose = verbose
 
     def _list_nodes(self, ds_id):
@@ -126,10 +126,9 @@ class DatasetFixer(object):
         for k in list(m.keys()):
             if k.startswith("/__batch_"):
                 num_changes += 1
-                if self.dry_run:
-                    continue
-                del m[k]
-        if not self.dry_run and num_changes > 0:
+                if self.for_real:
+                    del m[k]
+        if self.for_real and num_changes > 0:
             data = json.dumps(m)
             suffix = _make_random_suffix()
             temp_datamap_path = datamap_path + "_" + suffix
@@ -187,7 +186,7 @@ class DatasetFixer(object):
                     continue
                 num_changes += 1
                 p = os.path.join(variant_dir, name)
-                if not self.dry_run:
+                if self.for_real:
                     remove_func(p)
         return num_changes
 
@@ -226,7 +225,7 @@ class DatasetFixer(object):
         Makes sure the dataset isn't already leased, and prevents leasing while
         datamaps are scanned or changed.
         Return true if the datamap was modified or if batch frames were
-        moved to trash, or would have been if dry_run was not set.
+        moved to trash, or would have been if for_real was set.
         Return false (0) if the dataset was Ok.
         Return None if the dataset was leased and therefore skipped.
         """
@@ -250,7 +249,7 @@ class DatasetFixer(object):
         num_changes = 0
         for k, v in status.items():
             if k.startswith("num_"):
-                num_changes += status[k]
+                num_changes += v
         if self.verbose or num_changes:
             print("dataset:", ds_id, "status:", json.dumps(status, sort_keys=True))
         return num_changes
@@ -277,7 +276,7 @@ def main():
         store=store,
         dispatcher=dispatcher,
         repo_trash=repo_trash,
-        dry_run=args["--dry-run"],
+        for_real=args["--for-real"],
         verbose=args["--verbose"],
     )
     num_changed_datasets = 0
@@ -285,7 +284,7 @@ def main():
         if dataset_fixer.fix(ds_id):
             num_changed_datasets += 1
     print("num_datasets:", len(ds_ids), "num_changed_datasets:", num_changed_datasets)
-    if args["--dry-run"]:
+    if not args["--for-real"]:
         print("Dry run, no actual changes made.")
 
 
