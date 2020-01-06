@@ -23,6 +23,7 @@ modification.  Datamaps are modified in place both locally and in the repo. Try
 to run this script on the zz9 host matching host_map for that dataset.
 """
 from __future__ import print_function
+import getpass
 import json
 import os
 import random
@@ -112,15 +113,15 @@ class DatasetFixer(object):
     def _fix_node_datamap(self, node_path, remote=False):
         datamap_path = os.path.join(node_path, "datamap.zz9")
         if remote:
-            if not os.path.exists(datamap_path + ".lz4"):
-                return 0
-            with open(datamap_path + ".lz4", "rb") as f:
-                data = lz4lib.lz4framed.decompress(f.read())
-        else:
-            if not os.path.exists(datamap_path):
-                return 0
-            with open(datamap_path, "rb") as f:
-                data = f.read()
+            datamap_path += ".lz4"
+        if not os.path.exists(datamap_path):
+            return 0
+        if self.verbose:
+            print("Reading datamap file:", datamap_path)
+        with open(datamap_path, "rb") as f:
+            data = f.read()
+        if remote:
+            data = lz4lib.lz4framed.decompress(data)
         m = json.loads(data)
         num_changes = 0
         for k in list(m.keys()):
@@ -133,13 +134,12 @@ class DatasetFixer(object):
             suffix = _make_random_suffix()
             temp_datamap_path = datamap_path + "_" + suffix
             if remote:
-                with open(temp_datamap_path + ".lz4", "wb") as f:
+                with open(temp_datamap_path, "wb") as f:
                     f.write(lz4lib.lz4framed.compress(data))
-                os.rename(temp_datamap_path + ".lz4", datamap_path + ".lz4")
             else:
                 with open(temp_datamap_path, "wb") as f:
                     f.write(data)
-                os.rename(temp_datamap_path, datamap_path)
+            os.rename(temp_datamap_path, datamap_path)
         return num_changes
 
     def _fix_datamaps_for_dataset(self, ds_id):
@@ -148,21 +148,29 @@ class DatasetFixer(object):
         The caller must make sure no one else is using the dataset!
         Return status dict
         """
-        num_local_changes = 0
-        num_remote_changes = 0
+        num_local_datamaps_changed = 0
+        num_local_batch_frame_paths_removed = 0
+        num_remote_datamaps_changed = 0
+        num_remote_batch_frame_paths_removed = 0
         node_ids = self._list_nodes(ds_id)
         for node_id in node_ids:
             address = {"dataset": ds_id, "node": node_id}
             local_node_path = self.store.local_node_path(address)
             if os.path.exists(local_node_path):
-                if self._fix_node_datamap(local_node_path, remote=False):
-                    num_local_changes += 1
+                n = self._fix_node_datamap(local_node_path, remote=False)
+                if n > 0:
+                    num_local_datamaps_changed += 1
+                    num_local_batch_frame_paths_removed += n
             remote_node_path = self.store.repo_node_path(address)
-            if self._fix_node_datamap(remote_node_path, remote=True):
-                num_remote_changes += 1
+            n = self._fix_node_datamap(remote_node_path, remote=True)
+            if n > 0:
+                num_remote_datamaps_changed += 1
+                num_remote_batch_frame_paths_removed += n
         return {
-            "num_local_changes": num_local_changes,
-            "num_remote_changes": num_remote_changes,
+            "num_local_datamaps_changed": num_local_datamaps_changed,
+            "num_local_batch_frame_paths_removed": num_local_batch_frame_paths_removed,
+            "num_remote_datamaps_changed": num_remote_datamaps_changed,
+            "num_remote_batch_frame_paths_removed": num_remote_batch_frame_paths_removed,
         }
 
     def _find_and_remove_batch_frame_dirs(self, datafiles_dir, remove_func):
@@ -173,7 +181,7 @@ class DatasetFixer(object):
             # Probably a dataset that has been deleted since the scan
             return 0
         for variant in variants:
-            if variant in ('variants.zz9', 'variants.zz9.lz4'):
+            if variant in ("variants.zz9", "variants.zz9.lz4"):
                 continue
             variant_dir = os.path.join(datafiles_dir, variant)
             try:
@@ -257,6 +265,11 @@ class DatasetFixer(object):
 
 def main():
     args = docopt.docopt(__doc__)
+    if getpass.getuser() != "zz9":
+        print(
+            "WARNING: You are running as user {}, not zz9".format(getpass.getuser()),
+            file=sys.stderr,
+        )
     if args["--from-file"]:
         with open(args["<dataset-ids-file>"]) as f:
             ds_ids = f.read().split()
