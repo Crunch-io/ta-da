@@ -5,7 +5,7 @@
     <description>Recent content in Feature Announcements on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2020-01-06T16:32:31+00:00</lastBuildDate>
+    <lastBuildDate>2020-01-14T14:34:19+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,10 @@
     <item>
       <title>Adding KPI tiles to dashboards</title>
       <link>//crunch.io/dev/features/dashboard-kpi-tile/</link>
-      <pubDate>2019-12-18T16:46:43+00:00</pubDate>
+      <pubDate>2020-01-14T14:30:00+00:00</pubDate>
       
       <guid>//crunch.io/dev/features/dashboard-kpi-tile/</guid>
-      <labsOnly>true</labsOnly>
+      <labsOnly>false</labsOnly>
       <noProfiles>true</noProfiles>
       <pinned>false</pinned>
       <description>Dataset editors can add KPI tiles to a dashboard to display a single value from a table to highlight or track a specific key metric. Click here to learn more.</description>
