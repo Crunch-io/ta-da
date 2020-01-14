@@ -1,5 +1,6 @@
 +++
 date = "2020-01-14T10:03:24-04:00"
+publishdate = "2020-01-14T14:30:00+0000"
 draft = false
 title = "Adding KPI tiles to dashboards"
 news_description = "Dataset editors can add KPI tiles to a dashboard to display a single value from a table to highlight or track a specific key metric. Click here to learn more."
