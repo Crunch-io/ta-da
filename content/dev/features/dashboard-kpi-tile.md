@@ -1,6 +1,5 @@
 +++
-date = "2019-12-18T12:27:04-04:00"
-publishdate = "2019-12-18T16:46:43+0000"
+date = "2020-01-14T10:03:24-04:00"
 draft = false
 title = "Adding KPI tiles to dashboards"
 news_description = "Dataset editors can add KPI tiles to a dashboard to display a single value from a table to highlight or track a specific key metric. Click here to learn more."
@@ -9,7 +8,7 @@ weight = 20
 tags = ["dashboards"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 
 +++

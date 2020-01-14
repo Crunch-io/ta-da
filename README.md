@@ -28,6 +28,8 @@ Posts are .md files inside the `/content` directory. There are templates and oth
 
 Team members are .yml files inside the `/data/team/members` directory. Hugo uses its data template functionality to render the page at `/layouts/team/list.html`.  To add a new team member, simply copy one of the existing .yml files and update the information contained therein to match the new employee information. Please follow the examples of existing entries for city, country. 
 
+Please also add a professional-looking headshot image in folder `static/img/team`. The image dimensions should be 600x600 pixels.
+
 ## Release announcements
 
 Our web app uses the [RSS feed](https://crunch.io/dev/features/index.xml) of the [features blog](https://crunch.io/dev/features/) to populate the "What's new" notification panel. Feed items are populated using the front matter following these conventions:
