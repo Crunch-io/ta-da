@@ -264,16 +264,28 @@ class HostPropertyDetector(object):
                     ))
                     return server
 
-
+            # Stat dataset copy itself.
             try:
-                stat_command = command + """ sudo 'stat -c '%Y' {}/__zz9_dirty__*'""".format(
+                stat_command = command + """ "sudo bash -c 'stat -c %Y {}'" """.format(
                     dataset_path
                 )
                 res = subprocess.check_output(stat_command, shell=True).strip()
             except subprocess.CalledProcessError:
                 # no hot copy of the dataset.
                 return None
-
             last_modified = max(res.split())
             self._timestamps.append((last_modified, server))
+
+            # Then stat dataset dirty files, to check most recent modification.
+            try:
+                stat_command = command + """ "sudo bash -c 'stat -c %Y {}/__zz9_dirty__*'" """.format(
+                    dataset_path
+                )
+                res = subprocess.check_output(stat_command, shell=True).strip()
+            except subprocess.CalledProcessError:
+                # no hot copy of the dataset.
+                return None
+            last_modified = max(res.split())
+            self._timestamps.append((last_modified, server))
+
             return None
