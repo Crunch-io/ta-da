@@ -1,0 +1,60 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="jobs-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <!--Knowledge Base title-->
+                            <div class="col-md-7">
+                                <h1 class="display-4"><span>{{ .Title }}</span></h1>
+                            </div>
+
+                            <div class="col-md-4">
+                                <p>{{ .Content }}</p>
+                                <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
+                            </div>
+
+                        </div> <!-- /.row -->
+
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.jobs-content -->
+
+            <div class="secondary-content">
+              <div class="container">
+
+                  <!--Select an area of interest-->
+                  <div class="row spacer-top spacer-bottom justify-content-md-center">
+                      <div class="col-md-5">
+                          <h2 class="text-center"><span>{{ .Params.description }}</span></h2>
+                      </div>
+                  </div>
+
+                  <!--Iterate over cards-->
+                  <div class="row spacer-bottom">
+                      {{ range .Pages.ByTitle }}
+                          <div class="col-md-6 col-lg-4">
+                              <div class="post-card post-job" onclick="location.href='{{ .Permalink }}'">
+                                  <div class="posts">
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                      <a href="{{ .Permalink }}">View Articles &#10230;</a>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+                  </div>
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}
