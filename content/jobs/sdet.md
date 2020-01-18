@@ -1,6 +1,6 @@
 +++
 date = "2019-10-17T14:09:35+02:00"
-draft = false
+draft = true
 title = "Software Engineer in Test (SDET)"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
