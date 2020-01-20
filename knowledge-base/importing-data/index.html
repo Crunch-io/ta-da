@@ -7,32 +7,32 @@
     <meta name="description" content="Prepare and analyze survey data quickly and easily.">
     <meta name="keywords" content="Crunch, Crunch io, data, datasets, survey, analytics, analysis, technology, insights, research, software">
     <base href="//crunch.io/">
-    <title>Crunch | Developers As Users</title>
+    <title>Crunch | Importing and Cleaning Data</title>
 
     <link rel="icon" href="img/favicon.ico">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <meta property="og:title" content="Developers As Users &middot; Modern survey data analysis">
-<meta property="og:description" content="Building software for a specific target audience can be challenging, particularly when developers&#39; intuitions are very different from those of that audience. At a recent all-hands meeting, we exploited a unique opportunity to turn our developers into legitimate users of our product.">
+    <meta property="og:title" content="Importing and Cleaning Data &middot; Modern survey data analysis">
+<meta property="og:description" content="Prepare and analyze survey data quickly and easily.">
 <meta property="og:type" content="website" >
-<meta property="og:url" content="//crunch.io/dev/blog/devs-as-users/">
+<meta property="og:url" content="//crunch.io/knowledge-base/importing-data/">
 <meta property="og:locale" content="en">
 
 
     
-        <meta property="og:image" content="//crunch.io/images/ice-cream-display-figure.jpg">
+        <meta property="og:image" content="https://crunch.io/img/logo-1200x630.png">
     
 
 
 
-  <meta property="og:updated_time" content="2017-09-12T12:12:10-07:00">
+  <meta property="og:updated_time" content="2019-12-02T15:08:35&#43;02:00">
 
 
     <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="//crunch.io/images/ice-cream-display-figure.jpg"/>
+<meta name="twitter:image" content="https://crunch.io/img/logo-1200x630.png"/>
 
-<meta name="twitter:title" content="Developers As Users"/>
-<meta name="twitter:description" content="Building software for a specific target audience can be challenging, particularly when developers&#39; intuitions are very different from those of that audience. At a recent all-hands meeting, we exploited a unique opportunity to turn our developers into legitimate users of our product."/>
+<meta name="twitter:title" content="Importing and Cleaning Data"/>
+<meta name="twitter:description" content="Importing data Importing data is so much fun."/>
 
     
     <link rel="stylesheet" href="css/main.css">
@@ -118,48 +118,53 @@
     <div id="secondary-pages-wrapper">
         <div class="container-fluid">
 
-            <div class="blog-content">
-                    <div class="container spacer-top">
-                        <div class="row">
-                            <div class="col-md-10 offset-md-1">
-                                <h2>Developers As Users</h2>
-                                <hr>
-                                <p>Building software for a specific target audience can be challenging, particularly when developers&#39; intuitions are very different from those of that audience. At a recent all-hands meeting, we exploited a unique opportunity to turn our developers into legitimate users of our product.</p>
-                                <span>Sep 12, 2017 </span>
+            <div class="jobs-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-8 text-center">
+                                <h1 class="display-5">Importing and Cleaning Data</h1>
                             </div>
                         </div> 
+
+                    </div> 
                 </div> 
             </div> 
 
             <div class="secondary-content">
-              <div class="container blog-content-mg">
+              <div class="container">
 
-                  <div class="row spacer-bottom">
+                  <div class="row">
                       <div class="col-md-10 offset-md-1">
-                          <p>Crunch is designed to make it easy to manage and explore data, and it is particularly optimized for survey data. We natively support data types that are common in survey research, and it is also simple to do things like generate population weights and apply them automatically to all calculations. And the kinds of analyses and reports that are standard among researchers are easily selected and exported.</p>
-<p>These features are great if you work at a research company, or in a marketing department, or otherwise work with surveys professionally. But if you&rsquo;re a software engineer, you live in code, not crosstabs and spreadsheets. So on the development team, we face this tension continually: we&rsquo;re building a product for which the target audience is not people like us. How can we best allow our team to find solutions and engage our brains fully to make the product better without letting <a href="https://www.amazon.com/Inmates-Are-Running-Asylum-Products/dp/0672326140">the inmates run the asylum</a>?</p>
-<figure class="float-md-left img-fluid">
-    <img src="dev/blog/images/ice-cream-display-figure.jpg" width="287" height="384"/> <figcaption>
-            <p>
-                    <a href="https://commons.wikimedia.org/wiki/File:Ice_cream_display_figure.JPG">Ice cream eating ice cream</a></p>
-        </figcaption>
-</figure>
+                          
+<h1> Importing data</h1>
+Importing data is so much fun.
 
-<p>We routinely do many things to open ourselves to our users, from discussions and screensharing with those who report bugs or request features to periodic full product demos to the team. Those are all good ways to learn more about our users and how they think, and they definitely help increase our empathy. However, there&rsquo;s no better way to increase empathy with your users than to become one yourself: to eat your own ice cream (also known as <a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food">eating your own dog food</a>, although ice cream appears to be more popular amongst our team). Under normal circumstances, though, our development team doesn&rsquo;t have a real reason to use our product&mdash;it&rsquo;s not designed to help us write software.</p>
-<p>At our all-hands meetup this summer near Tahoe, we gave the team a special assignment: Import, clean, and analyze the <a href="https://insights.stackoverflow.com/survey/">Stack Overflow developer survey</a>. Find something about software developers that you think our CEO should know, and deliver results to him, all using our product. It&rsquo;s a great exercise because the dataset is about things developers are more likely to care about&mdash;themselves and developers like them&mdash;and it received a bit of <a href="https://stackoverflow.blog/2017/06/15/developers-use-spaces-make-money-use-tabs/">popular attention</a>   <a href="http://evelinag.com/blog/2017/06-20-stackoverflow-tabs-spaces-and-salary/">and reaction</a>. At the same time, it&rsquo;s a survey&mdash;so our product should be ideal for exploring it.</p>
-<h2 id="results">Results</h2>
-<p>The experience was great. Over the coming weeks, we&rsquo;ll be writing more about some of the work that various people on the team did and what we found in the data. One of the fun things about the exercise was seeing how different people took the open-ended prompt and ran with it in very different directions, exploiting a broad spectrum of features of the Crunch platform.</p>
-<p>We collectively created 15 different reports that covered topics from gender representation in tech to job satisfaction internationally. These reports took many different forms: there were slide decks shared with the team in the web app, Excel workbooks exported, iPython notebooks, and data visualizations done in R. Some also created a CrunchBox, our public widget that allows our users to embed data visualizations in online articles or blog posts (like this!). Here&rsquo;s an example: click on the graph below to pick different variables to analyze and change the visualization settings.</p>
-<div style="text-align: center; padding: 30px;">
-<iframe src="https://s.crunch.io/widget/index.html#/ds/b877914954c7e82db199753717ddaef9/row/00001c/column/000003?viz=geo&cp=percent&dp=0&grp=stack" width="600" height="480"></iframe></div>
-<h2 id="what-does-our-ice-cream-taste-like">What does our ice cream taste like?</h2>
-<p>Overall, we felt that our ice cream tasted pretty good! Yet, as with any fine dining experience, the difference between a good meal and an excellent meal comes down to the details in the service and presentation. We noticed a lot of little bugs and usability issues, rough edges that our everyday users know how to navigate but that stick out to someone new, or perhaps details that aren&rsquo;t quite right but that aren&rsquo;t critical enough that people bother to report them. But with our attention on them, and with our inherent drive to build a better product, we not only saw them but said, &ldquo;Hey, let me just fix that right now.&rdquo; We fixed about 20 issues in the web app and pushed a bunch of enhancements to our R and Python libraries as well.</p>
+
+
 
                       </div>
                   </div>
 
+                  <div class="row spacer-bottom">
+                      
+                  </div>
+
               </div> 
             </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <footer class="footer d-flex justify-content-center bg-black">
                 <ul class="list-inline">

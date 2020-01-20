@@ -7,15 +7,15 @@
     <meta name="description" content="Prepare and analyze survey data quickly and easily.">
     <meta name="keywords" content="Crunch, Crunch io, data, datasets, survey, analytics, analysis, technology, insights, research, software">
     <base href="//crunch.io/">
-    <title>Crunch | Introducing Dashboards</title>
+    <title>Crunch | Quirks London</title>
 
     <link rel="icon" href="img/favicon.ico">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <meta property="og:title" content="Introducing Dashboards &middot; Modern survey data analysis">
-<meta property="og:description" content="Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings.">
+    <meta property="og:title" content="Quirks London &middot; Modern survey data analysis">
+<meta property="og:description" content="Prepare and analyze survey data quickly and easily.">
 <meta property="og:type" content="website" >
-<meta property="og:url" content="//crunch.io/dev/features/dataset-dashboard/">
+<meta property="og:url" content="//crunch.io/info.crunch.io/quirks-london-2020">
 <meta property="og:locale" content="en">
 
 
@@ -25,14 +25,14 @@
 
 
 
-  <meta property="og:updated_time" content="2017-10-17T23:20:47-04:00">
+  <meta property="og:updated_time" content="2019-12-19T11:39:35-04:00">
 
 
     <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://crunch.io/img/logo-1200x630.png"/>
 
-<meta name="twitter:title" content="Introducing Dashboards"/>
-<meta name="twitter:description" content="Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings."/>
+<meta name="twitter:title" content="Quirks London"/>
+<meta name="twitter:description" content=""/>
 
     
     <link rel="stylesheet" href="css/main.css">
@@ -48,7 +48,6 @@
   </head>
 
   <body>
-
 
     
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5GB59T2"
@@ -113,72 +112,41 @@
     </nav>
 
 
-<div id="wrapper">
+<div class="container">
+<div id="hero" class="row">
+    <div class="intro-post col">
+        <h1 itemprop="headline">  Quirks London</h1>
+        
+        <time class="post-time">
+  Published <span datetime="2019-12-19T11:39:35-04:00">19 Dec 2019</span>
 
-    <div id="secondary-pages-wrapper">
-        <div class="container-fluid">
+</time>
+    </div>
+</div>
+<div id="post-box" class="row">
+    <div class="col">
+        <div id="post" itemprop="articleBody">
+            
+        </div><br/>
+        <div>
+            <p class="post-footer">
+  Published
+  
+  <time datetime="2019-12-19T11:39:35-04:00">
+    19 Dec 2019
+  </time>
+  
+  
+</p>
 
-            <div class="blog-content">
-                    <div class="container spacer-top">
-                        <div class="row">
-                            <div class="col-md-10 offset-md-1">
-                                <h2>Introducing Dashboards</h2>
-                                <hr>
-                                <p>Dashboards provide a clear top-level view of a dataset. Dataset owners can easily customize the contents of the dashboard in order to provide a concise, beautiful summary of key findings.</p>
-                                <span>Oct 17, 2017 </span>
-                            </div>
-                        </div> 
-                </div> 
-            </div> 
+            
 
-            <div class="secondary-content">
-              <div class="container blog-content-mg">
 
-                  <div class="row spacer-bottom">
-                      <div class="col-md-10 offset-md-1">
-                          <p>Crunch is designed to make data accessible to many different audiences that have varying needs, expectations, and technical abilities.
-Our <a href="http://support.crunch.io/crunch/crunch_browsing.html">browse</a> and <a href="http://support.crunch.io/crunch/crunch_analyzing-data.html">analyze</a> views allow data owners and analysts to quickly explore and analyze interesting insights in potentially large, complex datasets. However, not everyone has time to explore a dataset&mdash;some need to see key findings at a glance.</p>
-<p>To meet this executive-type need, we&rsquo;re introducing a new dashboard feature.</p>
-<figure class="img-fluid">
-    <img src="dev/features/images/dashboard.png" width="100%"/> 
-</figure>
 
-<p>This dashboard provides a quick view of up to four analyses, right when you open a dataset. These views are dynamic: when new data is added to the dataset, the dashboard updates with the latest values.</p>
-<p>In keeping with Crunch&rsquo;s philosophy that exploring data should be instant and intuitive, the graphs and tables on a dashboard can be a starting point for further analysis if you want to dig deeper. Double-click on an analysis to open it in the full-screen view, where you can explore by <a href="http://support.crunch.io/crunch/crunch_filtering-data.html">adding filters</a>, <a href="http://support.crunch.io/crunch/crunch_analyzing-data.html">changing variables</a>, or customizing the analysis using the <a href="http://support.crunch.io/crunch/crunch_variable-display-in-expanded-view.html">display controller</a>.</p>
-<p><figure class="float-right">
-    <img src="dev/features/images/dashboard-icon.png"/> 
-</figure>
-
-At any time when working with a dataset, you can return to the dashboard by clicking its icon at the top of the screen.</p>
-<h2 id="creating-a-dashboard">Creating a Dashboard</h2>
-<p>If you are a dataset editor, setting up a dashboard for your dataset takes just a few steps. First, <a href="http://support.crunch.io/crunch/crunch_saving-analyses.html">save the analyses</a> you want to appear in the dashboard to a deck. Then, indicate that you want to use that deck as the source for your dashboard by clicking the dataset name, selecting <strong>Configure Dashboard</strong>, and select the deck. See <a href="http://support.crunch.io/crunch/crunch_dashboards.html">Configuring a Dataset Dashboard</a> for more information. To change the composition of the analyses that show in the dashboard, edit the saved slides in your deck, and the changes will be reflected in the dashboard.</p>
-<h2 id="the-future-of-dashboards">The Future of Dashboards</h2>
-<p>There are lots of enhancements we plan to add to the dashboards, and your feedback about how you&rsquo;d like to see them improved is greatly appreciated. Let us know what you think at <a href="mailto:support@crunch.io">support@crunch.io</a>.</p>
-
-                      </div>
-                  </div>
-
-              </div> 
-            </div> 
-
-            <footer class="footer d-flex justify-content-center bg-black">
-                <ul class="list-inline">
-                    <li class="list-inline-item"><a class="nav-link active" href="about">About</a></li>
-                    <li class="list-inline-item"><a class="nav-link" href="team">Team</a></li>
-                    <li class="list-inline-item"><a class="nav-link" href="http://support.crunch.io/">Support</a></li>
-                    <li class="list-inline-item"><a class="nav-link" href="http://status.crunch.io/" target="_blank">Status</a></li>
-                    <li class="list-inline-item"><a class="nav-link" href="about/privacy">Privacy</a></li>
-                    <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/">Sign in</a></li>
-                    <li class="list-inline-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#Modal" id="openForm">Contact us</a></li>
-                </ul>
-            </footer>
-
-        </div> 
-
-    </div> 
-
-</div> 
-
+        </div>
+    </div>
+</div>
+</div>
 
 
 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
