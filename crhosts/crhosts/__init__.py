@@ -2,7 +2,10 @@ from __future__ import print_function
 import argparse
 import csv
 import subprocess
-from StringIO import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 import requests
 import webbrowser
 from paramiko.client import SSHClient, WarningPolicy
