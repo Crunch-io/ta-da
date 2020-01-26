@@ -1,0 +1,63 @@
+<!-- <footer class="footer">
+  <div class="footer-inner">
+    {{#link 'help_center'}}{{help_center.name}}{{/link}}
+
+    <div class="footer-language-selector">
+      {{#if alternative_locales}}
+        <div class="dropdown language-selector">
+          <button class="dropdown-toggle" aria-haspopup="true">
+            {{current_locale.name}}
+          </button>
+          <span class="dropdown-menu dropdown-menu-end" role="menu">
+            {{#each alternative_locales}}
+              <a href="{{url}}" dir="{{direction}}" rel="nofollow" role="menuitem">
+                {{name}}
+              </a>
+            {{/each}}
+          </span>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</footer>
+ -->
+
+<footer class="footer d-flex justify-content-center bg-black">
+    <ul class="list-inline">
+        <li class="list-inline-item"><a class="nav-link active" href="https://crunch.io/about">About</a></li>
+        <li class="list-inline-item"><a class="nav-link" href="https://crunch.io/team">Team</a></li>
+        <li class="list-inline-item"><a class="nav-link" href="http://support.crunch.io/">Support</a></li>
+        <li class="list-inline-item"><a class="nav-link" href="http://status.crunch.io/" target="_blank">Status</a>
+        </li>
+        <li class="list-inline-item"><a class="nav-link" href="https://crunch.io/about/privacy">Privacy</a></li>
+        <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/">Sign in</a></li>
+        <li class="list-inline-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#Modal"
+                                        id="openForm">Contact us</a></li>
+    </ul>
+</footer>
+
+
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" style="display: none;"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://js.hsforms.net/forms/shell.js"></script>
+
+<script>
+    hbspt.forms.create({
+        portalId: "3869056",
+        formId: "41a8089c-034d-436d-a61d-9caa1b992ee1",
+        target: '#Modal .modal-body'
+    });
+</script>
