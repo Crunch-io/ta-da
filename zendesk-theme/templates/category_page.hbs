@@ -1,0 +1,73 @@
+<section id="main-content" class="section hero cr-hero cr-category-hero">
+    <div class="hero-inner cr-hero-inner">
+        <h1 class="cr-category-name cr-white">{{category.name}}</h1>
+        {{#if category.description}}
+        <p class="cr-white">{{category.description}}</p>
+        {{/if}}
+    </div>
+</section>
+<div class="cr-bg-blue cr-mb-10p">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg cr-p-0 cr-bg-i">
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav cr-navbar" id="categoryMenu">
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<script>
+    addCategoryMenu(document.getElementById("categoryMenu"));
+</script>
+
+<div class="container">
+    <nav class="sub-nav cr-mb-10p cr-mb-10p">
+        {{breadcrumbs}}
+        {{search submit=false}}
+    </nav>
+
+    <div class="category-container">
+        <div class="category-content cr-fb-100">
+            <div id="main-content" class="section-tree cr-plr-50">
+                {{#each sections}}
+                <section class="section cr-fb-100">
+                  <div class="cr-cat-section">  
+                  	<h2 class="section-tree-title cr-section-title">
+                        <a href="{{url}}" class="cr-a-none cr-blue">{{name}}</a>
+                    </h2>
+                    {{#if description}}
+                    <p class="cr-mb-0">{{description}}</p>	
+                    {{/if}}
+                  </div>
+
+                    {{#if articles}}
+                    <ul class="article-list cr-article-list">
+                        {{#each articles}}
+                        <li class="article-list-item cr-article-list-item{{#if promoted}} article-promoted{{/if}}">
+                            {{#if promoted}}
+                            <span data-title="{{t 'promoted'}}" class="icon-star"></span>
+                            {{/if}}
+                            <a href="{{url}}" class="article-list-link">{{title}}</a>
+                            {{#if internal}}
+                            <span class="icon-lock" title="{{t 'internal'}}"></span>
+                            {{/if}}
+                        </li>
+                        {{/each}}
+                    </ul>
+                    {{#if more_articles}}
+                    <a href="{{url}}" class="see-all-articles">
+                        {{t 'show_all_articles' count=article_count}}
+                    </a>
+                    {{/if}}
+                    {{/if}}
+                </section>
+                {{else}}
+                <i class="category-empty">
+                    <a href="{{category.url}}">{{t 'empty'}}</a>
+                </i>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
