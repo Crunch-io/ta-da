@@ -42,6 +42,9 @@ Note that emoji using the `:notation:` are valid in the title and description (b
 
 If there is a feature announcement blog post you want to exclude from in-app announcements, include `show_news = false` in the front matter.
 
+### Zendesk theme
+A version-controlled copy of our zendesk (help center) theme is located in folder zendesk-theme. You can import this theme into Zendesk, make changes, preview the new templates, and then copy your changes back to this folder so we can maintain the current version in github.
+
 ### Targeting audiences
 
 We want to show different announcement feeds to different users. To do this, we define audience scope limiters as boolean front matter variables. The default for all is `false`, meaning do not restrict showing the post. Currently used variables are:
