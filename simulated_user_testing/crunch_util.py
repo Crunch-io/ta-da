@@ -6,6 +6,7 @@ from collections import OrderedDict
 from contextlib import contextmanager
 import codecs
 import copy
+from datetime import datetime
 import gzip
 import io
 import itertools
@@ -29,6 +30,14 @@ warnings.simplefilter("ignore", urllib3.exceptions.SubjectAltNameWarning)
 
 # Turn off warnings if server certificate validation is turned off.
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
+
+
+try:
+    TimeoutError
+except NameError:
+    # Python 2 doesn't have TimeoutError built in
+    class TimeoutError(OSError):
+        pass
 
 
 def connect_pycrunch(connection_info, verbose=False):
@@ -85,11 +94,26 @@ def connect_pycrunch(connection_info, verbose=False):
     # AttributeError: No handler found for response status 301
     # This happens on alpha but not on a local dev VM.
     session.hooks["response"].status_301 = lambda r: r
-    response = session.get(
-        api_url,
-        verify=connection_info.get("verify", False),
-        cert=connection_info.get("cert"),
-    )
+    try:
+        response = session.get(
+            api_url,
+            verify=connection_info.get("verify", False),
+            cert=connection_info.get("cert"),
+        )
+    except Exception as err:
+        sanitized_connection_info = connection_info.copy()
+        if "password" in sanitized_connection_info:
+            sanitized_connection_info["password"] = "*****"
+        msg = (
+            "Error getting Crunch API session: {err}\n"
+            "API URL: {api_url}\n"
+            "Connection info: {sanitized_connection_info}"
+        ).format(
+            err=err,
+            api_url=api_url,
+            sanitized_connection_info=sanitized_connection_info,
+        )
+        raise Exception(msg)
     site = response.payload
     return site
 
@@ -149,6 +173,7 @@ def create_dataset(
     try:
         if metadata_filename.endswith(".gz"):
             headers["Content-Encoding"] = "gzip"
+        t0 = datetime.utcnow()
         r = site.session.post(post_url, data=f, headers=headers)
     finally:
         f.close()
@@ -158,7 +183,13 @@ def create_dataset(
         if not wait_for_progress(
             site, r, timeout_sec=600.0, retry_delay=0.25, verbose=verbose
         ):
-            raise Exception("Timed out creating dataset: {}".format(dataset_url))
+            msg = (
+                "Timed out creating dataset\n"
+                "POST URL: {post_url}\n"
+                "Dataset URL: {dataset_url}\n"
+                "Request originally sent at {t0} UTC"
+            ).format(dataset_url=dataset_url, post_url=post_url, t0=t0)
+            raise TimeoutError(msg)
     ds = site.session.get(dataset_url).payload
     if verbose:
         print("Created dataset", ds.body.id, file=sys.stderr)
@@ -280,6 +311,7 @@ def append_csv_file_to_dataset(
     if verbose:
         print("Source created with URL:", source_url, file=sys.stderr)
         print("Appending batch", file=sys.stderr)
+    t0 = datetime.utcnow()
     response = ds.batches.post(
         {"element": "shoji:entity", "body": {"source": source_url}}
     )
@@ -287,7 +319,13 @@ def append_csv_file_to_dataset(
         if verbose:
             print("Finished appending to dataset", ds.body.id, file=sys.stderr)
     else:
-        raise Exception("Timed out appending to dataset {}".format(ds.body.id))
+        msg = (
+            "Timed out appending to dataset {ds.body.id} after {timeout_sec} seconds\n"
+            "POST URL: {ds.batches.self}\n"
+            "Source URL in POST body: {source_url}\n"
+            "Request originally sent at {t0} UTC"
+        ).format(ds=ds, source_url=source_url, timeout_sec=timeout_sec, t0=t0)
+        raise TimeoutError(msg)
 
 
 @contextmanager
@@ -589,14 +627,6 @@ def wait_for_progress(
         if verbose:
             print("Timeout after", timeout_sec, "seconds.", file=sys.stderr)
         return False
-
-
-try:
-    TimeoutError
-except NameError:
-    # Python 2 doesn't have TimeoutError built in
-    class TimeoutError(OSError):
-        pass
 
 
 def wait_for_progress2(

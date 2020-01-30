@@ -55,7 +55,10 @@ def simulate_editor(config, args):
         print(msg)
         if args["--slack-notify"]:
             response = sim_util.message(
-                text=msg, channel="#sentry-alpha", username="crunchbot", icon_emoji=":pizza:"
+                text=msg,
+                channel="#sentry-alpha",
+                username="crunchbot",
+                icon_emoji=":pizza:",
             )
             if not response.ok:
                 print("ERROR sending Slack notification:", response)
@@ -208,11 +211,21 @@ def copy_from(site, src_ds, dst_ds, verbose=False):
     dst_ds = sim_util.get_entity(dst_ds)
     src_ds_url = sim_util.get_entity_url(src_ds)
     print("Running copy_from src={!r}, dst={!r}".format(src_ds_url, dst_ds.self))
+    t0 = datetime.utcnow()
     response = dst_ds.patch(
         {"element": "shoji:entity", "body": {"copy_from": src_ds_url}}
     )
     timeout = 36000.0  # copy_from can take a long time, giving it 10 hours
-    crunch_util.wait_for_progress2(site, response, timeout, verbose=verbose)
+    try:
+        crunch_util.wait_for_progress2(site, response, timeout, verbose=verbose)
+    except Exception as err:
+        msg = (
+            "Error running copy_from command: {err}\n"
+            "Source dataset URL: {src_ds_url}\n"
+            "Destination dataset URL: {dst_ds.self}\n"
+            "Request originally sent at {t0} UTC"
+        ).format(err=err, src_ds_url=src_ds_url, dst_ds=dst_ds, t0=t0)
+        raise Exception(msg)
 
 
 def create_fork(site, ds, project, fork_name_suffix):

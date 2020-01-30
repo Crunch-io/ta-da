@@ -30,6 +30,7 @@ Commands:
 from __future__ import print_function
 import csv
 import codecs
+from datetime import datetime
 import gzip
 import os
 import sys
@@ -42,6 +43,14 @@ from six.moves.urllib import parse as urllib_parse
 from crunch_util import wait_for_progress
 from ds_meta import MetadataModel
 from sim_util import connect_api
+
+
+try:
+    TimeoutError
+except NameError:
+    # Python 2 doesn't have TimeoutError built in
+    class TimeoutError(OSError):
+        pass
 
 
 def main():
@@ -180,6 +189,7 @@ def do_append_sources(config, args):
 
 
 def append_source(site, ds, source_url, timeout=3600.0, verbose=False):
+    t0 = datetime.utcnow()
     response = ds.batches.post(
         {"element": "shoji:entity", "body": {"source": source_url}}
     )
@@ -187,11 +197,13 @@ def append_source(site, ds, source_url, timeout=3600.0, verbose=False):
         if verbose:
             print("Finished appending to dataset", ds.body.id, file=sys.stderr)
     else:
-        raise Exception(
-            "Timed out appending to dataset {} after {} seconds".format(
-                ds.body.id, timeout
-            )
-        )
+        msg = (
+            "Timed out appending to dataset {ds.body.id} after {timeout} seconds\n"
+            "POST URL: {ds.batches.self}\n"
+            "Source URL in POST body: {source_url}\n"
+            "Request originally sent at {t0} UTC"
+        ).format(ds=ds, source_url=source_url, timeout=timeout, t0=t0)
+        raise TimeoutError(msg)
 
 
 def validate_url(url):
