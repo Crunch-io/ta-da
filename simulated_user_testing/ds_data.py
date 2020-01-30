@@ -185,10 +185,14 @@ def do_append_sources(config, args):
             )
         print(source_url)
         sys.stdout.flush()  # Make sure progress shows up on stdout
-        append_source(site, ds, source_url, timeout=timeout, verbose=verbose)
+        append_source(
+            site, ds, source_url, i, len(source_urls), timeout=timeout, verbose=verbose
+        )
 
 
-def append_source(site, ds, source_url, timeout=3600.0, verbose=False):
+def append_source(
+    site, ds, source_url, batch_num, num_batches, timeout=3600.0, verbose=False
+):
     t0 = datetime.utcnow()
     response = ds.batches.post(
         {"element": "shoji:entity", "body": {"source": source_url}}
@@ -198,11 +202,19 @@ def append_source(site, ds, source_url, timeout=3600.0, verbose=False):
             print("Finished appending to dataset", ds.body.id, file=sys.stderr)
     else:
         msg = (
-            "Timed out appending to dataset {ds.body.id} after {timeout} seconds\n"
+            "Timed out after {timeout} seconds\n"
+            "Appending batch {batch_num} of {num_batches} to dataset {ds.body.id}\n"
             "POST URL: {ds.batches.self}\n"
             "Source URL in POST body: {source_url}\n"
             "Request originally sent at {t0} UTC"
-        ).format(ds=ds, source_url=source_url, timeout=timeout, t0=t0)
+        ).format(
+            ds=ds,
+            source_url=source_url,
+            batch_num=batch_num,
+            num_batches=num_batches,
+            timeout=timeout,
+            t0=t0,
+        )
         raise TimeoutError(msg)
 
 
