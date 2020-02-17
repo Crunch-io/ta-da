@@ -1,5 +1,5 @@
 +++
-date = "2020-02-13T15:02:40-04:00"
+date = "2020-02-15T15:02:40-04:00"
 draft = false
 title = "MRS Impact 2020"
 label = "Event | March 10-11"
