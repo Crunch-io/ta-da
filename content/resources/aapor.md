@@ -1,5 +1,5 @@
 +++
-date = "2020-02-13T15:02:50-04:00"
+date = "2020-02-12T15:02:50-04:00"
 draft = false
 title = "AAPOR"
 label = "Event | May 14-17"
