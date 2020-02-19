@@ -34,3 +34,7 @@ When you're done making edits, click **Save** to return to the deck view. Your e
 * These are the same visual edits available when editing dashboard tiles, and will override any such edits made in dashboards mode.
 
 * If the 'edit' link does *not* appear when you hover over it, this means that this a deck you do not have permission to edit. Contact the deck's creator to ask them to share it with you.
+
+Currently this feature is only available for early access users.
+
+We'd love your feedback at support@crunch.io.
