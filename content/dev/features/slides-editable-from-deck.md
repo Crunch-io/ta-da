@@ -1,9 +1,9 @@
 +++
 date = "2020-02-19T11:13:46-04:00"
 draft = false
-title = "Slides editable from deck"
-news_description = "Perfect your PowerPoints with many new edit controls. Click here to learn more."
-description = "Perfect your PowerPoints with many new edit controls."
+title = "Perfect your PowerPoint decks with many new edit controls"
+news_description = "Analyses you save to a deck can now include visual edits to perfect your exported PowerPoint deck. Click here to learn more."
+description = "Analyses you save to a deck can now include visual edits to perfect your exported PowerPoint deck."
 weight = 20
 tags = ["analyses", "graphs"]
 categories = ["feature"]
@@ -23,7 +23,7 @@ When you click the 'edit' link, a panel appears showing you additional controls:
 
 {{< figure src="dev/features/images/slides-editable-from-deck-panel.png" class="img-fluid">}}
 
-Edit options are spread over three tabs at the top: Properties, Categories, and Colors. You can read about these options in the help pages, [here](http://support.crunch.io/collections/zcq4XdTK/Getting-Started). You'll find that some options are only available for some visualization types.
+Edit options are spread over three tabs at the top: Properties, Categories, and Colors. You'll find that some options are only available for some visualization types.
 
 When you're done making edits, click **Save** to return to the deck view. Your exports will now reflect these changes.
 
