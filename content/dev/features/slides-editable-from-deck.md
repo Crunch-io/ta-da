@@ -31,7 +31,7 @@ When you're done making edits, click **Save** to return to the deck view. Your e
 
 * The changes you make will only be visible in an export (PowerPoint or Excel) or on a dashboard. They won't be visible in regular modes of Crunch.
 
-* These are the same visual edits available when editing dashboard tiles, and will override any such edits made in dashboards mode.
+* Any changes you make in editing deck objects will be reflected on the dashboard tiles (where applicable) and exports (to PowerPoint).
 
 * If the 'edit' link does *not* appear when you hover over it, this means that this a deck you do not have permission to edit. Contact the deck's creator to ask them to share it with you.
 
