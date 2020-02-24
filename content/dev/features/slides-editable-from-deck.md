@@ -1,9 +1,9 @@
 +++
-date = "2020-02-19T11:13:46-04:00"
+date = "2020-02-24T09:21:04-04:00"
 draft = false
 title = "Perfect your PowerPoint decks with many new edit controls"
 news_description = "Analyses you save to a deck can now include visual edits to perfect your exported PowerPoint deck. Click here to learn more."
-description = "Analyses you save to a deck can now include visual edits to perfect your exported PowerPoint deck."
+description = "For Early Access users, 'Save to a deck' now includes visual edits to perfect your exported PowerPoint deck."
 weight = 20
 tags = ["analyses", "graphs"]
 categories = ["feature"]
