@@ -1,6 +1,5 @@
 +++
-date = "2020-02-13T09:17:44-04:00"
-publishdate = "2020-02-13T14:57:28+0000"
+date = "2020-02-25T09:18:29-04:00"
 draft = false
 title = "Show value labels on graphs"
 news_description = "Users can now decide whether to show value labels for graphs and charts, both in Tables & Graphs mode and on dashboards. Click here to learn more."
@@ -9,7 +8,7 @@ weight = 20
 tags = ["analyses", "graphs"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 
 +++
@@ -27,5 +26,3 @@ If you're happy with the tool-tip approach, you don't need to do anything. But i
 Analyses saved to the deck will have this property saved with them, and this will then be reflected in the visualizations shown in a dashboard. But you can override the saved setting from within the dashboard edit panel using the "Show value labels" checkbox...
 
 {{< figure src="dev/features/images/value-labels-dashboards.png" class="img-fluid">}}
-
-Note - graphs made with this feature turned on will show these value labels even to non-Early-Access viewers. The Early Access is only controlling the ability to set this property; not who can see the values.
