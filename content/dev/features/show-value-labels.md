@@ -1,5 +1,6 @@
 +++
 date = "2020-02-25T09:18:29-04:00"
+publishdate = "2020-02-25T15:19:37+0000"
 draft = false
 title = "Show value labels on graphs"
 news_description = "Users can now decide whether to show value labels for graphs and charts, both in Tables & Graphs mode and on dashboards. Click here to learn more."
