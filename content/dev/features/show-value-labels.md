@@ -14,7 +14,7 @@ no_profiles = true
 
 +++
 
-Early Access users can now decide whether to show value labels for graphs and charts, both in Tables & Graphs mode and on dashboards. Value labels are these small numbers on graphs that show you the value represented by that bar/column/segment...
+Users can now decide whether to show value labels for graphs and charts, both in Tables & Graphs mode and on dashboards. Value labels are these small numbers on graphs that show you the value represented by that bar/column/segment...
 
 {{< figure src="dev/features/images/value-labels-on-chart.png" class="img-fluid">}}
 
