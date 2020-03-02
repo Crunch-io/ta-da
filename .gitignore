@@ -27,6 +27,7 @@ pip-log.txt
 .tox
 nosetests.xml
 *.prof
+.pytest_cache
 
 # Translations
 *.mo
@@ -38,3 +39,6 @@ nosetests.xml
 
 .DS_Store
 .Rproj.user
+
+integration_testing/demo_cache.sqlite
+integration_testing/out.csv
