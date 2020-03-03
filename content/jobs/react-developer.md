@@ -8,7 +8,7 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 **Work location:** Anywhere
 
-We are hiring an Advanced React API Developer to help develop our platform. We are inviting you to join our small, fully remote team of developers and operators helping make our platform faster, more secure, and more reliable. You would help us deliver new features, explore different ways of problem solving, and discover, explain, and defend your choices in implementation. 
+We are hiring an Advanced React Developer to help develop our platform. We are inviting you to join our small, fully remote team of developers and operators helping make our platform faster, more secure, and more reliable. You would help us deliver new features, explore different ways of problem solving, and discover, explain, and defend your choices in implementation. 
 
 At Crunch, we believe in learning together: we recognize that we don’t have all the answers, and we try to ask each other the right questions. Some of the ways that we accomplish that include paired programming to tackle a hard problem, transparent code reviews, and discussions about design and architecture. Since Crunch’s employees are completely distributed, it’s crucial that you can work well independently, and keep yourself motivated and focused. We move fast but carefully, with an earnest commitment to not breaking things… well, not too much.
 
