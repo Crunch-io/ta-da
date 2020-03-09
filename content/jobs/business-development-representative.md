@@ -1,7 +1,7 @@
 +++
 date = "2018-10-22T10:39:29+01:00"
 draft = false
-title = "Business Development Manager"
+title = "Business Development Representative"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 
