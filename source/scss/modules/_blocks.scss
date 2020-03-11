@@ -22,10 +22,20 @@
     margin: 40px 0;
 }
 
-.quote {
-    font-family: 'Libre Baskerville', serif;
-    font-style: italic;
-    padding: 20px;
-    color: $color-blue;
-    background-color: $--lighter-primary-color;
+.header-banner {
+    background-color: $--darker-primary-color;
+
+    .banner-text {
+        padding: 6px;
+        color: $color-white;
+
+        a {
+            color: $--light-primary-color;
+            font-weight: 700;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
 }
