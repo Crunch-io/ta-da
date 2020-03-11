@@ -1,7 +1,7 @@
 +++
 date = "2018-10-22T10:39:29+01:00"
 draft = false
-title = "Business Development Manager"
+title = "Business Development Representative"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 
@@ -11,7 +11,7 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 **Work location:** Remote, United States or Canada, (Seattle preferred)
 
-The Business Development Manager has responsibility for driving market share, qualifying leads that build pipeline for the sales organization, and for closing smaller deals. The BDR will follow up on web inquiries, pre‐qualify leads, close smaller opportunities, and develop larger leads to the point of hand-off to outside sales. In addition to inbound inquiries the BDR will perform prospecting, marketing event outreach and perform general sales development functions to build a pipeline within targeted accounts designated by management. An implicit responsibility of the BDR is to conduct business dealings with prospects in a way that creates a superior customer/prospect experience to set the stage for future product sales for Crunch.io.
+The Business Development Representative has responsibility for driving market share, qualifying leads that build pipeline for the sales organization, and for closing smaller deals. The BDR will follow up on web inquiries, pre‐qualify leads, close smaller opportunities, and develop larger leads to the point of hand-off to outside sales. In addition to inbound inquiries the BDR will perform prospecting, marketing event outreach and perform general sales development functions to build a pipeline within targeted accounts designated by management. An implicit responsibility of the BDR is to conduct business dealings with prospects in a way that creates a superior customer/prospect experience to set the stage for future product sales for Crunch.io.
 
 Our customers include some of the largest market research companies and largest brands in the world. We’re hiring you to expand that roster.
 
