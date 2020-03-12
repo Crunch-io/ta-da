@@ -6054,6 +6054,17 @@ h4 {
 .sp-mb {
   margin: 40px 0; }
 
+.header-banner {
+  background-color: #004571; }
+  .header-banner .banner-text {
+    padding: 6px;
+    color: #ffffff; }
+    .header-banner .banner-text a {
+      color: #6ea9cf;
+      font-weight: 700; }
+      .header-banner .banner-text a:hover {
+        text-decoration: none; }
+
 .btn {
   padding: 10px 50px;
   border-radius: 2px; }
