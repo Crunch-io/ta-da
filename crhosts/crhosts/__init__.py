@@ -235,7 +235,7 @@ class HostPropertyDetector(object):
             raise RuntimeError("Unable to detect any mongodb secondary")
 
         command = command + """ 'mongo --ssl --sslAllowInvalidCertificates --quiet --eval "rs.status()[\\\""myState\\\""]"'"""
-        res = subprocess.check_output(command, shell=True).strip().splitlines()[-1]
+        res = subprocess.check_output(command, shell=True).strip().splitlines()[-1].decode('ascii')
         return res == "2"
 
     def _mongodb_primary(self, server, dest, user, command):
@@ -244,7 +244,7 @@ class HostPropertyDetector(object):
             raise RuntimeError("Unable to detect any mongodb primary")
 
         command = command + """ 'mongo --ssl --sslAllowInvalidCertificates --quiet --eval "rs.status()[\\\""myState\\\""]"'"""
-        res = subprocess.check_output(command, shell=True).strip().splitlines()[-1]
+        res = subprocess.check_output(command, shell=True).strip().splitlines()[-1].decode('ascii')
         return res == "1"
 
     class _DetectHotZZ9Dataset(object):
