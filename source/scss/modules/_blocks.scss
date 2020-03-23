@@ -39,3 +39,11 @@
         }
     }
 }
+
+.headline {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    padding: 20px;
+    color: $color-blue;
+    background-color: $--lighter-primary-color;
+}

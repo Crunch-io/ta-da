@@ -46,7 +46,7 @@
                               </div>
 
                               <div class="col-md-5 offset-md-2">
-                                  <p class="quote">{{ .Params.quote }}</p>
+                                  <p class="headline">{{ .Params.quote }}</p>
 
                                   <p>{{ .Content }}</p>
                               </div>
@@ -65,7 +65,7 @@
                               </div>
 
                               <div class="col-md-5 offset-md-2">
-                                  <p class="quote">{{ .Params.quote }}</p>
+                                  <p class="headline">{{ .Params.quote }}</p>
 
                                   <p>{{ .Content }}</p>
                               </div>
@@ -84,7 +84,7 @@
                               </div>
 
                               <div class="col-md-5 offset-md-2">
-                                  <p class="quote">{{ .Params.quote }}</p>
+                                  <p class="headline">{{ .Params.quote }}</p>
 
                                   <p>{{ .Content }}</p>
                               </div>
@@ -103,7 +103,26 @@
                               </div>
 
                               <div class="col-md-5 offset-md-2">
-                                  <p class="quote">{{ .Params.quote }}</p>
+                                  <p class="headline">{{ .Params.quote }}</p>
+
+                                  <p>{{ .Content }}</p>
+                              </div>
+                          {{ end }}
+                      {{ end }}
+                  </div> <!-- /.row. -->
+
+                  <div class="row spacer justify-content-md-center">
+                      {{ range .Data.Pages }}
+                          {{ if and (eq .Type "case-studies") (eq .Title "The Chicago Council on Global Affairs") }}
+                              <div class="col-md-4">
+                                  <h1>{{ .Params.title }}</h1>
+                                  <p><strong>Industry: </strong>{{ .Params.industry }}</p>
+                                  <p><strong>About: </strong>{{ .Params.about }}</p>
+                                  <p><strong>Region: </strong>{{ .Params.region }}</p>
+                              </div>
+
+                              <div class="col-md-5 offset-md-2">
+                                  <p class="headline">{{ .Params.quote }}</p>
 
                                   <p>{{ .Content }}</p>
                               </div>
