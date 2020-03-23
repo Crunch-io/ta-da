@@ -5,7 +5,7 @@ title = "YouGov"
 industry = "Market research"
 about = "Internet-based research data and analytics group"
 region = "Global"
-quote = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+quote = "Subsecond Response Times for one of the World’s Largest Research Networks"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
 
@@ -13,6 +13,8 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 ![](https://via.placeholder.com/450x350)
 
-YouGov has one of the world’s largest research networks with a proprietary panel of over 8 million individuals in 42 markets. YouGov is a power user of Crunch.io and uses Crunch.io to support its mission of “the best data - the best tools”.  YouGov benefits from Crunch.io’s high-speed processing along with drag-and-drop ease of use.
+YouGov, whose current brand slogan is “the best panel - the best data - the best tools”, has one of the world’s largest research networks with a proprietary panel of over 8 million individuals in 44 markets. Researchers at YouGov use Crunch.io to perform analysis and deliver data and insights to clients via the Crunch.io web application, CrunchBoxes, and Dashboards.
 
-Crunch.io currently hosts the YouGov Profiles data product, which provides syndicated segmentation and product data for agencies and brands. YouGov Profiles customers enjoy sub-second query response times, building on-the-fly crosstabs on a survey database containing over 192,000 rows (respondents) and 48,000 columns (variables).
+YouGov uses the Crunch.io enterprise-wide for both custom research and Data Products, such as YouGov Profiles, which provides syndicated segmentation and product data for agencies and brands. Over 14,000 YouGov Profiles users enjoy sub-second query response times, building on-the-fly crosstabs on a survey database, containing over 192,000 rows (respondents) and 48,000 columns (variables). YouGov Data Products, including Profiles, grew 32% in 2019.
+
+YouGov will continue to use Crunch.io to process data quickly and efficiently and give its growing customer base the power to explore easily the data and find insights on their own.
