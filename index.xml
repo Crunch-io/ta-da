@@ -6,10 +6,61 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Mar 2020 09:45:32 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 23 Mar 2020 11:22:23 -0400</lastBuildDate>
     
 	<atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Chicago Council on Global Affairs</title>
+      <link>//crunch.io/case-studies/chicago-council/</link>
+      <pubDate>Mon, 23 Mar 2020 11:22:23 -0400</pubDate>
+      
+      <guid>//crunch.io/case-studies/chicago-council/</guid>
+      <description>The Chicago Council on Global Affairs is an independent, nonpartisan organization that provides insight on global issues and policy.
+The organization uses Crunch.io to analyze data from its biannual survey on major foreign policy issues of the day. They have appended over 20 years of public opinion datasets into one dataset, previously only available in separate files, to enable simple and intuitive analysis of historical data.
+To share the insights, The Chicago Council on Global Affairs delivers CrunchBoxes — lightweight versions of their Crunch.</description>
+    </item>
+    
+    <item>
+      <title>Gojek</title>
+      <link>//crunch.io/case-studies/gojek/</link>
+      <pubDate>Thu, 26 Dec 2019 19:36:20 -0400</pubDate>
+      
+      <guid>//crunch.io/case-studies/gojek/</guid>
+      <description>Gojek is the leading on-demand multi-service app platform and digital payment technology group in Southeast Asia. The company uses a call center to connect consumers to courier delivery and ride-hailing services. As of mid-2019, Gojek was a “Decacorn” valued at over $10 billion dollars with over 3,000 employees.
+Gojek uses Crunch as a centralized single-source-of-truth repository for data collected from multiple market research companies as well as from DIY surveys conducted in-house.</description>
+    </item>
+    
+    <item>
+      <title>Metrixlab</title>
+      <link>//crunch.io/case-studies/metrixlab/</link>
+      <pubDate>Thu, 26 Dec 2019 19:36:16 -0400</pubDate>
+      
+      <guid>//crunch.io/case-studies/metrixlab/</guid>
+      <description>MetrixLab is a global research agency active in over 90 countries with half of the world’s top 100 brands as its clients. With Crunch.io, MetrixLab enables its clients to explore and engage with the data and survey results in real-time.
+MetrixLab worked with Crunch.io to implement real-time integration between MetrixLab’s fielding software and Crunch.io.. One of MetrixLab’s clients - a well-recognized, global fast-food franchise - used Crunch.io while conducting a taste test survey.</description>
+    </item>
+    
+    <item>
+      <title>Activision Blizzard</title>
+      <link>//crunch.io/case-studies/activision-blizzard/</link>
+      <pubDate>Thu, 26 Dec 2019 19:36:09 -0400</pubDate>
+      
+      <guid>//crunch.io/case-studies/activision-blizzard/</guid>
+      <description>Activision Blizzard uses survey data from players to showcase audience insights and sell sponsorships to its advertisers. They chose Crunch.io because of the increased efficiency and time saved analyzing data with the drag-and-drop platform. They work with Crunch.io to analyze tracker data across multiple countries.
+In preparation for a partner summit, Activision Blizzard analysts built and presented interactive dashboards customized for each of their partners with Crunch.io’s no-coding, drag-and-drop dashboard builder.</description>
+    </item>
+    
+    <item>
+      <title>YouGov</title>
+      <link>//crunch.io/case-studies/yougov/</link>
+      <pubDate>Thu, 26 Dec 2019 18:39:31 -0400</pubDate>
+      
+      <guid>//crunch.io/case-studies/yougov/</guid>
+      <description>YouGov, whose current brand slogan is “the best panel - the best data - the best tools”, has one of the world’s largest research networks with a proprietary panel of over 8 million individuals in 44 markets. Researchers at YouGov use Crunch.io to perform analysis and deliver data and insights to clients via the Crunch.io web application, CrunchBoxes, and Dashboards.
+YouGov uses the Crunch.io enterprise-wide for both custom research and Data Products, such as YouGov Profiles, which provides syndicated segmentation and product data for agencies and brands.</description>
+    </item>
     
     <item>
       <title>Show value labels on graphs</title>
@@ -472,6 +523,15 @@ To that end, we’ve recently developed a draft and publish feature that allows 
       <guid>//crunch.io/product/intro-crunchbox/</guid>
       <description>The easiest and quickest way for anyone, with zero training, to slice and dice survey data.
 Try a live CrunchBox</description>
+    </item>
+    
+    <item>
+      <title>Opinion matters</title>
+      <link>//crunch.io/marketing/opinion-matters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//crunch.io/marketing/opinion-matters/</guid>
+      <description></description>
     </item>
     
     <item>

@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>//crunch.io/case-studies/chicago-council/</loc>
+    <lastmod>2020-03-23T11:22:23-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/case-studies/gojek/</loc>
+    <lastmod>2019-12-26T19:36:20-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/case-studies/metrixlab/</loc>
+    <lastmod>2019-12-26T19:36:16-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/case-studies/activision-blizzard/</loc>
+    <lastmod>2019-12-26T19:36:09-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/case-studies/</loc>
+    <lastmod>2019-12-26T18:39:31-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/case-studies/yougov/</loc>
+    <lastmod>2019-12-26T18:39:31-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/resources/</loc>
+    <lastmod>2019-12-19T12:08:14-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/jobs/</loc>
     <lastmod>2017-07-18T14:08:35+02:00</lastmod>
   </url>
@@ -14,11 +49,6 @@
   
   <url>
     <loc>//crunch.io/knowledge-base/</loc>
-    <lastmod>2017-07-18T14:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/resources/</loc>
     <lastmod>2017-07-18T14:08:35+02:00</lastmod>
   </url>
   
@@ -159,7 +189,7 @@
   
   <url>
     <loc>//crunch.io/</loc>
-    <lastmod>2020-03-18T09:45:32-04:00</lastmod>
+    <lastmod>2020-03-23T11:22:23-04:00</lastmod>
   </url>
   
   <url>
@@ -531,6 +561,10 @@
   
   <url>
     <loc>//crunch.io/marketing/</loc>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/marketing/opinion-matters/</loc>
   </url>
   
   <url>
