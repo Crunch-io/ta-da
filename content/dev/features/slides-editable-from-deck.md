@@ -1,15 +1,14 @@
 +++
-date = "2020-02-24T09:21:04-04:00"
-publishdate = "2020-02-24T13:52:18+0000"
+date = "2020-03-27T17:11:57-04:00"
 draft = false
 title = "Perfect your PowerPoint decks with many new edit controls"
 news_description = "Analyses you save to a deck can now include visual edits to perfect your exported PowerPoint deck. Click here to learn more."
-description = "For Early Access users, 'Save to a deck' now includes visual edits to perfect your exported PowerPoint deck."
+description = "'Save to a deck' now includes visual edits to perfect your exported PowerPoint deck."
 weight = 20
 tags = ["analyses", "graphs"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 
 +++
@@ -36,6 +35,4 @@ When you're done making edits, click **Save** to return to the deck view. Your e
 
 * If the 'edit' link does *not* appear when you hover over it, this means that this a deck you do not have permission to edit. Contact the deck's creator to ask them to share it with you.
 
-Currently this feature is only available for early access users.
-
-We'd love your feedback at support@crunch.io.
+We'd love your feedback at [support@crunch.io](mailto:support@crunch.io).
