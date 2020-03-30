@@ -1,5 +1,6 @@
 +++
 date = "2020-03-27T17:11:57-04:00"
+publishdate = "2020-03-30T18:47:50+0000"
 draft = false
 title = "Perfect your PowerPoint decks with many new edit controls"
 news_description = "Analyses you save to a deck can now include visual edits to perfect your exported PowerPoint deck. Click here to learn more."
