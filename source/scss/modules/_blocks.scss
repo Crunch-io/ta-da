@@ -24,8 +24,22 @@
 
 .headline {
     font-family: 'Libre Baskerville', serif;
-    font-style: italic;
-    padding: 20px;
     color: $color-blue;
-    background-color: $--lighter-primary-color;
+    font-size: 27px;
+    max-width: 750px;
+    line-height: 36px;
+
+    span {
+        font-style: italic;
+    }
+}
+
+.highlight {
+    font-family: 'Libre Baskerville', serif;
+    color: $color-blue;
+    font-size: 18px;
+}
+
+.table-space {
+    padding: 8px;
 }
