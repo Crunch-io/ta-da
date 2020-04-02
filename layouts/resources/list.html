@@ -32,11 +32,11 @@
                   <div class="row spacer-bottom">
                       {{ range .Pages.ByWeight }}
                           <div class="col-md-6 col-lg-4">
-                              <div class="post-card post-job" onclick="location.href='{{ .Params.hubspot }}'">
+                              <div class="post-card post-job" onclick="location.href='{{ .Params.url }}'">
                                   <div class="posts">
                                       <span>{{ .Params.label }}</span>
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
-                                      <a href="{{ .Params.hubspot }}">{{ .Params.link }} &#10230;</a>
+                                      <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
                                   </div>
                               </div>
                           </div>

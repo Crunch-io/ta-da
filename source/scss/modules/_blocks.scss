@@ -22,6 +22,24 @@
     margin: 40px 0;
 }
 
+.header-banner {
+    background-color: $--darker-primary-color;
+
+    .banner-text {
+        padding: 6px;
+        color: $color-white;
+
+        a {
+            color: $--light-primary-color;
+            font-weight: 700;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
 .headline {
     font-family: 'Libre Baskerville', serif;
     color: $color-blue;

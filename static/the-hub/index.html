@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crunch - The Hub demo</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .box {
+            display: flex;
+            flex-flow: column;
+            height: 100vh;
+        }
+
+        .box .nav {
+            display: flex;
+            flex-flow: row;
+            background-color: yellow;
+            height: auto;
+            padding: 5px;
+        }
+
+        .box .nav p {
+            flex-grow: 1;
+            text-align: center;
+            margin: 0;
+        }
+
+        .box .row.header {
+            display: flex;
+            flex: 0 1 auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box .row.content {
+            flex: 1 1 auto;
+            display: flex;
+        }
+
+        .box .row.footer {
+            display: flex;
+            flex: 0 1 auto;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .row.content iframe {
+            display: flex;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="box nav">
+        <p><a href="index.html">Small header</a></p>
+        <p><a href="big.html">Big header</a></p>
+        <p><a href="headfoot.html">Customer header/footer</a></p>
+        <p><a href="nonav.html">No navigation</a></p>
+    </div>
+    <!--    <div class="row header">-->
+    <!--        CUSTOM HEADER-->
+    <!--    </div>-->
+    <div class="row header">
+        <img src="TheHub-small.png" width="100%"></img>
+    </div>
+    <!--    <div class="row header">-->
+    <!--        <img src="TheHub.png" width="100%"></img>-->
+    <!--    </div>-->
+    <div class="row content">
+        <iframe id="iFrame1" src="https://app.crunch.io/dashboard/oo4ak"></iframe>
+    </div>
+    <!--    <div class="row footer">-->
+    <!--        CUSTOM FOOTER-->
+    <!--    </div>-->
+</div>
+
+</body>
+</html>
