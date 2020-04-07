@@ -28,7 +28,7 @@ Into this...
 
 {{< figure src="dev/features/images/editable-table-tidy.png" class="img-fluid">}}
 
-All users can access this new functionality via the "edit" link show upon hover of each slide saved to the deck, and editors can additionally access this functionality when editing dashboard tiles that contain tables.
+All users can access this new functionality via the "edit" link shown upon hover of each slide saved to the deck, and editors can additionally access this functionality when editing dashboard tiles that contain tables.
 
 Currently this feature is only available for early access users, though all users will be able to see any tables customized in this way.
 
