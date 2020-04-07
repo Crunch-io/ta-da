@@ -1,0 +1,273 @@
+openapi: 3.0.0
+x-api-id: crunch-api
+info:
+  title: Crunch API
+  version: '1.1'
+  contact:
+    name: Crunch Support
+    url: 'https://help.crunch.io'
+    email: support@crunch.io
+  description: "Developer API for Crunch.io\n\n\n# Example table\n<!-- title: My Table Title -->\n\n| Tables        |      Are      |   Cool |\n| ------------- | :-----------: | -----: |\n| col 3 is      | right-aligned | \\$1600 |\n| col 2 is      |   centered    |   \\$12 |\n| zebra stripes |   are neat    |    \\$1 |\n\n# Example try-me\n```yaml http\n{\n  \"method\": \"get\",\n  \"url\": \"http://todos.stoplight.io/todos\"\n}\n\\```\n\n# Example tab block\n<!--\ntype: tab\ntitle: Some Content\n-->\n\n# Content!\n\nSweet, beautiful content, ready to blow your readers' minds.\n\n<!--\ntype: tab\ntitle: Some More Content\n-->\n\n# More Content!\n\nWith more mind-blowing material. Really. Just amazing, grade-A stuff.\n\n<!-- type: tab-end -->"
+servers:
+  - url: 'https://cors-buster.dcarr.com/app.crunch.io/api'
+    description: Crunch API CORS buster
+  - url: 'https://app.crunch.io/api'
+    description: Crunch API
+  - url: 'https://alpha.crunch.io/api'
+    description: Crunch API (alpha)
+components:
+  schemas: {}
+  securitySchemes:
+    Access Token:
+      type: http
+      scheme: bearer
+paths:
+  /public/login/:
+    post:
+      summary: Log in
+      operationId: post-public-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    default: f1e0b74c79e85b7158e721e831f1c853
+                  token_type:
+                    type: string
+                    default: Bearer
+        '401':
+          description: Incorrect login
+        '403':
+          description: Account locked - please contact Crunch support.
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: content-type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Crunch username
+                  format: email
+                  example: dcarr178@gmail.com
+                password:
+                  type: string
+                  description: Crunch password
+                  format: password
+                  example: 'ZBQMLG41^*FA'
+                token:
+                  type: boolean
+                  default: 'false'
+                  description: True results in the access token coming back in the response body for api use. False results in api server setting access token inside httpOnly cookie for browser use.
+                  example: 'true'
+              required:
+                - email
+                - password
+            examples:
+              Login example:
+                summary: Login example
+                value:
+                  email: dcarr178@gmail.com
+                  password: 'ZBQMLG41^*FA'
+                  token: true
+        description: ''
+      description: |-
+        Log user in and receive an access token to be used on subsequent api requests
+
+        ### rCrunch SDK
+        <!--
+        lineNumbers: true
+        -->
+
+        ```javascript
+        library(crunch)
+        login("fake.user@example.com", "password")
+        # See ?login for options, including how to store your credentials in your .Rprofile
+        ```
+
+        ### Python SDK
+        <!--
+        lineNumbers: true
+        -->
+
+        ```python
+        import pycrunch
+        ```
+
+        TODO the python code on https://docs.crunch.io/feature-guide/feature-authentication.html is wrong. What is the right code?
+      tags:
+        - Log in
+      security: []
+    get:
+      summary: Link to Crunch app
+      operationId: get-public-login
+      responses:
+        '200':
+          description: OK
+      description: "<!-- theme: info -->\n> ### Important!\n> This endpoint only works for user accounts configured for oauth access.\n\nProvides a way for external websites to link to crunch application, passing in email address (username) in order to bypass the crunch login screen for oauth users. \n\n<!--\ntitle: \"3rd party web page\"\nlineNumbers: false\n-->\n```html\n<html><body>\nLink to \n<a href=\"https://app.crunch.io/api/public/login/?email=david.carr@crunch.io&redirect_uri=https%3A%2F%2Fapp.crunch.io%2Fshared\">\n  Crunch\n</a>\n</body></html>\n```\n\nbut that redirect_url doesn't quite work.\n\nThis one sort of works\n\nhttps://app.crunch.io/authentication/login/?email=david.carr@crunch.io&redirect_uri=https:%2F%2Fapp.crunch.io%2Fshared\n\nTODO finish testing and documenting this endpont. redirect_url needs a working example."
+      parameters:
+        - schema:
+            type: string
+            example: dcarr178@gmail.com
+            format: email
+          in: query
+          name: email
+          description: Crunch username
+          required: true
+        - schema:
+            type: string
+            format: uri
+          in: query
+          name: redirect_uri
+      tags:
+        - Log in
+      security: []
+  /logout/:
+    get:
+      summary: Log out
+      tags:
+        - Log in
+      responses:
+        '204':
+          description: Logged off successfully
+        '401':
+          description: Access token not found
+      operationId: get-logout
+      description: Log user out and expire access token
+  /public/crunchbox/share/:
+    get:
+      summary: Share crunchbox html
+      tags:
+        - CrunchBox
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            text/html:
+              schema:
+                type: string
+      operationId: get-crunchbox-share
+      description: |-
+        Renders HTML page containing a CrunchBox, complete with the meta data utilized by social sharing platform crawlers in constructing a share preview. Among this metadata is a url to a preview image of the rendered CrunchBox.
+        # Endpoint usage in HTML file
+        <!--
+        title: "HTML link to CrunchBox"
+        lineNumbers: false
+        -->
+        ```html
+        <html>
+        <head>
+            <title>Link to CrunchBox</title>
+        </head>
+        <body>
+        Click here to
+        <a target="_blank"
+           href="https://app.crunch.io/api/public/crunchbox/share/?data=%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2F72c27f64a12028b887d7cae248143b6b%2Frow%2F000886%2Fcolumn%2F000480%3Fviz%3DstackedBarPlot%26amp%3Bcp%3Dpercent%26amp%3Bdp%3D0%26amp%3Bgrp%3Dstack&ref=https%3A%2F%2Fwww.whitehouse.gov/">view
+            CrunchBox</a>.
+        </body>
+        </html>
+        ```
+      parameters:
+        - schema:
+            type: string
+            default: '//s.crunch.io/widget/index.html#/ds/d4b2945f727f4eccbc31544ddabf9fa4?viz=groupedBarPlot&cp=percent&dp=0&grp=stack'
+          in: query
+          name: data
+          required: true
+          description: CrunchBox widget url
+        - schema:
+            type: string
+            default: 'https://google.com'
+          in: query
+          name: ref
+          description: Url to use inside the CrunchBox to link user back to referring webpage
+      security: []
+    parameters: []
+  '/users/{userid}/':
+    parameters:
+      - schema:
+          type: string
+        name: userid
+        in: path
+        required: true
+        description: User ID of the user you want information for
+    get:
+      summary: Get user information
+      tags:
+        - Users
+      responses:
+        '200':
+          description: OK
+      operationId: get-users-userid
+      description: User ID of the user currently logged in can be retrieved via API by performing a GET on endpoint /.
+  /:
+    get:
+      summary: Get a bunch of urls
+      responses:
+        '200':
+          description: OK
+      operationId: get
+      tags:
+        - URLs
+  /account/:
+    get:
+      summary: My account
+      tags:
+        - Account
+      responses:
+        '200':
+          description: OK
+      operationId: get-account
+      description: |-
+        All Users belong to one and only one Account. Accounts provide an organization-level scope for Crunch.io customers. This endpoint returns information for the authenticated user's account including branding configuration.
+
+        # Account managers
+        Account managers can administer their various users and entities and have visibility on them. A user is an account manager if their `account_permissions.admin_account=true`.
+  /feature_flag/:
+    get:
+      summary: Get the application features the authenticated user has access to
+      tags:
+        - Feature Flags
+      responses:
+        '200':
+          description: OK
+      operationId: get-feature_flag
+      description: Crunch uses feature flags to enable and disable system-wide features under development.
+      security:
+        - Access Token: []
+  /projects/:
+    get:
+      summary: My projects
+      tags:
+        - Projects
+      responses:
+        '200':
+          description: OK
+      operationId: get-projects
+      security:
+        - Access Token: []
+      description: Returns a list of projects the authenticated user is a member of.
+  /projects/shared/:
+    get:
+      summary: Projects shared with me
+      tags:
+        - Projects
+      responses:
+        '200':
+          description: OK
+      operationId: get-projects-shared
+      description: Returns a list of projects other users have shared with the authenticated user.
+security:
+  - Access Token: []
