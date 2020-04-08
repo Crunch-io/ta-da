@@ -1,0 +1,63 @@
+{{ partial "head-start.html" . }}
+<script type="module" src="/js/rapidoc-min.js"></script>
+<style>
+    nav {
+        border-bottom: solid #004571 1px;
+    }
+    rapi-doc {
+        width: 100%;
+    }
+</style>
+{{ partial "head-finish.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+            <div class="jobs-content">
+                <div class="jumbotron" style="margin: 0px;">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-8 text-center">
+                                <h1 class="display-5">{{ .Title }}</h1>
+                            </div>
+                        </div> <!-- /.row -->
+
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.jobs-content -->
+        </div>
+    </div>
+</div>
+
+<rapi-doc
+    id="thedoc"
+    allow-spec-file-load="false"
+    allow-spec-url-load="false"
+    default-schema-tab="example"
+    info-description-headings-in-navbar="true"
+    layout="row"
+    nav-accent-color="#fffe33"
+    nav-bg-color="#004571"
+    nav-hover-bg-color="#0064a4"
+    nav-hover-text-color="#ffffff"
+    nav-item-spacing="compact"
+    nav-text-color="#ffffff"
+    primary-color="#0064a4"
+    render-style="read"
+    response-area-height="500px"
+    schema-description-expanded="true"
+    schema-style="table"
+    show-components="true"
+    show-header="false"
+    show-info="true"
+    sort-endpoints-by="method"
+    sort-tags="true"
+    spec-url="/oas/crunch-api-oas3.yaml"
+    theme="light"
+    xgoto-path="post-public-login"
+>
+</rapi-doc>
+
+{{ partial "footer.html" . }}
