@@ -7,12 +7,13 @@ info:
     name: Crunch Support
     url: 'https://help.crunch.io'
     email: support@crunch.io
-  description: "Developer API for Crunch.io\n\n\n# Example table\n<!-- title: My Table Title -->\n\n| Tables        |      Are      |   Cool |\n| ------------- | :-----------: | -----: |\n| col 3 is      | right-aligned | \\$1600 |\n| col 2 is      |   centered    |   \\$12 |\n| zebra stripes |   are neat    |    \\$1 |\n\n# Example try-me\n```yaml http\n{\n  \"method\": \"get\",\n  \"url\": \"http://todos.stoplight.io/todos\"\n}\n\\```\n\n# Example tab block\n<!--\ntype: tab\ntitle: Some Content\n-->\n\n# Content!\n\nSweet, beautiful content, ready to blow your readers' minds.\n\n<!--\ntype: tab\ntitle: Some More Content\n-->\n\n# More Content!\n\nWith more mind-blowing material. Really. Just amazing, grade-A stuff.\n\n<!-- type: tab-end -->"
+  description: |
+    Developer API for Crunch.io
 servers:
-  - url: 'https://cors-buster.dcarr.com/app.crunch.io/api'
-    description: Crunch API CORS buster
   - url: 'https://app.crunch.io/api'
     description: Crunch API
+  - url: 'https://cors-buster.dcarr.com/app.crunch.io/api'
+    description: Crunch API CORS buster
   - url: 'https://alpha.crunch.io/api'
     description: Crunch API (alpha)
 components:
@@ -85,27 +86,46 @@ paths:
       description: |-
         Log user in and receive an access token to be used on subsequent api requests
 
-        ### rCrunch SDK
-        <!--
-        lineNumbers: true
-        -->
+        **TODO** the python code on https://docs.crunch.io/feature-guide/feature-authentication.html is wrong. What is the right code?
+      x-code-samples:
+        - lang: HTTP
+          source: |-
+            POST /api/public/login/ HTTP/1.1
+            Host: app.crunch.io
+            Content-Type: application/json
+            Content-Length: 73
 
-        ```javascript
-        library(crunch)
-        login("fake.user@example.com", "password")
-        # See ?login for options, including how to store your credentials in your .Rprofile
-        ```
+            {
+                "email": "fake.user@example.com",
+                "password": "password",
+                "token", true
+            }
 
-        ### Python SDK
-        <!--
-        lineNumbers: true
-        -->
+            HTTP/1.1 200 OK
+            {"access_token": "796f025f019ad8299337ba7b0924afbf", "token_type": "Bearer"}
+        - lang: SHELL
+          syntaxLang: bash
+          source: |-
+            curl -X POST \
+              -d "{\"email\": \"fake.user@example.com\", \"password\": \"password\", \"token\": true}" \
+              -H "Content-type: application/json" \
+              -H "Content-Length: 73" \
+              https://app.crunch.io/api/public/login/
 
-        ```python
-        import pycrunch
-        ```
-
-        TODO the python code on https://docs.crunch.io/feature-guide/feature-authentication.html is wrong. What is the right code?
+            # The above command will perform a login and return a Bearer Token.
+            # After this, you can access the endpoint via curl commands (POST, GET, PATCH), as long as
+            # the -H "Authorization: Bearer access_token" flag is present. Substitute <access_token> with
+            # the one returned on the login request.
+        - lang: RCRUNCH SDK
+          source: |-
+            library(crunch)
+            login("fake.user@example.com", "password")
+            # See ?login for options, including how to store your credentials
+            # in your .Rprofile
+        - lang: PYCRUNCH SDK
+          syntaxLang: python
+          source: |-
+            import pycrunch
       tags:
         - Log in
       security: []
@@ -115,7 +135,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: "<!-- theme: info -->\n> ### Important!\n> This endpoint only works for user accounts configured for oauth access.\n\nProvides a way for external websites to link to crunch application, passing in email address (username) in order to bypass the crunch login screen for oauth users. \n\n<!--\ntitle: \"3rd party web page\"\nlineNumbers: false\n-->\n```html\n<html><body>\nLink to \n<a href=\"https://app.crunch.io/api/public/login/?email=david.carr@crunch.io&redirect_uri=https%3A%2F%2Fapp.crunch.io%2Fshared\">\n  Crunch\n</a>\n</body></html>\n```\n\nbut that redirect_url doesn't quite work.\n\nThis one sort of works\n\nhttps://app.crunch.io/authentication/login/?email=david.carr@crunch.io&redirect_uri=https:%2F%2Fapp.crunch.io%2Fshared\n\nTODO finish testing and documenting this endpont. redirect_url needs a working example."
+      description: "<!-- theme: info -->\n> ### Important!\n> This endpoint only works for user accounts configured for oauth access.\n\nProvides a way for external websites to link to crunch application, passing in email address (username) in order to bypass the crunch login screen for oauth users. \n\n# 3rd party web page\n<!--\ntitle: \"3rd party web page\"\nlineNumbers: false\n-->\n```html\n<html><body>\nLink to \n<a href=\"https://app.crunch.io/api/public/login/?email=david.carr@crunch.io&redirect_uri=https%3A%2F%2Fapp.crunch.io%2Fshared\">\n  Crunch\n</a>\n</body></html>\n```\n\nbut that redirect_url doesn't quite work.\n\nThis one sort of works\n\nhttps://app.crunch.io/authentication/login/?email=david.carr@crunch.io&redirect_uri=https:%2F%2Fapp.crunch.io%2Fshared\n\nTODO finish testing and documenting this endpont. redirect_url needs a working example."
       parameters:
         - schema:
             type: string
