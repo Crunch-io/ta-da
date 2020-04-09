@@ -7,8 +7,56 @@ info:
     name: Crunch Support
     url: 'https://help.crunch.io'
     email: support@crunch.io
-  description: |
+  description: |-
     Developer API for Crunch.io
+
+    # API conventions
+
+    The Crunch REST API follows some common conventions across all endpoints. You can assume these to be the case except where explicitly documented otherwise.
+
+    ## Successful requests
+    Successful GET requests return 200 (OK) status with Content-Type: application/json response content.
+
+    PATCH is generally preferred for partial updating of resources, though some endpoints do support PUT. A successful request returns 204 (No Content) status.
+
+    POST is used to create entities on the server. The URL to the created entity is returned in the Location response header, and the response status is either 201 (Created) or 202 (Accepted).
+
+    202 (Accepted) is used for requests that continue to process outside of the request cycle; for example, import or export jobs that may be long running and benefit from reporting progress to clients. See Progress for how to handle the 202 response content. Requests that would otherwise return 201 (Location) will still include the Location header in the 202 response; requests that would otherwise return 204 (No Content) will have no additional response headers.
+
+    ## Unsuccessful requests
+    “Bad” requests returning with a 4xx status may contain JSON response content with an error message.
+
+    Unauthenticated requests to non-public resources return 401 (Unauthorized).
+
+    Authenticated but unauthorized responses return 404 (Not Found) rather than 403 (Forbidden) in cases where returning 403 would leak information about the existence of resources. The 403 response is reserved for cases when, for example, a user is authorized to GET a resource but not PATCH it.
+
+    The 409 (Conflict) response is used when the request may be retried and may succeed if changes are first made at a different resource. Example: when a user who has edit privileges on a dataset but is not the “current editor” attempts to PATCH a dataset resource.
+
+    ## Deprecation
+    When API resources are deprecated, responses will contain a Warning header with a message about the deprecation and a recommendation for upgrading. Our client libraries look for this response header and will alert you to upgrade your version of the library if you receive a response with this header.
+
+    Endpoints that have been removed respond with a 410 (Gone) status, optionally with a message instructing you where to look instead.
+
+    # API response objects
+    The Crunch API consists of just a few primitive objects, arranged differently for each request and response. Learning the basic components will help you create the most complicated queries.
+
+    ## Shoji entity
+    A Shoji entity is identified by the `element` key having value `shoji:entity`. Its principal attribute is the `body` key, which is an object containing the attributes that describe the entity.
+
+    ## List (shoji catalog)
+    A catalog is identified by its `element` key having value `shoji:catalog` with its principal attribute being `index` that contains an object keyed by the URLs of the entities it contains and for each key an object (tuple) with attributes from the referenced entity.
+
+    Shoji catalogs are **not** ordered. For its ordered representations they may provide an `orders` set of Shoji order resources.
+
+    ## Item (shoji view)
+    A Shoji view is identified by its element key having value shoji:view with its principal attribute being value. This can contain any arbitrary JSON object.
+
+    ## Shoji order
+    Shoji orders are identified by the element key having a value shoji:order. Their principal attribute is the graph key which is an array containing the order of present resources.
+
+    A shoji order may be associated with a catalog. In such case it will contain a subset or totality of the entities present in the catalog. The catalog remains as the authoritative source of available entities.
+
+    Any entity not present on the order but present in the catalog may be considered to belong at the bottom of the root of the graph in an arbitrary order, or may be excluded from view.
 servers:
   - url: 'https://app.crunch.io/api'
     description: Crunch API
@@ -22,6 +70,7 @@ components:
     Access Token:
       type: http
       scheme: bearer
+      description: "Enter Crunch access token received from login api endpont:"
 paths:
   /public/login/:
     post:
@@ -61,12 +110,12 @@ paths:
                   type: string
                   description: Crunch username
                   format: email
-                  example: dcarr178@gmail.com
+                  example: joe@gmail.com
                 password:
                   type: string
                   description: Crunch password
                   format: password
-                  example: 'ZBQMLG41^*FA'
+                  example: 'xh%1e8Gltcf'
                 token:
                   type: boolean
                   default: 'false'
@@ -84,7 +133,9 @@ paths:
                   token: true
         description: ''
       description: |-
-        Log user in and receive an access token to be used on subsequent api requests
+        Log user in and receive an access token to be used on subsequent api requests. Nearly all interactions with the Crunch API need to be authenticated. The authentication method involves POSTing login credentials and receiving an access token. The api client should then store the access token returned and pass it in on each subsequent request in the Authorization HTTP header like this.
+
+        Example header variable: `Authorization: Bearer 796f025f019ad8299337ba7b0924afbf`
 
         **TODO** the python code on https://docs.crunch.io/feature-guide/feature-authentication.html is wrong. What is the right code?
       x-code-samples:
@@ -105,17 +156,7 @@ paths:
             {"access_token": "796f025f019ad8299337ba7b0924afbf", "token_type": "Bearer"}
         - lang: SHELL
           syntaxLang: bash
-          source: |-
-            curl -X POST \
-              -d "{\"email\": \"fake.user@example.com\", \"password\": \"password\", \"token\": true}" \
-              -H "Content-type: application/json" \
-              -H "Content-Length: 73" \
-              https://app.crunch.io/api/public/login/
-
-            # The above command will perform a login and return a Bearer Token.
-            # After this, you can access the endpoint via curl commands (POST, GET, PATCH), as long as
-            # the -H "Authorization: Bearer access_token" flag is present. Substitute <access_token> with
-            # the one returned on the login request.
+          source: "curl -X POST \\\n  -d \"{\\\"email\\\": \\\"fake.user@example.com\\\", \\\"password\\\": \\\"password\\\", \\\"token\\\": true}\" \\\n  -H \"Content-type: application/json\" \\\n  -H \"Content-Length: 73\" \\\n  https://app.crunch.io/api/public/login/\n\n# The above command will perform a login and return a Bearer Token.\n# After this, you can access the endpoint via curl commands (POST, GET, PATCH), as long as\n# the -H \"Authorization: Bearer access_token\" flag is present. Substitute <access_token> with\n# the one returned on the login request."
         - lang: RCRUNCH SDK
           source: |-
             library(crunch)
@@ -124,8 +165,7 @@ paths:
             # in your .Rprofile
         - lang: PYCRUNCH SDK
           syntaxLang: python
-          source: |-
-            import pycrunch
+          source: import pycrunch
       tags:
         - Log in
       security: []
