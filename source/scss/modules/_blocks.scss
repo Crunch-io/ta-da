@@ -32,9 +32,11 @@
         a {
             color: $--light-primary-color;
             font-weight: 700;
+            margin-left: 10px;
 
             &:hover {
                 text-decoration: none;
+                color:$--lighter-primary-color;
             }
         }
     }
