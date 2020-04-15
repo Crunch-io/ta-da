@@ -6061,9 +6061,11 @@ h4 {
     color: #ffffff; }
     .header-banner .banner-text a {
       color: #6ea9cf;
-      font-weight: 700; }
+      font-weight: 700;
+      margin-left: 10px; }
       .header-banner .banner-text a:hover {
-        text-decoration: none; }
+        text-decoration: none;
+        color: #e1edf5; }
 
 .headline {
   font-family: 'Libre Baskerville', serif;
