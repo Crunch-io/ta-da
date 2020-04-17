@@ -14,7 +14,7 @@ already use and love to program against the Crunch API, use in code generators, 
 
 ## How to view this spec
 ```bash
-hugo server --watch=false --disableLiveReload
+hugo server --watch=true --disableLiveReload
 # this compiles the entire ta-da website and serves it on port 1313
 ```
 Open a browser to http://localhost:1313/api/documentation.
@@ -68,3 +68,16 @@ documentation includes trailing slashes** so that endpoint testing doesn't fail.
 document error responses in the overview section and only focus on success responses on each endpoint. 
 
 * Spell-check EVERYTHING!!
+
+# API concerns
+
+See dedicated page [API Concerns](./API_CONCERNS.md)
+
+# TODO
+Make sure to:
+1. Log out every bearer token in curl examples or else anyone will be able to use them
+1. Search-replace alpha.crunch.io with app.crunch.io - as we copy/paste json after testing alpha environment so alpha is bound to appear in the final api docs
+1. Other sensitive data needs to be scrubbed out - how to identify it??
+1. JSON sort entire file using IntelliJ JSON sorter
+1. Remove cors-buster api servers before deploying documentation to production
+
