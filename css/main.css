@@ -6828,6 +6828,31 @@ figure figcaption h4 {
 #dot-nav li.active, #dot-nav li:hover {
   background-color: #1D1D26; }
 
+.page-item.active .page-link {
+  color: #0064a4;
+  background-color: transparent; }
+
+.page-item.disabled .page-link {
+  color: #d3d3d3; }
+
+.page-item .page-link {
+  color: #0064a4;
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  border: 0;
+  border-radius: 0; }
+  .page-item .page-link:hover {
+    background-color: transparent;
+    color: #004571; }
+  .page-item .page-link:focus {
+    outline: none !important;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important; }
+
+.page-item .page-number {
+  color: #d3d3d3; }
+
 .footer {
   position: relative;
   z-index: 10;
