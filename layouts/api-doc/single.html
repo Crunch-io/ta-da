@@ -1,5 +1,10 @@
 {{ partial "head-start.html" . }}
+
+{{ if isset .Params "pdf" }}
+<script type="module" src="/js/rapipdf-min.js"></script>
+{{ else }}
 <script type="module" src="/js/rapidoc-min.js"></script>
+{{ end }}
 <style>
     nav {
         border-bottom: solid #004571 1px;
@@ -34,6 +39,13 @@
         </div>
     </div>
 </div>
+{{ if isset .Params "pdf" }}
+<rapi-pdf
+        style = "width:700px; height:40px; font-size:18px;"
+        spec-url = "/oas/crunch-api.json"
+        button-bg = "#b44646"
+> </rapi-pdf>
+{{ else }}
 <rapi-doc
     id="thedoc"
     allow-spec-file-load="false"
@@ -61,5 +73,6 @@
     theme="light"
 >
 </rapi-doc>
+{{ end }}
 
 {{ partial "footer.html" . }}
