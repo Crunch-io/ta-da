@@ -37,7 +37,7 @@
                       </div>
                   </div>
 
-                  <div class="row spacer-bottom">
+                  <div class="row">
                       {{ range .Paginator.Pages.ByPublishDate.Reverse }}
                           <div class="col-md-6 col-lg-4">
                               <div class="post-card" onclick="location.href='{{ .Permalink }}'">
@@ -50,9 +50,9 @@
                               </div>
                           </div>
                       {{ end }}
-
-                      {{ partial "blog/pagination" . }}
                   </div>
+
+                  {{ partial "blog/pagination" . }}
 
               </div> <!-- /.container -->
             </div> <!-- /.secondary-content -->
