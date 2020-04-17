@@ -1,0 +1,1870 @@
+{
+  "components": {
+    "schemas": {
+      "Account": {
+        "description": "",
+        "properties": {
+          "id": {
+            "description": "Account ID",
+            "type": "string"
+          },
+          "logo": {
+            "properties": {
+              "favicon": {
+                "description": "Url of favicon logo image",
+                "type": "string"
+              },
+              "large": {
+                "description": "Url of large logo image",
+                "type": "string"
+              },
+              "small": {
+                "description": "Url to small logo image",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "name": {
+            "description": "Account name",
+            "type": "string"
+          },
+          "palette": {
+            "$ref": "#/components/schemas/Color-Palette"
+          },
+          "templates": {
+            "properties": {
+              "powerpoint": {
+                "description": "Url to custom powerpoint template",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "Account",
+        "type": "object",
+        "x-examples": {
+          "example-1": {
+            "body": {
+              "id": "00001",
+              "logo": {
+                "favicon": "",
+                "large": "",
+                "small": ""
+              },
+              "name": "Crunch",
+              "palette": {
+                "analysis": [
+                  {
+                    "Black Hats are black": {
+                      "default": false,
+                      "palette": [
+                        "#ffa299",
+                        "#9100bf",
+                        "#ff6f00",
+                        "#7f6702"
+                      ]
+                    }
+                  },
+                  {
+                    "White Hats are not": {
+                      "default": false,
+                      "palette": [
+                        "#9d7dc9",
+                        "#7f0a00",
+                        "#0074bf",
+                        "#005283",
+                        "#bf1001",
+                        "#ffac7f",
+                        "#ffac7f",
+                        "#bf1001"
+                      ]
+                    }
+                  },
+                  {
+                    "Just blue": {
+                      "default": false,
+                      "palette": [
+                        "#019cff",
+                        "#80cdff"
+                      ]
+                    }
+                  },
+                  {
+                    "Not a new color palette": {
+                      "default": true,
+                      "palette": [
+                        "#005283",
+                        "#bf1001",
+                        "#bf9a00"
+                      ]
+                    }
+                  },
+                  {
+                    "New color palette": {
+                      "default": false,
+                      "palette": [
+                        "#ff5900"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "templates": {
+                "powerpoint": "https://t.crunch.io/act_templates/account-crunch-jcfojm-powerpoint.pptx"
+              }
+            },
+            "catalogs": {
+              "applications": "https://alpha.crunch.io/api/account/applications/",
+              "users": "https://alpha.crunch.io/api/account/users/"
+            },
+            "description": "Details for an account",
+            "element": "shoji:entity",
+            "self": "https://alpha.crunch.io/api/account/",
+            "views": {
+              "logo": "https://alpha.crunch.io/api/account/logo/",
+              "templates": "https://alpha.crunch.io/api/account/templates/"
+            }
+          }
+        }
+      },
+      "Analysis-color-palette": {
+        "properties": {
+          "default": {
+            "description": "Is this the default color palette to use",
+            "type": "boolean"
+          },
+          "palette": {
+            "items": {
+              "$ref": "#/components/schemas/Hex-color-code"
+            },
+            "type": "array"
+          }
+        },
+        "title": "Analysis-color-palette",
+        "type": "object"
+      },
+      "Color-Palette": {
+        "description": "",
+        "properties": {
+          "analysis": {
+            "description": "Colors for data display",
+            "items": {
+              "properties": {
+                "Color palette name": {
+                  "$ref": "#/components/schemas/Analysis-color-palette"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "brand": {
+            "description": "Brand custom colors",
+            "properties": {
+              "message": {
+                "$ref": "#/components/schemas/Hex-color-code"
+              },
+              "primary": {
+                "$ref": "#/components/schemas/Hex-color-code"
+              },
+              "secondary": {
+                "$ref": "#/components/schemas/Hex-color-code"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "Color palette",
+        "type": "object",
+        "x-examples": {
+          "example-1": {
+            "analysis": [
+              {
+                "Black Hats are black": {
+                  "default": false,
+                  "palette": [
+                    "#ffa299",
+                    "#9100bf",
+                    "#ff6f00",
+                    "#7f6702"
+                  ]
+                }
+              },
+              {
+                "White Hats are not": {
+                  "default": false,
+                  "palette": [
+                    "#9d7dc9",
+                    "#7f0a00",
+                    "#0074bf",
+                    "#005283",
+                    "#bf1001",
+                    "#ffac7f",
+                    "#ffac7f",
+                    "#bf1001"
+                  ]
+                }
+              },
+              {
+                "Just blue": {
+                  "default": false,
+                  "palette": [
+                    "#019cff",
+                    "#80cdff"
+                  ]
+                }
+              }
+            ],
+            "brand": {
+              "message": "#BAA5E7",
+              "primary": "#FFAABB",
+              "secondary": "#G4EEBB"
+            }
+          }
+        }
+      },
+      "Dataset": {
+        "properties": {
+          "access_time": {
+            "description": "Datetime this dataset was last accessed",
+            "type": "string"
+          },
+          "account": {
+            "description": "Url to the account this dataset belongs to",
+            "type": "string"
+          },
+          "archived": {
+            "description": "This dataset has been archived",
+            "type": "boolean"
+          },
+          "creation_time": {
+            "description": "Datetime dataset was created",
+            "type": "string"
+          },
+          "current_editor": {
+            "description": "Url to user specified as the current editor",
+            "type": "string"
+          },
+          "current_editor_name": {
+            "description": "Name of the user marked as the current dataset editor",
+            "type": "string"
+          },
+          "description": {
+            "description": "Dataset description",
+            "type": "string"
+          },
+          "end_date": {
+            "type": "string"
+          },
+          "id": {
+            "description": "Dataset id",
+            "type": "string"
+          },
+          "is_published": {
+            "description": "Has this dataset been published",
+            "type": "boolean"
+          },
+          "midification_time": {
+            "description": "Datetime this dataset was last modified",
+            "type": "string"
+          },
+          "name": {
+            "description": "Dataset name",
+            "type": "string"
+          },
+          "owner_id": {
+            "description": "Url to this dataset's parent project",
+            "type": "string"
+          },
+          "owner_name": {
+            "description": "Name of this dataset's parent project",
+            "type": "string"
+          },
+          "permissions": {
+            "properties": {
+              "edit": {
+                "description": "Does authenticated user have the ability to edit this dataset",
+                "type": "boolean"
+              },
+              "view": {
+                "description": "Does authenticated user have the ability to view this dataset",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "size": {
+            "properties": {
+              "columns": {
+                "description": "Number of columns this dataset contains",
+                "type": "string"
+              },
+              "rows": {
+                "description": "Number of rows this dataset contains",
+                "type": "string"
+              },
+              "unfiltered_rows": {
+                "description": "Number of unfiltered rows this dataset contains",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "start_date": {
+            "type": "string"
+          },
+          "streaming": {
+            "description": "Is data being streamed into this dataset",
+            "type": "boolean"
+          },
+          "type": {
+            "description": "Always \"dataset\" for this object type",
+            "example": "dataset",
+            "type": "string"
+          },
+          "view_of": {
+            "type": "string"
+          }
+        },
+        "title": "Dataset",
+        "type": "object",
+        "x-examples": {
+          "example-1": {
+            "access_time": "2020-03-27T23:39:30.536000+00:00",
+            "account": "https://app.crunch.io/api/accounts/8f04c13804e94ca8b3cf568f8da36cf0/",
+            "archived": false,
+            "creation_time": "2020-03-25T20:36:10.238000+00:00",
+            "current_editor": "https://app.crunch.io/api/users/df3e3c5f7ce74365960d1305373564f0/",
+            "current_editor_name": "Crunch Support",
+            "description": "",
+            "end_date": null,
+            "id": "69ec37de2efe483fb81e910ec360b97c",
+            "is_published": true,
+            "modification_time": "2020-04-02T14:18:20.032000+00:00",
+            "name": "Just Eat BX data",
+            "owner_id": "https://app.crunch.io/api/projects/70bc37797d734a868fb9bb641cbbcd80/",
+            "owner_name": "Just Eat",
+            "permissions": {
+              "edit": false,
+              "view": true
+            },
+            "size": {
+              "columns": 6364,
+              "rows": 10596,
+              "unfiltered_rows": 10596
+            },
+            "start_date": null,
+            "streaming": "no",
+            "type": "dataset",
+            "view_of": null
+          }
+        }
+      },
+      "Dataset-list": {
+        "properties": {
+          "url to dataset A": {
+            "$ref": "#/components/schemas/Dataset"
+          },
+          "url to dataset B": {
+            "$ref": "#/components/schemas/Dataset"
+          }
+        },
+        "title": "Dataset-list",
+        "type": "object"
+      },
+      "Hex-color-code": {
+        "description": "Hex (RGB) color code",
+        "example": "#7f0a00",
+        "title": "Hex-color-code",
+        "type": "string"
+      },
+      "Oauth-redirect": {
+        "description": "",
+        "properties": {
+          "authorize_url": {
+            "example": "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=71778389871-ev84c1qhkfsg2fpqd7tv0hhkrsdtqdr5.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fapp.crunch.io%2Fapi%2Fpublic%2Foauth2redirect%2F&scope=openid+profile+email&state=YRR6SCtvzwbsG9gWmssOqD0VVq3QFA&nonce=6974180560616078291587000412&login_hint=david.carr%40crunch.io&access_type=online",
+            "format": "uri",
+            "type": "string"
+          },
+          "email": {
+            "example": "david.carr@crunch.io",
+            "format": "email",
+            "type": "string"
+          },
+          "method": {
+            "example": "oauth",
+            "type": "string"
+          }
+        },
+        "title": "Oauth-redirect",
+        "type": "object",
+        "x-tags": [
+          "Integrating Crunch"
+        ]
+      },
+      "Shoji-catalog": {
+        "description": "",
+        "properties": {
+          "body": {
+            "$ref": "#/components/schemas/Shoji-catalog-body"
+          },
+          "catalogs": {
+            "$ref": "#/components/schemas/Shoji-catalog-list"
+          },
+          "description": {
+            "description": "Catalog description",
+            "type": "string"
+          },
+          "element": {
+            "$ref": "#/components/schemas/Shoji-catalog-element"
+          },
+          "index": {
+            "properties": {
+              "list item A url": {
+                "description": "POJO of item A contained in this catalog",
+                "type": "object"
+              },
+              "list item B url": {
+                "description": "POJO of item A contained in this catalog",
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "self": {
+            "$ref": "#/components/schemas/Shoji-self"
+          },
+          "urls": {
+            "$ref": "#/components/schemas/Shoji-url-list"
+          },
+          "views": {
+            "$ref": "#/components/schemas/Shoji-view-list"
+          }
+        },
+        "title": "Shoji catalog",
+        "type": "object",
+        "x-examples": {}
+      },
+      "Shoji-catalog-body": {
+        "properties": {
+          "access_time": {
+            "description": "Time catalog was last accessed",
+            "type": "string"
+          },
+          "description": {
+            "description": "Catalog description",
+            "type": "string"
+          },
+          "modification_time": {
+            "description": "Datetime catalog was last modified",
+            "type": "string"
+          },
+          "name": {
+            "description": "Catalog name",
+            "type": "string"
+          },
+          "owner": {
+            "description": "Url to catalog owner's user details",
+            "type": "string"
+          },
+          "owner_id": {
+            "description": "Url to catalog owner's user details",
+            "format": "uri",
+            "type": "string"
+          },
+          "permissions": {
+            "properties": {
+              "edit": {
+                "description": "Is authenticated user allowed to edit catalog",
+                "type": "boolean"
+              },
+              "view": {
+                "description": "Is authenticated user allowed to view catalog",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "title": "Shoji catalog body",
+        "type": "object"
+      },
+      "Shoji-catalog-element": {
+        "description": "Always \"shoji:catalog\" for this object",
+        "title": "Shoji catalog element",
+        "type": "string",
+        "x-examples": {
+          "example-1": "shoji:catalog"
+        }
+      },
+      "Shoji-catalog-list": {
+        "properties": {
+          "sub-catalog A url": {
+            "description": "Url to this sub-catalog",
+            "format": "uri",
+            "type": "string"
+          },
+          "sub-catalog B url": {
+            "description": "Url to this sub-catalog",
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "title": "Shoji catalog list",
+        "type": "object"
+      },
+      "Shoji-entity": {
+        "properties": {
+          "body": {
+            "description": "A plain-old javascript object (POJO) containing the contents of this entity",
+            "type": "object"
+          },
+          "element": {
+            "default": "shoji-entity",
+            "description": "Type of shoji element this is",
+            "type": "string"
+          },
+          "self": {
+            "description": "Url for this entity",
+            "type": "string"
+          }
+        },
+        "required": [
+          "element",
+          "self",
+          "body"
+        ],
+        "title": "Shoji entity",
+        "type": "object",
+        "x-tags": [
+          "Shoji"
+        ]
+      },
+      "Shoji-entity-element": {
+        "description": "Always \"shoji:entity\" for this object",
+        "title": "Shoji entity element",
+        "type": "string",
+        "x-examples": {
+          "example-1": "shoji:entity"
+        }
+      },
+      "Shoji-self": {
+        "description": "Url to this api endpoint",
+        "format": "uri",
+        "title": "Shoji self",
+        "type": "string"
+      },
+      "Shoji-url-list": {
+        "properties": {
+          "name of url A": {
+            "description": "Url A",
+            "format": "uri",
+            "type": "string"
+          },
+          "name of url B": {
+            "description": "Url B",
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "title": "Shoji url list",
+        "type": "object"
+      },
+      "Shoji-view-element": {
+        "description": "Always \"shoji:view\" for this object",
+        "title": "Shoji view element",
+        "type": "string",
+        "x-examples": {
+          "example-1": "shoji:view"
+        }
+      },
+      "Shoji-view-list": {
+        "properties": {
+          "url to view A": {
+            "description": "Url to this view",
+            "format": "uri",
+            "type": "string"
+          },
+          "url to view B": {
+            "description": "Url to this view",
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "title": "Shoji view list",
+        "type": "object"
+      },
+      "Sub-domain-configuration": {
+        "description": "Sub-domain configuration",
+        "properties": {
+          "logo": {
+            "properties": {
+              "favicon": {
+                "description": "Url of favicon image",
+                "type": "string"
+              },
+              "large": {
+                "description": "Url of large logo image",
+                "type": "string"
+              },
+              "small": {
+                "description": "Url of small logo image",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "manifest": {
+            "type": "object"
+          },
+          "name": {
+            "description": "Company name",
+            "type": "string"
+          },
+          "oauth_redirect": {
+            "description": "User logging into this sub-domain will use oauth authentication",
+            "type": "boolean"
+          },
+          "palette": {
+            "description": "Custom color palette",
+            "type": "object"
+          }
+        },
+        "title": "Sub-domain configuration",
+        "type": "object",
+        "x-examples": {
+          "example-1": {
+            "logo": {
+              "favicon": "https://s.crunch.io/act_app_icons/mycompany-kyzdnb-favicon.ico",
+              "large": "https://s.crunch.io/act_app_icons/mycompany-wcaran-large.png",
+              "small": "https://s.crunch.io/act_app_icons/mycompany-nchvcz-small.png"
+            },
+            "manifest": {},
+            "name": "My Company",
+            "oauth_redirect": true,
+            "palette": {}
+          }
+        },
+        "x-tags": [
+          "OEM"
+        ]
+      },
+      "User": {
+        "enum": [
+          "pwhash",
+          "oauth"
+        ],
+        "example": "pwhash",
+        "properties": {
+          "account_permissions": {
+            "properties": {
+              "admin_account": {
+                "description": "Is user an account administrator",
+                "type": "boolean"
+              },
+              "alter_users": {
+                "description": "Can user edit other users",
+                "type": "boolean"
+              },
+              "create_datasets": {
+                "description": "Can user create datasets",
+                "type": "boolean"
+              },
+              "create_users": {
+                "description": "Can user create other users",
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "creation_time": {
+            "description": "Datetime user was created",
+            "type": "string"
+          },
+          "email": {
+            "description": "User's email address",
+            "format": "email",
+            "type": "string"
+          },
+          "id": {
+            "description": "User ID",
+            "type": "string"
+          },
+          "id_method": {
+            "description": "Authentication method for this user",
+            "type": "string"
+          },
+          "id_provider": {
+            "description": "If user has oauth authentication, which oauth provider to use",
+            "type": "string"
+          },
+          "name": {
+            "description": "User's full name",
+            "type": "string"
+          },
+          "preferences": {
+            "description": "User preferences",
+            "properties": {
+              "datasetDisplaySettings": {
+                "type": "object"
+              },
+              "displaySettings": {
+                "type": "object"
+              },
+              "dsVisibleProps": {
+                "type": "object"
+              },
+              "features": {
+                "type": "object"
+              },
+              "notificationsReadDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "notificationsSnoozeDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "openedDecks": {
+                "type": "object"
+              },
+              "projectBrowser": {
+                "type": "object"
+              },
+              "projectId": {
+                "format": "uri",
+                "type": "string"
+              },
+              "search_settings": {
+                "type": "object"
+              },
+              "varCardSettings": {
+                "type": "string"
+              }
+            },
+            "type": [
+              "string",
+              "object"
+            ]
+          }
+        },
+        "title": "User",
+        "type": "object",
+        "x-examples": {
+          "example-1": {
+            "account_permissions": {
+              "admin_account": false,
+              "alter_users": false,
+              "create_datasets": true,
+              "create_users": false
+            },
+            "creation_time": "2019-06-19T15:29:06+00:00",
+            "email": "sim-editor-1@crunch.io",
+            "id": "f94d0f8486f14689b1c9fdd982d51700",
+            "id_method": "pwhash",
+            "id_provider": null,
+            "name": "Sim Editor 1",
+            "preferences": {
+              "datasetDisplaySettings": {
+                "displayArchivedDatasets": true
+              },
+              "displaySettings": {
+                "columnSignificance": null,
+                "countsOrPercents": "percent",
+                "decimalPlaces": 0,
+                "geoChart": true,
+                "percentageDirection": "colPct",
+                "populationMagnitude": 3,
+                "separateOrCombined": "separate",
+                "showCategoriesSubtotals": "both",
+                "showDescription": true,
+                "showEmpty": false,
+                "showMean": false,
+                "showSignif": false,
+                "showValueLabels": false,
+                "showVisualization": true,
+                "simpleOrExtended": "simple"
+              },
+              "dsVisibleProps": {
+                "access_time": true,
+                "modification_time": true,
+                "name": true
+              },
+              "features": {},
+              "notificationsReadDate": "2020-04-16T20:04:05.281Z",
+              "notificationsSnoozeDate": null,
+              "openedDecks": {
+                "0be895b02a054e0e9e742b95ebdcfca0": "https://alpha.crunch.io/api/datasets/0be895b02a054e0e9e742b95ebdcfca0/decks/c3a7ca0a71904afeb9624fb713dad354/",
+                "2ff0e33046984f838a4cb330291d2edb": "https://alpha.crunch.io/api/datasets/2ff0e33046984f838a4cb330291d2edb/decks/26887165af584599a98ba51cb12a6811/",
+                "4c44283be4b24942ad11e8363e054cc3": "https://alpha.crunch.io/api/datasets/4c44283be4b24942ad11e8363e054cc3/decks/27572276d8d848bbaaeef361fe6fc123/",
+                "018ca6872e0e4b5b9cdc0745f4b11ef8": "https://alpha.crunch.io/api/datasets/018ca6872e0e4b5b9cdc0745f4b11ef8/decks/d333732f3aed4f95ac3e8a27cdcf03af/",
+                "68f6997042ed4f19b536fa7b6daf1e2f": "https://alpha.crunch.io/api/datasets/68f6997042ed4f19b536fa7b6daf1e2f/decks/c658efaf87c945d892b68ee950881a4f/",
+                "6284ae2013ae4f6bbb0fc8eaa606d7e3": "https://alpha.crunch.io/api/datasets/6284ae2013ae4f6bbb0fc8eaa606d7e3/decks/7bccfa13b3ff42a29a1be7032f7f4d2c/",
+                "0700211987ee4599a9fa0924a58c9af0": "https://alpha.crunch.io/api/datasets/0700211987ee4599a9fa0924a58c9af0/decks/2b5ec4e80fcb42358d3e4e764b1319cb/",
+                "a2223646a2854fbf98495f6dc3e264b4": "https://alpha.crunch.io/api/datasets/a2223646a2854fbf98495f6dc3e264b4/decks/f42eac179f6d47ecb698f758e49895c5/",
+                "d682f3f648c6473ea0b79fb2b23d4acb": "https://alpha.crunch.io/api/datasets/d682f3f648c6473ea0b79fb2b23d4acb/decks/59e851c6a5e84da0b473ef95695795a7/",
+                "eb4ea0e51e5e45caabebdb75c5147db4": "https://alpha.crunch.io/api/datasets/eb4ea0e51e5e45caabebdb75c5147db4/decks/c3a7ca0a71904afeb9624fb713dad354/"
+              },
+              "projectBrowser": {},
+              "projectId": "https://alpha.crunch.io/api/projects/d22b37e0258a4986b29598fc79ccc24f/",
+              "search_settings": {
+                "grouping": "datasets",
+                "matchMode": "any-terms",
+                "scope": null,
+                "timeCriteria": null,
+                "timeRange": null,
+                "view": "ranked"
+              },
+              "varCardSettings": {}
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Access Token": {
+        "description": "Enter Crunch access token received from login api endpont:",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "contact": {
+      "email": "support@crunch.io",
+      "name": "Crunch Support",
+      "url": "https://help.crunch.io"
+    },
+    "description": "Developer API for Crunch.io\n\n# API conventions\n\nThe Crunch REST API follows some common conventions across all endpoints. You can assume these to be the case except where explicitly documented otherwise.\n\n## Successful requests\nSuccessful GET requests return 200 (OK) status with Content-Type: application/json response content.\n\nPATCH is generally preferred for partial updating of resources, though some endpoints do support PUT. A successful request returns 204 (No Content) status.\n\nPOST is used to create entities on the server. The URL to the created entity is returned in the Location response header, and the response status is either 201 (Created) or 202 (Accepted).\n\n202 (Accepted) is used for requests that continue to process outside of the request cycle; for example, import or export jobs that may be long running and benefit from reporting progress to clients. See Progress for how to handle the 202 response content. Requests that would otherwise return 201 (Location) will still include the Location header in the 202 response; requests that would otherwise return 204 (No Content) will have no additional response headers.\n\n## Unsuccessful requests\n“Bad” requests returning with a 4xx status may contain JSON response content with an error message.\n\nUnauthenticated requests to non-public resources return 401 (Unauthorized).\n\nAuthenticated but unauthorized responses return 404 (Not Found) rather than 403 (Forbidden) in cases where returning 403 would leak information about the existence of resources. The 403 response is reserved for cases when, for example, a user is authorized to GET a resource but not PATCH it.\n\nThe 409 (Conflict) response is used when the request may be retried and may succeed if changes are first made at a different resource. Example: when a user who has edit privileges on a dataset but is not the “current editor” attempts to PATCH a dataset resource.\n\n## Error responses\nTo avoid duplicating error responses on every endpoint description, the most common responses are listed here and only any additional, endpoint-specific responses will be documented with each api endpoint.  \n\n### HTTP status codes\n| Status Code | Description |\n| :-: | :-- |\n| 401 | Invalid access token |\n| 403 | Account locked - please contact Crunch support |\n\n## Deprecated endpoints\nWhen API resources are deprecated, responses will contain a Warning header with a message about the deprecation and a recommendation for upgrading. Our client libraries look for this response header and will alert you to upgrade your version of the library if you receive a response with this header.\n\nEndpoints that have been removed respond with a 410 (Gone) status, optionally with a message instructing you where to look instead.\n\n# API response envelopes\nCrunch API endpoints do not return plain old javascript objects (POJOs) directly but instead deliver POJOs inside a property of machine-readable custom envelopes that facilitate endpoint exploration and traversal. Click here to read the [envelope spec](https://bitbucket.org/fumanchu/shoji/src/default/spec.txt).\n\nUsing crunch api envelopes can be summarized like this:\n```javascript\nlet data = {}\nswitch (response.element) {\n  case 'shoji:entity':\n    data = response.body\n    break\n  case 'shoji:catalog':\n    data = response.index\n    break\n  case 'shoji:view':\n    data = response.value\n    break\n}\n```\n\n## ENTITY envelope\nA Shoji entity is identified by `element: \"shoji:entity\"`. Its principal attribute is the `body` key, which is an object containing the attributes that describe the entity.\n\n## CATALOG envelope\nA catalog is identified by `element: \"shoji:catalog\"` with its principal attribute being `index` that contains an object keyed by the URLs of the entities it contains and for each key an object (tuple) with attributes from the referenced entity.\n\nShoji catalogs are **not** ordered. For its ordered representations they may provide an `orders` set of Shoji order resources.\n\n## VIEW envelope\nA Shoji view is identified by `element: \"shoji:view\"` with its principal attribute being `value`. This can contain any arbitrary JSON object.\n\n## ORDER envelope\nShoji orders are identified by `element: \"shoji:order\"`. The principal attribute is the `graph` key which is an array containing the order of present resources.\n\nA shoji order may be associated with a catalog. In such case it will contain a subset or totality of the entities present in the catalog. The catalog remains as the authoritative source of available entities.\n\nAny entity not present on the order but present in the catalog may be considered to belong at the bottom of the root of the graph in an arbitrary order, or may be excluded from view.\n",
+    "title": "Crunch API",
+    "version": "1.1"
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "catalogs": {
+                        "dashboards": "https://alpha.crunch.io/api/dashboards/",
+                        "datasets": "https://alpha.crunch.io/api/datasets/",
+                        "datasets_by_name": "https://alpha.crunch.io/api/datasets/by_name/{name}/",
+                        "geodata": "https://alpha.crunch.io/api/geodata/",
+                        "icons": "https://alpha.crunch.io/api/icons/",
+                        "integrations": "https://alpha.crunch.io/api/integrations/",
+                        "lobs": "https://alpha.crunch.io/api/lobs/",
+                        "projects": "https://alpha.crunch.io/api/projects/",
+                        "public": "https://alpha.crunch.io/api/public/",
+                        "roles": "https://alpha.crunch.io/api/roles/",
+                        "sources": "https://alpha.crunch.io/api/sources/",
+                        "teams": "https://alpha.crunch.io/api/teams/",
+                        "users": "https://alpha.crunch.io/api/users/"
+                      },
+                      "description": "The API root. GET user_url to access your Crunch resources. GET logout_url to sign out.",
+                      "element": "shoji:catalog",
+                      "self": "https://alpha.crunch.io/api/",
+                      "urls": {
+                        "account_roles_url": "https://alpha.crunch.io/api/roles/accounts/",
+                        "account_url": "https://alpha.crunch.io/api/account/",
+                        "logout_url": "https://alpha.crunch.io/api/logout/",
+                        "notebook_url": "https://alpha-jupyter.crunch.io/",
+                        "user_url": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/"
+                      },
+                      "views": {
+                        "account": "https://alpha.crunch.io/api/account/",
+                        "feature_flag": "https://alpha.crunch.io/api/feature_flag/",
+                        "migration": "https://alpha.crunch.io/api/migration/",
+                        "progress": "https://alpha.crunch.io/api/progress/",
+                        "search": "https://alpha.crunch.io/api/search/",
+                        "user": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/"
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "catalogs": {
+                      "$ref": "#/components/schemas/Shoji-catalog-list"
+                    },
+                    "description": {
+                      "description": "Catalog description",
+                      "type": "string"
+                    },
+                    "element": {
+                      "$ref": "#/components/schemas/Shoji-catalog-element"
+                    },
+                    "self": {
+                      "$ref": "#/components/schemas/Shoji-self"
+                    },
+                    "urls": {
+                      "$ref": "#/components/schemas/Shoji-url-list"
+                    },
+                    "views": {
+                      "$ref": "#/components/schemas/Shoji-view-list"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Root urls",
+        "tags": [
+          "Catalogs"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://app.crunch.io/api/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "syntaxLang": "bash"
+          }
+        ],
+        "description": "Lists root urls available to authenticated requests."
+      }
+    },
+    "/account/": {
+      "get": {
+        "description": "All users belong to one and only one account. Accounts provide an organization-level scope for Crunch.io customers. This endpoint returns information for the authenticated user's account including branding configuration. \n\n## What are account managers?\nAccount managers can administer their various users and entities and have visibility on them. A user is an account manager if their `account_permissions.admin_account=true`.",
+        "operationId": "get-account",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "body": {
+                        "id": "cd6f4fb6b5e848818916c11d61a37a29",
+                        "logo": {
+                          "favicon": "",
+                          "large": "",
+                          "small": ""
+                        },
+                        "name": "Account created for dcarr178@gmail.com",
+                        "palette": {},
+                        "templates": {
+                          "powerpoint": ""
+                        }
+                      },
+                      "catalogs": {
+                        "applications": "https://app.crunch.io/api/account/applications/",
+                        "users": "https://app.crunch.io/api/account/users/"
+                      },
+                      "description": "Details for an account",
+                      "element": "shoji:entity",
+                      "self": "https://app.crunch.io/api/account/",
+                      "views": {
+                        "logo": "https://app.crunch.io/api/account/logo/",
+                        "templates": "https://app.crunch.io/api/account/templates/"
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "body": {
+                      "$ref": "#/components/schemas/Account"
+                    },
+                    "catalogs": {
+                      "$ref": "#/components/schemas/Shoji-catalog-list"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "element": {
+                      "$ref": "#/components/schemas/Shoji-entity-element"
+                    },
+                    "self": {
+                      "$ref": "#/components/schemas/Shoji-self"
+                    },
+                    "views": {
+                      "$ref": "#/components/schemas/Shoji-view-list"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Account details",
+        "tags": [
+          "Account"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://app.crunch.io/api/account/",
+            "syntaxLang": "bash"
+          }
+        ]
+      }
+    },
+    "/feature_flag/": {
+      "get": {
+        "description": "Crunch uses feature flags to enable and disable system-wide features under development. This api endpoint returns the application features the authenticated user has access to.",
+        "operationId": "get-feature_flag",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "description": "Indicates the status of a given feature",
+                      "element": "shoji:view",
+                      "self": "https://alpha.crunch.io/api/feature_flag/",
+                      "value": {
+                        "labs": [
+                          "decipher",
+                          "multitable-importer",
+                          "triple_s",
+                          "scorecards",
+                          "automation",
+                          "dashboards-tabbed-analyses"
+                        ],
+                        "off": [
+                          "profiles_collaborate_link",
+                          "spss_uniform_default_false",
+                          "csv_import_pandas",
+                          "augment-dimensions"
+                        ],
+                        "on": [
+                          "stream_validation",
+                          "stream_quick_appends",
+                          "automatic_frame_collapsing",
+                          "skip_folders_integrity_checking",
+                          "profiles_notify_latest",
+                          "significant_columns",
+                          "dashboards-ui",
+                          "variable_tags",
+                          "secure_folder",
+                          "column-significance-ui",
+                          "branding",
+                          "auto_check_datamap",
+                          "templates",
+                          "uniform_default_false",
+                          "dashboard-rich-text-tiles",
+                          "pptx-account-template",
+                          "project_admin",
+                          "interaction-builder",
+                          "value_labels",
+                          "deck_slide_edits",
+                          "dashboard-kpi",
+                          "cat_date_deriv",
+                          "disable-multitablefunc"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "description": {
+                      "description": "Object description",
+                      "type": "string"
+                    },
+                    "element": {
+                      "$ref": "#/components/schemas/Shoji-view-element"
+                    },
+                    "self": {
+                      "$ref": "#/components/schemas/Shoji-self"
+                    },
+                    "value": {
+                      "properties": {
+                        "labs": {
+                          "description": "Crunch Labs features enabled in Crunch app for this user",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "off": {
+                          "description": "Features disabled in Crunch app for this user",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "on": {
+                          "description": "Features enabled in Crunch app for this user",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Access Token": []
+          }
+        ],
+        "summary": "Feature flags",
+        "tags": [
+          "Users"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://app.crunch.io/api/feature_flag/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      }
+    },
+    "/logout/": {
+      "get": {
+        "description": "Log user out and expire access token",
+        "operationId": "get-logout",
+        "responses": {
+          "204": {
+            "description": "Logged off successfully"
+          }
+        },
+        "summary": "Log out",
+        "tags": [
+          "Authentication"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://app.crunch.io/api/logout/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      }
+    },
+    "/projects/": {
+      "get": {
+        "description": "Returns a list of projects the authenticated user is a member of.",
+        "operationId": "get-projects",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "body": {
+                        "access_time": null,
+                        "description": "Displays all the projects you have access to",
+                        "modification_time": null,
+                        "name": "Projects catalog",
+                        "owner": "https://app.crunch.io/api/users/1168fb80e331419e9e0b2695714b32b3/",
+                        "owner_id": "https://app.crunch.io/api/users/1168fb80e331419e9e0b2695714b32b3/",
+                        "permissions": {
+                          "edit": false,
+                          "view": true
+                        }
+                      },
+                      "catalogs": {
+                        "personal": "https://app.crunch.io/api/projects/personal/",
+                        "shared": "https://app.crunch.io/api/projects/shared/"
+                      },
+                      "element": "shoji:catalog",
+                      "index": {},
+                      "self": "https://app.crunch.io/api/projects/"
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "body": {
+                      "$ref": "#/components/schemas/Shoji-catalog-body"
+                    },
+                    "catalogs": {
+                      "$ref": "#/components/schemas/Shoji-catalog-list"
+                    },
+                    "element": {
+                      "$ref": "#/components/schemas/Shoji-catalog-element"
+                    },
+                    "index": {
+                      "type": "object"
+                    },
+                    "self": {
+                      "$ref": "#/components/schemas/Shoji-self"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "Access Token": []
+          }
+        ],
+        "summary": "Project urls",
+        "tags": [
+          "Catalogs"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://app.crunch.io/api/projects/ \\\n\t-H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      }
+    },
+    "/projects/shared/": {
+      "get": {
+        "description": "Returns a list of datasets other users have shared with the authenticated user.",
+        "operationId": "get-projects-shared",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "body": {
+                        "access_time": "2020-04-02T14:18:20.032000",
+                        "description": "Items that other users have shared with you",
+                        "modification_time": "2020-04-07T21:50:10.029000",
+                        "name": "Shared",
+                        "owner": "https://app.crunch.io/api/users/1168fb80e331419e9e0b2695714b32b3/",
+                        "owner_id": "https://app.crunch.io/api/users/1168fb80e331419e9e0b2695714b32b3/",
+                        "permissions": {
+                          "edit": false,
+                          "view": true
+                        }
+                      },
+                      "element": "shoji:catalog",
+                      "index": {
+                        "https://app.crunch.io/api/datasets/9f1f51ac5b70492c9e573288e9e6bed6/": {
+                          "access_time": "2020-04-07T21:50:10.029000+00:00",
+                          "account": "https://app.crunch.io/api/accounts/00001/",
+                          "archived": false,
+                          "creation_time": "2019-04-19T16:49:56.831000+00:00",
+                          "current_editor": "https://app.crunch.io/api/users/5187f95407a7d83fe485396c/",
+                          "current_editor_name": "Mike Malecki",
+                          "description": "",
+                          "end_date": "2019-04-16T00:00:00+00:00",
+                          "id": "9f1f51ac5b70492c9e573288e9e6bed6",
+                          "is_published": true,
+                          "modification_time": "2020-03-12T20:24:34.770000+00:00",
+                          "name": "Political Attitudes | Week of 2019-04-15",
+                          "owner_id": "https://app.crunch.io/api/projects/f28cb95815894f6fbdffbd4598c82fc9/",
+                          "owner_name": "Example datasets",
+                          "permissions": {
+                            "edit": false,
+                            "view": true
+                          },
+                          "size": {
+                            "columns": 949,
+                            "rows": 1500,
+                            "unfiltered_rows": 1866
+                          },
+                          "start_date": "2019-04-13T00:00:00+00:00",
+                          "streaming": "no",
+                          "type": "dataset",
+                          "view_of": null
+                        },
+                        "https://app.crunch.io/api/datasets/69ec37de2efe483fb81e910ec360b97c/": {
+                          "access_time": "2020-03-27T23:39:30.536000+00:00",
+                          "account": "https://app.crunch.io/api/accounts/8f04c13804e94ca8b3cf568f8da36cf0/",
+                          "archived": false,
+                          "creation_time": "2020-03-25T20:36:10.238000+00:00",
+                          "current_editor": "https://app.crunch.io/api/users/df3e3c5f7ce74365960d1305373564f0/",
+                          "current_editor_name": "Crunch Support",
+                          "description": "",
+                          "end_date": null,
+                          "id": "69ec37de2efe483fb81e910ec360b97c",
+                          "is_published": true,
+                          "modification_time": "2020-04-02T14:18:20.032000+00:00",
+                          "name": "Just Eat BX data",
+                          "owner_id": "https://app.crunch.io/api/projects/70bc37797d734a868fb9bb641cbbcd80/",
+                          "owner_name": "Just Eat",
+                          "permissions": {
+                            "edit": false,
+                            "view": true
+                          },
+                          "size": {
+                            "columns": 6364,
+                            "rows": 10596,
+                            "unfiltered_rows": 10596
+                          },
+                          "start_date": null,
+                          "streaming": "no",
+                          "type": "dataset",
+                          "view_of": null
+                        }
+                      },
+                      "self": "https://app.crunch.io/api/projects/shared/"
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "body": {
+                      "$ref": "#/components/schemas/Shoji-catalog-body"
+                    },
+                    "element": {
+                      "$ref": "#/components/schemas/Shoji-catalog-element"
+                    },
+                    "index": {
+                      "$ref": "#/components/schemas/Dataset-list"
+                    },
+                    "self": {
+                      "$ref": "#/components/schemas/Shoji-self"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Datasets shared with me",
+        "tags": [
+          "Projects"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://app.crunch.io/api/projects/shared/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      }
+    },
+    "/public/": {
+      "get": {
+        "description": "Lists all the options available to non authenticated requests.",
+        "operationId": "get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "config": "https://app.crunch.io/api/public/config/",
+                      "description": "Lists all the options available to non authenticated requests",
+                      "element": "shoji:catalog",
+                      "self": "https://app.crunch.io/api/public/",
+                      "urls": {
+                        "config_url": "https://app.crunch.io/api/public/config/"
+                      },
+                      "views": {
+                        "change_email": "https://app.crunch.io/api/public/change_email/",
+                        "inquire": "https://app.crunch.io/api/public/inquire/",
+                        "login": "https://app.crunch.io/api/public/login/",
+                        "oauth2redirect": "https://app.crunch.io/api/public/oauth2redirect/",
+                        "password_change": "https://app.crunch.io/api/public/password_change/",
+                        "password_reset": "https://app.crunch.io/api/public/password_reset/",
+                        "signup": "https://app.crunch.io/api/public/signup/",
+                        "signup_resend": "https://app.crunch.io/api/public/signup_resend/"
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Shoji-catalog"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Unauthenticated urls",
+        "tags": [
+          "Catalogs"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://app.crunch.io/api/public/",
+            "syntaxLang": "bash"
+          }
+        ]
+      }
+    },
+    "/public/config/": {
+      "get": {
+        "description": "Returns a sub-domain's configuration, if configured. If none exists, the body will be empty.\n\n**NOTE**: This api request is designed to run against a **company sub-domain** not against `app.crunch.io`.\n\n`https://yougov.crunch.io/api/public/config/`\n\nAPI response.body contains the subdomain’s current configuration. if no configuration exists, response.body will be an empty object.",
+        "operationId": "get-public-config",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "logo": {
+                        "favicon": "https://s.crunch.io/act_app_icons/mycompany-kyzdnb-favicon.ico",
+                        "large": "https://s.crunch.io/act_app_icons/mycompany-wcaran-large.png",
+                        "small": "https://s.crunch.io/act_app_icons/mycompany-nchvcz-small.png"
+                      },
+                      "manifest": {},
+                      "name": "My Company",
+                      "oauth_redirect": true,
+                      "palette": {}
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/Sub-domain-configuration"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "security": [],
+        "summary": "Company configuration",
+        "tags": [
+          "Integrating Crunch"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://yougov.crunch.io/api/public/config/",
+            "syntaxLang": "bash"
+          }
+        ]
+      }
+    },
+    "/public/crunchbox/share/": {
+      "get": {
+        "description": "Renders HTML page containing a CrunchBox, complete with the meta data utilized by social sharing platform crawlers in constructing a share preview. Among this metadata is a url to a preview image of the rendered CrunchBox.\n# Endpoint usage in HTML file\n```html\n<html>\n<head>\n    <title>Link to CrunchBox</title>\n</head>\n<body>\nClick here to\n<a target=\"_blank\"\n   href=\"https://app.crunch.io/api/public/crunchbox/share/?data=%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2F72c27f64a12028b887d7cae248143b6b%2Frow%2F000886%2Fcolumn%2F000480%3Fviz%3DstackedBarPlot%26amp%3Bcp%3Dpercent%26amp%3Bdp%3D0%26amp%3Bgrp%3Dstack&ref=https%3A%2F%2Fwww.whitehouse.gov/\">view\n    CrunchBox</a>.\n</body>\n</html>\n```",
+        "operationId": "get-crunchbox-share",
+        "parameters": [
+          {
+            "description": "CrunchBox widget url",
+            "in": "query",
+            "name": "data",
+            "required": true,
+            "schema": {
+              "default": "//s.crunch.io/widget/index.html#/ds/d4b2945f727f4eccbc31544ddabf9fa4?viz=groupedBarPlot&cp=percent&dp=0&grp=stack",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Url to use inside the CrunchBox to link user back to referring webpage",
+            "in": "query",
+            "name": "ref",
+            "schema": {
+              "default": "https://google.com",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "text/html": {
+                "examples": {
+                  "example-1": {
+                    "value": "<html><head>...</head><body>...</body></html>"
+                  }
+                },
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "summary": "Share crunchbox html",
+        "tags": [
+          "Integrating Crunch"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://cors-buster.dcarr.com/app.crunch.io/api/public/crunchbox/share/?data=%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2Fd4b2945f727f4eccbc31544ddabf9fa4%3Fviz%3DgroupedBarPlot%26cp%3Dpercent%26dp%3D0%26grp%3Dstack&ref=https%3A%2F%2Fgoogle.com",
+            "syntaxLang": "bash"
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/public/login/": {
+      "get": {
+        "description": "Provides a way for external websites to link to crunch application, passing in email address (username) in order to bypass the crunch login screen for oauth users. \n\n> ### Important!\n> This endpoint only works for user accounts configured for oauth access.\n\n# 3rd party web page\n```html\n<html><body>\nLink to \n<a href=\"https://app.crunch.io/api/public/login/?email=david.carr@crunch.io&redirect_uri=https%3A%2F%2Fapp.crunch.io%2Fshared\">\n  Crunch\n</a>\n</body></html>\n```\n\nTODO that example doesn't work. Make one that works.\n\n",
+        "operationId": "get-public-login",
+        "parameters": [
+          {
+            "description": "Crunch username",
+            "in": "query",
+            "name": "email",
+            "required": true,
+            "schema": {
+              "default": "david.carr@crunch.io",
+              "example": "dcarr178@gmail.com",
+              "format": "email",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Crunch app url to redirect user to after successful login",
+            "in": "query",
+            "name": "redirect_uri",
+            "schema": {
+              "default": "https://app.crunch.io/shared",
+              "format": "uri",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Oauth-redirect"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "security": [],
+        "summary": "Link to Crunch app",
+        "tags": [
+          "Integrating Crunch"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://app.crunch.io/api/public/login/?email=david.carr%40crunch.io&redirect_uri=https%3A%2F%2Fapp.crunch.io%2Fshared",
+            "syntaxLang": "bash"
+          }
+        ]
+      },
+      "post": {
+        "description": "Log user in and receive an access token to be used on subsequent api requests. Nearly all interactions with the Crunch API need to be authenticated. The authentication method involves POSTing login credentials and receiving an access token. The api client should then store the access token returned and pass it in on each subsequent request in the Authorization HTTP header like this.\n\nExample header variable: `Authorization: Bearer 796f025f019ad8299337ba7b0924afbf`\n\n**TODO** the python code on https://docs.crunch.io/feature-guide/feature-authentication.html is wrong. What is the right code?",
+        "operationId": "post-public-login",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "Login example": {
+                  "summary": "Login example",
+                  "value": {
+                    "email": "dcarr178@gmail.com",
+                    "password": "^IsR49LC5!%",
+                    "token": true
+                  }
+                }
+              },
+              "schema": {
+                "properties": {
+                  "email": {
+                    "description": "Crunch username",
+                    "example": "joe@gmail.com",
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "password": {
+                    "description": "Crunch password",
+                    "example": "^IsR49LC5!%",
+                    "format": "password",
+                    "type": "string"
+                  },
+                  "token": {
+                    "default": "false",
+                    "description": "True results in the access token coming back in the response body for api use. False results in api server setting access token inside httpOnly cookie for browser use.",
+                    "example": "true",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "description": ""
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "access_token": "0650012b49b643b8d5a60fb209ce74a9",
+                      "token_type": "Bearer"
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "access_token": {
+                      "default": "f1e0b74c79e85b7158e721e831f1c853",
+                      "type": "string"
+                    },
+                    "token_type": {
+                      "default": "Bearer",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "security": [],
+        "summary": "Log in",
+        "tags": [
+          "Authentication"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X POST https://app.crunch.io/api/public/login/ \\\n  -d \"{\\\"email\\\": \\\"fake.user@example.com\\\", \\\"password\\\": \\\"password\\\", \\\"token\\\": true}\" \\\n  -H \"Content-type: application/json\" \\\n  -H \"Content-Length: 73\" \n\n# The above command will perform a login and return a Bearer Token.\n# After this, you can access the endpoint via curl commands (POST, GET, PATCH), as long as\n# the -H \"Authorization: Bearer access_token\" flag is present. Substitute <access_token> with\n# the one returned on the login request.",
+            "syntaxLang": "bash"
+          },
+          {
+            "lang": "HTTP",
+            "source": "POST /api/public/login/ HTTP/1.1\nHost: app.crunch.io\nContent-Type: application/json\nContent-Length: 73\n\n{\n    \"email\": \"fake.user@example.com\",\n    \"password\": \"password\",\n    \"token\", true\n}\n\nHTTP/1.1 200 OK\n{\"access_token\": \"796f025f019ad8299337ba7b0924afbf\", \"token_type\": \"Bearer\"}"
+          },
+          {
+            "lang": "RCRUNCH SDK",
+            "source": "library(crunch)\nlogin(\"fake.user@example.com\", \"password\")\n# See ?login for options, including how to store your credentials\n# in your .Rprofile"
+          },
+          {
+            "lang": "PYCRUNCH SDK",
+            "source": "import pycrunch",
+            "syntaxLang": "python"
+          }
+        ]
+      }
+    },
+    "/users/{userid}/": {
+      "get": {
+        "description": "User ID of the user currently logged in can be retrieved via API by performing a GET on endpoint /.",
+        "operationId": "get-users-userid",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "body": {
+                        "account_permissions": {
+                          "admin_account": false,
+                          "alter_users": false,
+                          "create_datasets": true,
+                          "create_users": false
+                        },
+                        "creation_time": "2019-06-19T15:29:06+00:00",
+                        "email": "sim-editor-1@crunch.io",
+                        "id": "f94d0f8486f14689b1c9fdd982d51700",
+                        "id_method": "pwhash",
+                        "id_provider": null,
+                        "name": "Sim Editor 1",
+                        "preferences": {
+                          "datasetDisplaySettings": {
+                            "displayArchivedDatasets": true
+                          },
+                          "displaySettings": {
+                            "columnSignificance": null,
+                            "countsOrPercents": "percent",
+                            "decimalPlaces": 0,
+                            "geoChart": true,
+                            "percentageDirection": "colPct",
+                            "populationMagnitude": 3,
+                            "separateOrCombined": "separate",
+                            "showCategoriesSubtotals": "both",
+                            "showDescription": true,
+                            "showEmpty": false,
+                            "showMean": false,
+                            "showSignif": false,
+                            "showValueLabels": false,
+                            "showVisualization": true,
+                            "simpleOrExtended": "simple"
+                          },
+                          "dsVisibleProps": {
+                            "access_time": true,
+                            "modification_time": true,
+                            "name": true
+                          },
+                          "features": {},
+                          "notificationsReadDate": "2020-04-16T20:04:05.281Z",
+                          "notificationsSnoozeDate": null,
+                          "openedDecks": {
+                            "0be895b02a054e0e9e742b95ebdcfca0": "https://alpha.crunch.io/api/datasets/0be895b02a054e0e9e742b95ebdcfca0/decks/c3a7ca0a71904afeb9624fb713dad354/",
+                            "2ff0e33046984f838a4cb330291d2edb": "https://alpha.crunch.io/api/datasets/2ff0e33046984f838a4cb330291d2edb/decks/26887165af584599a98ba51cb12a6811/",
+                            "4c44283be4b24942ad11e8363e054cc3": "https://alpha.crunch.io/api/datasets/4c44283be4b24942ad11e8363e054cc3/decks/27572276d8d848bbaaeef361fe6fc123/",
+                            "018ca6872e0e4b5b9cdc0745f4b11ef8": "https://alpha.crunch.io/api/datasets/018ca6872e0e4b5b9cdc0745f4b11ef8/decks/d333732f3aed4f95ac3e8a27cdcf03af/",
+                            "68f6997042ed4f19b536fa7b6daf1e2f": "https://alpha.crunch.io/api/datasets/68f6997042ed4f19b536fa7b6daf1e2f/decks/c658efaf87c945d892b68ee950881a4f/",
+                            "6284ae2013ae4f6bbb0fc8eaa606d7e3": "https://alpha.crunch.io/api/datasets/6284ae2013ae4f6bbb0fc8eaa606d7e3/decks/7bccfa13b3ff42a29a1be7032f7f4d2c/",
+                            "0700211987ee4599a9fa0924a58c9af0": "https://alpha.crunch.io/api/datasets/0700211987ee4599a9fa0924a58c9af0/decks/2b5ec4e80fcb42358d3e4e764b1319cb/",
+                            "a2223646a2854fbf98495f6dc3e264b4": "https://alpha.crunch.io/api/datasets/a2223646a2854fbf98495f6dc3e264b4/decks/f42eac179f6d47ecb698f758e49895c5/",
+                            "d682f3f648c6473ea0b79fb2b23d4acb": "https://alpha.crunch.io/api/datasets/d682f3f648c6473ea0b79fb2b23d4acb/decks/59e851c6a5e84da0b473ef95695795a7/",
+                            "eb4ea0e51e5e45caabebdb75c5147db4": "https://alpha.crunch.io/api/datasets/eb4ea0e51e5e45caabebdb75c5147db4/decks/c3a7ca0a71904afeb9624fb713dad354/"
+                          },
+                          "projectBrowser": {},
+                          "projectId": "https://alpha.crunch.io/api/projects/d22b37e0258a4986b29598fc79ccc24f/",
+                          "search_settings": {
+                            "grouping": "datasets",
+                            "matchMode": "any-terms",
+                            "scope": null,
+                            "timeCriteria": null,
+                            "timeRange": null,
+                            "view": "ranked"
+                          },
+                          "varCardSettings": {}
+                        }
+                      },
+                      "catalogs": {
+                        "integrations": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/integrations/",
+                        "sources": "https://alpha.crunch.io/api/sources/"
+                      },
+                      "description": "Details for a User",
+                      "element": "shoji:entity",
+                      "fragments": {
+                        "expropriate": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/expropriate/"
+                      },
+                      "invite": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/invite/",
+                      "password": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/password/",
+                      "self": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/",
+                      "urls": {
+                        "account_url": "https://alpha.crunch.io/api/account/",
+                        "change_email_url": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/change_email/",
+                        "invite_url": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/invite/",
+                        "password_reset_url": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/password_reset/",
+                        "password_url": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/password/",
+                        "role_url": "https://alpha.crunch.io/api/roles/accounts/0002/"
+                      },
+                      "views": {
+                        "actions": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/actions/",
+                        "change_email": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/change_email/",
+                        "password_reset": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/password_reset/"
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "body": {
+                      "$ref": "#/components/schemas/User"
+                    },
+                    "catalogs": {
+                      "$ref": "#/components/schemas/Shoji-catalog-list"
+                    },
+                    "description": {
+                      "description": "Entity description",
+                      "type": "string"
+                    },
+                    "element": {
+                      "$ref": "#/components/schemas/Shoji-entity"
+                    },
+                    "fragments": {
+                      "$ref": "#/components/schemas/Shoji-url-list"
+                    },
+                    "invite": {
+                      "description": "Url to send invitation",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "password": {
+                      "description": "Url to set password",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "self": {
+                      "$ref": "#/components/schemas/Shoji-self"
+                    },
+                    "url": {
+                      "$ref": "#/components/schemas/Shoji-url-list"
+                    },
+                    "views": {
+                      "$ref": "#/components/schemas/Shoji-view-list"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "User details",
+        "tags": [
+          "Users"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "User ID of the user you want information for",
+          "in": "path",
+          "name": "userid",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "security": [
+    {
+      "Access Token": []
+    }
+  ],
+  "servers": [
+    {
+      "description": "Crunch API CORS buster (alpha)",
+      "url": "https://cors-buster.dcarr.com/alpha.crunch.io/api"
+    },
+    {
+      "description": "Crunch API CORS buster (prod)",
+      "url": "https://cors-buster.dcarr.com/app.crunch.io/api"
+    },
+    {
+      "description": "Crunch API",
+      "url": "https://app.crunch.io/api"
+    },
+    {
+      "description": "Crunch API (alpha)",
+      "url": "https://alpha.crunch.io/api"
+    }
+  ],
+  "x-api-id": "crunch-api"
+}

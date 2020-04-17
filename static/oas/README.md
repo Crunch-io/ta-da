@@ -78,6 +78,6 @@ Make sure to:
 1. Log out every bearer token in curl examples or else anyone will be able to use them
 1. Search-replace alpha.crunch.io with app.crunch.io - as we copy/paste json after testing alpha environment so alpha is bound to appear in the final api docs
 1. Other sensitive data needs to be scrubbed out - how to identify it??
-1. JSON sort endpoint and schema documentation somehow
+1. JSON sort entire file using IntelliJ JSON sorter
 1. Remove cors-buster api servers before deploying documentation to production
 
