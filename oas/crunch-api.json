@@ -116,15 +116,15 @@
               }
             },
             "catalogs": {
-              "applications": "https://alpha.crunch.io/api/account/applications/",
-              "users": "https://alpha.crunch.io/api/account/users/"
+              "applications": "https://app.crunch.io/api/account/applications/",
+              "users": "https://app.crunch.io/api/account/users/"
             },
             "description": "Details for an account",
             "element": "shoji:entity",
-            "self": "https://alpha.crunch.io/api/account/",
+            "self": "https://app.crunch.io/api/account/",
             "views": {
-              "logo": "https://alpha.crunch.io/api/account/logo/",
-              "templates": "https://alpha.crunch.io/api/account/templates/"
+              "logo": "https://app.crunch.io/api/account/logo/",
+              "templates": "https://app.crunch.io/api/account/templates/"
             }
           }
         }
@@ -145,8 +145,48 @@
         "title": "Analysis-color-palette",
         "type": "object"
       },
+      "Brand-Palette": {
+        "description": "Brand custom colors",
+        "properties": {
+          "message": {
+            "$ref": "#/components/schemas/Hex-color-code"
+          },
+          "primary": {
+            "$ref": "#/components/schemas/Hex-color-code"
+          },
+          "secondary": {
+            "$ref": "#/components/schemas/Hex-color-code"
+          }
+        },
+        "title": "Brand palette",
+        "type": "object",
+        "x-examples": {
+          "example-1": {
+            "message": "#BAA5E7",
+            "primary": "#FFAABB",
+            "secondary": "#G4EEBB"
+          }
+        }
+      },
       "Color-Palette": {
         "description": "",
+        "properties": {
+          "analysis": {
+            "description": "Colors for data display",
+            "items": {
+              "properties": {
+                "Color palette name": {
+                  "$ref": "#/components/schemas/Analysis-color-palette"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "brand": {
+            "$ref": "#/components/schemas/Brand-Palette"
+          }
+        },
         "title": "Color palette",
         "type": "object",
         "x-examples": {
@@ -193,46 +233,6 @@
               "primary": "#FFAABB",
               "secondary": "#G4EEBB"
             }
-          }
-        },
-        "properties": {
-          "analysis": {
-            "description": "Colors for data display",
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "Color palette name": {
-                  "$ref": "#/components/schemas/Analysis-color-palette"
-                }
-              }
-            }
-          },
-          "brand": {
-            "$ref": "#/components/schemas/Brand-Palette"
-          }
-        }
-      },
-      "Brand-Palette": {
-        "description": "Brand custom colors",
-        "properties": {
-          "message": {
-            "$ref": "#/components/schemas/Hex-color-code"
-          },
-          "primary": {
-            "$ref": "#/components/schemas/Hex-color-code"
-          },
-          "secondary": {
-            "$ref": "#/components/schemas/Hex-color-code"
-          }
-        },
-        "title": "Brand palette",
-        "type": "object",
-        "x-examples": {
-          "example-1": {
-            "message": "#BAA5E7",
-            "primary": "#FFAABB",
-            "secondary": "#G4EEBB"
           }
         }
       },
@@ -607,61 +607,6 @@
         "title": "Shoji view list",
         "type": "object"
       },
-      "Sub-domain-configuration": {
-        "description": "Sub-domain configuration",
-        "properties": {
-          "logo": {
-            "properties": {
-              "favicon": {
-                "description": "Url of favicon image",
-                "type": "string"
-              },
-              "large": {
-                "description": "Url of large logo image",
-                "type": "string"
-              },
-              "small": {
-                "description": "Url of small logo image",
-                "type": "string"
-              }
-            },
-            "type": "object"
-          },
-          "manifest": {
-            "type": "object"
-          },
-          "name": {
-            "description": "Company name",
-            "type": "string"
-          },
-          "oauth_redirect": {
-            "description": "User logging into this sub-domain will use oauth authentication",
-            "type": "boolean"
-          },
-          "palette": {
-            "description": "Custom color palette",
-            "type": "object"
-          }
-        },
-        "title": "Sub-domain configuration",
-        "type": "object",
-        "x-examples": {
-          "example-1": {
-            "logo": {
-              "favicon": "https://s.crunch.io/act_app_icons/mycompany-kyzdnb-favicon.ico",
-              "large": "https://s.crunch.io/act_app_icons/mycompany-wcaran-large.png",
-              "small": "https://s.crunch.io/act_app_icons/mycompany-nchvcz-small.png"
-            },
-            "manifest": {},
-            "name": "My Company",
-            "oauth_redirect": true,
-            "palette": {}
-          }
-        },
-        "x-tags": [
-          "OEM"
-        ]
-      },
       "User": {
         "enum": [
           "pwhash",
@@ -807,19 +752,19 @@
               "notificationsReadDate": "2020-04-16T20:04:05.281Z",
               "notificationsSnoozeDate": null,
               "openedDecks": {
-                "0be895b02a054e0e9e742b95ebdcfca0": "https://alpha.crunch.io/api/datasets/0be895b02a054e0e9e742b95ebdcfca0/decks/c3a7ca0a71904afeb9624fb713dad354/",
-                "2ff0e33046984f838a4cb330291d2edb": "https://alpha.crunch.io/api/datasets/2ff0e33046984f838a4cb330291d2edb/decks/26887165af584599a98ba51cb12a6811/",
-                "4c44283be4b24942ad11e8363e054cc3": "https://alpha.crunch.io/api/datasets/4c44283be4b24942ad11e8363e054cc3/decks/27572276d8d848bbaaeef361fe6fc123/",
-                "018ca6872e0e4b5b9cdc0745f4b11ef8": "https://alpha.crunch.io/api/datasets/018ca6872e0e4b5b9cdc0745f4b11ef8/decks/d333732f3aed4f95ac3e8a27cdcf03af/",
-                "68f6997042ed4f19b536fa7b6daf1e2f": "https://alpha.crunch.io/api/datasets/68f6997042ed4f19b536fa7b6daf1e2f/decks/c658efaf87c945d892b68ee950881a4f/",
-                "6284ae2013ae4f6bbb0fc8eaa606d7e3": "https://alpha.crunch.io/api/datasets/6284ae2013ae4f6bbb0fc8eaa606d7e3/decks/7bccfa13b3ff42a29a1be7032f7f4d2c/",
-                "0700211987ee4599a9fa0924a58c9af0": "https://alpha.crunch.io/api/datasets/0700211987ee4599a9fa0924a58c9af0/decks/2b5ec4e80fcb42358d3e4e764b1319cb/",
-                "a2223646a2854fbf98495f6dc3e264b4": "https://alpha.crunch.io/api/datasets/a2223646a2854fbf98495f6dc3e264b4/decks/f42eac179f6d47ecb698f758e49895c5/",
-                "d682f3f648c6473ea0b79fb2b23d4acb": "https://alpha.crunch.io/api/datasets/d682f3f648c6473ea0b79fb2b23d4acb/decks/59e851c6a5e84da0b473ef95695795a7/",
-                "eb4ea0e51e5e45caabebdb75c5147db4": "https://alpha.crunch.io/api/datasets/eb4ea0e51e5e45caabebdb75c5147db4/decks/c3a7ca0a71904afeb9624fb713dad354/"
+                "018ca6872e0e4b5b9cdc0745f4b11ef8": "https://app.crunch.io/api/datasets/018ca6872e0e4b5b9cdc0745f4b11ef8/decks/d333732f3aed4f95ac3e8a27cdcf03af/",
+                "0700211987ee4599a9fa0924a58c9af0": "https://app.crunch.io/api/datasets/0700211987ee4599a9fa0924a58c9af0/decks/2b5ec4e80fcb42358d3e4e764b1319cb/",
+                "0be895b02a054e0e9e742b95ebdcfca0": "https://app.crunch.io/api/datasets/0be895b02a054e0e9e742b95ebdcfca0/decks/c3a7ca0a71904afeb9624fb713dad354/",
+                "2ff0e33046984f838a4cb330291d2edb": "https://app.crunch.io/api/datasets/2ff0e33046984f838a4cb330291d2edb/decks/26887165af584599a98ba51cb12a6811/",
+                "4c44283be4b24942ad11e8363e054cc3": "https://app.crunch.io/api/datasets/4c44283be4b24942ad11e8363e054cc3/decks/27572276d8d848bbaaeef361fe6fc123/",
+                "6284ae2013ae4f6bbb0fc8eaa606d7e3": "https://app.crunch.io/api/datasets/6284ae2013ae4f6bbb0fc8eaa606d7e3/decks/7bccfa13b3ff42a29a1be7032f7f4d2c/",
+                "68f6997042ed4f19b536fa7b6daf1e2f": "https://app.crunch.io/api/datasets/68f6997042ed4f19b536fa7b6daf1e2f/decks/c658efaf87c945d892b68ee950881a4f/",
+                "a2223646a2854fbf98495f6dc3e264b4": "https://app.crunch.io/api/datasets/a2223646a2854fbf98495f6dc3e264b4/decks/f42eac179f6d47ecb698f758e49895c5/",
+                "d682f3f648c6473ea0b79fb2b23d4acb": "https://app.crunch.io/api/datasets/d682f3f648c6473ea0b79fb2b23d4acb/decks/59e851c6a5e84da0b473ef95695795a7/",
+                "eb4ea0e51e5e45caabebdb75c5147db4": "https://app.crunch.io/api/datasets/eb4ea0e51e5e45caabebdb75c5147db4/decks/c3a7ca0a71904afeb9624fb713dad354/"
               },
               "projectBrowser": {},
-              "projectId": "https://alpha.crunch.io/api/projects/d22b37e0258a4986b29598fc79ccc24f/",
+              "projectId": "https://app.crunch.io/api/projects/d22b37e0258a4986b29598fc79ccc24f/",
               "search_settings": {
                 "grouping": "datasets",
                 "matchMode": "any-terms",
@@ -832,6 +777,61 @@
             }
           }
         }
+      },
+      "subdomain-configuration": {
+        "description": "subdomain configuration",
+        "properties": {
+          "logo": {
+            "properties": {
+              "favicon": {
+                "description": "Url of favicon image",
+                "type": "string"
+              },
+              "large": {
+                "description": "Url of large logo image",
+                "type": "string"
+              },
+              "small": {
+                "description": "Url of small logo image",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "manifest": {
+            "type": "object"
+          },
+          "name": {
+            "description": "Company name",
+            "type": "string"
+          },
+          "oauth_redirect": {
+            "description": "User logging into this subdomain will use oauth authentication",
+            "type": "boolean"
+          },
+          "palette": {
+            "description": "Custom color palette",
+            "type": "object"
+          }
+        },
+        "title": "Subdomain configuration",
+        "type": "object",
+        "x-examples": {
+          "example-1": {
+            "logo": {
+              "favicon": "https://s.crunch.io/act_app_icons/mycompany-kyzdnb-favicon.ico",
+              "large": "https://s.crunch.io/act_app_icons/mycompany-wcaran-large.png",
+              "small": "https://s.crunch.io/act_app_icons/mycompany-nchvcz-small.png"
+            },
+            "manifest": {},
+            "name": "My Company",
+            "oauth_redirect": true,
+            "palette": {}
+          }
+        },
+        "x-tags": [
+          "OEM"
+        ]
       }
     },
     "securitySchemes": {
@@ -856,6 +856,7 @@
   "paths": {
     "/": {
       "get": {
+        "description": "Lists root urls available to authenticated requests.",
         "operationId": "get",
         "responses": {
           "200": {
@@ -865,37 +866,37 @@
                   "example-1": {
                     "value": {
                       "catalogs": {
-                        "dashboards": "https://alpha.crunch.io/api/dashboards/",
-                        "datasets": "https://alpha.crunch.io/api/datasets/",
-                        "datasets_by_name": "https://alpha.crunch.io/api/datasets/by_name/{name}/",
-                        "geodata": "https://alpha.crunch.io/api/geodata/",
-                        "icons": "https://alpha.crunch.io/api/icons/",
-                        "integrations": "https://alpha.crunch.io/api/integrations/",
-                        "lobs": "https://alpha.crunch.io/api/lobs/",
-                        "projects": "https://alpha.crunch.io/api/projects/",
-                        "public": "https://alpha.crunch.io/api/public/",
-                        "roles": "https://alpha.crunch.io/api/roles/",
-                        "sources": "https://alpha.crunch.io/api/sources/",
-                        "teams": "https://alpha.crunch.io/api/teams/",
-                        "users": "https://alpha.crunch.io/api/users/"
+                        "dashboards": "https://app.crunch.io/api/dashboards/",
+                        "datasets": "https://app.crunch.io/api/datasets/",
+                        "datasets_by_name": "https://app.crunch.io/api/datasets/by_name/{name}/",
+                        "geodata": "https://app.crunch.io/api/geodata/",
+                        "icons": "https://app.crunch.io/api/icons/",
+                        "integrations": "https://app.crunch.io/api/integrations/",
+                        "lobs": "https://app.crunch.io/api/lobs/",
+                        "projects": "https://app.crunch.io/api/projects/",
+                        "public": "https://app.crunch.io/api/public/",
+                        "roles": "https://app.crunch.io/api/roles/",
+                        "sources": "https://app.crunch.io/api/sources/",
+                        "teams": "https://app.crunch.io/api/teams/",
+                        "users": "https://app.crunch.io/api/users/"
                       },
                       "description": "The API root. GET user_url to access your Crunch resources. GET logout_url to sign out.",
                       "element": "shoji:catalog",
-                      "self": "https://alpha.crunch.io/api/",
+                      "self": "https://app.crunch.io/api/",
                       "urls": {
-                        "account_roles_url": "https://alpha.crunch.io/api/roles/accounts/",
-                        "account_url": "https://alpha.crunch.io/api/account/",
-                        "logout_url": "https://alpha.crunch.io/api/logout/",
+                        "account_roles_url": "https://app.crunch.io/api/roles/accounts/",
+                        "account_url": "https://app.crunch.io/api/account/",
+                        "logout_url": "https://app.crunch.io/api/logout/",
                         "notebook_url": "https://alpha-jupyter.crunch.io/",
-                        "user_url": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/"
+                        "user_url": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/"
                       },
                       "views": {
-                        "account": "https://alpha.crunch.io/api/account/",
-                        "feature_flag": "https://alpha.crunch.io/api/feature_flag/",
-                        "migration": "https://alpha.crunch.io/api/migration/",
-                        "progress": "https://alpha.crunch.io/api/progress/",
-                        "search": "https://alpha.crunch.io/api/search/",
-                        "user": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/"
+                        "account": "https://app.crunch.io/api/account/",
+                        "feature_flag": "https://app.crunch.io/api/feature_flag/",
+                        "migration": "https://app.crunch.io/api/migration/",
+                        "progress": "https://app.crunch.io/api/progress/",
+                        "search": "https://app.crunch.io/api/search/",
+                        "user": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/"
                       }
                     }
                   }
@@ -939,8 +940,7 @@
             "source": "curl -X GET https://app.crunch.io/api/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
             "syntaxLang": "bash"
           }
-        ],
-        "description": "Lists root urls available to authenticated requests."
+        ]
       }
     },
     "/account/": {
@@ -1022,53 +1022,53 @@
         ]
       },
       "patch": {
-        "summary": "Change color palette",
+        "description": "Update the brand color palette for the user's account. Only account admins are authorized to do this.",
         "operationId": "patch-account",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "body": {
+                      "palette": {
+                        "analysis": [],
+                        "brand": {
+                          "message": "#722580",
+                          "primary": "#0064a4",
+                          "secondary": "#107f64"
+                        }
+                      }
+                    },
+                    "element": "shoji:entity"
+                  }
+                }
+              },
+              "schema": {
+                "properties": {
+                  "body": {
+                    "properties": {
+                      "palette": {
+                        "$ref": "./crunch-api.2020-04-16.yaml#/components/schemas/Color-Palette"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "element": {
+                    "$ref": "#/components/schemas/Shoji-entity-element"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "description": "No Content"
           }
         },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "element": {
-                    "$ref": "#/components/schemas/Shoji-entity-element"
-                  },
-                  "body": {
-                    "type": "object",
-                    "properties": {
-                      "palette": {
-                        "$ref": "./crunch-api.2020-04-16.yaml#/components/schemas/Color-Palette"
-                      }
-                    }
-                  }
-                }
-              },
-              "examples": {
-                "example-1": {
-                  "value": {
-                    "element": "shoji:entity",
-                    "body": {
-                      "palette": {
-                        "brand": {
-                          "primary": "#0064a4",
-                          "secondary": "#107f64",
-                          "message": "#722580"
-                        },
-                        "analysis": []
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Update the brand color palette for the user's account. Only account admins are authorized to do this.",
+        "summary": "Change color palette",
         "tags": [
           "Account"
         ],
@@ -1076,6 +1076,373 @@
           {
             "lang": "SHELL",
             "source": "curl -X PATCH https://app.crunch.io/api/account/ \\ \n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\ \n  -H \"Content-Type: application/json\" \\ \n  -d \"{ \\\"element\\\": \\\"shoji:entity\\\", \\\"body\\\": { \\\"palette\\\": { \\\"brand\\\": { \\\"primary\\\": \\\"#0064a4\\\", \\\"secondary\\\": \\\"#107f64\\\", \\\"message\\\": \\\"#722580\\\" } } }}\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      }
+    },
+    "/account/applications/": {
+      "get": {
+        "description": "List subdomains configured for user's account.",
+        "operationId": "get-account-applications",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "element": "shoji:catalog",
+                      "index": {
+                        "https://app.crunch.io/api/account/applications/heyenrique/": {
+                          "name": "Crunch.io",
+                          "subdomain": "heyenrique"
+                        },
+                        "https://app.crunch.io/api/account/applications/local/": {
+                          "name": "Localhost development",
+                          "subdomain": "local"
+                        }
+                      },
+                      "self": "https://app.crunch.io/api/account/applications/"
+                    }
+                  }
+                },
+                "schema": {
+                  "properties": {
+                    "element": {
+                      "$ref": "#/components/schemas/Shoji-catalog-element"
+                    },
+                    "index": {
+                      "properties": {
+                        "subdomain A": {
+                          "properties": {
+                            "name": {
+                              "description": "Name of subdomain",
+                              "type": "string"
+                            },
+                            "subdomain": {
+                              "description": "Subdomain prefix",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "subdomain B": {
+                          "properties": {
+                            "name": {
+                              "description": "Name of subdomain",
+                              "type": "string"
+                            },
+                            "subdomain": {
+                              "description": "Subdomain prefix",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "self": {
+                      "$ref": "#/components/schemas/Shoji-self"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "List subdomains",
+        "tags": [
+          "Account subdomains"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://app.crunch.io/api/account/applications/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      },
+      "parameters": [],
+      "post": {
+        "description": "Create a new subdomain for the user's account. \n\nThe subdomain:\n\n* must be unique system-wide, case insensitive\n* can only contain letters, numbers, and - (dash)\n* must be between 3 and 32 characters in length\n* cannot start with - or a number\n\nIf the requested subdomain is unavailable or invalid, the server will return a 400 response.\n\nAttributes `name` and `subdomain` are required; `palette` and `manifest` are optional. Note that you cannot specify logos in the this request. Use the created entity’s logo/ endpoint to upload the image files to the subdomain.",
+        "operationId": "post-account-applications",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "body": {
+                      "manifest": {},
+                      "name": "my company",
+                      "palette": {
+                        "brand": {
+                          "message": "#BAA5E7",
+                          "primary": "#FFAABB",
+                          "secondary": "#G4EEBB"
+                        }
+                      },
+                      "subdomain": "mycompany"
+                    },
+                    "element": "shoji:entity"
+                  }
+                }
+              },
+              "schema": {
+                "properties": {
+                  "body": {
+                    "properties": {
+                      "manifest": {
+                        "type": "object"
+                      },
+                      "name": {
+                        "description": "Name of subdomain",
+                        "type": "string"
+                      },
+                      "palette": {
+                        "$ref": "#/components/schemas/Color-Palette"
+                      },
+                      "subdomain": {
+                        "description": "Subdomain prefix",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "subdomain"
+                    ],
+                    "type": "object"
+                  },
+                  "element": {
+                    "$ref": "#/components/schemas/Shoji-entity"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "summary": "Create subdomain",
+        "tags": [
+          "Account subdomains"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X POST https://app.crunch.io/api/account/applications/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{ \\\"element\\\": \\\"shoji:entity\\\", \\\"body\\\": { \\\"name\\\": \\\"dcarr subdomain\\\", \\\"subdomain\\\": \\\"joe1\\\" }}\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      }
+    },
+    "/account/logo/": {
+      "parameters": [],
+      "patch": {
+        "description": "To remove any logos that have been set up, submit one more more image names with a null value.",
+        "operationId": "patch-account-logo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "element": "shoji:view",
+                    "value": {
+                      "favicon": null,
+                      "large": null,
+                      "small": null
+                    }
+                  }
+                }
+              },
+              "schema": {
+                "properties": {
+                  "element": {
+                    "$ref": "#/components/schemas/Shoji-view-element"
+                  },
+                  "value": {
+                    "properties": {
+                      "favicon": {
+                        "description": "This will remove the favicon logo",
+                        "type": "null"
+                      },
+                      "large": {
+                        "description": "This will remove the large log",
+                        "type": "null"
+                      },
+                      "small": {
+                        "description": "This will remove the small logo",
+                        "type": "null"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "summary": "Remove logos",
+        "tags": [
+          "Account"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X PATCH https://app.crunch.io/api/account/logo/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{ \\\"element\\\": \\\"shoji:view\\\", \\\"value\\\": { \\\"large\\\": null, \\\"small\\\": null, \\\"favicon\\\": null }}\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      },
+      "post": {
+        "description": "Update the logos for the user's account. Only account admins are authorized to do this. Valid file extensions are GIF, JPEG, PNG and ICO image files.",
+        "operationId": "post-account-logo",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "favicon": {
+                    "description": "16x16 pixel logo image",
+                    "format": "binary",
+                    "type": "string"
+                  },
+                  "large": {
+                    "description": "Large logo image",
+                    "format": "binary",
+                    "type": "string"
+                  },
+                  "small": {
+                    "description": "Small logo image",
+                    "format": "binary",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "summary": "Change logos",
+        "tags": [
+          "Account"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X POST https://app.crunch.io/api/account/logo/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F \"large=@6r7bkQxR5u6X5KEv4DsJ.png\" \\\n  -F \"favicon=@favicon.ico\" \\\n  -F \"small=@6r7bkQxR5u6X5KEv4DsJ.png\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      }
+    },
+    "/account/templates/": {
+      "parameters": [],
+      "patch": {
+        "description": "To remove a Powerpoint template that has been set up, submit this with a null value.",
+        "operationId": "patch-account-templates",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "element": "shoji:view",
+                    "value": {
+                      "powerpoint": null
+                    }
+                  }
+                }
+              },
+              "schema": {
+                "properties": {
+                  "element": {
+                    "$ref": "#/components/schemas/Shoji-view-element"
+                  },
+                  "value": {
+                    "properties": {
+                      "powerpoint": {
+                        "description": "This will remove the Powerpoint template",
+                        "type": "null"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "summary": "Remove Powerpoint template",
+        "tags": [
+          "Account"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X PATCH https://app.crunch.io/api/account/templates/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{ \\\"element\\\": \\\"shoji:view\\\", \\\"value\\\": { \\\"powerpoint\\\": null }}\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      },
+      "post": {
+        "description": "Update the PowerPoint template for the user's account. Only account admins are authorized to do this. Must be a valid Microsoft PowerPoint file.",
+        "operationId": "post-account-templates",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "powerpoint": {
+                    "description": "Valid Powerpoint template file",
+                    "format": "binary",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "summary": "Change Powerpoint template",
+        "tags": [
+          "Account"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X POST https://app.crunch.io/api/account/templates/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F \"powerpoint=@PowerpointTemplate.pptx\"",
             "syntaxLang": "bash"
           }
         ]
@@ -1094,7 +1461,7 @@
                     "value": {
                       "description": "Indicates the status of a given feature",
                       "element": "shoji:view",
-                      "self": "https://alpha.crunch.io/api/feature_flag/",
+                      "self": "https://app.crunch.io/api/feature_flag/",
                       "value": {
                         "labs": [
                           "decipher",
@@ -1326,35 +1693,6 @@
                       },
                       "element": "shoji:catalog",
                       "index": {
-                        "https://app.crunch.io/api/datasets/9f1f51ac5b70492c9e573288e9e6bed6/": {
-                          "access_time": "2020-04-07T21:50:10.029000+00:00",
-                          "account": "https://app.crunch.io/api/accounts/00001/",
-                          "archived": false,
-                          "creation_time": "2019-04-19T16:49:56.831000+00:00",
-                          "current_editor": "https://app.crunch.io/api/users/5187f95407a7d83fe485396c/",
-                          "current_editor_name": "Mike Malecki",
-                          "description": "",
-                          "end_date": "2019-04-16T00:00:00+00:00",
-                          "id": "9f1f51ac5b70492c9e573288e9e6bed6",
-                          "is_published": true,
-                          "modification_time": "2020-03-12T20:24:34.770000+00:00",
-                          "name": "Political Attitudes | Week of 2019-04-15",
-                          "owner_id": "https://app.crunch.io/api/projects/f28cb95815894f6fbdffbd4598c82fc9/",
-                          "owner_name": "Example datasets",
-                          "permissions": {
-                            "edit": false,
-                            "view": true
-                          },
-                          "size": {
-                            "columns": 949,
-                            "rows": 1500,
-                            "unfiltered_rows": 1866
-                          },
-                          "start_date": "2019-04-13T00:00:00+00:00",
-                          "streaming": "no",
-                          "type": "dataset",
-                          "view_of": null
-                        },
                         "https://app.crunch.io/api/datasets/69ec37de2efe483fb81e910ec360b97c/": {
                           "access_time": "2020-03-27T23:39:30.536000+00:00",
                           "account": "https://app.crunch.io/api/accounts/8f04c13804e94ca8b3cf568f8da36cf0/",
@@ -1380,6 +1718,35 @@
                             "unfiltered_rows": 10596
                           },
                           "start_date": null,
+                          "streaming": "no",
+                          "type": "dataset",
+                          "view_of": null
+                        },
+                        "https://app.crunch.io/api/datasets/9f1f51ac5b70492c9e573288e9e6bed6/": {
+                          "access_time": "2020-04-07T21:50:10.029000+00:00",
+                          "account": "https://app.crunch.io/api/accounts/00001/",
+                          "archived": false,
+                          "creation_time": "2019-04-19T16:49:56.831000+00:00",
+                          "current_editor": "https://app.crunch.io/api/users/5187f95407a7d83fe485396c/",
+                          "current_editor_name": "Mike Malecki",
+                          "description": "",
+                          "end_date": "2019-04-16T00:00:00+00:00",
+                          "id": "9f1f51ac5b70492c9e573288e9e6bed6",
+                          "is_published": true,
+                          "modification_time": "2020-03-12T20:24:34.770000+00:00",
+                          "name": "Political Attitudes | Week of 2019-04-15",
+                          "owner_id": "https://app.crunch.io/api/projects/f28cb95815894f6fbdffbd4598c82fc9/",
+                          "owner_name": "Example datasets",
+                          "permissions": {
+                            "edit": false,
+                            "view": true
+                          },
+                          "size": {
+                            "columns": 949,
+                            "rows": 1500,
+                            "unfiltered_rows": 1866
+                          },
+                          "start_date": "2019-04-13T00:00:00+00:00",
                           "streaming": "no",
                           "type": "dataset",
                           "view_of": null
@@ -1478,7 +1845,7 @@
     },
     "/public/config/": {
       "get": {
-        "description": "Returns a sub-domain's configuration, if configured. If none exists, the body will be empty.\n\n**NOTE**: This api request is designed to run against a **company sub-domain** not against `app.crunch.io`.\n\n`https://yougov.crunch.io/api/public/config/`\n\nAPI response.body contains the subdomain’s current configuration. if no configuration exists, response.body will be an empty object.",
+        "description": "Returns a subdomain's configuration, if configured. If none exists, the body will be empty.\n\n**NOTE**: This api request is designed to run against a **company subdomain** not against `app.crunch.io`.\n\n`https://yougov.crunch.io/api/public/config/`\n\nAPI response.body contains the subdomain’s current configuration. if no configuration exists, response.body will be an empty object.",
         "operationId": "get-public-config",
         "responses": {
           "200": {
@@ -1500,7 +1867,7 @@
                   }
                 },
                 "schema": {
-                  "$ref": "#/components/schemas/Sub-domain-configuration"
+                  "$ref": "#/components/schemas/subdomain-configuration"
                 }
               }
             },
@@ -1516,6 +1883,47 @@
           {
             "lang": "SHELL",
             "source": "curl -X GET https://yougov.crunch.io/api/public/config/",
+            "syntaxLang": "bash"
+          }
+        ]
+      }
+    },
+    "/public/crunchbox/preview/": {
+      "parameters": [],
+      "post": {
+        "description": "The preview endpoint is used to preemptively initiate rendering a given CrunchBox configuration to a raster image. This image will be requested by social network platform crawlers during construction of the post share preview. The preview-rendering process can be time-consuming. Therefore, it is preferable to initiate it as soon as is reasonable before a request for the image data.\n\nThis endpoint returns no data.",
+        "operationId": "post-crunchbox-preview",
+        "parameters": [
+          {
+            "description": "Url to Crunchbox widget",
+            "in": "query",
+            "name": "data",
+            "schema": {
+              "default": "https://s.crunch.io/widget/index.html#/ds/a1b2c3d4e5f6g7h8/row/000001/column/000000",
+              "example": "",
+              "format": "uri",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": ""
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "summary": "Generate Crunchbox preview",
+        "tags": [
+          "Crunchbox"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X POST https://app.crunch.io/api/public/crunchbox/preview/?data=https%3A%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2Fa1b2c3d4e5f6g7h8%2Frow%2F000001%2Fcolumn%2F000000 \\\n  -d \"\"",
             "syntaxLang": "bash"
           }
         ]
@@ -1566,15 +1974,15 @@
         },
         "security": [],
         "summary": "Share Crunchbox html",
+        "tags": [
+          "Crunchbox"
+        ],
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X GET https://cors-buster.dcarr.com/app.crunch.io/api/public/crunchbox/share/?data=%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2Fd4b2945f727f4eccbc31544ddabf9fa4%3Fviz%3DgroupedBarPlot%26cp%3Dpercent%26dp%3D0%26grp%3Dstack&ref=https%3A%2F%2Fgoogle.com",
+            "source": "curl -X GET https://app.crunch.io/api/public/crunchbox/share/?data=%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2Fd4b2945f727f4eccbc31544ddabf9fa4%3Fviz%3DgroupedBarPlot%26cp%3Dpercent%26dp%3D0%26grp%3Dstack&ref=https%3A%2F%2Fgoogle.com",
             "syntaxLang": "bash"
           }
-        ],
-        "tags": [
-          "Crunchbox"
         ]
       },
       "parameters": []
@@ -1791,19 +2199,19 @@
                           "notificationsReadDate": "2020-04-16T20:04:05.281Z",
                           "notificationsSnoozeDate": null,
                           "openedDecks": {
-                            "0be895b02a054e0e9e742b95ebdcfca0": "https://alpha.crunch.io/api/datasets/0be895b02a054e0e9e742b95ebdcfca0/decks/c3a7ca0a71904afeb9624fb713dad354/",
-                            "2ff0e33046984f838a4cb330291d2edb": "https://alpha.crunch.io/api/datasets/2ff0e33046984f838a4cb330291d2edb/decks/26887165af584599a98ba51cb12a6811/",
-                            "4c44283be4b24942ad11e8363e054cc3": "https://alpha.crunch.io/api/datasets/4c44283be4b24942ad11e8363e054cc3/decks/27572276d8d848bbaaeef361fe6fc123/",
-                            "018ca6872e0e4b5b9cdc0745f4b11ef8": "https://alpha.crunch.io/api/datasets/018ca6872e0e4b5b9cdc0745f4b11ef8/decks/d333732f3aed4f95ac3e8a27cdcf03af/",
-                            "68f6997042ed4f19b536fa7b6daf1e2f": "https://alpha.crunch.io/api/datasets/68f6997042ed4f19b536fa7b6daf1e2f/decks/c658efaf87c945d892b68ee950881a4f/",
-                            "6284ae2013ae4f6bbb0fc8eaa606d7e3": "https://alpha.crunch.io/api/datasets/6284ae2013ae4f6bbb0fc8eaa606d7e3/decks/7bccfa13b3ff42a29a1be7032f7f4d2c/",
-                            "0700211987ee4599a9fa0924a58c9af0": "https://alpha.crunch.io/api/datasets/0700211987ee4599a9fa0924a58c9af0/decks/2b5ec4e80fcb42358d3e4e764b1319cb/",
-                            "a2223646a2854fbf98495f6dc3e264b4": "https://alpha.crunch.io/api/datasets/a2223646a2854fbf98495f6dc3e264b4/decks/f42eac179f6d47ecb698f758e49895c5/",
-                            "d682f3f648c6473ea0b79fb2b23d4acb": "https://alpha.crunch.io/api/datasets/d682f3f648c6473ea0b79fb2b23d4acb/decks/59e851c6a5e84da0b473ef95695795a7/",
-                            "eb4ea0e51e5e45caabebdb75c5147db4": "https://alpha.crunch.io/api/datasets/eb4ea0e51e5e45caabebdb75c5147db4/decks/c3a7ca0a71904afeb9624fb713dad354/"
+                            "018ca6872e0e4b5b9cdc0745f4b11ef8": "https://app.crunch.io/api/datasets/018ca6872e0e4b5b9cdc0745f4b11ef8/decks/d333732f3aed4f95ac3e8a27cdcf03af/",
+                            "0700211987ee4599a9fa0924a58c9af0": "https://app.crunch.io/api/datasets/0700211987ee4599a9fa0924a58c9af0/decks/2b5ec4e80fcb42358d3e4e764b1319cb/",
+                            "0be895b02a054e0e9e742b95ebdcfca0": "https://app.crunch.io/api/datasets/0be895b02a054e0e9e742b95ebdcfca0/decks/c3a7ca0a71904afeb9624fb713dad354/",
+                            "2ff0e33046984f838a4cb330291d2edb": "https://app.crunch.io/api/datasets/2ff0e33046984f838a4cb330291d2edb/decks/26887165af584599a98ba51cb12a6811/",
+                            "4c44283be4b24942ad11e8363e054cc3": "https://app.crunch.io/api/datasets/4c44283be4b24942ad11e8363e054cc3/decks/27572276d8d848bbaaeef361fe6fc123/",
+                            "6284ae2013ae4f6bbb0fc8eaa606d7e3": "https://app.crunch.io/api/datasets/6284ae2013ae4f6bbb0fc8eaa606d7e3/decks/7bccfa13b3ff42a29a1be7032f7f4d2c/",
+                            "68f6997042ed4f19b536fa7b6daf1e2f": "https://app.crunch.io/api/datasets/68f6997042ed4f19b536fa7b6daf1e2f/decks/c658efaf87c945d892b68ee950881a4f/",
+                            "a2223646a2854fbf98495f6dc3e264b4": "https://app.crunch.io/api/datasets/a2223646a2854fbf98495f6dc3e264b4/decks/f42eac179f6d47ecb698f758e49895c5/",
+                            "d682f3f648c6473ea0b79fb2b23d4acb": "https://app.crunch.io/api/datasets/d682f3f648c6473ea0b79fb2b23d4acb/decks/59e851c6a5e84da0b473ef95695795a7/",
+                            "eb4ea0e51e5e45caabebdb75c5147db4": "https://app.crunch.io/api/datasets/eb4ea0e51e5e45caabebdb75c5147db4/decks/c3a7ca0a71904afeb9624fb713dad354/"
                           },
                           "projectBrowser": {},
-                          "projectId": "https://alpha.crunch.io/api/projects/d22b37e0258a4986b29598fc79ccc24f/",
+                          "projectId": "https://app.crunch.io/api/projects/d22b37e0258a4986b29598fc79ccc24f/",
                           "search_settings": {
                             "grouping": "datasets",
                             "matchMode": "any-terms",
@@ -1816,29 +2224,29 @@
                         }
                       },
                       "catalogs": {
-                        "integrations": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/integrations/",
-                        "sources": "https://alpha.crunch.io/api/sources/"
+                        "integrations": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/integrations/",
+                        "sources": "https://app.crunch.io/api/sources/"
                       },
                       "description": "Details for a User",
                       "element": "shoji:entity",
                       "fragments": {
-                        "expropriate": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/expropriate/"
+                        "expropriate": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/expropriate/"
                       },
-                      "invite": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/invite/",
-                      "password": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/password/",
-                      "self": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/",
+                      "invite": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/invite/",
+                      "password": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/password/",
+                      "self": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/",
                       "urls": {
-                        "account_url": "https://alpha.crunch.io/api/account/",
-                        "change_email_url": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/change_email/",
-                        "invite_url": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/invite/",
-                        "password_reset_url": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/password_reset/",
-                        "password_url": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/password/",
-                        "role_url": "https://alpha.crunch.io/api/roles/accounts/0002/"
+                        "account_url": "https://app.crunch.io/api/account/",
+                        "change_email_url": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/change_email/",
+                        "invite_url": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/invite/",
+                        "password_reset_url": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/password_reset/",
+                        "password_url": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/password/",
+                        "role_url": "https://app.crunch.io/api/roles/accounts/0002/"
                       },
                       "views": {
-                        "actions": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/actions/",
-                        "change_email": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/change_email/",
-                        "password_reset": "https://alpha.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/password_reset/"
+                        "actions": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/actions/",
+                        "change_email": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/change_email/",
+                        "password_reset": "https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/password_reset/"
                       }
                     }
                   }
@@ -1911,414 +2319,6 @@
           }
         }
       ]
-    },
-    "/public/crunchbox/preview/": {
-      "post": {
-        "description": "The preview endpoint is used to preemptively initiate rendering a given CrunchBox configuration to a raster image. This image will be requested by social network platform crawlers during construction of the post share preview. The preview-rendering process can be time-consuming. Therefore, it is preferable to initiate it as soon as is reasonable before a request for the image data.\n\nThis endpoint returns no data.",
-        "operationId": "post-crunchbox-preview",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "example": "",
-              "format": "uri",
-              "default": "https://s.crunch.io/widget/index.html#/ds/a1b2c3d4e5f6g7h8/row/000001/column/000000"
-            },
-            "in": "query",
-            "name": "data",
-            "description": "Url to Crunchbox widget"
-          }
-        ],
-        "responses": {
-          "202": {
-            "description": "Accepted",
-            "headers": {}
-          }
-        },
-        "security": [],
-        "summary": "Generate Crunchbox preview",
-        "x-code-samples": [
-          {
-            "lang": "SHELL",
-            "source": "curl -X POST https://app.crunch.io/api/public/crunchbox/preview/?data=https%3A%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2Fa1b2c3d4e5f6g7h8%2Frow%2F000001%2Fcolumn%2F000000 \\\n  -d \"\"",
-            "syntaxLang": "bash"
-          }
-        ],
-        "requestBody": {
-          "description": ""
-        },
-        "tags": [
-          "Crunchbox"
-        ]
-      },
-      "parameters": []
-    },
-    "/account/logo/": {
-      "post": {
-        "summary": "Change logos",
-        "tags": [
-          "Account"
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        },
-        "operationId": "post-account-logo",
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "large": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "Large logo image"
-                  },
-                  "favicon": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "16x16 pixel logo image"
-                  },
-                  "small": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "Small logo image"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Update the logos for the user's account. Only account admins are authorized to do this. Valid file extensions are GIF, JPEG, PNG and ICO image files.",
-        "x-code-samples": [
-          {
-            "lang": "SHELL",
-            "source": "curl -X POST https://app.crunch.io/api/account/logo/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F \"large=@6r7bkQxR5u6X5KEv4DsJ.png\" \\\n  -F \"favicon=@favicon.ico\" \\\n  -F \"small=@6r7bkQxR5u6X5KEv4DsJ.png\"",
-            "syntaxLang": "bash"
-          }
-        ]
-      },
-      "parameters": [],
-      "patch": {
-        "summary": "Remove logos",
-        "operationId": "patch-account-logo",
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        },
-        "description": "To remove any logos that have been set up, submit one more more image names with a null value.",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "element": {
-                    "$ref": "#/components/schemas/Shoji-view-element"
-                  },
-                  "value": {
-                    "type": "object",
-                    "properties": {
-                      "large": {
-                        "type": "null",
-                        "description": "This will remove the large log"
-                      },
-                      "small": {
-                        "type": "null",
-                        "description": "This will remove the small logo"
-                      },
-                      "favicon": {
-                        "type": "null",
-                        "description": "This will remove the favicon logo"
-                      }
-                    }
-                  }
-                }
-              },
-              "examples": {
-                "example-1": {
-                  "value": {
-                    "element": "shoji:view",
-                    "value": {
-                      "large": null,
-                      "small": null,
-                      "favicon": null
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Account"
-        ],
-        "x-code-samples": [
-          {
-            "lang": "SHELL",
-            "source": "curl -X PATCH https://app.crunch.io/api/account/logo/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{ \\\"element\\\": \\\"shoji:view\\\", \\\"value\\\": { \\\"large\\\": null, \\\"small\\\": null, \\\"favicon\\\": null }}\"",
-            "syntaxLang": "bash"
-          }
-        ]
-      }
-    },
-    "/account/templates/": {
-      "post": {
-        "summary": "Change Powerpoint template",
-        "tags": [
-          "Account"
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        },
-        "operationId": "post-account-templates",
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "powerpoint": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "Valid Powerpoint template file"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Update the PowerPoint template for the user's account. Only account admins are authorized to do this. Must be a valid Microsoft PowerPoint file.",
-        "x-code-samples": [
-          {
-            "lang": "SHELL",
-            "source": "curl -X POST https://app.crunch.io/api/account/templates/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F \"powerpoint=@PowerpointTemplate.pptx\"",
-            "syntaxLang": "bash"
-          }
-        ]
-      },
-      "parameters": [],
-      "patch": {
-        "summary": "Remove Powerpoint template",
-        "operationId": "patch-account-templates",
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        },
-        "description": "To remove a Powerpoint template that has been set up, submit this with a null value.",
-        "x-code-samples": [
-          {
-            "lang": "SHELL",
-            "source": "curl -X PATCH https://app.crunch.io/api/account/templates/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{ \\\"element\\\": \\\"shoji:view\\\", \\\"value\\\": { \\\"powerpoint\\\": null }}\"",
-            "syntaxLang": "bash"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "element": {
-                    "$ref": "#/components/schemas/Shoji-view-element"
-                  },
-                  "value": {
-                    "type": "object",
-                    "properties": {
-                      "powerpoint": {
-                        "type": "null",
-                        "description": "This will remove the Powerpoint template"
-                      }
-                    }
-                  }
-                }
-              },
-              "examples": {
-                "example-1": {
-                  "value": {
-                    "element": "shoji:view",
-                    "value": {
-                      "powerpoint": null
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Account"
-        ]
-      }
-    },
-    "/account/applications/": {
-      "get": {
-        "summary": "List sub-domains",
-        "tags": [
-          "Account"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "element": {
-                      "$ref": "#/components/schemas/Shoji-catalog-element"
-                    },
-                    "index": {
-                      "type": "object",
-                      "properties": {
-                        "sub-domain A": {
-                          "type": "object",
-                          "properties": {
-                            "subdomain": {
-                              "type": "string",
-                              "description": "Sub-domain prefix"
-                            },
-                            "name": {
-                              "type": "string",
-                              "description": "Name of sub-domain"
-                            }
-                          }
-                        },
-                        "sub-domain B": {
-                          "type": "object",
-                          "properties": {
-                            "subdomain": {
-                              "type": "string",
-                              "description": "Sub-domain prefix"
-                            },
-                            "name": {
-                              "type": "string",
-                              "description": "Name of sub-domain"
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "self": {
-                      "$ref": "#/components/schemas/Shoji-self"
-                    }
-                  }
-                },
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "element": "shoji:catalog",
-                      "self": "https://alpha.crunch.io/api/account/applications/",
-                      "index": {
-                        "https://alpha.crunch.io/api/account/applications/heyenrique/": {
-                          "subdomain": "heyenrique",
-                          "name": "Crunch.io"
-                        },
-                        "https://alpha.crunch.io/api/account/applications/local/": {
-                          "subdomain": "local",
-                          "name": "Localhost development"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-account-applications",
-        "description": "List sub-domains configured for user's account.",
-        "x-code-samples": [
-          {
-            "lang": "SHELL",
-            "source": "curl -X GET https://app.crunch.io/api/account/applications/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
-            "syntaxLang": "bash"
-          }
-        ]
-      },
-      "post": {
-        "summary": "Create sub-domain",
-        "operationId": "post-account-applications",
-        "x-code-samples": [
-          {
-            "lang": "SHELL",
-            "source": "curl -X POST https://app.crunch.io/api/account/applications/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{ \\\"element\\\": \\\"shoji:entity\\\", \\\"body\\\": { \\\"name\\\": \\\"dcarr subdomain\\\", \\\"subdomain\\\": \\\"joe1\\\" }}\"",
-            "syntaxLang": "bash"
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          }
-        },
-        "tags": [
-          "Account"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "element": {
-                    "$ref": "#/components/schemas/Shoji-entity"
-                  },
-                  "body": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string",
-                        "description": "Name of sub-domain"
-                      },
-                      "subdomain": {
-                        "type": "string",
-                        "description": "Sub-domain prefix"
-                      },
-                      "palette": {
-                        "$ref": "#/components/schemas/Color-Palette"
-                      },
-                      "manifest": {
-                        "type": "object"
-                      }
-                    },
-                    "required": [
-                      "name",
-                      "subdomain"
-                    ]
-                  }
-                }
-              },
-              "examples": {
-                "example-1": {
-                  "value": {
-                    "element": "shoji:entity",
-                    "body": {
-                      "name": "my company",
-                      "subdomain": "mycompany",
-                      "palette": {
-                        "brand": {
-                          "primary": "#FFAABB",
-                          "secondary": "#G4EEBB",
-                          "message": "#BAA5E7"
-                        }
-                      },
-                      "manifest": {}
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Create a new sub-domain for the user's account. \n\nThe subdomain:\n\n* must be unique system-wide, case insensitive\n* can only contain letters, numbers, and - (dash)\n* must be between 3 and 32 characters in length\n* cannot start with - or a number\n\nIf the requested subdomain is unavailable or invalid, the server will return a 400 response.\n\nAttributes `name` and `subdomain` are required; `palette` and `manifest` are optional. Note that you cannot specify logos in the this request. Use the created entity’s logo/ endpoint to upload the image files to the sub-domain."
-      },
-      "parameters": []
     }
   },
   "security": [
