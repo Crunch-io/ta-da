@@ -137,7 +137,7 @@ Real-life example:
         },
 ```
 
-## Snake-case and camel-case inconsistencies
+## snake_case and camelCase inconsistencies
 We mix snake-case and camel-case properties in the same object
 ```javascript
 "preferences": {
@@ -154,3 +154,19 @@ We mix snake-case and camel-case properties in the same object
   "projectBrowser": {}
 }
 ```
+
+## POST query string no body
+https://docs.crunch.io/endpoint-reference/endpoint-public.html#preview
+
+This endpoint requires post + query string parameter. RapiDoc forces you to pass content type in post body which breaks the endpoint. Not possible to test this endpoint
+in documentation, only via curl.
+
+## Inconsistent plurals
+PATCH /account/templates/ - only removes one template. To be fair, only one template exists now but we might add more template types later.
+
+PATCH /account/logo/ - Removes one, two, or three logos.
+
+## Bad documentation
+Wrong url https://docs.crunch.io/endpoint-reference/endpoint-public.html#share
+
+Wrong url https://docs.crunch.io/endpoint-reference/endpoint-public.html#preview

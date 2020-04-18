@@ -147,35 +147,6 @@
       },
       "Color-Palette": {
         "description": "",
-        "properties": {
-          "analysis": {
-            "description": "Colors for data display",
-            "items": {
-              "properties": {
-                "Color palette name": {
-                  "$ref": "#/components/schemas/Analysis-color-palette"
-                }
-              },
-              "type": "object"
-            },
-            "type": "array"
-          },
-          "brand": {
-            "description": "Brand custom colors",
-            "properties": {
-              "message": {
-                "$ref": "#/components/schemas/Hex-color-code"
-              },
-              "primary": {
-                "$ref": "#/components/schemas/Hex-color-code"
-              },
-              "secondary": {
-                "$ref": "#/components/schemas/Hex-color-code"
-              }
-            },
-            "type": "object"
-          }
-        },
         "title": "Color palette",
         "type": "object",
         "x-examples": {
@@ -222,6 +193,46 @@
               "primary": "#FFAABB",
               "secondary": "#G4EEBB"
             }
+          }
+        },
+        "properties": {
+          "analysis": {
+            "description": "Colors for data display",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "Color palette name": {
+                  "$ref": "#/components/schemas/Analysis-color-palette"
+                }
+              }
+            }
+          },
+          "brand": {
+            "$ref": "#/components/schemas/Brand-Palette"
+          }
+        }
+      },
+      "Brand-Palette": {
+        "description": "Brand custom colors",
+        "properties": {
+          "message": {
+            "$ref": "#/components/schemas/Hex-color-code"
+          },
+          "primary": {
+            "$ref": "#/components/schemas/Hex-color-code"
+          },
+          "secondary": {
+            "$ref": "#/components/schemas/Hex-color-code"
+          }
+        },
+        "title": "Brand palette",
+        "type": "object",
+        "x-examples": {
+          "example-1": {
+            "message": "#BAA5E7",
+            "primary": "#FFAABB",
+            "secondary": "#G4EEBB"
           }
         }
       },
@@ -837,7 +848,7 @@
       "name": "Crunch Support",
       "url": "https://help.crunch.io"
     },
-    "description": "Developer API for Crunch.io\n\n# Viewing options\n* View this documentation [with navigation](https://crunch.io/api/reference)\n* View this documentation [without navigation](https://crunch.io/api/reference-nonav)\n* Download the [Crunch API OpenApi 3.0 Specification](https://crunch.io/oas/crunch-api.json)\n\n# API conventions\n\nThe Crunch REST API follows some common conventions across all endpoints. You can assume these to be the case except where explicitly documented otherwise.\n\n## Successful requests\nSuccessful GET requests return 200 (OK) status with Content-Type: application/json response content.\n\nPATCH is generally preferred for partial updating of resources, though some endpoints do support PUT. A successful request returns 204 (No Content) status.\n\nPOST is used to create entities on the server. The URL to the created entity is returned in the Location response header, and the response status is either 201 (Created) or 202 (Accepted).\n\n202 (Accepted) is used for requests that continue to process outside of the request cycle; for example, import or export jobs that may be long running and benefit from reporting progress to clients. See Progress for how to handle the 202 response content. Requests that would otherwise return 201 (Location) will still include the Location header in the 202 response; requests that would otherwise return 204 (No Content) will have no additional response headers.\n\n## Unsuccessful requests\n“Bad” requests returning with a 4xx status may contain JSON response content with an error message.\n\nUnauthenticated requests to non-public resources return 401 (Unauthorized).\n\nAuthenticated but unauthorized responses return 404 (Not Found) rather than 403 (Forbidden) in cases where returning 403 would leak information about the existence of resources. The 403 response is reserved for cases when, for example, a user is authorized to GET a resource but not PATCH it.\n\nThe 409 (Conflict) response is used when the request may be retried and may succeed if changes are first made at a different resource. Example: when a user who has edit privileges on a dataset but is not the “current editor” attempts to PATCH a dataset resource.\n\n## Error responses\nTo avoid duplicating error responses on every endpoint description, the most common responses are listed here and only any additional, endpoint-specific responses will be documented with each api endpoint.  \n\n### HTTP status codes\n| Status Code | Description |\n| :-: | :-- |\n| 401 | Invalid access token |\n| 403 | Account locked - please contact Crunch support |\n\n## Deprecated endpoints\nWhen API resources are deprecated, responses will contain a Warning header with a message about the deprecation and a recommendation for upgrading. Our client libraries look for this response header and will alert you to upgrade your version of the library if you receive a response with this header.\n\nEndpoints that have been removed respond with a 410 (Gone) status, optionally with a message instructing you where to look instead.\n\n# API response envelopes\nCrunch API endpoints do not return plain old javascript objects (POJOs) directly but instead deliver POJOs inside a property of machine-readable custom envelopes that facilitate endpoint exploration and traversal. Click here to read the [envelope spec](https://bitbucket.org/fumanchu/shoji/src/default/spec.txt).\n\nUsing crunch api envelopes can be summarized like this:\n```javascript\nlet data = {}\nswitch (response.element) {\n  case 'shoji:entity':\n    data = response.body\n    break\n  case 'shoji:catalog':\n    data = response.index\n    break\n  case 'shoji:view':\n    data = response.value\n    break\n}\n```\n\n## ENTITY envelope\nA Shoji entity is identified by `element: \"shoji:entity\"`. Its principal attribute is the `body` key, which is an object containing the attributes that describe the entity.\n\n## CATALOG envelope\nA catalog is identified by `element: \"shoji:catalog\"` with its principal attribute being `index` that contains an object keyed by the URLs of the entities it contains and for each key an object (tuple) with attributes from the referenced entity.\n\nShoji catalogs are **not** ordered. For its ordered representations they may provide an `orders` set of Shoji order resources.\n\n## VIEW envelope\nA Shoji view is identified by `element: \"shoji:view\"` with its principal attribute being `value`. This can contain any arbitrary JSON object.\n\n## ORDER envelope\nShoji orders are identified by `element: \"shoji:order\"`. The principal attribute is the `graph` key which is an array containing the order of present resources.\n\nA shoji order may be associated with a catalog. In such case it will contain a subset or totality of the entities present in the catalog. The catalog remains as the authoritative source of available entities.\n\nAny entity not present on the order but present in the catalog may be considered to belong at the bottom of the root of the graph in an arbitrary order, or may be excluded from view.\n",
+    "description": "Developer API for Crunch.io\n\n# Viewing options\n* View this documentation [with navigation](https://crunch.io/api/reference)\n* View this documentation [without navigation](https://crunch.io/api/reference-nonav)\n* Download the [Crunch API OpenApi 3.0 Specification](https://crunch.io/oas/crunch-api.json)\n\n# API conventions\n\nThe Crunch REST API follows some common conventions across all endpoints. You can assume these to be the case except where explicitly documented otherwise.\n\n## Successful requests\nSuccessful GET requests return 200 (OK) status with Content-Type: application/json response content.\n\nPATCH is generally preferred for partial updating of resources, though some endpoints do support PUT. A successful request returns 204 (No Content) status.\n\nPOST is used to create entities on the server. The URL to the created entity is returned in the Location response header, and the response status is either 201 (Created) or 202 (Accepted).\n\n202 (Accepted) is used for requests that continue to process outside of the request cycle; for example, import or export jobs that may be long running and benefit from reporting progress to clients. See Progress for how to handle the 202 response content. Requests that would otherwise return 201 (Location) will still include the Location header in the 202 response; requests that would otherwise return 204 (No Content) will have no additional response headers.\n\n## Unsuccessful requests\n“Bad” requests returning with a 4xx status may contain JSON response content with an error message.\n\nUnauthenticated requests to non-public resources return 401 (Unauthorized).\n\nAuthenticated but unauthorized responses return 404 (Not Found) rather than 403 (Forbidden) in cases where returning 403 would leak information about the existence of resources. The 403 response is reserved for cases when, for example, a user is authorized to GET a resource but not PATCH it.\n\nThe 409 (Conflict) response is used when the request may be retried and may succeed if changes are first made at a different resource. Example: when a user who has edit privileges on a dataset but is not the “current editor” attempts to PATCH a dataset resource.\n\n## Error responses\nTo avoid duplicating error responses on every endpoint description, the most common responses are listed here and only any additional, endpoint-specific responses will be documented with each api endpoint.  \n\n### HTTP status codes\n| Status Code | Description |\n| :-: | :-- |\n| 400 | Bad request, invalid input |\n| 401 | Invalid access token |\n| 403 | Account locked - please contact Crunch support |\n\n## Deprecated endpoints\nWhen API resources are deprecated, responses will contain a Warning header with a message about the deprecation and a recommendation for upgrading. Our client libraries look for this response header and will alert you to upgrade your version of the library if you receive a response with this header.\n\nEndpoints that have been removed respond with a 410 (Gone) status, optionally with a message instructing you where to look instead.\n\n# API response envelopes\nCrunch API endpoints do not return plain old javascript objects (POJOs) directly but instead deliver POJOs inside a property of machine-readable custom envelopes that facilitate endpoint exploration and traversal. Click here to read the [envelope spec](https://bitbucket.org/fumanchu/shoji/src/default/spec.txt).\n\nUsing crunch api envelopes can be summarized like this:\n```javascript\nlet data = {}\nswitch (response.element) {\n  case 'shoji:entity':\n    data = response.body\n    break\n  case 'shoji:catalog':\n    data = response.index\n    break\n  case 'shoji:view':\n    data = response.value\n    break\n}\n```\n\n## ENTITY envelope\nA Shoji entity is identified by `element: \"shoji:entity\"`. Its principal attribute is the `body` key, which is an object containing the attributes that describe the entity.\n\n## CATALOG envelope\nA catalog is identified by `element: \"shoji:catalog\"` with its principal attribute being `index` that contains an object keyed by the URLs of the entities it contains and for each key an object (tuple) with attributes from the referenced entity.\n\nShoji catalogs are **not** ordered. For its ordered representations they may provide an `orders` set of Shoji order resources.\n\n## VIEW envelope\nA Shoji view is identified by `element: \"shoji:view\"` with its principal attribute being `value`. This can contain any arbitrary JSON object.\n\n## ORDER envelope\nShoji orders are identified by `element: \"shoji:order\"`. The principal attribute is the `graph` key which is an array containing the order of present resources.\n\nA shoji order may be associated with a catalog. In such case it will contain a subset or totality of the entities present in the catalog. The catalog remains as the authoritative source of available entities.\n\nAny entity not present on the order but present in the catalog may be considered to belong at the bottom of the root of the graph in an arbitrary order, or may be excluded from view.\n",
     "title": "Crunch API",
     "version": "1.1"
   },
@@ -1006,6 +1017,65 @@
           {
             "lang": "SHELL",
             "source": "curl -X GET https://app.crunch.io/api/account/",
+            "syntaxLang": "bash"
+          }
+        ]
+      },
+      "patch": {
+        "summary": "Change color palette",
+        "operationId": "patch-account",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "element": {
+                    "$ref": "#/components/schemas/Shoji-entity-element"
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "palette": {
+                        "$ref": "./crunch-api.2020-04-16.yaml#/components/schemas/Color-Palette"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "element": "shoji:entity",
+                    "body": {
+                      "palette": {
+                        "brand": {
+                          "primary": "#0064a4",
+                          "secondary": "#107f64",
+                          "message": "#722580"
+                        },
+                        "analysis": []
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Update the brand color palette for the user's account. Only account admins are authorized to do this.",
+        "tags": [
+          "Account"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X PATCH https://app.crunch.io/api/account/ \\ \n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\ \n  -H \"Content-Type: application/json\" \\ \n  -d \"{ \\\"element\\\": \\\"shoji:entity\\\", \\\"body\\\": { \\\"palette\\\": { \\\"brand\\\": { \\\"primary\\\": \\\"#0064a4\\\", \\\"secondary\\\": \\\"#107f64\\\", \\\"message\\\": \\\"#722580\\\" } } }}\"",
             "syntaxLang": "bash"
           }
         ]
@@ -1453,7 +1523,7 @@
     },
     "/public/crunchbox/share/": {
       "get": {
-        "description": "Renders HTML page containing a CrunchBox, complete with the meta data utilized by social sharing platform crawlers in constructing a share preview. Among this metadata is a url to a preview image of the rendered CrunchBox.\n# Endpoint usage in HTML file\n```html\n<html>\n<head>\n    <title>Link to CrunchBox</title>\n</head>\n<body>\nClick here to\n<a target=\"_blank\"\n   href=\"https://app.crunch.io/api/public/crunchbox/share/?data=%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2F72c27f64a12028b887d7cae248143b6b%2Frow%2F000886%2Fcolumn%2F000480%3Fviz%3DstackedBarPlot%26amp%3Bcp%3Dpercent%26amp%3Bdp%3D0%26amp%3Bgrp%3Dstack&ref=https%3A%2F%2Fwww.whitehouse.gov/\">view\n    CrunchBox</a>.\n</body>\n</html>\n```",
+        "description": "Generates the HTML markup for the crunchbox sharing page containing all of the metadata necessary to satisfy the requirements of social platform crawlers to result in a rich sharing content preview. This preview is necessarily constructed as part of the request as to avoid javascript processing which will be ignored by these crawlers.\n\nSee: https://developers.facebook.com/docs/sharing/webmasters/crawler.\n\n# Endpoint usage in HTML file\n```html\n<html>\n<head>\n    <title>Link to CrunchBox</title>\n</head>\n<body>\nClick here to\n<a target=\"_blank\"\n   href=\"https://app.crunch.io/api/public/crunchbox/share/?data=%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2F72c27f64a12028b887d7cae248143b6b%2Frow%2F000886%2Fcolumn%2F000480%3Fviz%3DstackedBarPlot%26amp%3Bcp%3Dpercent%26amp%3Bdp%3D0%26amp%3Bgrp%3Dstack&ref=https%3A%2F%2Fwww.whitehouse.gov/\">view\n    CrunchBox</a>.\n</body>\n</html>\n```",
         "operationId": "get-crunchbox-share",
         "parameters": [
           {
@@ -1495,16 +1565,16 @@
           }
         },
         "security": [],
-        "summary": "Share crunchbox html",
-        "tags": [
-          "Integrating Crunch"
-        ],
+        "summary": "Share Crunchbox html",
         "x-code-samples": [
           {
             "lang": "SHELL",
             "source": "curl -X GET https://cors-buster.dcarr.com/app.crunch.io/api/public/crunchbox/share/?data=%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2Fd4b2945f727f4eccbc31544ddabf9fa4%3Fviz%3DgroupedBarPlot%26cp%3Dpercent%26dp%3D0%26grp%3Dstack&ref=https%3A%2F%2Fgoogle.com",
             "syntaxLang": "bash"
           }
+        ],
+        "tags": [
+          "Crunchbox"
         ]
       },
       "parameters": []
@@ -1841,6 +1911,414 @@
           }
         }
       ]
+    },
+    "/public/crunchbox/preview/": {
+      "post": {
+        "description": "The preview endpoint is used to preemptively initiate rendering a given CrunchBox configuration to a raster image. This image will be requested by social network platform crawlers during construction of the post share preview. The preview-rendering process can be time-consuming. Therefore, it is preferable to initiate it as soon as is reasonable before a request for the image data.\n\nThis endpoint returns no data.",
+        "operationId": "post-crunchbox-preview",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "",
+              "format": "uri",
+              "default": "https://s.crunch.io/widget/index.html#/ds/a1b2c3d4e5f6g7h8/row/000001/column/000000"
+            },
+            "in": "query",
+            "name": "data",
+            "description": "Url to Crunchbox widget"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "headers": {}
+          }
+        },
+        "security": [],
+        "summary": "Generate Crunchbox preview",
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X POST https://app.crunch.io/api/public/crunchbox/preview/?data=https%3A%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2Fa1b2c3d4e5f6g7h8%2Frow%2F000001%2Fcolumn%2F000000 \\\n  -d \"\"",
+            "syntaxLang": "bash"
+          }
+        ],
+        "requestBody": {
+          "description": ""
+        },
+        "tags": [
+          "Crunchbox"
+        ]
+      },
+      "parameters": []
+    },
+    "/account/logo/": {
+      "post": {
+        "summary": "Change logos",
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "operationId": "post-account-logo",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "large": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Large logo image"
+                  },
+                  "favicon": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "16x16 pixel logo image"
+                  },
+                  "small": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Small logo image"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Update the logos for the user's account. Only account admins are authorized to do this. Valid file extensions are GIF, JPEG, PNG and ICO image files.",
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X POST https://app.crunch.io/api/account/logo/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F \"large=@6r7bkQxR5u6X5KEv4DsJ.png\" \\\n  -F \"favicon=@favicon.ico\" \\\n  -F \"small=@6r7bkQxR5u6X5KEv4DsJ.png\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      },
+      "parameters": [],
+      "patch": {
+        "summary": "Remove logos",
+        "operationId": "patch-account-logo",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "To remove any logos that have been set up, submit one more more image names with a null value.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "element": {
+                    "$ref": "#/components/schemas/Shoji-view-element"
+                  },
+                  "value": {
+                    "type": "object",
+                    "properties": {
+                      "large": {
+                        "type": "null",
+                        "description": "This will remove the large log"
+                      },
+                      "small": {
+                        "type": "null",
+                        "description": "This will remove the small logo"
+                      },
+                      "favicon": {
+                        "type": "null",
+                        "description": "This will remove the favicon logo"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "element": "shoji:view",
+                    "value": {
+                      "large": null,
+                      "small": null,
+                      "favicon": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Account"
+        ],
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X PATCH https://app.crunch.io/api/account/logo/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{ \\\"element\\\": \\\"shoji:view\\\", \\\"value\\\": { \\\"large\\\": null, \\\"small\\\": null, \\\"favicon\\\": null }}\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      }
+    },
+    "/account/templates/": {
+      "post": {
+        "summary": "Change Powerpoint template",
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "operationId": "post-account-templates",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "powerpoint": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Valid Powerpoint template file"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Update the PowerPoint template for the user's account. Only account admins are authorized to do this. Must be a valid Microsoft PowerPoint file.",
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X POST https://app.crunch.io/api/account/templates/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F \"powerpoint=@PowerpointTemplate.pptx\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      },
+      "parameters": [],
+      "patch": {
+        "summary": "Remove Powerpoint template",
+        "operationId": "patch-account-templates",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "To remove a Powerpoint template that has been set up, submit this with a null value.",
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X PATCH https://app.crunch.io/api/account/templates/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{ \\\"element\\\": \\\"shoji:view\\\", \\\"value\\\": { \\\"powerpoint\\\": null }}\"",
+            "syntaxLang": "bash"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "element": {
+                    "$ref": "#/components/schemas/Shoji-view-element"
+                  },
+                  "value": {
+                    "type": "object",
+                    "properties": {
+                      "powerpoint": {
+                        "type": "null",
+                        "description": "This will remove the Powerpoint template"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "element": "shoji:view",
+                    "value": {
+                      "powerpoint": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Account"
+        ]
+      }
+    },
+    "/account/applications/": {
+      "get": {
+        "summary": "List sub-domains",
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "element": {
+                      "$ref": "#/components/schemas/Shoji-catalog-element"
+                    },
+                    "index": {
+                      "type": "object",
+                      "properties": {
+                        "sub-domain A": {
+                          "type": "object",
+                          "properties": {
+                            "subdomain": {
+                              "type": "string",
+                              "description": "Sub-domain prefix"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "Name of sub-domain"
+                            }
+                          }
+                        },
+                        "sub-domain B": {
+                          "type": "object",
+                          "properties": {
+                            "subdomain": {
+                              "type": "string",
+                              "description": "Sub-domain prefix"
+                            },
+                            "name": {
+                              "type": "string",
+                              "description": "Name of sub-domain"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "self": {
+                      "$ref": "#/components/schemas/Shoji-self"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "element": "shoji:catalog",
+                      "self": "https://alpha.crunch.io/api/account/applications/",
+                      "index": {
+                        "https://alpha.crunch.io/api/account/applications/heyenrique/": {
+                          "subdomain": "heyenrique",
+                          "name": "Crunch.io"
+                        },
+                        "https://alpha.crunch.io/api/account/applications/local/": {
+                          "subdomain": "local",
+                          "name": "Localhost development"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-account-applications",
+        "description": "List sub-domains configured for user's account.",
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X GET https://app.crunch.io/api/account/applications/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "syntaxLang": "bash"
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create sub-domain",
+        "operationId": "post-account-applications",
+        "x-code-samples": [
+          {
+            "lang": "SHELL",
+            "source": "curl -X POST https://app.crunch.io/api/account/applications/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{ \\\"element\\\": \\\"shoji:entity\\\", \\\"body\\\": { \\\"name\\\": \\\"dcarr subdomain\\\", \\\"subdomain\\\": \\\"joe1\\\" }}\"",
+            "syntaxLang": "bash"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "element": {
+                    "$ref": "#/components/schemas/Shoji-entity"
+                  },
+                  "body": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Name of sub-domain"
+                      },
+                      "subdomain": {
+                        "type": "string",
+                        "description": "Sub-domain prefix"
+                      },
+                      "palette": {
+                        "$ref": "#/components/schemas/Color-Palette"
+                      },
+                      "manifest": {
+                        "type": "object"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "subdomain"
+                    ]
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "element": "shoji:entity",
+                    "body": {
+                      "name": "my company",
+                      "subdomain": "mycompany",
+                      "palette": {
+                        "brand": {
+                          "primary": "#FFAABB",
+                          "secondary": "#G4EEBB",
+                          "message": "#BAA5E7"
+                        }
+                      },
+                      "manifest": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Create a new sub-domain for the user's account. \n\nThe subdomain:\n\n* must be unique system-wide, case insensitive\n* can only contain letters, numbers, and - (dash)\n* must be between 3 and 32 characters in length\n* cannot start with - or a number\n\nIf the requested subdomain is unavailable or invalid, the server will return a 400 response.\n\nAttributes `name` and `subdomain` are required; `palette` and `manifest` are optional. Note that you cannot specify logos in the this request. Use the created entity’s logo/ endpoint to upload the image files to the sub-domain."
+      },
+      "parameters": []
     }
   },
   "security": [
