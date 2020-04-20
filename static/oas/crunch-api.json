@@ -1016,8 +1016,12 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X GET https://app.crunch.io/api/account/",
+            "source": "curl -X GET https://app.crunch.io/api/account/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos;",
             "syntaxLang": "bash"
+          },{
+            "lang": "JAVASCRIPT",
+            "source": "const account = await fetch(\n  &apos;https://app.crunch.io/api/account/&apos;, {\n   method: &apos;GET&apos;,\n   headers: {\n    &apos;Authorization&apos;: &apos;Bearer 598d9e1105ad96dac7ab528f0928996e&apos;,\n   }\n  })\n .then(response => response.json())\n .then(jsonResponse => jsonResponse.body);",
+            "syntaxLang": "javascript"
           }
         ]
       },
