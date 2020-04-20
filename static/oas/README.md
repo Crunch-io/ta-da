@@ -60,9 +60,9 @@ look really good.
 As such, many oas editors give you error messages (best case) or try to automatically strip trailing slashes (worst case). **Please ensure your final
 documentation includes trailing slashes** so that endpoint testing doesn't fail.
 
-* Request model and example: Every endpoint should contain a request model and working example. These models and envelopes **SHOULD INCLUDE the shoji envelope** so they are testable.
+* Request model and example: Every endpoint should contain a request model and working example.
 
-* Response model and example: Every endpoint should contain a response model and example. These models and envelopes **SHOULD NOT INCLUDE the shoji envelope** so they are more human-readable.
+* Response model and example: Every endpoint should contain a response model and example.
 
 * Error responses: instead of duplicating common 401 and other error responses over and over again on every endpoint description, we will
 document error responses in the overview section and only focus on success responses on each endpoint. 
