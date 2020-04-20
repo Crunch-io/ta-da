@@ -331,7 +331,7 @@
             "type": "boolean"
           },
           "type": {
-            "description": "Always \"dataset\" for this object type",
+            "description": "Always &apos;dataset&apos; for this object type",
             "example": "dataset",
             "type": "string"
           },
@@ -503,7 +503,7 @@
         "type": "object"
       },
       "Shoji-catalog-element": {
-        "description": "Always \"shoji:catalog\" for this object",
+        "description": "Always &apos;shoji:catalog&apos; for this object",
         "title": "Shoji catalog element",
         "type": "string",
         "x-examples": {
@@ -554,7 +554,7 @@
         ]
       },
       "Shoji-entity-element": {
-        "description": "Always \"shoji:entity\" for this object",
+        "description": "Always &apos;shoji:entity&apos; for this object",
         "title": "Shoji entity element",
         "type": "string",
         "x-examples": {
@@ -584,7 +584,7 @@
         "type": "object"
       },
       "Shoji-view-element": {
-        "description": "Always \"shoji:view\" for this object",
+        "description": "Always &apos;shoji:view&apos; for this object",
         "title": "Shoji view element",
         "type": "string",
         "x-examples": {
@@ -848,7 +848,7 @@
       "name": "Crunch Support",
       "url": "https://help.crunch.io"
     },
-    "description": "Developer API for Crunch.io\n\n# Viewing options\n* View this documentation [with navigation](https://crunch.io/api/reference)\n* View this documentation [without navigation](https://crunch.io/api/reference-nonav)\n* Download the [Crunch API OpenApi 3.0 Specification](https://crunch.io/oas/crunch-api.json)\n\n# API conventions\n\nThe Crunch REST API follows some common conventions across all endpoints. You can assume these to be the case except where explicitly documented otherwise.\n\n## Successful requests\nSuccessful GET requests return 200 (OK) status with Content-Type: application/json response content.\n\nPATCH is generally preferred for partial updating of resources, though some endpoints do support PUT. A successful request returns 204 (No Content) status.\n\nPOST is used to create entities on the server. The URL to the created entity is returned in the Location response header, and the response status is either 201 (Created) or 202 (Accepted).\n\n202 (Accepted) is used for requests that continue to process outside of the request cycle; for example, import or export jobs that may be long running and benefit from reporting progress to clients. See Progress for how to handle the 202 response content. Requests that would otherwise return 201 (Location) will still include the Location header in the 202 response; requests that would otherwise return 204 (No Content) will have no additional response headers.\n\n## Unsuccessful requests\n“Bad” requests returning with a 4xx status may contain JSON response content with an error message.\n\nUnauthenticated requests to non-public resources return 401 (Unauthorized).\n\nAuthenticated but unauthorized responses return 404 (Not Found) rather than 403 (Forbidden) in cases where returning 403 would leak information about the existence of resources. The 403 response is reserved for cases when, for example, a user is authorized to GET a resource but not PATCH it.\n\nThe 409 (Conflict) response is used when the request may be retried and may succeed if changes are first made at a different resource. Example: when a user who has edit privileges on a dataset but is not the “current editor” attempts to PATCH a dataset resource.\n\n## Error responses\nTo avoid duplicating error responses on every endpoint description, the most common responses are listed here and only any additional, endpoint-specific responses will be documented with each api endpoint.  \n\n### HTTP status codes\n| Status Code | Description |\n| :-: | :-- |\n| 400 | Bad request, invalid input |\n| 401 | Invalid access token |\n| 403 | Account locked - please contact Crunch support |\n\n## Deprecated endpoints\nWhen API resources are deprecated, responses will contain a Warning header with a message about the deprecation and a recommendation for upgrading. Our client libraries look for this response header and will alert you to upgrade your version of the library if you receive a response with this header.\n\nEndpoints that have been removed respond with a 410 (Gone) status, optionally with a message instructing you where to look instead.\n\n# API response envelopes\nCrunch API endpoints do not return plain old javascript objects (POJOs) directly but instead deliver POJOs inside a property of machine-readable custom envelopes that facilitate endpoint exploration and traversal. Click here to read the [envelope spec](https://bitbucket.org/fumanchu/shoji/src/default/spec.txt).\n\nUsing crunch api envelopes can be summarized like this:\n```javascript\nlet data = {}\nswitch (response.element) {\n  case 'shoji:entity':\n    data = response.body\n    break\n  case 'shoji:catalog':\n    data = response.index\n    break\n  case 'shoji:view':\n    data = response.value\n    break\n}\n```\n\n## ENTITY envelope\nA Shoji entity is identified by `element: \"shoji:entity\"`. Its principal attribute is the `body` key, which is an object containing the attributes that describe the entity.\n\n## CATALOG envelope\nA catalog is identified by `element: \"shoji:catalog\"` with its principal attribute being `index` that contains an object keyed by the URLs of the entities it contains and for each key an object (tuple) with attributes from the referenced entity.\n\nShoji catalogs are **not** ordered. For its ordered representations they may provide an `orders` set of Shoji order resources.\n\n## VIEW envelope\nA Shoji view is identified by `element: \"shoji:view\"` with its principal attribute being `value`. This can contain any arbitrary JSON object.\n\n## ORDER envelope\nShoji orders are identified by `element: \"shoji:order\"`. The principal attribute is the `graph` key which is an array containing the order of present resources.\n\nA shoji order may be associated with a catalog. In such case it will contain a subset or totality of the entities present in the catalog. The catalog remains as the authoritative source of available entities.\n\nAny entity not present on the order but present in the catalog may be considered to belong at the bottom of the root of the graph in an arbitrary order, or may be excluded from view.\n",
+    "description": "Developer API for Crunch.io\n\n# Viewing options\n* View this documentation [with navigation](https://crunch.io/api/reference)\n* View this documentation [without navigation](https://crunch.io/api/reference-nonav)\n* Download the [Crunch API OpenApi 3.0 Specification](https://crunch.io/oas/crunch-api.json)\n\n# API conventions\n\nThe Crunch REST API follows some common conventions across all endpoints. You can assume these to be the case except where explicitly documented otherwise.\n\n## Successful requests\nSuccessful GET requests return 200 (OK) status with Content-Type: application/json response content.\n\nPATCH is generally preferred for partial updating of resources, though some endpoints do support PUT. A successful request returns 204 (No Content) status.\n\nPOST is used to create entities on the server. The URL to the created entity is returned in the Location response header, and the response status is either 201 (Created) or 202 (Accepted).\n\n202 (Accepted) is used for requests that continue to process outside of the request cycle; for example, import or export jobs that may be long running and benefit from reporting progress to clients. See Progress for how to handle the 202 response content. Requests that would otherwise return 201 (Location) will still include the Location header in the 202 response; requests that would otherwise return 204 (No Content) will have no additional response headers.\n\n## Unsuccessful requests\n“Bad” requests returning with a 4xx status may contain JSON response content with an error message.\n\nUnauthenticated requests to non-public resources return 401 (Unauthorized).\n\nAuthenticated but unauthorized responses return 404 (Not Found) rather than 403 (Forbidden) in cases where returning 403 would leak information about the existence of resources. The 403 response is reserved for cases when, for example, a user is authorized to GET a resource but not PATCH it.\n\nThe 409 (Conflict) response is used when the request may be retried and may succeed if changes are first made at a different resource. Example: when a user who has edit privileges on a dataset but is not the “current editor” attempts to PATCH a dataset resource.\n\n## Error responses\nTo avoid duplicating error responses on every endpoint description, the most common responses are listed here and only any additional, endpoint-specific responses will be documented with each api endpoint.  \n\n### HTTP status codes\n| Status Code | Description |\n| :-: | :-- |\n| 400 | Bad request, invalid input |\n| 401 | Invalid access token |\n| 403 | Account locked - please contact Crunch support |\n\n## Deprecated endpoints\nWhen API resources are deprecated, responses will contain a Warning header with a message about the deprecation and a recommendation for upgrading. Our client libraries look for this response header and will alert you to upgrade your version of the library if you receive a response with this header.\n\nEndpoints that have been removed respond with a 410 (Gone) status, optionally with a message instructing you where to look instead.\n\n# API response envelopes\nCrunch API endpoints do not return plain old javascript objects (POJOs) directly but instead deliver POJOs inside a property of machine-readable custom envelopes that facilitate endpoint exploration and traversal. Click here to read the [envelope spec](https://bitbucket.org/fumanchu/shoji/src/default/spec.txt).\n\nUsing crunch api envelopes can be summarized like this:\n```javascript\nlet data = {}\nswitch (response.element) {\n  case 'shoji:entity':\n    data = response.body\n    break\n  case 'shoji:catalog':\n    data = response.index\n    break\n  case 'shoji:view':\n    data = response.value\n    break\n}\n```\n\n## ENTITY envelope\nA Shoji entity is identified by `element: &apos;shoji:entity&apos;`. Its principal attribute is the `body` key, which is an object containing the attributes that describe the entity.\n\n## CATALOG envelope\nA catalog is identified by `element: &apos;shoji:catalog&apos;` with its principal attribute being `index` that contains an object keyed by the URLs of the entities it contains and for each key an object (tuple) with attributes from the referenced entity.\n\nShoji catalogs are **not** ordered. For its ordered representations they may provide an `orders` set of Shoji order resources.\n\n## VIEW envelope\nA Shoji view is identified by `element: &apos;shoji:view&apos;` with its principal attribute being `value`. This can contain any arbitrary JSON object.\n\n## ORDER envelope\nShoji orders are identified by `element: &apos;shoji:order&apos;`. The principal attribute is the `graph` key which is an array containing the order of present resources.\n\nA shoji order may be associated with a catalog. In such case it will contain a subset or totality of the entities present in the catalog. The catalog remains as the authoritative source of available entities.\n\nAny entity not present on the order but present in the catalog may be considered to belong at the bottom of the root of the graph in an arbitrary order, or may be excluded from view.\n",
     "title": "Crunch API",
     "version": "1.1"
   },
@@ -937,7 +937,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X GET https://app.crunch.io/api/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "source": "curl -X GET https://app.crunch.io/api/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1075,7 +1075,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X PATCH https://app.crunch.io/api/account/ \\ \n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\ \n  -H \"Content-Type: application/json\" \\ \n  -d \"{ \\\"element\\\": \\\"shoji:entity\\\", \\\"body\\\": { \\\"palette\\\": { \\\"brand\\\": { \\\"primary\\\": \\\"#0064a4\\\", \\\"secondary\\\": \\\"#107f64\\\", \\\"message\\\": \\\"#722580\\\" } } }}\"",
+            "source": "curl -X PATCH https://app.crunch.io/api/account/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos; \\ \n  -H &apos;Content-Type: application/json&apos; \\ \n  -d &apos;{ \"element\": \"shoji:entity\", \"body\": { \"palette\": { \"brand\": { \"primary\": \"#0064a4\", \"secondary\": \"#107f64\", \"message\": \"#722580\" } } }}&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1161,7 +1161,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X GET https://app.crunch.io/api/account/applications/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "source": "curl -X GET https://app.crunch.io/api/account/applications/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1238,7 +1238,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X POST https://app.crunch.io/api/account/applications/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{ \\\"element\\\": \\\"shoji:entity\\\", \\\"body\\\": { \\\"name\\\": \\\"dcarr subdomain\\\", \\\"subdomain\\\": \\\"joe1\\\" }}\"",
+            "source": "curl -X POST https://app.crunch.io/api/account/applications/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos; \\ \n  -H &apos;Content-Type: application/json&apos; \\ \n  -d &apos;{ \"element\": \"shoji:entity\", \"body\": { \"name\": \"dcarr subdomain\", \"subdomain\": \"joe1\" }}&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1304,7 +1304,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X PATCH https://app.crunch.io/api/account/logo/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{ \\\"element\\\": \\\"shoji:view\\\", \\\"value\\\": { \\\"large\\\": null, \\\"small\\\": null, \\\"favicon\\\": null }}\"",
+            "source": "curl -X PATCH https://app.crunch.io/api/account/logo/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos; \\ \n  -H &apos;Content-Type: application/json&apos; \\ \n  -d &apos;{ \"element\": \"shoji:view\", \"value\": { \"large\": null, \"small\": null, \"favicon\": null }}&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1350,7 +1350,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X POST https://app.crunch.io/api/account/logo/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F \"large=@6r7bkQxR5u6X5KEv4DsJ.png\" \\\n  -F \"favicon=@favicon.ico\" \\\n  -F \"small=@6r7bkQxR5u6X5KEv4DsJ.png\"",
+            "source": "curl -X POST https://app.crunch.io/api/account/logo/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos; \\ \n  -H &apos;Content-Type: multipart/form-data&apos; \\ \n  -F &apos;large=@6r7bkQxR5u6X5KEv4DsJ.png&apos; \\ \n  -F &apos;favicon=@favicon.ico&apos; \\ \n  -F &apos;small=@6r7bkQxR5u6X5KEv4DsJ.png&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1406,7 +1406,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X PATCH https://app.crunch.io/api/account/templates/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: application/json\" \\\n  -d \"{ \\\"element\\\": \\\"shoji:view\\\", \\\"value\\\": { \\\"powerpoint\\\": null }}\"",
+            "source": "curl -X PATCH https://app.crunch.io/api/account/templates/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos; \\ \n  -H &apos;Content-Type: application/json&apos; \\ \n  -d &apos;{ \"element\": \"shoji:view\", \"value\": { \"powerpoint\": null }}&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1442,7 +1442,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X POST https://app.crunch.io/api/account/templates/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F \"powerpoint=@PowerpointTemplate.pptx\"",
+            "source": "curl -X POST https://app.crunch.io/api/account/templates/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos; \\ \n  -H &apos;Content-Type: multipart/form-data&apos; \\ \n  -F &apos;powerpoint=@PowerpointTemplate.pptx&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1564,7 +1564,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X GET https://app.crunch.io/api/feature_flag/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "source": "curl -X GET https://app.crunch.io/api/feature_flag/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1586,7 +1586,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X GET https://app.crunch.io/api/logout/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "source": "curl -X GET https://app.crunch.io/api/logout/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1662,7 +1662,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X GET https://app.crunch.io/api/projects/ \\\n\t-H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "source": "curl -X GET https://app.crunch.io/api/projects/ \\ \n\t-H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1785,7 +1785,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X GET https://app.crunch.io/api/projects/shared/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "source": "curl -X GET https://app.crunch.io/api/projects/shared/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1923,7 +1923,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X POST https://app.crunch.io/api/public/crunchbox/preview/?data=https%3A%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2Fa1b2c3d4e5f6g7h8%2Frow%2F000001%2Fcolumn%2F000000 \\\n  -d \"\"",
+            "source": "curl -X POST https://app.crunch.io/api/public/crunchbox/preview/?data=https%3A%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2Fa1b2c3d4e5f6g7h8%2Frow%2F000001%2Fcolumn%2F000000 \\ \n  -d &apos;&apos;",
             "syntaxLang": "bash"
           }
         ]
@@ -1931,7 +1931,7 @@
     },
     "/public/crunchbox/share/": {
       "get": {
-        "description": "Generates the HTML markup for the crunchbox sharing page containing all of the metadata necessary to satisfy the requirements of social platform crawlers to result in a rich sharing content preview. This preview is necessarily constructed as part of the request as to avoid javascript processing which will be ignored by these crawlers.\n\nSee: https://developers.facebook.com/docs/sharing/webmasters/crawler.\n\n# Endpoint usage in HTML file\n```html\n<html>\n<head>\n    <title>Link to CrunchBox</title>\n</head>\n<body>\nClick here to\n<a target=\"_blank\"\n   href=\"https://app.crunch.io/api/public/crunchbox/share/?data=%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2F72c27f64a12028b887d7cae248143b6b%2Frow%2F000886%2Fcolumn%2F000480%3Fviz%3DstackedBarPlot%26amp%3Bcp%3Dpercent%26amp%3Bdp%3D0%26amp%3Bgrp%3Dstack&ref=https%3A%2F%2Fwww.whitehouse.gov/\">view\n    CrunchBox</a>.\n</body>\n</html>\n```",
+        "description": "Generates the HTML markup for the crunchbox sharing page containing all of the metadata necessary to satisfy the requirements of social platform crawlers to result in a rich sharing content preview. This preview is necessarily constructed as part of the request as to avoid javascript processing which will be ignored by these crawlers.\n\nSee: https://developers.facebook.com/docs/sharing/webmasters/crawler.\n\n# Endpoint usage in HTML file\n```html\n<html>\n<head>\n    <title>Link to CrunchBox</title>\n</head>\n<body>\nClick here to\n<a target=&apos;_blank&apos;\n   href=&apos;https://app.crunch.io/api/public/crunchbox/share/?data=%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2F72c27f64a12028b887d7cae248143b6b%2Frow%2F000886%2Fcolumn%2F000480%3Fviz%3DstackedBarPlot%26amp%3Bcp%3Dpercent%26amp%3Bdp%3D0%26amp%3Bgrp%3Dstack&ref=https%3A%2F%2Fwww.whitehouse.gov/&apos;>view\n    CrunchBox</a>.\n</body>\n</html>\n```",
         "operationId": "get-crunchbox-share",
         "parameters": [
           {
@@ -1989,7 +1989,7 @@
     },
     "/public/login/": {
       "get": {
-        "description": "Provides a way for external websites to link to crunch application, passing in email address (username) in order to bypass the crunch login screen for oauth users. \n\n> ### Important!\n> This endpoint only works for user accounts configured for oauth access.\n\n# 3rd party web page\n```html\n<html><body>\nLink to \n<a href=\"https://app.crunch.io/api/public/login/?email=david.carr@crunch.io&redirect_uri=https%3A%2F%2Fapp.crunch.io%2Fshared\">\n  Crunch\n</a>\n</body></html>\n```\n\nTODO that example doesn't work. Make one that works.\n\n",
+        "description": "Provides a way for external websites to link to crunch application, passing in email address (username) in order to bypass the crunch login screen for oauth users. \n\n> ### Important!\n> This endpoint only works for user accounts configured for oauth access.\n\n# 3rd party web page\n```html\n<html><body>\nLink to \n<a href=&apos;https://app.crunch.io/api/public/login/?email=david.carr@crunch.io&redirect_uri=https%3A%2F%2Fapp.crunch.io%2Fshared&apos;>\n  Crunch\n</a>\n</body></html>\n```\n\nTODO that example doesn't work. Make one that works.\n\n",
         "operationId": "get-public-login",
         "parameters": [
           {
@@ -2126,16 +2126,16 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X POST https://app.crunch.io/api/public/login/ \\\n  -d \"{\\\"email\\\": \\\"fake.user@example.com\\\", \\\"password\\\": \\\"password\\\", \\\"token\\\": true}\" \\\n  -H \"Content-type: application/json\" \\\n  -H \"Content-Length: 73\" \n\n# The above command will perform a login and return a Bearer Token.\n# After this, you can access the endpoint via curl commands (POST, GET, PATCH), as long as\n# the -H \"Authorization: Bearer access_token\" flag is present. Substitute <access_token> with\n# the one returned on the login request.",
+            "source": "curl -X POST https://app.crunch.io/api/public/login/ \\ \n  -d &apos;{\"email\": \"fake.user@example.com\", \"password\": \"password\", \"token\": true}&apos; \\ \n  -H &apos;Content-type: application/json&apos; \n\n# The above command will perform a login and return a Bearer Token.\n# After this, you can access the endpoint via curl commands (POST, GET, PATCH), as long as\n# the -H &apos;Authorization: Bearer access_token&apos; flag is present. Substitute <access_token> with\n# the one returned on the login request.",
             "syntaxLang": "bash"
           },
           {
             "lang": "HTTP",
-            "source": "POST /api/public/login/ HTTP/1.1\nHost: app.crunch.io\nContent-Type: application/json\nContent-Length: 73\n\n{\n    \"email\": \"fake.user@example.com\",\n    \"password\": \"password\",\n    \"token\", true\n}\n\nHTTP/1.1 200 OK\n{\"access_token\": \"796f025f019ad8299337ba7b0924afbf\", \"token_type\": \"Bearer\"}"
+            "source": "POST /api/public/login/ HTTP/1.1\nHost: app.crunch.io\nContent-Type: application/json\nContent-Length: 73\n\n{\n    &apos;email&apos;: &apos;fake.user@example.com&apos;,\n    &apos;password&apos;: &apos;password&apos;,\n    &apos;token&apos;, true\n}\n\nHTTP/1.1 200 OK\n{&apos;access_token&apos;: &apos;796f025f019ad8299337ba7b0924afbf&apos;, &apos;token_type&apos;: &apos;Bearer&apos;}"
           },
           {
             "lang": "RCRUNCH SDK",
-            "source": "library(crunch)\nlogin(\"fake.user@example.com\", \"password\")\n# See ?login for options, including how to store your credentials\n# in your .Rprofile"
+            "source": "library(crunch)\nlogin(&apos;fake.user@example.com&apos;, &apos;password&apos;)\n# See ?login for options, including how to store your credentials\n# in your .Rprofile"
           },
           {
             "lang": "PYCRUNCH SDK",
@@ -2303,7 +2303,7 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X GET https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/ \\\n  -H \"Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e\"",
+            "source": "curl -X GET https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/ \\ \n  -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos;",
             "syntaxLang": "bash"
           }
         ]
