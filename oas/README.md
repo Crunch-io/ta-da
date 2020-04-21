@@ -44,7 +44,7 @@ When done testing, commit your changes and git push.
 Create a pull request to merge your feature branch into src branch. Somebody else (#website slack channel) will do a quick code review and perform the merge. When the merge happens, our CI process deploys the latest
 changes to our production website https://crunch.io within about 15 minutes.
 
-## Endpoint standards
+## Endpoint documentation standards
 
 When documenting Crunch endpoints, please adhere to these standards:
 
@@ -54,24 +54,40 @@ When documenting Crunch endpoints, please adhere to these standards:
 users and developers are unlikely to understand. Use markdown and special elements (html tables, tab panels) to make descriptions 
 look really good.
 
-* Code samples - EVERY endpoint should include a shell/curl example in x-code-samples. Adding more languages where possible is also helpful.
+* Code samples - EVERY endpoint should include a shell/curl example in x-code-samples. Adding more languages where possible is also helpful. A javascript example is also highly desired but each sample added significantly increases the time to document each endpoint. 
 
 * Trailing slashes in endpoint url - Crunch endpoints do not follow industry standards regarding trailing slashes. Specifically, Crunch endpoint urls require trailing slashes when most documented enterprise APIs and API best practice guides prohibit them. 
 As such, many oas editors give you error messages (best case) or try to automatically strip trailing slashes (worst case). **Please ensure your final
 documentation includes trailing slashes** so that endpoint testing doesn't fail.
 
-* Request model and example: Every endpoint should contain a request model and working example. These models and envelopes **SHOULD INCLUDE the shoji envelope** so they are testable.
+* Request model and example: Every endpoint should contain a request model and working example.
 
-* Response model and example: Every endpoint should contain a response model and example. These models and envelopes **SHOULD NOT INCLUDE the shoji envelope** so they are more human-readable.
+* Response model and example: Every endpoint should contain a response model and example.
 
 * Error responses: instead of duplicating common 401 and other error responses over and over again on every endpoint description, we will
 document error responses in the overview section and only focus on success responses on each endpoint. 
 
 * Spell-check EVERYTHING!!
 
-# API concerns
+## What's the deal with single quotes?
+Single quotes are accepted in the api spec and display correctly in endpoint descriptions but not in x-code-samples. For x-code-samples you must replace single quotes with & a p o s; (without spaces).
 
-See dedicated page [API Concerns](./API_CONCERNS.md)
+## Converting curl code sample to json string
+* Keep url one line 1
+* Put each header variable on a separate -H line enclosed by \&apos;
+* Put json body to pass in on a separate -d line enclosed by \&apos;
+* Do not include Content-Length header variable as it is difficult to compute and not needed for testing
+* Do not include Content-Type header variable unless it is definitely required when testing (e.g. needed for POST but not for GET)
+* Search and replace single quotes (') with \&apos;. Keeping single quotes in string breaks the api spec renderer.
+* Search and replace double quotes with escaped double quotes \\". Using \&quot; breaks the api spec renderer.
+* Search and replace multi-line line feed (\n) with \\\ \n in single-line json string.
+
+## Converting javascript code sample to json string
+* Write and javascript code sample in IDE
+* Test code sample in browser javascript console to successful completion
+* Paste code into https://codebeautify.org/jsviewer to beautify it, standardize spacing, etc
+* Paste beautified code into https://www.freeformatter.com/javascript-escape.html to escape characters and reduce to one line
+* Replace single quotes \' with \&apos;
 
 # TODO
 Make sure to:
