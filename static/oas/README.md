@@ -89,10 +89,6 @@ Single quotes are accepted in the api spec and display correctly in endpoint des
 * Paste beautified code into https://www.freeformatter.com/javascript-escape.html to escape characters and reduce to one line
 * Replace single quotes \' with \&apos;
 
-# API concerns
-
-See dedicated page [API Concerns](./API_CONCERNS.md)
-
 # TODO
 Make sure to:
 1. Log out every bearer token in curl examples or else anyone will be able to use them
