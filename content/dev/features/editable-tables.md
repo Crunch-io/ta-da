@@ -15,7 +15,7 @@ no_profiles = true
 
 You've already been able to customize saved *graphs*, but now you can make those same edits to the rows and columns of saved tables, either for export or for display in dashboards. More specifically, you can now...
 
-1. Hide any rows and/or columns of a table, including calculated rows/columns such as subtotals and means, leaving only those you want your export/dashboard consumers to see. Simply uncheck the box next to the row/column to hide it.
+1. Hide any rows and/or columns of a table, including calculated rows/columns such as subtotals, leaving only those you want your export/dashboard consumers to see. Simply uncheck the box next to the row/column to hide it.
 2. Reorder the rows/columns of a table, just by dragging them into their new order.
 3. Rename any row/column just by typing into the name box. Great for cases where the labels are too long or contain unwanted content.
 
