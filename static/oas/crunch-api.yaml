@@ -183,7 +183,7 @@ servers:
   - description: CORS bypass to Crunch API (testing sandbox)
     url: 'https://cors-buster.dcarr.com/alpha.crunch.io/api'
   - description: >-
-      CORS bypass to Crunch API (production)). EXERCISE EXTREME CAUTION as all
+      CORS bypass to Crunch API (production). EXERCISE EXTREME CAUTION as all
       non-GET requests to this server can be destructive to real data.
     url: 'https://cors-buster.dcarr.com/app.crunch.io/api'
   - description: Crunch API (testing sandbox)
