@@ -58,6 +58,18 @@
     font-size: 18px;
 }
 
-.table-space {
-    padding: 8px;
+.secondary-content {
+    .img-logo {
+        max-width: 120px;
+    }
+    .table {
+        tr {
+            vertical-align: top;
+        }
+
+        .table-space {
+            padding: 8px;
+        }
+    }
+
 }

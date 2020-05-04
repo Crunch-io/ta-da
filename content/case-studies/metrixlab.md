@@ -7,6 +7,7 @@ about = "Research agency specializing in brand engagement, product innovation an
 region = "Global"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
+logo = "img/logos/logo_metrixlab.png"
 
 +++
 
