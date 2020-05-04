@@ -7,6 +7,7 @@ about = "Video game company that owns properties, such as Call of Duty, Guitar H
 region = "Global"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
+logo = "img/logos/logo_activision_blizzard.png"
 
 +++
 

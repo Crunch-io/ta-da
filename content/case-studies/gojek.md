@@ -7,6 +7,7 @@ about = "On-demand multi-service app platform and digital payment technology gro
 region = "Southeast Asia"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
+logo = "img/logos/logo_gojek.jpg"
 
 +++
 

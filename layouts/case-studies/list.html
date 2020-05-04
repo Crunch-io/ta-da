@@ -33,7 +33,7 @@
                       {{ range .Data.Pages }}
                           {{ if and (eq .Type "case-studies") (eq .Title "YouGov") }}
                               <div class="col-md-11">
-                                  <h1>{{ .Params.title }}</h1>
+                                  <h1><img src="{{ .Params.logo }}" alt="{{ .Params.title }}" class="img-logo"></h1>
                                   <p class="headline"><span>Subsecond</span> response times for one of the <span>world’s</span> largest research networks</p>
                               </div>
 
@@ -69,7 +69,7 @@
                       {{ range .Data.Pages }}
                           {{ if and (eq .Type "case-studies") (eq .Title "Metrixlab") }}
                               <div class="col-md-11">
-                                  <h1>{{ .Params.title }}</h1>
+                                  <h1><img src="{{ .Params.logo }}" alt="{{ .Params.title }}" class="img-logo"></h1>
                                   <p class="headline"><span>Real-time</span> integration and analysis wins new business for <span>global</span> research agency</p>
                               </div>
 
@@ -105,7 +105,7 @@
                       {{ range .Data.Pages }}
                           {{ if and (eq .Type "case-studies") (eq .Title "Gojek") }}
                               <div class="col-md-11">
-                                  <h1>{{ .Params.title }}</h1>
+                                  <h1><img src="{{ .Params.logo }}" alt="{{ .Params.title }}" class="img-logo"></h1>
                                   <p class="headline">Data from <span>multiple</span> sources in one place analyzed for <span>technology</span> company</p>
                               </div>
 
@@ -141,7 +141,7 @@
                       {{ range .Data.Pages }}
                           {{ if and (eq .Type "case-studies") (eq .Title "Activision Blizzard") }}
                               <div class="col-md-11">
-                                  <h1>{{ .Params.title }}</h1>
+                                  <h1><img src="{{ .Params.logo }}" alt="{{ .Params.title }}" class="img-logo"></h1>
                                   <p class="headline">Interactive dashboards win sponsor support for <span>gaming</span> company</p>
                               </div>
 
@@ -177,7 +177,7 @@
                       {{ range .Data.Pages }}
                           {{ if and (eq .Type "case-studies") (eq .Title "The Chicago Council on Global Affairs") }}
                               <div class="col-md-11">
-                                  <h1>{{ .Params.title }}</h1>
+                                  <h1><img src="{{ .Params.logo }}" alt="{{ .Params.title }}" class="img-logo"></h1>
                                   <p class="headline">20 Years of <span>datasets</span> appended for <span>simple</span> and <span>intuitive</span> analysis of historical data</p>
                               </div>
 
