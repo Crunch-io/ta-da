@@ -58,6 +58,15 @@
     font-size: 18px;
 }
 
-.table-space {
-    padding: 8px;
+.secondary-content {
+    .table {
+        tr {
+            vertical-align: top;
+        }
+
+        .table-space {
+            padding: 8px;
+        }
+    }
+
 }
