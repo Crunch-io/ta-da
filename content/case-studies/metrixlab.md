@@ -1,6 +1,6 @@
 +++
 date = "2019-12-26T19:36:16-04:00"
-draft = false
+draft = true
 title = "Metrixlab"
 industry = "Market research"
 about = "Research agency specializing in brand engagement, product innovation and customer value"

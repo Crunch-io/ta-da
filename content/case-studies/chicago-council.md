@@ -8,6 +8,7 @@ region = "Global"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
 logo = "img/logos/logo_chicago_council.png"
+img = "https://via.placeholder.com/450x350"
 
 +++
 
