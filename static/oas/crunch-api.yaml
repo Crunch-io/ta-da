@@ -15,7 +15,7 @@ info:
     navigation](https://crunch.io/api/reference-nonav)
 
     * Download the [Crunch API OpenApi 3.0
-    Specification](https://crunch.io/oas/crunch-api.json)
+    Specification](https://crunch.io/oas/crunch-api.yaml)
 
 
     # API conventions
@@ -176,18 +176,16 @@ info:
     order, or may be excluded from view.
   title: Crunch API
   version: '1.1'
-openapi: 3.1.0
+openapi: 3.0.3
 security:
   - Access Token: []
 servers:
-  - description: CORS bypass to Crunch API (testing sandbox)
-    url: 'https://cors-buster.dcarr.com/alpha.crunch.io/api'
-  - description: >-
-      CORS bypass to Crunch API (production). EXERCISE EXTREME CAUTION as all
-      non-GET requests to this server can be destructive to real data.
-    url: 'https://cors-buster.dcarr.com/app.crunch.io/api'
-  - description: Crunch API (testing sandbox)
+  - description: Crunch API (testing sandbox 1)
     url: 'https://alpha.crunch.io/api'
+  - description: Crunch API (testing sandbox 2)
+    url: 'https://stable.crunch.io/api'
+  - description: Crunch API (testing sandbox 3)
+    url: 'https://unstable.crunch.io/api'
   - description: >-
       Crunch API (production). EXERCISE EXTREME CAUTION as all non-GET requests
       to this server can be destructive to real data.
@@ -476,11 +474,11 @@ components:
       properties:
         authorize_url:
           example: >-
-            https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=71778389871-ev84c1qhkfsg2fpqd7tv0hhkrsdtqdr5.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fapp.crunch.io%2Fapi%2Fpublic%2Foauth2redirect%2F&scope=openid+profile+email&state=YRR6SCtvzwbsG9gWmssOqD0VVq3QFA&nonce=6974180560616078291587000412&login_hint=david.carr%40crunch.io&access_type=online
+            https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=71778389871-ev84c1qhkfsg2fpqd7tv0hhkrsdtqdr5.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fapp.crunch.io%2Fapi%2Fpublic%2Foauth2redirect%2F&scope=openid+profile+email&state=YRR6SCtvzwbsG9gWmssOqD0VVq3QFA&nonce=6974180560616078291587000412&login_hint=fakeuser%40crunch.io&access_type=online
           format: uri
           type: string
         email:
-          example: david.carr@crunch.io
+          example: fakeuser@gmail.com
           format: email
           type: string
         method:
@@ -935,7 +933,7 @@ paths:
                         favicon: ''
                         large: ''
                         small: ''
-                      name: Account created for dcarr178@gmail.com
+                      name: Account created for fakeuser@gmail.com
                       palette: {}
                       templates:
                         powerpoint: ''
@@ -1175,7 +1173,7 @@ paths:
             curl -X POST https://app.crunch.io/api/account/applications/ \
               -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos; \
               -H &apos;Content-Type: application/json&apos; \
-              -d &apos;{ "element": "shoji:entity", "body": { "name": "dcarr subdomain", "subdomain": "joe1" }}&apos;
+              -d &apos;{ "element": "shoji:entity", "body": { "name": "fakeuser subdomain", "subdomain": "joe1" }}&apos;
           syntaxLang: bash
   /account/logo/:
     parameters: []
@@ -1889,8 +1887,8 @@ paths:
           name: email
           required: true
           schema:
-            default: david.carr@crunch.io
-            example: dcarr178@gmail.com
+            default: fakeuser@gmail.com
+            example: fakeuser@gmail.com
             format: email
             type: string
         - description: Crunch app url to redirect user to after oauth login
@@ -1915,7 +1913,7 @@ paths:
         - lang: SHELL
           source: >-
             curl -X GET
-            https://app.crunch.io/api/public/login/?email=david.carr%40crunch.io&redirect_uri=https%3A%2F%2Fapp.crunch.io%2Fshared
+            https://app.crunch.io/api/public/login/?email=fakeuser%40crunch.io&redirect_uri=https%3A%2F%2Fapp.crunch.io%2Fshared
           syntaxLang: bash
         - lang: JAVASCRIPT
           source: |-
@@ -1956,7 +1954,7 @@ paths:
               Login example:
                 summary: Login example
                 value:
-                  email: dcarr178@gmail.com
+                  email: fakeuser@gmail.com
                   password: ^IsR49LC5!%
                   token: true
             schema:
