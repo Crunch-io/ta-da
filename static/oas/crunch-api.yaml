@@ -840,7 +840,6 @@ paths:
                       datasets: 'https://app.crunch.io/api/datasets/'
                       datasets_by_name: 'https://app.crunch.io/api/datasets/by_name/{name}/'
                       geodata: 'https://app.crunch.io/api/geodata/'
-                      icons: 'https://app.crunch.io/api/icons/'
                       integrations: 'https://app.crunch.io/api/integrations/'
                       lobs: 'https://app.crunch.io/api/lobs/'
                       projects: 'https://app.crunch.io/api/projects/'
@@ -858,9 +857,9 @@ paths:
                       account_roles_url: 'https://app.crunch.io/api/roles/accounts/'
                       account_url: 'https://app.crunch.io/api/account/'
                       logout_url: 'https://app.crunch.io/api/logout/'
-                      notebook_url: 'https://alpha-jupyter.crunch.io/'
+                      notebook_url: 'https://jupyter.crunch.io/'
                       user_url: >-
-                        https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/
+                        https://app.crunch.io/api/users/1db4a48a481f420caf72c966f9a2b948/
                     views:
                       account: 'https://app.crunch.io/api/account/'
                       feature_flag: 'https://app.crunch.io/api/feature_flag/'
@@ -868,24 +867,195 @@ paths:
                       progress: 'https://app.crunch.io/api/progress/'
                       search: 'https://app.crunch.io/api/search/'
                       user: >-
-                        https://app.crunch.io/api/users/f94d0f8486f14689b1c9fdd982d51700/
+                        https://app.crunch.io/api/users/1db4a48a481f420caf72c966f9a2b948/
               schema:
+                description: ''
+                type: object
                 properties:
                   catalogs:
-                    $ref: '#/components/schemas/Shoji-catalog-list'
+                    type: object
+                    properties:
+                      dashboards:
+                        type: string
+                        minLength: 1
+                      datasets:
+                        type: string
+                        minLength: 1
+                      datasets_by_name:
+                        type: string
+                        minLength: 1
+                      geodata:
+                        type: string
+                        minLength: 1
+                      integrations:
+                        type: string
+                        minLength: 1
+                      lobs:
+                        type: string
+                        minLength: 1
+                      projects:
+                        type: string
+                        minLength: 1
+                      public:
+                        type: string
+                        minLength: 1
+                      roles:
+                        type: string
+                        minLength: 1
+                      sources:
+                        type: string
+                        minLength: 1
+                      teams:
+                        type: string
+                        minLength: 1
+                      users:
+                        type: string
+                        minLength: 1
+                    required:
+                      - dashboards
+                      - datasets
+                      - datasets_by_name
+                      - geodata
+                      - integrations
+                      - lobs
+                      - projects
+                      - public
+                      - roles
+                      - sources
+                      - teams
+                      - users
                   description:
-                    description: Catalog description
                     type: string
+                    minLength: 1
                   element:
-                    $ref: '#/components/schemas/Shoji-catalog-element'
+                    type: string
+                    minLength: 1
                   self:
-                    $ref: '#/components/schemas/Shoji-self'
+                    type: string
+                    minLength: 1
                   urls:
-                    $ref: '#/components/schemas/Shoji-url-list'
+                    type: object
+                    properties:
+                      account_roles_url:
+                        type: string
+                        minLength: 1
+                      account_url:
+                        type: string
+                        minLength: 1
+                      logout_url:
+                        type: string
+                        minLength: 1
+                      notebook_url:
+                        type: string
+                        minLength: 1
+                      user_url:
+                        type: string
+                        minLength: 1
+                    required:
+                      - account_roles_url
+                      - account_url
+                      - logout_url
+                      - notebook_url
+                      - user_url
                   views:
-                    $ref: '#/components/schemas/Shoji-view-list'
+                    type: object
+                    properties:
+                      account:
+                        type: string
+                        minLength: 1
+                      feature_flag:
+                        type: string
+                        minLength: 1
+                      migration:
+                        type: string
+                        minLength: 1
+                      progress:
+                        type: string
+                        minLength: 1
+                      search:
+                        type: string
+                        minLength: 1
+                      user:
+                        type: string
+                        minLength: 1
+                    required:
+                      - account
+                      - feature_flag
+                      - migration
+                      - progress
+                      - search
+                      - user
+                required:
+                  - catalogs
+                  - description
+                  - element
+                  - self
+                  - urls
+                  - views
+          description: Success
+        '401':
+          content:
+            application/json:
+              examples:
+                example-1:
+                  value:
+                    exception:
+                      - >-
+                        You must be authenticated to access this resource.
+                        Please login at /public/login/
+                    status: 401 Unauthorized
+                    urls:
+                      collect_inquires: 'https://app.crunch.io/api/public/inquire/'
+                      email_change_url: 'https://app.crunch.io/api/public/change_email/'
+                      login_url: 'https://app.crunch.io/api/public/login/'
+                      password_change_url: 'https://app.crunch.io/api/public/password_change/'
+                      password_reset_url: 'https://app.crunch.io/api/public/password_reset/'
+                      public_url: 'https://app.crunch.io/api/public/'
+              schema:
+                description: ''
                 type: object
-          description: OK
+                properties:
+                  exception:
+                    type: array
+                    items:
+                      required: []
+                      properties: {}
+                  status:
+                    type: string
+                    minLength: 1
+                  urls:
+                    type: object
+                    properties:
+                      collect_inquires:
+                        type: string
+                        minLength: 1
+                      email_change_url:
+                        type: string
+                        minLength: 1
+                      login_url:
+                        type: string
+                        minLength: 1
+                      password_change_url:
+                        type: string
+                        minLength: 1
+                      password_reset_url:
+                        type: string
+                        minLength: 1
+                      public_url:
+                        type: string
+                        minLength: 1
+                    required:
+                      - collect_inquires
+                      - email_change_url
+                      - login_url
+                      - password_change_url
+                      - password_reset_url
+                      - public_url
+                required:
+                  - exception
+                  - status
+                  - urls
+          description: Unauthorized
       summary: Root urls
       tags:
         - Catalogs
@@ -906,6 +1076,7 @@ paths:
               })
              .then(response => response.json())
           syntaxLang: javascript
+    parameters: []
   /account/:
     get:
       description: >-
@@ -962,6 +1133,8 @@ paths:
                     $ref: '#/components/schemas/Shoji-view-list'
                 type: object
           description: OK
+        '401':
+          description: Unauthorized
       summary: Account details
       tags:
         - Account
@@ -1005,11 +1178,63 @@ paths:
             schema:
               properties:
                 body:
+                  type: object
+                  default: {}
+                  examples:
+                    - palette:
+                        brand:
+                          primary: '#0064a4'
+                          secondary: '#107f64'
+                          message: '#722580'
+                        analysis: []
+                  required:
+                    - palette
                   properties:
                     palette:
-                      $ref: >-
-                        ./crunch-api.2020-04-16.yaml#/components/schemas/Color-Palette
-                  type: object
+                      type: object
+                      default: {}
+                      examples:
+                        - analysis: []
+                          brand:
+                            primary: '#0064a4'
+                            secondary: '#107f64'
+                            message: '#722580'
+                      required:
+                        - analysis
+                        - brand
+                      properties:
+                        analysis:
+                          type: array
+                          default: []
+                          examples:
+                            - []
+                        brand:
+                          type: object
+                          default: {}
+                          examples:
+                            - primary: '#0064a4'
+                              secondary: '#107f64'
+                              message: '#722580'
+                          required:
+                            - message
+                            - primary
+                            - secondary
+                          properties:
+                            message:
+                              type: string
+                              default: ''
+                              examples:
+                                - '#722580'
+                            primary:
+                              type: string
+                              default: ''
+                              examples:
+                                - '#0064a4'
+                            secondary:
+                              type: string
+                              default: ''
+                              examples:
+                                - '#107f64'
                 element:
                   $ref: '#/components/schemas/Shoji-entity-element'
               type: object
@@ -1024,9 +1249,46 @@ paths:
           source: |-
             curl -X PATCH https://app.crunch.io/api/account/ \
               -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos; \
-              -H &apos;Content-Type: application/json&apos; \
-              -d &apos;{ "element": "shoji:entity", "body": { "palette": { "brand": { "primary": "#0064a4", "secondary": "#107f64", "message": "#722580" } } }}&apos;
+              -H &apos;Content-Type: application/json&apos; -d &apos;
+            {
+              "element": "shoji:entity",
+              "body": {
+                "palette": {
+                  "analysis": [],
+                  "brand": {
+                    "primary": "#0064a4",
+                    "secondary": "#107f64",
+                    "message": "#722580"
+                  }
+                }
+              }
+            }
+            &apos;
           syntaxLang: bash
+        - lang: JAVASCRIPT
+          source: |-
+            const patchAccount = await fetch(
+              &apos;https://app.crunch.io/api/account/&apos;, {
+               method: &apos;PATCH&apos;,
+               headers: {
+                &apos;Authorization&apos;: &apos;Bearer 598d9e1105ad96dac7ab528f0928996e&apos;,
+                &apos;Content-Type&apos;: &apos;application/json&apos;
+               },
+               body: JSON.stringify({
+                "element": "shoji:entity",
+                "body": {
+                  "palette": {
+                    "analysis": [],
+                    "brand": {
+                      "primary": "#0064a4",
+                      "secondary": "#107f64",
+                      "message": "#722580"
+                    }
+                  }
+                }
+               })
+             })
+          syntaxLang: javascript
   /account/applications/:
     get:
       description: List subdomains configured for user's account.
@@ -1130,36 +1392,37 @@ paths:
             examples:
               example-1:
                 value:
-                  body:
-                    manifest: {}
-                    name: my company
-                    palette:
-                      brand:
-                        message: '#BAA5E7'
-                        primary: '#FFAABB'
-                        secondary: '#G4EEBB'
-                    subdomain: mycompany
                   element: 'shoji:entity'
+                  body:
+                    name: fakeuser subdomain
+                    subdomain: joe
             schema:
               properties:
+                element:
+                  type: string
+                  default: shoji:entity
+                  examples:
+                    - shoji:entity
                 body:
-                  properties:
-                    manifest:
-                      type: object
-                    name:
-                      description: Name of subdomain
-                      type: string
-                    palette:
-                      $ref: '#/components/schemas/Color-Palette'
-                    subdomain:
-                      description: Subdomain prefix
-                      type: string
+                  type: object
+                  default: {}
+                  examples:
+                    - name: fakeuser subdomain
+                      subdomain: joe1
                   required:
                     - name
                     - subdomain
-                  type: object
-                element:
-                  $ref: '#/components/schemas/Shoji-entity'
+                  properties:
+                    name:
+                      type: string
+                      default: ''
+                      examples:
+                        - fakeuser subdomain
+                    subdomain:
+                      type: string
+                      default: ''
+                      examples:
+                        - joe1
               type: object
       responses:
         '201':
@@ -1172,9 +1435,34 @@ paths:
           source: |-
             curl -X POST https://app.crunch.io/api/account/applications/ \
               -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos; \
-              -H &apos;Content-Type: application/json&apos; \
-              -d &apos;{ "element": "shoji:entity", "body": { "name": "fakeuser subdomain", "subdomain": "joe1" }}&apos;
+              -H &apos;Content-Type: application/json&apos; -d &apos;
+            {
+              "element": "shoji:entity",
+              "body": {
+                "name": "fakeuser subdomain",
+                "subdomain": "joe1"
+              }
+            }
+            &apos;
           syntaxLang: bash
+        - lang: JAVASCRIPT
+          source: |-
+            const postSubdomain = await fetch(
+              &apos;https://app.crunch.io/api/account/applications/&apos;, {
+               method: &apos;POST&apos;,
+               headers: {
+                &apos;Authorization&apos;: &apos;Bearer 598d9e1105ad96dac7ab528f0928996e&apos;,
+                &apos;Content-Type&apos;: &apos;application/json&apos;
+               },
+               body: JSON.stringify({
+                "element": "shoji:entity",
+                "body": {
+                  "name": "fakeuser subdomain",
+                  "subdomain": "joe1"
+                }
+               })
+             })
+          syntaxLang: javascript
   /account/logo/:
     parameters: []
     patch:
@@ -1221,9 +1509,36 @@ paths:
           source: |-
             curl -X PATCH https://app.crunch.io/api/account/logo/ \
               -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos; \
-              -H &apos;Content-Type: application/json&apos; \
-              -d &apos;{ "element": "shoji:view", "value": { "large": null, "small": null, "favicon": null }}&apos;
+              -H &apos;Content-Type: application/json&apos; -d &apos;
+            {
+              "element": "shoji:view",
+              "value": {
+                "large": null,
+                "small": null,
+                "favicon": null
+              }
+            }
+            &apos;
           syntaxLang: bash
+        - lang: JAVASCRIPT
+          source: |-
+            const removeLogo = await fetch(
+              &apos;https://app.crunch.io/api/account/logo/&apos;, {
+               method: &apos;PATCH&apos;,
+               headers: {
+                &apos;Authorization&apos;: &apos;Bearer 598d9e1105ad96dac7ab528f0928996e&apos;,
+                &apos;Content-Type&apos;: &apos;application/json&apos;
+               },
+               body: JSON.stringify({
+                "element": "shoji:view",
+                "value": {
+                  "large": null,
+                  "small": null,
+                  "favicon": null
+                }
+               })
+             })
+          syntaxLang: javascript
     post:
       description: >-
         Update the logos for the user's account. Only account admins are
@@ -1353,73 +1668,68 @@ paths:
                     element: 'shoji:view'
                     self: 'https://app.crunch.io/api/feature_flag/'
                     value:
-                      labs:
-                        - decipher
-                        - multitable-importer
-                        - triple_s
-                        - scorecards
-                        - automation
-                        - dashboards-tabbed-analyses
+                      labs: []
                       'off':
-                        - profiles_collaborate_link
-                        - spss_uniform_default_false
-                        - csv_import_pandas
-                        - augment-dimensions
-                      'on':
-                        - stream_validation
-                        - stream_quick_appends
+                        - dataset_history
+                        - labs
+                        - dashboards
+                        - public_widget
+                        - data_cats
+                        - variable-folders
+                        - variable-folders-ui
+                        - old_projects_order
                         - automatic_frame_collapsing
                         - skip_folders_integrity_checking
-                        - profiles_notify_latest
-                        - significant_columns
-                        - dashboards-ui
-                        - variable_tags
-                        - secure_folder
-                        - column-significance-ui
-                        - branding
-                        - auto_check_datamap
-                        - templates
-                        - uniform_default_false
-                        - dashboard-rich-text-tiles
-                        - pptx-account-template
-                        - project_admin
-                        - interaction-builder
-                        - value_labels
-                        - deck_slide_edits
-                        - dashboard-kpi
-                        - cat_date_deriv
-                        - disable-multitablefunc
+                      'on':
+                        - html_emails
+                        - private_variables
+                        - dataset_search_index
+                        - variable_search_index
+                        - tabbooks
+                        - projects
+                        - variable_folders
+                        - crosstab_upgrade
               schema:
+                description: ''
+                type: object
                 properties:
                   description:
-                    description: Object description
                     type: string
+                    minLength: 1
                   element:
-                    $ref: '#/components/schemas/Shoji-view-element'
+                    type: string
+                    minLength: 1
                   self:
-                    $ref: '#/components/schemas/Shoji-self'
+                    type: string
+                    minLength: 1
                   value:
+                    type: object
                     properties:
                       labs:
-                        description: >-
-                          Crunch Labs features enabled in Crunch app for this
-                          user
-                        items:
-                          type: string
                         type: array
+                        items:
+                          required: []
+                          properties: {}
                       'off':
-                        description: Features disabled in Crunch app for this user
-                        items:
-                          type: string
                         type: array
+                        items:
+                          required: []
+                          properties: {}
                       'on':
-                        description: Features enabled in Crunch app for this user
-                        items:
-                          type: string
                         type: array
-                    type: object
-                type: object
-          description: OK
+                        items:
+                          required: []
+                          properties: {}
+                    required:
+                      - labs
+                      - 'off'
+                      - 'on'
+                required:
+                  - description
+                  - element
+                  - self
+                  - value
+          description: Success
       security:
         - Access Token: []
       summary: Feature flags
@@ -1433,7 +1743,7 @@ paths:
           syntaxLang: bash
         - lang: JAVASCRIPT
           source: |-
-            const featureFlag = await fetch(
+            const featureFlags = await fetch(
               &apos;https://app.crunch.io/api/feature_flag/&apos;, {
                method: &apos;GET&apos;,
                headers: {
@@ -1459,69 +1769,16 @@ paths:
             curl -X GET https://app.crunch.io/api/logout/ \
               -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos;
           syntaxLang: bash
-  /projects/:
-    get:
-      description: Returns a list of projects the authenticated user is a member of.
-      operationId: get-projects
-      responses:
-        '200':
-          content:
-            application/json:
-              examples:
-                example-1:
-                  value:
-                    body:
-                      access_time: null
-                      description: Displays all the projects you have access to
-                      modification_time: null
-                      name: Projects catalog
-                      owner: >-
-                        https://app.crunch.io/api/users/1168fb80e331419e9e0b2695714b32b3/
-                      owner_id: >-
-                        https://app.crunch.io/api/users/1168fb80e331419e9e0b2695714b32b3/
-                      permissions:
-                        edit: false
-                        view: true
-                    catalogs:
-                      personal: 'https://app.crunch.io/api/projects/personal/'
-                      shared: 'https://app.crunch.io/api/projects/shared/'
-                    element: 'shoji:catalog'
-                    index: {}
-                    self: 'https://app.crunch.io/api/projects/'
-              schema:
-                properties:
-                  body:
-                    $ref: '#/components/schemas/Shoji-catalog-body'
-                  catalogs:
-                    $ref: '#/components/schemas/Shoji-catalog-list'
-                  element:
-                    $ref: '#/components/schemas/Shoji-catalog-element'
-                  index:
-                    type: object
-                  self:
-                    $ref: '#/components/schemas/Shoji-self'
-                type: object
-          description: OK
-      security:
-        - Access Token: []
-      summary: Project urls
-      tags:
-        - Catalogs
-      x-code-samples:
-        - lang: SHELL
-          source: "curl -X GET https://app.crunch.io/api/projects/ \\ \n\t-H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos;"
-          syntaxLang: bash
         - lang: JAVASCRIPT
           source: |-
-            const projectURLs = await fetch(
-              &apos;https://app.crunch.io/api/projects/&apos;, {
+            const logout = await fetch(
+              &apos;https://app.crunch.io/api/logout/&apos;, {
                method: &apos;GET&apos;,
                headers: {
                 &apos;Authorization&apos;: &apos;Bearer 598d9e1105ad96dac7ab528f0928996e&apos;,
                }
               })
-             .then(response => response.json())
-             .then(jsonResponse => jsonResponse.catalogs);
+          syntaxLang: javascript
   /projects/shared/:
     get:
       description: >-
@@ -1712,19 +1969,92 @@ paths:
               examples:
                 example-1:
                   value:
-                    logo:
-                      favicon: >-
-                        https://s.crunch.io/act_app_icons/mycompany-kyzdnb-favicon.ico
-                      large: >-
-                        https://s.crunch.io/act_app_icons/mycompany-wcaran-large.png
-                      small: >-
-                        https://s.crunch.io/act_app_icons/mycompany-nchvcz-small.png
-                    manifest: {}
-                    name: My Company
-                    oauth_redirect: true
-                    palette: {}
+                    element: 'shoji:entity'
+                    self: 'https://app.crunch.io/api/public/config/'
+                    body:
+                      logo:
+                        favicon: >-
+                          https://s.crunch.io/act_app_icons/mycompany-kyzdnb-favicon.ico
+                        large: >-
+                          https://s.crunch.io/act_app_icons/mycompany-wcaran-large.png
+                        small: >-
+                          https://s.crunch.io/act_app_icons/mycompany-nchvcz-small.png
+                      manifest: {}
+                      name: My Company
+                      oauth_redirect: true
+                      palette: {}
               schema:
-                $ref: '#/components/schemas/subdomain-configuration'
+                type: object
+                default: {}
+                properties:
+                  element:
+                    type: string
+                    default: ''
+                    examples:
+                      - 'shoji:entity'
+                  self:
+                    type: string
+                    default: ''
+                    examples:
+                      - 'https://yougov.crunch.io/api/public/config/'
+                  body:
+                    type: object
+                    default: {}
+                    examples:
+                      - oauth_redirect: true
+                        palette: {}
+                        manifest: {}
+                        logo:
+                          favicon: 'https://s.crunch.io/act_app_icons/yougov-kyzdnb-favicon.ico'
+                          large: 'https://s.crunch.io/act_app_icons/yougov-wcaran-large.png'
+                          small: 'https://s.crunch.io/act_app_icons/yougov-nchvcz-small.png'
+                        name: YouGov
+                    properties:
+                      logo:
+                        type: object
+                        default: {}
+                        examples:
+                          - favicon: 'https://s.crunch.io/act_app_icons/yougov-kyzdnb-favicon.ico'
+                            large: 'https://s.crunch.io/act_app_icons/yougov-wcaran-large.png'
+                            small: 'https://s.crunch.io/act_app_icons/yougov-nchvcz-small.png'
+                        properties:
+                          large:
+                            type: string
+                            default: ''
+                            examples:
+                              - 'https://s.crunch.io/act_app_icons/yougov-wcaran-large.png'
+                          small:
+                            type: string
+                            default: ''
+                            examples:
+                              - 'https://s.crunch.io/act_app_icons/yougov-nchvcz-small.png'
+                          favicon:
+                            type: string
+                            default: ''
+                            examples:
+                              - 'https://s.crunch.io/act_app_icons/yougov-kyzdnb-favicon.ico'
+                      palette:
+                        type: object
+                        default: {}
+                        examples:
+                          - {}
+                        properties: null
+                      name:
+                        type: string
+                        default: ''
+                        examples:
+                          - YouGov
+                      oauth_redirect:
+                        type: boolean
+                        default: false
+                        examples:
+                          - true
+                      manifest:
+                        type: object
+                        default: {}
+                        examples:
+                          - {}
+                        properties: null
           description: OK
       security: []
       summary: Company configuration
@@ -1791,7 +2121,7 @@ paths:
             url.search = new URLSearchParams({
               data: &apos;https://s.crunch.io/widget/index.html#/ds/a1b2c3d4e5f6g7h8/row/000001/column/000000&apos;
             })
-            const resultStatusCode = fetch(url, {
+            const generateCrunchboxPreview = fetch(url, {
                 method: &apos;POST&apos;
               })
              .then(response => response.status)
@@ -1870,6 +2200,25 @@ paths:
             curl -X GET
             https://app.crunch.io/api/public/crunchbox/share/?data=%2F%2Fs.crunch.io%2Fwidget%2Findex.html%23%2Fds%2Fd4b2945f727f4eccbc31544ddabf9fa4%3Fviz%3DgroupedBarPlot%26cp%3Dpercent%26dp%3D0%26grp%3Dstack&ref=https%3A%2F%2Fgoogle.com
           syntaxLang: bash
+        - lang: JAVASCRIPT
+          source: >-
+            const getCrunchboxUrl = new
+            URL(&apos;https://app.crunch.io/api/public/crunchbox/share/&apos;)
+
+            getCrunchboxUrl.search = new URLSearchParams({
+              data: &apos;//s.crunch.io/widget/index.html#/ds/d4b2945f727f4eccbc31544ddabf9fa4?viz=groupedBarPlot&cp=percent&dp=0&grp=stack&apos;,
+              ref: &apos;https://google.com&apos;
+            })
+
+            const getCrunchboxShare = await fetch(
+              getCrunchboxUrl, {
+               method: &apos;GET&apos;,
+               headers: {
+                &apos;Authorization&apos;: &apos;Bearer 598d9e1105ad96dac7ab528f0928996e&apos;
+               }
+             })
+             .then(response => response.json())
+          syntaxLang: javascript
     parameters: []
   /public/login/:
     get:
@@ -1922,7 +2271,7 @@ paths:
               email: &apos;joe@gmail.com&apos;,
               redirect_uri: &apos;https://app.crunch.io/shared&apos;,
             })
-            const result = await fetch(url, {
+            const authorizationMethod = await fetch(url, {
                 method: &apos;GET&apos;
               })
              .then(response => response.json())
@@ -2007,20 +2356,15 @@ paths:
         - Authentication
       x-code-samples:
         - lang: SHELL
-          source: >-
+          source: |-
             curl -X POST https://app.crunch.io/api/public/login/ \
-              -d &apos;{"email": "fake.user@example.com", "password": "password", "token": true}&apos; \
-              -H &apos;Content-type: application/json&apos;
-
-            # The above command will perform a login and return a Bearer Token.
-
-            # After this, you can access the endpoint via curl commands (POST,
-            GET, PATCH), as long as
-
-            # the -H &apos;Authorization: Bearer access_token&apos; flag is
-            present. Substitute <access_token> with
-
-            # the one returned on the login request.
+              -H &apos;Content-type: application/json&apos; -d &apos;
+            {
+              "email": "fake.user@example.com",
+              "password": "password",
+              "token": true
+            }
+            &apos;
           syntaxLang: bash
         - lang: JAVASCRIPT
           source: |-
@@ -2036,35 +2380,9 @@ paths:
              .then(response => response.json())
              .then(jsonResponse => jsonResponse.access_token);
           syntaxLang: javascript
-        - lang: HTTP
-          source: >-
-            POST /api/public/login/ HTTP/1.1
-
-            Host: app.crunch.io
-
-            Content-Type: application/json
-
-            Content-Length: 73
-
-
-            {
-                &apos;email&apos;: &apos;fake.user@example.com&apos;,
-                &apos;password&apos;: &apos;password&apos;,
-                &apos;token&apos;, true
-            }
-
-
-            HTTP/1.1 200 OK
-
-            {&apos;access_token&apos;:
-            &apos;796f025f019ad8299337ba7b0924afbf&apos;,
-            &apos;token_type&apos;: &apos;Bearer&apos;}
         - lang: RCRUNCH SDK
           source: |-
             library(crunch)
             login(&apos;fake.user@example.com&apos;, &apos;password&apos;)
             # See ?login for options, including how to store your credentials
             # in your .Rprofile
-        - lang: PYCRUNCH SDK
-          source: import pycrunch
-          syntaxLang: python
