@@ -36,6 +36,19 @@
             height: 600px;
         }
 
+        .jumbotron-secondary-pages {
+            background-color: $color-green;
+            background-image: linear-gradient( $color-green, $--darker-secondary-color);
+            margin-bottom: 0;
+            height: 325px;
+
+            h2 {
+                font-family: 'ProximaNova', sans-serif;
+                font-size: 20px;
+                font-style: normal;
+            }
+        }
+
         @include media-breakpoint-down(xs) {
             .jumbotron {
                 padding-top: 100px;
@@ -46,6 +59,10 @@
         .intro-animated-gif {
             margin-top: -400px;
             margin-bottom: 20px;
+
+            &.secondary-animated-gif {
+                margin-top: -150px;
+            }
         }
     }
 
