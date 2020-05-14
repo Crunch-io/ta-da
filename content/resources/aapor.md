@@ -1,6 +1,6 @@
 +++
 date = "2020-03-18T09:45:32-04:00"
-draft = false
+draft = true
 title = "AAPOR"
 label = "Event | June 11-12"
 url = "//info.crunch.io/aapor-2020"
