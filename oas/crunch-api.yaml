@@ -1617,9 +1617,32 @@ paths:
           source: |-
             curl -X PATCH https://app.crunch.io/api/account/templates/ \
               -H &apos;Authorization: Bearer 598d9e1105ad96dac7ab528f0928996e&apos; \
-              -H &apos;Content-Type: application/json&apos; \
-              -d &apos;{ "element": "shoji:view", "value": { "powerpoint": null }}&apos;
+              -H &apos;Content-Type: application/json&apos; -d &apos;
+            {
+              "element": "shoji:view",
+              "value": {
+                "powerpoint": null
+              }
+            }
+            &apos;
           syntaxLang: bash
+        - lang: JAVASCRIPT
+          source: |-
+            const removeTemplate = await fetch(
+              &apos;https://app.crunch.io/api/account/templates/&apos;, {
+               method: &apos;PATCH&apos;,
+               headers: {
+                &apos;Authorization&apos;: &apos;Bearer 598d9e1105ad96dac7ab528f0928996e&apos;,
+                &apos;Content-Type&apos;: &apos;application/json&apos;
+               },
+               body: JSON.stringify({
+                "element": "shoji:view",
+                "value": {
+                  "powerpoint": null
+                }
+               })
+             })
+          syntaxLang: javascript
     post:
       description: >-
         Update the PowerPoint template for the user's account. Only account

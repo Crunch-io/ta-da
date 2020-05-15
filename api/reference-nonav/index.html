@@ -61,6 +61,9 @@
     rapi-doc {
         width: 100%;
     }
+
+
+
 </style>
 
 
@@ -155,35 +158,116 @@
     </div>
 </div>
 
+
+
 <rapi-doc
-    id="thedoc"
-    allow-spec-file-load="false"
-    allow-spec-url-load="false"
-    default-schema-tab="example"
-    info-description-headings-in-navbar="true"
-    layout="row"
-    nav-accent-color="#0064a4"
-    nav-bg-color="#f9f9f9"
-    nav-hover-bg-color="#f1f1f1"
-    nav-hover-text-color="#000000"
-    nav-text-color="#1d1d26"
-    primary-color="#0064a4"
-    nav-item-spacing="compact"
-    regular-font="ProximaNova"
-    render-style='view'
-    response-area-height="900px"
-    schema-description-expanded="true"
-    schema-style="tree"
-    show-components="false"
-    show-header="false"
-    show-info="true"
-    sort-endpoints-by="method"
-    sort-tags="true"
-    spec-url="/oas/crunch-api.yaml"
-    theme="light"
+        id="thedoc"
+        allow-spec-file-load="false"
+        allow-spec-url-load="false"
+        default-schema-tab="example"
+        info-description-headings-in-navbar="true"
+        layout="row"
+        nav-accent-color="#0064a4"
+        nav-bg-color="#ffffff"
+        nav-hover-bg-color="#4c8cb8"
+        nav-hover-text-color="#000000"
+        nav-text-color="#1d1d26"
+        primary-color="#0064a4"
+        nav-item-spacing="compact"
+        regular-font="ProximaNova"
+        render-style='view'
+        response-area-height="900px"
+        schema-description-expanded="true"
+        schema-style="tree"
+        show-components="false"
+        show-header="false"
+        show-info="true"
+        sort-endpoints-by="method"
+        sort-tags="true"
+        spec-url="/oas/crunch-api.yaml"
+        theme="light"
 >
 </rapi-doc>
 
+<script>
+    
+    document.querySelector('rapi-doc').addEventListener('spec-loaded', e => {
+        setTimeout(() => {
+            const rapidoc = document.querySelector('rapi-doc').shadowRoot
+            const style = document.createElement( 'style' )
+            style.innerHTML = `
+                :host {
+                  --green: #107f65;
+                  --fg: #0064A4;
+                  --blue: #0064A4;
+                  --light-grey: #fefefe;
+                  --purple: #722580;
+                  --code-bg: var(--light-grey);
+                  --grey: #e5e5e5;
+                }
+                .token.tag, .token.function, .token.punctuation, .token.keyword { color: var(--purple); }
+                .token.entity, .token.string { color: var(--green); }
+                .token.constant { color: var(--blue) }
+                .m-markdown pre { background-color: var(--light-grey); border: 1px solid}
+                .m-markdown pre code { background-color: var(--light-grey); color: var(--blue); }
+                h1, .sub-title { background-color: var(--grey); padding: 10px; font-size: 18px; font-weight: 600; }
+                h2 { font-size: 16px; font-weight: 800; }
+                h3 { font-size: 14px; font-weight: 800; }
+                a { text-decoration: none; font-weight: 800; }
+                .title.tag { color: var(--blue); font-size: 32px; font-weight: 600;}
+                .nav-bar { border-right: 1px solid #e5e5e5; }
+                .nav-bar-tag, .nav-bar-info { font-size: 12px; font-weight: 800; background-color: var(--grey); padding: 10px; }
+                .nav-bar-section, .nav-scroll hr { display: none; }
+                #link-authentication { background-color: var(--nav-bg-color); font-size: 12px; font-weight: 400; }
+                #nav-bar-search { width:100%; padding-right:20px; border-color:var(--nav-accent-color); background-color:var(--nav-bg-color) }
+                .nav-bar-h2 { margin: 0px; padding-left: 22px; }
+                .nav-bar-tag:not(:first-of-type){
+                  border-top: 0px solid var(--nav-hover-bg-color);
+                }
+                `
+            rapidoc.appendChild(style)
+
+            
+            rapidoc.querySelectorAll('tab-panel').forEach(item => {
+                const style = document.createElement( 'style' )
+                style.innerHTML = `
+                .token.function, .token.punctuation, .token.keyword { color: var(--purple); }
+                .token.string { color: var(--green); }
+                .token.constant { color: var(--blue) }
+                .m-markdown pre { background-color: var(--light-grey); border: 1px solid}
+                .m-markdown pre code { background-color: var(--light-grey); color: var(--blue); }
+                `
+                item.shadowRoot.appendChild(style)
+            })
+
+            rapidoc.querySelectorAll('api-request').forEach(item => {
+                const style = document.createElement( 'style' )
+                style.innerHTML = `
+                .textarea { background-color: var(--light-grey); }
+                `
+                item.shadowRoot.appendChild(style)
+            })
+
+            rapidoc.querySelectorAll('api-response').forEach(item => {
+                const style = document.createElement( 'style' )
+                style.innerHTML = `
+                json-tree { background-color: var(--light-grey);}
+                `
+                item.shadowRoot.appendChild(style)
+            })
+
+            const apiTitle = rapidoc.querySelector('#overview').querySelectorAll('div')[0];
+            apiTitle.style = ""
+            apiTitle.className = "title tag"
+            const version = apiTitle.querySelectorAll('span')[0]
+            version.style = ""
+            version.className = "title tag"
+
+            rapidoc.querySelector('#nav-bar-search').style = ""
+
+        }, 0)
+    });
+</script>
 
 
 
