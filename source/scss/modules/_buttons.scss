@@ -34,6 +34,19 @@
     }
 }
 
+.btn-tertiary {
+    background-color: $--light-secondary-color;
+    border-color: $--light-secondary-color;
+    color: $color-blue;
+    @include box_shadow("blue");
+
+    &:hover {
+        background-color: $--lighter-message-color;
+        border-color: $--lighter-message-color;
+        color: $color-blue;
+    }
+}
+
 .btn-success {
     background-color: $color-green;
     border-color: $color-green;
