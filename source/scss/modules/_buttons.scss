@@ -35,14 +35,14 @@
 }
 
 .btn-tertiary {
-    background-color: $--light-secondary-color;
-    border-color: $--light-secondary-color;
+    background-color: $--lighter-primary-color;
+    border-color: $--lighter-primary-color;
     color: $color-blue;
     @include box_shadow("blue");
 
     &:hover {
-        background-color: $--lighter-message-color;
-        border-color: $--lighter-message-color;
+        background-color: $--light-primary-color;
+        border-color: $--light-primary-color;
         color: $color-blue;
     }
 }
