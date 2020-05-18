@@ -7,5 +7,6 @@ url = "//info.crunch.io/tmre-survey-trackers-dashboards-webinar-lp/?utm_campaign
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
+icon = "img/icons/webinar-icon-white.svg"
 
 +++

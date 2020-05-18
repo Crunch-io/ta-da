@@ -7,5 +7,7 @@ url = "//info.crunch.io/conquering-survey-trackers-lp"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Download Now"
+series = "resources"
+icon = "img/icons/whitepaper-icon.svg"
 
 +++

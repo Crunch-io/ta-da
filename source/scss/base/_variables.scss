@@ -29,7 +29,7 @@ $--secondary-color: $color-green;
 $--message-color: $color-purple;
 
 $--darker-primary-color: darken($color-blue, $darker-color-percent);
-$--light-primary-color: desaturate(lighten($color-blue, 30%), 50%);
+$--light-primary-color: lighten(lighten($color-blue, 30%), 50%);
 $--lighter-primary-color: desaturate(lighten($color-blue, 60%), 50%);
 
 $--darker-secondary-color: darken($color-green, $darker-color-percent);
