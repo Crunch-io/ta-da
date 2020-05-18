@@ -1,6 +1,6 @@
 +++
-date = "2019-10-24T14:08:35+02:00"
-draft = true
+date = "2020-05-18T14:08:35+02:00"
+draft = false
 title = "Python Developer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
@@ -16,7 +16,7 @@ We currently run our in-house production Python code against Redis, MongoDB, and
 
 # What you'll do:
 
-- Develop performance enhancements and new features in Crunch's proprietary Python-based in-memory database.
+- Develop performance enhancements and new features in Crunch's proprietary Python in-memory database.
 - Work closely with product managers, sales, and customer success team to understand the system’s functional and non-functional requirements.
 - Establish realistic estimates for timelines and ensure that project remains on target to meet deadlines.
 - Contribute to code quality through unit testing, integration testing, code review, and system design using Python.
@@ -31,11 +31,17 @@ We currently run our in-house production Python code against Redis, MongoDB, and
 - A commitment to producing robust, testable code.
 - Results-driven, self-motivated and enthusiastic.
 - Excellent communication skills - verbal, written and presentation.
+- Experience working in a Linux environment
+- Experience with client/server architectures
 - A keen interest in learning new things.
 
 # Advanced (preferred) qualifications:
 
-- Experience working in a Linux environment
+- Experience with data locality problems and caching issues
+- Expertise writing Cython or C extensions
+- Deep understanding of how a database system works internally (indexing, extents, memory management, concurrency, durability, journal)
+- Expertise with the numpy library 
+- Experience implementing custom messaging protocols (sequence numbers, ttl, etc)
 - Database experience using MongoDB and ElasticSearch
 - Bachelor’s Degree in Programming, Computer Science, or Engineering-related field.
 - Pytest testing experience
