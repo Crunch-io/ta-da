@@ -30,7 +30,7 @@
               <div class="container">
 
                   <div class="row spacer-bottom">
-                    {{ range first 1 .Pages.ByWeight }}
+                    {{ range where .Pages "Params.series" "main" }}
                     <div class="col-md-12">
                         <div class="post-card post-card-main post-min-height">
                             <div class="posts">
@@ -38,7 +38,7 @@
                                     <div class="col-md-5 post-card-main-content">
                                         <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
                                         <h4 class="post-title">{{ .Title | emojify }}</h4>
-                                        <a class="btn btn-tertiary" href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                        <a class="btn btn-tertiary" href="{{ .Params.url }}"  target="_blank" >{{ .Params.link }} &#10230;</a>
                                     </div>
 
                                     <div class="col-md-6 offset-md-1 figure d-none d-md-block d-lg-block"> </div>
@@ -63,7 +63,7 @@
                                           </div>
 
                                           <div class="post-url">
-                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                              <a href="{{ .Params.url }}" target="_blank" >{{ .Params.link }} &#10230;</a>
                                           </div>
                                       </div>
                                   </div>
