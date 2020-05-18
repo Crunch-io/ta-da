@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Apr 2020 15:39:39 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 18 May 2020 14:08:35 +0200</lastBuildDate>
     
 	<atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -164,6 +164,15 @@ To create one, simply save an analysis of any kind – table, chart or variable 
     </item>
     
     <item>
+      <title>Python Developer</title>
+      <link>//crunch.io/jobs/python-engineer/</link>
+      <pubDate>Mon, 18 May 2020 14:08:35 +0200</pubDate>
+      
+      <guid>//crunch.io/jobs/python-engineer/</guid>
+      <description>We are hiring a Python Developer to help develop our platform. We are inviting you to join our small, fully remote team of developers and operators helping make our platform faster, more secure, and more reliable. You would help us deliver new features and build the future for how we deploy our products faster and safer while increasing the availability and reliability of our systems. You will explore different ways of problem solving and discover, explain, and defend your choices in implementation.</description>
+    </item>
+    
+    <item>
       <title>Survey Tracker Dashboards: Built in an Hour &amp; Automatically Updated</title>
       <link>//crunch.io/info.crunch.io/tmre-survey-trackers-dashboards-webinar-lp/utm_campaignhomepage-bannerutm_sourcewebutm_mediumweb</link>
       <pubDate>Thu, 09 Apr 2020 15:39:39 -0400</pubDate>
@@ -259,15 +268,6 @@ Our start-up culture is casual and high-energy.</description>
 Location: Remote, United States
 The Technical Sales Engineer (TSE) is responsible for explaining and demonstrating to prospective customers how Crunch works and then making sure it works once they are customers. We are a startup so digging in and solving problems across a variety of areas is part of the fun of the job.
 Our start-up culture is casual and high-energy. We all work remote, with the center of gravity in San Francisco.</description>
-    </item>
-    
-    <item>
-      <title>Python API Developer</title>
-      <link>//crunch.io/jobs/python-api-developer/</link>
-      <pubDate>Thu, 24 Oct 2019 14:08:35 +0200</pubDate>
-      
-      <guid>//crunch.io/jobs/python-api-developer/</guid>
-      <description>We are hiring a Python API Developer to help develop our platform. We are inviting you to join our small, fully remote team of developers and operators helping make our platform faster, more secure, and more reliable. You would help us deliver new features and build the future for how we deploy our products faster and safer while increasing the availability and reliability of our systems. You will explore different ways of problem solving and discover, explain, and defend your choices in implementation.</description>
     </item>
     
     <item>
