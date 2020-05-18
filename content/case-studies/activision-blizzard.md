@@ -1,6 +1,6 @@
 +++
 date = "2019-12-26T19:36:09-04:00"
-draft = false
+draft = true
 title = "Activision Blizzard"
 industry = "Gaming"
 about = "Video game company that owns properties, such as Call of Duty, Guitar Hero and World of Warcraft"

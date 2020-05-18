@@ -1,6 +1,6 @@
 +++
 date = "2019-12-26T19:36:20-04:00"
-draft = false
+draft = true
 title = "Gojek"
 industry = "Technology"
 about = "On-demand multi-service app platform and digital payment technology group"

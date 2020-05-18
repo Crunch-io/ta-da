@@ -1,14 +1,43 @@
-<nav class="pagination pager align-center">
-    <hr>
-    <ul>
-        {{if .Paginator.HasPrev }}
-            <li class="prev"><a href="{{ .Paginator.Prev.URL }}">Previous</a></li>
+{{ $pag := $.Paginator }}
+{{ if gt $pag.TotalPages 1 }}
+<div class="row">
+    <div class="col-md-3">
+        <div class="page-item{{ if not $pag.HasPrev }} disabled{{ end }}">
+            <a {{ if $pag.HasPrev }}href="{{ $pag.Prev.URL }}"{{ end }} class="page-link" aria-label="Previous"><span aria-hidden="true">&#10229; Previous</span></a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        {{ $ellipsed := false }}
+        {{ $shouldEllipse := false }}
+        {{ range $pag.Pagers }}
+        {{ $right := sub .TotalPages .PageNumber }}
+        {{ $showNumber := or (le .PageNumber 3) (eq $right 0) }}
+        {{ $showNumber := or $showNumber (and (gt .PageNumber (sub $pag.PageNumber 2)) (lt .PageNumber (add $pag.PageNumber 2)))  }}
+        {{ if $showNumber }}
+            {{ $ellipsed = false }}
+            {{ $shouldEllipse = false }}
+        {{ else }}
+            {{ $shouldEllipse = not $ellipsed }}
+            {{ $ellipsed = true }}
         {{ end }}
-        {{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
-            <li><a href="" class="button round small outline">Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}</a></li>
-        {{ end }}
-        {{ if .Paginator.HasNext }}
-            <li class="next"><a href="{{ .Paginator.Next.URL }}">Next</a></li>
-        {{ end }}
-    </ul>
-</nav>
+
+        <ul class="pagination justify-content-center">
+            {{ if $showNumber }}
+            <li class="page-item{{ if eq . $pag }} active{{ end }}">
+                <a class="page-link page-number" href="{{ .URL }}">{{ .PageNumber }}</a>
+            </li>
+            {{ else if $shouldEllipse }}
+            <li class="page-item disabled">
+                <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+            </li>
+            {{ end }}
+            {{ end }}
+        </ul>
+    </div>
+    <div class="col-md-3 text-right">
+        <div class="page-item{{ if not $pag.HasNext }} disabled{{ end }}">
+            <a {{ if $pag.HasNext }}href="{{ $pag.Next.URL }}"{{ end }} class="page-link" aria-label="Next"><span aria-hidden="true">Next &#10230;</span></a>
+        </div>
+    </div>
+</div>
+{{ end }}

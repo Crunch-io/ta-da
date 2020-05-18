@@ -32,9 +32,11 @@
         a {
             color: $--light-primary-color;
             font-weight: 700;
+            margin-left: 10px;
 
             &:hover {
                 text-decoration: none;
+                color:$--lighter-primary-color;
             }
         }
     }
@@ -61,6 +63,7 @@
 .secondary-content {
     .img-logo {
         max-width: 120px;
+        margin-bottom: 20px;
     }
     .table {
         tr {

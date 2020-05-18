@@ -7,5 +7,7 @@ url = "//info.crunch.io/dashboards-webinar-recording-lp"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
+series = "resources"
+icon = "img/icons/video-icon.svg"
 
 +++

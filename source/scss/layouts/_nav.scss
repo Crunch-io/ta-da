@@ -92,3 +92,43 @@
 #dot-nav li.active, #dot-nav li:hover {
 	background-color: $color-off-black;
 }
+
+.page-item {
+    &.active {
+        .page-link {
+            color: $color-blue;
+            background-color: transparent;
+        }
+    }
+
+    &.disabled {
+        .page-link {
+            color: $color-grey-dark;
+        }
+    }
+
+    .page-link {
+        color: $color-blue;
+        font-family: 'Libre Baskerville', serif;
+        font-style: italic;
+        border: 0;
+        border-radius: 0;
+
+        &:hover {
+            background-color: transparent;
+            color: $--darker-primary-color;
+        }
+
+        &:focus {
+            outline: none !important;
+            border: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+        }
+
+    }
+
+    .page-number {
+        color: $color-grey-dark;
+    }
+}
