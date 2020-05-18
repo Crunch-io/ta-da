@@ -6082,7 +6082,7 @@ h4 {
     padding: 6px;
     color: #ffffff; }
     .header-banner .banner-text a {
-      color: #6ea9cf;
+      color: white;
       font-weight: 700;
       margin-left: 10px; }
       .header-banner .banner-text a:hover {
@@ -6140,6 +6140,17 @@ h4 {
   .btn-secondary:hover {
     background-color: #4f1a58;
     border-color: #4f1a58; }
+
+.btn-tertiary {
+  background-color: #e1edf5;
+  border-color: #e1edf5;
+  color: #0064a4;
+  -webkit-box-shadow: 2px 2px 15px 1px rgba(0, 100, 164, 0.4);
+  box-shadow: 2px 2px 15px 1px rgba(0, 100, 164, 0.4); }
+  .btn-tertiary:hover {
+    background-color: white;
+    border-color: white;
+    color: #0064a4; }
 
 .btn-success {
   background-color: #107f65;
@@ -6307,6 +6318,17 @@ h4 {
   #secondary-pages-wrapper .jobs-content .jumbotron {
     background-color: #0064a4;
     background-image: linear-gradient(#0064a4, #004571); }
+
+#secondary-pages-wrapper .resources-content {
+  color: #ffffff; }
+  #secondary-pages-wrapper .resources-content .jumbotron {
+    background-color: #0064a4;
+    background-image: linear-gradient(#0064a4, #004571); }
+
+@media (min-width: 768px) {
+  #secondary-pages-wrapper .resources-content-container {
+    text-align: center;
+    max-width: 520px; } }
 
 #secondary-pages-wrapper .blog-content {
   color: #0064a4; }
@@ -6690,36 +6712,86 @@ h4 {
     display: none; } }
 
 .post-card {
-  position: relative;
-  top: 0;
   min-height: 450px;
-  padding: 30px 50px;
+  padding: 20px;
   margin-bottom: 30px;
   background-color: #f9f9f9;
   -webkit-transition: all 0.1s ease-in-out;
   -o-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
-  cursor: pointer; }
+  cursor: pointer;
+  border-radius: 2px; }
   .post-card:hover {
     border-bottom: 2px solid #0064a4;
     box-shadow: 2px 2px 15px 2px rgba(0, 0, 0, 0.1);
     top: -5px; }
   .post-card .posts .post-title {
-    font-family: 'ProximaNova', sans-serif;
-    font-weight: 400;
+    font-family: 'Libre Baskerville', serif;
     color: #0064a4; }
-  .post-card .posts span {
-    font-size: .8em; }
   .post-card .posts p {
     margin-top: 20px; }
-  .post-card .posts a {
+  .post-card .posts .post-card-links {
     position: absolute;
-    bottom: 30px;
-    color: #1D1D26; }
-    .post-card .posts a:hover {
-      color: #0064a4; }
+    bottom: 50px;
+    display: flex;
+    font-size: 13px;
+    width: 75%; }
+    .post-card .posts .post-card-links .post-label {
+      flex: 1;
+      text-transform: uppercase;
+      font-size: 10px;
+      margin-top: 2px;
+      font-weight: 400; }
+      .post-card .posts .post-card-links .post-label img {
+        margin-right: 10px;
+        width: 20px; }
+    .post-card .posts .post-card-links .post-url {
+      text-align: right; }
+      .post-card .posts .post-card-links .post-url a {
+        display: block;
+        font-family: 'Libre Baskerville', serif;
+        font-style: italic;
+        color: #1D1D26; }
+        .post-card .posts .post-card-links .post-url a:hover {
+          color: #0064a4;
+          text-decoration: none; }
 
-.post-job {
+.post-card-main {
+  background-color: #0064a4;
+  background-image: linear-gradient(#0064a4, #004571);
+  padding: 40px;
+  margin-bottom: 0; }
+  .post-card-main:hover {
+    border-bottom: 0;
+    box-shadow: 0;
+    top: 0;
+    cursor: default; }
+  .post-card-main .posts .post-title {
+    color: #ffffff;
+    font-size: 28px;
+    margin-top: 15px; }
+  .post-card-main span {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 12px; }
+    .post-card-main span img {
+      margin-right: 10px;
+      width: 30px; }
+  .post-card-main a {
+    margin-top: 20px; }
+  .post-card-main .post-card-main-content {
+    position: relative; }
+  .post-card-main .figure {
+    background-image: url("/img/tracker-webinar-recording.png");
+    min-height: 300px;
+    position: absolute;
+    right: 15px;
+    bottom: 0; }
+    .post-card-main .figure:hover {
+      box-shadow: 0; }
+
+.post-min-height {
   min-height: 200px; }
 
 figure.center {
