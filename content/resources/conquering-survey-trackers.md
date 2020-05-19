@@ -1,5 +1,5 @@
 +++
-date = "2020-05-18T16:55:21-04:00"
+date = "2020-05-18T17:10:21-04:00"
 draft = false
 title = "Conquering Survey Trackers"
 label = "White Paper"

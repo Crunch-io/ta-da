@@ -1,7 +1,7 @@
 +++
-date = "2020-05-18T16:55:21-04:00"
+date = "2020-05-18T17:00:21-04:00"
 draft = false
-title = "How to build a Crunchbox"
+title = "How to Build a Crunchbox"
 label = "Video"
 url = "//vimeo.com/367372910/1ed44eac2e"
 weight = 200
