@@ -7,7 +7,7 @@ url = "//vimeo.com/367372910/1ed44eac2e"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
-series = "resources"
+series = "video"
 icon = "img/icons/video-icon.svg"
 
 +++
