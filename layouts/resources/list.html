@@ -63,7 +63,27 @@
                                           </div>
 
                                           <div class="post-url">
-                                              <a href="{{ .Params.url }}" target="_blank" >{{ .Params.link }} &#10230;</a>
+                                              <a src="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+
+                      {{ range where .Pages "Params.series" "video" }}
+                          <div class="col-md-6 col-lg-4">
+                              <div class="post-card post-min-height video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">
+                                  <div class="posts">
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+
+                                      <div class="post-card-links">
+                                          <div class="post-label">
+                                              <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                          </div>
+
+                                          <div class="post-url">
+                                              <a class="video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">{{ .Params.link }} &#10230;</a>
                                           </div>
                                       </div>
                                   </div>
@@ -87,6 +107,25 @@
                     </div> <!-- /.container -->
                 </div> <!-- /.jumbotron -->
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalVideos" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <!-- 16:9 aspect ratio -->
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
 {{ partial "footer-nav.html" . }}
 
