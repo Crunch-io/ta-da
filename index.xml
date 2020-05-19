@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 May 2020 14:08:35 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 19 May 2020 10:50:54 -0400</lastBuildDate>
     
 	<atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -165,27 +165,18 @@ To create one, simply save an analysis of any kind – table, chart or variable 
     </item>
     
     <item>
-      <title>Python Developer</title>
-      <link>//crunch.io/jobs/python-engineer/</link>
-      <pubDate>Mon, 18 May 2020 14:08:35 +0200</pubDate>
+      <title>Crunch.io Overview</title>
+      <link>//crunch.io/player.vimeo.com/video/343376948</link>
+      <pubDate>Tue, 19 May 2020 10:50:54 -0400</pubDate>
       
-      <guid>//crunch.io/jobs/python-engineer/</guid>
-      <description>We are hiring a Python Developer to help develop our platform. We are inviting you to join our small, fully remote team of developers and operators helping make our platform faster, more secure, and more reliable. You would help us deliver new features and build the future for how we deploy our products faster and safer while increasing the availability and reliability of our systems. You will explore different ways of problem solving and discover, explain, and defend your choices in implementation.</description>
-    </item>
-    
-    <item>
-      <title>Survey Tracker Dashboards: Built in an Hour &amp; Automatically Updated</title>
-      <link>//crunch.io/info.crunch.io/tmre-survey-trackers-dashboards-webinar-lp/utm_campaignhomepage-bannerutm_sourcewebutm_mediumweb</link>
-      <pubDate>Thu, 09 Apr 2020 15:39:39 -0400</pubDate>
-      
-      <guid>//crunch.io/info.crunch.io/tmre-survey-trackers-dashboards-webinar-lp/utm_campaignhomepage-bannerutm_sourcewebutm_mediumweb</guid>
+      <guid>//crunch.io/player.vimeo.com/video/343376948</guid>
       <description></description>
     </item>
     
     <item>
       <title>IIeX North America</title>
       <link>//crunch.io/info.crunch.io/iiex-na-2020</link>
-      <pubDate>Wed, 18 Mar 2020 09:40:32 -0400</pubDate>
+      <pubDate>Mon, 18 May 2020 17:20:21 -0400</pubDate>
       
       <guid>//crunch.io/info.crunch.io/iiex-na-2020</guid>
       <description></description>
@@ -194,10 +185,73 @@ To create one, simply save an analysis of any kind – table, chart or variable 
     <item>
       <title>TMRE</title>
       <link>//crunch.io/info.crunch.io/tmre-2020</link>
-      <pubDate>Wed, 18 Mar 2020 09:38:32 -0400</pubDate>
+      <pubDate>Mon, 18 May 2020 17:15:21 -0400</pubDate>
       
       <guid>//crunch.io/info.crunch.io/tmre-2020</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Conquering Survey Trackers</title>
+      <link>//crunch.io/info.crunch.io/conquering-survey-trackers-lp</link>
+      <pubDate>Mon, 18 May 2020 17:10:21 -0400</pubDate>
+      
+      <guid>//crunch.io/info.crunch.io/conquering-survey-trackers-lp</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Crunch.io Dashboards Overview</title>
+      <link>//crunch.io/player.vimeo.com/video/374781211</link>
+      <pubDate>Mon, 18 May 2020 17:05:52 -0400</pubDate>
+      
+      <guid>//crunch.io/player.vimeo.com/video/374781211</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Build an Interactive Dashboard for Survey Data in 5 Minutes</title>
+      <link>//crunch.io/info.crunch.io/dashboards-webinar-recording-lp</link>
+      <pubDate>Mon, 18 May 2020 17:05:21 -0400</pubDate>
+      
+      <guid>//crunch.io/info.crunch.io/dashboards-webinar-recording-lp</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>How to Build a Crunchbox</title>
+      <link>//crunch.io/player.vimeo.com/video/367372910/</link>
+      <pubDate>Mon, 18 May 2020 17:00:21 -0400</pubDate>
+      
+      <guid>//crunch.io/player.vimeo.com/video/367372910/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>How to Use a Crunchbox</title>
+      <link>//crunch.io/player.vimeo.com/video/367372890/</link>
+      <pubDate>Mon, 18 May 2020 16:59:21 -0400</pubDate>
+      
+      <guid>//crunch.io/player.vimeo.com/video/367372890/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Survey Tracker Dashboards: Built in an Hour &amp; Automatically Updated</title>
+      <link>//crunch.io/info.crunch.io/tmre-survey-trackers-dashboards-webinar-lp/utm_campaignhomepage-bannerutm_sourcewebutm_mediumweb</link>
+      <pubDate>Mon, 18 May 2020 16:55:21 -0400</pubDate>
+      
+      <guid>//crunch.io/info.crunch.io/tmre-survey-trackers-dashboards-webinar-lp/utm_campaignhomepage-bannerutm_sourcewebutm_mediumweb</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python Developer</title>
+      <link>//crunch.io/jobs/python-engineer/</link>
+      <pubDate>Mon, 18 May 2020 14:08:35 +0200</pubDate>
+      
+      <guid>//crunch.io/jobs/python-engineer/</guid>
+      <description>We are hiring a Python Developer to help develop our platform. We are inviting you to join our small, fully remote team of developers and operators helping make our platform faster, more secure, and more reliable. You would help us deliver new features and build the future for how we deploy our products faster and safer while increasing the availability and reliability of our systems. You will explore different ways of problem solving and discover, explain, and defend your choices in implementation.</description>
     </item>
     
     <item>
@@ -209,24 +263,6 @@ To create one, simply save an analysis of any kind – table, chart or variable 
       <description>Work location: Anywhere
 We are hiring an Advanced React Developer to help develop our platform. We are inviting you to join our small, fully remote team of developers and operators helping make our platform faster, more secure, and more reliable. You would help us deliver new features, explore different ways of problem solving, and discover, explain, and defend your choices in implementation.
 At Crunch, we believe in learning together: we recognize that we don’t have all the answers, and we try to ask each other the right questions.</description>
-    </item>
-    
-    <item>
-      <title>Conquering Survey Trackers</title>
-      <link>//crunch.io/info.crunch.io/conquering-survey-trackers-lp</link>
-      <pubDate>Mon, 03 Feb 2020 16:37:59 -0400</pubDate>
-      
-      <guid>//crunch.io/info.crunch.io/conquering-survey-trackers-lp</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Break the Mold: Build an Interactive Dashboard for Survey Data in 5 Minutes</title>
-      <link>//crunch.io/info.crunch.io/dashboards-webinar-recording-lp</link>
-      <pubDate>Thu, 19 Dec 2019 12:08:14 -0400</pubDate>
-      
-      <guid>//crunch.io/info.crunch.io/dashboards-webinar-recording-lp</guid>
-      <description></description>
     </item>
     
     <item>
