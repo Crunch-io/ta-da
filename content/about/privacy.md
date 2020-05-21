@@ -90,7 +90,7 @@ We use the data that you share with us, or that we receive from the other source
 <table class="table">
     <thead>
         <tr>
-            <th class="table-border">We use personal data to...</th>
+            <th class="table-border hd-list-min-width ">We use personal data to...</th>
             <th class="table-border">For example...</th>
         </tr>
     </thead>
@@ -138,7 +138,7 @@ In order to use personal data in the ways described above, we may share it with 
 <table class="table">
   <tbody>
     <tr>
-      <td class="table-border">Our customers</td>
+      <td class="table-border hd-list-min-width ">Our customers</td>
       <td class="table-border">
         <p>From time-to-time, our customers request usage reports for our Services.  For example, some clients use information about the use of our Services to understand the penetration of the tool within the business.  We may also share your name with other customers or prospective customers as part of a testimonial, but only with your permission.</p>
       </td>
@@ -152,11 +152,11 @@ In order to use personal data in the ways described above, we may share it with 
 
         <p>We use the following service providers –</p>
         <ul>
-            <li>[Amazon Web Services (AWS)](https://aws.amazon.com/) – Cloud computing and data storage</li>
-            <li>[HubSpot](https://www.hubspot.com/) – Customer Relationship Management software</li>
-            <li>[Scalyr](https://www.scalyr.com/) – Data logging service</li>
-            <li>[Sentry](https://sentry.io/welcome/) – Error monitoring</li>
-            <li>[Usersnap](https://usersnap.com/) – Error monitoring</li>
+            <li><a href="https://aws.amazon.com/">Amazon Web Services (AWS)</a> – Cloud computing and data storage</li>
+            <li><a href="https://www.hubspot.com/">HubSpot</a> – Customer Relationship Management software</li>
+            <li><a href="https://www.scalyr.com/">Scalyr</a> – Data logging service</li>
+            <li><a href="https://sentry.io/welcome/">Sentry</a> – Error monitoring</li>
+            <li><a href="https://usersnap.com/">Usersnap</a> – Error monitoring</li>
         </ul>
       </td>
     </tr>
@@ -256,7 +256,7 @@ The table below lists and describes the third party cookies that we are placed o
 <table class="table">
     <thead>
         <tr>
-            <th class="table-border">Cookie name</th>
+            <th class="table-border hd-list-min-width">Cookie name</th>
             <th class="table-border">What these cookies are used for</th>
             <th class="table-border">Cookies we use to achieve this</th>
         </tr>
@@ -264,16 +264,16 @@ The table below lists and describes the third party cookies that we are placed o
   <tbody>
     <tr>
       <td class="table-border">Analytics cookies</td>
+      <td class="table-border">We use analytics cookies to understand how you use our Services so we can monitor performance and ultimately improve them.  For example, by understanding how you use certain features, we can identify and fix page errors and improve the design and navigation. </td>
       <td class="table-border">
-        <p>We use analytics cookies to understand how you use our Services so we can monitor performance and ultimately improve them.  For example, by understanding how you use certain features, we can identify and fix page errors and improve the design and navigation.</p>
-      </td>
-      <td class="table-border">
-        <a href="https://www.fastly.com/">Fastly</a><br>
-        <a href="https://marketingplatform.google.com/about/analytics/">Google Analytics Universal Tag</a><br>
-        <a href="https://marketingplatform.google.com/about/tag-manager/">Google Tag Manager</a><br>
-        <a href="https://www.hotjar.com/">Hotjar</a><br>
-        <a href="https://www.hubspot.com/">HubSpot</a><br>
-        <a href="https://plotly.com/">Plotly</a>
+      <ul class="hd-list-item">
+        <li><a href="https://www.fastly.com/">Fastly</a></li>
+        <li><a href="https://marketingplatform.google.com/about/analytics/">Google Analytics Universal Tag</a></li>
+        <li><a href="https://marketingplatform.google.com/about/tag-manager/">Google Tag Manager</a></li>
+        <li><a href="https://www.hotjar.com/">Hotjar</a></li>
+        <li><a href="https://www.hubspot.com/">HubSpot</a></li>
+        <li><a href="https://plotly.com/">Plotly</a></li>
+      </ul>
       </td>
     </tr>
     <tr>
@@ -367,18 +367,18 @@ We do not envisage that any decisions that will have a legal or other significan
 
 ### Exercising your rights
 
-You can exercise the rights described above by emailing support@crunch.io.
+You can exercise the rights described above by emailing <support@crunch.io>.
 
 Once you have submitted your request we may contact you to request further information to authenticate your identity (because we want to make sure it is actually you requesting your data) or to help us to respond to your request.  Except in rare cases, we will respond to you within 1 month of receiving this information or, where no such information is required, after we have received full details of your request.  As noted above, while some rights apply generally, some are only available in certain circumstances, so if we feel that any right is not available to you we will let you know along with the reason for our decision.
 
-If you are a resident of California, a person registered with your State’s government may act on your behalf to exercise any of these rights.  While you have a right to request that we do not sell your data, please note that we would not sell your data without your consent.  If you have given consent, you can withdraw it by contacting us at info@crunch.io.
+If you are a resident of California, a person registered with your State’s government may act on your behalf to exercise any of these rights.  While you have a right to request that we do not sell your data, please note that we would not sell your data without your consent.  If you have given consent, you can withdraw it by contacting us at <info@crunch.io>.
 
 ### Lodging a complaint with a regulator
 You may have the right to lodge a complaint with a data protection regulator in a country you work or live.  You can find the contact details of the appropriate regulator online, for example by searching for ‘Data Regulator’ and the appropriate country.  However, we encourage you to contact us before making any complaint and we will seek to resolve any issues or concerns you may have.
 
 ## How to contact us
 
-If you have questions about this notice, or about how we collect, store and use personal data, you can contact us at info@crunch.io.
+If you have questions about this notice, or about how we collect, store and use personal data, you can contact us at <info@crunch.io>.
 
 ## Updates to this notice
 

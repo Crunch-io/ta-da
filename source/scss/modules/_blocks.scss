@@ -82,7 +82,12 @@
 
         .hd-list-item {
             list-style: none;
-            list-style-position: inside; 
+            padding-left: 0;
+            min-width: 250px;
+        }
+
+        .hd-list-min-width {
+            min-width: 300px;
         }
     }
 
