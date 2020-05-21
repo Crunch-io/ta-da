@@ -73,6 +73,22 @@
         .table-space {
             padding: 8px;
         }
+
+        .table-border {
+            border:1px solid $color-grey-normal;
+            padding: 10px;
+            vertical-align: middle;
+        }
+
+        .hd-list-item {
+            list-style: none;
+            padding-left: 0;
+            min-width: 250px;
+        }
+
+        .hd-list-min-width {
+            min-width: 300px;
+        }
     }
 
 }
