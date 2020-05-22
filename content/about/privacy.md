@@ -146,9 +146,7 @@ In order to use personal data in the ways described above, we may share it with 
     <tr>
       <td class="table-border">Our service providers</td>
       <td class="table-border">
-        <p>We work with trusted service providers that carry out certain functions on our behalf so we can provide our services to you.</p>
-
-        <p>These organisations process data on our behalf. They only have access to the personal data that they absolutely need to provide the specific service to us, and in all cases we have contractual safeguards in place to ensure that they do not disclose or use it for any other purposes. In some cases, these organisations may need to process your personal data for their own specific purposes, for example to ensure they are compliant with regulations or laws governing their own sectors.</p>
+        <p>We work with trusted service providers that carry out certain functions on our behalf so we can provide our services to you. <br> These organisations process data on our behalf. They only have access to the personal data that they absolutely need to provide the specific service to us, and in all cases we have contractual safeguards in place to ensure that they do not disclose or use it for any other purposes. In some cases, these organisations may need to process your personal data for their own specific purposes, for example to ensure they are compliant with regulations or laws governing their own sectors.</p>
 
         <p>We use the following service providers –</p>
         <ul>
