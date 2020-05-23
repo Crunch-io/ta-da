@@ -161,8 +161,8 @@
 
 <rapi-doc
         id="thedoc"
-        allow-spec-file-load="false"
-        allow-spec-url-load="false"
+        allow-spec-file-load="true"
+        allow-spec-url-load="true"
         default-schema-tab="example"
         info-description-headings-in-navbar="true"
         layout="row"
@@ -179,11 +179,11 @@
         schema-description-expanded="true"
         schema-style="tree"
         show-components="false"
-        show-header="false"
+        show-header='false'
         show-info="true"
         sort-endpoints-by="method"
         sort-tags="true"
-        spec-url="/oas/crunch-api.yaml"
+        spec-url='/oas/crunch-api.yaml'
         theme="light"
 >
 </rapi-doc>
@@ -226,7 +226,7 @@
                 `
             rapidoc.appendChild(style)
 
-            
+
             rapidoc.querySelectorAll('tab-panel').forEach(item => {
                 const style = document.createElement( 'style' )
                 style.innerHTML = `
