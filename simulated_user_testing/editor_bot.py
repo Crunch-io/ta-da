@@ -15,6 +15,7 @@ Options:
     --slack-notify          Send Slack message when done
 """
 from __future__ import print_function
+from contextlib import contextmanager
 from datetime import datetime
 import glob
 import io
@@ -43,22 +44,53 @@ def main():
     raise ValueError("Unknown command")
 
 
+class ErrorWhileDoing(Exception):
+    def __init__(self, what_i_was_doing, err):
+        self.what_i_was_doing = what_i_was_doing
+        self.err = err
+
+    def __str__(self):
+        return "Error while {}: {}".format(self.what_i_was_doing, self.err)
+
+    def __repr__(self):
+        return "ErrorWhileDoing({!r}, {!r})".format(self.what_i_was_doing, self.err)
+
+
+@contextmanager
+def track_activities(what_i_was_doing):
+    print(what_i_was_doing)
+    sys.stdout.flush()
+    try:
+        yield
+    except Exception as err:
+        traceback.print_exc()
+        raise ErrorWhileDoing(what_i_was_doing, err)
+
+
 def simulate_editor(config, args):
     try:
         rc = 0
         msg = _simulate_editor(config, args)
-    except BaseException as err:
+        emoji = ":pizza:"
+    except ErrorWhileDoing as err:
         rc = 1
+        msg = str(err)
+        emoji = ":sadpizza:"
+    except BaseException as err:
+        rc = 2
         msg = "Simulated User Testing: FAILED\n{err}".format(err=err)
+        emoji = ":boom:"
+        # Need to print traceback here or we won't get one
         traceback.print_exc()
     finally:
         print(msg)
+        sys.stdout.flush()
         if args["--slack-notify"]:
             response = sim_util.message(
                 text=msg,
                 channel="#sentry-alpha",
                 username="crunchbot",
-                icon_emoji=":pizza:",
+                icon_emoji=emoji,
             )
             if not response.ok:
                 print("ERROR sending Slack notification:", response)
@@ -92,8 +124,9 @@ def _simulate_editor(config, args):
     print("Found project Quad; entity_url:", quad_project.entity_url)
 
     # Create the dataset
-    print('Creating dataset "{}" from metadata: {}'.format(ds_name, payload_filename))
-    meta = ds_meta.MetadataModel(verbose=verbose)
+    msg = 'Creating dataset "{}" from metadata: {}'.format(ds_name, payload_filename)
+    with track_activities(msg):
+        meta = ds_meta.MetadataModel(verbose=verbose)
     ds = meta.create(site, payload_filename, name=ds_name, project=quad_project)
     print("Created dataset:", ds.self)
 
@@ -134,7 +167,7 @@ def _simulate_editor(config, args):
     # Delete older datasets in Previous project
     trim_older_datasets(site, prev_project, ds_name_pattern, keep_prev_datasets)
 
-    # Send Slack notification
+    # Return message formatted as Slack notification
     msg = (
         textwrap.dedent(
             """
@@ -180,7 +213,9 @@ def upload_sources(site, data_dir):
         return []
     source_urls = []
     for i, filename in enumerate(chunk_filenames, 1):
-        source_url = ds_data.upload_source(site, filename)
+        msg = "Uploading chunk {} of {}: {}".format(i, len(chunk_filenames), filename)
+        with track_activities(msg):
+            source_url = ds_data.upload_source(site, filename)
         source_urls.append(source_url)
         print(
             "({}/{})".format(i, len(chunk_filenames)),
@@ -194,49 +229,59 @@ def upload_sources(site, data_dir):
 
 
 def append_data_sources(site, ds, source_urls, verbose=False):
+    timeout = 36000.0  # Batch append can take a long time, giving it 10 hours
     for i, source_url in enumerate(source_urls, 1):
-        print(
-            "({}/{})".format(i, len(source_urls)),
-            "Appending source",
-            source_url,
-            "to dataset",
-            ds.body.id,
+        msg = " ".join(
+            [
+                "({}/{})".format(i, len(source_urls)),
+                "Appending source",
+                source_url,
+                "to dataset",
+                ds.body.id,
+            ]
         )
-        sys.stdout.flush()  # Make sure progress shows up on stdout
-        timeout = 36000.0  # Batch append can take a long time, giving it 10 hours
-        ds_data.append_source(
-            site, ds, source_url, i, len(source_urls), timeout=timeout, verbose=verbose
-        )
+        with track_activities(msg):
+            ds_data.append_source(
+                site,
+                ds,
+                source_url,
+                i,
+                len(source_urls),
+                timeout=timeout,
+                verbose=verbose,
+            )
 
 
 def copy_from(site, src_ds, dst_ds, verbose=False):
     dst_ds = sim_util.get_entity(dst_ds)
     src_ds_url = sim_util.get_entity_url(src_ds)
-    print("Running copy_from src={!r}, dst={!r}".format(src_ds_url, dst_ds.self))
-    t0 = datetime.utcnow()
-    response = dst_ds.patch(
-        {"element": "shoji:entity", "body": {"copy_from": src_ds_url}}
-    )
-    timeout = 36000.0  # copy_from can take a long time, giving it 10 hours
-    try:
-        crunch_util.wait_for_progress2(site, response, timeout, verbose=verbose)
-    except Exception as err:
-        msg = (
-            "Error running copy_from command: {err}\n"
-            "Source dataset URL: {src_ds_url}\n"
-            "Destination dataset URL: {dst_ds.self}\n"
-            "Request originally sent at {t0} UTC"
-        ).format(err=err, src_ds_url=src_ds_url, dst_ds=dst_ds, t0=t0)
-        raise Exception(msg)
+    msg = "Running copy_from src={!r}, dst={!r}".format(src_ds_url, dst_ds.self)
+    with track_activities(msg):
+        t0 = datetime.utcnow()
+        response = dst_ds.patch(
+            {"element": "shoji:entity", "body": {"copy_from": src_ds_url}}
+        )
+        timeout = 36000.0  # copy_from can take a long time, giving it 10 hours
+        try:
+            crunch_util.wait_for_progress2(site, response, timeout, verbose=verbose)
+        except Exception as err:
+            msg = (
+                "Error running copy_from command: {err}\n"
+                "Source dataset URL: {src_ds_url}\n"
+                "Destination dataset URL: {dst_ds.self}\n"
+                "Request originally sent at {t0} UTC"
+            ).format(err=err, src_ds_url=src_ds_url, dst_ds=dst_ds, t0=t0)
+            raise Exception(msg)
 
 
 def create_fork(site, ds, project, fork_name_suffix):
     fork_name = "{}{}".format(ds.body.name, fork_name_suffix)
     project_url = sim_util.get_entity_url(project)
-    print("Creating", fork_name, "in project", project_url)
-    fork_ds = ds.forks.create({"body": {"name": fork_name, "owner": project_url}})
-    fork_ds.refresh()
-    return fork_ds
+    msg = "Creating fork '{}' in project {}".format(fork_name, project_url)
+    with track_activities(msg):
+        fork_ds = ds.forks.create({"body": {"name": fork_name, "owner": project_url}})
+        fork_ds.refresh()
+        return fork_ds
 
 
 def move_ds_into_project(ds, project):

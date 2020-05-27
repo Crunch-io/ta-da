@@ -40,6 +40,16 @@ except NameError:
         pass
 
 
+class VerboseLogger(object):
+    def __init__(self, verbose):
+        self.verbose = verbose
+
+    def __call__(self, *args, **kwargs):
+        if self.verbose:
+            kwargs.setdefault("file", sys.stderr)
+            print(*args, **kwargs)
+
+
 def connect_pycrunch(connection_info, verbose=False):
     """
     connection_info: dictionary containing connection parameters:
@@ -68,23 +78,16 @@ def connect_pycrunch(connection_info, verbose=False):
     progress_tracking = pycrunch.progress.DefaultProgressTracking(
         timeout=progress_timeout, interval=progress_interval
     )
+    vlog = VerboseLogger(verbose)
     if connection_info.get("token"):
-        if verbose:
-            print("Connecting to", api_url, "using token.", file=sys.stderr)
+        vlog("Connecting to", api_url, "using token.")
         session = pycrunch.Session(
             token=connection_info["token"],
             domain=urllib_parse.urlparse(api_url).netloc,
             progress_tracking=progress_tracking,
         )
     else:
-        if verbose:
-            print(
-                "Connecting to",
-                api_url,
-                "as",
-                connection_info["username"],
-                file=sys.stderr,
-            )
+        vlog("Connecting to", api_url, "as", connection_info["username"])
         session = pycrunch.Session(
             email=connection_info["username"],
             password=connection_info["password"],
@@ -664,21 +667,21 @@ def wait_for_progress2(
     elif progress_response.status_code != 202:  # Accepted
         raise ValueError("progress_response is not a 202 response")
     progress_url = progress_response.json()["value"]
-    if verbose:
-        print("Waiting on progress API ...", file=sys.stderr)
+    vlog = VerboseLogger(verbose)
+    vlog("Waiting on progress API ...")
     if isinstance(retry_delay, (int, float)):
         retry_delay_generator = exponential_interval_generator(retry_delay)
     elif retry_delay is None:
         retry_delay_generator = table_interval_generator()
     else:
         raise TypeError("Invalid retry_delay")
-    t0 = t = time.time()
-    while t - t0 <= timeout_sec:
+
+    t = t0 = time.time()
+    while True:
         response = site.session.get(progress_url)
         response.raise_for_status()
         progress = response.json()["value"]
-        if verbose:
-            print(progress, file=sys.stderr)
+        vlog(progress)
         progress_amount = progress.get("progress")
         if progress_amount == 100:
             # Successful completion
@@ -692,21 +695,25 @@ def wait_for_progress2(
             err = pycrunch.TaskError(json.dumps(msg))
             err.resource_url = resource_url
             raise err
-        next_t = t + next(retry_delay_generator)
         t = time.time()
+        if t - t0 >= timeout_sec:
+            break
+        next_t = t + next(retry_delay_generator)
         if t < next_t:
             time.sleep(next_t - t)
             t = time.time()
-    else:
-        if verbose:
-            print("Timeout after", timeout_sec, "seconds.", file=sys.stderr)
-        msg = {
-            "resource_url": resource_url,
-            "message": "Timeout after {} seconds".format(timeout_sec),
-        }
-        err = TimeoutError(json.dumps(msg))
-        err.resource_url = resource_url
-        raise err
+
+    msg_str = "Gave up waiting on API request progress after {} seconds".format(t - t0)
+    vlog(msg_str)
+    msg = {
+        "progress_url": progress_url,
+        "resource_url": resource_url,
+        "message": msg_str,
+    }
+    err = TimeoutError(json.dumps(msg))
+    err.progress_url = progress_url
+    err.resource_url = resource_url
+    raise err
 
 
 def get_ds_metadata(ds, set_derived_field=True):
