@@ -44,27 +44,28 @@ def main():
     raise ValueError("Unknown command")
 
 
-class ErrorWhileDoing(Exception):
-    def __init__(self, what_i_was_doing, err):
-        self.what_i_was_doing = what_i_was_doing
+class ErrorDuringActivity(Exception):
+    def __init__(self, activity, err):
+        self.activity = activity
         self.err = err
 
     def __str__(self):
-        return "Error while {}: {}".format(self.what_i_was_doing, self.err)
+        return "Error while {}: {}".format(self.activity, self.err)
 
     def __repr__(self):
-        return "ErrorWhileDoing({!r}, {!r})".format(self.what_i_was_doing, self.err)
+        return "ErrorDuringActivity({!r}, {!r})".format(self.activity, self.err)
 
 
 @contextmanager
-def track_activities(what_i_was_doing):
-    print(what_i_was_doing)
+def track_activity(activity):
+    timestr = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f")
+    print("{} {}".format(timestr, activity))
     sys.stdout.flush()
     try:
         yield
     except Exception as err:
         traceback.print_exc()
-        raise ErrorWhileDoing(what_i_was_doing, err)
+        raise ErrorDuringActivity(activity, err)
 
 
 def simulate_editor(config, args):
@@ -72,7 +73,7 @@ def simulate_editor(config, args):
         rc = 0
         msg = _simulate_editor(config, args)
         emoji = ":pizza:"
-    except ErrorWhileDoing as err:
+    except ErrorDuringActivity as err:
         rc = 1
         msg = str(err)
         emoji = ":sadpizza:"
@@ -125,7 +126,7 @@ def _simulate_editor(config, args):
 
     # Create the dataset
     msg = 'Creating dataset "{}" from metadata: {}'.format(ds_name, payload_filename)
-    with track_activities(msg):
+    with track_activity(msg):
         meta = ds_meta.MetadataModel(verbose=verbose)
     ds = meta.create(site, payload_filename, name=ds_name, project=quad_project)
     print("Created dataset:", ds.self)
@@ -137,14 +138,30 @@ def _simulate_editor(config, args):
     append_data_sources(site, ds, source_urls, verbose=verbose)
 
     # Do the infamous Dataset.copy_from
-    project = sim_util.get_project_by_name(site, "Sim Profiles")
-    prev_ds = sim_util.find_latest_good_dataset_in_project(project, ds_name_pattern)
+    with track_activity("Getting 'Sim Profiles' project by name"):
+        project = sim_util.get_project_by_name(site, "Sim Profiles")
+    msg = (
+        "Searching for latest good dataset in '{}' project "
+        "matching pattern '{}'".format(
+            sim_util.get_entity_name(project), ds_name_pattern
+        )
+    )
+    with track_activity(msg):
+        prev_ds = sim_util.find_latest_good_dataset_in_project(project, ds_name_pattern)
     if prev_ds is not None:
-        copy_from(site, prev_ds, ds, verbose=verbose)
+        msg = "Copying from dataset '{}' to dataset '{}'".format(
+            sim_util.get_entity_name(prev_ds), sim_util.get_entity_name(ds)
+        )
+        with track_activity(msg):
+            copy_from(site, prev_ds, ds, verbose=verbose)
 
     # Create the "Master Fork"
     fork_name_suffix = " - Master Fork"
-    fork_ds = create_fork(site, ds, quad_project, fork_name_suffix)
+    msg = "Forking dataset '{}', name suffix: '{}'".format(
+        sim_util.get_entity_name(ds), fork_name_suffix
+    )
+    with track_activity(msg):
+        fork_ds = create_fork(site, ds, quad_project, fork_name_suffix)
 
     # Delete older dataset forks in this series
     forked_ds_name_pattern = r"^{}.*{}$".format(
@@ -214,7 +231,7 @@ def upload_sources(site, data_dir):
     source_urls = []
     for i, filename in enumerate(chunk_filenames, 1):
         msg = "Uploading chunk {} of {}: {}".format(i, len(chunk_filenames), filename)
-        with track_activities(msg):
+        with track_activity(msg):
             source_url = ds_data.upload_source(site, filename)
         source_urls.append(source_url)
         print(
@@ -240,7 +257,7 @@ def append_data_sources(site, ds, source_urls, verbose=False):
                 ds.body.id,
             ]
         )
-        with track_activities(msg):
+        with track_activity(msg):
             ds_data.append_source(
                 site,
                 ds,
@@ -256,7 +273,7 @@ def copy_from(site, src_ds, dst_ds, verbose=False):
     dst_ds = sim_util.get_entity(dst_ds)
     src_ds_url = sim_util.get_entity_url(src_ds)
     msg = "Running copy_from src={!r}, dst={!r}".format(src_ds_url, dst_ds.self)
-    with track_activities(msg):
+    with track_activity(msg):
         t0 = datetime.utcnow()
         response = dst_ds.patch(
             {"element": "shoji:entity", "body": {"copy_from": src_ds_url}}
@@ -278,7 +295,7 @@ def create_fork(site, ds, project, fork_name_suffix):
     fork_name = "{}{}".format(ds.body.name, fork_name_suffix)
     project_url = sim_util.get_entity_url(project)
     msg = "Creating fork '{}' in project {}".format(fork_name, project_url)
-    with track_activities(msg):
+    with track_activity(msg):
         fork_ds = ds.forks.create({"body": {"name": fork_name, "owner": project_url}})
         fork_ds.refresh()
         return fork_ds
@@ -319,21 +336,24 @@ def trim_older_datasets(site, project, ds_name_pattern, keep_prev_datasets):
         )
         return
     num_datasets_to_delete = len(datasets) - keep_prev_datasets
-    print(
-        "Deleting",
-        num_datasets_to_delete,
-        "old datasets matching pattern",
-        repr(ds_name_pattern),
-        "in project",
-        sim_util.get_entity_name(project),
-        "(limit is {})".format(keep_prev_datasets),
+    msg = " ".join(
+        [
+            "Deleting",
+            str(num_datasets_to_delete),
+            "old datasets matching pattern",
+            repr(ds_name_pattern),
+            "in project",
+            sim_util.get_entity_name(project),
+            "(limit is {})".format(keep_prev_datasets),
+        ]
     )
-    for ds_tuple in datasets[:num_datasets_to_delete]:
-        ds = ds_tuple.entity
-        print("Deleting", ds.body.name)
-        # You can't delete a dataset unless you are the current editor
-        ds.patch({"current_editor": site.user.self})
-        ds.delete()
+    with track_activity(msg):
+        for ds_tuple in datasets[:num_datasets_to_delete]:
+            ds = ds_tuple.entity
+            print("Deleting", ds.body.name)
+            # You can't delete a dataset unless you are the current editor
+            ds.patch({"current_editor": site.user.self})
+            ds.delete()
 
 
 if __name__ == "__main__":
