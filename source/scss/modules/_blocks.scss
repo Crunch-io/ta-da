@@ -140,6 +140,10 @@
         color: $color-purple;
         text-decoration: underline;
     }
+
+    .text-left, .text-right {
+        padding: 0;
+    }
 }
 
 .cookiealert.show {
