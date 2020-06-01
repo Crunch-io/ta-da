@@ -122,3 +122,41 @@
     }
 
 }
+
+/// Cookies Alert
+
+.cookiealert {
+    position: fixed;
+    bottom: 26px;
+    left: 26px;
+    right: 26px;
+    z-index: 999;
+    border-radius: 0;
+    color: $color-off-black;
+    padding: 20px;
+    background-color: $color-grey-lighest;
+
+    a {
+        color: $color-purple;
+        text-decoration: underline;
+    }
+
+    .row div {
+        padding: 0;
+    }
+
+    @media (min-width: 576px) {
+        .acceptcookies {
+            float: right;
+            margin: 0;
+        }
+    }
+
+    .btn {
+        margin-top: 4px;
+    }
+}
+
+.cookiealert.show {
+    visibility: visible;
+}
