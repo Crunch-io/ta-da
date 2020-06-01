@@ -141,8 +141,19 @@
         text-decoration: underline;
     }
 
-    .text-left, .text-right {
+    .row div {
         padding: 0;
+    }
+
+    @media (min-width: 576px) {
+        .acceptcookies {
+            float: right;
+            margin: 0;
+        }
+    }
+
+    .btn {
+        margin-top: 4px;
     }
 }
 
