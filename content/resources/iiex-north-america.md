@@ -1,5 +1,5 @@
 +++
-date = "2020-05-18T17:20:21-04:00"
+date = "2020-05-17T17:20:21-04:00"
 draft = false
 title = "IIeX North America"
 label = "Event | September 9-11"
