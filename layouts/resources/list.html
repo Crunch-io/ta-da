@@ -51,7 +51,7 @@
                   </div>
 
                   <div class="row spacer-bottom">
-                      {{ range where .Pages "Params.series" "resources" }}
+                      {{ range where .Pages "Params.series" "video" }}
                           <div class="col-md-6 col-lg-4">
                               <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
                                   <div class="posts">
@@ -71,7 +71,7 @@
                           </div>
                       {{ end }}
 
-                      {{ range where .Pages "Params.series" "video" }}
+                      {{ range where .Pages "Params.series" "resources" }}
                           <div class="col-md-6 col-lg-4">
                               <div class="post-card post-min-height video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">
                                   <div class="posts">
