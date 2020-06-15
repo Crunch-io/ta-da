@@ -1,5 +1,6 @@
 +++
 date = "2020-06-15T11:14:05-04:00"
+publishdate = "2020-06-15T18:19:46+0000"
 title = "Use custom color palettes for your saved analyses"
 news_description = "Create your own palettes of colors to use for dashboard graphs and in exports. Have them automatically applied to new analyses you save to the deck. Click here to learn more."
 description = "For Early Access users, create your own palettes of colors to use for dashboard graphs and in exports. Have them automatically applied to new analyses you save to the deck."
