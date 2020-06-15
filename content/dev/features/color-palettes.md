@@ -22,6 +22,8 @@ Pro tip - if you create a palette with just one color in it, you can then set th
 
 * **Note:** Only organization admins can create/edit/delete color palettes for organizations, and only folder editors can create/edit/delete palettes for individual folders. But those palettes will be available to all users within datasets in those organizations or folders.
 
+{{< figure src="dev/features/images/color-palettes.png" class="img-fluid">}}
+
 To find out more about the new color palettes feature, you can read about it on our help page [here](https://help.crunch.io/hc/en-us/articles/360044813691-How-to-use-Color-Palettes-in-Crunch).
 
 Currently this feature is only available for early access users, though all users will be able to see the colors assigned via the palettes feature.
