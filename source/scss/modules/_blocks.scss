@@ -136,6 +136,9 @@
     padding: 10px;
     background-color: $color-white;
     font-size: 14px;
+    visibility: hidden;
+    transform: translateY(100%);
+    transition: all 500ms ease-out;
     @include box_shadow("black");
 
     a {
@@ -174,5 +177,8 @@
 }
 
 .cookiealert.show {
+    opacity: 1;
     visibility: visible;
+    transform: translateY(0%);
+    transition-delay: 500ms;
 }
