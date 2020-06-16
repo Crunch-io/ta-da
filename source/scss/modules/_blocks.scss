@@ -127,22 +127,36 @@
 
 .cookiealert {
     position: fixed;
-    bottom: 26px;
-    left: 26px;
-    right: 26px;
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 999;
     border-radius: 0;
     color: $color-off-black;
-    padding: 20px;
-    background-color: $color-grey-lighest;
+    padding: 10px;
+    background-color: $color-white;
+    font-size: 14px;
+    @include box_shadow("black");
 
     a {
-        color: $color-purple;
-        text-decoration: underline;
+        color: $color-green;
+
+        &:hover {
+            color: $--darker-secondary-color;
+            text-decoration: none;
+        }
+    }
+
+    .cookiealert-container {
+        padding: 10px 30px;
     }
 
     .row div {
         padding: 0;
+    }
+
+    .row div:first-child {
+        margin-top: 6px;
     }
 
     @media (min-width: 576px) {
@@ -153,7 +167,9 @@
     }
 
     .btn {
-        margin-top: 4px;
+        padding: 5px 20px;
+        font-size: 14px;
+
     }
 }
 
