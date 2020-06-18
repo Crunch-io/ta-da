@@ -5,7 +5,8 @@ title = "Tracker Analytics"
 subtitle = "Analyze all your survey data, past and present, in one place."
 description = "Compare waves, instantly."
 label = "Power made simple"
-img = "https://via.placeholder.com/450x260"
+img = "img/trackers_webinar_tile.jpg"
+gif = "img/trackers.gif"
 
 +++
 

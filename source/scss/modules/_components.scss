@@ -54,6 +54,11 @@
                 padding-top: 100px;
                 height: 650px;
             }
+
+            .jumbotron-secondary-pages {
+                padding-top: 50px;
+                height: 300px;
+            }
         }
 
         .intro-animated-gif {
@@ -62,6 +67,11 @@
 
             &.secondary-animated-gif {
                 margin-top: -150px;
+
+                img {
+                    width: 100%;
+                    max-width: 920px;
+                }
             }
         }
     }
