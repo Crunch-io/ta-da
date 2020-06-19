@@ -219,7 +219,6 @@
             margin-top: 20px;
         }
 
-
         .post-card-links {
             position: absolute;
             bottom: 50px;
@@ -237,6 +236,16 @@
                 img {
                     margin-right: 10px;
                     width: 20px;
+                }
+
+                a {
+                    display: block;
+                    color: $color-off-black;
+
+                    &:hover {
+                        color: $color-blue;
+                        text-decoration: none;
+                    }
                 }
             }
 
@@ -258,6 +267,35 @@
             }
         }
     }
+
+    &.contact-card {
+        margin-top: 20px;
+        margin-bottom: 0;
+        padding: 0;
+
+        .posts {
+            padding: 20px;
+
+            .post-card-links {
+                bottom: 0;
+                width: 92%;
+                margin-left: -20px;
+
+                .post-url {
+                    a {
+                        padding: 20px;
+                    }
+                }
+
+                .post-label {
+                    a {
+                        padding: 20px;
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 .post-card-main {
@@ -373,4 +411,9 @@ figure {
             margin-left: 4px;
             margin-right: 4px;
         }
+}
+
+// Hubspot forms
+.hbspt-form .hs-form-iframe {
+  width: 100% !important;
 }

@@ -1,0 +1,133 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="resources-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-12 resources-content-container">
+                                <h1 class="display-4">{{ with .Params.title }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</h1>
+                            </div>
+
+                            <div class="col-md-12">
+                                <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
+                            </div>
+
+                        </div> <!-- /.row -->
+
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.jobs-content -->
+
+            <div class="secondary-content">
+              <div class="container">
+
+                  <div class="row spacer-bottom">
+
+                      {{ range where .Pages "Params.series" "sales" }}
+                          <div class="col-md-6 col-lg-4 offset-lg-2">
+                              <div class="post-card post-min-height contact-card">
+                                  <div class="posts">
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                      <p>{{ .Content }}</p>
+
+                                      <div class="post-card-links">
+                                          <div class="post-label">
+                                              <a href="tel:+12027805550"><span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span></a>
+                                          </div>
+
+                                          <div class="post-url">
+                                              <a class="video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">{{ .Params.link }} &#10230;</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+
+                      {{ range where .Pages "Params.series" "support" }}
+                          <div class="col-md-6 col-lg-4">
+                              <div class="post-card post-min-height contact-card">
+                                  <div class="posts">
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                      <p>{{ .Content }}</p>
+
+                                      <div class="post-card-links">
+                                          <div class="post-label">
+                                              <a href="mailto:support@crunch.io"><span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span></a>
+                                          </div>
+
+                                          <div class="post-url">
+                                              <a src="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+
+                  </div>
+
+                  <div class="row spacer-bottom">
+                      <div class="col-md-8 offset-md-2">
+                          <h3 class="text-center emphasis spacer-bottom">{{ .Content }}</h3>
+                           <!--[if lte IE 8]>
+                           <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+                          <![endif]-->
+                          <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+
+                          <script>
+                            hbspt.forms.create({
+                              portalId: "3869056",
+                              formId: "cb057831-6286-457b-9806-814fa9b9dac2"
+                            });
+                          </script>
+
+                       </div>
+                   </div>
+
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+            <div class="footer-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Learn about <span>our platform</span></h1>
+                                <a href="request-demo" class="btn btn-link">Request a demo &#10230;</a>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalVideos" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <!-- 16:9 aspect ratio -->
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}
