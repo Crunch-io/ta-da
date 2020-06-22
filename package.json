@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:scss-dev": "node-sass --include-path node_modules --watch source/scss/ -o static/css/",
     "build:scss": "node-sass --include-path node_modules source/scss/ -o static/css/",
-    "build:fonts": "cp node_modules/font-awesome/fonts/* static/fonts"
+    "build:fonts": "cp node_modules/font-awesome/fonts/* static/fonts",
+    "serve-wsl": "hugo serve -b wsl.crunch.io --bind 0.0.0.0"
   },
   "author": "",
   "license": "ISC",
