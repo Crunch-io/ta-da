@@ -30,7 +30,7 @@
 
                   <div class="row spacer-bottom">
 
-                      {{ range where .Pages "Params.series" "sales" }}
+                      {{ range where .Pages "Params.contact" "sales" }}
                           <div class="col-md-6 col-lg-4 offset-lg-2">
                               <div class="post-card post-min-height contact-card">
                                   <div class="posts">
@@ -39,11 +39,11 @@
 
                                       <div class="post-card-links">
                                           <div class="post-label">
-                                              <a href="tel:+12027805550"><span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span></a>
+                                              <a href="tel:+12027805550"><span><img src="{{ .Params.icon }}" alt="Icon" class="phone-icon"> {{ .Params.label }}</span></a>
                                           </div>
 
                                           <div class="post-url">
-                                              <a class="video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">{{ .Params.link }} &#10230;</a>
+                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
                                           </div>
                                       </div>
                                   </div>
@@ -51,7 +51,7 @@
                           </div>
                       {{ end }}
 
-                      {{ range where .Pages "Params.series" "support" }}
+                      {{ range where .Pages "Params.contact" "support" }}
                           <div class="col-md-6 col-lg-4">
                               <div class="post-card post-min-height contact-card">
                                   <div class="posts">
@@ -60,11 +60,11 @@
 
                                       <div class="post-card-links">
                                           <div class="post-label">
-                                              <a href="mailto:support@crunch.io"><span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span></a>
+                                              <a href="mailto:support@crunch.io"><span><img src="{{ .Params.icon }}" alt="Icon" class="email-icon"> {{ .Params.label }}</span></a>
                                           </div>
 
                                           <div class="post-url">
-                                              <a src="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
                                           </div>
                                       </div>
                                   </div>

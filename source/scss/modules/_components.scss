@@ -291,6 +291,16 @@
                     a {
                         padding: 20px;
                     }
+
+                    span {
+                        .phone-icon {
+                            height: 20px;
+                        }
+
+                        .email-icon {
+                            width: 22px;
+                        }
+                    }
                 }
             }
         }
