@@ -1,0 +1,59 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+
+        <div class="intro-content">
+            <div class="jumbotron jumbotron-secondary-pages">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                            <div class="col-md-12 text-center">
+                                <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ end }}</h1>
+                                <h2>{{ .Description }}</h2>
+                            </div>
+                    </div> <!-- /.row -->
+                </div> <!-- /.container -->
+            </div> <!-- /.jumbotron -->
+
+            <div class="intro-animated-gif secondary-animated-gif">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <img src="{{ .Params.gif }}" class="img-fluid add-shadow-xl rounded">
+                        </div>
+                    </div> <!-- /.row. -->
+                </div>
+            </div> <!-- /.intro-animated-gif -->
+
+        </div> <!-- /.intro-content -->
+    </div>
+</div>
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="container">
+                <div class="row spacer share-insights">
+                    <div class="col-12 col-md-5 order-0 order-md-0">
+                        <h2 class="label">{{ .Params.label }}</h2>
+                        <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }}<span> {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }}</span> {{ end }}</h2>
+
+                        <p>{{ .Content }}</p>
+
+                        <button type="button" class="btn btn-success" onclick="window.location.href='/request-demo'">Speak to an Expert</button>
+                    </div>
+
+                    <div class="col-12 col-md-6 offset-md-1 order-1 order-md-1">
+                        <a href="https://info.crunch.io/tmre-survey-trackers-dashboards-webinar-lp"><img src="{{ .Params.img }}" alt="" class="img-fluid add-shadow"></a>
+                    </div>
+
+                </div> <!-- /.row. -->
+            </div> <!-- /.container -->
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}
