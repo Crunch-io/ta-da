@@ -8,7 +8,6 @@ weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Visit help center"
 contact = "support"
-icon = "img/icons/MailCrunch.svg"
 
 +++
 
