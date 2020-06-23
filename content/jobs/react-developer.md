@@ -42,7 +42,7 @@ If you have experience or interest in these additional areas, you may have the o
 # Basic qualifications:
 
 - Advanced to expert-level React skills with demonstrated experience. 
-- A firm command of TypeScript.
+- A firm command of Typescript.
 - Familiarity with JavaScript frameworks and libraries for building web applications.
 - Commitment to high development standards, including comprehensive testing.
 - Demonstrated ability to work with team of peers, understanding and respecting the responsibilities and expertise that developers, designers, QA staff, and others bring to the project.

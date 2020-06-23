@@ -29,83 +29,37 @@
             <div class="secondary-content">
               <div class="container">
 
-                  <div class="row spacer-top spacer-bottom justify-content-md-center">
-                      <div class="col-md-7">
-                          <h2 class="text-center"><span>{{ .Params.description }}</span></h2>
-                      </div>
-                  </div>
-
                   <div class="row spacer justify-content-md-center">
                       {{ range .Data.Pages }}
                           {{ if and (eq .Type "case-studies") (eq .Title "YouGov") }}
-                              <div class="col-md-4">
-                                  <h1>{{ .Params.title }}</h1>
-                                  <p><strong>Industry: </strong>{{ .Params.industry }}</p>
-                                  <p><strong>About: </strong>{{ .Params.about }}</p>
-                                  <p><strong>Region: </strong>{{ .Params.region }}</p>
+                              <div class="col-md-11">
+                                  <h1><img src="{{ .Params.logo }}" alt="{{ .Params.title }}" class="img-logo"></h1>
+                                  <p class="headline"><span>Subsecond</span> response times for one of the <span>world’s</span> largest research networks</p>
                               </div>
 
-                              <div class="col-md-5 offset-md-2">
-                                  <p class="headline">{{ .Params.quote }}</p>
+                              <div class="col-md-5">
+                                  <div class="col-md-12 offset-md-1">
+                                      <table class="table">
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>Industry</strong></th>
+                                            <td class="table-space">{{ .Params.industry }}</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>About</strong></th>
+                                            <td class="table-space">{{ .Params.about }}</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>Region</strong></th>
+                                            <td class="table-space">{{ .Params.region }}</td>
+                                          </tr>
+                                      </table>
 
-                                  <p>{{ .Content }}</p>
-                              </div>
-                          {{ end }}
-                      {{ end }}
-                  </div> <!-- /.row. -->
-
-                  <div class="row spacer justify-content-md-center">
-                      {{ range .Data.Pages }}
-                          {{ if and (eq .Type "case-studies") (eq .Title "Metrixlab") }}
-                              <div class="col-md-4">
-                                  <h1>{{ .Params.title }}</h1>
-                                  <p><strong>Industry: </strong>{{ .Params.industry }}</p>
-                                  <p><strong>About: </strong>{{ .Params.about }}</p>
-                                  <p><strong>Region: </strong>{{ .Params.region }}</p>
-                              </div>
-
-                              <div class="col-md-5 offset-md-2">
-                                  <p class="headline">{{ .Params.quote }}</p>
-
-                                  <p>{{ .Content }}</p>
-                              </div>
-                          {{ end }}
-                      {{ end }}
-                  </div> <!-- /.row. -->
-
-                  <div class="row spacer justify-content-md-center">
-                      {{ range .Data.Pages }}
-                          {{ if and (eq .Type "case-studies") (eq .Title "Gojek") }}
-                              <div class="col-md-4">
-                                  <h1>{{ .Params.title }}</h1>
-                                  <p><strong>Industry: </strong>{{ .Params.industry }}</p>
-                                  <p><strong>About: </strong>{{ .Params.about }}</p>
-                                  <p><strong>Region: </strong>{{ .Params.region }}</p>
+                                    <p>{{ .Content }}</p>
+                                  </div>
                               </div>
 
-                              <div class="col-md-5 offset-md-2">
-                                  <p class="headline">{{ .Params.quote }}</p>
-
-                                  <p>{{ .Content }}</p>
-                              </div>
-                          {{ end }}
-                      {{ end }}
-                  </div> <!-- /.row. -->
-
-                  <div class="row spacer justify-content-md-center">
-                      {{ range .Data.Pages }}
-                          {{ if and (eq .Type "case-studies") (eq .Title "Activision Blizzard") }}
-                              <div class="col-md-4">
-                                  <h1>{{ .Params.title }}</h1>
-                                  <p><strong>Industry: </strong>{{ .Params.industry }}</p>
-                                  <p><strong>About: </strong>{{ .Params.about }}</p>
-                                  <p><strong>Region: </strong>{{ .Params.region }}</p>
-                              </div>
-
-                              <div class="col-md-5 offset-md-2">
-                                  <p class="headline">{{ .Params.quote }}</p>
-
-                                  <p>{{ .Content }}</p>
+                              <div class="col-md-5 offset-md-1">
+                                  <!-- <img src={{ .Params.img }}> -->
                               </div>
                           {{ end }}
                       {{ end }}
@@ -114,22 +68,52 @@
                   <div class="row spacer justify-content-md-center">
                       {{ range .Data.Pages }}
                           {{ if and (eq .Type "case-studies") (eq .Title "The Chicago Council on Global Affairs") }}
-                              <div class="col-md-4">
-                                  <h1>{{ .Params.title }}</h1>
-                                  <p><strong>Industry: </strong>{{ .Params.industry }}</p>
-                                  <p><strong>About: </strong>{{ .Params.about }}</p>
-                                  <p><strong>Region: </strong>{{ .Params.region }}</p>
+                              <div class="col-md-11">
+                                  <h1><img src="{{ .Params.logo }}" alt="{{ .Params.title }}" class="img-logo"></h1>
+                                  <p class="headline">45 Years of <span>datasets</span> appended for <span>simple</span> and <span>intuitive</span> analysis of historical data</p>
                               </div>
 
-                              <div class="col-md-5 offset-md-2">
-                                  <p class="headline">{{ .Params.quote }}</p>
+                              <div class="col-md-5">
+                                  <div class="col-md-12 offset-md-1">
+                                      <table class="table">
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>Industry</strong></th>
+                                            <td class="table-space">{{ .Params.industry }}</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>About</strong></th>
+                                            <td class="table-space">{{ .Params.about }}</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>Region</strong></th>
+                                            <td class="table-space">{{ .Params.region }}</td>
+                                          </tr>
+                                      </table>
 
-                                  <p>{{ .Content }}</p>
+                                    <p>{{ .Content }}</p>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-5 offset-md-1">
+                                  <div class="quote-block">
+                                      <p class="punctuation">“</p>
+                                      <p>Crunch.io has cut our data processing time down <span>immensely</span>.</p>
+                                      <p>Longitudinal data analysis that used to take us hours now only takes us a <span>matter of minutes</span>, and can be done on any computer anywhere.
+                                      </p>
+                                      <p>This allows us to spend more of our time <span>analyzing and writing up the results</span> rather than looking at individual data sets. That's <span>gold</span> for our survey research team.
+                                      </p>
+                                      <p class="punctuation">”</p>
+                                      <br>
+
+                                      <div class="author">
+                                          <p>Dina Smeltz</p>
+                                          <p>Senior Fellow, Public Opinion and Foreign Policy, <br>The Chicago Council on Global Affairs</p>
+                                      </div>
+                                  </div>
                               </div>
                           {{ end }}
                       {{ end }}
                   </div> <!-- /.row. -->
-
 
               </div> <!-- /.container -->
             </div> <!-- /.secondary-content -->

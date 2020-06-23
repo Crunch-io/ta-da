@@ -1,5 +1,5 @@
 +++
-date = "2020-02-03T16:37:59-04:00"
+date = "2020-05-18T17:10:21-04:00"
 draft = false
 title = "Conquering Survey Trackers"
 label = "White Paper"
@@ -7,5 +7,7 @@ url = "//info.crunch.io/conquering-survey-trackers-lp"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Download Now"
+series = "resources"
+icon = "img/icons/whitepaper-icon.svg"
 
 +++
