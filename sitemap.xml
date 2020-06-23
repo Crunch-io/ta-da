@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>//crunch.io/contact/</loc>
+    <lastmod>2020-06-18T17:11:32-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/case-studies/chicago-council/</loc>
     <lastmod>2020-03-23T11:22:23-04:00</lastmod>
   </url>
@@ -128,6 +133,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/request-demo/</loc>
+    <lastmod>2020-05-18T17:05:52-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/info.crunch.io/dashboards-webinar-recording-lp</loc>
     <lastmod>2020-05-18T17:05:21-04:00</lastmod>
   </url>
@@ -155,6 +165,11 @@
   <url>
     <loc>//crunch.io/info.crunch.io/iiex-na-2020</loc>
     <lastmod>2020-05-17T17:20:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/help.crunch.io/hc/en-us</loc>
+    <lastmod>2020-05-16T17:15:21-04:00</lastmod>
   </url>
   
   <url>
@@ -203,6 +218,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/</loc>
+    <lastmod>2020-06-18T17:11:32-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/tags/analysis-graphs-dashboards/</loc>
     <lastmod>2020-06-15T11:14:05-04:00</lastmod>
   </url>
@@ -214,11 +234,6 @@
   
   <url>
     <loc>//crunch.io/categories/feature/</loc>
-    <lastmod>2020-06-15T11:14:05-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/</loc>
     <lastmod>2020-06-15T11:14:05-04:00</lastmod>
   </url>
   

@@ -6056,6 +6056,12 @@ h4 {
   font-weight: 700;
   margin-bottom: 30px; }
 
+.emphasis {
+  color: #0064a4;
+  font-style: italic;
+  font-family: 'Libre Baskerville', serif;
+  margin-bottom: 40px; }
+
 .spacer {
   padding: 100px 0; }
 
@@ -6807,17 +6813,23 @@ h4 {
     position: absolute;
     bottom: 50px;
     display: flex;
-    font-size: 13px;
+    font-size: 14px;
     width: 75%; }
     .post-card .posts .post-card-links .post-label {
       flex: 1;
       text-transform: uppercase;
-      font-size: 10px;
+      font-size: 12px;
       margin-top: 2px;
       font-weight: 400; }
       .post-card .posts .post-card-links .post-label img {
         margin-right: 10px;
         width: 20px; }
+      .post-card .posts .post-card-links .post-label a {
+        display: block;
+        color: #1D1D26; }
+        .post-card .posts .post-card-links .post-label a:hover {
+          color: #0064a4;
+          text-decoration: none; }
     .post-card .posts .post-card-links .post-url {
       text-align: right; }
       .post-card .posts .post-card-links .post-url a {
@@ -6828,6 +6840,30 @@ h4 {
         .post-card .posts .post-card-links .post-url a:hover {
           color: #0064a4;
           text-decoration: none; }
+  .post-card.contact-card {
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding: 0; }
+    .post-card.contact-card .posts {
+      padding: 20px; }
+      .post-card.contact-card .posts .post-card-links {
+        bottom: 0;
+        width: 92%;
+        margin-left: -20px; }
+        .post-card.contact-card .posts .post-card-links .post-url a {
+          padding: 16px; }
+        .post-card.contact-card .posts .post-card-links .post-label a {
+          padding: 16px; }
+          .post-card.contact-card .posts .post-card-links .post-label a:hover {
+            fill: #0064a4; }
+        .post-card.contact-card .posts .post-card-links .post-label span .phone-icon {
+          height: 20px;
+          margin-right: 5px;
+          margin-top: -2px; }
+        .post-card.contact-card .posts .post-card-links .post-label span .email-icon {
+          width: 22px;
+          margin-right: 5px;
+          margin-top: -2px; }
 
 .post-card-main {
   background-color: #0064a4;
@@ -6904,6 +6940,9 @@ figure figcaption h4 {
     margin-top: 20px;
     margin-left: 4px;
     margin-right: 4px; }
+
+.hbspt-form .hs-form-iframe {
+  width: 100% !important; }
 
 /* LAYOUTS - Page Layouts */
 #wrapper-homepage {
