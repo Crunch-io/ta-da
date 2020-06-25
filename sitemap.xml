@@ -428,12 +428,22 @@
   </url>
   
   <url>
+    <loc>//crunch.io/api/reference-focused/</loc>
+    <lastmod>2018-04-25T14:59:57-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/api/reference-nonav/</loc>
     <lastmod>2018-04-25T14:59:57-04:00</lastmod>
   </url>
   
   <url>
     <loc>//crunch.io/api/reference-pdf/</loc>
+    <lastmod>2018-04-25T14:59:57-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/api/reference-read/</loc>
     <lastmod>2018-04-25T14:59:57-04:00</lastmod>
   </url>
   
