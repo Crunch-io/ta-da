@@ -31,15 +31,6 @@
     
     <item>
       <title>Crunch API Reference</title>
-      <link>//crunch.io/api/reference-nonav/</link>
-      <pubDate>Wed, 25 Apr 2018 14:59:57 -0400</pubDate>
-      
-      <guid>//crunch.io/api/reference-nonav/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Crunch API Reference</title>
       <link>//crunch.io/api/reference-pdf/</link>
       <pubDate>Wed, 25 Apr 2018 14:59:57 -0400</pubDate>
       
@@ -58,6 +49,33 @@
     
     <item>
       <title>Crunch API Reference</title>
+      <link>//crunch.io/api/reference-test-focused/</link>
+      <pubDate>Wed, 25 Apr 2018 14:59:57 -0400</pubDate>
+      
+      <guid>//crunch.io/api/reference-test-focused/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Crunch API Reference</title>
+      <link>//crunch.io/api/reference-test-read/</link>
+      <pubDate>Wed, 25 Apr 2018 14:59:57 -0400</pubDate>
+      
+      <guid>//crunch.io/api/reference-test-read/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Crunch API Reference</title>
+      <link>//crunch.io/api/reference-test-view/</link>
+      <pubDate>Wed, 25 Apr 2018 14:59:57 -0400</pubDate>
+      
+      <guid>//crunch.io/api/reference-test-view/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Crunch API Reference</title>
       <link>//crunch.io/api/reference-test/</link>
       <pubDate>Wed, 25 Apr 2018 14:59:57 -0400</pubDate>
       
@@ -71,6 +89,15 @@
       <pubDate>Wed, 25 Apr 2018 14:59:57 -0400</pubDate>
       
       <guid>//crunch.io/api/reference-testlocal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Crunch API Reference</title>
+      <link>//crunch.io/api/reference-view/</link>
+      <pubDate>Wed, 25 Apr 2018 14:59:57 -0400</pubDate>
+      
+      <guid>//crunch.io/api/reference-view/</guid>
       <description></description>
     </item>
     

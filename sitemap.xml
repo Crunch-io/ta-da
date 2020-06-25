@@ -178,11 +178,6 @@
   </url>
   
   <url>
-    <loc>//crunch.io/jobs/react-developer/</loc>
-    <lastmod>2020-02-26T16:45:00+05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//crunch.io/knowledge-base/importing-data/</loc>
     <lastmod>2019-12-02T15:08:35+02:00</lastmod>
   </url>
@@ -433,11 +428,6 @@
   </url>
   
   <url>
-    <loc>//crunch.io/api/reference-nonav/</loc>
-    <lastmod>2018-04-25T14:59:57-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//crunch.io/api/reference-pdf/</loc>
     <lastmod>2018-04-25T14:59:57-04:00</lastmod>
   </url>
@@ -448,12 +438,32 @@
   </url>
   
   <url>
+    <loc>//crunch.io/api/reference-test-focused/</loc>
+    <lastmod>2018-04-25T14:59:57-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/api/reference-test-read/</loc>
+    <lastmod>2018-04-25T14:59:57-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/api/reference-test-view/</loc>
+    <lastmod>2018-04-25T14:59:57-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/api/reference-test/</loc>
     <lastmod>2018-04-25T14:59:57-04:00</lastmod>
   </url>
   
   <url>
     <loc>//crunch.io/api/reference-testlocal/</loc>
+    <lastmod>2018-04-25T14:59:57-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/api/reference-view/</loc>
     <lastmod>2018-04-25T14:59:57-04:00</lastmod>
   </url>
   
