@@ -6,7 +6,7 @@ img = "speaks_research/json_code.png"
 images = ["https://crunch.io/img/logo-1200x630.png"]
 type = "api-doc"
 renderStyle = "focused"
-specUrl = "https://app.crunch.io/api/public/openapi/"
+specUrl = "https://local.crunch.io:28443/api/public/openapi/"
 showHeader = "false"
 +++
 

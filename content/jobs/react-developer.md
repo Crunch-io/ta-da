@@ -1,6 +1,6 @@
 +++
 date = "2020-02-26T16:45:00+05:00"
-draft = false
+draft = true
 title = "Advanced React Developer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]

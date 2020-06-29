@@ -8,7 +8,6 @@ weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Request a demo"
 contact = "sales"
-icon = "img/icons/PhoneCrunch.svg"
 
 +++
 
