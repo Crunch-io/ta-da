@@ -1,6 +1,5 @@
 +++
-date = "2020-06-15T11:14:05-04:00"
-publishdate = "2020-06-15T18:19:46+0000"
+date = "2020-06-29T12:14:51-04:00"
 title = "Use custom color palettes for your saved analyses"
 news_description = "Create your own palettes of colors to use for dashboard graphs and in exports. Have them automatically applied to new analyses you save to the deck. Click here to learn more."
 description = "For Early Access users, create your own palettes of colors to use for dashboard graphs and in exports. Have them automatically applied to new analyses you save to the deck."
@@ -8,7 +7,7 @@ weight = 20
 tags = ["analysis, graphs, dashboards"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 +++
 
@@ -26,7 +25,5 @@ Pro tip - if you create a palette with just one color in it, you can then set th
 {{< figure src="dev/features/images/color-palettes.png" class="img-fluid">}}
 
 To find out more about the new color palettes feature, you can read about it on our help page [here](https://help.crunch.io/hc/en-us/articles/360044813691-How-to-use-Color-Palettes-in-Crunch).
-
-Currently this feature is only available for early access users, though all users will be able to see the colors assigned via the palettes feature.
 
 We'd love your feedback at [support@crunch.io](mailto:support@crunch.io).
