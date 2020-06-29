@@ -5,7 +5,7 @@
     <description>Recent content in Feature Announcements on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2020-06-26T20:08:35+00:00</lastBuildDate>
+    <lastBuildDate>2020-06-29T16:54:49+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,10 @@
     <item>
       <title>Use custom color palettes for your saved analyses</title>
       <link>//crunch.io/dev/features/color-palettes/</link>
-      <pubDate>2020-06-15T18:19:46+00:00</pubDate>
+      <pubDate>2020-06-29T16:50:47+00:00</pubDate>
       
       <guid>//crunch.io/dev/features/color-palettes/</guid>
-      <labsOnly>true</labsOnly>
+      <labsOnly>false</labsOnly>
       <noProfiles>true</noProfiles>
       <pinned>false</pinned>
       <description>Create your own palettes of colors to use for dashboard graphs and in exports. Have them automatically applied to new analyses you save to the deck. Click here to learn more.</description>
