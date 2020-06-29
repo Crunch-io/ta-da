@@ -2,7 +2,7 @@
 date = "2020-06-29T12:14:51-04:00"
 title = "Use custom color palettes for your saved analyses"
 news_description = "Create your own palettes of colors to use for dashboard graphs and in exports. Have them automatically applied to new analyses you save to the deck. Click here to learn more."
-description = "For Early Access users, create your own palettes of colors to use for dashboard graphs and in exports. Have them automatically applied to new analyses you save to the deck."
+description = "Create your own palettes of colors to use for dashboard graphs and in exports. Have them automatically applied to new analyses you save to the deck."
 weight = 20
 tags = ["analysis, graphs, dashboards"]
 categories = ["feature"]
