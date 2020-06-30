@@ -31,7 +31,7 @@ We are looking for a world-class Data Visualization Specialist to join our remot
 
 # Nice to Haves
 
-- Able to travel globally a few times a year  for company retreats and design sessions (recent locations include Montreal, Punta Cana, and Warsaw)
-- Draw inspiration from data visualization pioneers from Florence Nightingale and W.E.B. Du Bois to Cleveland, Tufte, the Wickhams, Heer, and Bostock.
+- Able to travel globally a few times a year for company retreats and design sessions (recent locations include Montréal, Punta Cana, and Warsaw)
+- You’re inspired by data visualization pioneers including Florence Nightingale and W.E.B. Du Bois; Cleveland, Tufte, the Wickhams, Heer, and Bostock.
 - Interest in machine learning and statistical computing
-- Some time zone / work hours amenable to working closely with US-based Product team
+- Time zone / work hours amenable to working closely with US-based Product team
