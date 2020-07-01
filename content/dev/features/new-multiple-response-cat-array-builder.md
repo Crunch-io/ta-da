@@ -26,4 +26,6 @@ The following videos demonstrate how to use these new builders. First to create 
 
 Note: Currently this feature is only available for early access users
 
+To find out more about the new builders, you can read about them on our help page [here](https://help.crunch.io/hc/en-us/articles/360040481451-Creating-multiple-response-and-categorical-arrays).
+
 We'd love your feedback at [support@crunch.io](mailto:support@crunch.io).
