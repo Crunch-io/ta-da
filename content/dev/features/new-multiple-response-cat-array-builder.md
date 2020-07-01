@@ -1,8 +1,8 @@
 +++
 date = "2020-07-01T15:16:25-04:00"
 title = "Easily create and recombine categorical arrays and multiple response variables"
-news_description = "Create your own custom combinations of categories to use in both categorical arrays and multiple response variables. (Available now with Early Access enabled.) Click here to learn more."
-description = "Early Access users can now combine variables with common categories to analyze together as a group, and summarize arrays by choosing categories of interest."
+news_description = "Create your own custom combinations to use in both categorical arrays and multiple response variables — available now with Early Access enabled. Click here to learn more."
+description = "Users can now combine variables with common categories to analyze together as a group, and summarize arrays by choosing categories of interest."
 tags = ["analysis, multiple response, categorical array, variables"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
