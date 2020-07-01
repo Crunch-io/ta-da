@@ -1,7 +1,7 @@
 +++
 date = "2020-07-01T15:16:25-04:00"
-title = "Easily create and remix Categorical Arrays and Multiple Response variables"
-news_description = "Create your own custom combinations of categories to use in both Multiple-Response and Categorical Array variables for extra flexibility. (Available now with Early Access enabled.) Click here to learn more."
+title = "Easily create and recombine categorical arrays and multiple response variables"
+news_description = "Create your own custom combinations of categories to use in both categorical arrays and multiple response variables. (Available now with Early Access enabled.) Click here to learn more."
 description = "Early Access users can now combine variables with common categories to analyze together as a group, and summarize arrays by choosing categories of interest."
 tags = ["analysis, multiple response, categorical array, variables"]
 categories = ["feature"]
