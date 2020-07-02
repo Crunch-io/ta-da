@@ -8,6 +8,6 @@ weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Register Now"
 series = "main"
-icon = "img/icons/video-icon.svg"
+icon = "img/icons/conference-icon-white.svg"
 
 +++
