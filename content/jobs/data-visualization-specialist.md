@@ -22,7 +22,7 @@ We are looking for a world-class Data Visualization Specialist to join our remot
 
 - Deep domain expertise of data science, statistical analysis, and data visualization
 - Adept at interacting with JSON REST APIs with standard tools (e.g., Postman)
-- A generalist with working knowledge of data visualization libraries and packages used today: Python (SciPy/NumPy/pandas), R (ggplot2), and JavaScript (D3.js, Vega, Highcharts), etc.
+- A generalist with working knowledge of data visualization libraries and packages used today: Python (SciPy/NumPy/pandas, Seaborn, Bokeh, etc.), R (ggplot2, grid), and JavaScript (D3.js, Vega, Plotly), etc.
 - Fluency with a Git/GitHub version control workflow (though not primarily a coding role, you’ll work closely with our team of developers)
 - Comfortable in a remote-first and internationally-distributed startup environment:
     - Able to figure out what questions to ask and how to get answers
