@@ -32,9 +32,11 @@
         a {
             color: $--light-primary-color;
             font-weight: 700;
+            margin-left: 10px;
 
             &:hover {
                 text-decoration: none;
+                color:$--lighter-primary-color;
             }
         }
     }
@@ -42,8 +44,141 @@
 
 .headline {
     font-family: 'Libre Baskerville', serif;
-    font-style: italic;
-    padding: 20px;
     color: $color-blue;
-    background-color: $--lighter-primary-color;
+    font-size: 27px;
+    max-width: 750px;
+    line-height: 36px;
+
+    span {
+        font-style: italic;
+    }
+}
+
+.highlight {
+    font-family: 'Libre Baskerville', serif;
+    color: $color-blue;
+    font-size: 18px;
+}
+
+.secondary-content {
+    .img-logo {
+        max-width: 120px;
+        margin-bottom: 20px;
+    }
+    .table {
+        tr {
+            vertical-align: top;
+        }
+
+        .table-space {
+            padding: 8px;
+        }
+
+        .table-border {
+            border:1px solid $color-grey-normal;
+            padding: 10px;
+            vertical-align: middle;
+        }
+
+        .hd-list-item {
+            list-style: none;
+            padding-left: 0;
+            min-width: 250px;
+        }
+
+        .hd-list-min-width {
+            min-width: 300px;
+        }
+    }
+
+}
+
+.quote-block {
+    font-family: 'Libre Baskerville', serif;
+    color: $color-blue;
+    background-color: $color-grey-lighest;
+    text-align: center;
+    padding: 30px;
+    line-height: 1.5em;
+
+    .punctuation {
+        font-size: 2.5em;
+        margin: 0;
+    }
+
+    span {
+        font-style: italic;
+    }
+
+    .author {
+        color: $color-off-black;
+        font-family: 'Proxima Nova', sans-serif;
+        font-size: 14px;
+
+        p:first-child {
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+    }
+
+}
+
+/// Cookies Alert
+
+.cookiealert {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    border-radius: 0;
+    color: $color-off-black;
+    padding: 10px;
+    background-color: $color-white;
+    font-size: 14px;
+    visibility: hidden;
+    transform: translateY(100%);
+    transition: all 500ms ease-out;
+    @include box_shadow("black");
+
+    a {
+        color: $color-green;
+
+        &:hover {
+            color: $--darker-secondary-color;
+            text-decoration: none;
+        }
+    }
+
+    .cookiealert-container {
+        padding: 10px 30px;
+    }
+
+    .row div {
+        padding: 0;
+    }
+
+    .row div:first-child {
+        margin-top: 6px;
+    }
+
+    @media (min-width: 576px) {
+        .acceptcookies {
+            float: right;
+            margin: 0;
+        }
+    }
+
+    .btn {
+        padding: 5px 20px;
+        font-size: 14px;
+
+    }
+}
+
+.cookiealert.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0%);
+    transition-delay: 500ms;
 }

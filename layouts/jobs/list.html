@@ -38,10 +38,14 @@
                   <div class="row spacer-bottom">
                       {{ range .Pages.ByWeight }}
                           <div class="col-md-6 col-lg-4">
-                              <div class="post-card post-job" onclick="location.href='{{ .Permalink }}'">
+                              <div class="post-card post-min-height" onclick="location.href='{{ .Permalink }}'">
                                   <div class="posts">
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
-                                      <a href="{{ .Permalink }}">Learn More &#10230;</a>
+                                      <div class="post-card-links">
+                                          <div class="post-url">
+                                              <a href="{{ .Permalink }}">Learn More &#10230;</a>
+                                          </div>
+                                      </div>
                                   </div>
                               </div>
                           </div>

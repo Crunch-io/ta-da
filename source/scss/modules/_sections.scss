@@ -256,6 +256,25 @@
 
     }
 
+    // Resources content
+    .resources-content {
+        color: $color-white;
+
+        .jumbotron {
+            background-color: $color-blue;
+            background-image: linear-gradient( $color-blue, $--darker-primary-color);
+        }
+
+    }
+
+    @include media-breakpoint-up(md) {
+
+        .resources-content-container {
+            text-align: center;
+            max-width: 520px;
+        }
+    }
+
     // Blog content
     .blog-content {
         color: $color-blue;
