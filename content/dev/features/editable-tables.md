@@ -1,5 +1,5 @@
 +++
-date = "2020-04-06T16:37:53-04:00"
+date = "2020-07-15T11:47:23-04:00"
 draft = false
 title = "Customize your tables for export or dashboards"
 news_description = "Anyone can now customize their tables for export or dashboards by hiding rows/columns, reordering rows/columns and editing labels. Click here to learn more."
@@ -31,5 +31,7 @@ Into this...
 All users can access this new functionality via the "edit" link shown upon hover of each slide saved to the deck, and editors can additionally access this functionality when editing dashboard tiles that contain tables.
 
 Currently this feature is only available for early access users, though all users will be able to see any tables customized in this way.
+
+See [the help site](https://help.crunch.io/hc/en-us/articles/360041481052-Customizing-your-tables-for-export-or-dashboards) for more information on these features.
 
 We'd love your feedback at [support@crunch.io](mailto:support@crunch.io).
