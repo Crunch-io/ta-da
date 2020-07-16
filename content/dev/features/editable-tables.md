@@ -1,5 +1,6 @@
 +++
 date = "2020-07-15T11:47:23-04:00"
+publishdate = "2020-07-15T18:19:00+0000"
 draft = false
 title = "Customize your tables for export or dashboards"
 news_description = "Anyone can now customize their tables for export or dashboards by hiding rows/columns, reordering rows/columns and editing labels. Click here to learn more."
