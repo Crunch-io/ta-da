@@ -182,3 +182,30 @@
     transform: translateY(0%);
     transition-delay: 500ms;
 }
+
+.crunchbox {
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: 20px;
+
+    iframe {
+        border: none;
+    }
+}
+
+table {
+    td {
+        padding-bottom: 10px;
+    }
+
+    td:first-child {
+        text-align: center;
+        margin-top:0;
+    }
+
+    td:nth-child(2) {
+        line-height: 20px;
+        padding-left: 10px;
+
+    }
+}
