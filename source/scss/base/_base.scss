@@ -23,6 +23,26 @@ ul {
     margin-left: 20px;
 }
 
+ol {
+    list-style: none;
+    counter-reset: my-awesome-counter;
+    padding: 0;
+
+    li {
+        counter-increment: my-awesome-counter;
+    }
+
+    li::before  {
+        content: counter(my-awesome-counter) ". ";
+        color: $color-off-black;
+        font-style: italic;
+        font-family: 'Libre Baskerville', serif;
+        float: left;
+        margin-right: 20px;
+    }
+
+}
+
 .container-fluid {
     padding: 0;
 }
