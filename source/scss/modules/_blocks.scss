@@ -10,6 +10,10 @@
     padding-bottom: 50px;
 }
 
+.spacer-bottom-md {
+    padding-bottom: 20px;
+}
+
 .add-shadow {
     @include vp-box-shadow(0 0 10px rgba(0,0,0,0.1));
 }
@@ -183,16 +187,6 @@
     transition-delay: 500ms;
 }
 
-.crunchbox {
-    max-width: 600px;
-    margin: auto;
-    margin-bottom: 20px;
-
-    iframe {
-        border: none;
-    }
-}
-
 table {
     td {
         padding-bottom: 10px;
@@ -207,5 +201,11 @@ table {
         line-height: 20px;
         padding-left: 10px;
 
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .sp-mb-t {
+        margin-top: 40px;
     }
 }

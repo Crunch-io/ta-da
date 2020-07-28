@@ -5,9 +5,7 @@ title = "CrunchBox"
 description = "Deliver simplified findings using a data subset."
 subtitle = "Now, try exploring CrunchBox yourself:"
 images = ["https://crunch.io/img/logo-1200x630.png"]
-video = "https://www.youtube.com/embed/H-1uToR-zeg?rel=0&amp;showinfo=0"
-img = "img/trackers_webinar_tile.jpg"
-gif = "img/trackers.gif"
+gif = "img/crunhbox.gif"
 crunchbox = "https://s.crunch.io/widget/index.html#/ds/72c27f64a12028b887d7cae248143b6b/row/000886/column/000480?viz=stackedBarPlot&cp=percent&dp=0&grp=stack"
 
 

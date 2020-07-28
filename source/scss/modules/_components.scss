@@ -74,7 +74,16 @@
                 }
             }
         }
+
+        @include media-breakpoint-down(xs) {
+            .intro-container {
+                &.secondary-intro-container {
+                    margin-top: -130px;
+                }
+            }
+        }
     }
+
 
     .footer-content {
         color: $color-white;
@@ -154,7 +163,6 @@
 
     .crunchbox {
         padding-top: 70%;
-        border:1px solid #d3d3d3;
         position: relative;
         overflow: hidden;
 
