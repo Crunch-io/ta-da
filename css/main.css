@@ -6019,6 +6019,20 @@ ul {
   padding: 0;
   margin-left: 20px; }
 
+ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+  padding: 0; }
+  ol li {
+    counter-increment: my-awesome-counter; }
+  ol li::before {
+    content: counter(my-awesome-counter) ". ";
+    color: #1D1D26;
+    font-style: italic;
+    font-family: 'Libre Baskerville', serif;
+    float: left;
+    margin-right: 20px; }
+
 .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
   padding: 0; }
 
@@ -6079,6 +6093,12 @@ h4 {
   font-family: 'Libre Baskerville', serif;
   margin-bottom: 40px; }
 
+.emphasis-black {
+  color: #1D1D26;
+  font-style: italic;
+  font-family: 'Libre Baskerville', serif;
+  margin-bottom: 40px; }
+
 .spacer {
   padding: 100px 0; }
 
@@ -6087,6 +6107,9 @@ h4 {
 
 .spacer-bottom {
   padding-bottom: 50px; }
+
+.spacer-bottom-md {
+  padding-bottom: 20px; }
 
 .add-shadow {
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -6209,6 +6232,21 @@ h4 {
   visibility: visible;
   transform: translateY(0%);
   transition-delay: 500ms; }
+
+table td {
+  padding-bottom: 10px; }
+
+table td:first-child {
+  text-align: center;
+  margin-top: 0; }
+
+table td:nth-child(2) {
+  line-height: 20px;
+  padding-left: 10px; }
+
+@media (max-width: 767.98px) {
+  .sp-mb-t {
+    margin-top: 40px; } }
 
 .btn {
   padding: 10px 50px;
@@ -6724,14 +6762,17 @@ h4 {
     #page-content-wrapper .intro-content .jumbotron-secondary-pages {
       padding-top: 50px;
       height: 300px; } }
-  #page-content-wrapper .intro-content .intro-animated-gif {
+  #page-content-wrapper .intro-content .intro-container {
     margin-top: -400px;
     margin-bottom: 20px; }
-    #page-content-wrapper .intro-content .intro-animated-gif.secondary-animated-gif {
+    #page-content-wrapper .intro-content .intro-container.secondary-intro-container {
       margin-top: -150px; }
-      #page-content-wrapper .intro-content .intro-animated-gif.secondary-animated-gif img {
+      #page-content-wrapper .intro-content .intro-container.secondary-intro-container img {
         width: 100%;
         max-width: 920px; }
+  @media (max-width: 575.98px) {
+    #page-content-wrapper .intro-content .intro-container.secondary-intro-container {
+      margin-top: -130px; } }
 
 #page-content-wrapper .footer-content {
   color: #ffffff;
@@ -6784,7 +6825,6 @@ h4 {
       margin-right: 60px; }
   .crunchbox-container .crunchbox {
     padding-top: 70%;
-    border: 1px solid #d3d3d3;
     position: relative;
     overflow: hidden; }
     .crunchbox-container .crunchbox iframe {
