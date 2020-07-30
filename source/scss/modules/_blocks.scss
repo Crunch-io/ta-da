@@ -10,6 +10,10 @@
     padding-bottom: 50px;
 }
 
+.spacer-bottom-md {
+    padding-bottom: 20px;
+}
+
 .add-shadow {
     @include vp-box-shadow(0 0 10px rgba(0,0,0,0.1));
 }
@@ -181,4 +185,27 @@
     visibility: visible;
     transform: translateY(0%);
     transition-delay: 500ms;
+}
+
+table {
+    td {
+        padding-bottom: 10px;
+    }
+
+    td:first-child {
+        text-align: center;
+        margin-top:0;
+    }
+
+    td:nth-child(2) {
+        line-height: 20px;
+        padding-left: 10px;
+
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .sp-mb-t {
+        margin-top: 40px;
+    }
 }
