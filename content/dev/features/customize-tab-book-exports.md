@@ -1,5 +1,6 @@
 +++
 date = "2020-07-31T10:12:35-04:00"
+publishdate = "2020-07-31T21:46:50+0000"
 draft = false
 title = "Greater flexibility to customize tab books"
 news_description = "Enhanced multitable exports (tab books), including new measures of uncertainty, summary statistics, and greater control for indications of statistical significance. Click here to learn more."
