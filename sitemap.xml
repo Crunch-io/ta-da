@@ -43,6 +43,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/dev/features/customize-tab-book-exports/</loc>
+    <lastmod>2020-07-31T10:12:35-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/dev/features/new-multiple-response-cat-array-builder/</loc>
     <lastmod>2020-07-16T17:34:21-04:00</lastmod>
   </url>
@@ -223,32 +228,37 @@
   </url>
   
   <url>
+    <loc>//crunch.io/tags/analysis-tab-books-multitable-exports/</loc>
+    <lastmod>2020-07-31T10:12:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/categories/</loc>
+    <lastmod>2020-07-31T10:12:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/categories/feature/</loc>
+    <lastmod>2020-07-31T10:12:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/</loc>
+    <lastmod>2020-07-31T10:12:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/</loc>
+    <lastmod>2020-07-31T10:12:35-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/crunchbox/</loc>
     <lastmod>2020-07-27T14:56:53-04:00</lastmod>
   </url>
   
   <url>
-    <loc>//crunch.io/</loc>
-    <lastmod>2020-07-27T14:56:53-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//crunch.io/tags/analysis-multiple-response-categorical-array-variables/</loc>
-    <lastmod>2020-07-16T17:34:21-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/categories/</loc>
-    <lastmod>2020-07-16T17:34:21-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/categories/feature/</loc>
-    <lastmod>2020-07-16T17:34:21-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/</loc>
     <lastmod>2020-07-16T17:34:21-04:00</lastmod>
   </url>
   
