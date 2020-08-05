@@ -14,6 +14,12 @@
     padding-bottom: 20px;
 }
 
+@include media-breakpoint-down(sm) {
+    .spacer-top-mb {
+        margin-top: -50px;
+    }
+}
+
 .add-shadow {
     @include vp-box-shadow(0 0 10px rgba(0,0,0,0.1));
 }
