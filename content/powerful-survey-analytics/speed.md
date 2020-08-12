@@ -4,7 +4,7 @@ draft = false
 title = "Speed"
 subtitle = "Analyze with sub-second response times"
 label = "Speed"
-gif = "img/survey_data_expertise/weight_estimation.gif"
+gif = "img/stat-speed.gif"
 
 +++
 

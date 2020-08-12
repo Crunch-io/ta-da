@@ -47,6 +47,10 @@
                 font-size: 20px;
                 font-style: normal;
             }
+
+            &.secondary-page-video {
+                height: 250px;
+            }
         }
 
         @include media-breakpoint-down(xs) {
@@ -71,6 +75,10 @@
                 img {
                     width: 100%;
                     max-width: 920px;
+                }
+
+                &.intro-container-video {
+                    margin-top: -65px;
                 }
             }
         }
@@ -485,7 +493,7 @@ figure {
 
 .hero-img-bottom {
     max-width: 950px;
-    height: 320px;
+    height: 450px;
     overflow: hidden;
     position: absolute;
     bottom: 0;
@@ -503,6 +511,8 @@ figure {
 .cr-carousel {
     .carousel-indicators {
         li {
+            width: 8px;
+            height: 8px;
             border: 1px solid $color-blue;
         }
         .active {
@@ -524,5 +534,37 @@ figure {
             color: $color-blue;
             font-weight: normal;
         }
+    }
+}
+
+// Hero video
+.hero-video {
+    position: relative;
+    width: 100%;
+    max-width: 920px;
+    height: 516px;
+    overflow: hidden;
+    z-index: 100;
+    border-radius: 5px;
+    margin: auto;
+}
+
+@include media-breakpoint-only(md) {
+    .hero-video  {
+        height: 398px;
+    }
+}
+
+@include media-breakpoint-only(sm) {
+    .hero-video  {
+        margin-top: 60px;
+        height: 290px;
+    }
+}
+
+@include media-breakpoint-only(xs) {
+    .hero-video  {
+        margin-top: 0px;
+        height: 260px;
     }
 }
