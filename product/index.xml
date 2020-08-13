@@ -5,11 +5,7 @@
     <link>//crunch.io/product/</link>
     <description>Recent content in Products on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="//crunch.io/product/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="//crunch.io/product/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Everyone analyzes.</title>
       <link>//crunch.io/product/everyone-analyzes/</link>
