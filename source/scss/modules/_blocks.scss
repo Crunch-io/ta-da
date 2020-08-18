@@ -10,6 +10,20 @@
     padding-bottom: 50px;
 }
 
+@include media-breakpoint-down(xs) {
+    .spacer {
+        padding: 50px 0;
+    }
+
+    .spacer-top {
+        padding-top: 25px;
+    }
+
+    .spacer-bottom {
+        padding-bottom: 25px;
+    }
+}
+
 .spacer-bottom-md {
     padding-bottom: 20px;
 }
@@ -22,7 +36,7 @@
 
 @include media-breakpoint-up(md) {
     .spacer-top-md-hero {
-        padding-top: 80px;
+        padding-top:60px;
     }
 }
 
