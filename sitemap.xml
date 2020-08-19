@@ -228,12 +228,37 @@
   </url>
   
   <url>
-    <loc>//crunch.io/diy/</loc>
-    <lastmod>2020-07-31T15:38:15-04:00</lastmod>
+    <loc>//crunch.io/</loc>
+    <lastmod>2020-08-10T16:37:03-04:00</lastmod>
   </url>
   
   <url>
-    <loc>//crunch.io/</loc>
+    <loc>//crunch.io/powerful-survey-analytics/</loc>
+    <lastmod>2020-08-10T16:37:03-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/powerful-survey-analytics/scalability/</loc>
+    <lastmod>2020-08-10T16:37:03-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/powerful-survey-analytics/simplicity/</loc>
+    <lastmod>2020-08-10T16:37:03-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/powerful-survey-analytics/speed/</loc>
+    <lastmod>2020-08-10T16:37:03-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/powerful-survey-analytics/tool/</loc>
+    <lastmod>2020-08-10T16:37:03-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/diy/</loc>
     <lastmod>2020-07-31T15:38:15-04:00</lastmod>
   </url>
   
@@ -363,22 +388,7 @@
   </url>
   
   <url>
-    <loc>//crunch.io/crunchdb/</loc>
-    <lastmod>2018-10-05T10:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//crunch.io/dashboards/</loc>
-    <lastmod>2018-10-05T10:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/powerful-survey-analytics/</loc>
-    <lastmod>2018-10-05T10:08:35+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/survey-data-expertise/</loc>
     <lastmod>2018-10-05T10:08:35+02:00</lastmod>
   </url>
   
@@ -500,16 +510,6 @@
   <url>
     <loc>//crunch.io/api/reference/</loc>
     <lastmod>2018-04-25T14:59:57-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/survey-data-expertise/crunch-is-extensive/</loc>
-    <lastmod>2018-04-25T12:34:11-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/survey-data-expertise/survey-data-effortlessly/</loc>
-    <lastmod>2018-04-25T12:27:04-04:00</lastmod>
   </url>
   
   <url>
