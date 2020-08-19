@@ -4,5 +4,6 @@ draft = false
 title = "Powerful Survey Analytics"
 description = "Simplicity. Speed. Scalability."
 video = "https://player.vimeo.com/video/446659176"
+mob_video = "https://player.vimeo.com/video/446617754"
 
 +++
