@@ -11,8 +11,8 @@ carousel_img_3 = "img/powerful_survey_analytics/dashboards.svg"
 
 +++
 
-* Analyze data with little or no training
-* Create tables and charts
-* Filter data
-* Build dashboards in 5 minutes
-* Empower customers and clients to answer their own questions
+* Analyze data with little or no training.
+* Create tables and charts.
+* Filter data.
+* Build dashboards in 5 minutes.
+* Empower customers and clients to answer their own questions.

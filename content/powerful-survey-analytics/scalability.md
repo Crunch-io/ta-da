@@ -9,7 +9,7 @@ gif = "img/survey_data_expertise/weight_estimation.gif"
 
 +++
 
-* All your data in one place, in the cloud
-* Instantly searchable across all your datasets
-* Everyone can analyze. It’s so easy to use
-* Deploy dashboards broadly because they’re so quick to build
+* All your data in one place, in the cloud.
+* Instantly searchable across all your datasets.
+* Everyone can analyze. It’s so easy to use.
+* Deploy dashboards broadly because they’re so quick to build.
