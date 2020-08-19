@@ -47,6 +47,10 @@
                 font-size: 20px;
                 font-style: normal;
             }
+
+            &.secondary-page-video {
+                height: 250px;
+            }
         }
 
         @include media-breakpoint-down(xs) {
@@ -71,6 +75,10 @@
                 img {
                     width: 100%;
                     max-width: 920px;
+                }
+
+                &.intro-container-video {
+                    margin-top: -65px;
                 }
             }
         }
@@ -469,4 +477,101 @@ figure {
 // Hubspot forms
 .hbspt-form .hs-form-iframe {
   width: 100% !important;
+}
+
+// Hero cropped images
+.hero-img-right {
+    width: 100%;
+    max-width: 700px;
+    height: 440px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 20px 0 0 20px;
+}
+
+.hero-img-bottom {
+    max-width: 950px;
+    height: 450px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    padding: 20px 20px 0 20px;
+}
+
+@include media-breakpoint-only(xs) {
+    .hero-img-bottom {
+        height: 330px;
+    }
+}
+
+@include media-breakpoint-only(md) {
+    .hero-img-right {
+        max-width: 500px;
+        height: 500px;
+    }
+}
+
+// carousel
+.cr-carousel {
+    .carousel-indicators {
+        li {
+            width: 8px;
+            height: 8px;
+            border: 1px solid $color-blue;
+        }
+        .active {
+            background-color: $color-blue;
+        }
+    }
+    .carousel-controls-icons {
+        color: $color-blue;
+        font-style: normal;
+        font-size: 27px;
+    }
+    .carousel-item {
+        height: 300px;
+        img {
+            max-width: 280px;
+            margin: auto;
+            margin-top: 20px;
+        }
+        h5 {
+            color: $color-blue;
+            font-weight: normal;
+        }
+    }
+}
+
+// Hero video
+.hero-video {
+    position: relative;
+    width: 100%;
+    max-width: 920px;
+    height: 516px;
+    overflow: hidden;
+    z-index: 100;
+    border-radius: 5px;
+    margin: auto;
+}
+
+@include media-breakpoint-only(md) {
+    .hero-video  {
+        height: 398px;
+    }
+}
+
+@include media-breakpoint-only(sm) {
+    .hero-video  {
+        margin-top: 60px;
+        height: 290px;
+    }
+}
+
+@include media-breakpoint-only(xs) {
+    .hero-video  {
+        margin-top: 0px;
+        height: 260px;
+    }
 }

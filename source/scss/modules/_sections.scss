@@ -710,3 +710,15 @@
     }
 
 }
+
+// Speed Section
+.speed-section {
+    height: 760px;
+    position: relative;
+}
+
+@include media-breakpoint-only(xs) {
+    .speed-section {
+        height: 620px;
+    }
+}
