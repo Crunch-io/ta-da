@@ -252,3 +252,14 @@ table {
     position: relative;
     margin-top: -80px;
 }
+
+.section-list {
+    a {
+        color: $color-green !important; // This rule overrides .share-insights
+
+        &:hover {
+            color: $--darker-secondary-color;
+            text-decoration: none;
+        }
+    }
+}

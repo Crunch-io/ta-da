@@ -14,8 +14,8 @@ carousel_img_3 = "img/powerful_survey_analytics/dashboards.svg"
 
 * Drag-and-drop to create interactive tables, charts, and graphs.
 
-* Quickly build a custom a custom <a href="">dashboard</a> with no coding.
+* Quickly build a custom a custom [dashboard](dashboards) with no coding.
 
 * Export editable tables and charts to PowerPoint and Excel.
 
-* With a few clicks, deliver or embed a <a href="">CrunchBox</a> - the easiest and quickest way to slice and dice survey data with zero training.
+* With a few clicks, deliver or embed a [CrunchBox](crunchbox) - the easiest and quickest way to slice and dice survey data with zero training.
