@@ -458,6 +458,10 @@ figure {
         height: 12px;
         border-radius: 50%;
     }
+
+    ol li::before {
+        content: none;
+    }
 }
 
  .marketing-list {
