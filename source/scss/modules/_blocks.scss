@@ -263,3 +263,7 @@ table {
         }
     }
 }
+
+.carousel-img-sm {
+    max-width: 200px !important; // Force images in carousel to be smaller in width
+}

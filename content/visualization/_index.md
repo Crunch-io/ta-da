@@ -6,9 +6,10 @@ subtitle = "Deliver visualizations and insights within minutes after fielding co
 description = "Rapidly analyze, view and deliver results."
 images = ["https://crunch.io/img/logo-1200x630.png"]
 gif = "img/deck_pptx.gif"
-carousel_img_1 = "img/powerful_survey_analytics/drag_and_drop.svg"
-carousel_img_2 = "img/powerful_survey_analytics/tables_and_charts.svg"
-carousel_img_3 = "img/powerful_survey_analytics/dashboards.svg"
+carousel_img_1 = "img/visualization_and_delivery/drag_and_drop.svg"
+carousel_img_2 = "img/visualization_and_delivery/dashboards.svg"
+carousel_img_3 = "img/visualization_and_delivery/export.svg"
+carousel_img_4 = "img/visualization_and_delivery/crunchbox.svg"
 
 +++
 
