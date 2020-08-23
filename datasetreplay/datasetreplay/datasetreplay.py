@@ -10,14 +10,15 @@ import requests
 import docopt
 from . import slack
 
-REPLAY_USER = 'systems+replay@crunch.io'
+REPLAY_USER = "systems+replay@crunch.io"
 USE_SLACK = False
 ENVIRONS = {
-    'unstable': ('localhost', 'ubuntu@unstable-backend.crunch.io'),
-    'stable': ('localhost', 'ubuntu@stable-backend.crunch.io'),
-    'alpha': ('alpha-backend-39.priveu.crunch.io', 'ec2-user@jump.eu.crint.net'),
-    'eu': ('eu-backend-3-155.priveu.crunch.io', 'ec2-user@jump.eu.crint.net'),
-    'vagrant': (None, None)
+    "unstable": ("localhost", "ubuntu@unstable-backend.crunch.io"),
+    "stable": ("localhost", "ubuntu@stable-backend.crunch.io"),
+    "alpha": ("alpha-backend-39.priveu.crunch.io", "ec2-user@jump.eu.crint.net"),
+    "eu": ("eu-backend-3-155.priveu.crunch.io", "ec2-user@jump.eu.crint.net"),
+    "vagrant": (None, None),
+    "docker": (None, None),
 }
 
 
@@ -30,14 +31,15 @@ class tunnel(object):
 
     def __enter__(self):
         if self.target is None and self.bastion is None:
-            return '127.0.0.1', self.target_port
+            return "127.0.0.1", self.target_port
 
-        print('Tunnel to %s through %s' % (self.target, self.bastion), file=sys.stderr)
+        print("Tunnel to %s through %s" % (self.target, self.bastion), file=sys.stderr)
         subprocess.call(
-            'ssh -A -f -N -L %s:%s:%s %s' % (self.local_port, self.target, self.target_port, self.bastion),
-            shell=True
+            "ssh -A -f -N -L %s:%s:%s %s"
+            % (self.local_port, self.target, self.target_port, self.bastion),
+            shell=True,
         )
-        return '127.0.0.1', self.local_port
+        return "127.0.0.1", self.local_port
 
     def __exit__(self, *args, **kwargs):
         if self.target is None and self.bastion is None:
@@ -47,39 +49,61 @@ class tunnel(object):
 
 
 def admin_url(connection, path, data=None):
-    if not path.startswith('/'):
-        path = '/' + path
-    r = dict(url='http://%s:%s%s' % (connection[0], connection[1], path),
-                headers={'Accept': 'application/json'})
+    if not path.startswith("/"):
+        path = "/" + path
+    r = dict(
+        url="http://%s:%s%s" % (connection[0], connection[1], path),
+        headers={"Accept": "application/json"},
+    )
 
     if data:
-        r['data'] = data
+        r["data"] = data
     return r
 
-def notify(dataset_id, dataset_name, from_version, message, success=True, skipped=False,
-           tracefile=None):
+
+def notify(
+    dataset_id,
+    dataset_name,
+    from_version,
+    message,
+    success=True,
+    skipped=False,
+    tracefile=None,
+):
     if USE_SLACK:
-        r = slack.message(channel="api", username="crunchbot",
-                          icon_emoji=":grinning:" if success else ':worried:' ,
-                          attachments=[{
-                              'title': 'Dataset Replay Check for %s - %s from %s' % (
-                                  dataset_id, dataset_name, from_version
-                              ),
-                              'text': message
-                          }])
+        r = slack.message(
+            channel="api",
+            username="crunchbot",
+            icon_emoji=":grinning:" if success else ":worried:",
+            attachments=[
+                {
+                    "title": "Dataset Replay Check for %s - %s from %s"
+                    % (dataset_id, dataset_name, from_version),
+                    "text": message,
+                }
+            ],
+        )
         r.raise_for_status()
     else:
         print(message)
 
     if tracefile is not None:
-        with open(tracefile, 'a') as f:
-            f.write(json.dumps({
-                'date': datetime.datetime.utcnow().strftime('%Y%m%d'),
-                'dataset_id': dataset_id, 'from_version': from_version,
-                'dataset_name': dataset_name, 'success': success, 'skipped': skipped,
-                'message': message,
-                'format': '%(dataset_id)s from %(from_version)s: %(message)s'
-            })+'\n')
+        with open(tracefile, "a") as f:
+            f.write(
+                json.dumps(
+                    {
+                        "date": datetime.datetime.utcnow().strftime("%Y%m%d"),
+                        "dataset_id": dataset_id,
+                        "from_version": from_version,
+                        "dataset_name": dataset_name,
+                        "success": success,
+                        "skipped": skipped,
+                        "message": message,
+                        "format": "%(dataset_id)s from %(from_version)s: %(message)s",
+                    }
+                )
+                + "\n"
+            )
 
 
 def main():
@@ -101,67 +125,76 @@ def main():
       --env=ENV               Environment against which to run the commands [default: eu]
       --tracefile=TRACEFILE   Save replay logs to a file.
       --timelimit=SECONDS     Limit maximum allowed history length to SECONDS seconds.
-    """ % dict(script=sys.argv[0])
+    """ % dict(
+        script=sys.argv[0]
+    )
 
     arguments = docopt.docopt(helpstr, sys.argv[1:])
-    dataset_id = arguments['<dsid>']
-    from_version = arguments['<from_version>']
-    USE_SLACK = arguments['--slack']
-    env = arguments['--env']
-    tracefile = arguments['--tracefile']
-    timelimit = arguments['--timelimit']
+    dataset_id = arguments["<dsid>"]
+    from_version = arguments["<from_version>"]
+    USE_SLACK = arguments["--slack"]
+    env = arguments["--env"]
+    tracefile = arguments["--tracefile"]
+    timelimit = arguments["--timelimit"]
 
     if from_version:
-        from_revision = from_version.split('__')[-1]
+        from_revision = from_version.split("__")[-1]
     else:
-        from_revision = ''
+        from_revision = ""
 
     if timelimit is not None:
         if not from_revision:
-            print('--timelimit is currently only supported when <from_version> is provided too.')
+            print(
+                "--timelimit is currently only supported when <from_version> is provided too."
+            )
             sys.exit(1)
 
         timelimit = int(timelimit)
 
     hosts = ENVIRONS[env]
     with tunnel(hosts[0], 8081, 29081, hosts[1]) as connection:
-        print('Fetching Dataset info for %s' % dataset_id)
-        resp = requests.get(**admin_url(connection, '/datasets/?dsid=' + dataset_id))
+        print("Fetching Dataset info for %s" % dataset_id)
+        resp = requests.get(**admin_url(connection, "/datasets/?dsid=" + dataset_id))
         if resp.status_code != 200:
-            print('ERROR: %s' % resp.text)
+            print("ERROR: %s" % resp.text)
             return
 
         datasets = resp.json()
-        dataset = next(iter(datasets['datasets']), None)
+        dataset = next(iter(datasets["datasets"]), None)
         if not dataset:
-            print('Dataset %s not found' % dataset_id)
+            print("Dataset %s not found" % dataset_id)
             return
 
-        if dataset['name'].startswith('AUTOREPLAY '):
+        if dataset["name"].startswith("AUTOREPLAY "):
             # We don't want to replay our own replays
-            print('SKIPPED: %s was a replay' % dataset['name'])
+            print("SKIPPED: %s was a replay" % dataset["name"])
             return
 
-        print('Fetching Actions for Dataset "%s"' % dataset['name'])
-        resp = requests.get(**admin_url(connection, '/datasets/%s/actions' % dataset_id))
+        print('Fetching Actions for Dataset "%s"' % dataset["name"])
+        resp = requests.get(
+            **admin_url(connection, "/datasets/%s/actions" % dataset_id)
+        )
         if resp.status_code != 200:
-            print('ERROR: %s' % resp.text)
+            print("ERROR: %s" % resp.text)
             return
 
         resp = resp.json()
         if from_revision:
             actions_count = 0
             total_time = 0
-            for a in resp['actions']:
-                if a['hash'] == from_revision:
+            for a in resp["actions"]:
+                if a["hash"] == from_revision:
                     break
                 actions_count += 1
-                total_time += round(a.get('timing', 0), 3)
+                total_time += round(a.get("timing", 0), 3)
         else:
-            actions_count = len(resp['actions'])
+            actions_count = len(resp["actions"])
             total_time = -1
 
-        print('Replaying %s actions (expected %s seconds)...' % (actions_count, total_time))
+        print(
+            "Replaying %s actions (expected %s seconds)..."
+            % (actions_count, total_time)
+        )
         if timelimit is not None and total_time > timelimit:
             # notify(dataset_id, dataset['name'], from_revision,
             #       'Skipped: Expected to take %s seconds to replay %s actions' % (
@@ -171,44 +204,65 @@ def main():
 
         resp = requests.post(
             data={
-                'dataset_name': 'AUTOREPLAY %s - %s' % (int(time.time()), dataset['name']),
-                'dataset_owner': REPLAY_USER,
-                'from_revision': from_revision
+                "dataset_name": "AUTOREPLAY %s - %s"
+                % (int(time.time()), dataset["name"]),
+                "dataset_owner": REPLAY_USER,
+                "from_revision": from_revision,
             },
             allow_redirects=False,
-            **admin_url(connection, '/datasets/%s/actions/replay' % dataset_id)
+            **admin_url(connection, "/datasets/%s/actions/replay" % dataset_id)
         )
-        if resp.status_code in (202, ):
+        if resp.status_code in (202,):
             # Progress response, the replay is proceeding asynchronously.
-            progress_url = resp.json()['value']
-            target_url = resp.headers['Location']
-            status = {'progress': 0, 'message': ''}
-            while -1 < status['progress'] < 100:
-                status.update(requests.get(progress_url).json()['value'])
-                print('    %(progress)s%% - %(message)s' % status)
+            progress_url = resp.json()["value"]
+            target_url = resp.headers["Location"]
+            status = {"progress": 0, "message": ""}
+            while -1 < status["progress"] < 100:
+                status.update(requests.get(progress_url).json()["value"])
+                print("    %(progress)s%% - %(message)s" % status)
                 time.sleep(5.0)
 
-            if status['progress'] == -1:
-                if status['message'] == 'There is no savepoint at that revision':
+            if status["progress"] == -1:
+                if status["message"] == "There is no savepoint at that revision":
                     # The target savepoint was deleted before we could replay from it.
-                    notify(dataset_id, dataset['name'], from_revision,
-                           'Skipped: Savepoint deleted before we could start replaying from it',
-                           success=False, skipped=True, tracefile=tracefile)
+                    notify(
+                        dataset_id,
+                        dataset["name"],
+                        from_revision,
+                        "Skipped: Savepoint deleted before we could start replaying from it",
+                        success=False,
+                        skipped=True,
+                        tracefile=tracefile,
+                    )
                     return
-                elif status['message'].startswith('Trying to modify a deleted dataset'):
+                elif status["message"].startswith("Trying to modify a deleted dataset"):
                     # If the dataset was deleted we just skip it
                     return
 
-                notify(dataset_id, dataset['name'], from_revision,
-                       'Failed: %s' % status['message'],
-                       success=False, tracefile=tracefile)
+                notify(
+                    dataset_id,
+                    dataset["name"],
+                    from_revision,
+                    "Failed: %s" % status["message"],
+                    success=False,
+                    tracefile=tracefile,
+                )
                 return
 
-            notify(dataset_id, dataset['name'], from_revision,
-                   'Successful: %s' % target_url,
-                   success=True, tracefile=tracefile)
+            notify(
+                dataset_id,
+                dataset["name"],
+                from_revision,
+                "Successful: %s" % target_url,
+                success=True,
+                tracefile=tracefile,
+            )
         else:
-            notify(dataset_id, dataset['name'], from_revision,
-                   'Failed: %s' % resp.text,
-                   success=False, tracefile=tracefile)
-
+            notify(
+                dataset_id,
+                dataset["name"],
+                from_revision,
+                "Failed: %s" % resp.text,
+                success=False,
+                tracefile=tracefile,
+            )
