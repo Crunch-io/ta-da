@@ -29,7 +29,7 @@ def errors_to_slack(channel="app-status", username="crunchbot", icon_emoji=":cry
     try:
         yield
     except Exception, e:
-        print e
+        print(e)
         kwargs['channel'] = channel
         kwargs['username'] = username
         kwargs['icon_emoji'] = icon_emoji
@@ -40,6 +40,6 @@ def errors_to_slack(channel="app-status", username="crunchbot", icon_emoji=":cry
         try:
             message(**kwargs)
         except Exception, e:
-            print e
+            print(e)
     finally:
         pass
