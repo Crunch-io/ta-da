@@ -37,7 +37,7 @@
         <div class="container-fluid">
 
             <div class="container">
-                <div class="row spacer share-insights section-list">
+                <div class="row spacer no-spacer-xs share-insights section-list">
                     <div class="col-12 col-md-5 order-0 order-md-0">
                         <h2 class="label">{{ .Params.label }}</h2>
                         <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} <span>{{ index (split . " ") 4 }} {{ index (split . " ") 5 }}</span> {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ end }}</h2>
