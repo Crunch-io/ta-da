@@ -6109,7 +6109,9 @@ h4 {
   .spacer-top {
     padding-top: 25px; }
   .spacer-bottom {
-    padding-bottom: 25px; } }
+    padding-bottom: 25px; }
+  .spacer-xs {
+    padding: 25px 0; } }
 
 .spacer-bottom-md {
   padding-bottom: 20px; }
@@ -6271,6 +6273,15 @@ table td:nth-child(2)cr- {
 .cr-section-block {
   position: relative;
   margin-top: -80px; }
+
+.section-list a {
+  color: #107f65 !important; }
+  .section-list a:hover {
+    color: #0a5241;
+    text-decoration: none; }
+
+.carousel-img-sm {
+  max-width: 200px !important; }
 
 .btn {
   padding: 10px 50px;
@@ -6808,7 +6819,7 @@ table td:nth-child(2)cr- {
         margin-top: -65px; }
   @media (max-width: 575.98px) {
     #page-content-wrapper .intro-content .intro-container.secondary-intro-container {
-      margin-top: -130px; } }
+      margin-top: -100px; } }
 
 #page-content-wrapper .footer-content {
   color: #ffffff;
@@ -7040,6 +7051,9 @@ figure figcaption h4 {
   width: 12px;
   height: 12px;
   border-radius: 50%; }
+
+.carousel ol li::before {
+  content: none; }
 
 .marketing-list {
   padding-left: 15px; }
