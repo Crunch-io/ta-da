@@ -22,6 +22,10 @@
     .spacer-bottom {
         padding-bottom: 25px;
     }
+
+    .spacer-xs {
+        padding: 25px 0;
+    }
 }
 
 .spacer-bottom-md {
@@ -251,4 +255,19 @@ table {
 .cr-section-block {
     position: relative;
     margin-top: -80px;
+}
+
+.section-list {
+    a {
+        color: $color-green !important; // This rule overrides .share-insights
+
+        &:hover {
+            color: $--darker-secondary-color;
+            text-decoration: none;
+        }
+    }
+}
+
+.carousel-img-sm {
+    max-width: 200px !important; // Force images in carousel to be smaller in width
 }

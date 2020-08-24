@@ -86,7 +86,7 @@
         @include media-breakpoint-down(xs) {
             .intro-container {
                 &.secondary-intro-container {
-                    margin-top: -130px;
+                    margin-top: -100px;
                 }
             }
         }
@@ -457,6 +457,10 @@ figure {
         width: 12px;
         height: 12px;
         border-radius: 50%;
+    }
+
+    ol li::before {
+        content: none;
     }
 }
 
