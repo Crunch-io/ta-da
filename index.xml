@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Aug 2020 11:26:59 -0400</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Aug 2020 15:39:05 -0400</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Chicago Council on Global Affairs</title>
       <link>//crunch.io/case-studies/chicago-council/</link>
@@ -26,6 +26,16 @@ They have appended over 45 years of public opinion datasets into one dataset, pr
       <guid>//crunch.io/case-studies/yougov/</guid>
       <description>YouGov, whose current brand slogan is “the best panel - the best data - the best tools”, has one of the world’s largest research networks with a proprietary panel of over 8 million individuals in 44 markets. Researchers at YouGov use Crunch.io to perform analysis and deliver data and insights to clients via the Crunch.io web application, CrunchBoxes, and dashboards.
 YouGov uses Crunch.io enterprise-wide for both custom research and Data Products, such as YouGov Profiles, which provides syndicated segmentation and product data for agencies and brands.</description>
+    </item>
+    
+    <item>
+      <title>Export whole dashboards or only the tabs you want, with the new selective tab exports feature for dashboards</title>
+      <link>//crunch.io/dev/features/selective-tab-exports/</link>
+      <pubDate>Tue, 25 Aug 2020 15:39:05 -0400</pubDate>
+      
+      <guid>//crunch.io/dev/features/selective-tab-exports/</guid>
+      <description>Exporting from dashboards just got more flexible. Instead of always having to export the whole dashboard, users are now able to choose between exporting the whole dashboard (still the default), exporting the currently viewed tab, or choosing a custom selection of one or more tabs to export.
+The new, simplified “Export…” option opens the new Export panel which gives the choice of PowerPoint or Excel formats, but for dashboards with tabs, it also now contains a “Tabs” control.</description>
     </item>
     
     <item>
