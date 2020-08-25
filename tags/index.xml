@@ -6,7 +6,16 @@
     <description>Recent content in Tags on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 31 Jul 2020 10:12:35 -0400</lastBuildDate><atom:link href="//crunch.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Aug 2020 11:26:59 -0400</lastBuildDate><atom:link href="//crunch.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>analyses</title>
+      <link>//crunch.io/tags/analyses/</link>
+      <pubDate>Tue, 25 Aug 2020 11:26:59 -0400</pubDate>
+      
+      <guid>//crunch.io/tags/analyses/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>analysis, tab books, multitable, exports</title>
       <link>//crunch.io/tags/analysis-tab-books-multitable-exports/</link>
@@ -22,15 +31,6 @@
       <pubDate>Thu, 16 Jul 2020 17:34:21 -0400</pubDate>
       
       <guid>//crunch.io/tags/analysis-multiple-response-categorical-array-variables/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>analyses</title>
-      <link>//crunch.io/tags/analyses/</link>
-      <pubDate>Wed, 15 Jul 2020 11:47:23 -0400</pubDate>
-      
-      <guid>//crunch.io/tags/analyses/</guid>
       <description></description>
     </item>
     
