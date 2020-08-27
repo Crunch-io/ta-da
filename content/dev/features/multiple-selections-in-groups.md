@@ -1,5 +1,6 @@
 +++
 date = "2020-08-26T14:47:45-04:00"
+publishdate = "2020-08-26T21:13:44+0000"
 draft = false
 title = "Combine categories in dashboard filter variables"
 news_description = "Editors can now choose to allow dashboard users to make multiple selections within dashboard “Groups” variables — e.g. “Midwest” and “West” selected simultaneously, thereby creating a filter that includes everyone in either of these regions. Click here to learn more."
