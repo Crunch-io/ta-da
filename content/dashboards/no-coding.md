@@ -4,6 +4,12 @@ draft = false
 title = "No coding"
 subtitle = "Dashboards are so easy and quick to create. You'll deliver one for every survey."
 label = "No coding"
+series = "Webinar"
+video_title = "Senior Director of Product Chris Jones creates an interactive dashboard in 5 minutes."
+video_img = "img/video_placeholder.jpg"
+icon = "img/icons/webinar-icon.svg"
+url = "//player.vimeo.com/video/446961229"
+link = "//info.crunch.io/dashboards-webinar-recording-lp"
 
 +++
 

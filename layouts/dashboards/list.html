@@ -106,34 +106,55 @@
             {{ if and (eq .Type "dashboards") (eq .Title "No coding") }}
             <div class="container">
                 <div class="row spacer share-insights">
-                    <div class="col-12 col-md-6 order-1 order-md-0 sp-mb-t my-auto">
-                        <div class="post-card post-min-height video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">
-                            <div class="posts">
-                                <h4 class="post-title">Senior Director of Product Chris Jones creates an interactive dashboard in 5 minutes. </h4>
+                        <div class="col-12 col-md-6 order-1 order-md-0 sp-mb-t my-auto">
 
-                                <div class="post-card-links">
-                                    <div class="post-label">
-                                        <span><img src="{{ .Params.icon }}" alt="Icon">Webinar</span>
-                                    </div>
+                            <div class="post-card-video post-min-height video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">
 
-                                    <div class="post-url">
-                                        <a class="video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">View full recording {{ .Params.link }} &#10230;</a>
+                                <img src="{{ .Params.video_img }}" alt="5 minute Dashboard" class="post-video-img img-fluid">
+
+                                <div class="posts">
+                                    <h4 class="post-title">{{ .Params.video_title }}</h4>
+
+                                    <div class="post-card-links">
+                                        <div class="post-label">
+                                            <span><img src="{{ .Params.icon }}" alt="Icon" class="my-auto">{{ .Params.series }}</span>
+                                        </div>
+
+                                        <div class="post-url">
+                                            <a class="video-btn" href="{{ .Params.link }}">View full recording &#10230;</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-12 col-md-4 offset-md-1 order-0 order-md-1">
-                        <h2 class="label">{{ .Params.label }}</h2>
-                        <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }} <span>{{ index (split . " ") 12 }} {{ index (split . " ") 13 }}</span> {{ end }}</h2>
+                        <div class="col-12 col-md-4 offset-md-1 order-0 order-md-1">
+                            <h2 class="label">{{ .Params.label }}</h2>
+                            <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }} <span>{{ index (split . " ") 12 }} {{ index (split . " ") 13 }}</span> {{ end }}</h2>
 
-                        <p>{{ .Content }}</p>
-                    </div>
+                            <p>{{ .Content }}</p>
+                        </div>
                 </div> <!-- /.row. -->
             </div> <!-- /.container -->
             {{ end }}
         {{ end }}
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalVideos" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <!-- 16:9 aspect ratio -->
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 {{ partial "footer-nav.html" . }}
 

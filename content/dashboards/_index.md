@@ -4,7 +4,8 @@ draft = false
 title = "Dashboards"
 description = "Build an interactive dashboard in 5 minutes. Not 3 weeks."
 images = ["https://crunch.io/img/logo-1200x630.png"]
-video = "https://player.vimeo.com/video/374781211"
+video = "https://player.vimeo.com/video/446659156"
+mob_video = "https://player.vimeo.com/video/446617722"
 
 +++
 
