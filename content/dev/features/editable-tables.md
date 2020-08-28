@@ -42,6 +42,6 @@ The following video walks you through the steps for adding a table to your deck 
 
 Currently this feature is only available for early access users, though all users will be able to see any tables customized in this way.
 
-See [the help site](https://help.crunch.io/hc/en-us/articles/360041481052-Customizing-your-tables-for-export-or-dashboards) for more information on these features.
+See [the help center](https://help.crunch.io/) for more information on these features.
 
 We'd love your feedback at [support@crunch.io](mailto:support@crunch.io).
