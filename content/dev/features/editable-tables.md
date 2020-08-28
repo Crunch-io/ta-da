@@ -20,23 +20,28 @@ You've already been able to customize saved *graphs*, but now you can make those
 2. Reorder the rows/columns of a table, just by dragging them into their new order.
 3. Rename any row/column just by typing into the name box. Great for cases where the labels are too long or contain unwanted content.
 
-Together, these allow you to turn this...
+Together, these features allow you to turn off rows and columns in 'messy' tables. For example, the table below has many columns that the researcher may not want to display in the analysis. They may want to focus the viewer's attention on what's most important.
 
 {{< figure src="dev/features/images/editable-table.png" class="img-fluid">}}
 
-
-Into this...
+The result is something like the below - which is much neater.
 
 {{< figure src="dev/features/images/editable-table-tidy.png" class="img-fluid">}}
 
+The action here simply hides the rows and columns in the table - the original variable is unaffected (so if you made another table, you would see all the columns/rows again).
+
 All users can access this new functionality via the "edit" link shown upon hover of each slide saved to the deck.
 
-{{< figure src="dev/features/images/slides-editable-from-deck.png" class="img-fluid">}}
+{{< figure src="dev/features/images/editable-from-deck.png" class="img-fluid">}}
 
 Editors can additionally access this functionality when editing dashboard tiles that contain tables.
 
+The following video walks you through the steps for adding a table to your deck and then how to edit that table to only show the rows and columns of interest, arranged in the desired order.
+
+<div class='embed-container'><iframe src="https://player.vimeo.com/video/451935697" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+
 Currently this feature is only available for early access users, though all users will be able to see any tables customized in this way.
 
-See [the help site](https://help.crunch.io/hc/en-us/articles/360041481052-Customizing-your-tables-for-export-or-dashboards) for more information on these features.
+See [the help center](https://help.crunch.io/) for more information on these features.
 
 We'd love your feedback at [support@crunch.io](mailto:support@crunch.io).
