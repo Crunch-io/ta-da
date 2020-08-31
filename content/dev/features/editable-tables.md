@@ -1,15 +1,14 @@
 +++
-date = "2020-08-25T11:26:59-04:00"
-publishdate = "2020-08-25T16:26:12+0000"
+date = "2020-08-31T09:26:59-04:00"
 draft = false
 title = "Customize your tables for export or dashboards"
 news_description = "Anyone can now customize their tables for export or dashboards by hiding rows/columns, reordering rows/columns and editing labels. Click here to learn more."
-description = "Early Access users can now customize their tables for export or dashboards by hiding rows/columns, reordering rows/columns and editing labels."
+description = "Users can now customize their tables for export or dashboards by hiding rows/columns, reordering rows/columns and editing labels."
 weight = 20
-tags = ["analyses"]
+tags = ["analyses, dashboards"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 
 +++
@@ -39,8 +38,6 @@ Editors can additionally access this functionality when editing dashboard tiles 
 The following video walks you through the steps for adding a table to your deck and then how to edit that table to only show the rows and columns of interest, arranged in the desired order.
 
 <div class='embed-container'><iframe src="https://player.vimeo.com/video/451935697" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
-
-Currently this feature is only available for early access users, though all users will be able to see any tables customized in this way.
 
 See [the help center](https://help.crunch.io/) for more information on these features.
 
