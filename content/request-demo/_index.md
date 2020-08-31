@@ -3,10 +3,11 @@ date = "2019-09-27T11:20:25+01:00"
 draft = false
 title = "Request a demo"
 subtitle = "See Crunch.io in action"
-description = "Crunch.io is a modern survey data analysis platform focused on simplicity and usability"
+description = "Crunch.io is a modern survey data analysis platform focused on simplicity and usability."
 number = "202-780-5550"
 images = ["https://crunch.io/img/logo-1200x630.png"]
-video = "https://player.vimeo.com/video/343376948"
+video = "https://player.vimeo.com/video/446659223"
+mob_video = "https://player.vimeo.com/video/446617800"
 
 +++
 

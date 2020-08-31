@@ -28,10 +28,21 @@
             <div class="request-demo-content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-12 col-md-7">
+                        <div class="col-sm-12 col-md-7 d-none d-md-block">
                             <div id="learn-more-img-2">
                                 <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
                                      <iframe src="{{ .Params.video }}"
+                                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
+                                 </div>
+                            </div>
+
+                            <p>{{ .Content }}</p>
+                        </div>
+
+                        <div class="col-sm-12 col-md-7 d-block d-md-none">
+                            <div id="learn-more-img-2">
+                                <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
+                                     <iframe src="{{ .Params.mob_video }}"
                                      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
                                  </div>
                             </div>
