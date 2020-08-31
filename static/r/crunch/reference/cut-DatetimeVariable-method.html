@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate Labels for the cut function — generateCutLabels • Crunch</title>
+<title>Cut a Datetime Crunch variable — cut,DatetimeVariable-method • Crunch</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,10 +54,17 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Generate Labels for the cut function — generateCutLabels" />
-<meta property="og:description" content="A convenience function to generate labels for the cut function. This
-function is extracted from base::cut() and is broken out to make it easier
-to test. It is not meant to be called on its own." />
+<meta property="og:title" content="Cut a Datetime Crunch variable — cut,DatetimeVariable-method" />
+<meta property="og:description" content="crunch::cut() is equivalent to base::cut() except that it operates on
+Crunch variables instead of in-memory R objects. The function takes a Datetime
+variable and derives a new categorical variable from it based on the breaks
+argument. You can either break the variable into evenly spaced categories by
+specifying an interval using a string that defines a period or a vector containing
+the start and end point of each category. For example, specifying
+breaks = &quot;2 weeks&quot; will break the datetime data into 2 week size bins
+while breaks = as.Date(c(&quot;2020-01-01&quot;, &quot;2020-01-15&quot; &quot;2020-02-01&quot;))
+will recode the data into two groups based on
+whether the numeric vector falls between January 1 and 14 or January 15 and 31" />
 <meta property="og:image" content="http://crunch.io/r/crunch/logo.png" />
 
 
@@ -100,7 +107,7 @@ to test. It is not meant to be called on its own." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Crunch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.2</span>
       </span>
     </div>
 
@@ -190,48 +197,81 @@ to test. It is not meant to be called on its own." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate Labels for the cut function</h1>
+    <h1>Cut a Datetime Crunch variable</h1>
     <small class="dont-index">Source: <a href='https://github.com/Crunch-io/rcrunch/blob/master/R/cut.R'><code>R/cut.R</code></a></small>
-    <div class="hidden name"><code>generateCutLabels.Rd</code></div>
+    <div class="hidden name"><code>cut-DatetimeVariable-method.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A convenience function to generate labels for the cut function. This
-function is extracted from <code><a href='https://rdrr.io/r/base/cut.html'>base::cut()</a></code> and is broken out to make it easier
-to test. It is not meant to be called on its own.</p>
+    <p><code><a href='https://rdrr.io/r/base/cut.html'>crunch::cut()</a></code> is equivalent to <code><a href='https://rdrr.io/r/base/cut.html'>base::cut()</a></code> except that it operates on
+Crunch variables instead of in-memory R objects. The function takes a Datetime
+variable and derives a new categorical variable from it based on the <code>breaks</code>
+argument. You can either break the variable into evenly spaced categories by
+specifying an interval using a string that defines a period or a vector containing
+the start and end point of each category. For example, specifying
+<code>breaks = "2 weeks"</code> will break the datetime data into 2 week size bins
+while <code>breaks = as.Date(c("2020-01-01", "2020-01-15" "2020-02-01"))</code>
+will recode the data into two groups based on
+whether the numeric vector falls between January 1 and 14 or January 15 and 31</p>
     </div>
 
-    <pre class="usage"><span class='fu'>generateCutLabels</span>(<span class='kw'>dig.lab</span>, <span class='kw'>breaks</span>, <span class='kw'>nb</span>, <span class='kw'>right</span>, <span class='kw'>include.lowest</span>)</pre>
+    <pre class="usage"><span class='co'># S4 method for DatetimeVariable</span>
+<span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span>(<span class='kw'>x</span>, <span class='kw'>breaks</span>, labels = <span class='kw'>NULL</span>, dates = <span class='kw'>NULL</span>, <span class='kw'>name</span>, right = <span class='fl'>FALSE</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dig.lab</th>
-      <td><p>see <code><a href='https://rdrr.io/r/base/cut.html'>cut()</a></code></p></td>
+      <th>x</th>
+      <td><p>A Crunch <code>DatetimeVariable</code></p></td>
     </tr>
     <tr>
       <th>breaks</th>
-      <td><p>see <code><a href='https://rdrr.io/r/base/cut.html'>cut()</a></code></p></td>
+      <td><p>Either a numeric vector of two or more unique cut point datetimes
+or a single string giving the interval size into which <code>x</code> is to be
+cut with a number optionally at the beginning nd "day", "weeks", "months",
+a "quarters" or "years". If specifying cut points, values that are less than
+the smallest value in <code>breaks</code> or greater than the largest value in <code>breaks</code>
+will be marked missing in the resulting categorical variable.</p></td>
     </tr>
     <tr>
-      <th>nb</th>
-      <td><p>The number of breaks, equal to the small of 2 or the number of breaks</p></td>
+      <th>labels</th>
+      <td><p>A character vector representing the labels for the levels of
+the resulting categories. The length of the labels argument should be the
+same as the number of categories, which is one fewer than the number of
+breaks. If not specified, labels are constructed with a formatting like
+"YYYY/MM/DD - YYYY/MM/DD" (for example ("2020/01/01 - 2020/01/14"))</p></td>
+    </tr>
+    <tr>
+      <th>dates</th>
+      <td><p>(Optionally) A character vector with the date strings that should
+be associated with the resulting categories. These dates can have the form
+"YYYY-MM-DD", "YYYY-MM", "YYYY", "YYYY-WXX" (where "XX" is the ISO week number) or
+"YYYY-MM-DD,YYYY-MM-DD". If left <code>NULL</code>, it will be created from the categories.</p></td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td><p>The name of the resulting Crunch variable as a character string.</p></td>
     </tr>
     <tr>
       <th>right</th>
-      <td><p>see <code><a href='https://rdrr.io/r/base/cut.html'>cut()</a></code></p></td>
+      <td><p>logical, indicating if the intervals should be closed on the
+right (and open on the left) or vice versa. This only applies if giving a
+vector of break points.</p></td>
     </tr>
     <tr>
-      <th>include.lowest</th>
-      <td><p>see<code><a href='https://rdrr.io/r/base/cut.html'>cut()</a></code></p></td>
+      <th>...</th>
+      <td><p>further arguments passed to <a href='makeCaseVariable.html'>makeCaseVariable</a></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A character vector of labels</p>
+    <p>a Crunch <code><a href='VariableDefinition.html'>VariableDefinition</a></code>. Assign it into the dataset to create
+it as a derived variable on the server.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
