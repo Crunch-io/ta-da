@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cut a numeric Crunch variable — crunch-cut • Crunch</title>
+<title>Create a categorical or numeric variable based on conditions — makeCaseWhenVariable • Crunch</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,16 +54,13 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Cut a numeric Crunch variable — crunch-cut" />
-<meta property="og:description" content="crunch::cut() is equivalent to base::cut() except that it operates on
-Crunch variables instead of in-memory R objects. The function takes a numeric
-variable and derives a new categorical variable from it based on the breaks
-argument. You can either break the variable into evenly spaced categories by
-specifying the number of breaks, or specify a numeric vector identifying
-the start and end point of each category. For example, specifying
-breaks = 5 will break the numeric data into five evenly spaced portions
-while breaks = c(1, 5, 10) will recode the data into two groups based on
-whether the numeric vector falls between 1 and 5 or 5 and 10." />
+<meta property="og:title" content="Create a categorical or numeric variable based on conditions — makeCaseWhenVariable" />
+<meta property="og:description" content="Conditions are specified using a series of formulas: the left-hand side is
+the condition that must be true (a CrunchLogicalExpr) and the right-hand
+side is where to get the value if the condition on the left-hand side is
+true. When creating a categorical variable, the right-hand side must be
+a Category or a categorical CrunchVariable or CrunchExpression, while
+for numeric variables it is a single number or variable or expression." />
 <meta property="og:image" content="http://crunch.io/r/crunch/logo.png" />
 
 
@@ -106,7 +103,7 @@ whether the numeric vector falls between 1 and 5 or 5 and 10." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Crunch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.27.2</span>
       </span>
     </div>
 
@@ -196,110 +193,67 @@ whether the numeric vector falls between 1 and 5 or 5 and 10." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cut a numeric Crunch variable</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Crunch-io/rcrunch/blob/master/R/cut.R'><code>R/cut.R</code></a></small>
-    <div class="hidden name"><code>crunch-cut.Rd</code></div>
+    <h1>Create a categorical or numeric variable based on conditions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Crunch-io/rcrunch/blob/master/R/case-when-variable.R'><code>R/case-when-variable.R</code></a></small>
+    <div class="hidden name"><code>makeCaseWhenVariable.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code><a href='https://rdrr.io/r/base/cut.html'>crunch::cut()</a></code> is equivalent to <code><a href='https://rdrr.io/r/base/cut.html'>base::cut()</a></code> except that it operates on
-Crunch variables instead of in-memory R objects. The function takes a numeric
-variable and derives a new categorical variable from it based on the <code>breaks</code>
-argument. You can either break the variable into evenly spaced categories by
-specifying the number of breaks, or specify a numeric vector identifying
-the start and end point of each category. For example, specifying
-<code>breaks = 5</code> will break the numeric data into five evenly spaced portions
-while <code>breaks = c(1, 5, 10)</code> will recode the data into two groups based on
-whether the numeric vector falls between 1 and 5 or 5 and 10.</p>
+    <p>Conditions are specified using a series of formulas: the left-hand side is
+the condition that must be true (a <code>CrunchLogicalExpr</code>) and the right-hand
+side is where to get the value if the condition on the left-hand side is
+true. When creating a categorical variable, the right-hand side must be
+a <code>Category</code> or a categorical <code>CrunchVariable</code> or <code>CrunchExpression</code>, while
+for numeric variables it is a single number or variable or expression.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for NumericVariable</span>
-<span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span>(
-  <span class='kw'>x</span>,
-  <span class='kw'>breaks</span>,
-  labels = <span class='kw'>NULL</span>,
-  <span class='kw'>name</span>,
-  include.lowest = <span class='fl'>FALSE</span>,
-  right = <span class='fl'>TRUE</span>,
-  dig.lab = <span class='fl'>3</span>,
-  ordered_result = <span class='fl'>FALSE</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>makeCaseWhenVariable</span>(<span class='kw'>...</span>, data = <span class='kw'>NULL</span>, cases = <span class='kw'>NULL</span>, <span class='kw'>name</span>, type = <span class='kw'>NULL</span>)
+
+<span class='fu'>caseWhenExpr</span>(<span class='kw'>...</span>, data = <span class='kw'>NULL</span>, cases = <span class='kw'>NULL</span>, type = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A Crunch <code>NumericVariable</code></p></td>
+      <th>...</th>
+      <td><p>formulas where the left hand side is a <code>CrunchLogicalExpression</code> (or <code>TRUE</code>
+to indicate the "else" case that will be met if all the other expression are
+not met) and the right hand side is a CrunchVariable that should be filled in,
+a <code>Category</code> object describing the Category it should be used, a string
+which will be the name of the <code>Category</code> or <code>NA</code> to indicate that it should
+be replaced with the system missing value. For <code>makeCaseWhenVariable()</code>
+non-formula arguments will be passed to <code>[VarDef()]</code></p></td>
     </tr>
     <tr>
-      <th>breaks</th>
-      <td><p>Either a numeric vector of two or more unique cut points
-or a single number giving the number of intervals into which <code>x</code> is to be
-cut. If specifying cut points, values that are less than the smallest value
-in <code>breaks</code> or greater than the largest value in <code>breaks</code> will be marked
-missing in the resulting categorical variable.</p></td>
+      <th>data</th>
+      <td><p>A CrunchDataset to use if variable aliases are left bare in the
+formulas.</p></td>
     </tr>
     <tr>
-      <th>labels</th>
-      <td><p>A character vector representing the labels for the levels of
-the resulting categories. The length of the labels argument should be the
-same as the number of categories, which is one fewer than the number of
-breaks. If not specified, labels are constructed using interval notation.
-For example, <code>[1, 5)</code> indicates that the category goes from 1 to 5. The
-bracket shape indicates whether the boundary value is included in the
-category, i.e. whether it is "closed". <code>[1, 5)</code> indicates that the interval
-includes (is closed on) 1 but does not include (is open on) 5.
-If labels = FALSE, simple integer codes are returned instead of a factor.</p></td>
+      <th>cases</th>
+      <td><p>A list of formulas that match the description in <code>...</code> or a list of
+lists with named items, "expression" (like the left-hand side of the formulas above),
+"fill" for a variable to fill in, or "name", "id", and other items that describe a
+category.</p></td>
     </tr>
     <tr>
       <th>name</th>
-      <td><p>The name of the resulting Crunch variable as a character string.</p></td>
+      <td><p>For <code>makeCaseWhenVariable()</code> the name of the variable to create.</p></td>
     </tr>
     <tr>
-      <th>include.lowest</th>
-      <td><p>logical, indicating if an <code>x[i]</code> equal to the lowest
-(or highest, for right = FALSE) <code>breaks</code> value should be included.</p></td>
-    </tr>
-    <tr>
-      <th>right</th>
-      <td><p>logical, indicating if the intervals should be closed on the
-right (and open on the left) or vice versa.</p></td>
-    </tr>
-    <tr>
-      <th>dig.lab</th>
-      <td><p>integer which is used when labels are not given.
-It determines the number of digits used in formatting the break numbers.</p></td>
-    </tr>
-    <tr>
-      <th>ordered_result</th>
-      <td><p>Ignored.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>further arguments passed to <a href='makeCaseVariable.html'>makeCaseVariable</a></p></td>
+      <th>type</th>
+      <td><p>The type of the variable to output (either "categorical" or "numeric"), only
+required if all fills are expressions and so their type cannot be guessed automatically.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a Crunch <code><a href='VariableDefinition.html'>VariableDefinition</a></code>. Assign it into the dataset to create
-it as a derived variable on the server.</p>
+    <p><code>makeCaseWhenVariable()</code> returns a <code>VariableDefinition</code> and
+<code>caseWhenExpr()</code> returns an expression</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>ds</span> <span class='op'>&lt;-</span> <span class='fu'><a href='loadDataset.html'>loadDataset</a></span>(<span class='st'>"mtcars"</span>)
-<span class='kw'>ds</span><span class='op'>$</span><span class='kw'>cat_var</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span>(<span class='kw'>ds</span><span class='op'>$</span><span class='kw'>mpg</span>,
-    breaks = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>15</span>, <span class='fl'>20</span>),
-    labels = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"small"</span>, <span class='st'>"medium"</span>), name = <span class='st'>"Fuel efficiency"</span>
-)
-<span class='kw'>ds</span><span class='op'>$</span><span class='kw'>age</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span>, <span class='fl'>32</span>)
-<span class='kw'>ds</span><span class='op'>$</span><span class='kw'>age4</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span>(<span class='kw'>df</span><span class='op'>$</span><span class='kw'>age</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>30</span>, <span class='fl'>45</span>, <span class='fl'>65</span>, <span class='fl'>200</span>),
-    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Youth"</span>, <span class='st'>"Adult"</span>, <span class='st'>"Middle-aged"</span>, <span class='st'>"Elderly"</span>),
-    name = <span class='st'>"Age (4 category)"</span>
-)
-}</div></pre>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
