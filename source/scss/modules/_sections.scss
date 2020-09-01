@@ -682,6 +682,20 @@
 // Request a Demo
 .request-demo-content {
 
+    .request-demo-form {
+        padding: 0 30px;
+    }
+
+    .request-demo-contact {
+        margin-bottom: 20px;
+
+        span {
+            font-size: 12px;
+            height: auto;
+            color: $color-off-black;
+        }
+    }
+
     .jumbotron {
         h1 {
             font-family: ProximaNova, sans-serif;
@@ -691,10 +705,11 @@
         }
     }
 
-    .hbspt-form {
-        background-color: $color-white;
-        padding: 30px 10px 10px 25px;
-        border-radius: 5px;
+    h2 {
+        color: $color-blue;
+        font-family: 'Libre Baskerville', serif;
+        font-size: 16px;
+        padding-top: 2px;
     }
 
     @include media-breakpoint-up(md) {
