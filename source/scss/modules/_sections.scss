@@ -86,12 +86,12 @@
         color: $color-white;
 
         .jumbotron {
-            background-image: linear-gradient( $color-green, $--darker-secondary-color);
+            background-image: linear-gradient( $color-blue, $--darker-primary-color);
         }
 
         @include media-breakpoint-down(sm) {
             .jumbotron {
-                background-image: linear-gradient( $color-green, $--darker-secondary-color);
+                background-image: linear-gradient( $color-blue, $--darker-primary-color);
             }
         }
 
@@ -109,14 +109,6 @@
 
             span {
                 font-style: italic;
-            }
-        }
-
-        .join-the-team {
-            p {
-                display: table-cell;
-                height: 48px;
-                vertical-align: middle;
             }
         }
     }

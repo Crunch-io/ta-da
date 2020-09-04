@@ -7,5 +7,3 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 
 +++
-
-We’re a group of  survey experts, market researchers, data scientists, and engineers.  We were frustrated with needing to use cumbersome, disconnected tools to compile, analyze, visualize and deliver survey data. So, we built Crunch, for you, to help you do market research.
