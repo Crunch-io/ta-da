@@ -283,3 +283,74 @@ table {
     margin-right: 5px;
     margin-top: -2px;
 }
+
+.posts-in-section {
+    background: $color-white;
+    border: 1px solid $color-grey-normal;
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    height: 170px;
+    border-radius: 2px;
+
+    .post-title {
+        font-family: 'Libre Baskerville', serif;
+        color: $color-blue;
+
+        span {
+            font-style: italic;
+        }
+    }
+
+    p {
+        margin-top: 20px;
+    }
+
+    .post-card-links {
+        position: absolute;
+        bottom: 12px;
+        display: flex;
+        font-size: 14px;
+        width: 75%;
+
+        .post-label {
+            flex: 1;
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-top: 2px;
+            font-weight: 400;
+
+            img {
+                margin-right: 10px;
+                width: 20px;
+            }
+
+            a {
+                display: block;
+                color: $color-off-black;
+
+                &:hover {
+                    color: $color-blue;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .post-url {
+            text-align: right;
+
+
+            a {
+                display: block;
+                font-family: 'Libre Baskerville', serif;
+                font-style: italic;
+                color: $color-off-black;
+
+                &:hover {
+                    color: $color-blue;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
