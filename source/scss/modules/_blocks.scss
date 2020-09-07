@@ -354,3 +354,31 @@ table {
         }
     }
 }
+
+@include media-breakpoint-down(sm) {
+    .posts-in-section {
+        max-width: 470px;
+        margin: auto;
+        margin-bottom: 20px;
+
+        .post-card-links {
+            bottom: 35px;
+        }
+    }
+}
+
+@include media-breakpoint-only(md) {
+    .posts-in-section {
+        .post-title {
+            font-size: 15px;
+        }
+
+        .post-card-links {
+            font-size: 13px;
+
+            .post-label {
+                display: none;
+            }
+        }
+    }
+}
