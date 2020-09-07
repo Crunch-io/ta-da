@@ -70,16 +70,16 @@
                         {{ if and (eq .Type "about") (eq .Title "Our mission") }}
                         <div class="container">
                             <div class="row spacer share-insights">
-                                <div class="col-12 col-md-5 order-0 order-md-0">
+                                <div class="col-xs-12 col-sm-5 col-md-5 order-0 order-md-0">
                                     <h2 class="label">{{ .Params.label }}</h2>
                                     <h2 class="secondary-title">{{ with .Params.subtitle }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</h2>
 
                                     <p>{{ .Content }}</p>
                                 </div>
 
-                                <div class="col-12 col-md-6 offset-md-1 order-1 order-md-1 my-auto">
+                                <div class="col-xs-12 col-sm-7 col-md-6 offset-md-1 order-1 order-md-1 my-auto">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="posts-in-section">
                                                 <h4 class="post-title">{{ with .Params.card_1 }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} <span>{{ index (split . " ") 4 }}</span> {{ end }}</h4>
 
@@ -95,7 +95,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col">
+                                        <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="posts-in-section">
                                                 <h4 class="post-title">{{ with .Params.card_2 }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h4>
 
