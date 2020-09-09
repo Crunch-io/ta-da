@@ -189,7 +189,7 @@
         color: $color-white;
 
         .jumbotron {
-            background-image: linear-gradient( $color-green, $--darker-secondary-color);
+            background-image: linear-gradient( $color-blue, $--darker-primary-color);
             height: 485px;
 
         }
@@ -197,17 +197,60 @@
         .team-leads {
             margin-top: -250px;
             margin-bottom: 50px;
+
+            .figure {
+                background-color: $color-grey-lighest;
+                margin: 1rem;
+                border-radius: 2px 2px 0 0;
+
+                h3 {
+                    font-size: 16px;
+                    color: $color-blue;
+                    font-family: 'Libre Baskerville', serif;
+                }
+
+                img {
+                    border-radius: 2px 2px 0 0;
+                }
+            }
+
+            .figure-caption {
+                text-align: left;
+                padding: 18px 0 0 23px;
+                border-radius: 0 0 2px 2px;
+                border: 1px solid $color-grey-normal;
+                margin-top: 0;
+            }
         }
     }
 
     .secondary-content {
 
         .team-members {
-
             text-align: center;
+
+            .figure {
+                background-color: $color-grey-lighest;
+                margin: 1rem;
+                border-radius: 2px 2px 0 0;
+
+                h3 {
+                    font-size: 16px;
+                    color: $color-blue;
+                    font-family: 'Libre Baskerville', serif;
+                }
+
+                img {
+                    border-radius: 2px 2px 0 0;
+                }
+            }
 
             .figure-caption {
                 text-align: left;
+                padding: 18px 0 0 23px;
+                border-radius: 0 0 2px 2px;
+                border: 1px solid $color-grey-normal;
+                margin-top: 0;
             }
         }
 
