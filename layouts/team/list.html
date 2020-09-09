@@ -11,13 +11,11 @@
         <div class="jumbotron">
           <div class="container">
             <div class="row justify-content-md-center">
-              <div class="col-md-4">
-                <h1 class="display-4">The <span>team</span></h1>
-              </div>
+                <div class="col-md-12 resources-content-container">
+                    <h1 class="display-4">Our <span>team</span></h1>
 
-              <div class="col-md-5">
-                <p>{{ .Content }}</p>
-              </div>
+                    <p>{{ .Content }}</p>
+                </div>
             </div> <!-- /.row -->
           </div> <!-- /.container -->
         </div> <!-- /.jumbotron -->
@@ -38,10 +36,15 @@
                 <!--<p>{{ .Params.description }}</p>-->
                 <!--</div>-->
                 <figcaption class="figure-caption">
-                  <strong>{{ .firstname }} {{ .lastname }}</strong>
-                  <p>{{ .location }}</p>
-                  <!--<br>-->
-                  <!--<img src="img/location_icon.svg" alt="Location"> {{ .Params.location }}-->
+                    <div class="row lead-title">
+                        <div class="col">
+                            <h3>{{ .firstname }} {{ .lastname }}</h3>
+                        </div>
+                        <div class="col">
+                            <p class="text-right">{{ .role }}</p>
+                        </div>
+                    </div>
+                    <p><img src="img/location_icon.svg" alt="Location"> {{ .location }}</p>
                 </figcaption>
               </figure>
             </div>
@@ -54,7 +57,7 @@
         <div class="container">
           <div class="team-members">
             {{ range sort $.Site.Data.team.members "firstname" }}
-            <figure class="figure p-3">
+            <figure class="figure">
               <img src="img/team/{{.img}}" alt="{{ .firstname }}" class="img-fluid" height="230" width="230">
               <!--<a href="#" data-toggle="popover">-->
               <!--</a>-->
@@ -67,9 +70,8 @@
               <!--{{ .Params.description }}-->
               <!--</div>-->
               <figcaption class="figure-caption">
-                <strong>{{ .firstname }} {{ .lastname }}</strong>
-                <p>{{ .location }}</p>
-                <!--<img src="img/location_icon.svg" alt="Location">-->
+                <h3>{{ .firstname }} {{ .lastname }}</h3>
+                <p><img src="img/location_icon.svg" alt="Location">  {{ .location }}</p>
               </figcaption>
             </figure>
             {{ end }}
