@@ -195,7 +195,8 @@
         }
 
         .team-leads {
-            margin-top: -250px;
+            text-align: center;
+            margin-top: -220px;
             margin-bottom: 50px;
 
             .figure {
@@ -219,10 +220,6 @@
                         font-family: 'Libre Baskerville', serif;
                     }
 
-                    p {
-                        margin-right: 18px;
-
-                    }
                 }
 
                 img {
@@ -232,7 +229,7 @@
 
             .figure-caption {
                 text-align: left;
-                padding: 18px 0 0 23px;
+                padding: 18px 18px 0 18px;
                 border-radius: 0 0 2px 2px;
                 border: 1px solid $color-grey-normal;
                 margin-top: 0;
@@ -243,6 +240,7 @@
     .secondary-content {
 
         .team-members {
+
             text-align: center;
 
             .figure {
@@ -272,7 +270,7 @@
 
             .figure-caption {
                 text-align: left;
-                padding: 18px 0 0 23px;
+                padding: 18px 18px 0 18px;
                 border-radius: 0 0 2px 2px;
                 border: 1px solid $color-grey-normal;
                 margin-top: 0;
@@ -289,21 +287,6 @@
 
     }
 
-    @include media-breakpoint-down(xs) {
-        .team-leads {
-            text-align: center;
-        }
-
-        .secondary-content {
-            .team-members {
-
-                .figure-caption {
-                    text-align: center;
-                }
-
-            }
-        }
-    }
 
     // Jobs content
     .jobs-content {
