@@ -16,7 +16,7 @@ superConnect <- function (host="eu",
 
     message("Connecting...")
     cmd <- paste0("-A -f -N -L ", local.port, ":", findAdminHost(host),
-        ":", remote.port, " ec2-user@vpc-nat.eu.crunch.io")
+        ":", remote.port, " centos@jump.eu.crint.net")
     out <- system_call("ssh", cmd)
     options(superadmin.is.connected=TRUE)
     invisible(out)

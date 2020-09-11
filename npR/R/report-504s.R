@@ -1,13 +1,13 @@
 #' Make a summary of Gateway Timeouts
 #'
-#' @param days Integer number of days to aggregate
+#' @param days Integer number of days to aggregate. Default is 1
 #' @param before.date days before this day. Default is today (i.e. with days=1,
 #' give the report for yesterday)
 #' @param send Logical: send messages to Slack?
 #' @export
 #' @importFrom elbr ELBLog line_filter parse_request
 #' @importFrom dplyr collect filter select %>%
-summarize504s <- function (days, before.date=Sys.Date(), send=TRUE) {
+summarize504s <- function (days=1, before.date=Sys.Date(), send=TRUE) {
     before.date <- as.Date(before.date)
     df <- ELBLog(before.date - days, before.date - 1) %>%
         line_filter(" -1 -1 504 ") %>%

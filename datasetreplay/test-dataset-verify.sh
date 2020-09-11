@@ -25,12 +25,14 @@ find $skipfileprefix* -type f ! -wholename $skipfile -delete 2>/dev/null || true
 
 echo "Going to $CRUNCHENV"
 
-dataset_id=$(dataset.pick --skipfile=$skipfile --env=$CRUNCHENV)
-echo "Picked $dataset_id"
-echo "$dataset_id" >> $skipfile
+for i in {0..10}; do
+	dataset_id=$(dataset.pick --skipfile=$skipfile --env=$CRUNCHENV)
+	echo "Picked $dataset_id"
+	echo "$dataset_id" >> $skipfile
+	dataset.verify $dataset_id --env=$CRUNCHENV --tracefile=$tracefile
+done
 
-dataset.verify $dataset_id --env=$CRUNCHENV --tracefile=$tracefile
-echo "Trimming tracefile to last 1500 checks"
+echo "Trimming tracefile to last 15000 checks"
 tempfile=$(mktemp)
-tail -n 1500 $tracefile > $tempfile
+tail -n 15000 $tracefile > $tempfile
 mv $tempfile $tracefile

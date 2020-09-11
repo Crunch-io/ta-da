@@ -34,7 +34,7 @@ with_mock(
                     superGET("foo"),
                         "Failed to connect"), ## This is the retry
                     "Connecting..."),
-            "ssh -A -f -N -L 28081:eu-backend-216.priveu.crunch.io:8081 ec2-user@vpc-nat.eu.crunch.io")
+            "ssh -A -f -N -L 28081:eu-backend-216.priveu.crunch.io:8081 centos@jump.eu.crint.net")
     })
     test_that("superPOST tries to connect and retry", {
         expect_output(

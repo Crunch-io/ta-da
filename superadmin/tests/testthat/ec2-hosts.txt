@@ -1,29 +1,54 @@
-Name	Region	System	Ansible Role	Public IP Address	Private IP Address	State
-ahsoka.crunch.io	us-west-2	None	None	50.112.250.47	10.21.132.89	running
-c3po.aws.crunch.io	us-west-2	None	None	52.24.15.217	192.168.128.4	running
-fntest.aws.crunch.io	us-west-2	None	None	54.185.21.230	10.22.46.28	running
-k2so.ci.privaws.crunch.io	us-west-2	None	None	None	192.168.128.111	running
-poe.privaws.crunch.io	us-west-2	None	None	None	192.168.128.125	running
-r2d2.ci.privaws.crunch.io	us-west-2	None	None	None	192.168.128.115	running
-r5d4.aws.crunch.io	us-west-2	None	None	52.34.32.156	192.168.128.62	stopped
-squeaky.privaws.crunch.io	us-west-2	None	None	None	192.168.128.126	running
-stable-75.privaws.crunch.io	us-west-2	stable	zz9servers,webservers,dbservers,searchservers	None	192.168.128.75	running
-unstable-123.privaws.crunch.io	us-west-2	unstable	zz9servers,redisservers,dbservers	None	192.168.128.123	running
-unstable-96.privaws.crunch.io	us-west-2	unstable	zz9servers,webservers,dbservers,searchservers,redisservers	None	192.168.128.96	running
-alpha-backend.priveu.crunch.io	eu-west-1	alpha	webservers	52.30.33.193	10.30.0.65	stopped
-alpha-backend-39.priveu.crunch.io	eu-west-1	alpha	webservers	None	10.30.3.39	running
-alpha-jupyter.priveu.crunch.io	eu-west-1	alpha	jupyter	None	10.30.255.6	running
-alpha-mongo-190.priveu.crunch.io	eu-west-1	alpha	dbservers,redisservers	None	10.30.2.190	running
-alpha-mongo-88.priveu.crunch.io	eu-west-1	alpha	dbservers,redisservers	None	10.30.2.88	running
-alpha-search-2-221.priveu.crunch.io	eu-west-1	alpha	searchservers	None	10.30.2.221	running
-alpha-zz9-203.priveu.crunch.io	eu-west-1	alpha	zz9servers	None	10.30.2.203	running
-alpha-zz9-247.priveu.crunch.io	eu-west-1	alpha	zz9servers	None	10.30.2.247	running
-eu-backend-216.priveu.crunch.io	eu-west-1	eu	webservers	None	10.30.3.178	running
-eu-backend.priveu.crunch.io	eu-west-1	eu	webservers	52.30.237.244	10.30.0.5	stopped
-eu-jupyter2.priveu.crunch.io	eu-west-1	eu	jupyter	None	10.30.255.93	running
-eu-mongo-14.priveu.crunch.io	eu-west-1	eu	dbservers,redisservers	None	10.30.2.14	running
-eu-mongo-93.priveu.crunch.io	eu-west-1	eu	dbservers,redisservers	None	10.30.2.93	running
-eu-search-2-30.priveu.crunch.io	eu-west-1	eu	searchservers	None	10.30.2.30	running
-eu-zz9-28.priveu.crunch.io	eu-west-1	eu	zz9servers	None	10.30.2.28	running
-eu-zz9-40.priveu.crunch.io	eu-west-1	eu	zz9servers	None	10.30.2.40	running
-vpc-nat.eu.crunch.io	eu-west-1	eu	vpc-nat	54.154.1.176	10.30.0.4	running
+Name	AZ	Ins. ID	Ins. Type	System	Ansible Role	Public IP Address	Private IP Address	State
+ahsoka.crunch.io	us-west-2a	i-0e7c3b05	m3.medium	None	None	50.112.250.47	10.29.26.221	running
+c3po.aws.crunch.io	us-west-2b	i-ecfe9e1a	r3.large	None	None	52.24.15.217	192.168.128.4	running
+fntest.aws.crunch.io	us-west-2b	i-05c893939028cda14	i3.large	None	None	34.212.124.130	192.168.128.5	running
+k2so.ci.privaws.crunch.io	us-west-2b	i-0172948fd65b6da36	c3.4xlarge	None	None	None	192.168.128.97	running
+r2d2.ci.privaws.crunch.io	us-west-2b	i-0a4f2ec357dffde1c	c3.4xlarge	None	None	None	192.168.128.115	running
+r5d4.aws.crunch.io	us-west-2b	i-f0cb6929	t2.medium	None	None	52.34.32.156	192.168.128.62	stopped
+sso-proxy.us.crint.net	us-west-2b	i-060be17d17478953a	t3.micro	None	None	35.167.121.173	192.168.128.10	running
+stable-103.privaws.crunch.io	us-west-2b	i-0b9a0b38c496340e4	i3.large	stable	zz9servers,dbservers,redisservers	None	192.168.128.103	running
+stable-75.privaws.crunch.io	us-west-2b	i-070d75143af46a3dd	i3.large	stable	zz9servers,webservers,dbservers,searchservers	None	192.168.128.75	running
+unstable-123.privaws.crunch.io	us-west-2b	i-0d8f16e12f6129dba	i3.large	unstable	zz9servers,redisservers,dbservers	None	192.168.128.123	running
+unstable-128-96.privaws.crunch.io	us-west-2b	i-02df2aa2c5999b6e9	i3.large	unstable	zz9servers,webservers,dbservers,searchservers,redisservers	None	192.168.128.96	running
+us-log-80.privaws.crunch.io	us-west-2b	i-0f1516aa1887d0974	m4.large	unstable	logservers	None	192.168.128.80	running
+vault.privus.crint.net	us-west-2b	i-0c3943575042426d8	t3.micro	None	None	None	192.168.128.114	running
+alpha-backend-4-212.priveu.crunch.io	eu-west-1b	i-0f14477260bdf47dc	r4.xlarge	alpha	webservers	None	10.30.4.212	running
+alpha-backend-5-160.priveu.crunch.io	eu-west-1a	i-022b71e9733627adc	r4.xlarge	alpha	webservers	None	10.30.5.160	running
+alpha-jupyter.priveu.crunch.io	eu-west-1c	i-05182a1de50893138	t2.medium	alpha	jupyter	None	10.30.255.6	running
+alpha-mongo-190.priveu.crunch.io	eu-west-1b	i-0872df5baa1180a9a	m4.large	alpha	dbservers,redisservers	None	10.30.2.190	running
+alpha-mongo-6-9.priveu.crunch.io	eu-west-1a	i-0b69d8efbb5ac1c30	m4.large	alpha	dbservers,redisservers	None	10.30.6.9	running
+alpha-mongo-backup.priveu.crunch.io	eu-west-1b	i-0a072ce224fbbe33a	c5d.xlarge	alpha-test	mongobackupservers	None	10.30.4.222	running
+alpha-search-6-122.priveu.crunch.io	eu-west-1a	i-0cdb916b125033f50	i3.large	alpha	searchservers	None	10.30.6.122	running
+alpha-search-7-241.priveu.crunch.io	eu-west-1c	i-01eeb7fcfe2a37468	i3.large	alpha	searchservers	None	10.30.7.241	running
+alpha-zz9-222.priveu.crunch.io	eu-west-1b	i-07feed84b23d408c0	i3.xlarge	alpha	zz9servers	None	10.30.2.222	running
+alpha-zz9-247.priveu.crunch.io	eu-west-1b	i-0e798a5fc0f9d9e47	i3.xlarge	alpha	zz9servers	None	10.30.2.247	running
+cantina.priveu.crunch.io	eu-west-1a	i-0a44ab20b9e2ebfb3	i3.2xlarge	None	None	None	10.30.5.100	running
+eu-backend-3-155.priveu.crunch.io	eu-west-1c	i-0e0289619a79a69dd	r4.2xlarge	eu	webservers	None	10.30.3.155	running
+eu-backend-4-228.priveu.crunch.io	eu-west-1b	i-0135bfb3d1178c5d6	r4.2xlarge	eu	webservers	None	10.30.4.228	running
+eu-backend-5-171.priveu.crunch.io	eu-west-1a	i-0ae33245facc95d0a	r4.2xlarge	eu	webservers	None	10.30.5.171	running
+eu-jupyter2.priveu.crunch.io	eu-west-1c	i-096830cb0c457c3fb	c4.xlarge	eu	jupyter	None	10.30.255.93	running
+eu-log-2-47.priveu.crunch.io	eu-west-1b	i-0fda9ea4b4ae5aa0a	m4.large	alpha	logservers	None	10.30.2.47	running
+eu-mongo-2-94.priveu.crunch.io	eu-west-1b	i-0047a9a925d940c89	r4.2xlarge	eu	dbservers,redisservers	None	10.30.2.94	running
+eu-mongo-6-7.priveu.crunch.io	eu-west-1a	i-0744cab52342ec56a	r4.2xlarge	eu	dbservers,redisservers	None	10.30.6.7	running
+eu-mongo-7-5.priveu.crunch.io	eu-west-1c	i-0a24bc03ab2d6b40c	r4.2xlarge	eu	dbservers,redisservers	None	10.30.7.5	running
+eu-search-2-36.priveu.crunch.io	eu-west-1b	i-0bc3430b674d8845f	i3.xlarge	eu	searchservers	None	10.30.2.36	running
+eu-search-2-39.priveu.crunch.io	eu-west-1b	i-0ade4c53fb651da0a	i3.xlarge	eu	searchservers	None	10.30.2.39	running
+eu-search-2-9.priveu.crunch.io	eu-west-1b	i-0145819fcbf6eee9b	i3.xlarge	eu	searchservers	None	10.30.2.9	running
+eu-search-6-190.priveu.crunch.io	eu-west-1a	i-020eb9f9c81049a67	i3.xlarge	eu	searchservers	None	10.30.6.190	running
+eu-search-6-223.priveu.crunch.io	eu-west-1a	i-07b27321d10979fdb	i3.xlarge	eu	searchservers	None	10.30.6.223	running
+eu-search-6-240.priveu.crunch.io	eu-west-1a	i-05fe4196cf3b87880	i3.xlarge	eu	searchservers	None	10.30.6.240	running
+eu-search-7-26.priveu.crunch.io	eu-west-1c	i-0290c823f1ef89bbe	i3.xlarge	eu	searchservers	None	10.30.7.26	running
+eu-search-7-39.priveu.crunch.io	eu-west-1c	i-0e53b375c88773b39	i3.xlarge	eu	searchservers	None	10.30.7.39	running
+eu-zz9-2-109.priveu.crunch.io	eu-west-1b	i-09d02f25946867f99	i3.4xlarge	eu	zz9servers	None	10.30.2.109	running
+eu-zz9-6-173.priveu.crunch.io	eu-west-1a	i-0908135841c9f6ce7	i3.4xlarge	eu	zz9servers	None	10.30.6.173	running
+eu-zz9-7-4.priveu.crunch.io	eu-west-1c	i-01ffb7ce4c65e06e6	i3.4xlarge	eu	zz9servers	None	10.30.7.4	running
+jump.eu.crint.net	eu-west-1c	i-0c8031e14b2cbaa5a	t3.micro	eu	jumphost	34.247.186.21	10.30.0.60	running
+master.privci.crunch.io	eu-west-1b	i-0054d686d38cd47f0	m5a.xlarge	None	None	54.194.213.193	10.50.0.234	running
+migrate.eu.crunch.io	eu-west-1a	i-0fb8b80384afd0cf0	i3.4xlarge	None	None	63.35.188.179	10.30.1.23	running
+None	eu-west-1a	i-0218920f630529ade	m5d.4xlarge	None	None	None	10.50.20.246	running
+None	eu-west-1c	i-023a9acfe14a02d25	m5d.4xlarge	None	None	None	10.50.30.201	running
+None	eu-west-1c	i-09192a110996bac82	m5d.4xlarge	None	None	None	10.50.30.168	running
+None	eu-west-1c	i-0ab7bf2360b31ad70	m5d.4xlarge	None	None	None	10.50.30.34	running
+None	eu-west-1c	i-0b1529e0572ab4d1d	m5d.4xlarge	None	None	None	10.50.30.195	running
+sso.crint.net	eu-west-1c	i-073e99f7dd6576f97	t3.small	eu	sso,sso-auth,sso-proxy,superadmin	18.202.40.134	10.30.0.180	running
+vault.priveu.crint.net	eu-west-1a	i-028cb32eb7c8de8f2	m5.large	alpha	vaultservers	None	10.30.5.99	running
