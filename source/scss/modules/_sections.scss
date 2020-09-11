@@ -189,14 +189,51 @@
         color: $color-white;
 
         .jumbotron {
-            background-image: linear-gradient( $color-green, $--darker-secondary-color);
+            background-image: linear-gradient( $color-blue, $--darker-primary-color);
             height: 485px;
 
         }
 
         .team-leads {
-            margin-top: -250px;
+            text-align: center;
+            margin-top: -220px;
             margin-bottom: 50px;
+
+            .figure {
+                background-color: $color-grey-lighest;
+                margin: 1rem;
+                border-radius: 2px 2px 0 0;
+
+                p {
+                    color: $color-off-black;
+                    font-size: 13px;
+
+                    .location-icon {
+                        width: 12px;
+                    }
+                }
+
+                .lead-title {
+                    h3 {
+                        font-size: 16px;
+                        color: $color-blue;
+                        font-family: 'Libre Baskerville', serif;
+                    }
+
+                }
+
+                img {
+                    border-radius: 2px 2px 0 0;
+                }
+            }
+
+            .figure-caption {
+                text-align: left;
+                padding: 18px 18px 0 18px;
+                border-radius: 0 0 2px 2px;
+                border: 1px solid $color-grey-normal;
+                margin-top: 0;
+            }
         }
     }
 
@@ -206,8 +243,37 @@
 
             text-align: center;
 
+            .figure {
+                background-color: $color-grey-lighest;
+                margin: 1rem;
+                border-radius: 2px 2px 0 0;
+
+                p {
+                    color: $color-off-black;
+                    font-size: 13px;
+
+                    .location-icon {
+                        width: 12px;
+                    }
+                }
+
+                h3 {
+                    font-size: 16px;
+                    color: $color-blue;
+                    font-family: 'Libre Baskerville', serif;
+                }
+
+                img {
+                    border-radius: 2px 2px 0 0;
+                }
+            }
+
             .figure-caption {
                 text-align: left;
+                padding: 18px 18px 0 18px;
+                border-radius: 0 0 2px 2px;
+                border: 1px solid $color-grey-normal;
+                margin-top: 0;
             }
         }
 
@@ -221,21 +287,6 @@
 
     }
 
-    @include media-breakpoint-down(xs) {
-        .team-leads {
-            text-align: center;
-        }
-
-        .secondary-content {
-            .team-members {
-
-                .figure-caption {
-                    text-align: center;
-                }
-
-            }
-        }
-    }
 
     // Jobs content
     .jobs-content {
