@@ -13,10 +13,10 @@ from . import slack
 REPLAY_USER = 'systems+replay@crunch.io'
 USE_SLACK = False
 ENVIRONS = {
-    'unstable': ('localhost', 'ubuntu@unstable-backend.crunch.io'),
-    'stable': ('localhost', 'ubuntu@stable-backend.crunch.io'),
-    'alpha': ('alpha-backend-39.priveu.crunch.io', 'ec2-user@jump.eu.crint.net'),
-    'eu': ('eu-backend-3-155.priveu.crunch.io', 'ec2-user@jump.eu.crint.net'),
+    'stable': ('stable-backend.privus.crint.net', 'ubuntu@c3po.aws.crunch.io'),
+    'unstable': ('unstable-backend.privus.crint.net', 'ubuntu@c3po.aws.crunch.io'),
+    'alpha': ('alpha-backend.priveu.crint.net', 'ec2-user@jump.eu.crint.net'),
+    'eu': ('eu-backend.priveu.crint.net', 'ec2-user@jump.eu.crint.net'),
     'vagrant': (None, None)
 }
 
