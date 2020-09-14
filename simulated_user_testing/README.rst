@@ -113,6 +113,8 @@ Put in this directory a large Profiles dataset payload to use as a template.
 Example: ``Profiles-plus-GB-Feb-2019-metadata.json.gz``
 
 Find the ID of the dataset in production that goes with your sample payload.
+(If there is such a dataset. This is just for verication purposes later, to compare
+the results of Simulated User Testing creating a dataset with the example dataset.)
 
 Copy the scripts in this directory to one of the production backend servers.
 
@@ -140,7 +142,7 @@ Main Scripts
 ------------
 
 - ``editor_bot.py``: Simulate what a Profiles editor would do to set up a dataset
-- ``user_bot.py``: Simulates analysis done by Profiles customers
+- ``user_bot.py``: Simulates analysis done by Profiles customers (in development still)
 
 
 Helper Scripts/Modules
