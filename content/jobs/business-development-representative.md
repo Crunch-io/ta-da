@@ -4,6 +4,9 @@ draft = false
 title = "Business Development Representative"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
+label = "Sales & Marketing"
+id = "business-dev"
+controls = "one"
 
 +++
 
@@ -15,7 +18,7 @@ The Business Development Representative has responsibility for driving market sh
 
 Our customers include some of the largest market research companies and largest brands in the world. We’re hiring you to expand that roster.
 
-# What you'll do
+**What you'll do**
 
 - Build and manage lead development pipeline.
 - Deliver 100 outbound calls or outreaches a day to customers and potential customers.
@@ -27,7 +30,7 @@ Our customers include some of the largest market research companies and largest 
 - Proactively learn Crunch’s product, competitive products, and market knowledge via website, on‐line webinars, and other marketing information.
 - Update lead status and all prospect interaction in CRM application daily.
 
-# Who you are
+**Who you are**
 
 - Experienced. 1‐2+ years sales and/or lead qualification experience (including outbound prospecting). Experience with lead qualification at all levels within organizations – managers, directors, VPs, executives.
 - Energy and Creativity. Ability to work in a fast‐paced sales environment. You think out-of-the-box and wow people with your unique perspective and quality work.

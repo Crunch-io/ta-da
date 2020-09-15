@@ -4,7 +4,9 @@ draft = false
 title = "Account Executive, New Business"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
-
+label = "Sales & Marketing"
+id = "account-executive"
+controls = "two"
 
 +++
 
@@ -14,7 +16,7 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.
 
-# What you'll do
+**What you'll do**
 
 - Define and execute territory / account sales plans for the geographic territory and then meet and exceed sales goals (quotas) through prospecting, qualifying, managing and closing sales opportunities within the assigned territory.
 - Develop and manage sales pipeline, prospect and assess sales and move many transactions simultaneously through the sales pipeline.
@@ -28,7 +30,7 @@ The Account Executive will be responsible for driving sales of Crunch products w
 - Participate in team‐building and company‐growth activities including strategy setting, sales training, marketing efforts and customer care.
 - Travel to customer locations in support of sales efforts.
 
-# Who you are
+**Who you are**
 
 - Performer. Consistent over-achievement of sales quotas in a large geographic territory.
 - Amazing Salesperson. 8‐10+ years of enterprise software sales experience.
