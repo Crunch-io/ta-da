@@ -1,0 +1,136 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="jobs-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-7">
+                                <h1 class="display-4"><span>{{ .Title }}</span></h1>
+                            </div>
+
+                            <div class="col-md-4">
+                                <p>{{ .Content }}</p>
+                                <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
+                            </div>
+
+                        </div> <!-- /.row -->
+
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.jobs-content -->
+
+            <div class="secondary-content">
+              <div class="container">
+
+                  <div class="row spacer justify-content-md-center">
+                      {{ range .Data.Pages }}
+                          {{ if and (eq .Type "case-studies") (eq .Title "YouGov") }}
+                              <div class="col-md-11">
+                                  <h1><img src="{{ .Params.logo }}" alt="{{ .Params.title }}" class="img-logo"></h1>
+                                  <p class="headline"><span>Subsecond</span> response times for one of the <span>world’s</span> largest research networks</p>
+                              </div>
+
+                              <div class="col-md-5">
+                                  <div class="col-md-12 offset-md-1">
+                                      <table class="table">
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>Industry</strong></th>
+                                            <td class="table-space">{{ .Params.industry }}</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>About</strong></th>
+                                            <td class="table-space">{{ .Params.about }}</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>Region</strong></th>
+                                            <td class="table-space">{{ .Params.region }}</td>
+                                          </tr>
+                                      </table>
+
+                                    <p>{{ .Content }}</p>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-5 offset-md-1">
+                                  <img src="{{ .Params.img }}" class="img-fluid">
+                              </div>
+                          {{ end }}
+                      {{ end }}
+                  </div> <!-- /.row. -->
+
+                  <div class="row spacer-bottom justify-content-md-center">
+                      {{ range .Data.Pages }}
+                          {{ if and (eq .Type "case-studies") (eq .Title "The Chicago Council on Global Affairs") }}
+                              <div class="col-md-11">
+                                  <h1><img src="{{ .Params.logo }}" alt="{{ .Params.title }}" class="img-logo" style="max-width: 175px;"></h1>
+                                  <p class="headline">45 Years of <span>datasets</span> appended for <span>simple</span> and <span>intuitive</span> analysis of historical data</p>
+                              </div>
+
+                              <div class="col-md-5">
+                                  <div class="col-md-12 offset-md-1">
+                                      <table class="table">
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>Industry</strong></th>
+                                            <td class="table-space">{{ .Params.industry }}</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>About</strong></th>
+                                            <td class="table-space">{{ .Params.about }}</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>Region</strong></th>
+                                            <td class="table-space">{{ .Params.region }}</td>
+                                          </tr>
+                                      </table>
+
+                                    <p>{{ .Content }}</p>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-5 offset-md-1">
+                                  <div class="quote-block">
+                                      <p class="punctuation">“</p>
+                                      <p>Crunch.io has cut our data processing time down <span>immensely</span>.</p>
+                                      <p>Longitudinal data analysis that used to take us hours now only takes us a <span>matter of minutes</span>, and can be done on any computer anywhere.
+                                      </p>
+                                      <p>This allows us to spend more of our time <span>analyzing and writing up the results</span> rather than looking at individual data sets. That's <span>gold</span> for our survey research team.
+                                      </p>
+                                      <p class="punctuation">”</p>
+                                      <br>
+
+                                      <div class="author">
+                                          <p>Dina Smeltz</p>
+                                          <p>Senior Fellow, Public Opinion and Foreign Policy, <br>The Chicago Council on Global Affairs</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          {{ end }}
+                      {{ end }}
+                  </div> <!-- /.row. -->
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+            <div class="footer-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Learn about <span>our platform</span></h1>
+                                <a href="request-demo" class="btn btn-link">Request a demo &#10230;</a>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

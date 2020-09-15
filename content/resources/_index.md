@@ -1,5 +1,5 @@
 +++
-date = "2017-07-18T14:08:35+02:00"
+date = "2019-12-19T12:08:14-04:00"
 draft = false
 title = "Resources"
 weight = 1

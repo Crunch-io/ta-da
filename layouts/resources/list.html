@@ -7,16 +7,16 @@
     <div id="secondary-pages-wrapper">
         <div class="container-fluid">
 
-            <div class="jobs-content">
+            <div class="resources-content">
                 <div class="jumbotron">
                     <div class="container">
                         <div class="row justify-content-md-center">
-                            <div class="col-md-7">
-                                <h1 class="display-4"><span>{{ .Title }}</span></h1>
+                            <div class="col-md-12 resources-content-container">
+                                <h1 class="display-4">{{ .Title }}</h1>
+                                <p>{{ .Content }}</p>
                             </div>
 
-                            <div class="col-md-4">
-                                <p>{{ .Content }}</p>
+                            <div class="col-md-12">
                                 <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
                             </div>
 
@@ -30,17 +30,68 @@
               <div class="container">
 
                   <div class="row spacer-bottom">
-                      {{ range .Pages.ByWeight }}
+                    {{ range where .Pages "Params.series" "main" }}
+                    <div class="col-md-12">
+                        <div class="post-card post-card-main post-min-height">
+                            <div class="posts">
+                                <div class="row">
+                                    <div class="col-md-5 post-card-main-content">
+                                        <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                        <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                        <a class="btn btn-tertiary" href="{{ .Params.url }}"  target="_blank" >{{ .Params.link }} &#10230;</a>
+                                    </div>
+
+                                    <div class="col-md-6 offset-md-1 figure d-none d-md-block d-lg-block"> </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {{ end }}
+                  </div>
+
+                  <div class="row spacer-bottom">
+
+                      {{ range where .Pages "Params.series" "video" }}
                           <div class="col-md-6 col-lg-4">
-                              <div class="post-card post-job" onclick="location.href='{{ .Params.url }}'">
+                              <div class="post-card post-min-height video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">
                                   <div class="posts">
-                                      <span>{{ .Params.label }}</span>
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
-                                      <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+
+                                      <div class="post-card-links">
+                                          <div class="post-label">
+                                              <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                          </div>
+
+                                          <div class="post-url">
+                                              <a class="video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">{{ .Params.link }} &#10230;</a>
+                                          </div>
+                                      </div>
                                   </div>
                               </div>
                           </div>
                       {{ end }}
+
+                      {{ range where .Pages "Params.series" "resources" }}
+                          <div class="col-md-6 col-lg-4">
+                              <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
+                                  <div class="posts">
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+
+                                      <div class="post-card-links">
+                                          <div class="post-label">
+                                              <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                          </div>
+
+                                          <div class="post-url">
+                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+
                   </div>
 
               </div> <!-- /.container -->
@@ -58,6 +109,25 @@
                     </div> <!-- /.container -->
                 </div> <!-- /.jumbotron -->
             </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalVideos" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <!-- 16:9 aspect ratio -->
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
 {{ partial "footer-nav.html" . }}
 
