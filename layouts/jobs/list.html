@@ -11,45 +11,111 @@
                 <div class="jumbotron">
                     <div class="container">
                         <div class="row justify-content-md-center">
-                            <div class="col-md-7">
-                                <h1 class="display-4"><span>{{ .Title }}</span></h1>
+                            <div class="col-md-12 jobs-content-container">
+                                <h1 class="display-4">{{ .Title }}</h1>
                             </div>
-
-                            <div class="col-md-4">
-                                <p>{{ .Content }}</p>
-                                <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
-                            </div>
-
                         </div> <!-- /.row -->
-
                     </div> <!-- /.container -->
                 </div> <!-- /.jumbotron -->
             </div> <!-- /.jobs-content -->
 
-            <div class="secondary-content">
+            <div class="secondary-content-wrapper">
               <div class="container">
 
-                  <div class="row spacer-top spacer-bottom justify-content-md-center">
-                      <div class="col-md-5">
-                          <h2 class="text-center"><span>{{ .Params.description }}</span></h2>
-                      </div>
-                  </div>
+                  <div class="row">
+                      <div class="col-md-3">
+                          <h2 class="secondary-title">{{ with .Params.subtitle }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</h2>
+                          <p>{{ .Content }}</p>
 
-                  <div class="row spacer-bottom">
-                      {{ range .Pages.ByWeight }}
-                          <div class="col-md-6 col-lg-4">
-                              <div class="post-card post-min-height" onclick="location.href='{{ .Permalink }}'">
-                                  <div class="posts">
-                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
-                                      <div class="post-card-links">
-                                          <div class="post-url">
-                                              <a href="{{ .Permalink }}">Learn More &#10230;</a>
-                                          </div>
-                                      </div>
+                          <a href="mailto:{{ .Params.email }}" class="careers-email"><span> <svg class="email-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.41 17.86"><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M25.22,0H1.2A1.19,1.19,0,0,0,0,1.19V16.66a1.2,1.2,0,0,0,1.2,1.2h24a1.19,1.19,0,0,0,1.19-1.2V1.19A1.19,1.19,0,0,0,25.22,0ZM10.6,8.85,13,10.7a.36.36,0,0,0,.47,0l2.37-1.85,9.29,8.26H1.32ZM1.42.75H25L13.21,9.93Zm15,7.63,9.24-7.21V16.61ZM10,8.38.75,16.61V1.19h0Z"/></g></g></svg> {{ .Params.email }}</span></a>
+
+                      </div>
+
+                      <div class="col-md-8 offset-md-1">
+                            <h2 class="label">Engineering & Data</h2>
+                            <div class="accordion" id="accordion">
+                            {{ range where .Pages "Params.label" "Engineering & Data" }}
+                              <div class="card">
+                                <div class="card-header" id="{{ .Params.id }}">
+                                  <h2 class="mb-0 card-title">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{ .Params.controls }}" aria-expanded="false" aria-controls="{{ .Params.controls }}">
+                                      {{ .Title }}
+                                    </button>
+                                  </h2>
+                                </div>
+
+                                <div id="{{ .Params.controls }}" class="collapse hide" aria-labelledby="{{ .Params.id }}" data-parent="#accordion">
+                                  <div class="card-body">
+                                    {{ .Content }}
                                   </div>
+                                </div>
                               </div>
-                          </div>
-                      {{ end }}
+                            {{ end }}
+                            </div>
+
+                            <h2 class="label">Sales & Marketing</h2>
+                            <div class="accordion" id="accordion">
+                            {{ range where .Pages "Params.label" "Sales & Marketing" }}
+                              <div class="card">
+                                <div class="card-header" id="{{ .Params.id }}">
+                                  <h2 class="mb-0 card-title">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{ .Params.controls }}" aria-expanded="false" aria-controls="{{ .Params.controls }}">
+                                      {{ .Title }}
+                                    </button>
+                                  </h2>
+                                </div>
+
+                                <div id="{{ .Params.controls }}" class="collapse hide" aria-labelledby="{{ .Params.id }}" data-parent="#accordion">
+                                  <div class="card-body">
+                                    {{ .Content }}
+                                  </div>
+                                </div>
+                              </div>
+                            {{ end }}
+                            </div>
+
+                            <h2 class="label">Product & Design</h2>
+                            <div class="accordion" id="accordion">
+                            {{ range where .Pages "Params.label" "Product & Design" }}
+                              <div class="card">
+                                <div class="card-header" id="{{ .Params.id }}">
+                                  <h2 class="mb-0 card-title">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{ .Params.controls }}" aria-expanded="false" aria-controls="{{ .Params.controls }}">
+                                      {{ .Title }}
+                                    </button>
+                                  </h2>
+                                </div>
+
+                                <div id="{{ .Params.controls }}" class="collapse hide" aria-labelledby="{{ .Params.id }}" data-parent="#accordion">
+                                  <div class="card-body">
+                                    {{ .Content }}
+                                  </div>
+                                </div>
+                              </div>
+                            {{ end }}
+                            </div>
+
+                            <h2 class="label">Operations</h2>
+                            <div class="accordion" id="accordion">
+                            {{ range where .Pages "Params.label" "Operations" }}
+                              <div class="card">
+                                <div class="card-header" id="{{ .Params.id }}">
+                                  <h2 class="mb-0 card-title">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{ .Params.controls }}" aria-expanded="false" aria-controls="{{ .Params.controls }}">
+                                      {{ .Title }}
+                                    </button>
+                                  </h2>
+                                </div>
+
+                                <div id="{{ .Params.controls }}" class="collapse hide" aria-labelledby="{{ .Params.id }}" data-parent="#accordion">
+                                  <div class="card-body">
+                                    {{ .Content }}
+                                  </div>
+                                </div>
+                              </div>
+                            {{ end }}
+                            </div>
+                      </div>
                   </div>
 
               </div> <!-- /.container -->
