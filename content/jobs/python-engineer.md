@@ -6,7 +6,7 @@ weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Engineering & Data"
 id = "python-dev"
-controls = "four"
+controls = "two"
 
 +++
 
@@ -50,3 +50,5 @@ We currently run our in-house production Python code against Redis, MongoDB, and
 - Bachelor’s Degree in Programming, Computer Science, or Engineering-related field.
 - Pytest testing experience
 - Design and deployment of Continuous Integration tools (e.g., Jenkins, Bamboo, Travis, etc)
+
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>

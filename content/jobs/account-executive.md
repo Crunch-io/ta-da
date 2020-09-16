@@ -6,7 +6,7 @@ weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Sales & Marketing"
 id = "account-executive"
-controls = "two"
+controls = "five"
 
 +++
 
@@ -39,3 +39,5 @@ The Account Executive will be responsible for driving sales of Crunch products w
 - Experienced. Bachelor’s Degree with a technical or business focus preferred.
 - Domain. Market Research, SaaS, Business Intelligence, Analytics, Data Warehousing, Predictive Modeling or similar background / experience.
 - You are a Recruiter! Crunch hires company builders and, in this role, you will be asked to be on the constant lookout for the best talent to bring on-board to help us continue to build one of the best companies in the world!
+
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>

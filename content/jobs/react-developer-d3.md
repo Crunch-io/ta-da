@@ -6,7 +6,7 @@ weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Engineering & Data"
 id = "react-dev"
-controls = "five"
+controls = "one"
 
 +++
 
@@ -55,3 +55,5 @@ Front-end developers on our platform are first-class team members. Although your
 
 - Bachelor’s Degree in Programming, Computer Science, or related Technical field.
 - Current or former contributor to a significant open-source React library.
+
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>

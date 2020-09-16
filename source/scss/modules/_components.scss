@@ -679,6 +679,28 @@ figure {
         .card-header {
             background-color: $color-white;
             padding: 10px 0;
+            border-bottom: 0;
+
+            .card-title {
+                position: relative;
+                font-family: 'Libre Baskerville', serif;
+
+                button {
+                    color: $color-blue;
+
+                    &::before {
+                        content: "\27f6";
+                        color: $color-off-black;
+                        top: 8px;
+                        left: 15px;
+                        position: absolute;
+                    }
+
+                    &[aria-expanded="true"]::before {
+                        transform: rotate(90deg);
+                    }
+                }
+            }
         }
 
         .card-body {
