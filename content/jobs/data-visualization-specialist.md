@@ -39,8 +39,5 @@ We are looking for a world-class Data Visualization Specialist to join our remot
 - You’re inspired by data visualization pioneers including Florence Nightingale and W.E.B. Du Bois; Cleveland, Tufte, the Wickhams, Heer, and Bostock
 - Interest in machine learning and statistical computing
 - Time zone / work hours amenable to working closely with US-based Product team
-<<<<<<< HEAD
-=======
 
 <button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>
->>>>>>> new-careers-page-174822872
