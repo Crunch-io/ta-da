@@ -688,6 +688,10 @@ figure {
                 button {
                     color: $color-blue;
 
+                    &:hover {
+                        color: $--darker-primary-color;
+                    }
+
                     &::before {
                         content: "\27f6";
                         color: $color-off-black;
