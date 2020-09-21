@@ -5,11 +5,15 @@ title = "Data Visualization Specialist"
 team = "product"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
+label = "Product & Design"
+id = "data-viz"
+controls = "six"
+
 +++
 
 We are looking for a world-class Data Visualization Specialist to join our remote-first and globally distributed team at Crunch.io—the platform for collaborative data analysis. In this role, you will be working with a team of data scientists, industry experts, market research organizations, designers, and engineers; creating cutting-edge data visualizations for companies ranging from small-to-medium sized businesses to Fortune 500 organizations. This remote position reports to our VP of Product and will work closely with our Senior Director of Analytics and Product, Design, and Engineering teams.
 
-# Primary Responsibilities
+**Primary Responsibilities**
 
 1. Able to design/develop industry-leading data visualizations based on an understanding of common and more fine-grained data visualization/representation challenges, data problems, and eventually; relating to the use cases of our current/prospective customers.
 2. Understands the tradeoffs between graphics paradigms and speaking multiple visualization grammars, and how they relate to the data we have and that we’re trying to represent. (Recognizing that we have scales and what it means when these data oppose each other on different axis.)
@@ -18,7 +22,7 @@ We are looking for a world-class Data Visualization Specialist to join our remot
 5. Bring a critical eye to our work, and patience to refine it with us until we meet your standards.
 
 
-# Must Haves
+**Must Haves**
 
 - Deep domain expertise of data science, statistical analysis, and data visualization
 - Adept at interacting with JSON REST APIs with standard tools (e.g., Postman)
@@ -29,9 +33,11 @@ We are looking for a world-class Data Visualization Specialist to join our remot
     - Familiarity with Slack, Zoom, Google Meet, and similar
     - Flexible scheduling across time zones
 
-# Nice to Haves
+**Nice to Haves**
 
 - Able to travel globally a few times a year for company retreats and design sessions (recent locations include Montréal, Punta Cana, and Warsaw)
 - You’re inspired by data visualization pioneers including Florence Nightingale and W.E.B. Du Bois; Cleveland, Tufte, the Wickhams, Heer, and Bostock
 - Interest in machine learning and statistical computing
 - Time zone / work hours amenable to working closely with US-based Product team
+
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>

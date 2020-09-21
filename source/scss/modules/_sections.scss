@@ -299,6 +299,24 @@
 
     }
 
+    @include media-breakpoint-up(md) {
+
+        .jobs-content-container {
+            text-align: center;
+            max-width: 520px;
+        }
+    }
+
+    .careers-email {
+        text-decoration: none;
+        color: $color-off-black;
+
+        &:hover {
+            text-decoration: none;
+            color: $color-blue;
+        }
+    }
+
     // Resources content
     .resources-content {
         color: $color-white;
@@ -317,6 +335,15 @@
             max-width: 520px;
         }
     }
+
+    @include media-breakpoint-up(md) {
+
+        .careers-content-container {
+            text-align: center;
+            max-width: 520px;
+        }
+    }
+
 
     // Blog content
     .blog-content {

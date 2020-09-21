@@ -4,28 +4,32 @@ draft = false
 title = "Senior Director, Professional Services"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
+label = "Operations"
+id = "senior-dir"
+controls = "seven"
+
 +++
 
-Reports to: President, Crunch.io
+**Reports to:** President, Crunch.io
 
-Location: Remote or at one of our offices
+**Location:** Remote or at one of our offices
 
 The Senior Director, Professional Services will be responsible for understanding customer needs and processes and adapting them to Crunch workflows via a combination of training, consulting, and customized software development. We are a startup so digging in and solving problems across a variety of areas is part of the fun of the job.
 
 Our start-up culture is casual and high-energy. We all work remote, with the center of gravity in San Francisco. We are passionate about our product and our mission. We are loyal to each other and our company. We value work/life balance, efficiency, simplicity, and fantastic customer service!
 
-# What you'll do:
+**What you'll do:**
 
 - Regularly engage, both pre and post-sales, with Crunch.io prospects and customers in the market research industry.
 - Automate data processing workflows from fielding to data delivery.
 - Implement customized professional services to solve customer-specific workflows
 - Organize Crunch resources to ensure customer success.
-- Personally learn and grow as you help develop and invent lots of new technologies and techniques for successfully implementing and using Crunch. 
+- Personally learn and grow as you help develop and invent lots of new technologies and techniques for successfully implementing and using Crunch.
 - Teach Crunch personnel, customers and the industry, all about it.
 - Learn about the needs of the customers, especially around the “whole product” of what it will take for them to be successful with Crunch in order to evolve and revolutionize their survey data analysis capabilities.
 - Demonstrate diplomacy and tact when handling difficult situations.
 
-# Basic qualifications:
+**Basic qualifications:**
 
 - 5-7 years data processing experience.
 - Clear communication skills and strong attention to detail.
@@ -57,6 +61,8 @@ collaborative and collegial in nature.
 asked to be on the constant lookout for the best talent to bring in to help us
 continue to build one of the best companies in the world!
 
-# Advanced (preferred) qualifications:
+**Advanced (preferred) qualifications:**
 
 - Knowledge of SQL
+
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>

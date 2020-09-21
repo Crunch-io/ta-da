@@ -4,11 +4,15 @@ draft = false
 title = "Technical Sales and Customer Success Engineer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
+label = "Sales & Marketing"
+id = "technical-sales"
+controls = "three"
+
 +++
 
-Reports to: VP of Sales
+**Reports to:** VP of Sales
 
-Location: Remote, United States
+**Location:** Remote, United States
 
 The Technical Sales Engineer (TSE) is responsible for explaining and demonstrating to
 prospective customers how Crunch works and then making sure it works once they are
@@ -20,7 +24,7 @@ gravity in San Francisco. We are passionate about our product and our mission. W
 loyal to each other and our company. We value work/life balance, efficiency, simplicity,
 and fantastic customer service!
 
-# What you'll do:
+**What you'll do:**
 
 - Represent the technical side of Crunch during the sales process and implementation process.
 - Give demonstrations remotely via screen-share and in person at conferences.
@@ -36,7 +40,7 @@ various sizes and industries.
 - Infrequently travel to customer locations in support of sales efforts.
 - Answer technical questions on an ad hoc basis from across the organization.
 
-# Basic qualifications:
+**Basic qualifications:**
 
 - Excellent communication skills: the person your current team turns to when they
 need someone to explain a technical concept.
@@ -52,3 +56,5 @@ collaborative and collegial in nature.
 - You are a Recruiter! Crunch hires company builders and, in this role, you will be
 asked to be on the constant lookout for the best talent to bring in to help us
 continue to build one of the best companies in the world!
+
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>

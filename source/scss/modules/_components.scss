@@ -665,3 +665,54 @@ figure {
   width: 100%;
   height: 100%;
 }
+
+// Accordion
+
+.accordion {
+    margin-bottom: 50px;
+
+    .card {
+        border-radius: 0;
+        border-right: 0;
+        border-left: 0;
+
+        .card-header {
+            background-color: $color-white;
+            padding: 10px 0;
+            border-bottom: 0;
+
+            .card-title {
+                position: relative;
+                font-family: 'Libre Baskerville', serif;
+
+                button {
+                    color: $color-blue;
+
+                    &:hover {
+                        color: $--darker-primary-color;
+                    }
+
+                    &::before {
+                        content: "\27f6";
+                        color: $color-off-black;
+                        top: 8px;
+                        left: 15px;
+                        position: absolute;
+                    }
+
+                    &[aria-expanded="true"]::before {
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+        }
+
+        .card-body {
+            background-color: $color-grey-lighest;
+            border-radius: 5px;
+            border: 1px solid $color-grey-normal;
+            margin-left: 50px;
+            margin-bottom: 25px;
+        }
+    }
+}
