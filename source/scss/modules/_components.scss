@@ -14,8 +14,7 @@
         }
 
         h2 {
-            font-family: 'Libre Baskerville', serif;
-            font-style: italic;
+            font-size: 1.2em;
         }
 
         @include media-breakpoint-down(xs) {
@@ -91,7 +90,6 @@
             }
         }
     }
-
 
     .footer-content {
         color: $color-white;
