@@ -1,16 +1,12 @@
 +++
 title = "Trackers tamed"
-img = "time_variable_change_rollup.gif"
+subtitle = "All your survey data, past and present, in one place."
+label = "Trackers tamed"
+gif = "img/stat-speed.gif"
 images = ["https://crunch.io/img/logo-1200x630.png"]
-
 
 +++
 
-<ul>
-    <li>All your survey data, past and present, lives inside CrunchDB.</li>
-    <li>Easily append tracking study waves.</li>
-</ul>
+Track awareness across survey waves with one click. Automatically append tracking study waves. Plot data over time.
 
-<p>No more digging around to find past data files.</p>
-
-<a class="a-link" href="crunchdb">Learn more &#10230;</a>
+<button type="button" class="btn btn-success" onclick="window.location.href='/request-demo'">Learn more</button>
