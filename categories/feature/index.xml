@@ -6,7 +6,16 @@
     <description>Recent content in feature on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 31 Aug 2020 09:26:59 -0400</lastBuildDate><atom:link href="//crunch.io/categories/feature/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Sep 2020 16:54:11 +0000</lastBuildDate><atom:link href="//crunch.io/categories/feature/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Combine categories in dashboard filter variables</title>
+      <link>//crunch.io/dev/features/multiple-selections-in-groups/</link>
+      <pubDate>Mon, 21 Sep 2020 16:54:11 +0000</pubDate>
+      
+      <guid>//crunch.io/dev/features/multiple-selections-in-groups/</guid>
+      <description>The Groups on dashboards can now optionally allow multiple category selections to effectively combine categories in the filter. Dashboard editors can set an option on the configuration screen for dashboard “Groups” that allows users to make multiple selections within each variable. For example, if you choose an age categories variable as a group and turn on this new option, the dashboard users will be able to select both “18–24” and “25–34” simultaneously, thereby creating a filter that includes anyone aged 18–34.</description>
+    </item>
+    
     <item>
       <title>Customize your tables for export or dashboards</title>
       <link>//crunch.io/dev/features/editable-tables/</link>
@@ -15,15 +24,6 @@
       <guid>//crunch.io/dev/features/editable-tables/</guid>
       <description>You&amp;rsquo;ve already been able to customize saved graphs, but now you can make those same edits to the rows and columns of saved tables, either for export or for display in dashboards. More specifically, you can now&amp;hellip;
  Hide any rows and/or columns of a table, including calculated rows/columns such as subtotals, leaving only those you want your export/dashboard consumers to see. Simply uncheck the box next to the row/column to hide it.</description>
-    </item>
-    
-    <item>
-      <title>Combine categories in dashboard filter variables</title>
-      <link>//crunch.io/dev/features/multiple-selections-in-groups/</link>
-      <pubDate>Wed, 26 Aug 2020 14:47:45 -0400</pubDate>
-      
-      <guid>//crunch.io/dev/features/multiple-selections-in-groups/</guid>
-      <description>The Groups on dashboards can now optionally allow multiple category selections to effectively combine categories in the filter. Dashboard editors can set an option on the configuration screen for dashboard “Groups” that allows users to make multiple selections within each variable. For example, if you choose an age categories variable as a group and turn on this new option, the dashboard users will be able to select both “18–24” and “25–34” simultaneously, thereby creating a filter that includes anyone aged 18–34.</description>
     </item>
     
     <item>
