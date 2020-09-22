@@ -1,6 +1,5 @@
 +++
-date = "2020-08-25T15:39:05-04:00"
-publishdate = "2020-08-25T21:22:55+0000"
+date = "2020-09-22T09:39:05-04:00"
 draft = false
 title = "Export whole dashboards or only the tabs you want, with the new selective tab exports feature for dashboards"
 news_description = "For dashboards with tabs, now you can select which tab(s) you want to export, rather than the whole dashboard, enabling you to get the output you need more quickly. Choose between All, Current Tab, or make a Custom selection. Click here to learn more."
@@ -9,7 +8,7 @@ weight = 20
 tags = ["analyses, dashboards, tabs"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 
 +++
@@ -28,8 +27,6 @@ The choices are:
 
 For dashboards without tabs or for exports triggered from the deck view, these Tabs options won’t appear and the export will always contain the whole dashboard or deck.
 
-For full details, see the [help center](https://help.crunch.io/hc/en-us/articles/360040462391-Exporting-a-dashboard-to-Excel-or-PowerPoint).  
-
-Currently this feature is only available if you have enabled ‘[Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access)’ in your application settings.
+For full details, see the [help center](https://help.crunch.io/hc/en-us/articles/360040462391-Exporting-a-dashboard-to-Excel-or-PowerPoint).
 
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
