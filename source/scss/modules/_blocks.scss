@@ -251,6 +251,10 @@ table {
     .sp-mb-t {
         margin-top: 40px;
     }
+
+    .sp-mb-x {
+        margin-top: 70px;
+    }
 }
 
 .cr-section-grey {
@@ -394,5 +398,5 @@ table {
 // z-index
 
 .img-overlap {
-    z-index: 9999;
+    z-index: 100;
 }
