@@ -1,5 +1,6 @@
 +++
 date = "2020-09-22T09:39:05-04:00"
+publishdate = "2020-09-22T14:06:06+0000"
 draft = false
 title = "Export whole dashboards or only the tabs you want, with the new selective tab exports feature for dashboards"
 news_description = "For dashboards with tabs, now you can select which tab(s) you want to export, rather than the whole dashboard, enabling you to get the output you need more quickly. Choose between All, Current Tab, or make a Custom selection. Click here to learn more."
