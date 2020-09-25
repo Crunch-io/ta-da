@@ -1,14 +1,17 @@
 +++
 date = "2020-09-01T14:08:35+02:00"
-draft = true
+draft = false
 title = "Site Reliability Engineer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
+label = "Engineering & Data"
+id = "sre"
+controls = "esre"
 +++
 
 **Reports to**: Team Lead, Systems Engineering and Operations
 
-**Work location**: 100% remote, USA or Canada
+**Work location**: USA or Canada, 100% remote
 
 **Direct reports**: 0
 
@@ -16,13 +19,14 @@ We are hiring an experienced Site Reliability Engineer to help expand our platfo
 
 We are looking for someone who is a quick study, who is eager to learn and grow with us, and who has experience in DevOps and Agile cultures. At Crunch, we believe in learning together: we recognize that we don't have all the answers, and we try to ask each other the right questions. As Crunch employees are completely distributed, it's crucial that you can work well independently, and keep yourself motivated and focused.
 
-# Our stack
+**Our stack**
 
 We currently run our in-house production Python code against Redis, MongoDB, and ElasticSearch services. We proxy API requests through NGINX, load balance with ELBs, and deploy our React web application to AWS CloudFront CDN. We use EFS for persistent storage. Our current CI/CD process is built around GitHub, Jenkins, BlueOcean including unit, integration, and end to end tests and automated system deployments. We deploy to auto-scaling Groups using Ansible and Cloud-Init.
 
 In the future (and to some degree currently), all or part of our platform will include Kubernetes, Helm, FluxV2, and Spinnaker.
 
-# What you'll do
+**What you'll do**
+
 - Monitor and detect emerging customer-facing incidents on the Crunch platform; assist in their proactive resolution, and work to prevent them from occurring
 - Coordinate and participate in a weekly on-call rotation, where you will handle short term customer incidents (from direct surveillance or through alerts via our Support Engineers)
 - Diagnose live incidents, differentiate between platform issues versus usage issues across the entire stack; hardware, software, application and network within physical datacenter and cloud-based environments, take the first steps towards resolution, and see the problem through to resolution
@@ -38,7 +42,9 @@ In the future (and to some degree currently), all or part of our platform will i
 - Work with Team Lead and/or external security contractors to do periodic penetration testing, and drive resolution for any issues discovered
 - Administer a large portfolio of SaaS tools used throughout the company
 - Execute other projects from the Team Lead as needed
-# Basic qualifications
+
+**Basic qualifications**
+
 - Experience being an on-call DevOps, SRE, or Cloud Operations senior engineer (at least 5 years)
 - Experience implementing Terraform best practices for infrastructure in AWS (at least 2 years)
 - Proven track record of designing, building, sizing, optimizing, and maintaining cloud infrastructure especially in AWS
@@ -55,8 +61,12 @@ In the future (and to some degree currently), all or part of our platform will i
 - Experience in monitoring, system performance data collection and analysis, and reporting
 - Filling in for IT when necessary for the Crunch.io org
 - A keen interest in learning new things and keeping up to date with best practices and latest tooling methods
-# Advanced (preferred) qualifications
+
+**Advanced (preferred) qualifications**
+
 - AWS / Terraform / Kubernetes certifications or certifications associated with similar products
 - Familiarity with Agile Manifesto and SCRUM / Kanban / Scrumban
 - Software development experience using Python or JavaScript
 - Bachelor's Degree in Statistics, Science, Programming or Engineering related field
+
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>

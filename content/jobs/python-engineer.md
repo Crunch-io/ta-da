@@ -6,9 +6,15 @@ weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Engineering & Data"
 id = "python-dev"
-controls = "two"
+controls = "epython"
 
 +++
+
+**Reports to**: Software Delivery Manager
+
+**Work location**: Anywhere, 100% remote
+
+**Direct reports**: 0
 
 We are hiring a Python Developer to help develop our platform. We are inviting you to join our small, fully remote team of developers and operators helping make our platform faster, more secure, and more reliable. You would help us deliver new features and build the future for how we deploy our products faster and safer while increasing the availability and reliability of our systems. You will explore different ways of problem solving and discover, explain, and defend your choices in implementation. You will be self-motivated and disciplined in order to work with our fully distributed team.
 
@@ -18,7 +24,7 @@ We are looking for someone who is a quick study, who is eager to learn and grow 
 
 We currently run our in-house production Python code against Redis, MongoDB, and ElasticSearch services. We proxy API requests through NGINX, load balance with ELBs, and deploy our React web application to AWS CloudFront CDN. Our current CI/CD process is built around GitHub, Jenkins, BlueOcean including unit, integration, and end to end tests and automated system deployments. We deploy to Auto Scaling Groups using Ansible and Cloud-Init.
 
-**What you'll do:**
+**What you'll do**
 
 - Develop performance enhancements and new features in Crunch's proprietary Python in-memory database.
 - Work closely with product managers, sales, and customer success team to understand the system’s functional and non-functional requirements.
@@ -27,7 +33,7 @@ We currently run our in-house production Python code against Redis, MongoDB, and
 - Assist in diagnosing and fixing system failures quickly when they occur in your area of expertise. This is limited to when the on-call rotation needs a subject matter expert to help troubleshoot an issue.
 - Design and implement RESTful API endpoints using the Python programming language.
 
-**Basic qualifications:**
+**Basic qualifications**
 
 - Strong understanding of the software development lifecycle.
 - A record of successful delivery of SaaS and cloud-based applications.
@@ -39,7 +45,7 @@ We currently run our in-house production Python code against Redis, MongoDB, and
 - Experience with client/server architectures
 - A keen interest in learning new things.
 
-**Advanced (preferred) qualifications:**
+**Advanced (preferred) qualifications**
 
 - Experience with data locality problems and caching issues
 - Expertise writing Cython or C extensions
