@@ -138,11 +138,6 @@
   </url>
   
   <url>
-    <loc>//crunch.io/jobs/react-developer-d3/</loc>
-    <lastmod>2020-07-20T16:45:00+05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//crunch.io/info.crunch.io/quirks-virtual-crunch-lp</loc>
     <lastmod>2020-07-01T14:21:53-04:00</lastmod>
   </url>
@@ -200,6 +195,11 @@
   <url>
     <loc>//crunch.io/help.crunch.io/hc/en-us</loc>
     <lastmod>2020-05-16T17:15:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/jobs/react-developer/</loc>
+    <lastmod>2020-02-26T16:45:00+05:00</lastmod>
   </url>
   
   <url>
