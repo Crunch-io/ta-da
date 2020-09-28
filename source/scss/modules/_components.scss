@@ -14,8 +14,7 @@
         }
 
         h2 {
-            font-family: 'Libre Baskerville', serif;
-            font-style: italic;
+            font-size: 20px;
         }
 
         @include media-breakpoint-down(xs) {
@@ -33,7 +32,7 @@
             background-color: $color-blue;
             background-image: linear-gradient( $color-blue, $--darker-primary-color);
             margin-bottom: 0;
-            height: 600px;
+            height: 250px;
         }
 
         .jumbotron-secondary-pages {
@@ -55,8 +54,8 @@
 
         @include media-breakpoint-down(xs) {
             .jumbotron {
-                padding-top: 100px;
-                height: 650px;
+                padding-top: 60px;
+                height: 300px;
             }
 
             .jumbotron-secondary-pages {
@@ -66,7 +65,7 @@
         }
 
         .intro-container {
-            margin-top: -400px;
+            margin-top: -60px;
             margin-bottom: 20px;
 
             &.secondary-intro-container {
@@ -91,7 +90,6 @@
             }
         }
     }
-
 
     .footer-content {
         color: $color-white;
@@ -564,7 +562,7 @@ figure {
 
 .hero-img-bottom {
     max-width: 950px;
-    height: 450px;
+    height: 400px;
     overflow: hidden;
     position: absolute;
     bottom: 0;

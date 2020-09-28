@@ -63,20 +63,28 @@
 }
 
 .header-banner {
-    background-color: $--darker-primary-color;
+    background-color: $color-grey-lighest;
 
     .banner-text {
         padding: 6px;
-        color: $color-white;
+        color: $color-blue;
+        margin-bottom: 0;
 
         a {
-            color: $--light-primary-color;
-            font-weight: 700;
+            color: $color-blue;
             margin-left: 10px;
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
 
             &:hover {
                 text-decoration: none;
-                color:$--lighter-primary-color;
+                color: $--darker-primary-color;
+            }
+
+            &::after {
+                content: '\27f6';
+                margin-left: 10px;
+                font-style: normal;
             }
         }
     }
@@ -244,6 +252,10 @@ table {
     .sp-mb-t {
         margin-top: 40px;
     }
+
+    .sp-mb-x {
+        margin-top: 70px;
+    }
 }
 
 .cr-section-grey {
@@ -382,4 +394,10 @@ table {
             }
         }
     }
+}
+
+// z-index
+
+.img-overlap {
+    z-index: 100;
 }
