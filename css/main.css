@@ -6043,12 +6043,6 @@ h1 {
 
 h2 {
   font-size: 1.5em; }
-  h2.quotes {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 1.8em;
-    color: #107f65; }
-    h2.quotes span {
-      font-style: italic; }
   h2.secondary-title {
     font-family: 'Libre Baskerville', serif;
     font-size: 1.8em;
@@ -6140,17 +6134,23 @@ h4 {
   margin: 40px 0; }
 
 .header-banner {
-  background-color: #004571; }
+  background-color: #f9f9f9; }
   .header-banner .banner-text {
     padding: 6px;
-    color: #ffffff; }
+    color: #0064a4;
+    margin-bottom: 0; }
     .header-banner .banner-text a {
-      color: white;
-      font-weight: 700;
-      margin-left: 10px; }
+      color: #0064a4;
+      margin-left: 10px;
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic; }
       .header-banner .banner-text a:hover {
         text-decoration: none;
-        color: #e1edf5; }
+        color: #004571; }
+      .header-banner .banner-text a::after {
+        content: '\27f6';
+        margin-left: 10px;
+        font-style: normal; }
 
 .headline {
   font-family: 'Libre Baskerville', serif;
@@ -6263,7 +6263,9 @@ table td:nth-child(2)cr- {
 
 @media (max-width: 767.98px) {
   .sp-mb-t {
-    margin-top: 40px; } }
+    margin-top: 40px; }
+  .sp-mb-x {
+    margin-top: 70px; } }
 
 .cr-section-grey {
   background-color: #F9F9F9;
@@ -6357,9 +6359,16 @@ table td:nth-child(2)cr- {
     .posts-in-section .post-card-links .post-label {
       display: none; } }
 
+.img-overlap {
+  z-index: 100; }
+
 .btn {
   padding: 10px 50px;
   border-radius: 2px; }
+
+.btn-sm {
+  padding: 10px 10px;
+  box-shadow: none !important; }
 
 .btn-link {
   color: #444444; }
@@ -6908,8 +6917,7 @@ table td:nth-child(2)cr- {
     font-size: 2.5em;
     line-height: 1.4em; }
   #page-content-wrapper .intro-content h2 {
-    font-family: 'Libre Baskerville', serif;
-    font-style: italic; }
+    font-size: 20px; }
   @media (max-width: 575.98px) {
     #page-content-wrapper .intro-content h1 {
       font-size: 2em;
@@ -6920,7 +6928,7 @@ table td:nth-child(2)cr- {
     background-color: #0064a4;
     background-image: linear-gradient(#0064a4, #004571);
     margin-bottom: 0;
-    height: 600px; }
+    height: 250px; }
   #page-content-wrapper .intro-content .jumbotron-secondary-pages {
     background-color: #107f65;
     background-image: linear-gradient(#107f65, #0a5241);
@@ -6934,13 +6942,13 @@ table td:nth-child(2)cr- {
       height: 250px; }
   @media (max-width: 575.98px) {
     #page-content-wrapper .intro-content .jumbotron {
-      padding-top: 100px;
-      height: 650px; }
+      padding-top: 60px;
+      height: 300px; }
     #page-content-wrapper .intro-content .jumbotron-secondary-pages {
       padding-top: 50px;
       height: 300px; } }
   #page-content-wrapper .intro-content .intro-container {
-    margin-top: -400px;
+    margin-top: -60px;
     margin-bottom: 20px; }
     #page-content-wrapper .intro-content .intro-container.secondary-intro-container {
       margin-top: -150px; }
@@ -7257,7 +7265,7 @@ figure figcaption h4 {
 
 .hero-img-bottom {
   max-width: 950px;
-  height: 450px;
+  height: 400px;
   overflow: hidden;
   position: absolute;
   bottom: 0;
