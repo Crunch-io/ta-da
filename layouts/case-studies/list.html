@@ -115,6 +115,54 @@
                       {{ end }}
                   </div> <!-- /.row. -->
 
+                  <div class="row spacer-bottom justify-content-md-center">
+                      {{ range .Data.Pages }}
+                          {{ if and (eq .Type "case-studies") (eq .Title "Prodege") }}
+                              <div class="col-md-11">
+                                  <h1><img src="{{ .Params.logo }}" alt="{{ .Params.title }}" class="img-logo" style="max-width: 175px;"></h1>
+                                  <p class="headline">Integrating platforms <span>leads</span> to fast turnaround of <span>research data</span> and <span>insights</span></p>
+                              </div>
+
+                              <div class="col-md-5">
+                                  <div class="col-md-12 offset-md-1">
+                                      <table class="table">
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>Industry</strong></th>
+                                            <td class="table-space">{{ .Params.industry }}</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>About</strong></th>
+                                            <td class="table-space">{{ .Params.about }}</td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row" class="table-space"><strong>Region</strong></th>
+                                            <td class="table-space">{{ .Params.region }}</td>
+                                          </tr>
+                                      </table>
+
+                                    <p>{{ .Content }}</p>
+                                  </div>
+                              </div>
+
+                              <div class="col-md-5 offset-md-1">
+                                  <img src="{{ .Params.img }}" class="img-fluid spacer-bottom">
+
+                                  <div class="quote-block">
+                                      <p class="punctuation">“</p>
+                                      <p>Partnering with Crunch has helped Prodege deliver an <span>all-in-one solution</span> to our clients which helps them navigate the research process from data collection to visualization more <span>quickly and efficiently</span> than ever before.</p>
+                                      <p class="punctuation">”</p>
+                                      <br>
+
+                                      <div class="author">
+                                          <p>Mark Scheckner</p>
+                                          <p>Senior Manager Data Analytics & Visualization, <br>Prodege</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          {{ end }}
+                      {{ end }}
+                  </div> <!-- /.row. -->
+
               </div> <!-- /.container -->
             </div> <!-- /.secondary-content -->
 
