@@ -1,12 +1,19 @@
 +++
 date = "2020-02-26T16:45:00+05:00"
-draft = true
+draft = false
 title = "Advanced React Developer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
+label = "Engineering & Data"
+id = "react-dev"
+controls = "ereact"
 +++
 
-**Work location:** Anywhere
+**Reports to**: Software Delivery Manager
+
+**Work location**: Anywhere, 100% remote
+
+**Direct reports**: 0
 
 We are hiring an Advanced React Developer to help develop our platform. We are inviting you to join our small, fully remote team of developers and operators helping make our platform faster, more secure, and more reliable. You would help us deliver new features, explore different ways of problem solving, and discover, explain, and defend your choices in implementation. 
 
@@ -14,7 +21,7 @@ At Crunch, we believe in learning together: we recognize that we don’t have al
 
 On the front-end team, we feel strongly about developing solutions that are both technically and aesthetically sound. We invite you to bring your experience and perspective to conversations about the future growth of our applications and environment. We work closely together, with a healthy and non-combative review process aimed at improving code as well as developing each other’s skills. In short, we strive to write solid, thoroughly tested, and readable code; and we are seeking a new member of our already highly-effective team.
 
-# What you'll do
+**What you'll do**
 
 - Work on new features with other front-end team members.
 - Triage, unravel, test, and resolve bugs and issues.
@@ -23,7 +30,7 @@ On the front-end team, we feel strongly about developing solutions that are both
 - Propose, discuss, and debate technology improvements, code organization, design patterns, and conventions employed in the front-end development environment.
 - Use your extensive experience to train and mentor other developers on the front-end team.
 
-# Our stack
+**Our stack**
 
 Front-end developers on our platform are first-class team members. Although your focus is primarily on TypeScript, you will gain familiarity with the entire system. Some of the technologies that enable us to achieve our well-designed, efficient, and performant applications are:
 
@@ -39,7 +46,7 @@ If you have experience or interest in these additional areas, you may have the o
 - End-to-end testing using [cypress](https://www.cypress.io/)
 - Responsive design / mobile / touch interfaces
 
-# Basic qualifications:
+**Basic qualifications**
 
 - Advanced to expert-level React skills with demonstrated experience. 
 - A firm command of Typescript.
@@ -50,9 +57,9 @@ If you have experience or interest in these additional areas, you may have the o
 - Well-developed principles of self-motivation and time management.
 - An appetite for continual improvement and growth.
 
-# Advanced (preferred) qualifications
+**Advanced (preferred) qualifications**
 
 - Bachelor’s Degree in Programming, Computer Science, or Engineering-related field.
 - Current or former contributor to a significant open-source React library.
 
-
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>
