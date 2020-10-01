@@ -16,6 +16,6 @@ Prodege is a leading provider of data and insights fueled by their global propri
 
 <span class="highlight">Prodege specializes in <span class="font-italic">delivering fast</span>, whether clients leverage Prodege’s managed services team of research experts or utilize their DIY version of POD. Integrating with Crunch enables Prodege to quickly provide <span class="font-italic">data analysis and visualization</span> to clients immediately after data collection is complete.</span>
 
-Data is automatically uploaded from POD to Crunch.io using the Crunch API and then Prodege’s team, or their DIY client-users, may quickly create crosstabs and visualizations in an easy-to-use, drag-and-drop approach. Prodege also builds custom dashboards for each client utilizing each client's branding by applying custom color palettes.
+Data is automatically uploaded from POD to Crunch.io using the Crunch API. Then Prodege’s team or their DIY client-users may quickly create crosstabs and visualizations with an easy-to-use, drag-and-drop approach. Prodege also builds custom dashboards for each client utilizing each client's branding by applying custom color palettes.
 
 Through integrating Crunch.io and by utilizing scripts to automate workflows, the Prodege team is able to provide clients a unified experience with a consistent look-and-feel, enable drag-and-drop analysis, and deliver interactive dashboards.
