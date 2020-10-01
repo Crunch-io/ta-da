@@ -330,20 +330,11 @@
 
     @include media-breakpoint-up(md) {
 
-        .resources-content-container {
+        .header-content-container {
             text-align: center;
             max-width: 520px;
         }
     }
-
-    @include media-breakpoint-up(md) {
-
-        .careers-content-container {
-            text-align: center;
-            max-width: 520px;
-        }
-    }
-
 
     // Blog content
     .blog-content {
