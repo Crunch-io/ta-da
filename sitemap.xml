@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>//crunch.io/case-studies/prodege/</loc>
+    <lastmod>2020-09-30T12:41:23-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/contact/</loc>
     <lastmod>2020-06-18T17:11:32-04:00</lastmod>
   </url>
@@ -243,6 +248,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/</loc>
+    <lastmod>2020-09-30T12:41:23-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/tags/analysis-tab-books-multitable-exports/</loc>
     <lastmod>2020-09-23T16:12:35-04:00</lastmod>
   </url>
@@ -254,11 +264,6 @@
   
   <url>
     <loc>//crunch.io/categories/feature/</loc>
-    <lastmod>2020-09-23T16:12:35-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/</loc>
     <lastmod>2020-09-23T16:12:35-04:00</lastmod>
   </url>
   
