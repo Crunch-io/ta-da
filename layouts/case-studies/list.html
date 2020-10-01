@@ -29,7 +29,7 @@
             <div class="secondary-content">
               <div class="container">
 
-                  <div class="row spacer-top spacer-bottom justify-content-md-center">
+                  <div class="row spacer justify-content-md-center">
                       {{ range .Data.Pages }}
                           {{ if and (eq .Type "case-studies") (eq .Title "YouGov") }}
                               <div class="col-md-11">
@@ -65,7 +65,7 @@
                       {{ end }}
                   </div> <!-- /.row. -->
 
-                  <div class="row spacer-bottom justify-content-md-center">
+                  <div class="row justify-content-md-center">
                       {{ range .Data.Pages }}
                           {{ if and (eq .Type "case-studies") (eq .Title "Prodege") }}
                               <div class="col-md-11">
@@ -113,7 +113,7 @@
                       {{ end }}
                   </div> <!-- /.row. -->
 
-                  <div class="row spacer-bottom justify-content-md-center">
+                  <div class="row spacer justify-content-md-center">
                       {{ range .Data.Pages }}
                           {{ if and (eq .Type "case-studies") (eq .Title "The Chicago Council on Global Affairs") }}
                               <div class="col-md-11">
