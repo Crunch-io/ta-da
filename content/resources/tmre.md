@@ -1,5 +1,5 @@
 +++
-date = "2020-10-02T11:07:59-04:00"
+date = "2020-10-02T12:07:59-04:00"
 draft = false
 title = "TMRE"
 label = "Event | October 5-8"
