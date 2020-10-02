@@ -13,7 +13,7 @@
                         <div class="row justify-content-md-center">
                             <div class="col-md-12 header-content-container">
                                 <h1 class="display-4">{{ with .Title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <span>{{ index (split . " ") 2 }}</span> {{ end }}</h1>
-                                <p>{{ .Params.description }}</p>
+                                <p>{{ .Content }}</p>
                             </div>
 
                             <div class="col-md-12">
@@ -27,8 +27,10 @@
 
             <div class="request-demo-content">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-7 d-none d-md-block">
+                {{ range .Site.Pages }}
+                    {{ if and (eq .Type "request-demo") (eq .Title "Capabilities") }}
+                    <div class="row spacer-top spacer-bottom">
+                        <div class="col-sm-12 col-md-6 d-none d-md-block">
                             <div id="learn-more-img-2">
                                 <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
                                      <iframe src="{{ .Params.video }}"
@@ -39,7 +41,7 @@
                             <p>{{ .Content }}</p>
                         </div>
 
-                        <div class="col-sm-12 col-md-7 d-block d-md-none spacer-bottom">
+                        <div class="col-sm-12 col-md-6 d-block d-md-none spacer-bottom">
                             <div id="learn-more-img-2">
                                 <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
                                      <iframe src="{{ .Params.mob_video }}"
@@ -50,7 +52,7 @@
                             <p>{{ .Content }}</p>
                         </div>
 
-                        <div class="col-sm-12 col-md-5 request-demo-form spacer-bottom">
+                        <div class="col-sm-12 col-md-5 offset-md-1 request-demo-form spacer-bottom">
                             <div class="row request-demo-contact">
                                 <div class="col">
                                     <h2 class="text-center">{{ .Params.subtitle }}</h2>
@@ -74,6 +76,8 @@
 
                         </div>
                     </div> <!-- /.row -->
+                    {{ end }}
+                {{ end }}
                 </div> <!-- /.container -->
             </div> <!-- /.request-demo-content -->
 
