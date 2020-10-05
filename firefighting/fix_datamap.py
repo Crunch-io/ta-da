@@ -4,7 +4,7 @@ Perform limited repairs directly on a datamap in EFS
 
 This script can repair a column in a datamap if:
 - It is a text column
-- It is in INDX format
+- It is in INDX or coded text format
 - The .buffer.zz9 file for the column exists in the repo but not in the datamap
 
 If running this script in --stream mode, messages will be received via the "send" file
