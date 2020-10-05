@@ -37,11 +37,12 @@
                             {{ range where .Pages "Params.label" "Engineering & Data" }}
                               <div class="card">
                                 <div class="card-header" id="{{ .Params.id }}">
-                                  <h2 class="mb-0 card-title">
+                                  <h2 class="mb-0 card-title float-left">
                                     <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{ .Params.controls }}" aria-expanded="false" aria-controls="{{ .Params.controls }}">
                                       {{ .Title }}
                                     </button>
                                   </h2>
+                                  <span class="share-icon float-right d-none d-sm-block"><a href="{{ .Permalink }}">Share <img src="img/icons/box_share.svg" alt=""></a></span>
                                 </div>
 
                                 <div id="{{ .Params.controls }}" class="collapse hide" aria-labelledby="{{ .Params.id }}" data-parent="#accordion">
@@ -58,11 +59,12 @@
                             {{ range where .Pages "Params.label" "Sales & Marketing" }}
                               <div class="card">
                                 <div class="card-header" id="{{ .Params.id }}">
-                                  <h2 class="mb-0 card-title">
+                                  <h2 class="mb-0 card-title float-left">
                                     <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{ .Params.controls }}" aria-expanded="false" aria-controls="{{ .Params.controls }}">
                                       {{ .Title }}
                                     </button>
                                   </h2>
+                                  <span class="share-icon float-right d-none d-sm-block"><a href="{{ .Permalink }}">Share <img src="img/icons/box_share.svg" alt=""></a></span>
                                 </div>
 
                                 <div id="{{ .Params.controls }}" class="collapse hide" aria-labelledby="{{ .Params.id }}" data-parent="#accordion">
@@ -79,11 +81,12 @@
                             {{ range where .Pages "Params.label" "Product & Design" }}
                               <div class="card">
                                 <div class="card-header" id="{{ .Params.id }}">
-                                  <h2 class="mb-0 card-title">
+                                  <h2 class="mb-0 card-title float-left">
                                     <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{ .Params.controls }}" aria-expanded="false" aria-controls="{{ .Params.controls }}">
                                       {{ .Title }}
                                     </button>
                                   </h2>
+                                  <span class="share-icon float-right d-none d-sm-block"><a href="{{ .Permalink }}">Share <img src="img/icons/box_share.svg" alt=""></a></span>
                                 </div>
 
                                 <div id="{{ .Params.controls }}" class="collapse hide" aria-labelledby="{{ .Params.id }}" data-parent="#accordion">
@@ -100,11 +103,12 @@
                             {{ range where .Pages "Params.label" "Operations" }}
                               <div class="card">
                                 <div class="card-header" id="{{ .Params.id }}">
-                                  <h2 class="mb-0 card-title">
+                                  <h2 class="mb-0 card-title float-left">
                                     <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{ .Params.controls }}" aria-expanded="false" aria-controls="{{ .Params.controls }}">
                                       {{ .Title }}
                                     </button>
                                   </h2>
+                                  <span class="share-icon float-right d-none d-sm-block"><a href="{{ .Permalink }}">Share <img src="img/icons/box_share.svg" alt=""></a></span>
                                 </div>
 
                                 <div id="{{ .Params.controls }}" class="collapse hide" aria-labelledby="{{ .Params.id }}" data-parent="#accordion">
