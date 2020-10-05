@@ -78,3 +78,24 @@
         color: $color-blue;
     }
 }
+
+.share-icon {
+    padding-top: 7px;
+
+    a {
+        color: $color-off-black;
+        vertical-align: middle;
+        font-size: .8em;
+        margin-right: 5px;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        img {
+            width: 18px;
+            margin-top: -5px;
+            margin-left: 5px;
+        }
+    }
+}
