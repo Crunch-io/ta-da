@@ -7,7 +7,7 @@ url = "//info.crunch.io/quirks-virtual-crunch-lp"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
-series = "main"
-icon = "img/icons/webinar-icon-white.svg"
+series = "resources"
+icon = "img/icons/webinar-icon.svg"
 
 +++
