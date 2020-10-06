@@ -64,3 +64,5 @@ We currently run our in-house production Python code against Redis, MongoDB, and
 - Software development experience using Python or React/JavaScript.
 - Bachelor’s Degree in Statistics, Science, Programming or Engineering related field.
 - Project management certifications.
+
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>
