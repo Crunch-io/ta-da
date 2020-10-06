@@ -425,8 +425,8 @@
 }
 
 .post-card-main {
-    background-color: $color-blue;
-    background-image: linear-gradient( $color-blue, $--darker-primary-color);
+    background-color: $color-grey-lighter;
+    background-image: linear-gradient( $color-grey-lighter, $color-grey-light);
     padding: 40px;
     margin-bottom: 0;
 
@@ -439,21 +439,26 @@
 
     .posts {
         .post-title {
-            color: $color-white;
+            color: $color-green;
             font-size: 28px;
             margin-top: 15px;
         }
     }
 
+    p {
+        color: $color-green;
+    }
+
     span {
-        color: $color-white;
+        color: $color-green;
         text-transform: uppercase;
         font-weight: 400;
         font-size: 12px;
 
          img {
              margin-right: 10px;
-             width: 30px;
+             margin-top: -7px;
+             width: 47px;
          }
     }
 
@@ -466,7 +471,7 @@
     }
 
     .figure {
-        background-image: url("/img/delivering-tracking-surveys.png");
+        background-image: url("/img/resources-main-banner.png");
         min-height: 300px;
         position: absolute;
         right: 15px;
