@@ -130,8 +130,7 @@ def _read_input_ids(input_filename):
 class DoneScanner(object):
 
     DONE_PATTERN = re.compile(
-        r"^(?P<timestamp>\S+)\s+(?P<ds_id>[0-9a-f]{32})@(?P<node_id>[^:]+)"
-        r":(?P<status>.*)$"
+        r"^(?P<timestamp>\S+)\s+(?P<ds_id>\w+)@(?P<node_id>[^:]+):(?P<status>.*)$"
     )
 
     BUSY_PHASES = ("|", "/", "-", "\\")

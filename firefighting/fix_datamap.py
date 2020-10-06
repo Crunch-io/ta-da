@@ -47,9 +47,7 @@ from check_datamaps import (
     read_numpy_header_after_4,
 )
 
-SEND_PATTERN = re.compile(
-    r"^(?P<timestamp>\S+)\s+(?P<ds_id>[0-9a-f]{32})@(?P<node_id>[^:]+)$"
-)
+SEND_PATTERN = re.compile(r"^(?P<timestamp>\S+)\s+(?P<ds_id>\w+)@(?P<node_id>[^:]+)$")
 TIMESTAMP_FORMAT = "%Y-%m-%dT%H:%M:%S.%f"
 
 try:
