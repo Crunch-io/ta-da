@@ -78,14 +78,15 @@ def _cr_lib_init(args):
     startup()
 
 
-def _read_input_ids(input_filename):
+def _read_input_ids(input_filename):  # noqa: C901
     # Read the <dataset-id>@<node-id> pairs to process.
     # Map ds_id to list of node_ids using OrderedDict to preserve dataset order
     # If status is given, skip lines except where status looks repairable:
     # "ERROR <n> columns with errors"
     input_ids = OrderedDict()
-    non_repairable_datasets = None
-    ok_datasets = None
+    deleted_datasets = None
+    ok_versions = None
+    non_repairable_versions = None
     with open(input_filename) as input_f:
         for line_num, line in enumerate(input_f, 1):
             line = line.strip()
@@ -100,22 +101,34 @@ def _read_input_ids(input_filename):
             node_id = m.group("node_id")
             status = m.group("status")
             if status:
+                if status == "DELETED":
+                    if deleted_datasets is None:
+                        deleted_datasets = 0
+                    deleted_datasets += 1
+                    continue
                 if status == "OK":
-                    if ok_datasets is None:
-                        ok_datasets = 0
-                    ok_datasets += 1
+                    if ok_versions is None:
+                        ok_versions = 0
+                    ok_versions += 1
+                    continue
                 m = REPAIRABLE_STATUS_PATTERN.match(status)
                 if not m:
-                    if non_repairable_datasets is None:
-                        non_repairable_datasets = 0
-                    non_repairable_datasets += 1
+                    if non_repairable_versions is None:
+                        non_repairable_versions = 0
+                    non_repairable_versions += 1
                     continue
             input_ids.setdefault(ds_id, []).append(node_id)
 
-    if ok_datasets is not None:
-        print("Filtered out {} OK datasets".format(ok_datasets))
-    if non_repairable_datasets is not None:
-        print("Filtered out {} non-repairable datasets".format(non_repairable_datasets))
+    if deleted_datasets is not None:
+        print("Filtered out {} DELETED datasets".format(deleted_datasets))
+    if ok_versions is not None:
+        print("Filtered out {} OK dataset versions".format(ok_versions))
+    if non_repairable_versions is not None:
+        print(
+            "Filtered out {} non-repairable dataset versions".format(
+                non_repairable_versions
+            )
+        )
     version_count = sum(len(v) for v in six.itervalues(input_ids))
     print(
         "Attempting to repair {} versions of {} datasets".format(
@@ -228,11 +241,17 @@ def _attempt_remote_repair_datamap(send_f, done_scanner, ds_id, node_id):
 
 def _attempt_repair_dataset(send_f, done_scanner, input_ids, ds):
     was_maintenance = ds.maintenance
+    got_lock = False
     if not was_maintenance:
         print("Putting dataset {} in maintenance mode".format(ds.id))
+        sys.stdout.flush()
         ds.enter_maintenance()
     try:
+        print("Locking dataset {} ...".format(ds.id), end="")
+        sys.stdout.flush()
         with actions.dataset_lock("fix_datamap", ds.id, exclusive=True):
+            got_lock = True
+            print("locked.")
             print("Retiring dataset {}".format(ds.id))
             sys.stdout.flush()
             ds.retire()
@@ -240,8 +259,12 @@ def _attempt_repair_dataset(send_f, done_scanner, input_ids, ds):
             for node_id in node_ids:
                 _attempt_remote_repair_datamap(send_f, done_scanner, ds.id, node_id)
     finally:
+        if got_lock:
+            print("Unlocked dataset {}".format(ds.id))
+            sys.stdout.flush()
         if ds.maintenance and not was_maintenance:
             print("Taking dataset {} out of maintenance mode".format(ds.id))
+            sys.stdout.flush()
             ds.exit_maintenance()
     print()
     sys.stdout.flush()
