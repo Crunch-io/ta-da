@@ -80,9 +80,12 @@
 }
 
 .share-icon {
+    visibility: hidden;
     padding-top: 7px;
 
     a {
+        font-family: 'Libre Baskerville', serif;
+        font-style: italic;
         color: $color-off-black;
         vertical-align: middle;
         font-size: .8em;

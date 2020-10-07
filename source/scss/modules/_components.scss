@@ -674,6 +674,16 @@ figure {
         border-right: 0;
         border-left: 0;
 
+        &:hover {
+            .share-icon {
+                visibility: visible;
+            }
+        }
+
+        &:focus {
+            outline: none;
+        }
+
         .card-header {
             background-color: $color-white;
             padding: 10px 0;
