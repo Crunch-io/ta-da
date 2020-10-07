@@ -258,6 +258,9 @@ def _attempt_repair_dataset(send_f, done_scanner, input_ids, ds):
             node_ids = input_ids[ds.id]
             for node_id in node_ids:
                 _attempt_remote_repair_datamap(send_f, done_scanner, ds.id, node_id)
+    except exceptions.DeletedDatasetError:
+        print("Dataset {} has been soft-deleted, not repairing".format(ds.id))
+        sys.stdout.flush()
     finally:
         if got_lock:
             print("Unlocked dataset {}".format(ds.id))
