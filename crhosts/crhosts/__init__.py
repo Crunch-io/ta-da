@@ -51,6 +51,8 @@ def gather_servers(kind='eu', role='dbservers'):
             continue
         if role not in server['Ansible Role']:
             continue
+        if server["State"] != "running":
+            continue
         servers.append(server['Name'])
     return servers
 
@@ -102,7 +104,7 @@ def main():
                               help='Which SSH key to use (IE: ~/.ssh/id_rsa)')
     tunnelparser.add_argument('-p', '--port', dest='PORT', default='2222',
                               help='Tunnel to the given local port')
-    tunnelparser.add_argument('-u', '--user', dest='USER', default='centos',
+    tunnelparser.add_argument('-u', '--user', dest='USER', default='ec2-user',
                               help='User that should be used to connect '
                                    'to the remot host.')
 
