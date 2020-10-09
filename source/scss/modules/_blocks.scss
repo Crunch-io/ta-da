@@ -26,6 +26,10 @@
     .spacer-xs {
         padding: 25px;
     }
+
+    .sp-bt-xs {
+        margin-bottom: 50px;
+    }
 }
 
 .spacer-bottom-md {
@@ -152,6 +156,7 @@
     .punctuation {
         font-size: 2.5em;
         margin: 0;
+        margin-bottom: -10px;
     }
 
     span {
