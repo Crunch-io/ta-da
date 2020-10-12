@@ -16,4 +16,4 @@ YouGov, whose current brand slogan is “the best panel - the best data - the be
 
 <span class="highlight">YouGov uses Crunch.io <span class="font-italic">enterprise-wide</span> for both custom research and Data Products, such as YouGov Profiles,</span> which provides syndicated segmentation and product data for agencies and brands. Over 14,000 YouGov Profiles users enjoy sub-second query response times, building on-the-fly crosstabs on a survey database, containing over 192,000 rows (respondents) and 48,000 columns (variables). YouGov Data Products, including Profiles, grew 32% in 2019.
 
-YouGov will continue to use Crunch.io to process data quickly and efficiently and give its growing customer base the power to explore the data easily the data and find insights on their own.
+YouGov will continue to use Crunch.io to process data quickly and efficiently and give its growing customer base the power to explore the data easily and find insights on their own.
