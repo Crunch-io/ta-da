@@ -51,11 +51,19 @@
                     {{ end }}
                   </div>
 
+                  <div id="resources-filter-container">
+                      <button class="btn-filter active-filter" onclick="filterSelectionNow('all-filter')"> All</button>
+                      <button class="btn-filter" onclick="filterSelectionNow('events-filter')"> Events</button>
+                      <button class="btn-filter" onclick="filterSelectionNow('webinars-filter')"> Webinars</button>
+                      <button class="btn-filter" onclick="filterSelectionNow('videos-filter')"> Videos</button>
+                      <button class="btn-filter" onclick="filterSelectionNow('whitepapers-filter')"> Whitepapers</button>
+                  </div>
+
                   <div class="row spacer-bottom">
 
-                      {{ range where .Pages "Params.series" "video" }}
-                          <div class="col-md-6 col-lg-4">
-                              <div class="post-card post-min-height video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">
+                      {{ range where .Pages "Params.series" "events" }}
+                          <div class="col-md-6 col-lg-4 resources-filter events-filter">
+                              <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
                                   <div class="posts">
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
 
@@ -65,7 +73,7 @@
                                           </div>
 
                                           <div class="post-url">
-                                              <a class="video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">{{ .Params.link }} &#10230;</a>
+                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
                                           </div>
                                       </div>
                                   </div>
@@ -73,8 +81,48 @@
                           </div>
                       {{ end }}
 
-                      {{ range where .Pages "Params.series" "resources" }}
-                          <div class="col-md-6 col-lg-4">
+                      {{ range where .Pages "Params.series" "webinars" }}
+                          <div class="col-md-6 col-lg-4 resources-filter webinars-filter">
+                              <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
+                                  <div class="posts">
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+
+                                      <div class="post-card-links">
+                                          <div class="post-label">
+                                              <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                          </div>
+
+                                          <div class="post-url">
+                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+
+                      {{ range where .Pages "Params.series" "videos" }}
+                          <div class="col-md-6 col-lg-4 resources-filter videos-filter">
+                              <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
+                                  <div class="posts">
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+
+                                      <div class="post-card-links">
+                                          <div class="post-label">
+                                              <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                          </div>
+
+                                          <div class="post-url">
+                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+
+                      {{ range where .Pages "Params.series" "whitepapers" }}
+                          <div class="col-md-6 col-lg-4 resources-filter whitepapers-filter">
                               <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
                                   <div class="posts">
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>

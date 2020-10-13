@@ -7,7 +7,7 @@ url = "//info.crunch.io/dashboards-tips-and-tricks-lp"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Download Now"
-series = "resources"
+series = "whitepapers"
 icon = "img/icons/whitepaper-icon.svg"
 
 +++
