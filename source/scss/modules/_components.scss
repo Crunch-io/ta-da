@@ -240,7 +240,7 @@
     min-height: 450px;
     padding: 20px;
     margin-bottom: 30px;
-    background-color: $color-grey-lighest;
+    background-color: $color-grey-lightest;
     @include vp-transition(all .1s ease-in-out);
     cursor: pointer;
     border-radius: 2px;
@@ -347,7 +347,7 @@
 // Post-Card
 .post-card-video {
     height: 380px;
-    background-color: $color-grey-lighest;
+    background-color: $color-grey-lightest;
     @include vp-transition(all .1s ease-in-out);
     border-radius: 6px;
     border: 1px solid $color-grey-normal;
@@ -721,11 +721,39 @@ figure {
         }
 
         .card-body {
-            background-color: $color-grey-lighest;
+            background-color: $color-grey-lightest;
             border-radius: 5px;
             border: 1px solid $color-grey-normal;
             margin-left: 50px;
             margin-bottom: 25px;
+        }
+    }
+}
+
+// Resources filterSelection
+.resources-filter-container {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 30px;
+
+    button {
+        flex: auto;
+        border-radius: 0;
+        border: 1px solid $color-grey-normal;
+        background: $color-grey-lightest !important;
+        padding: 10px;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 600;
+
+        &.active-filter {
+            background: $color-white !important;
+            outline: none;
+            border-radius: 0;
+        }
+
+        &:focus {
+            outline: none;
         }
     }
 }

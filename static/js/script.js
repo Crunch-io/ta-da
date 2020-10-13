@@ -1,4 +1,4 @@
-function filterSelectionNow(c) {
+function filterSelection(c) {
   var x, i;
   x = document.getElementsByClassName("resources-filter");
   if (c == "all-filter") c = "";
@@ -36,7 +36,7 @@ function filterRemoveClass(element, name) {
 $(document).ready(function() {
 
     // Resources filter
-    filterSelectionNow("all-filter")
+    filterSelection("all-filter")
 
     var btnContainer = document.getElementById("resources-filter-container");
     var btns = btnContainer.getElementsByClassName("btn-filter");
