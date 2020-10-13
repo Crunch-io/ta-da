@@ -746,6 +746,11 @@ figure {
         font-size: 12px;
         font-weight: 600;
 
+        span img {
+            width: 18px;
+            margin-right: 10px;
+        }
+
         &.active-filter {
             background: $color-white !important;
             outline: none;
