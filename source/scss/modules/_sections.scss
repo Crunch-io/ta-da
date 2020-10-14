@@ -324,6 +324,12 @@
         .jumbotron {
             background-color: $color-blue;
             background-image: linear-gradient( $color-blue, $--darker-primary-color);
+            height: 285px;
+        }
+
+        .resources-main {
+            margin-top: -80px;
+            margin-bottom: 50px;
         }
 
     }
