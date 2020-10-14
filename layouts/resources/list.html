@@ -15,57 +15,66 @@
                                 <h1 class="display-4">{{ .Title }}</h1>
                                 <p>{{ .Content }}</p>
                             </div>
-
-                            <div class="col-md-12">
-                                <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
-                            </div>
-
                         </div> <!-- /.row -->
 
                     </div> <!-- /.container -->
                 </div> <!-- /.jumbotron -->
+                <div class="container resources-main">
+                  {{ range where .Pages "Params.series" "main" }}
+                  <div class="col-md-12">
+                      <div class="post-card post-card-main post-min-height">
+                          <div class="posts">
+                              <div class="row">
+                                  <div class="col-md-5 post-card-main-content">
+                                      <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                      <h4 class="post-title">{{ with .Title }} <i>{{ index (split . " ") 0 }}</i> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ end }}</h4>
+                                      <p>{{ .Params.eventdate }}</p>
+                                      <a class="btn btn-success" href="{{ .Params.url }}"  target="_blank" >{{ .Params.link }}</a>
+                                  </div>
+
+                                  <div class="col-md-6 offset-md-1 figure d-none d-md-block d-lg-block"> </div>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+                  {{ end }}
+                </div>
             </div> <!-- /.jobs-content -->
 
             <div class="secondary-content">
               <div class="container">
+                  <div class="row">
+                      <div class="container" style="margin-bottom: -20px;">
+                          <div class="col-md-12">
+                              <p class="text-center emphasis-black p-sm">Filter by ...</p>
+                          </div>
+                      </div>
+                  </div>
 
-                  <div class="row spacer-bottom">
-                    {{ range where .Pages "Params.series" "main" }}
-                    <div class="col-md-12">
-                        <div class="post-card post-card-main post-min-height">
-                            <div class="posts">
-                                <div class="row">
-                                    <div class="col-md-5 post-card-main-content">
-                                        <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
-                                        <h4 class="post-title">{{ with .Title }} <i>{{ index (split . " ") 0 }}</i> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ end }}</h4>
-                                        <p>{{ .Params.eventdate }}</p>
-                                        <a class="btn btn-success" href="{{ .Params.url }}"  target="_blank" >{{ .Params.link }}</a>
-                                    </div>
-
-                                    <div class="col-md-6 offset-md-1 figure d-none d-md-block d-lg-block"> </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    {{ end }}
+                  <div class="resources-filter-container" id="resources-filter-container">
+                      <button class="btn-filter active-filter" onclick="filterSelection('all-filter')"> All</button>
+                      <button class="btn-filter" onclick="filterSelection('events-filter')"> <span><img src="img/icons/event-icon.svg" alt="Icon"></span> Events</button>
+                      <button class="btn-filter" onclick="filterSelection('webinars-filter')"> <span><img src="img/icons/webinar-icon.svg" alt="Icon"></span> Webinars</button>
+                      <button class="btn-filter" onclick="filterSelection('videos-filter')"> <span><img src="img/icons/video-icon.svg" alt="Icon"></span> Videos</button>
+                      <button class="btn-filter" onclick="filterSelection('whitepapers-filter')"> <span><img src="img/icons/whitepaper-icon.svg" alt="Icon"></span> Whitepapers</button>
                   </div>
 
                   <div class="row spacer-bottom">
 
-                      {{ range where .Pages "Params.series" "video" }}
-                          <div class="col-md-6 col-lg-4">
-                              <div class="post-card post-min-height video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">
+                      {{ range where .Pages "Params.series" "events" }}
+                          <div class="col-md-6 col-lg-4 resources-filter events-filter">
+                              <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
                                   <div class="posts">
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
 
                                       <div class="post-card-links">
-                                          <div class="post-label">
+                                          <div class="post-label float-left">
                                               <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
                                           </div>
 
-                                          <div class="post-url">
-                                              <a class="video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">{{ .Params.link }} &#10230;</a>
+                                          <div class="post-url float-right">
+                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
                                           </div>
                                       </div>
                                   </div>
@@ -73,18 +82,58 @@
                           </div>
                       {{ end }}
 
-                      {{ range where .Pages "Params.series" "resources" }}
-                          <div class="col-md-6 col-lg-4">
+                      {{ range where .Pages "Params.series" "webinars" }}
+                          <div class="col-md-6 col-lg-4 resources-filter webinars-filter">
                               <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
                                   <div class="posts">
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
 
                                       <div class="post-card-links">
-                                          <div class="post-label">
+                                          <div class="post-label float-left">
                                               <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
                                           </div>
 
-                                          <div class="post-url">
+                                          <div class="post-url float-right">
+                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+
+                      {{ range where .Pages "Params.series" "videos" }}
+                          <div class="col-md-6 col-lg-4 resources-filter videos-filter">
+                              <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
+                                  <div class="posts">
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+
+                                      <div class="post-card-links">
+                                          <div class="post-label float-left">
+                                              <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                          </div>
+
+                                          <div class="post-url float-right">
+                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+
+                      {{ range where .Pages "Params.series" "whitepapers" }}
+                          <div class="col-md-6 col-lg-4 resources-filter whitepapers-filter">
+                              <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
+                                  <div class="posts">
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+
+                                      <div class="post-card-links">
+                                          <div class="post-label float-left">
+                                              <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                          </div>
+
+                                          <div class="post-url float-right">
                                               <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
                                           </div>
                                       </div>
