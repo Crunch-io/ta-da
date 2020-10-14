@@ -263,12 +263,10 @@
         .post-card-links {
             position: absolute;
             bottom: 50px;
-            display: flex;
             font-size: 14px;
-            width: 75%;
+            width: 80%;
 
             .post-label {
-                flex: 1;
                 text-transform: uppercase;
                 font-size: 12px;
                 margin-top: 2px;
@@ -291,9 +289,6 @@
             }
 
             .post-url {
-                text-align: right;
-
-
                 a {
                     display: block;
                     font-family: 'Libre Baskerville', serif;
@@ -735,11 +730,15 @@ figure {
     display: flex;
     flex-wrap: nowrap;
     margin-bottom: 30px;
+    text-align: center;
 
     button {
         flex: auto;
         border-radius: 0;
-        border: 1px solid $color-grey-normal;
+        border-top: 1px solid $color-grey-normal;
+        border-bottom: 1px solid $color-grey-normal;
+        border-left: 1px solid $color-grey-normal;
+        border-right: 0;
         background: $color-grey-lightest !important;
         padding: 10px;
         text-transform: uppercase;
@@ -757,8 +756,22 @@ figure {
             border-radius: 0;
         }
 
+        &:hover {
+            background: $color-grey-lighter !important;
+        }
+
         &:focus {
             outline: none;
         }
+    }
+
+    button:last-child {
+        border-right: 1px solid $color-grey-normal;
+    }
+}
+
+.resources-filter {
+    .post-card {
+        border: 1px solid $color-grey-normal;
     }
 }
