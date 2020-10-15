@@ -21,20 +21,17 @@
                 </div> <!-- /.jumbotron -->
                 <div class="container resources-main">
                   {{ range where .Pages "Params.series" "main" }}
-                  <div class="col-md-12">
-                      <div class="post-card post-card-main post-min-height">
-                          <div class="posts">
-                              <div class="row">
-                                  <div class="col-md-5 post-card-main-content">
-                                      <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
-                                      <h4 class="post-title">{{ with .Title }} <i>{{ index (split . " ") 0 }}</i> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ end }}</h4>
-                                      <p>{{ .Params.eventdate }}</p>
-                                      <a class="btn btn-success" href="{{ .Params.url }}"  target="_blank" >{{ .Params.link }}</a>
-                                  </div>
-
-                                  <div class="col-md-6 offset-md-1 figure d-none d-md-block d-lg-block"> </div>
+                  <div class="post-card post-card-main post-min-height">
+                      <div class="posts">
+                          <div class="row">
+                              <div class="col-md-5 post-card-main-content">
+                                  <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                  <h4 class="post-title">{{ with .Title }} <i>{{ index (split . " ") 0 }}</i> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ end }}</h4>
+                                  <p>{{ .Params.eventdate }}</p>
+                                  <a class="btn btn-success" href="{{ .Params.url }}"  target="_blank" >{{ .Params.link }}</a>
                               </div>
 
+                              <div class="col-md-6 offset-md-1 figure d-none d-md-block d-lg-block"> </div>
                           </div>
                       </div>
                   </div>
