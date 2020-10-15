@@ -240,7 +240,7 @@
     min-height: 450px;
     padding: 20px;
     margin-bottom: 30px;
-    background-color: $color-grey-lighest;
+    background-color: $color-grey-lightest;
     @include vp-transition(all .1s ease-in-out);
     cursor: pointer;
     border-radius: 2px;
@@ -263,12 +263,10 @@
         .post-card-links {
             position: absolute;
             bottom: 50px;
-            display: flex;
             font-size: 14px;
-            width: 75%;
+            width: 80%;
 
             .post-label {
-                flex: 1;
                 text-transform: uppercase;
                 font-size: 12px;
                 margin-top: 2px;
@@ -291,9 +289,6 @@
             }
 
             .post-url {
-                text-align: right;
-
-
                 a {
                     display: block;
                     font-family: 'Libre Baskerville', serif;
@@ -347,7 +342,7 @@
 // Post-Card
 .post-card-video {
     height: 380px;
-    background-color: $color-grey-lighest;
+    background-color: $color-grey-lightest;
     @include vp-transition(all .1s ease-in-out);
     border-radius: 6px;
     border: 1px solid $color-grey-normal;
@@ -429,6 +424,7 @@
     background-image: linear-gradient( $color-grey-lighter, $color-grey-light);
     padding: 40px;
     margin-bottom: 0;
+    position: relative;
 
     &:hover {
         border-bottom: 0;
@@ -474,7 +470,7 @@
         background-image: url("/img/resources-main-banner.png");
         min-height: 300px;
         position: absolute;
-        right: 15px;
+        right: 0;
         bottom: 0;
 
         &:hover {
@@ -721,11 +717,62 @@ figure {
         }
 
         .card-body {
-            background-color: $color-grey-lighest;
+            background-color: $color-grey-lightest;
             border-radius: 5px;
             border: 1px solid $color-grey-normal;
             margin-left: 50px;
             margin-bottom: 25px;
         }
+    }
+}
+
+// Resources filterSelection
+.resources-filter-container {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 30px;
+    text-align: center;
+
+    button {
+        flex: 1;
+        border-radius: 0;
+        border-top: 1px solid $color-grey-normal;
+        border-bottom: 1px solid $color-grey-normal;
+        border-left: 1px solid $color-grey-normal;
+        border-right: 0;
+        background: $color-grey-lightest !important;
+        padding: 10px;
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 600;
+
+        span img {
+            width: 18px;
+            margin-right: 10px;
+        }
+
+        &.active-filter {
+            background: $color-white !important;
+            outline: none;
+            border-radius: 0;
+        }
+
+        &:hover {
+            background: $color-grey-lighter !important;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button:last-child {
+        border-right: 1px solid $color-grey-normal;
+    }
+}
+
+.resources-filter {
+    .post-card {
+        border: 1px solid $color-grey-normal;
     }
 }
