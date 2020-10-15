@@ -424,6 +424,7 @@
     background-image: linear-gradient( $color-grey-lighter, $color-grey-light);
     padding: 40px;
     margin-bottom: 0;
+    position: relative;
 
     &:hover {
         border-bottom: 0;
@@ -469,7 +470,7 @@
         background-image: url("/img/resources-main-banner.png");
         min-height: 300px;
         position: absolute;
-        right: 15px;
+        right: 0;
         bottom: 0;
 
         &:hover {
