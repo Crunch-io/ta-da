@@ -7,4 +7,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-Check out the white papers and webinars developed by Crunch.io. See where the team is headed next.
+Check out the white papers, videos, and webinars developed by Crunch.io. See where the team is headed next.
