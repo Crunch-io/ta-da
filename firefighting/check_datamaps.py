@@ -143,18 +143,19 @@ class LineIterator(object):
     next = __next__  # PY2 compatibility
 
 
-def get_ds_dir(ds_id, local=False):
+def get_ds_dir(args, ds_id, local=False):
+    prefix = ds_id[:2]
     if local:
-        return "/var/lib/crunch.io/zz9data/hot/" + ds_id[:2] + "/" + ds_id
+        return "{}/hot/{}/{}".format(args.datadir, prefix, ds_id)
     else:
-        return "/var/lib/crunch.io/zz9repo/" + ds_id[:2] + "/" + ds_id
+        return "{}/{}/{}".format(args.repodir, prefix, ds_id)
 
 
 def load_datamap(args, ds_id, node_id, local=False):
     """
     Return dict, or None if datamap doesn't exist
     """
-    ds_dir = get_ds_dir(ds_id, local=local)
+    ds_dir = get_ds_dir(args, ds_id, local=local)
     suffix = "" if local else ".lz4"
     full_path = "{}/versions/{}/datamap.zz9{}".format(ds_dir, node_id, suffix)
     if not os.path.exists(full_path):
@@ -180,7 +181,7 @@ def open_datafile(args, ds_id, dm, path):
     variant = dm.get(path)
     if not path:
         return None  # No frame.zz9 in the datamap, it's an error
-    ds_dir = get_ds_dir(ds_id, local=args.local)
+    ds_dir = get_ds_dir(args, ds_id, local=args.local)
     suffix = "" if args.local else ".lz4"
     full_path = "{}/datafiles/{}/{}{}".format(ds_dir, variant, path, suffix)
     try:
@@ -220,22 +221,22 @@ def load_variables(args, ds_id, dm):
         return result.lookup
 
 
-def variant_dir_exists(ds_id, variant, local=False):
-    ds_dir = get_ds_dir(ds_id, local=local)
+def variant_dir_exists(args, ds_id, variant, local=False):
+    ds_dir = get_ds_dir(args, ds_id, local=local)
     variant_dir = "{}/datafiles/{}".format(ds_dir, variant)
     if os.path.isdir(variant_dir):
         return True
     if local:
         # Also check repo dir
-        repo_ds_dir = get_ds_dir(ds_id, local=False)
+        repo_ds_dir = get_ds_dir(args, ds_id, local=False)
         repo_variant_dir = "{}/datafiles/{}".format(repo_ds_dir, variant)
         if os.path.isdir(repo_variant_dir):
             return True
     return False
 
 
-def path_file_exists(ds_id, variant, path, local=False):
-    ds_dir = get_ds_dir(ds_id, local=local)
+def path_file_exists(args, ds_id, variant, path, local=False):
+    ds_dir = get_ds_dir(args, ds_id, local=local)
     suffix = "" if local else ".lz4"
     variant_dir = "{}/datafiles/{}".format(ds_dir, variant)
     full_path = "{}{}{}".format(variant_dir, path, suffix)
@@ -252,7 +253,7 @@ def check_datamaps(args, ds_id):  # noqa: C901
     if args.node_id:
         node_ids = [args.node_id]
     else:
-        ds_dir = get_ds_dir(ds_id, local=local)
+        ds_dir = get_ds_dir(args, ds_id, local=local)
         try:
             node_ids = os.listdir(ds_dir + "/versions")
         except OSError:
@@ -389,7 +390,7 @@ def check_datamap_paths(args, ds_id, dm):  # noqa: C901
         i += 1
         if variant not in found_variants:
             if variant not in missing_variants:
-                if not variant_dir_exists(ds_id, variant, local=args.local):
+                if not variant_dir_exists(args, ds_id, variant, local=args.local):
                     missing_variants.add(variant)
             if variant in missing_variants:
                 missing_paths[path] = variant
@@ -403,7 +404,7 @@ def check_datamap_paths(args, ds_id, dm):  # noqa: C901
             # - Related column files - will be checked by check_column()
             # - variables.zz9 - loaded by load_variables() already
             # - frame.zz9 - loaded by load_frame() already
-        elif not path_file_exists(ds_id, variant, path, local=args.local):
+        elif not path_file_exists(args, ds_id, variant, path, local=args.local):
             missing_paths[path] = variant
     if args.progress:
         sys.stdout.write("\n")
@@ -600,7 +601,7 @@ def check_path(args, ds_id, dm, data_path, classname, other_path):
             other_path,
         )
         return False
-    if not path_file_exists(ds_id, variant, other_path, local=args.local):
+    if not path_file_exists(args, ds_id, variant, other_path, local=args.local):
         eprintf(
             args,
             "{}: {} column variant {} missing file for path {}",
@@ -677,6 +678,9 @@ def main():
         action="store_true",
         help="Raise DatamapCheckError instead of printing message",
     )
+    parser.add_argument("--datadir", default="/var/lib/crunch.io/zz9data")
+    parser.add_argument("--repodir", default="/var/lib/crunch.io/zz9repo")
+    parser.add_argument("--tmpdir", default="/var/lib/crunch.io/zz9tmp")
     args = parser.parse_args()
 
     if args.fromfile:

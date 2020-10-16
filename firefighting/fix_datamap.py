@@ -189,11 +189,11 @@ def _repair_text_column(  # noqa: C901
     buffer_variant = dm.get(buffer_path)
     if buffer_variant:
         buffer_file_exists = path_file_exists(
-            ds_id, buffer_variant, buffer_path, local=False
+            args, ds_id, buffer_variant, buffer_path, local=False
         )
     else:
         buffer_file_exists = path_file_exists(
-            ds_id, data_variant, buffer_path, local=False
+            args, ds_id, data_variant, buffer_path, local=False
         )
     if buffer_variant == data_variant and buffer_file_exists:
         raise DoesNotNeedRepair(
@@ -326,7 +326,7 @@ def _check_data_path(  # noqa: C901
 
 
 def _replace_datamap(args, ds_id, node_id, dm):
-    ds_dir = get_ds_dir(ds_id, local=False)
+    ds_dir = get_ds_dir(args, ds_id, local=False)
     full_path = "{}/versions/{}/datamap.zz9.lz4".format(ds_dir, node_id)
     basename = os.path.basename(full_path)
     dirname = os.path.dirname(full_path)
@@ -429,6 +429,9 @@ def main():
     )
     parser.add_argument("--send-file", help="Send file (read), only used by --stream")
     parser.add_argument("--done-file", help="Done file (append), only used by --stream")
+    parser.add_argument("--datadir", default="/var/lib/crunch.io/zz9data")
+    parser.add_argument("--repodir", default="/var/lib/crunch.io/zz9repo")
+    parser.add_argument("--tmpdir", default="/var/lib/crunch.io/zz9tmp")
     args = parser.parse_args()
     # Set attributes required by functions imported from check_datamaps
     args.local = False
