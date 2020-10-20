@@ -391,6 +391,13 @@
             font-family: 'Libre Baskerville', serif;
             text-align: center;
             font-size: 28px;
+
+            span {
+                font-style: italic;
+                text-transform: lowercase;
+                font-size: 28px;
+                font-weight: 300;
+            }
         }
 
         span {
