@@ -7,7 +7,7 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-## Last Updated: May 31st, 2020
+### Last Updated: May 31st, 2020
 
 Protecting your privacy is very important to us at Crunch Cloud Analytics LLC (“Crunch”, “We”, “Us”, or “Our”), and we use our privacy and cookies notice to explain our practices regarding our collection and use of information that we receive through the online analytic services provided at [www.crunch.io](http://www.crunch.io), and other related websites designated by Crunch (“Services”). This privacy and cookies notice applies to only those websites, services and applications included within our Services where this privacy notice is posted, and does not apply to any third-party websites, services or applications, even if they are accessible through our Services.
 
@@ -32,7 +32,7 @@ If you are a Crunch customer, you provide us with information that enables us to
 
 <table class="table">
   <tbody>
-    <tr>
+    <tr class="border-top">
       <td class="table-border">When you contact us via the forms on our website, we collect:</td>
       <td class="table-border">
         <ul>
@@ -69,6 +69,8 @@ If you are a Crunch customer, you provide us with information that enables us to
     </tr>
   </tbody>
 </table>
+
+<br>
 
 We will only retain your personal data for as long as we need to in order to fulfil the uses we describe in this notice or to comply with statutory requirements, or until you exercise your right to erasure (which is explained in the ‘Your Rights’ section below).
 
@@ -135,9 +137,11 @@ We use the data that you share with us, or that we receive from the other source
 
 In order to use personal data in the ways described above, we may share it with certain third parties.  Information about the types of organisations we may share data with is provided below.
 
+<br>
+
 <table class="table">
   <tbody>
-    <tr>
+    <tr class="border-top">
       <td class="table-border hd-list-min-width ">Our customers</td>
       <td class="table-border">
         <p>From time-to-time, our customers request usage reports for our Services.  For example, some clients use information about the use of our Services to understand the penetration of the tool within the business.  We may also share your name with other customers or prospective customers as part of a testimonial, but only with your permission.</p>
@@ -278,7 +282,9 @@ The table below lists and describes the third party cookies that we are placed o
         <p>Cookies can also be used to deliver online ads and to track ad campaign performance and efficiency.  The marketing cookies on our website collect information about online browsing, and use that information to create relevant online ads that you will see on third party websites, and for conversion tracking.</p>
       </td>
       <td class="table-border">
-        <p><a href="https://www.linkedin.com/legal/privacy-policy">LinkedIn</a></p>
+          <ul class="hd-list-item">
+            <li><a href="https://www.linkedin.com/legal/privacy-policy">LinkedIn</a></li>
+          </ul>
       </td>
     </tr>
   </tbody>

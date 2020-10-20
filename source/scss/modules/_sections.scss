@@ -384,6 +384,79 @@
         }
     }
 
+    // Privacy policy
+    .privacy-policy {
+        h1 {
+            color: $color-green;
+            font-family: 'Libre Baskerville', serif;
+            text-align: center;
+            font-size: 28px;
+
+            span {
+                font-style: italic;
+                text-transform: lowercase;
+                font-size: 28px;
+                font-weight: 300;
+            }
+        }
+
+        span {
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 700;
+        }
+    }
+
+    .privacy-policy-mg {
+        margin-top: 30px;
+
+        h2 {
+            font-family: 'Libre Baskerville', serif;
+            color: $color-blue;
+            font-size: 18px;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        a {
+            color: $color-green;
+        }
+
+        .table-border {
+            border: 0;
+            border-bottom: 1px solid #E1E9E9;
+        }
+
+        .border-top {
+            border-top: 1px solid #E1E9E9;
+        }
+
+        table {
+            width: 100%;
+
+            th {
+                background-color: #E1E9E9;
+                text-align: center;
+
+                &:first-child {
+                    border-right: 1px solid $color-white;
+                }
+
+                &:last-child {
+                    border-left: 1px solid $color-white;
+                }
+            }
+
+            td {
+                text-align: left;
+            }
+        }
+    }
+
 }
 
 // 404 page
