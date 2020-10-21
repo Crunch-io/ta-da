@@ -6,10 +6,18 @@ In use includes being used as a Source for a append action, or being used as a
 fork parent. TODO: Check if a dataset is a target for a dataset view.
 
 Usage:
-    check_version_inuse.py [options] <ds-versions-file>
+    check_version_inuse.py [options] <ds-version-id>
+    check_version_inuse.py [options] --fromfile <ds-versions-file>
 
 Options:
     --cr-lib-config=FILENAME  [default: /var/lib/crunch.io/cr.server-0.conf]
+
+<ds-version-id> is in the format <dataset-id>@<version-id>
+
+<ds-versions-file> can be "-" for standard input. It consists of lines in this format:
+    <timestamp> <dataset-id>@<version>:<status>
+For the purpose of this script, <timestamp> can be any non-space characters
+<status> can be any text.
 """
 from __future__ import print_function
 import os
@@ -47,7 +55,7 @@ def check_version_inuse(ds_id, node_id):
     except exceptions.NotFound:
         print("{}@{}:DELETED".format(ds_id, node_id))
         sys.stdout.flush()
-        return
+        return 0
     version = "master__tip" if node_id.startswith("__tip") else node_id
     uses = Action.find_dataset_usages(ds_id, dataset_version=version)
     revision = version.partition("__")[2]
@@ -61,6 +69,7 @@ def check_version_inuse(ds_id, node_id):
             )
         )
     sys.stdout.flush()
+    return 0
 
 
 def main():
@@ -71,22 +80,29 @@ def main():
     log_to_stdout(level=30)
     _cr_lib_init(args)
 
-    if ds_versions_filename == "-":
-        f = sys.stdin
-    else:
-        f = open(ds_versions_filename)
-    try:
-        for line in f:
-            line = line.strip()
-            m = DONE_PATTERN.match(line)
-            if not m:
-                raise ValueError("Line not in expected format: {}".format(line))
-            ds_id = m.group("ds_id")
-            node_id = m.group("node_id")
-            check_version_inuse(ds_id, node_id)
-    finally:
-        if ds_versions_filename != "-":
-            f.close()
+    if args["--fromfile"]:
+        if ds_versions_filename == "-":
+            f = sys.stdin
+        else:
+            f = open(ds_versions_filename)
+        try:
+            for line_num, line in enumerate(f):
+                line = line.strip()
+                m = DONE_PATTERN.match(line)
+                if not m:
+                    raise ValueError(
+                        "Line {} not in expected format: {}".format(line_num, line)
+                    )
+                ds_id = m.group("ds_id")
+                node_id = m.group("node_id")
+                check_version_inuse(ds_id, node_id)
+        finally:
+            if ds_versions_filename != "-":
+                f.close()
+        return 0
+
+    ds_id, _, version = args["<ds-version-id>"].partition("@")
+    return check_version_inuse(ds_id, version)
 
 
 if __name__ == "__main__":
