@@ -369,6 +369,9 @@ def check_datamap_paths(args, ds_id, dm):  # noqa: C901
     < 0 if there was some other major error
     """
     frame = load_frame(args, ds_id, dm)
+    if frame is None:
+        eprintf(args, "Missing frame.zz9 file")
+        return -104
     numrows = frame["numrows"]
     dprintf(args, "numrows: {}", numrows)
     found_variants = set()
