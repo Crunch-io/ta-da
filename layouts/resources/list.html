@@ -94,7 +94,7 @@
 
                       {{ range where .Pages "Params.series" "videos" }}
                           <div class="col-md-6 col-lg-4 resources-filter videos-filter">
-                              <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
+                              <div class="post-card post-min-height video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">
                                   <div class="posts">
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
 
