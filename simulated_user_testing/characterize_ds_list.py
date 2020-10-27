@@ -16,7 +16,6 @@ import calendar
 import code
 from datetime import datetime
 from math import ceil
-import operator
 import os
 import sys
 
@@ -56,6 +55,7 @@ class DatasetStats(object):
         self.args = args
         self.broken_ds_ids = set(BROKEN_DATASETS)
         self.ds_info_map = {}  # {ds_id: ds_info}
+        self.num_deleted_datasets = 0
         self.problem_datasets = []
 
     def ingest_dataset(self, ds):
@@ -69,8 +69,9 @@ class DatasetStats(object):
         self.ds_info_map[ds.id] = ds_info
 
     def report(self):
-        print("Ingested", len(self.ds_info_map), "datasets")
-        print("Encountered", len(self.problem_datasets, "problem datasets"))
+        print("Encountered", self.num_deleted_datasets, "deleted datasets")
+        print("Encountered", len(self.problem_datasets), "problem datasets")
+        print("Successfully ingested", len(self.ds_info_map), "datasets")
         num_rows_data = [d["num_rows"] for d in six.itervalues(self.ds_info_map)]
         num_cols_data = [d["num_cols"] for d in six.itervalues(self.ds_info_map)]
         creation_time_data = [
@@ -85,37 +86,46 @@ class DatasetStats(object):
         print("Median number of rows:", median_num_rows)
         print("Median number of columns:", median_num_cols)
         print("Median creation time:", median_creation_time)
-        print()
         sys.stdout.flush()
 
         # Report sample dataset IDs
-        field, median_value = "num_cols", median_num_cols
-        print("Datasets with low, median, and high values for {}".format(field))
-        print("Low:")
-        ds_ids = self.find_min_ds_ids(field)
-        for ds_id in ds_ids:
+        for field, median_value in [
+            ("num_rows", median_num_rows),
+            ("num_cols", median_num_cols),
+        ]:
+            print("\n")
             print(
-                "Dataset: {}  {}: {}".format(
-                    field, ds_id, self.ds_info_map[ds_id][field]
-                )
+                "Datasets with zero, low, median, and high values for {}".format(field)
             )
-        print("Median:")
-        ds_ids = self.find_matching_ds_ids(field, median_value)
-        for ds_id in ds_ids:
-            print(
-                "Dataset: {}  {}: {}".format(
-                    field, ds_id, self.ds_info_map[ds_id][field]
+            print("Zero:")
+            ds_ids = self.find_zero_ds_ids(field)
+            print("count =", len(ds_ids))
+            print(" ".join(ds_ids[:3]))
+            print("Low:")
+            ds_ids = self.find_min_ds_ids(field)
+            for ds_id in ds_ids:
+                print(
+                    "Dataset: {}  {}: {}".format(
+                        field, ds_id, self.ds_info_map[ds_id][field]
+                    )
                 )
-            )
-        print("High:")
-        ds_ids = self.find_max_ds_ids(field)
-        for ds_id in ds_ids:
-            print(
-                "Dataset: {}  {}: {}".format(
-                    field, ds_id, self.ds_info_map[ds_id][field]
+            print("Median:")
+            ds_ids = self.find_matching_ds_ids(field, median_value)
+            for ds_id in ds_ids:
+                print(
+                    "Dataset: {}  {}: {}".format(
+                        field, ds_id, self.ds_info_map[ds_id][field]
+                    )
                 )
-            )
-        sys.stdout.flush()
+            print("High:")
+            ds_ids = self.find_max_ds_ids(field)
+            for ds_id in ds_ids:
+                print(
+                    "Dataset: {}  {}: {}".format(
+                        field, ds_id, self.ds_info_map[ds_id][field]
+                    )
+                )
+            sys.stdout.flush()
 
         # Drop into interactive prompt if "-i" option was given
         if self.args["-i"]:
@@ -127,18 +137,48 @@ class DatasetStats(object):
             }
             code.interact(local=namespace)
 
-    def find_matching_ds_ids(self, key, value, limit=3):
+    def find_zero_ds_ids(self, field):
+        """
+        Return IDs of datasets with field value of zero
+        """
+        ds_info_map = self.ds_info_map
+        return sorted(
+            ds_id
+            for ds_id in ds_info_map
+            if field in ds_info_map and not ds_info_map[field]
+        )
+
+    def get_sorted_ds_ids(self, field, exclude_zero_values=True, reverse=False):
+        """
+        Return a list of dataset IDs that have a value for the given field
+        The list is sorted by the field value and then by dataset ID
+        """
+        ds_info_map = self.ds_info_map
+
+        def _keyfunc(ds_id):
+            return ds_info_map[ds_id][field]
+
+        result = []
+        for ds_id in sorted(ds_info_map):
+            ds_info = ds_info_map[ds_id]
+            if field not in ds_info:
+                continue
+            if not ds_info[field] and exclude_zero_values:
+                continue
+            result.append(ds_id)
+        result.sort(key=_keyfunc, reverse=reverse)
+        return result
+
+    def find_matching_ds_ids(self, field, value, limit=3, exclude_zero_values=True):
         """
         Return IDs of datasets with field matching or close to the given numeric value
         """
-        ds_ids = sorted(self.ds_info_map)
-        ds_tuple_list = sorted(
-            ((ds_id, self.ds_info_map[ds_id][key]) for ds_id in ds_ids),
-            key=operator.itemgetter(1),
-        )
+        ds_ids = self.get_sorted_ds_ids(field, exclude_zero_values=exclude_zero_values)
+        ds_info_map = self.ds_info_map
         result = []
         prev_ds_id = None
-        for ds_id, cur_val in ds_tuple_list:
+        for ds_id in ds_ids:
+            cur_val = ds_info_map[ds_id][field]
             if cur_val < value:
                 prev_ds_id = ds_id
                 continue
@@ -156,27 +196,21 @@ class DatasetStats(object):
             break
         return result
 
-    def find_min_ds_ids(self, key, limit=3):
+    def find_min_ds_ids(self, field, limit=3, exclude_zero_values=True):
         """
         Return IDs of datasets with lowest values for a field
         """
+        ds_ids = self.get_sorted_ds_ids(field, exclude_zero_values=exclude_zero_values)
+        return ds_ids[:limit]
 
-        def _keyfunc(ds_id):
-            return self.ds_info_map[ds_id][key]
-
-        ds_ids = sorted(self.ds_info_map)
-        return sorted(ds_ids, key=_keyfunc)[:limit]
-
-    def find_max_ds_ids(self, key, limit=3):
+    def find_max_ds_ids(self, field, limit=3, exclude_zero_values=True):
         """
         Return IDs of datasets with highest values for a field
         """
-
-        def _keyfunc(ds_id):
-            return self.ds_info_map[ds_id][key]
-
-        ds_ids = sorted(self.ds_info_map)
-        return sorted(ds_ids, key=_keyfunc, reverse=True)[:limit]
+        ds_ids = self.get_sorted_ds_ids(
+            field, exclude_zero_values=exclude_zero_values, reverse=True
+        )
+        return ds_ids[:limit]
 
 
 def main():
@@ -199,6 +233,7 @@ def main():
                 try:
                     ds = Dataset.find_by_id(id=ds_id, version="master__tip")
                 except exceptions.NotFound:
+                    dataset_stats.num_deleted_datasets += 1
                     continue
                 try:
                     with ds.session():
