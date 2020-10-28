@@ -12,7 +12,6 @@ Options:
     -i                          Run interactive prompt after report
 """
 from __future__ import print_function
-import calendar
 import code
 from datetime import datetime
 from math import ceil
@@ -31,6 +30,8 @@ from cr.lib import exceptions
 from cr.lib.loglib import log_to_stdout
 from cr.lib.settings import settings
 from zz9lib.errors import ZZ9Error
+
+BEGINNING_OF_TIME = datetime(1970, 1, 1)
 
 # These datasets are kept so that the integrity checker has something to report
 # and so that migration scripts etc. can get experience dealing with unloadable
@@ -65,7 +66,9 @@ class DatasetStats(object):
         # For now assume cached values are correct
         ds_info["num_rows"] = ds.cached.rows
         ds_info["num_cols"] = ds.cached.columns
-        ds_info["creation_time"] = ds.creation_time
+        ds_info["creation_time"] = (
+            ds.creation_time - BEGINNING_OF_TIME
+        ).total_seconds()
         self.ds_info_map[ds.id] = ds_info
 
     def report(self):
@@ -75,23 +78,30 @@ class DatasetStats(object):
         num_rows_data = [d["num_rows"] for d in six.itervalues(self.ds_info_map)]
         num_cols_data = [d["num_cols"] for d in six.itervalues(self.ds_info_map)]
         creation_time_data = [
-            calendar.timegm(d["creation_time"].utctimetuple())
-            for d in six.itervalues(self.ds_info_map)
+            d["creation_time"] for d in six.itervalues(self.ds_info_map)
         ]
-        median_creation_time = datetime.utcfromtimestamp(
-            int(ceil(np.median(creation_time_data)))
-        )
+        min_creation_time = min(creation_time_data)
+        median_creation_time = np.median(creation_time_data)
+        max_creation_time = max(creation_time_data)
         median_num_rows = int(ceil(np.median(num_rows_data)))
+        max_num_rows = max(num_rows_data)
         median_num_cols = int(ceil(np.median(num_cols_data)))
+        max_num_cols = max(num_cols_data)
         print("Median number of rows:", median_num_rows)
+        print("Maximum number of rows:", max_num_rows)
         print("Median number of columns:", median_num_cols)
-        print("Median creation time:", median_creation_time)
+        print("Maximum number of columns:", max_num_cols)
+        utcfromtimestamp = datetime.utcfromtimestamp
+        print("Earliest creation time:", utcfromtimestamp(min_creation_time))
+        print("Median creation time:", utcfromtimestamp(median_creation_time))
+        print("Latest creation time:", utcfromtimestamp(max_creation_time))
         sys.stdout.flush()
 
         # Report sample dataset IDs
-        for field, median_value in [
-            ("num_rows", median_num_rows),
-            ("num_cols", median_num_cols),
+        for field, median_value, display_func in [
+            ("num_rows", median_num_rows, str),
+            ("num_cols", median_num_cols, str),
+            ("creation_time", median_creation_time, utcfromtimestamp),
         ]:
             print("\n")
             print(
@@ -99,14 +109,20 @@ class DatasetStats(object):
             )
             print("Zero:")
             ds_ids = self.find_zero_ds_ids(field)
-            print("count =", len(ds_ids))
-            print(" ".join(ds_ids[:3]))
+            if not ds_ids:
+                print("No datasets with zero values for", field)
+            else:
+                print(
+                    "{} datasets with zero value for {}. First few IDs: {}".format(
+                        len(ds_ids), ds_ids[:3]
+                    )
+                )
             print("Low:")
             ds_ids = self.find_min_ds_ids(field)
             for ds_id in ds_ids:
                 print(
                     "Dataset: {}  {}: {}".format(
-                        field, ds_id, self.ds_info_map[ds_id][field]
+                        field, ds_id, display_func(self.ds_info_map[ds_id][field])
                     )
                 )
             print("Median:")
@@ -114,7 +130,7 @@ class DatasetStats(object):
             for ds_id in ds_ids:
                 print(
                     "Dataset: {}  {}: {}".format(
-                        field, ds_id, self.ds_info_map[ds_id][field]
+                        field, ds_id, display_func(self.ds_info_map[ds_id][field])
                     )
                 )
             print("High:")
@@ -122,7 +138,7 @@ class DatasetStats(object):
             for ds_id in ds_ids:
                 print(
                     "Dataset: {}  {}: {}".format(
-                        field, ds_id, self.ds_info_map[ds_id][field]
+                        field, ds_id, display_func(self.ds_info_map[ds_id][field])
                     )
                 )
             sys.stdout.flush()
