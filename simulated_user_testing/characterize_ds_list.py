@@ -104,14 +104,10 @@ class DatasetStats(object):
             ("creation_time", median_creation_time, utcfromtimestamp),
         ]:
             print("\n")
-            print(
-                "Datasets with zero, low, median, and high values for {}".format(field)
-            )
-            print("Zero:")
+            print("Datasets with low, median, and high values for {}".format(field))
             ds_ids = self.find_zero_ds_ids(field)
-            if not ds_ids:
-                print("No datasets with zero values for", field)
-            else:
+            if ds_ids:
+                print("Zero:")
                 print(
                     "{} datasets with zero value for {}. First few IDs: {}".format(
                         len(ds_ids), ds_ids[:3]
@@ -122,7 +118,7 @@ class DatasetStats(object):
             for ds_id in ds_ids:
                 print(
                     "Dataset: {}  {}: {}".format(
-                        field, ds_id, display_func(self.ds_info_map[ds_id][field])
+                        ds_id, field, display_func(self.ds_info_map[ds_id][field])
                     )
                 )
             print("Median:")
@@ -130,7 +126,7 @@ class DatasetStats(object):
             for ds_id in ds_ids:
                 print(
                     "Dataset: {}  {}: {}".format(
-                        field, ds_id, display_func(self.ds_info_map[ds_id][field])
+                        ds_id, field, display_func(self.ds_info_map[ds_id][field])
                     )
                 )
             print("High:")
@@ -138,7 +134,7 @@ class DatasetStats(object):
             for ds_id in ds_ids:
                 print(
                     "Dataset: {}  {}: {}".format(
-                        field, ds_id, display_func(self.ds_info_map[ds_id][field])
+                        ds_id, field, display_func(self.ds_info_map[ds_id][field])
                     )
                 )
             sys.stdout.flush()
