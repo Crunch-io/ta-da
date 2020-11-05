@@ -19,7 +19,7 @@ This can be helpful if you need to:
 
 * Show more than one measure (percentages, counts, indices, Z-scores, population estimates) at once, or
 
-* Have additional elements or measures included in your exports, such as t-tests, column-wise comparison letters (ABCD), standard deviations, standard errors etc., or
+* Have additional elements or measures included in your exports, such as pairwise comparison letters (ABCD), standard deviations, standard errors, etc., or
 
 * Control the appearance of the output by changing the number of decimal places or the location of the Base rows etc.
 
