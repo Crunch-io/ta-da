@@ -23,8 +23,8 @@ This can be helpful if you need to:
 
 * Control the appearance of the output by changing the number of decimal places or the location of the Base rows etc.
 
-We've also applied the same, more intuitive, design to help navigate the options in the Export Settings panel for exporting tables saved to decks. For full details of this new feature and where to find it, see the help center.
+We've also applied the same, more intuitive, design to help navigate the options in the Export Settings panel for exporting tables saved to decks. For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360052215611-Customize-Export-Settings).
 
-Currently this feature is only available if you have enabled [Early access](https://help.crunch.io/hc/en-us/articles/360052215611-Customize-Export-Settings) in your application settings.
+Currently this feature is only available if you have enabled [Early access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) in your application settings.
 
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
