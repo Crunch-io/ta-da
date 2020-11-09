@@ -7,7 +7,7 @@ eventdate = "October 27, 2020"
 url = "//info.crunch.io/quirks-virtual-fall-crunch-lp"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
-link = "Register Now"
+link = "Watch the Recording"
 series = "main"
 icon = "img/icons/quirks-logo.png"
 
