@@ -11,4 +11,4 @@ mob_video = "https://player.vimeo.com/video/446617800"
 
 We’re a group of  survey experts, market researchers, data scientists, and engineers.  
 
-We were frustrated by the current tools used to compile, analyze, visualize, and deliver survey data. So, we built Crunch to bring simplicity and usability to survey data analysis.
+We were frustrated by the current tools used to analyze, visualize, and deliver survey data. So, we built Crunch to bring simplicity and usability to survey data analysis.
