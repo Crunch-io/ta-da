@@ -1,9 +1,9 @@
 +++
-date = "2020-11-02T18:02:58-04:00"
+date = "2020-11-12T11:54:13-04:00"
 draft = false
-title = "Insights Leadership & Talent Summit"
-label = "Event | November 9-10"
-url = "//info.crunch.io/ilts-2020"
+title = "CONVERGE 2020"
+label = "Event | December 1-2"
+url = "//info.crunch.io/converge-2020"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Book a Meeting"
