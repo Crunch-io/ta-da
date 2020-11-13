@@ -1,6 +1,6 @@
 +++
 date = "2020-11-12T11:54:13-04:00"
-draft = true
+draft = false
 title = "CONVERGE 2020"
 label = "Event | December 1-2"
 url = "//info.crunch.io/converge-2020"
