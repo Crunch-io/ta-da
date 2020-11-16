@@ -27,6 +27,7 @@ import time
 import traceback
 
 import docopt
+from pycrunch.elements import ElementSession
 import yaml
 
 import crunch_util
@@ -69,10 +70,12 @@ def track_activity(activity):
 
 
 def simulate_editor(config, args):
+    rc = 0
+    emoji = ":pizza:"
+    saved_user_agent = ElementSession.headers["user-agent"]
+    ElementSession.headers["user-agent"] = "editor-bot"
     try:
-        rc = 0
         msg = _simulate_editor(config, args)
-        emoji = ":pizza:"
     except ErrorDuringActivity as err:
         rc = 1
         msg = str(err)
@@ -84,6 +87,7 @@ def simulate_editor(config, args):
         # Need to print traceback here or we won't get one
         traceback.print_exc()
     finally:
+        ElementSession.headers["user-agent"] = saved_user_agent
         print(msg)
         sys.stdout.flush()
         if args["--slack-notify"]:
