@@ -11,6 +11,7 @@ Usage:
 
 Options:
     --cr-lib-config=FILENAME  [default: /var/lib/crunch.io/cr.server-0.conf]
+    --list-forks              List the child datasets forked from this one
 
 <ds-version-id> is in the format <dataset-id>@<version-id>
 
@@ -49,7 +50,7 @@ def _cr_lib_init(args):
     startup()
 
 
-def check_version_inuse(ds_id, node_id):
+def check_version_inuse(args, ds_id, node_id):
     try:
         ds = Dataset.find_by_id(id=ds_id, version="master__tip")
     except exceptions.NotFound:
@@ -68,6 +69,10 @@ def check_version_inuse(ds_id, node_id):
                 ds_id, node_id, len(uses), len(forks)
             )
         )
+        if forks and args["--list-forks"]:
+            print("Fork children:")
+            for fork in forks:
+                print(fork)
     sys.stdout.flush()
     return 0
 
@@ -95,14 +100,14 @@ def main():
                     )
                 ds_id = m.group("ds_id")
                 node_id = m.group("node_id")
-                check_version_inuse(ds_id, node_id)
+                check_version_inuse(args, ds_id, node_id)
         finally:
             if ds_versions_filename != "-":
                 f.close()
         return 0
 
     ds_id, _, version = args["<ds-version-id>"].partition("@")
-    return check_version_inuse(ds_id, version)
+    return check_version_inuse(args, ds_id, version)
 
 
 if __name__ == "__main__":
