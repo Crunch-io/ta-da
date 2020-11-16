@@ -5,5 +5,12 @@
 exclude __pycache__/
 exclude *.pyc
 
+# Don't copy local virtual environments
+exclude .venv*/
+exclude venv*/
+
+# Don't copy VSCode files
+exclude .vscode/
+
 # Don't copy vim swap files
 exclude *.swp
