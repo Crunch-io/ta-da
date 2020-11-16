@@ -23,6 +23,7 @@ from magicbus import bus
 from magicbus.plugins import loggers
 import numpy as np
 import six
+from zmq.error import ZMQError
 
 from cr.lib.commands.common import load_settings, startup
 from cr.lib.entities.datasets.dataset import Dataset
@@ -250,6 +251,9 @@ def main():
                 try:
                     with ds.session():
                         dataset_stats.ingest_dataset(ds)
+                except ZMQError:
+                    # This happens when Ctrl-C is processed at awkward times
+                    raise KeyboardInterrupt()
                 except ZZ9Error:
                     dataset_stats.problem_datasets.append(ds_id)
         except KeyboardInterrupt:
