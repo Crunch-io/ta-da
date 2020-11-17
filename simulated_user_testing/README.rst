@@ -74,12 +74,12 @@ will result in an error message.
 Email:  sim-editor-1@crunch.io
 Name:   Sim Editor 1 
 Auth:   Password
-Role:   advanced
+Role:   admin
 
-Name:   Sim User 1
 Email:  sim-user-1@crunch.io
+Name:   Sim User 1
 Auth:   Password
-Role:   basic
+Role:   analyst
 
 To set the password for each test user, go to https://alpha.superadmin.crint.net/users/
 and search on the (fake) email address of the test user. Click the link to go to that
