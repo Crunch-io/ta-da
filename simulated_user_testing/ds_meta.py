@@ -95,13 +95,13 @@ def main():
         raise NotImplementedError(
             "Sorry, {!r} is not yet implemented".format(command_name)
         )
+    verbose = args["-v"]
     t0 = time.time()
-    show_elapsed_time = command_name != "sample-config"
     try:
         return method(config, args)
     finally:
-        if show_elapsed_time:
-            print("Elapsed time:", time.time() - t0, "seconds", file=sys.stderr)
+        if verbose:
+            log.info("Elapsed time: %s seconds", time.time() - t0)
 
 
 def obfuscate_string(value, path):
