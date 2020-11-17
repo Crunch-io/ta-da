@@ -9,22 +9,25 @@ Options:
     -c CONFIG_FILE          [default: config.yaml]
     -p PROFILE_NAME         Profile section in config [default: alpha]
     -u USER_ALIAS           Key to section inside profile [default: sim-editor-1]
-    -v                      Print verbose messages
+    -v                      Log verbose messages
     --dataset-template=TEMPLATE_ID  [default: gb_plus]
     --keep-prev-datasets=N  Number of previous datasets to keep [default: 10]
     --slack-notify          Send Slack message when done
+    --stderr                Log to standard error instead of to syslog
+    --loglevel=LEVEL        Logging level [default: INFO]
 """
 from __future__ import print_function
 from contextlib import contextmanager
 from datetime import datetime
 import glob
 import io
+import logging
+import logging.handlers
 import os
 import re
 import sys
 import textwrap
 import time
-import traceback
 
 import docopt
 from pycrunch.elements import ElementSession
@@ -35,9 +38,33 @@ import ds_meta
 import ds_data
 import sim_util
 
+log = logging.getLogger("editor-bot")
+
 
 def main():
     args = docopt.docopt(__doc__)
+    if args["--stderr"]:
+        print("Sending log output to stderr")
+        handler = logging.StreamHandler()
+        handler.setFormatter(
+            logging.Formatter(
+                fmt="%(asctime)s.%(msecs)03d %(levelname)-8s %(name)s %(message)s",
+                datefmt="%Y-%m-%d %H:%M:%S",
+            )
+        )
+    else:
+        print("Sending log output to syslog")
+        handler = logging.handlers.SysLogHandler(address="/dev/log")
+        handler.setFormatter(
+            logging.Formatter(fmt="%(levelname)-8s %(name)s %(message)s")
+        )
+    sys.stdout.flush()
+    level = getattr(logging, args["--loglevel"].upper(), None)
+    if level is None:
+        raise ValueError("Invalid loglevel: {}".format(args["--loglevel"]))
+    logging.getLogger("").setLevel(level)
+    logging.getLogger("").addHandler(handler)
+    log.info("Starting Editor Bot")
     with io.open(args["-c"], "r", encoding="UTF-8") as f:
         config = yaml.safe_load(f)
     if args["simulate-editor"]:
@@ -59,13 +86,11 @@ class ErrorDuringActivity(Exception):
 
 @contextmanager
 def track_activity(activity):
-    timestr = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f")
-    print("{} {}".format(timestr, activity))
-    sys.stdout.flush()
+    log.info(activity)
     try:
         yield
     except Exception as err:
-        traceback.print_exc()
+        log.exception("Error during activity: %s", activity)
         raise ErrorDuringActivity(activity, err)
 
 
@@ -84,11 +109,11 @@ def simulate_editor(config, args):
         rc = 2
         msg = "Simulated User Testing: FAILED\n{err}".format(err=err)
         emoji = ":boom:"
-        # Need to print traceback here or we won't get one
-        traceback.print_exc()
+        # Need to log traceback here or we won't get one
+        log.exception(msg)
     finally:
         ElementSession.headers["user-agent"] = saved_user_agent
-        print(msg)
+        log.info(msg)
         sys.stdout.flush()
         if args["--slack-notify"]:
             response = sim_util.message(
@@ -98,12 +123,12 @@ def simulate_editor(config, args):
                 icon_emoji=emoji,
             )
             if not response.ok:
-                print("ERROR sending Slack notification:", response)
+                log.error("Problem sending Slack notification: %s", response)
             else:
-                print("Sent Slack notification")
+                log.info("Sent Slack notification")
         else:
-            print("Not sending Slack notification because --slack-notify not set")
-        print("Done.")
+            log.info("Not sending Slack notification because --slack-notify not set")
+        log.info("Done.")
         return rc
 
 
@@ -126,14 +151,14 @@ def _simulate_editor(config, args):
     site = sim_util.connect_api(config, args)
 
     quad_project = sim_util.get_project_by_name(site, "Quad")
-    print("Found project Quad; entity_url:", quad_project.entity_url)
+    log.info("Found project Quad; entity_url: %s", quad_project.entity_url)
 
     # Create the dataset
     msg = 'Creating dataset "{}" from metadata: {}'.format(ds_name, payload_filename)
     with track_activity(msg):
         meta = ds_meta.MetadataModel(verbose=verbose)
     ds = meta.create(site, payload_filename, name=ds_name, project=quad_project)
-    print("Created dataset:", ds.self)
+    log.info("Created dataset: %s", ds.self)
 
     # Upload the source data and create sources
     source_urls = upload_sources(site, data_dir)
@@ -230,7 +255,7 @@ def upload_sources(site, data_dir):
     """
     chunk_filenames = glob.glob(os.path.join(data_dir, "*"))
     if not chunk_filenames:
-        print("No data files in", data_dir)
+        log.warning("No data files in data dir: %s", data_dir)
         return []
     source_urls = []
     for i, filename in enumerate(chunk_filenames, 1):
@@ -238,14 +263,9 @@ def upload_sources(site, data_dir):
         with track_activity(msg):
             source_url = ds_data.upload_source(site, filename)
         source_urls.append(source_url)
-        print(
-            "({}/{})".format(i, len(chunk_filenames)),
-            "Uploaded",
-            filename,
-            "to",
-            source_url,
+        log.info(
+            "(%s/%s) Uploaded %s to %s", i, len(chunk_filenames), filename, source_url
         )
-        sys.stdout.flush()
     return source_urls
 
 
@@ -308,13 +328,13 @@ def create_fork(site, ds, project, fork_name_suffix):
 def move_ds_into_project(ds, project):
     project = sim_util.get_entity(project)
     ds_url = sim_util.get_entity_url(ds)
-    print("Moving dataset", ds_url, "into project", project.body.name)
+    log.info("Moving dataset %s into project %s", ds_url, project.body.name)
     project.patch({"index": {ds_url: {}}})
 
 
 def publish_ds(ds):
     ds = sim_util.get_entity(ds)
-    print("Publishing dataset", ds.self)
+    log.info("Publishing dataset: %s", ds.self)
     ds.patch({"is_published": True})
 
 
@@ -329,14 +349,12 @@ def trim_older_datasets(site, project, ds_name_pattern, keep_prev_datasets):
         reverse=False,
     )
     if len(datasets) <= keep_prev_datasets:
-        print(
-            "Keeping",
+        log.info(
+            "Keeping %s datasets matching pattern %s in project %s (limit is %s)",
             len(datasets),
-            "datasets matching pattern",
             repr(ds_name_pattern),
-            "in project",
             sim_util.get_entity_name(project),
-            "(limit is {})".format(keep_prev_datasets),
+            keep_prev_datasets,
         )
         return
     num_datasets_to_delete = len(datasets) - keep_prev_datasets
@@ -354,7 +372,7 @@ def trim_older_datasets(site, project, ds_name_pattern, keep_prev_datasets):
     with track_activity(msg):
         for ds_tuple in datasets[:num_datasets_to_delete]:
             ds = ds_tuple.entity
-            print("Deleting", ds.body.name)
+            log.info("Deleting dataset: %s", ds.body.name)
             # You can't delete a dataset unless you are the current editor
             ds.patch({"current_editor": site.user.self})
             ds.delete()

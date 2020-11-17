@@ -19,7 +19,7 @@ Options:
     -p PROFILE_NAME         Profile section in config [default: alpha]
     -u USER_ALIAS           Key to section inside profile [default: default]
     -i                      Run interactive prompt after executing command
-    -v                      Print verbose messages
+    -v                      Log verbose messages
     --name=NAME             Override name in JSON file (create-payload, create, addvar)
     --alias=ALIAS           Override alias in JSON file (addvar)
     --unique-subvar-aliases
@@ -48,6 +48,7 @@ import codecs
 from collections import defaultdict, OrderedDict
 import io
 import json
+import logging
 import os
 import re
 import sys
@@ -64,6 +65,8 @@ from crunch_util import create_dataset_from_csv2, maybe_uncompress_and_load_json
 from sim_util import connect_api, get_command_name
 
 this_module = sys.modules[__name__]
+
+log = logging.getLogger("ds_meta")
 
 
 CRITICAL_KEYS = (
@@ -82,6 +85,7 @@ VALUES_TO_PRESERVE = [("name", "No Data"), ("group", "__hidden__")]
 
 def main():
     args = docopt.docopt(__doc__)
+    logging.basicConfig(level=logging.INFO)
     with io.open(args["-c"], "r", encoding="UTF-8") as f:
         config = yaml.safe_load(f)
     command_name = get_command_name(args)
@@ -178,9 +182,9 @@ class MetadataModel(object):
         # {alias: {"var_id": var_id, "subvar_id": subar_id_or_none}
         self._alias_map = None
 
-    def _trace(self, *args):
+    def _trace(self, msg, *args, **kwargs):
         if self.verbose:
-            print(*args)
+            log.info(msg, *args, **kwargs)
 
     @property
     def alias_map(self):
@@ -231,7 +235,7 @@ class MetadataModel(object):
         dirname: Directory into which the files will be saved
         """
         if self.verbose:
-            print("Downloading metadata for dataset", ds_id)
+            log.info("Downloading metadata for dataset: %s", ds_id)
         # Download the main dataset metadata
         ds_url = "{}{}/".format(site.datasets["self"], ds_id)
         response = site.session.get(ds_url)
@@ -558,7 +562,7 @@ class MetadataModel(object):
 
         def _load_file(base_filename):
             filename = os.path.join(dirname, base_filename)
-            self._trace("Loading", filename)
+            self._trace("Loading: %s", filename)
             with open(filename, "r") as f:
                 return json.load(f)
 
@@ -605,9 +609,7 @@ class MetadataModel(object):
             if self._var_has_non_default_missing_reasons(var_def):
                 var_ids_needing_missing_rules.append(var_id)
         self._trace(
-            "Loading missing_rules for {} variables".format(
-                len(var_ids_needing_missing_rules)
-            )
+            "Loading missing_rules for %s variables", len(var_ids_needing_missing_rules)
         )
         for var_id in var_ids_needing_missing_rules:
             base_filename = "var-{}-missing-rules.json".format(var_id)
@@ -657,24 +659,24 @@ class MetadataModel(object):
         loaded metadata. This fails if one of the variables to be deleted is referred to
         by a derived variable that is NOT on this list.
         """
-        self._trace("Removing {} variables".format(len(var_ids_to_delete)))
+        self._trace("Removing %s variables", len(var_ids_to_delete))
         self._check_var_dependencies(var_ids_to_delete)
 
         weight_var_id = get_id_from_url(self._meta["settings"]["weight"])
         if weight_var_id in var_ids_to_delete:
-            self._trace("Removing weight variable:", weight_var_id)
+            self._trace("Removing weight variable: %s", weight_var_id)
             self._meta["settings"]["weight"] = None
 
         var_index = self._meta["variables"]["index"]
         var_url_prefix = self._meta["catalogs"]["variables"]
         for var_id in var_ids_to_delete:
             var_url = "{}{}/".format(var_url_prefix, var_id)
-            self._trace("Removing from variable index:", var_url)
+            self._trace("Removing from variable index: %s", var_url)
             del var_index[var_url]
 
         var_detail = self._meta["variables"]["detail"]
         for var_id in var_ids_to_delete:
-            self._trace("Removing from variable detail:", var_id)
+            self._trace("Removing from variable detail: %s", var_id)
             del var_detail[var_id]
 
         weights_before = self._meta["variables"]["weights"]
@@ -685,7 +687,7 @@ class MetadataModel(object):
         ]
         if weights_before != weights_after:
             self._trace(
-                "Removing from weights:", set(weights_before) - set(weights_after)
+                "Removing from weights: %s", set(weights_before) - set(weights_after)
             )
             self._meta["variables"]["weights"] = weights_after
 
@@ -695,7 +697,7 @@ class MetadataModel(object):
 
         var_table = self._meta["table"]
         for var_id in var_ids_to_delete:
-            self._trace("Removing from table:", var_id)
+            self._trace("Removing from table: %s", var_id)
             del var_table[var_id]
 
     def _delete_var_ids_from_hierarchy(self, hier, var_ids_to_delete, level=0):
@@ -705,7 +707,7 @@ class MetadataModel(object):
             for item in hier:
                 if isinstance(item, six.string_types):
                     if get_id_from_url(item) in var_ids_to_delete:
-                        self._trace("Level:", level, "Filtering from order:", item)
+                        self._trace("Level: %s Filtering from order: %s", level, item)
                         continue
                 else:
                     assert isinstance(item, dict)
@@ -912,19 +914,17 @@ def do_addvar(config, args):
     meta = MetadataModel(verbose=verbose)
     var_def = meta.convert_var_def(var_meta)
     if verbose:
-        print(
-            "Creating variable '{}' with alias {}".format(
-                var_def["name"], var_def["alias"]
-            )
+        log.info(
+            "Creating variable '%s' with alias %s", var_def["name"], var_def["alias"]
         )
     t0 = time.time()
     variables = ds.variables
     t1 = time.time()
-    print("GET /variables duration:", t1 - t0)
+    log.info("GET /variables duration: %s", t1 - t0)
     try:
         variables.create({"body": var_def})
     finally:
-        print("POST /variables duration:", time.time() - t1)
+        log.info("POST /variables duration: %s", time.time() - t1)
 
 
 def do_folderize(config, args):

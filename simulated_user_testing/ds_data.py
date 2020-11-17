@@ -13,7 +13,7 @@ Options:
     -p PROFILE_NAME         Profile section in config [default: local]
     -u USER_ALIAS           Key to section inside profile [default: default]
     -i                      Run interactive prompt after executing command
-    -v                      Print verbose messages
+    -v                      Log verbose messages
     --timeout=SECONDS       [default: 36000]
 
 Commands:
@@ -32,6 +32,7 @@ import csv
 import codecs
 from datetime import datetime
 import gzip
+import logging
 import os
 import sys
 
@@ -44,6 +45,8 @@ from crunch_util import wait_for_progress
 from ds_meta import MetadataModel
 from sim_util import connect_api
 
+log = logging.getLogger("ds_data")
+
 
 try:
     TimeoutError
@@ -55,6 +58,7 @@ except NameError:
 
 def main():
     args = docopt.docopt(__doc__)
+    logging.basicConfig(level=logging.INFO)
     with open(args["-c"]) as f:
         config = yaml.safe_load(f)
     if args["list-datasets"]:
@@ -122,7 +126,7 @@ def do_upload_chunks(config, args):
     site = connect_api(config, args)
     for filename in chunk_filenames:
         if verbose:
-            print("Creating source from file {}".format(filename), file=sys.stderr)
+            log.info("Creating source from file: %s", filename)
         source_url = upload_source(site, filename)
         print(source_url)
         sys.stdout.flush()  # Make sure progress shows up on stdout
@@ -175,13 +179,12 @@ def do_append_sources(config, args):
     ds = site.session.get(dataset_url).payload
     for i, source_url in enumerate(source_urls, 1):
         if verbose:
-            print(
-                "({}/{})".format(i, len(source_urls)),
-                "Appending",
+            log.info(
+                "(%s/%s) Appending %s to dataset %s",
+                i,
+                len(source_urls),
                 source_url,
-                "to dataset",
                 dataset_id,
-                file=sys.stderr,
             )
         print(source_url)
         sys.stdout.flush()  # Make sure progress shows up on stdout
@@ -199,7 +202,7 @@ def append_source(
     )
     if wait_for_progress(site, response, timeout_sec=timeout, verbose=verbose):
         if verbose:
-            print("Finished appending to dataset", ds.body.id, file=sys.stderr)
+            log.info("Finished appending to dataset: %s", ds.body.id)
     else:
         msg = (
             "Timed out after {timeout} seconds\n"

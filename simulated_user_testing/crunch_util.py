@@ -11,9 +11,9 @@ import gzip
 import io
 import itertools
 import json
+import logging
 import os
 import shutil
-import sys
 import tempfile
 import time
 import warnings
@@ -31,6 +31,8 @@ warnings.simplefilter("ignore", urllib3.exceptions.SubjectAltNameWarning)
 # Turn off warnings if server certificate validation is turned off.
 warnings.simplefilter("ignore", urllib3.exceptions.InsecureRequestWarning)
 
+log = logging.getLogger("crunch_util")
+
 
 try:
     TimeoutError
@@ -41,13 +43,16 @@ except NameError:
 
 
 class VerboseLogger(object):
+    """
+    Callable object that INFO logs messages only if verbose parameter is true
+    """
+
     def __init__(self, verbose):
         self.verbose = verbose
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, msg, *args, **kwargs):
         if self.verbose:
-            kwargs.setdefault("file", sys.stderr)
-            print(*args, **kwargs)
+            log.info(msg, *args, **kwargs)
 
 
 def connect_pycrunch(connection_info, verbose=False):
@@ -80,14 +85,14 @@ def connect_pycrunch(connection_info, verbose=False):
     )
     vlog = VerboseLogger(verbose)
     if connection_info.get("token"):
-        vlog("Connecting to", api_url, "using token.")
+        vlog("Connecting to %s using token.", api_url)
         session = pycrunch.Session(
             token=connection_info["token"],
             domain=urllib_parse.urlparse(api_url).netloc,
             progress_tracking=progress_tracking,
         )
     else:
-        vlog("Connecting to", api_url, "as", connection_info["username"])
+        vlog("Connecting to %s as %s", api_url, connection_info["username"])
         session = pycrunch.Session(
             email=connection_info["username"],
             password=connection_info["password"],
@@ -157,7 +162,7 @@ def create_dataset(
         use it to override the dataset name in metadata.
     """
     if verbose:
-        print("Creating dataset...", file=sys.stderr)
+        log.info("Creating dataset...")
     post_url = site.datasets.self
     headers = {"Content-Type": "application/json"}
     if isinstance(metadata, six.string_types):
@@ -195,7 +200,7 @@ def create_dataset(
             raise TimeoutError(msg)
     ds = site.session.get(dataset_url).payload
     if verbose:
-        print("Created dataset", ds.body.id, file=sys.stderr)
+        log.info("Created dataset: %s", ds.body.id)
     return ds
 
 
@@ -272,7 +277,7 @@ def append_csv_file_to_dataset(
         or an HTTP URL which can point to > 100MB CSV data.
     """
     if verbose:
-        print("Dataset URL:", ds.self, file=sys.stderr)
+        log.info("Dataset URL: %s", ds.self)
 
     def _post_fileobj(filename, f):
         return site.session.post(
@@ -285,7 +290,7 @@ def append_csv_file_to_dataset(
         if p.scheme and p.netloc:
             data_url = file_obj_or_name_or_url
             if verbose:
-                print("Creating source from URL {}".format(data_url), file=sys.stderr)
+                log.info("Creating source from URL: %s", data_url)
             response = site.sources.post(
                 {
                     "element": "shoji:entity",
@@ -298,13 +303,13 @@ def append_csv_file_to_dataset(
         else:
             filename = file_obj_or_name_or_url
             if verbose:
-                print("Creating source from file:", filename, file=sys.stderr)
+                log.info("Creating source from file: %s", filename)
             with open(filename, "rb") as f:
                 response = _post_fileobj(filename, f)
     else:
         f = file_obj_or_name_or_url
         if verbose:
-            print("Creating source from file object:", f, file=sys.stderr)
+            log.info("Creating source from file object: %s", f)
         # temp filename could be an integer
         filename = str(getattr(f, "name", "dataset.csv"))
         response = _post_fileobj(filename, f)
@@ -312,15 +317,15 @@ def append_csv_file_to_dataset(
     response.raise_for_status()
     source_url = response.headers["Location"]
     if verbose:
-        print("Source created with URL:", source_url, file=sys.stderr)
-        print("Appending batch", file=sys.stderr)
+        log.info("Source created with URL: %s", source_url)
+        log.info("Appending batch")
     t0 = datetime.utcnow()
     response = ds.batches.post(
         {"element": "shoji:entity", "body": {"source": source_url}}
     )
     if wait_for_progress(site, response, timeout_sec, retry_delay, verbose=verbose):
         if verbose:
-            print("Finished appending to dataset", ds.body.id, file=sys.stderr)
+            log.info("Finished appending to dataset: %s", ds.body.id)
     else:
         msg = (
             "Timed out appending to dataset {ds.body.id} after {timeout_sec} seconds\n"
@@ -507,7 +512,7 @@ def create_dataset_from_csv2(
     Return the dataset entity
     """
     if verbose:
-        print("Creating dataset", file=sys.stderr)
+        log.info("Creating dataset")
     if dataset_name is not None:
         metadata = copy.deepcopy(metadata)
         metadata["body"]["name"] = dataset_name
@@ -548,7 +553,7 @@ def create_dataset_from_csv2(
             site, response, timeout_sec, retry_delay=retry_delay, verbose=verbose
         )
     if verbose:
-        print("Created dataset", ds.body.id, file=sys.stderr)
+        log.info("Created dataset: %s", ds.body.id)
     return ds
 
 
@@ -603,7 +608,7 @@ def wait_for_progress(
     progress_response.raise_for_status()
     progress_url = progress_response.json()["value"]
     if verbose:
-        print("Waiting on progress URL ...", file=sys.stderr)
+        log.info("Waiting on progress URL ...")
     progress_amount = None
     if isinstance(retry_delay, (int, float)):
         retry_delay_generator = exponential_interval_generator(retry_delay)
@@ -617,7 +622,7 @@ def wait_for_progress(
         response.raise_for_status()
         progress = response.json()["value"]
         if verbose:
-            print(progress, file=sys.stderr)
+            log.info("Progress: %s", progress)
         progress_amount = progress.get("progress")
         if progress_amount in (100, -1, None):
             return True
@@ -628,7 +633,7 @@ def wait_for_progress(
             t = time.time()
     else:
         if verbose:
-            print("Timeout after", timeout_sec, "seconds.", file=sys.stderr)
+            log.info("Timeout after %s seconds.", timeout_sec)
         return False
 
 
@@ -642,7 +647,7 @@ def wait_for_progress2(
     progress_response: The response object returned by posting.
     timeout_sec: Total seconds to wait for API call completion.
     retry_delay: Starting seconds between polling progress endpoint
-    verbose: If true, print messages while polling progress
+    verbose: If true, log messages while polling progress
 
     If the response status code is initially 201 (Created), immediately return
     resource_url
@@ -681,7 +686,7 @@ def wait_for_progress2(
         response = site.session.get(progress_url)
         response.raise_for_status()
         progress = response.json()["value"]
-        vlog(progress)
+        vlog("Progress: %s", progress)
         progress_amount = progress.get("progress")
         if progress_amount == 100:
             # Successful completion
