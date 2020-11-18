@@ -1,6 +1,6 @@
 +++
 date = "2020-10-06T14:08:35+02:00"
-draft = false
+draft = true
 title = "Software Delivery Manager"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
@@ -32,7 +32,7 @@ We currently run our in-house production Python code against Redis, MongoDB, and
 - Break large programming projects into smaller epics and tasks and create corresponding tickets in our project management system.
 - Keep track of project dependencies and critical path.
 - Assign programming tasks to developers and follow up to completion.
-- Ensure that team members have appropriate product and technical specifications, direction, and resources to deliver products effectively. 
+- Ensure that team members have appropriate product and technical specifications, direction, and resources to deliver products effectively.
 - Establish realistic estimates for timelines and ensure that project remains on target to meet deadlines.
 - Conduct daily scrum meetings.
 - Help developers resolve both technical problems and human resources issues.
