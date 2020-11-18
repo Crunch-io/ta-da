@@ -1,6 +1,6 @@
 +++
 title = "Powerful analytics"
-subtitle = "Prepare, analyze, and deliver insights with speed & simplicity"
+subtitle = "Analyze, visualize and deliver insights with speed & simplicity"
 label = "Powerful analytics"
 images = ["https://crunch.io/img/logo-1200x630.png"]
 video = "https://player.vimeo.com/video/446659223"
