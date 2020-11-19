@@ -116,7 +116,16 @@ def do_something_with_dataset(ds):
     derived_count = 0
     hidden_count = 0
     type_count = defaultdict(int)
-    for var_tuple in ds.entity.variables.index.values():
+    t0 = time.time()
+    log.info("Dataset '%s' (%s): Requesting variable catalog", ds_name, ds_id)
+    variables_index = ds.entity.variables.index
+    log.info(
+        "Dataset '%s' (%s): Got variables catalog in %.6f seconds",
+        ds_name,
+        ds_id,
+        time.time() - t0,
+    )
+    for var_tuple in variables_index.values():
         var_count += 1
         derived_count += var_tuple.derived
         hidden_count += var_tuple.hidden
