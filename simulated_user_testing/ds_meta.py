@@ -59,7 +59,9 @@ import uuid
 import docopt
 import yaml
 import six
-from six.moves.urllib import parse as urllib_parse
+
+# from six.moves.urllib import parse as urllib_parse
+import urllib.parse as urllib_parse
 
 from crunch_util import create_dataset_from_csv2, maybe_uncompress_and_load_json
 from sim_util import connect_api, get_command_name

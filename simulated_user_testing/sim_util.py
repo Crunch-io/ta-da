@@ -1,8 +1,10 @@
 """
 Code used by multiple Simulated User Testing modules and scripts
 """
+from contextlib import contextmanager
 from datetime import datetime
 import json
+import logging
 import re
 import requests
 
@@ -134,6 +136,20 @@ def find_latest_good_dataset_in_project(project, ds_name_pattern):
     return None
 
 
+def find_oldest_good_dataset_in_project(project, ds_name_pattern):
+    """
+    Return a dataset tuple for oldest dataset entity in the given project
+    that has a name matching ds_name_prefix and looks like it isn't hosed
+    (has non-zero columns and rows), or None if there aren't any.
+    """
+    result = None
+    ds_tuples = yield_project_datasets_matching_name(project, ds_name_pattern)
+    for ds_tuple in sort_ds_tuples_by_creation_datetime(ds_tuples):
+        if ds_is_good(ds_tuple):
+            result = ds_tuple
+    return result
+
+
 def get_entity_url(obj):
     if isinstance(obj, pycrunch.shoji.Tuple):
         return obj.entity_url
@@ -175,3 +191,30 @@ def message(**kwargs):
     payload = {"payload": json.dumps(kwargs)}
     r = requests.post(u, data=payload)
     return r
+
+
+def get_ds_name_prefix(template_id):
+    return "Sim {}".format(template_id)
+
+
+class ErrorDuringActivity(Exception):
+    def __init__(self, activity, err):
+        self.activity = activity
+        self.err = err
+
+    def __str__(self):
+        return "Error while {}: {}".format(self.activity, self.err)
+
+    def __repr__(self):
+        return "ErrorDuringActivity({!r}, {!r})".format(self.activity, self.err)
+
+
+@contextmanager
+def track_activity(logger_name, activity):
+    log = logging.getLogger(logger_name)
+    log.info(activity)
+    try:
+        yield
+    except Exception as err:
+        log.exception("Error during activity: %s", activity)
+        raise ErrorDuringActivity(activity, err)

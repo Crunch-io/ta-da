@@ -17,7 +17,6 @@ Options:
     --loglevel=LEVEL        Logging level [default: INFO]
 """
 from __future__ import print_function
-from contextlib import contextmanager
 from datetime import datetime
 import glob
 import io
@@ -37,14 +36,16 @@ import crunch_util
 import ds_meta
 import ds_data
 import sim_util
+from sim_util import ErrorDuringActivity, track_activity
 
-log = logging.getLogger("editor-bot")
+APP_NAME = "editor-bot"
+log = logging.getLogger(APP_NAME)
 
 
 def main():
     args = docopt.docopt(__doc__)
     if args["--stderr"]:
-        print("Sending log output to stderr")
+        print("Sending {} log output to stderr".format(APP_NAME))
         handler = logging.StreamHandler()
         handler.setFormatter(
             logging.Formatter(
@@ -53,7 +54,7 @@ def main():
             )
         )
     else:
-        print("Sending log output to syslog")
+        print("Sending {} log output to syslog".format(APP_NAME))
         handler = logging.handlers.SysLogHandler(address="/dev/log")
         handler.setFormatter(
             logging.Formatter(fmt="%(levelname)-8s %(name)s %(message)s")
@@ -72,39 +73,19 @@ def main():
     raise ValueError("Unknown command")
 
 
-class ErrorDuringActivity(Exception):
-    def __init__(self, activity, err):
-        self.activity = activity
-        self.err = err
-
-    def __str__(self):
-        return "Error while {}: {}".format(self.activity, self.err)
-
-    def __repr__(self):
-        return "ErrorDuringActivity({!r}, {!r})".format(self.activity, self.err)
-
-
-@contextmanager
-def track_activity(activity):
-    log.info(activity)
-    try:
-        yield
-    except Exception as err:
-        log.exception("Error during activity: %s", activity)
-        raise ErrorDuringActivity(activity, err)
-
-
 def simulate_editor(config, args):
     rc = 0
     emoji = ":pizza:"
     saved_user_agent = ElementSession.headers["user-agent"]
-    ElementSession.headers["user-agent"] = "editor-bot"
+    ElementSession.headers["user-agent"] = APP_NAME
     try:
         msg = _simulate_editor(config, args)
+        log.info(msg)
     except ErrorDuringActivity as err:
         rc = 1
         msg = str(err)
         emoji = ":sadpizza:"
+        # Error has already been logged
     except BaseException as err:
         rc = 2
         msg = "Simulated User Testing: FAILED\n{err}".format(err=err)
@@ -113,8 +94,6 @@ def simulate_editor(config, args):
         log.exception(msg)
     finally:
         ElementSession.headers["user-agent"] = saved_user_agent
-        log.info(msg)
-        sys.stdout.flush()
         if args["--slack-notify"]:
             response = sim_util.message(
                 text=msg,
@@ -141,11 +120,11 @@ def _simulate_editor(config, args):
     verbose = args["-v"]
     ds_template_id = args["--dataset-template"]
     keep_prev_datasets = int(args["--keep-prev-datasets"])
-    ds_template = config["dataset_templates"][ds_template_id]
-    payload_filename = ds_template["create_payload"]
-    ds_name_prefix = get_ds_name_prefix(ds_template_id)
+    ds_name_prefix = sim_util.get_ds_name_prefix(ds_template_id)
     ds_name_pattern = r"^{}".format(re.escape(ds_name_prefix))
     ds_name = generate_ds_name(ds_name_prefix)
+    ds_template = config["dataset_templates"][ds_template_id]
+    payload_filename = ds_template["create_payload"]
     data_dir = ds_template["data_dir"]
     environment = args["-p"]  # profile name == environment (e.g. alpha)
     site = sim_util.connect_api(config, args)
@@ -155,7 +134,7 @@ def _simulate_editor(config, args):
 
     # Create the dataset
     msg = 'Creating dataset "{}" from metadata: {}'.format(ds_name, payload_filename)
-    with track_activity(msg):
+    with track_activity(APP_NAME, msg):
         meta = ds_meta.MetadataModel(verbose=verbose)
     ds = meta.create(site, payload_filename, name=ds_name, project=quad_project)
     log.info("Created dataset: %s", ds.self)
@@ -167,7 +146,7 @@ def _simulate_editor(config, args):
     append_data_sources(site, ds, source_urls, verbose=verbose)
 
     # Do the infamous Dataset.copy_from
-    with track_activity("Getting 'Sim Profiles' project by name"):
+    with track_activity(APP_NAME, "Getting 'Sim Profiles' project by name"):
         project = sim_util.get_project_by_name(site, "Sim Profiles")
     msg = (
         "Searching for latest good dataset in '{}' project "
@@ -175,13 +154,13 @@ def _simulate_editor(config, args):
             sim_util.get_entity_name(project), ds_name_pattern
         )
     )
-    with track_activity(msg):
+    with track_activity(APP_NAME, msg):
         prev_ds = sim_util.find_latest_good_dataset_in_project(project, ds_name_pattern)
     if prev_ds is not None:
         msg = "Copying from dataset '{}' to dataset '{}'".format(
             sim_util.get_entity_name(prev_ds), sim_util.get_entity_name(ds)
         )
-        with track_activity(msg):
+        with track_activity(APP_NAME, msg):
             copy_from(site, prev_ds, ds, verbose=verbose)
 
     # Create the "Master Fork"
@@ -189,7 +168,7 @@ def _simulate_editor(config, args):
     msg = "Forking dataset '{}', name suffix: '{}'".format(
         sim_util.get_entity_name(ds), fork_name_suffix
     )
-    with track_activity(msg):
+    with track_activity(APP_NAME, msg):
         fork_ds = create_fork(site, ds, quad_project, fork_name_suffix)
 
     # Delete older dataset forks in this series
@@ -240,10 +219,6 @@ def _simulate_editor(config, args):
     return msg
 
 
-def get_ds_name_prefix(template_id):
-    return "Sim {}".format(template_id)
-
-
 def generate_ds_name(ds_name_prefix):
     t = datetime.now()
     return "{} {}".format(ds_name_prefix, t.strftime("%Y-%m-%d %H:%M:%S"))
@@ -260,7 +235,7 @@ def upload_sources(site, data_dir):
     source_urls = []
     for i, filename in enumerate(chunk_filenames, 1):
         msg = "Uploading chunk {} of {}: {}".format(i, len(chunk_filenames), filename)
-        with track_activity(msg):
+        with track_activity(APP_NAME, msg):
             source_url = ds_data.upload_source(site, filename)
         source_urls.append(source_url)
         log.info(
@@ -281,7 +256,7 @@ def append_data_sources(site, ds, source_urls, verbose=False):
                 ds.body.id,
             ]
         )
-        with track_activity(msg):
+        with track_activity(APP_NAME, msg):
             ds_data.append_source(
                 site,
                 ds,
@@ -297,7 +272,7 @@ def copy_from(site, src_ds, dst_ds, verbose=False):
     dst_ds = sim_util.get_entity(dst_ds)
     src_ds_url = sim_util.get_entity_url(src_ds)
     msg = "Running copy_from src={!r}, dst={!r}".format(src_ds_url, dst_ds.self)
-    with track_activity(msg):
+    with track_activity(APP_NAME, msg):
         t0 = datetime.utcnow()
         response = dst_ds.patch(
             {"element": "shoji:entity", "body": {"copy_from": src_ds_url}}
@@ -319,7 +294,7 @@ def create_fork(site, ds, project, fork_name_suffix):
     fork_name = "{}{}".format(ds.body.name, fork_name_suffix)
     project_url = sim_util.get_entity_url(project)
     msg = "Creating fork '{}' in project {}".format(fork_name, project_url)
-    with track_activity(msg):
+    with track_activity(APP_NAME, msg):
         fork_ds = ds.forks.create({"body": {"name": fork_name, "owner": project_url}})
         fork_ds.refresh()
         return fork_ds
@@ -369,7 +344,7 @@ def trim_older_datasets(site, project, ds_name_pattern, keep_prev_datasets):
             "(limit is {})".format(keep_prev_datasets),
         ]
     )
-    with track_activity(msg):
+    with track_activity(APP_NAME, msg):
         for ds_tuple in datasets[:num_datasets_to_delete]:
             ds = ds_tuple.entity
             log.info("Deleting dataset: %s", ds.body.name)
