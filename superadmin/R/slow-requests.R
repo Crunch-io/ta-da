@@ -35,7 +35,7 @@ SlowRequest <- function (x) {
         lapply(times, function (a) unlist(a[[2]][c("count", "min", "max", "total")])))))
 
     # Sort and arrange it
-    df$pct <- 100 * df$total / df$total[df$tag == ""]
+    df$pct <- 100 * df$total / x$total_time
     df <- df[order(df$pct, decreasing=TRUE), c("pct", "total", "count", "max", "tag")]
     rownames(df) <- df$tag
     df$tag <- NULL
