@@ -980,7 +980,7 @@
     }
   },
   "info": {
-    "description": "Developer API for Crunch.io\n\nThis documentation contains information for all of the public API endpoints for the Crunch platform. Please navigate to an endpoint using the menu on the left.\n\n## Developer guides\nStart here if you are [new the the Crunch API](https://help.crunch.io/hc/en-us/sections/360008315951-Start-Here).\n\nAll of Crunch's developer documentation can be found at [Help Center - Developer Guides](https://help.crunch.io/hc/en-us/categories/360002688152-Developer-Guides).\n\n## API conventions\nFor detailed information regarding Crunch's API conventions, see [Help Center - API Conventions](https://help.crunch.io/hc/en-us/articles/360052404911-API-Conventions).\n\n## API response envelopes (shoji)\nFor detailed information regarding Crunch's API response (shoji) envelopes, see [Help Center - API Response Envelopes](https://help.crunch.io/hc/en-us/articles/360052405191-API-Response-Envelopes).\n\n## Object reference\nThe Crunch API consists of just a few primitive objects, arranged differently for each request and response. Learning the basic components will help you create the most complicated queries. For more detailed information, see [Help Center - Object Reference](https://help.crunch.io/hc/en-us/sections/360008619392-Object-Reference).\n\n## Contact information",
+    "description": "Developer API for Crunch.io\n\nThis documentation contains information for all of the public API endpoints for the Crunch platform. Please navigate to an endpoint using the menu on the left.\n\n## Developer guides\nStart here if you are [new to the Crunch API](https://help.crunch.io/hc/en-us/sections/360008315951-Start-Here).\n\nAll of Crunch's developer documentation can be found at [Help Center - Developer Guides](https://help.crunch.io/hc/en-us/categories/360002688152-Developer-Guides).\n\n## API conventions\nFor detailed information regarding Crunch's API conventions, see [Help Center - API Conventions](https://help.crunch.io/hc/en-us/articles/360052404911-API-Conventions).\n\n## API response envelopes (shoji)\nFor detailed information regarding Crunch's API response (shoji) envelopes, see [Help Center - API Response Envelopes](https://help.crunch.io/hc/en-us/articles/360052405191-API-Response-Envelopes).\n\n## How do I authenticate?\nSee [Help Center - Authentication](https://help.crunch.io/hc/en-us/articles/360052418111-Authentication).\n\n## Object reference\nThe Crunch API consists of just a few primitive objects, arranged differently for each request and response. Learning the basic components will help you create the most complicated queries. For more detailed information, see [Help Center - Object Reference](https://help.crunch.io/hc/en-us/sections/360008619392-Object-Reference).\n\n## Contact information",
     "title": "Crunch API",
     "version": "1.1",
     "contact": {
@@ -5830,9 +5830,9 @@
           }
         }
       ],
-      "put": {
-        "description": "This endpoint updates the attributes of a data source.",
-        "operationId": "put-sources-source_id",
+      "patch": {
+        "description": "This endpoint updates the attributes of a data source. ",
+        "operationId": "patch-sources-source_id",
         "requestBody": {
           "content": {
             "application/json": {
@@ -5932,12 +5932,12 @@
         "x-code-samples": [
           {
             "lang": "SHELL",
-            "source": "curl -X PUT https://app.crunch.io/api/sources/0001w/ \\\n  -H 'Authorization: Bearer 598d9e1105' \\\n  -H 'Content-Type: application/json' -d '\n{\n  \"body\": {\n    \"creation_time\": \"2020-05-20T18:50:47.015000+00:00\",\n    \"description\": \"\",\n    \"filename\": \"e61a622a-4d0f-496e-bd55-f230c3b17360\",\n    \"id\": \"07d2407895904486aab6d4ba42973734\",\n    \"location\": \"crunchfile:///e61a622a-4d0f-496e-bd55-f230c3b17360\",\n    \"name\": \"upload.csv\",\n    \"settings\": {},\n    \"type\": \"csv\",\n    \"user_id\": \"https://app.crunch.io/api/users/53a49b12b53d4f83992cad03c4afc3c2/\"\n  },\n  \"element\": \"shoji:entity\"\n}\n'",
+            "source": "curl -X PATCH https://app.crunch.io/api/sources/0001w/ \\\n  -H 'Authorization: Bearer 598d9e1105' \\\n  -H 'Content-Type: application/json' -d '\n{\n  \"body\": {\n    \"creation_time\": \"2020-05-20T18:50:47.015000+00:00\",\n    \"description\": \"\",\n    \"filename\": \"e61a622a-4d0f-496e-bd55-f230c3b17360\",\n    \"id\": \"07d2407895904486aab6d4ba42973734\",\n    \"location\": \"crunchfile:///e61a622a-4d0f-496e-bd55-f230c3b17360\",\n    \"name\": \"upload.csv\",\n    \"settings\": {},\n    \"type\": \"csv\",\n    \"user_id\": \"https://app.crunch.io/api/users/53a49b12b53d4f83992cad03c4afc3c2/\"\n  },\n  \"element\": \"shoji:entity\"\n}\n'",
             "syntaxLang": "bash"
           },
           {
             "lang": "JAVASCRIPT",
-            "source": "const putSourcesSource_id = await fetch(\n  'https://app.crunch.io/api/sources/0001w/', {\n   method: 'PUT',\n   headers: {\n    'Authorization': 'Bearer 598d9e1105',\n    'Content-Type': 'application/json'\n   },\n   body: JSON.stringify({\n     \"body\": {\n       \"creation_time\": \"2020-05-20T18:50:47.015000+00:00\",\n       \"description\": \"\",\n       \"filename\": \"e61a622a-4d0f-496e-bd55-f230c3b17360\",\n       \"id\": \"07d2407895904486aab6d4ba42973734\",\n       \"location\": \"crunchfile:///e61a622a-4d0f-496e-bd55-f230c3b17360\",\n       \"name\": \"upload.csv\",\n       \"settings\": {},\n       \"type\": \"csv\",\n       \"user_id\": \"https://app.crunch.io/api/users/53a49b12b53d4f83992cad03c4afc3c2/\"\n     },\n     \"element\": \"shoji:entity\"\n   })\n })",
+            "source": "const patchSourcesSource_id = await fetch(\n  'https://app.crunch.io/api/sources/0001w/', {\n   method: 'PATCH',\n   headers: {\n    'Authorization': 'Bearer 598d9e1105',\n    'Content-Type': 'application/json'\n   },\n   body: JSON.stringify({\n     \"body\": {\n       \"creation_time\": \"2020-05-20T18:50:47.015000+00:00\",\n       \"description\": \"\",\n       \"filename\": \"e61a622a-4d0f-496e-bd55-f230c3b17360\",\n       \"id\": \"07d2407895904486aab6d4ba42973734\",\n       \"location\": \"crunchfile:///e61a622a-4d0f-496e-bd55-f230c3b17360\",\n       \"name\": \"upload.csv\",\n       \"settings\": {},\n       \"type\": \"csv\",\n       \"user_id\": \"https://app.crunch.io/api/users/53a49b12b53d4f83992cad03c4afc3c2/\"\n     },\n     \"element\": \"shoji:entity\"\n   })\n })",
             "syntaxLang": "javascript"
           }
         ]
@@ -10350,7 +10350,7 @@
         ]
       }
     },
-    "/feature_flag/{flag_id}": {
+    "/feature_flag/{flag_id}/": {
       "get": {
         "description": "This endpoint returns the current status of the feature flag id specified.",
         "operationId": "get-feature_flag-flag_id",
@@ -10465,7 +10465,7 @@
         ]
       }
     },
-    "/otp/authorize": {
+    "/otp/authorize/": {
       "post": {
         "description": "This endpoint exchanges an email/password combination for a one-time password (OTP) suitable for creating a link or redirect to automatically log in a user to Crunch's application and API. This should be called as a server-to-server operation, resulting in a link that can be used in the user's browser. Only one OTP may be active at any given time, so a second request will invalidate the previous OTP before generating a new one.\n\nCalling this endpoint with a valid browser session will invalidate the session if the credentials authenticate correctly and the users do not match.\n\nMore information regarding one-time passwords can be found in the [Crunch Help Center](https://help.crunch.io/hc/en-us/articles/360045141591-One-time-passwords).",
         "operationId": "post-otp-authorize",
@@ -10551,7 +10551,7 @@
         ]
       }
     },
-    "/otp/login": {
+    "/otp/login/": {
       "get": {
         "description": "**The url for this endpoint is intended to be used as the Location header for a 302 redirect from a redirect service as described in the [Crunch Help Center](https://help.crunch.io/hc/en-us/articles/360045141591-One-time-passwords).**\n\nUse a one-time password (OTP) to log a user into Crunch and redirect to a specified URI.\n\nAt the completion of this request, the valid `token` is deleted, the user referred to in the `token` is logged in, a browser session is created using a browser cookie, and the browser redirects to the sanitized `redirect_uri` location.\n\nQuery parameters must be url encoded. Both parameters typically contain characters that break URL parsing if not encoded.\n\nCrunch performs no pre-verification that the user has access to the final destination, so a user may see permission errors if the resource is not available to their user account after the redirect.\n\nIf a valid browser session already exists (that is, if the user has already logged in or used a previous `/otp/login` redirect), this endpoint's behavior varies based on the `token`:\n\n* If the session user matches the valid, unused `token`'s user the existing browser session is re-used, but the request otherwise continues as in the default operation.\n* If the browser session user does not match the `token`'s user, the existing browser session is logged out. The request then continues as if no user is logged in.\n* If the `token` is invalid, expired, or used, it is ignored, and the existing browser session is re-used, even if the users do not match. The redirect continues normally.\n\nIf no valid browser session exists, and the `token` is invalid, expired, or deleted, the endpoint returns `401 Unauthorized`.\n\nMore information regarding one-time passwords and the redirect service, can be found in the [Crunch Help Center](https://help.crunch.io/hc/en-us/articles/360045141591-One-time-passwords).",
         "operationId": "get-otp-login",
@@ -11609,7 +11609,7 @@
         }
       ]
     },
-    "/datasets/{dataset_id}/actions/{action_hash}": {
+    "/datasets/{dataset_id}/actions/{action_hash}/": {
       "get": {
         "description": "",
         "operationId": "get-datasets-dataset_id-actions-actions_id",
@@ -11843,7 +11843,7 @@
         }
       ]
     },
-    "/datasets/{dataset_id}/actions/{action_hash}/since": {
+    "/datasets/{dataset_id}/actions/{action_hash}/since/": {
       "get": {
         "description": "This endpoint returns a list of all actions performed AFTER the action_hash given.",
         "operationId": "get-datasets-dataset_id-actions-actions_id-since",
@@ -12034,7 +12034,7 @@
         }
       ]
     },
-    "/datasets/{dataset_id}/actions/{action_hash}/tags": {
+    "/datasets/{dataset_id}/actions/{action_hash}/tags/": {
       "get": {
         "description": "This endpoint returns a list of all version tags (savepoints) that exist for a specific action, if any. ",
         "operationId": "get-datasets-dataset_id-actions-actions_id-tags",
@@ -17358,7 +17358,7 @@
         }
       ]
     },
-    "/datasets/{dataset_id}/multitables/{multitable_id}/tabbook/": {
+    "/datasets/{dataset_id}/multitables/{multitable_id}/export/": {
       "parameters": [
         {
           "description": "Unique id of the dataset",
@@ -17380,7 +17380,7 @@
         }
       ],
       "post": {
-        "description": "Exporting a multitable entity produces a \u201ctab-book\u201d, by default an Excel (.xlsx) workbook containing each variable in the dataset cross-tabbed with the specified multitable.\n\nThis endpoint returns a download location to which the exporter will write the generated file (this may take some time for large datasets).\n\nThe server returns a 202 (Accepted) response to a successful POST, indicating the export job has started. The response includes the download URL in its Location header. The response body contains a progress URL which can be accessed (as often as necessary) to monitor the export job status.\n\nClients should note the download URL, monitor progress, and when complete, GET the download location. See Task Progress endpoint for details.\n\nRequesting the same job, if still in progress, will return the same 202 response with the same progress URL; the job is not restarted. If the export is finished, the server responds with 302 (Found), redirecting to the download location.\n\nIf there have been changes on the dataset attributes, a new tab book will be generated regardless of the status of any other pending exports.\n\nAlternatively, you can request a JSON output for your tab book by adding an appropriate Accept request header.\n\n### options.fields sub-parameter\n\nAn array of one or more strings, each specifying a measure to be displayed in the body of each tab. Multiple values are placed side-by-side in successive spreadsheet columns in the order specified.\n\n| Name | Description |\n| --- | --- |\n| col_percent | Proportion, expressed as a percentage, using the column total as its base. |\n| row_percent | Proportion, expressed as a percentage, using the row total as its base. |\n| table_percent | Proportion, expressed as a percentage, using the table total as its base. |\n| z_score | The standardized residual value of each cell from the expected value if rows and columns were independently distributed. |\n| p_value | The two-tailed probability of Z, assuming Z has an approximate standard normal distribution. |\n| pairwise_t_test | Pairwise two-tailed tests that column proportions are equal: All columns are labeled with letters, and letters in cells indicate the larger of pairs where the null hypothesis of equality is rejected at the level _p < sig_threshold_. No adjustment is made for multiple comparisons. |\n| count_weighted | The weighted count in each cell. |\n| count_unweighted | The unweighted count in each cell. |\n| col_index | The index percentage with respect to the column marginal percentage. |\n| population | The estimated population count if a dataset has a defined target population. |\n| col_base_weighted | Total weighted N for each cell, conditioned on the categories of the column variable. (The denominator of col_percent.) |\n| col_base_unweighted | Unweighted N for each cell with respect to the column. |\n| row_base_weighted | Total weighted N for each category of the row variable. (Denominator of row_percent.) |\n| row_base_unweighted | Unweighted N with respect to the row. |\n| table_base_weighted | Total weighted N for table percentages. |\n| table_base_unweighted | Unweighted N for each cell with respect to the total N in both the row and column. |",
+        "description": "Exporting a multitable entity produces a \u201ctab-book\u201d, by default an Excel (.xlsx) workbook containing each variable in the dataset cross-tabbed with the specified multitable.\n\nThis endpoint returns a download location to which the exporter will write the generated file (this may take some time for large datasets).\n\nThe server returns a 202 (Accepted) response to a successful POST, indicating the export job has started. The response includes the download URL in its Location header. The response body contains a progress URL which can be accessed (as often as necessary) to monitor the export job status.\n\nClients should note the download URL, monitor progress, and when complete, GET the download location. See Task Progress endpoint for details.\n\nRequesting the same job, if still in progress, will return the same 202 response with the same progress URL; the job is not restarted. If the export is finished, the server responds with 302 (Found), redirecting to the download location.\n\nIf there have been changes on the dataset attributes, a new tab book will be generated regardless of the status of any other pending exports.\n\nAlternatively, you can request a JSON output for your tab book by adding an appropriate Accept request header.\n\n### options.fields sub-parameter\n\nAn array of one or more strings, each specifying a measure to be displayed in the body of each tab. Multiple values are placed side-by-side in successive spreadsheet columns in the order specified.\n\n| Name | Description |\n| --- | --- |\n| col_percent | Proportion, expressed as a percentage, using the column total as its base. |\n| col_percent_moe | Margin of Error of column percentages (units: percentage points) |\n| col_std_dev | Standard deviations of column percentages |\n| col_std_err | Standard error of column percentages (std. dev. / sqrt(N)) |\n| row_percent | Proportion, expressed as a percentage, using the row total as its base. |\n| row_percent_moe | Margin of Error of row percentages (units: percentage points) |\n| row_std_dev | Standard deviation of row percentages |\n| row_std_err | Standard error of row percentages |\n| table_percent | Proportion, expressed as a percentage, using the table total as its base. |\n| table_percent_moe | Margin of Error of table or total percentages |\n| table_std_dev | Standard deviation of table or total percentages |\n| table_std_err | Standard error of table or total percentages |\n| z_score | The standardized residual value of each cell from the expected value if rows and columns were independently distributed. |\n| p_value | The two-tailed probability of Z, assuming Z has an approximate standard normal distribution. |\n| pairwise_t_test | Pairwise two-tailed tests that column proportions are equal: All columns are labeled with letters, and letters in cells indicate the larger of pairs where the null hypothesis of equality is rejected at the level _p < sig_threshold_. No adjustment is made for multiple comparisons. |\n| count_weighted | The weighted count in each cell. |\n| count_unweighted | The unweighted count in each cell. |\n| col_index | The index percentage with respect to the column marginal percentage. |\n| population | The estimated population count if a dataset has a defined target population. |\n| population_moe | Margin of Error of population estimates (units: persons) |\n| col_base_weighted | Total weighted N for each cell, conditioned on the categories of the column variable. (The denominator of col_percent.) |\n| col_base_unweighted | Unweighted N for each cell with respect to the column. |\n| row_base_weighted | Total weighted N for each category of the row variable. (Denominator of row_percent.) |\n| row_base_unweighted | Unweighted N with respect to the row. |\n| table_base_weighted | Total weighted N for table percentages. |\n| table_base_unweighted | Unweighted N for each cell with respect to the total N in both the row and column. |",
         "operationId": "post-datasets-datasetId-multitables-multitableId-tabbook",
         "parameters": [],
         "requestBody": {
@@ -17521,7 +17521,7 @@
                         "type": "object"
                       },
                       "fields": {
-                        "description": "One or more measures to be displayed in the body of the tab-book. Multiple measures are displayed side-by-side for each body column. See list above.",
+                        "description": "An array of one or more strings, each specifying a measure to be displayed in the body of each tab. Multiple values are placed side-by-side in successive spreadsheet columns in the order specified.",
                         "items": {
                           "type": "string"
                         },
@@ -17532,17 +17532,20 @@
                         "description": "Define how individual value cells should be displayed.",
                         "properties": {
                           "decimal_places": {
-                            "description": "Number of decimal places to display.Number of decimal places to display. Full precision numbers are still stored in cells.\n\n`other` applies to `columns_std_dev`, `columns_std_err`, `scale_std_dev`, `scale_std_err`, `col_index`, `scale_mean`, `p_value`, `z_score`.\n\ne.g. `{\u201cdecimal_places\u201d: {\u201cpercentages\u201d: 0, \u201cother\u201d: 3}}`",
-                            "type": "integer"
+                            "description": "Number of decimal places to display. Full precision numbers are still stored in cells.\n\n`other` applies to `col_std_dev`, `col_std_err`, `scale_std_dev`, `scale_std_err`, `col_index`, `scale_mean`, `p_value`, `z_score`, `row_std_err`, `row_std_dev`, `table_std_err`, `table_std_dev`.\n\ne.g. `{\u201cdecimal_places\u201d: {\u201cpercentages\u201d: 0, \u201cother\u201d: 3, \"moe\": 2}}`",
+                            "type": [
+                              "integer",
+                              "object"
+                            ]
                           },
                           "pval_colors": {
                             "default": "false",
-                            "description": "Indicate p-value for cell by lighter or darker green or red shading.",
+                            "description": "Indicate p-value for cell by lighter or darker green or red shading. Default: `false`.",
                             "type": "boolean"
                           },
                           "show_empty": {
                             "default": "false",
-                            "description": "Display rows and columns having no data.",
+                            "description": "Display rows and columns having no data. Default: `false`.",
                             "type": "boolean"
                           }
                         },
@@ -20457,7 +20460,7 @@
                   "example-1": {
                     "value": {
                       "element": "shoji:view",
-                      "self": "https://app.crunch.io/api/datasets/a5a3d3890a6e453d85662e9c66a9b7e9/decks/5f9720247f1145d6918d0a4463b17131/export/",
+                      "self": "https://app.crunch.io/api/...",
                       "value": "https://app.crunch.io/api/progress/3Aa5a3d3890a6e453d85662e9c66a9b7e9%24a3af7cb7765f3fee01c49225bf34415d/"
                     }
                   }
@@ -20536,7 +20539,7 @@
     },
     "/datasets/by_name/{datasetName}/": {
       "get": {
-        "description": "This endpoint returns a Shoji Catalog that is a subset of `/datasets/` where the dataset name matches the `dataset_name` value. Matches are case sensitive.",
+        "description": "This endpoint returns a Shoji Catalog that is a subset of `/datasets/` where the dataset name matches the `dataset_name` value. Matches are case sensitive.\n\nI'm noticing that the examples point to IDs that look very real. I'm checking and they don't exist so that's good, but showing the `current_editor_name` as \"current_editor_name\": \"captain-72765bb3ad91ec5fb87cd76c562347bf80e2cf9d7dca0ff94194246830da8dcd\" is suspicious. That may use a better username.",
         "operationId": "get-datasets-by_name-datasetName",
         "parameters": [],
         "responses": {
@@ -20555,7 +20558,7 @@
                           "archived": false,
                           "creation_time": "2020-05-20T18:25:00.229000+00:00",
                           "current_editor": "https://app.crunch.io/api/users/875513a0d1364e769d4177798ed00c1c/",
-                          "current_editor_name": "captain-72765bb3ad91ec5fb87cd76c562347bf80e2cf9d7dca0ff94194246830da8dcd",
+                          "current_editor_name": "",
                           "description": "",
                           "end_date": null,
                           "id": "3270450ee0eb406f9fd96a4bd7767fb4",
@@ -20563,7 +20566,7 @@
                           "modification_time": "2020-05-20T18:25:00.137000+00:00",
                           "name": "Economist with {} and \u00fa because difficult",
                           "owner_id": "https://app.crunch.io/api/users/875513a0d1364e769d4177798ed00c1c/",
-                          "owner_name": "captain-72765bb3ad91ec5fb87cd76c562347bf80e2cf9d7dca0ff94194246830da8dcd",
+                          "owner_name": "",
                           "permissions": {
                             "edit": true,
                             "view": true
@@ -20583,7 +20586,7 @@
                           "archived": false,
                           "creation_time": "2020-05-20T18:24:59.646000+00:00",
                           "current_editor": "https://app.crunch.io/api/users/875513a0d1364e769d4177798ed00c1c/",
-                          "current_editor_name": "captain-72765bb3ad91ec5fb87cd76c562347bf80e2cf9d7dca0ff94194246830da8dcd",
+                          "current_editor_name": "",
                           "description": "",
                           "end_date": null,
                           "id": "d0032745c67446deb2a6efb393fc396a",
@@ -20591,7 +20594,7 @@
                           "modification_time": "2020-05-20T18:24:59.546000+00:00",
                           "name": "Economist with {} and \u00fa because difficult",
                           "owner_id": "https://app.crunch.io/api/users/875513a0d1364e769d4177798ed00c1c/",
-                          "owner_name": "captain-72765bb3ad91ec5fb87cd76c562347bf80e2cf9d7dca0ff94194246830da8dcd",
+                          "owner_name": "",
                           "permissions": {
                             "edit": true,
                             "view": true
@@ -20768,7 +20771,7 @@
       },
       "parameters": [
         {
-          "description": "Unique ID of the datasetName you are working with",
+          "description": "URI-encoded datasetName you are working with",
           "in": "path",
           "name": "datasetName",
           "required": true,
@@ -20869,6 +20872,9 @@
           }
         },
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "202": {
             "content": {
               "application/json": {
@@ -20959,116 +20965,6 @@
         "operationId": "get-datasets-match-dataset_id",
         "parameters": [],
         "responses": {
-          "": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "body": {
-                        "matches": [
-                          [
-                            {
-                              "alias": "SomeVariable",
-                              "confidence": 1,
-                              "dataset": "8274bfb842d645728a49634414b999c4",
-                              "desc": "This is some variable",
-                              "name": "Some Variable",
-                              "variable": "521b5c014e1e474fa5173d95000bd6e9"
-                            },
-                            {
-                              "confidence": 1,
-                              "dataset": "699a3315c3f347d4923257380938f9b9",
-                              "variable": "3fa1d3358888474eb949ae586e80f9a4"
-                            }
-                          ],
-                          [
-                            {
-                              "alias": "AnotherVariableThatHasMatches",
-                              "confidence": 1,
-                              "dataset": "8274bfb842d645728a49634414b999c4",
-                              "desc": "This is another variable",
-                              "name": "Another Variable",
-                              "variable": "234e8e76d0e1a32667ab33bc30a9900"
-                            },
-                            {
-                              "confidence": 1,
-                              "dataset": "699a3315c3f347d4923257380938f9b9",
-                              "variable": "9373729ac990b009e0a90dca99092789"
-                            }
-                          ]
-                        ],
-                        "metadata": [
-                          "http://app.crunch.io/api/datasets/match/3c7df5/0-500/"
-                        ]
-                      },
-                      "element": "shoji:order",
-                      "self": "http://app.crunch.io:50976/api/datasets/match/3c7df5/"
-                    }
-                  }
-                },
-                "schema": {
-                  "description": "",
-                  "properties": {
-                    "body": {
-                      "properties": {
-                        "matches": {
-                          "items": {
-                            "items": {
-                              "properties": {
-                                "alias": {
-                                  "type": "string"
-                                },
-                                "confidence": {
-                                  "type": "number"
-                                },
-                                "dataset": {
-                                  "type": "string"
-                                },
-                                "desc": {
-                                  "type": "string"
-                                },
-                                "name": {
-                                  "type": "string"
-                                },
-                                "variable": {
-                                  "type": "string"
-                                }
-                              },
-                              "type": "object"
-                            },
-                            "type": "array"
-                          },
-                          "type": "array"
-                        },
-                        "metadata": {
-                          "items": {
-                            "type": "string"
-                          },
-                          "type": "array"
-                        }
-                      },
-                      "type": "object"
-                    },
-                    "element": {
-                      "minLength": 1,
-                      "type": "string"
-                    },
-                    "self": {
-                      "minLength": 1,
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "element",
-                    "self",
-                    "body"
-                  ],
-                  "type": "object"
-                }
-              }
-            }
-          },
           "200": {
             "content": {
               "application/json": {
@@ -23418,7 +23314,7 @@
     },
     "/datasets/{dataset_id}/views/": {
       "get": {
-        "description": "This endpoint returns a list of the views that have been created for the dataset.",
+        "description": "This endpoint returns a list of the views that have been created for the dataset that you have access to.\n",
         "operationId": "get-datasets-dataset_id-views",
         "parameters": [],
         "responses": {
@@ -30226,7 +30122,7 @@
                 }
               }
             },
-            "description": "Asynchronous task started. \n\nThe `location` header contains a URL for the resource requested, which will become available when the asynchronous task has completed.\n\nThe `value` element in the JSON response contains a progress URL which you can query to monitor task completion. See **Task progress** endpoint for more details.",
+            "description": "Asynchronous task started.\n\nThe `location` header contains a URL for the resource requested, which will become available when the asynchronous task has completed.\n\nThe `value` element in the JSON response contains a progress URL which you can query to monitor task completion. See **Task progress** endpoint for more details.",
             "headers": {
               "Location": {
                 "description": "URL for resource requested, available when the asynchronous task has completed.",
@@ -32266,11 +32162,10 @@
                   }
                 },
                 "schema": {
-                  "additionalProperties": true,
+                  "description": "",
                   "properties": {
                     "description": {
-                      "default": "",
-                      "example": "List of all analyses inside this slide",
+                      "minLength": 1,
                       "type": "string"
                     },
                     "element": {
@@ -32278,109 +32173,87 @@
                     },
                     "index": {
                       "properties": {
-                        "slide_url": {
+                        "analysis_url": {
                           "properties": {
                             "display_settings": {
-                              "additionalProperties": true,
-                              "example": {},
+                              "description": "An object containing client-specific instructions on how to recreate the analysis.",
+                              "properties": {
+                                "countsOrPercents": {
+                                  "properties": {
+                                    "value": {
+                                      "minLength": 1,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "decimalPlaces": {
+                                  "properties": {
+                                    "value": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "percentageDirection": {
+                                  "properties": {
+                                    "value": {
+                                      "minLength": 1,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "uiView": {
+                                  "properties": {
+                                    "value": {
+                                      "minLength": 1,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "vizType": {
+                                  "properties": {
+                                    "value": {
+                                      "minLength": 1,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                }
+                              },
                               "type": "object"
                             },
                             "query": {
-                              "additionalProperties": true,
-                              "example": {
-                                "dimensions": [
-                                  {
-                                    "local": "v1.variables"
-                                  },
-                                  {
-                                    "local": "v1.subvariables"
-                                  },
-                                  {
-                                    "local": "v1.categories"
-                                  }
-                                ],
-                                "measures": {
-                                  "count": {
-                                    "args": [],
-                                    "function": "cube_count"
-                                  }
-                                },
-                                "with": {
-                                  "v1": {
-                                    "args": [
-                                      [
-                                        {
-                                          "args": [
-                                            {
-                                              "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
-                                            }
-                                          ],
-                                          "function": "as_selected"
-                                        },
-                                        {
-                                          "args": [
-                                            {
-                                              "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
-                                            }
-                                          ],
-                                          "function": "as_selected"
-                                        }
-                                      ]
-                                    ],
-                                    "function": "fuse"
-                                  }
-                                }
-                              },
+                              "description": "Includes the query body for this analysis.",
                               "properties": {
                                 "dimensions": {
-                                  "example": [
-                                    {
-                                      "local": "v1.variables"
-                                    },
-                                    {
-                                      "local": "v1.subvariables"
-                                    }
-                                  ],
                                   "items": {
                                     "properties": {
                                       "local": {
-                                        "default": "",
-                                        "example": "v1.variables",
+                                        "minLength": 1,
                                         "type": "string"
                                       }
                                     },
                                     "type": "object"
                                   },
+                                  "minItems": 1,
                                   "type": "array",
-                                  "x-additionalItems": true
+                                  "uniqueItems": true
                                 },
                                 "measures": {
-                                  "additionalProperties": true,
-                                  "example": {
-                                    "count": {
-                                      "args": [],
-                                      "function": "cube_count"
-                                    }
-                                  },
                                   "properties": {
                                     "count": {
-                                      "additionalProperties": true,
-                                      "description": "",
-                                      "example": {
-                                        "args": [],
-                                        "function": "cube_count"
-                                      },
                                       "properties": {
                                         "args": {
-                                          "default": [],
-                                          "example": [],
-                                          "items": {},
-                                          "type": "array",
-                                          "x-additionalItems": true
+                                          "items": {
+                                            "type": "object"
+                                          },
+                                          "type": "array"
                                         },
                                         "function": {
-                                          "default": "",
-                                          "example": "cube_count",
+                                          "minLength": 1,
                                           "type": "string"
                                         }
                                       },
@@ -32390,87 +32263,47 @@
                                   "type": "object"
                                 },
                                 "with": {
-                                  "additionalProperties": true,
-                                  "example": {
-                                    "v1": {
-                                      "args": [
-                                        [
-                                          {
-                                            "args": [
-                                              {
-                                                "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
-                                              }
-                                            ],
-                                            "function": "as_selected"
-                                          },
-                                          {
-                                            "args": [
-                                              {
-                                                "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
-                                              }
-                                            ],
-                                            "function": "as_selected"
-                                          }
-                                        ]
-                                      ],
-                                      "function": "fuse"
-                                    }
-                                  },
                                   "properties": {
                                     "v1": {
-                                      "additionalProperties": true,
-                                      "example": {
-                                        "args": [
-                                          [
-                                            {
-                                              "args": [
-                                                {
-                                                  "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
-                                                }
-                                              ],
-                                              "function": "as_selected"
-                                            },
-                                            {
-                                              "args": [
-                                                {
-                                                  "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
-                                                }
-                                              ],
-                                              "function": "as_selected"
-                                            }
-                                          ]
-                                        ],
-                                        "function": "fuse"
-                                      },
                                       "properties": {
                                         "args": {
-                                          "example": [
-                                            [
-                                              {
-                                                "args": [
-                                                  {
-                                                    "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
-                                                  }
-                                                ],
-                                                "function": "as_selected"
-                                              },
-                                              {
-                                                "args": [
-                                                  {
-                                                    "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
-                                                  }
-                                                ],
-                                                "function": "as_selected"
+                                          "items": {
+                                            "properties": {
+                                              "0": {
+                                                "items": {
+                                                  "properties": {
+                                                    "args": {
+                                                      "items": {
+                                                        "properties": {
+                                                          "variable": {
+                                                            "minLength": 1,
+                                                            "type": "string"
+                                                          }
+                                                        },
+                                                        "type": "object"
+                                                      },
+                                                      "minItems": 1,
+                                                      "type": "array",
+                                                      "uniqueItems": true
+                                                    },
+                                                    "function": {
+                                                      "minLength": 1,
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  "type": "object"
+                                                },
+                                                "minItems": 1,
+                                                "type": "array",
+                                                "uniqueItems": true
                                               }
-                                            ]
-                                          ],
-                                          "items": {},
-                                          "type": "array",
-                                          "x-additionalItems": true
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
                                         },
                                         "function": {
-                                          "default": "",
-                                          "example": "fuse",
+                                          "minLength": 1,
                                           "type": "string"
                                         }
                                       },
@@ -32483,9 +32316,150 @@
                               "type": "object"
                             },
                             "query_environment": {
-                              "additionalProperties": true,
-                              "description": "",
-                              "example": {},
+                              "properties": {
+                                "filter": {
+                                  "items": {
+                                    "properties": {
+                                      "args": {
+                                        "items": {
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      },
+                                      "function": {
+                                        "minLength": 1,
+                                        "type": "string"
+                                      },
+                                      "name": {
+                                        "minLength": 1,
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "minItems": 1,
+                                  "type": "array",
+                                  "uniqueItems": true
+                                },
+                                "weight": {
+                                  "description": "A variable URL, null, or `weight` may be omitted. A variable URL must correspond to a variable in the `weight_variables` collection for the dataset. A value of `null` indicates unweighted. When the weight key is omitted, the current-weight of the user making the evaluate/render/export request is used and may vary between users.",
+                                  "minLength": 1,
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "transform": {
+                              "description": "An object containing client-specific instructions on how to manipulate results, such as order and renaming.",
+                              "type": "object"
+                            },
+                            "viz_specs": {
+                              "description": "An object containing client-specific instructions on how to display the results of the `query`.\n",
+                              "properties": {
+                                "default": {
+                                  "properties": {
+                                    "format": {
+                                      "properties": {
+                                        "decimal_places": {
+                                          "properties": {
+                                            "moe": {
+                                              "type": "number"
+                                            },
+                                            "other": {
+                                              "type": "number"
+                                            },
+                                            "percentages": {
+                                              "type": "number"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "show_empty": {
+                                          "description": "Specifies whether a row or column containing no valid responses will be displayed.",
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "measures": {
+                                      "description": "The (single) second-order analysis (SOA) measure to display in the visualization. If present, it must contain exactly one measure keyword. Options include `col_percent`,\n`row_percent`,\n`table_percent`,\n`count_weighted`,\n`count_unweighted`,\n`col_base_weighted`,\n`col_base_unweighted`,\n`row_base_weighted`,\n`row_base_unweighted`,\n`table_base_weighted`,\n`table_base_unweighted`,\n`columns_moe`,\n`columns_std_dev`,\n`columns_std_err`,\n`row_percent_moe`,\n`row_std_dev`,\n`row_std_err`,\n`table_percent_moe`,\n`table_std_dev`,\n`table_std_err`,\n`z_score`,\n`p_value`,\n`col_index`,\n`pairwise_t_test`,\n`population`,\nand `population_moe`.",
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "table": {
+                                  "properties": {
+                                    "format": {
+                                      "properties": {
+                                        "pval_colors": {
+                                          "description": "Specifies whether value-cells should be shaded red or green depending on the p-value (a statistical-significance measure) of that cell.",
+                                          "type": "boolean"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "measures": {
+                                      "description": "The (single) second-order analysis (SOA) measure to display in the visualization. If present, it must contain exactly one measure keyword. Options include `col_percent`,\n`row_percent`,\n`table_percent`,\n`count_weighted`,\n`count_unweighted`,\n`col_base_weighted`,\n`col_base_unweighted`,\n`row_base_weighted`,\n`row_base_unweighted`,\n`table_base_weighted`,\n`table_base_unweighted`,\n`columns_moe`,\n`columns_std_dev`,\n`columns_std_err`,\n`row_percent_moe`,\n`row_std_dev`,\n`row_std_err`,\n`table_percent_moe`,\n`table_std_dev`,\n`table_std_err`,\n`z_score`,\n`p_value`,\n`col_index`,\n`pairwise_t_test`,\n`population`,\nand `population_moe`.",
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "page_layout": {
+                                      "properties": {
+                                        "measure_layout": {
+                                          "enum": [
+                                            "wide",
+                                            "long"
+                                          ],
+                                          "minLength": 1,
+                                          "type": "string"
+                                        },
+                                        "rows": {
+                                          "description": "Optional object field specifying the summary rows to appear in the exported table.",
+                                          "properties": {
+                                            "bottom": {
+                                              "items": {
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            },
+                                            "top": {
+                                              "items": {
+                                                "type": "object"
+                                              },
+                                              "type": "array"
+                                            }
+                                          },
+                                          "type": "object"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "pairwise_comparison": {
+                                      "description": "This optional object field specifies settings that govern pairwise significance testing. In an exported table, this appears as the addition of alphabetical column headings and a pairwise_t_test measure indicating which other-column cells are pairwise-significant by their column letter, e.g. `AcdGj`.\n\n`\u201cpairwise_comparison\u201d: {\u201csig_threshold\u201d: [0.05, 0.1]}`",
+                                      "properties": {
+                                        "compare_by": {
+                                          "minLength": 1,
+                                          "type": "string"
+                                        },
+                                        "sig_threshold": {
+                                          "items": {
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        }
+                                      },
+                                      "type": "object"
+                                    }
+                                  },
+                                  "type": "object"
+                                }
+                              },
                               "type": "object"
                             }
                           },
@@ -32495,9 +32469,7 @@
                       "type": "object"
                     },
                     "self": {
-                      "default": "",
-                      "description": "",
-                      "example": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/",
+                      "minLength": 1,
                       "type": "string"
                     }
                   },
@@ -32553,7 +32525,386 @@
             "type": "string"
           }
         }
-      ]
+      ],
+      "patch": {
+        "description": "Use this endpoint to edit an analysis. Editable attributes include:\n\n* query\n* query_environment\n* display_settings\n* transform\n* viz_specs\n\nProviding invalid values for those attributes or extra attributes will be rejected with a 400 response from the server.\n\nEditing an analysis query on a public deck cannot add reference to a secure variable; such a request results in a 400 response. Hidden variables, however, are permitted.",
+        "operationId": "patch-datasets-dataset_id-decks-deck_id-slides-slide_id-analyses",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "body": {
+                      "display_settings": {},
+                      "query": {
+                        "dimensions": [
+                          {
+                            "local": "v1.variables"
+                          },
+                          {
+                            "local": "v1.subvariables"
+                          },
+                          {
+                            "local": "v1.categories"
+                          }
+                        ],
+                        "measures": {
+                          "count": {
+                            "args": [],
+                            "function": "cube_count"
+                          }
+                        },
+                        "with": {
+                          "v1": {
+                            "args": [
+                              [
+                                {
+                                  "args": [
+                                    {
+                                      "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                    }
+                                  ],
+                                  "function": "as_selected"
+                                },
+                                {
+                                  "args": [
+                                    {
+                                      "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                                    }
+                                  ],
+                                  "function": "as_selected"
+                                }
+                              ]
+                            ],
+                            "function": "fuse"
+                          }
+                        }
+                      },
+                      "query_environment": {}
+                    },
+                    "element": "shoji:entity"
+                  }
+                }
+              },
+              "schema": {
+                "description": "",
+                "properties": {
+                  "body": {
+                    "properties": {
+                      "display_settings": {
+                        "description": "An object containing client-specific instructions on how to recreate the analysis.",
+                        "properties": {
+                          "countsOrPercents": {
+                            "properties": {
+                              "value": {
+                                "minLength": 1,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "decimalPlaces": {
+                            "properties": {
+                              "value": {
+                                "type": "number"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "percentageDirection": {
+                            "properties": {
+                              "value": {
+                                "minLength": 1,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "uiView": {
+                            "properties": {
+                              "value": {
+                                "minLength": 1,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "vizType": {
+                            "properties": {
+                              "value": {
+                                "minLength": 1,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "query": {
+                        "description": "Includes the query body for this analysis.",
+                        "properties": {
+                          "dimensions": {
+                            "items": {
+                              "properties": {
+                                "local": {
+                                  "minLength": 1,
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "minItems": 1,
+                            "type": "array",
+                            "uniqueItems": true
+                          },
+                          "measures": {
+                            "properties": {
+                              "count": {
+                                "properties": {
+                                  "args": {
+                                    "items": {
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "function": {
+                                    "minLength": 1,
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "with": {
+                            "properties": {
+                              "v1": {
+                                "properties": {
+                                  "args": {
+                                    "items": {
+                                      "properties": {
+                                        "0": {
+                                          "items": {
+                                            "properties": {
+                                              "args": {
+                                                "items": {
+                                                  "properties": {
+                                                    "variable": {
+                                                      "minLength": 1,
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  "type": "object"
+                                                },
+                                                "minItems": 1,
+                                                "type": "array",
+                                                "uniqueItems": true
+                                              },
+                                              "function": {
+                                                "minLength": 1,
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "minItems": 1,
+                                          "type": "array",
+                                          "uniqueItems": true
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "function": {
+                                    "minLength": 1,
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "query_environment": {
+                        "properties": {
+                          "filter": {
+                            "items": {
+                              "properties": {
+                                "args": {
+                                  "items": {
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                },
+                                "function": {
+                                  "minLength": 1,
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "minLength": 1,
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "minItems": 1,
+                            "type": "array",
+                            "uniqueItems": true
+                          },
+                          "weight": {
+                            "description": "A variable URL, null, or `weight` may be omitted. A variable URL must correspond to a variable in the `weight_variables` collection for the dataset. A value of `null` indicates unweighted. When the weight key is omitted, the current-weight of the user making the evaluate/render/export request is used and may vary between users.",
+                            "minLength": 1,
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "transform": {
+                        "description": "An object containing client-specific instructions on how to manipulate results, such as order and renaming.",
+                        "type": "object"
+                      },
+                      "viz_specs": {
+                        "description": "An object containing client-specific instructions on how to display the results of the `query`.\n",
+                        "properties": {
+                          "default": {
+                            "properties": {
+                              "format": {
+                                "properties": {
+                                  "decimal_places": {
+                                    "properties": {
+                                      "moe": {
+                                        "type": "number"
+                                      },
+                                      "other": {
+                                        "type": "number"
+                                      },
+                                      "percentages": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "show_empty": {
+                                    "description": "Specifies whether a row or column containing no valid responses will be displayed.",
+                                    "type": "boolean"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "measures": {
+                                "description": "The (single) second-order analysis (SOA) measure to display in the visualization. If present, it must contain exactly one measure keyword. Options include `col_percent`,\n`row_percent`,\n`table_percent`,\n`count_weighted`,\n`count_unweighted`,\n`col_base_weighted`,\n`col_base_unweighted`,\n`row_base_weighted`,\n`row_base_unweighted`,\n`table_base_weighted`,\n`table_base_unweighted`,\n`columns_moe`,\n`columns_std_dev`,\n`columns_std_err`,\n`row_percent_moe`,\n`row_std_dev`,\n`row_std_err`,\n`table_percent_moe`,\n`table_std_dev`,\n`table_std_err`,\n`z_score`,\n`p_value`,\n`col_index`,\n`pairwise_t_test`,\n`population`,\nand `population_moe`.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "table": {
+                            "properties": {
+                              "format": {
+                                "properties": {
+                                  "pval_colors": {
+                                    "description": "Specifies whether value-cells should be shaded red or green depending on the p-value (a statistical-significance measure) of that cell.",
+                                    "type": "boolean"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "measures": {
+                                "description": "The (single) second-order analysis (SOA) measure to display in the visualization. If present, it must contain exactly one measure keyword. Options include `col_percent`,\n`row_percent`,\n`table_percent`,\n`count_weighted`,\n`count_unweighted`,\n`col_base_weighted`,\n`col_base_unweighted`,\n`row_base_weighted`,\n`row_base_unweighted`,\n`table_base_weighted`,\n`table_base_unweighted`,\n`columns_moe`,\n`columns_std_dev`,\n`columns_std_err`,\n`row_percent_moe`,\n`row_std_dev`,\n`row_std_err`,\n`table_percent_moe`,\n`table_std_dev`,\n`table_std_err`,\n`z_score`,\n`p_value`,\n`col_index`,\n`pairwise_t_test`,\n`population`,\nand `population_moe`.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "page_layout": {
+                                "properties": {
+                                  "measure_layout": {
+                                    "enum": [
+                                      "wide",
+                                      "long"
+                                    ],
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "rows": {
+                                    "description": "Optional object field specifying the summary rows to appear in the exported table.",
+                                    "properties": {
+                                      "bottom": {
+                                        "items": {
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      },
+                                      "top": {
+                                        "items": {
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "pairwise_comparison": {
+                                "description": "This optional object field specifies settings that govern pairwise significance testing. In an exported table, this appears as the addition of alphabetical column headings and a pairwise_t_test measure indicating which other-column cells are pairwise-significant by their column letter, e.g. `AcdGj`.\n\n`\u201cpairwise_comparison\u201d: {\u201csig_threshold\u201d: [0.05, 0.1]}`",
+                                "properties": {
+                                  "compare_by": {
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "sig_threshold": {
+                                    "items": {
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "description": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "element": {
+                    "$ref": "#/components/schemas/Shoji-entity-element"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "summary": "Change analysis"
+      }
     },
     "/datasets/{dataset_id}/decks/{deck_id}/slides/{slide_id}/analyses/{analysis_id}/": {
       "get": {
@@ -35716,7 +36067,7 @@
         ]
       }
     },
-    "/datasets/{dataset_id}/tags/{tag_name}": {
+    "/datasets/{dataset_id}/tags/{tag_name}/": {
       "delete": {
         "description": "This endpoint deletes a variable tag and removes all variable associations to it.",
         "operationId": "delete-datasets-dataset_id-tags-tag",
@@ -37994,7 +38345,7 @@
         }
       ],
       "patch": {
-        "description": "Use this endpoint to edit the `name`, `description`, `alias`, `notes`, or `discarded` state of one or more variables. A successful request returns a 204 response. The attributes changed will be seen by **all** users with access to this dataset; i.e., names, descriptions, aliases, and discarded state are not merely attributes of your view of the data but of the datasets themselves.\n\n**Note that modifying `discarded` as a means of hiding a variable is deprecated: instead, move the variable into the hidden folder.**\n\nYou must have `edit` privileges on the dataset being modified, as shown in the `permissions` object in the dataset catalog. If you try this endpoint and are not authorized, you will receive a 403 response and no changes will be made.\n\nAttempting to modify other attributes other than those specified above, or including new attributes, will return a 400 response. Variable `type` can only be modified by the `cast` method endpoint. The `subvariables` attribute can be modified on the variable entity. `subvariables_catalog` is a URL to a different variable catalog and is thus not editable, though you can navigate to its location and modify subvariable attributes there. The variable `id` and its `derived` state are immutable.\n\nYou may include only the keys in each tuple that are being modified, or you may send the complete tuple. As long as the keys that cannot be modified are not modified, the request will succeed.\n\nNote that this endpoint cannot be used to add new variables, nor can you submit a null tuple to delete them. Attempting either will return a 400 response. Creating variables is allowed only by POST endpoint to the catalog, while deleting variables is accomplished via a DELETE on the variable entity.",
+        "description": "Use this endpoint to edit the `name`, `description`, `alias`, `notes`, or `discarded` state of one or more variables. A successful request returns a 204 response. The attributes changed will be seen by **all** users with access to this dataset; i.e., names, descriptions, aliases, and discarded state are not merely attributes of your view of the data but of the datasets themselves.\n\n**Note that modifying `discarded` as a means of hiding a variable is deprecated: instead, move the variable into the hidden folder.**\n\nYou must have `edit` privileges on the dataset being modified, as shown in the `permissions` object in the dataset catalog. If you try this endpoint and are not authorized, you will receive a 403 response and no changes will be made.\n\nAttempting to modify other attributes other than those specified above, or including new attributes, will return a 400 response. Variable `type` can only be modified by the `cast` method endpoint. The `subvariables` attribute can be modified on the variable entity. `subvariables_catalog` is a URL to a different variable catalog and is thus not editable, though you can navigate to its location and modify subvariable attributes there. The variable `id` and its `derived` state are immutable.\n\nYou may include only the keys in each tuple that are being modified, or you may send the complete tuple. As long as the keys that cannot be modified are not modified, the request will succeed.\n\nNote that this endpoint cannot be used to add new variables, nor can you submit a null tuple to delete them. Attempting either will return a 400 response. Creating variables is allowed only by POST endpoint to the catalog, while deleting variables is accomplished via a DELETE on the variable entity.\n\nIf you give this variable a name or alias that already exists, a 400 error repsonse will be returned.\n\nThere are many validations per attribute that can error on a bad input, each with its own rules. Be careful when updating variables. Please contact Crunch support if you need further assistance.",
         "operationId": "patch-datasets-dataset_id-variables",
         "parameters": [
           {
@@ -38021,19 +38372,6 @@
                       },
                       "https://app.crunch.io/api/datasets/d542169be3ea4ace821464d1d74ac126/variables/4pTjoSCc5wGZCO5IQcmzAr000003/": {
                         "notes": "Fourth"
-                      }
-                    }
-                  }
-                },
-                "example-2": {
-                  "value": {
-                    "element": "shoji:catalog",
-                    "index": {
-                      "https://app.crunch.io/api/datasets/d542169be3ea4ace821464d1d74ac126/variables/4pTjoSCc5wGZCO5IQcmzAr000001/": {
-                        "name": "two"
-                      },
-                      "https://app.crunch.io/api/datasets/d542169be3ea4ace821464d1d74ac126/variables/4pTjoSCc5wGZCO5IQcmzAr000002/": {
-                        "name": "three"
                       }
                     }
                   }
@@ -38077,6 +38415,9 @@
         "responses": {
           "204": {
             "description": "Item updated"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         },
         "summary": "Update dataset variables",
@@ -38097,7 +38438,7 @@
         ]
       },
       "post": {
-        "description": "This endpoint creates a new variable in the dataset with the following `body` attributes:\n\n* name\n* type\n* If `type` is `categorical`, `multiple_response`, or `categorical_array`: categories: an array of category definitions\n* If `type` is `multiple_response` or `categorical_array`: subvariables: an array of URLs of variables to be \u201cbound\u201d together to form the array variable\n* If `type` is `multiple_response` or `categorical_array`: subreferences: an object keyed by each of the subvariable URLs where each value contains partial variable definitions, which will be created as categorical subvariables of the array. If included, the array definition must include \u201ccategories\u201d, which are shared among the subvariables.\n* If `type` is `multiple_response`, the definition may include selected_categories: an array of category names present in the subvariables. This will mark the specified category or categories as the \u201cselected\u201d response in the multiple response variable. If no \u201cselected_categories\u201d array is provided, the new variable will use any categories already flagged as \u201cselected\u201d: true. If no such category exists, the response will return a 400 status.\n* If `type` is `datetime`: resolution: a string, such as \u201cY\u201d, \u201cQ\u201d, \u201cM\u201d, \u201cW\u201d, \u201cD\u201d, \u201ch\u201d, \u201cm\u201d, \u201cs\u201d, \u201cms\u201d, that indicates the unit size of the datetime data.\n* folder: optional, a URL of a variable folder in the dataset into which the new variable should be placed. If omitted, the variable will be created on the root folder. Personal variables (with \"private\": true) cannot be placed in a folder; attempting to do so returns 400 status.\n\nSee [Variable Definitions](https://help.crunch.io/hc/en-us/articles/360042410872-Variable-Definitions) for more details and examples of valid attributes.\n\nIt is encouraged, but not required, to include an `alias` in the body. If omitted, one will be generated from the required \u201cname\u201d.\n\nYou may also include `values`, which will create the column of data corresponding to this variable definition.\n\nYou may instead also include a `derivation` to derive a variable as a function of other variables. In this case, `type` is not required because it depends on the output of the specified derivation function. For details and examples, see [Deriving Variables](https://help.crunch.io/hc/en-us/articles/360040071052-Deriving-Variables).\n\nA 201 indicates success and includes the URL of the newly-created variable in the Location header.",
+        "description": "This endpoint creates a new variable in the dataset.\n\nSee [Help Center - Variable Definitions](https://help.crunch.io/hc/en-us/articles/360042410872-Variable-Definitions) for more details and examples of valid attributes.\n\nNote that by default, variables are public and only dataset editors can create them. If you are a dataset viewer, you must indicate this is a private variable, or you will receive a 403 response.\n\nYou may instead also include a `derivation` to derive a variable as a function of other variables. In this case, `type` is not required because it depends on the output of the specified derivation function. For details and examples, see [Help Center - Deriving Variables](https://help.crunch.io/hc/en-us/articles/360040071052-Deriving-Variables).\n\nA 201 indicates success and includes the URL of the newly-created variable in the Location header.",
         "operationId": "post-datasets-dataset_id-variables",
         "parameters": [],
         "requestBody": {
@@ -38301,6 +38642,7 @@
                     "additionalProperties": false,
                     "properties": {
                       "ailas": {
+                        "description": "It is encouraged, but not required, to include an `alias` in the body. If omitted, one will be generated from the required \u201cname\u201d.",
                         "type": "string"
                       },
                       "alias": {
@@ -38311,6 +38653,7 @@
                         "type": "array"
                       },
                       "categories": {
+                        "description": "An array of category definitions. Only revelevant if `type` is `categorical`, `multiple_response`, or `categorical_array`.",
                         "items": {},
                         "type": "array"
                       },
@@ -38334,6 +38677,7 @@
                         "type": "object"
                       },
                       "folder": {
+                        "description": "A URL of a variable folder in the dataset into which the new variable should be placed. If omitted, the variable will be created on the root folder. Personal variables (with `private: true`) cannot be placed in a folder; attempting to do so returns 400 status.",
                         "format": "uri",
                         "type": "string",
                         "x-qt-uri-protocols": [
@@ -38363,15 +38707,18 @@
                         "type": "boolean"
                       },
                       "resolution": {
+                        "description": "A string, such as \u201cY\u201d, \u201cQ\u201d, \u201cM\u201d, \u201cW\u201d, \u201cD\u201d, \u201ch\u201d, \u201cm\u201d, \u201cs\u201d, \u201cms\u201d, that indicates the unit size of the datetime data. Only relevant if `type` is `datetime`.",
                         "type": "string"
                       },
                       "selected_categories": {
+                        "description": "An array of category names present in the subvariables. This will mark the specified category or categories as the \u201cselected\u201d response in the multiple response variable. If no array is provided, the new variable will use any categories already flagged as `selected: true`. If no such category exists, the response will return a 400 status. Only relevant if `type` is `multiple_response`.",
                         "items": {
                           "type": "string"
                         },
                         "type": "array"
                       },
                       "subreferences": {
+                        "description": "An object keyed by each of the subvariable URLs where each value contains partial variable definitions, which will be created as categorical subvariables of the array. If included, the array definition must include \u201ccategories\u201d, which are shared among the subvariables. Only relevant if `type` is `multiple_response` or `categorical_array`.",
                         "items": {
                           "additionalProperties": false,
                           "properties": {
@@ -38388,6 +38735,7 @@
                         "type": "array"
                       },
                       "subvariables": {
+                        "description": "An array of URLs of variables to be \u201cbound\u201d together to form the array variable. Only relevant if `type` is `multiple_response` or `categorical_array`.",
                         "items": {
                           "format": "uri",
                           "type": "string",
@@ -38411,8 +38759,17 @@
                       },
                       "uniform_basis": {
                         "type": "boolean"
+                      },
+                      "values": {
+                        "description": "An optional column of data corresponding to this variable definition.",
+                        "items": {},
+                        "type": "array"
                       }
                     },
+                    "required": [
+                      "name",
+                      "type"
+                    ],
                     "title": "Body",
                     "type": "object"
                   },
@@ -38455,7 +38812,7 @@
                 }
               }
             },
-            "description": "Asynchronous task started. \n\nThe `location` header contains a URL for the resource requested, which will become available when the asynchronous task has completed.\n\nThe `value` element in the JSON response contains a progress URL which you can query to monitor task completion. See **Task progress** endpoint for more details.",
+            "description": "Asynchronous task started.\n\nThe `location` header contains a URL for the resource requested, which will become available when the asynchronous task has completed.\n\nThe `value` element in the JSON response contains a progress URL which you can query to monitor task completion. See **Task progress** endpoint for more details.",
             "headers": {
               "Location": {
                 "description": "URL for resource requested, available when the asynchronous task has completed.",
@@ -38567,6 +38924,7 @@
     },
     "/datasets/{dataset_id}/variables/hier/": {
       "get": {
+        "deprecated": true,
         "description": "This endpoint returns a hierarchical order from the folder structure of dataset variables.",
         "operationId": "get-datasets-dataset_id-variables-hier",
         "parameters": [
@@ -38694,119 +39052,55 @@
                 "examples": {
                   "example-1": {
                     "value": {
-                      "element": "shoji:catalog",
-                      "index": {
-                        "a77d9f/": {
-                          "alias": "personalvar",
-                          "derived": false,
-                          "description": "",
-                          "discarded": false,
-                          "hidden": false,
-                          "id": "a77d9f",
-                          "name": "Personal variable",
-                          "notes": "",
-                          "secure": false,
-                          "type": "numeric"
-                        },
-                        "aad4ad/": {
-                          "alias": "privvar",
-                          "derived": true,
-                          "description": "",
-                          "discarded": false,
-                          "hidden": false,
-                          "id": "aad4ad",
-                          "name": "Private variable",
-                          "notes": "",
-                          "secure": false,
-                          "type": "text"
-                        }
+                      "catalog": "https://app.crunch.io/api/datasets/0e687686c6a644deb6d5f57cf363a05a/variables/private/",
+                      "catalogs": {
+                        "variables": "https://app.crunch.io/api/datasets/0e687686c6a644deb6d5f57cf363a05a/variables/personal/variables/"
                       },
-                      "self": "https://app.crunch.io/api/datasets/5ee0a0/variables/personal/variables/",
-                      "specification": "https://app.crunch.io/api/specifications/variables/"
+                      "description": "Per user variable order",
+                      "element": "shoji:order",
+                      "graph": [],
+                      "self": "https://app.crunch.io/api/datasets/0e687686c6a644deb6d5f57cf363a05a/variables/personal/"
                     }
                   }
                 },
                 "schema": {
                   "description": "",
                   "properties": {
-                    "element": {
+                    "catalog": {
+                      "format": "uri",
                       "minLength": 1,
                       "type": "string"
                     },
-                    "index": {
+                    "catalogs": {
                       "properties": {
-                        "variable_url": {
-                          "properties": {
-                            "alias": {
-                              "minLength": 1,
-                              "type": "string"
-                            },
-                            "derived": {
-                              "type": "boolean"
-                            },
-                            "description": {
-                              "type": "string"
-                            },
-                            "discarded": {
-                              "type": "boolean"
-                            },
-                            "hidden": {
-                              "type": "boolean"
-                            },
-                            "id": {
-                              "minLength": 1,
-                              "type": "string"
-                            },
-                            "name": {
-                              "minLength": 1,
-                              "type": "string"
-                            },
-                            "notes": {
-                              "type": "string"
-                            },
-                            "secure": {
-                              "type": "boolean"
-                            },
-                            "type": {
-                              "minLength": 1,
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "name",
-                            "derived",
-                            "discarded",
-                            "secure",
-                            "hidden",
-                            "alias",
-                            "type",
-                            "id",
-                            "notes",
-                            "description"
-                          ],
-                          "type": "object"
+                        "variables": {
+                          "format": "uri",
+                          "minLength": 1,
+                          "type": "string"
                         }
                       },
-                      "required": [
-                        "variable_url"
-                      ],
                       "type": "object"
                     },
-                    "self": {
+                    "description": {
                       "minLength": 1,
                       "type": "string"
                     },
-                    "specification": {
+                    "element": {
+                      "$ref": "#/components/schemas/Shoji-order-element"
+                    },
+                    "graph": {
+                      "items": {
+                        "format": "uri",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "self": {
+                      "format": "uri",
                       "minLength": 1,
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "element",
-                    "self",
-                    "specification",
-                    "index"
-                  ],
                   "type": "object"
                 }
               }
@@ -38814,7 +39108,7 @@
             "description": "Success"
           }
         },
-        "summary": "List favorites order",
+        "summary": "List personal variable order",
         "tags": [
           "Variable Settings"
         ],
@@ -38845,7 +39139,7 @@
     },
     "/datasets/{dataset_id}/variables/personal/variables/": {
       "get": {
-        "description": "This endpoint returns a catalog of all personal variables with their metadata.",
+        "description": "This endpoint returns a catalog of all favorite variables for the current user.\n",
         "operationId": "get-datasets-dataset_id-variables-personal-variables",
         "parameters": [],
         "responses": {
@@ -39048,7 +39342,7 @@
         }
       ],
       "patch": {
-        "description": "Personal variables are variables that, instead of being shared with everyone, are visible only by the user that created them. In Crunch, users with view-only permissions on a dataset can still derive variables of their own, just as they can make their own filters. Personal variables are not shown in the common variable catalog and are instead shown here.\n\nPersonal variables are `hidden` but not `secure`: if you create a filter or other asset using a personal variable and share it with other viewers of the dataset, they will be able to use the filter and make queries with it.\n\nYou may use this endpoint to edit names, aliases, descriptions, etc. of the personal variables. To create new personal variables, POST to the main variables catalog with a `private: true` body attribute.\n\nThis endpoint also allows dataset editors to make variables personal by sending a Shoji catalog payload containing the URLs of the variables they wish to make personal, following the Folder API semantics.\n\nThe Shoji catalog should have empty objects as tuples.",
+        "description": "Personal variables are variables that, instead of being shared with everyone, are visible only by the user that created them. In Crunch, users with view-only permissions on a dataset can still derive variables of their own, just as they can make their own filters. Personal variables are not shown in the common variable catalog and are instead shown here.\n\nPersonal variables are `hidden` but not `secure`: if you create a filter or other asset using a personal variable and share it with other viewers of the dataset, they will be able to use the filter and make queries with it.\n\nDataset editors can use this endpoint by submitting a list of the URLs of the variables they wish to make personal.\n",
         "operationId": "patch-datasets-dataset_id-variables-private",
         "parameters": [],
         "requestBody": {
@@ -39099,7 +39393,7 @@
             "description": "Item updated"
           }
         },
-        "summary": "Update personal variables",
+        "summary": "Make variables personal",
         "tags": [
           "Variable Settings"
         ],
@@ -39289,7 +39583,7 @@
     },
     "/datasets/{dataset_id}/variables/{variable_id}/": {
       "delete": {
-        "description": "This endpoint will delete the variable. On success, DELETE returns 200 status with an empty Shoji View. Deleting an array deletes all its subvariable data as well.",
+        "description": "This endpoint will delete the variable. On success, DELETE returns 200 status with an empty Shoji View. Deleting an array deletes all its subvariable data as well.\n\nAttempting to delete the primary key of a dataset will return a 409 response.",
         "operationId": "delete-datasets-dataset_id-variables-variable_id",
         "parameters": [],
         "responses": {
@@ -39333,6 +39627,9 @@
               }
             },
             "description": "Item not found"
+          },
+          "409": {
+            "description": "Conflict"
           }
         },
         "summary": "Delete variable",
@@ -40277,6 +40574,9 @@
               }
             },
             "description": "Bad request"
+          },
+          "409": {
+            "description": "Conflict"
           }
         },
         "summary": "Unbind array sub-variables",
@@ -40686,32 +40986,8 @@
           }
         },
         "responses": {
-          "202": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "element": "shoji:view",
-                      "self": "https://app.crunch.io/api/datasets/a5a3d3890a6e453d85662e9c66a9b7e9/decks/5f9720247f1145d6918d0a4463b17131/export/",
-                      "value": "https://app.crunch.io/api/progress/3Aa5a3d3890a6e453d85662e9c66a9b7e9%24a3af7cb7765f3fee01c49225bf34415d/"
-                    }
-                  }
-                },
-                "schema": {
-                  "$ref": "#/components/schemas/202-response"
-                }
-              }
-            },
-            "description": "Asynchronous task started. \n\nThe `location` header contains a URL for the resource requested, which will become available when the asynchronous task has completed.\n\nThe `value` element in the JSON response contains a progress URL which you can query to monitor task completion. See **Task progress** endpoint for more details.",
-            "headers": {
-              "Location": {
-                "description": "URL for resource requested, available when the asynchronous task has completed.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+          "204": {
+            "description": "No Content"
           },
           "400": {
             "content": {
@@ -40781,7 +41057,7 @@
     },
     "/datasets/{dataset_id}/variables/{variable_id}/frequencies/": {
       "get": {
-        "description": "This endpoint returns an array of row objects, giving the count of distinct values. The exact members vary by type:\n\n* **numeric**: Each row represents a distinct valid value, and includes it as the `value` member. The number of entries which possess that value is included as the `count` member.\n\n* **categorical**: Each row represents a distinct category (whether valid or missing), and includes its id the `_id` member (note the leading underscore), and its name as the `name` member. The `missing` member is true or false depending on whether the category is marked missing or not. The number of entries which possess that value is included as the `count` member.\n\n* **text**: Each row represents a distinct valid value, and includes it as the \u201cvalue\u201d member. The number of entries which possess that value is included as the `count` member. The length of the array is limited to 10 entries; if more than 10 distinct values are present in the data, an 11th row is added with a `value` member of `(Others)`, summing their counts.",
+        "description": "This endpoint returns an array of row objects, giving the count of distinct values. The exact members vary by type:\n\n* **numeric**: Each row represents a distinct valid value, and includes it as the `value` member. The number of entries which possess that value is included as the `count` member.\n\n* **categorical**: Each row represents a distinct category (whether valid or missing), and includes its id the `_id` member (note the leading underscore), and its name as the `name` member. The `missing` member is true or false depending on whether the category is marked missing or not. The number of entries which possess that value is included as the `count` member.\n\n* **text**: Each row represents a distinct valid value, and includes it as the \u201cvalue\u201d member. The number of entries which possess that value is included as the `count` member. The length of the array is limited to 10 entries; if more than 10 distinct values are present in the data, an 11th row is added with a `value` member of `(Others)`, summing their counts.\n\nIf the variable type is categorical array, a 404 response will be returned.",
         "operationId": "get-datasets-dataset_id-variables-variable_id-frequencies",
         "parameters": [
           {
@@ -40913,6 +41189,9 @@
               }
             },
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "summary": "Univariate frequencies",
@@ -40955,7 +41234,7 @@
     },
     "/datasets/{dataset_id}/variables/{variable_id}/missing_rules/": {
       "get": {
-        "description": "This endpoint returns a list of rules to mark entries as missing. Rules may be one of:\n* {'value': v}\n* {'set': [v1, v2, ...]}\n* {'range': [lower, upper], 'inclusive': [true, false]}\n* {'function': '...', 'args': [...]}\n\n**Note**: Missing rules consist on filter expressions that can only refer to the same variable ID where they are defined. Marking values as missing based on the contents of another column is not supported.",
+        "description": "This endpoint returns a list of rules to mark entries as missing. Rules may be one of:\n* {'value': v}\n* {'set': [v1, v2, ...]}\n* {'range': [lower, upper], 'inclusive': [true, false]}\n* {'function': '...', 'args': [...]}\n\n**Note**: Missing rules consist on filter expressions that can only refer to the same variable ID where they are defined. Marking values as missing based on the contents of another column is not supported.\n\nThis endpoint is only available for non-categorical types. For categorical types, a 404 response will be returned.",
         "operationId": "get-datasets-dataset_id-variables-variable_id-missing_rules",
         "parameters": [],
         "responses": {
@@ -41253,6 +41532,9 @@
               }
             },
             "description": "Bad request"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         },
         "summary": "Add a missing value rule",
@@ -41462,7 +41744,7 @@
         }
       ],
       "patch": {
-        "description": "This endpoint allows modification to the variables attributes exposed on the tuples (name, description, alias, discarded).\n\nIt is possible to add new subvariables to the array variable in question. To do so include the URL of another variable (currently existing on the dataset) on the payload with an empty tuple and such variable will be converted into a subvariable and added at the end.\n\nIn the case of derived arrays, an attempt to PATCH this catalog will return a 405 response. This is because the list of subvariables for this array is a function of its derivation expression. The correct way to make modifications to derived arrays\u2019 subvariables is by editing its derivation attribute with the desired expressions for each of them.",
+        "description": "This endpoint allows modification to the variables attributes exposed on the tuples (name, description, alias, discarded).\n\nIt is possible to add new subvariables to the array variable in question. To do so, include the URL of another variable (currently existing on the dataset) on the payload with an empty tuple and such variable will be converted into a subvariable and added at the end. As you add new subvariables, make sure that subvariable names are unique.\n\nIn the case of derived arrays, an attempt to PATCH this catalog will return a 405 response. This is because the list of subvariables for this array is a function of its derivation expression. The correct way to make modifications to derived arrays\u2019 subvariables is by editing its derivation attribute with the desired expressions for each of them.",
         "operationId": "patch-datasets-dataset_id-variables-variable_id-subvariables",
         "parameters": [],
         "requestBody": {
@@ -41560,6 +41842,9 @@
         },
         "responses": {
           "204": {
+            "description": "No Content"
+          },
+          "405": {
             "description": "Item updated"
           }
         },
@@ -41583,7 +41868,7 @@
     },
     "/datasets/{dataset_id}/variables/{variable_id}/subvariables/{subvariable_id}/": {
       "delete": {
-        "description": "This endpoint deletes one subvariable. If you attempt to delete a subvariable from a derived array, this endpoint will return a 405 error as you must update the array expression instead.",
+        "description": "This endpoint deletes one subvariable. If you attempt to delete a subvariable from a derived array, this endpoint will return a 405 error as you must update the array expression instead.\n\nThis endpoint can only run against a dataset not a dataset view, otherwise a 409 error will be returned.",
         "operationId": "delete-datasets-dataset_id-variables-variable_id-subvariables-subvariable_id",
         "parameters": [],
         "responses": {
@@ -41627,6 +41912,9 @@
               }
             },
             "description": "Not allowed"
+          },
+          "409": {
+            "description": "Conflict"
           }
         },
         "summary": "Delete subvariable",
@@ -42101,7 +42389,8 @@
                         "valid_count": 3
                       }
                     }
-                  }
+                  },
+                  "example-2": {}
                 },
                 "schema": {
                   "additionalProperties": false,
@@ -42222,44 +42511,6 @@
               }
             },
             "description": "Success"
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "exception": [
-                        "Filter references invalid variables: 2c8TfwFCea0MfTBoM1XA7J000000"
-                      ],
-                      "message": "Filter references invalid variables: 2c8TfwFCea0MfTBoM1XA7J000000",
-                      "status": "400 Bad Request"
-                    }
-                  }
-                },
-                "schema": {
-                  "additionalProperties": false,
-                  "properties": {
-                    "exception": {
-                      "items": {
-                        "type": "string"
-                      },
-                      "type": "array"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "status": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [],
-                  "title": "DatasetsDatasetIDVariablesVariableIDSummaryGetRequest",
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Bad request"
           }
         },
         "summary": "Summarize variable",
@@ -42302,7 +42553,7 @@
     },
     "/datasets/{dataset_id}/variables/{variable_id}/user_settings/": {
       "get": {
-        "description": "This endpoint returns all the settings the user has set for this variable, such as whether to show counts or percents, or the number of decimal digits.\n",
+        "description": "This endpoint returns all the settings that have been set for this variable, such as whether to show counts or percents, or the number of decimal digits.\n",
         "operationId": "get-datasets-dataset_id-variables-variable_id-user_settings",
         "parameters": [],
         "responses": {
@@ -42404,7 +42655,7 @@
             "description": "Success"
           }
         },
-        "summary": "List variable user settings",
+        "summary": "List variable settings",
         "tags": [
           "Variable Settings"
         ],
@@ -42590,7 +42841,7 @@
         ]
       },
       "put": {
-        "description": "This endpoint replaces all user settings for the variable.",
+        "description": "This endpoint replaces all settings for the variable.",
         "operationId": "put-datasets-dataset_id-variables-variable_id-user_settings",
         "parameters": [],
         "requestBody": {
@@ -42720,7 +42971,7 @@
             "description": "Bad request"
           }
         },
-        "summary": "Replace variable user settings",
+        "summary": "Replace variable settings",
         "tags": [
           "Variable Settings"
         ],
@@ -42740,7 +42991,7 @@
     },
     "/datasets/{dataset_id}/variables/{variable_id}/values/": {
       "get": {
-        "description": "This endpoint returns a JSON array of values from the variable\u2019s data. The `start` and `total` query string parameters paginate the results. The `filter` is a Crunch filter expression.\n\nThis endpoint is subject to special authorization. Dataset editors may successfully GET values; users with view-only permissions can only access values if the viewers_can_export dataset setting is set to true. Unauthorized requests will return a 403 response.\n\n**Note**: Secure variables are only accessible to dataset editors, regardless of the viewers_can_export setting. If a user with view-only permissions attempts to access a secure variable entity, the API responds with 404 Not Found, so all resources contained below the entity URI (/datasets/{dataset_id}/variables/{variable_id}/) will also return a 404 error.",
+        "description": "This endpoint returns a JSON array of values from the variable\u2019s data. The `start` and `total` query string parameters paginate the results. The `filter` is a Crunch filter expression.\n\nThis endpoint is subject to special authorization. Dataset editors may successfully GET values; users with view-only permissions can only access values if the `viewers_can_export` dataset setting is set to true. Unauthorized requests will return a 403 response.\n\n**Note**: Secure variables are only accessible to dataset editors, regardless of the `viewers_can_export` setting. If a user with view-only permissions attempts to access a secure variable entity, the API responds with 404 Not Found, so all resources contained below the entity URI (/datasets/{dataset_id}/variables/{variable_id}/) will also return a 404 error.",
         "operationId": "get-datasets-dataset_id-variables-variable_id-values",
         "parameters": [
           {
@@ -42810,7 +43061,8 @@
                         4
                       ]
                     }
-                  }
+                  },
+                  "example-2": {}
                 },
                 "schema": {
                   "additionalProperties": false,
@@ -42919,7 +43171,7 @@
     },
     "/projects/": {
       "get": {
-        "description": "This endpoint returns a list of all the projects the authenticated user is a member of.",
+        "description": "This endpoint returns a list of all the parent projects the authenticated user is a member of.",
         "operationId": "get-projects",
         "parameters": [],
         "responses": {
@@ -42951,7 +43203,7 @@
                           "description": "",
                           "id": "543fffbcf01d4b9f8cca31332a8acf37",
                           "modification_time": "2020-05-20T19:50:34.421000",
-                          "name": "personal_variables_notification_project",
+                          "name": "project_a",
                           "permissions": {
                             "edit": false,
                             "view": true
@@ -43117,7 +43369,7 @@
       },
       "parameters": [],
       "patch": {
-        "description": "This endpoint can be used to update the names for one or more projects.",
+        "description": "This endpoint can be used to update the names and descriptions of one or more projects *that you are the editor of*.",
         "operationId": "patch-projects",
         "parameters": [],
         "requestBody": {
@@ -43147,6 +43399,9 @@
                       "project_url": {
                         "additionalProperties": false,
                         "properties": {
+                          "description": {
+                            "type": "string"
+                          },
                           "name": {
                             "type": "string"
                           }
@@ -43188,7 +43443,7 @@
         ]
       },
       "post": {
-        "description": "This endpoint creates a new project and makes the authenticated user its initial member and editor.\n",
+        "description": "This endpoint creates a new project and makes the authenticated user its initial member and editor.\n\nIf you do not have `can_create_datasets: true` permission, a 403 response will be returned.\n",
         "operationId": "post-projects",
         "parameters": [],
         "requestBody": {
@@ -43230,7 +43485,9 @@
                         "type": "string"
                       }
                     },
-                    "required": [],
+                    "required": [
+                      "name"
+                    ],
                     "title": "Body",
                     "type": "object"
                   },
@@ -43238,7 +43495,10 @@
                     "$ref": "#/components/schemas/Shoji-entity-element"
                   }
                 },
-                "required": [],
+                "required": [
+                  "body",
+                  "element"
+                ],
                 "title": "ProjectsPostRequest",
                 "type": "object"
               }
@@ -43248,6 +43508,9 @@
         "responses": {
           "201": {
             "description": "Item created"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         },
         "summary": "Create project",
@@ -43575,8 +43838,14 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "405": {
+            "description": "Method Not Allowed"
           }
         },
         "summary": "Move projects to the personal project",
@@ -43597,7 +43866,7 @@
         ]
       },
       "post": {
-        "description": "This endpoint creates a personal project to which you can add datasets.",
+        "description": "This endpoint creates a personal project to which you can add datasets.\n\nThe contents (datasets and projects) of the personal project are only visible to you, but it is still possible to share the datasets or invite members to any subproject inside your personal project in order to collaborate with other users.\n\nInside your personal project, it is possible to create subprojects.\n\nNote that all the datasets that exist in your personal projects hierarchy will be displayed under the main dataset catalog to all users that have at least view permissions to them.\n\nAll projects require a unique name or a 400 response will be returned.",
         "operationId": "post-projects-personal",
         "parameters": [],
         "requestBody": {
@@ -43631,7 +43900,9 @@
                         "type": "string"
                       }
                     },
-                    "required": [],
+                    "required": [
+                      "name"
+                    ],
                     "title": "Body",
                     "type": "object"
                   },
@@ -43639,7 +43910,10 @@
                     "$ref": "#/components/schemas/Shoji-entity-element"
                   }
                 },
-                "required": [],
+                "required": [
+                  "body",
+                  "element"
+                ],
                 "title": "ProjectsPersonalPostRequest",
                 "type": "object"
               }
@@ -43980,12 +44254,15 @@
     },
     "/projects/{project_id}/": {
       "delete": {
-        "description": "Use this endpoint to delete a project. You must have edit access to delete a project, and the project must be empty (cannot contain subprojects or datasets etc).",
+        "description": "Use this endpoint to delete a project. You must have edit access to delete a project, and the project must be empty (cannot contain subprojects or datasets etc).\n\nIf you are not the project owner, a 403 error will be returned.",
         "operationId": "delete-projects-project_id",
         "parameters": [],
         "responses": {
           "204": {
             "description": "Item deleted"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         },
         "summary": "Delete project",
@@ -44371,6 +44648,9 @@
               }
             },
             "description": "Success"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "summary": "List project details",
@@ -44484,6 +44764,9 @@
         "responses": {
           "204": {
             "description": "Item updated"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         },
         "summary": "Update project attributes",
@@ -44504,7 +44787,7 @@
         ]
       },
       "post": {
-        "description": "Use this endpoint to create a nested sub-project under this project.",
+        "description": "Use this endpoint to create a nested sub-project under this project.\n\nOnly project editors can use this endpoint.\n\nAll users who have access to the parent project will have access to the nested sub-project.\n\nAll sub-projects should be unique or a 400 response will be returned.",
         "operationId": "post-projects-project_id",
         "parameters": [],
         "requestBody": {
@@ -44586,6 +44869,9 @@
               }
             },
             "description": "Bad request"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         },
         "summary": "Create nested sub-project",
@@ -44608,7 +44894,7 @@
     },
     "/projects/{project_id}/datasets/": {
       "get": {
-        "description": "This endpoint returns a list of all datasets in the project.",
+        "description": "This endpoint returns a list of all datasets in the project. Results are limited to this project and do not include the datasets of any sub-projects this project may have.",
         "operationId": "get-projects-project_id-datasets",
         "parameters": [],
         "responses": {
@@ -44830,6 +45116,7 @@
     },
     "/projects/{project_id}/icon/": {
       "get": {
+        "deprecated": true,
         "description": "This endpoint lists the icon configured for the project.",
         "operationId": "get-projects-project_id-logo",
         "parameters": [],
@@ -44906,6 +45193,7 @@
         }
       ],
       "patch": {
+        "deprecated": true,
         "description": "It is possible to remove the icon that has been set up. To do so, submit the contents of the value resource with a null value.",
         "operationId": "patch-projects-project_id-logo",
         "requestBody": {
@@ -44965,6 +45253,7 @@
         ]
       },
       "post": {
+        "deprecated": true,
         "description": "There are two ways to change the icon, either via file upload or via icon URL. Only the project\u2019s editors can change the project\u2019s icon.\n\nValid image extensions include \u2018png\u2019, \u2018gif\u2019, \u2018jpg\u2019, and \u2018jpeg\u2019.\n\n## File upload\nThe request should have be a standard multipart/form-data file upload with the file field named icon. The file\u2019s contents will be stored and made available under the project\u2019s url. The API will return a 201 response with the stored icon\u2019s URL on its Location header.\n\n## Icon URL\nExpects a Shoji:view request with its value pointing to a publicly accessible image resource that will be used as the project\u2019s icon. This image will be copied to an API local location.",
         "operationId": "post-projects-project_id-logo",
         "parameters": [],
@@ -45039,7 +45328,7 @@
                 }
               }
             },
-            "description": "Asynchronous task started. \n\nThe `location` header contains a URL for the resource requested, which will become available when the asynchronous task has completed.\n\nThe `value` element in the JSON response contains a progress URL which you can query to monitor task completion. See **Task progress** endpoint for more details.",
+            "description": "Asynchronous task started.\n\nThe `location` header contains a URL for the resource requested, which will become available when the asynchronous task has completed.\n\nThe `value` element in the JSON response contains a progress URL which you can query to monitor task completion. See **Task progress** endpoint for more details.",
             "headers": {
               "Location": {
                 "description": "URL for resource requested, available when the asynchronous task has completed.",
@@ -45255,8 +45544,8 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           }
         },
         "summary": "Remove project logo",
@@ -45297,32 +45586,8 @@
           }
         },
         "responses": {
-          "202": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "element": "shoji:view",
-                      "self": "https://app.crunch.io/api/datasets/a5a3d3890a6e453d85662e9c66a9b7e9/decks/5f9720247f1145d6918d0a4463b17131/export/",
-                      "value": "https://app.crunch.io/api/progress/3Aa5a3d3890a6e453d85662e9c66a9b7e9%24a3af7cb7765f3fee01c49225bf34415d/"
-                    }
-                  }
-                },
-                "schema": {
-                  "$ref": "#/components/schemas/202-response"
-                }
-              }
-            },
-            "description": "Asynchronous task started. \n\nThe `location` header contains a URL for the resource requested, which will become available when the asynchronous task has completed.\n\nThe `value` element in the JSON response contains a progress URL which you can query to monitor task completion. See **Task progress** endpoint for more details.",
-            "headers": {
-              "Location": {
-                "description": "URL for resource requested, available when the asynchronous task has completed.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+          "204": {
+            "description": "No Content"
           },
           "400": {
             "content": {
@@ -45366,18 +45631,6 @@
         "summary": "Update project logo",
         "tags": [
           "Project Details"
-        ],
-        "x-code-samples": [
-          {
-            "lang": "SHELL",
-            "source": "curl -X POST https://app.crunch.io/api/projects/0001j/logo/ \\\n  -H 'Authorization: Bearer 598d9e1105'",
-            "syntaxLang": "bash"
-          },
-          {
-            "lang": "JAVASCRIPT",
-            "source": "const postProjectsProject_idLogo = await fetch(\n  'https://app.crunch.io/api/projects/0001j/logo/', {\n   method: 'POST',\n   headers: {\n    'Authorization': 'Bearer 598d9e1105'\n   }\n })\n .then(response => response.json())\n .then(jsonResponse => jsonResponse.value)",
-            "syntaxLang": "javascript"
-          }
         ]
       }
     },
@@ -45545,6 +45798,7 @@
         }
       ],
       "patch": {
+        "deprecated": true,
         "description": "Use this endpoint to add or remove members from the project. Only project editors have this capability.\n\nTo add a new user, submit a catalog keyed by the new user URL and an empty object for its value or a permissions tuple to set specific permissions (only edit allowed at this point).\n\nTo remove users, submit a catalog keyed by the user you want to remove and null for its value.\n\nNote that you cannot remove yourself from the project.\n\nIt is possible to perform many additions/removals in one request.\n\nYou may also add users to the project by email address. If the email is registered on the system the user will be invited to the project. If the email is not part of Crunch.io a new user invitation will be sent to that email with instructions to set up their account. They will be automatically part of this project only.\n\nAttempting to remove users also allows to do so by email. In the case that the email does not exist, the server will return a 400 response.\n\n## Sending notifications\nThe users invited to a project can be both existing Crunch.io users or new users that don\u2019t have a user account associated with the email.\n\nIf desired, the API can send automated email notifications to the involved users indicating that they now belong to the project.\n\nIt is necessary to add the `send_notification` boolean key on the index submitted to command the API to send these emails. Else, no notification will be sent.",
         "operationId": "patch-projects-project_id-members",
         "requestBody": {
@@ -45640,7 +45894,7 @@
     },
     "/projects/{project_id}/teams/": {
       "get": {
-        "description": "This endpoint returns a list of teams who have access to this project and the level of permissions they have.",
+        "description": "This endpoint returns a list of teams who have access to this project and the level of permissions they have. This endpoint can only be used by project editors, otherwise it will return a 403 response.",
         "operationId": "get-projects-project_id-teams",
         "parameters": [],
         "responses": {
@@ -45686,7 +45940,7 @@
                     },
                     "index": {
                       "properties": {
-                        "project_team_url": {
+                        "permissions_context_url": {
                           "properties": {
                             "id": {
                               "minLength": 1,
@@ -45730,7 +45984,7 @@
                         }
                       },
                       "required": [
-                        "project_team_url"
+                        "permissions_context_url"
                       ],
                       "type": "object"
                     },
@@ -45749,6 +46003,9 @@
               }
             },
             "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         },
         "summary": "List teams with project access",
@@ -45780,7 +46037,7 @@
         }
       ],
       "patch": {
-        "description": "Use this endpoint to add or remove teams from the project.\n\nTo add a new team, submit its URL to the index with an object containing a permissions object and the needed (edit and view) flags in it to grant such access to such team.\n\nTo remove a team, submit the same tuple but send null for such team\u2019s value. Will remove this team from this project and any subproject below.",
+        "description": "Use this endpoint to grant project access to teams.\n\nTo add a new team, submit its URL to the index with an object containing a permissions object and the needed (edit and view) flags in it to grant such access to such team.\n\nTo remove a team, submit the same tuple but send null for such team\u2019s value. Will remove this team from this project and any subproject below.",
         "operationId": "patch-projects-project_id-teams",
         "requestBody": {
           "content": {
@@ -45853,9 +46110,15 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         },
-        "summary": "Add/remove teams from project",
+        "summary": "Grant project access to teams",
         "tags": [
           "Project Access"
         ],
@@ -45873,9 +46136,9 @@
         ]
       }
     },
-    "/projects/{project_id}/teams/{team_id}": {
+    "/projects/{project_id}/teams/{team_id}/": {
       "get": {
-        "description": "This endpoint returns a list of datasets and nested sub-projects the team has access to and what level of permissions they have.",
+        "description": "This endpoint returns a list of datasets and nested sub-projects the team has access to and what level of permissions they have. Only project editors can use this endpoint so they can see what explicit permissions each of the teams with access have.\n\nIf used by a non-editor, a 403 response will be returned. If the team id submitted does not have access to the project, a 404 response will be returned.\n",
         "operationId": "get-projects-project_id-teams-team_id",
         "responses": {
           "200": {
@@ -46071,6 +46334,12 @@
               }
             },
             "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "summary": "List team project permissions",
@@ -46111,7 +46380,7 @@
     },
     "/projects/{project_id}/templates/": {
       "get": {
-        "description": "This the templates (Powerpoint) configured for this project.",
+        "description": "This endpoint returns the templates (PowerPoint) configured for this project.",
         "operationId": "get-projects-project_id-templates",
         "parameters": [],
         "responses": {
@@ -46233,8 +46502,8 @@
           "description": ""
         },
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           }
         },
         "summary": "Remove project templates",
@@ -46259,32 +46528,8 @@
         "operationId": "post-projects-project_id-templates",
         "parameters": [],
         "responses": {
-          "202": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "element": "shoji:view",
-                      "self": "https://app.crunch.io/api/datasets/a5a3d3890a6e453d85662e9c66a9b7e9/decks/5f9720247f1145d6918d0a4463b17131/export/",
-                      "value": "https://app.crunch.io/api/progress/3Aa5a3d3890a6e453d85662e9c66a9b7e9%24a3af7cb7765f3fee01c49225bf34415d/"
-                    }
-                  }
-                },
-                "schema": {
-                  "$ref": "#/components/schemas/202-response"
-                }
-              }
-            },
-            "description": "Asynchronous task started. \n\nThe `location` header contains a URL for the resource requested, which will become available when the asynchronous task has completed.\n\nThe `value` element in the JSON response contains a progress URL which you can query to monitor task completion. See **Task progress** endpoint for more details.",
-            "headers": {
-              "Location": {
-                "description": "URL for resource requested, available when the asynchronous task has completed.",
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+          "204": {
+            "description": "No Content"
           },
           "400": {
             "content": {
@@ -46328,24 +46573,12 @@
         "summary": "Update project templates",
         "tags": [
           "Project Details"
-        ],
-        "x-code-samples": [
-          {
-            "lang": "SHELL",
-            "source": "curl -X POST https://app.crunch.io/api/projects/0001j/templates/ \\\n  -H 'Authorization: Bearer 598d9e1105'",
-            "syntaxLang": "bash"
-          },
-          {
-            "lang": "JAVASCRIPT",
-            "source": "const postProjectsProject_idTemplates = await fetch(\n  'https://app.crunch.io/api/projects/0001j/templates/', {\n   method: 'POST',\n   headers: {\n    'Authorization': 'Bearer 598d9e1105'\n   }\n })\n .then(response => response.json())\n .then(jsonResponse => jsonResponse.value)",
-            "syntaxLang": "javascript"
-          }
         ]
       }
     },
     "/projects/{project_id}/users/": {
       "get": {
-        "description": "This endpoint returns a list of users who have access to this project and the level of permissions they have.",
+        "description": "This endpoint returns a list of users who have access to this project and the level of permissions they have. This endpoint can only be used by project editors, otherwise it will return a 403 response.",
         "operationId": "get-projects-project_id-users",
         "parameters": [],
         "responses": {
@@ -46491,6 +46724,9 @@
               }
             },
             "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         },
         "summary": "List users with project access",
@@ -46522,7 +46758,7 @@
         }
       ],
       "patch": {
-        "description": "Use this endpoint to add or remove users from the project.\n\nTo add users, send their user url in the index object containing an object with a permissions object that has the flags. It will grant such access for this user on this project.\n\nTo remove a user, submit its tuple with a null value. It will remove any access that this user has been granted directly on this project, any of the subprojects or any dataset anywhere down this branch of the projects structure.\n\nIf the user has access to this project via permissions obtained on a parent project, then the request will fail with a 400 error indicating the parent projects where the access is granted. Clients should retry removing the access from the highest level parent to ensure full access clearing.\n\nOn success, the endpoint will return a 200 response with a shoji catalog in the body. This shoji catalog will be keyed by each of the users that were deleted on this request and the tuple will contain a teams key pointing to all the teams where each user belongs that has access to some resource down this project branch. Clients should decide if they wish to remove the user from the team or remove the access to the team (affecting all team users).\n\nNote that instead of using the URL for the user, you could instead use their email address. This is particularly helpful if you\u2019re trying to add a user that doesn\u2019t yet have a Crunch account.",
+        "description": "Use this endpoint to grant project access to users.\n\nTo add users, send their user url in the index object containing an object with a permissions object that has the flags. It will grant such access for this user on this project.\n\nTo remove a user, submit its tuple with a null value. It will remove any access that this user has been granted directly on this project, any of the subprojects or any dataset anywhere down this branch of the projects structure.\n\nIf the user has access to this project via permissions obtained on a parent project, then the request will fail with a 400 error indicating the parent projects where the access is granted. Clients should retry removing the access from the highest level parent to ensure full access clearing.\n\nOn success, the endpoint will return a 200 response with a shoji catalog in the body. This shoji catalog will be keyed by each of the users that were deleted on this request and the tuple will contain a teams key pointing to all the teams where each user belongs that has access to some resource down this project branch. Clients should decide if they wish to remove the user from the team or remove the access to the team (affecting all team users).\n\nNote that instead of using the URL for the user, you could instead use their email address. This is particularly helpful if you\u2019re trying to add a user that doesn\u2019t yet have a Crunch account.",
         "operationId": "patch-projects-project_id-users",
         "parameters": [],
         "requestBody": {
@@ -46598,6 +46834,7 @@
                     "additionalProperties": false,
                     "properties": {
                       "send_notification": {
+                        "description": "Defaults to `false`",
                         "type": "boolean"
                       },
                       "user_url": {
@@ -46766,9 +47003,12 @@
               }
             },
             "description": "Bad request"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         },
-        "summary": "Add/remove users from project",
+        "summary": "Grant project access to users",
         "tags": [
           "Project Access"
         ],
@@ -46788,7 +47028,7 @@
     },
     "/projects/{project_id}/users/{user_id}/": {
       "get": {
-        "description": "This endpoint returns a list of datasets and nested sub-projects the user has access to and what level of permissions they have.",
+        "description": "This endpoint returns a list of datasets and nested sub-projects the user has access to and what level of permissions they have. This endpoint can only be used by project editors, otherwise it will return a 403 or 404 response.",
         "operationId": "get-projects-project_id-users-user_id",
         "parameters": [],
         "responses": {
@@ -46970,6 +47210,12 @@
               }
             },
             "description": "Success"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "summary": "List user project permissions",
@@ -48341,7 +48587,7 @@
         ]
       }
     },
-    "/users/{user_id}/integrations": {
+    "/users/{user_id}/integrations/": {
       "parameters": [
         {
           "in": "path",
@@ -48444,7 +48690,7 @@
         ]
       }
     },
-    "/users/{user_id}/integrations/{integration_id}/surveys": {
+    "/users/{user_id}/integrations/{integration_id}/surveys/": {
       "get": {
         "description": "This endpoint uses your stored integration credentials to access the partner's API and returns a list of datasets available for import into Crunch.",
         "operationId": "get-users-user_id-integrations-integration_id-surveys",
@@ -48611,11 +48857,7 @@
   },
   "servers": [
     {
-      "description": "Crunch API (testing sandbox)",
-      "url": "https://alpha.crunch.io/api"
-    },
-    {
-      "description": "Crunch API (production). EXERCISE EXTREME CAUTION as all non-GET requests to this server can be destructive to real data.",
+      "description": "Crunch API (production). EXERCISE EXTREME CAUTION as all non-GET requests to this server can be destructive to real data. Any api requests you perform are real and will execute against real datasets.",
       "url": "https://app.crunch.io/api"
     }
   ],
