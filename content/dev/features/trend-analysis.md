@@ -28,6 +28,6 @@ Your chosen smoothing settings are saved with your analyses when you add them to
 
 For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360053244351).
 
-Currently this feature is only available if you have enabled ‘Early access’ in your application settings.
+Currently this feature is only available if you have enabled [Early access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access?) in your application settings.
 
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
