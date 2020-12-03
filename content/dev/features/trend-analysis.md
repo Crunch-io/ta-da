@@ -1,5 +1,6 @@
 +++
 date = "2020-12-03T14:08:05-04:00"
+publishdate = "2020-12-03T19:26:13+0000"
 draft = false
 title = "Perform trend analysis on wave data"
 news_description = "Identify trends over time by applying moving averages with just a few clicks. Click here to learn more."
