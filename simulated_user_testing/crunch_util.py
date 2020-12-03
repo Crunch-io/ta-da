@@ -59,17 +59,20 @@ def connect_pycrunch(connection_info, verbose=False):
     """
     connection_info: dictionary containing connection parameters:
         api_url: URL of the Crunch API
-        token: If given, used for token authentication
-        username, password: Supply these for password authentication
-        cert: Passed through to requests library if given
-        progress_timeout: Number of seconds to wait before giving up
-        progress_interval: Number of seconds to sleep between retries
+        token: If given, used for token authentication.
+        email: Email address passed in user credentials
+        username: Used if email is not set
+        password: Use for password authentication when token not given
+        cert: (optional) Passed through to requests library if given
+        verify: (optional) Passed through to requests library if given.
+            Set this to False when testing against local development server.
+        progress_timeout: (optional) Number of seconds to wait before giving up
+        progress_interval: (optional) Number of seconds to sleep between retries
     Return:
         a pycrunch.shoji.Catalog "site" object. It has a session attribute that
         is derived from requests.sessions.Session, which can be used for making
         HTTP requests to the API server.
     """
-    api_url = connection_info["api_url"]
     progress_timeout = float(
         connection_info.get(
             "progress_timeout", pycrunch.progress.DEFAULT_PROGRESS_TIMEOUT
@@ -83,37 +86,45 @@ def connect_pycrunch(connection_info, verbose=False):
     progress_tracking = pycrunch.progress.DefaultProgressTracking(
         timeout=progress_timeout, interval=progress_interval
     )
+    api_url = connection_info["api_url"]
+    if not api_url.endswith("/"):
+        api_url += "/"
+    user_email = connection_info.get("email") or connection_info.get("username")
     vlog = VerboseLogger(verbose)
     if connection_info.get("token"):
-        vlog("Connecting to %s using token.", api_url)
+        vlog("Connecting to %s using token in cookie", api_url)
         session = pycrunch.Session(
             token=connection_info["token"],
             domain=urllib_parse.urlparse(api_url).netloc,
             progress_tracking=progress_tracking,
         )
     else:
-        vlog("Connecting to %s as %s", api_url, connection_info["username"])
+        if not user_email:
+            raise ValueError("Missing email or username in connection_info")
+        if "password" not in connection_info:
+            raise ValueError("Missing password in connection_info")
+        vlog("Connecting to %s as %r using password", api_url, user_email)
         session = pycrunch.Session(
-            email=connection_info["username"],
+            email=user_email,
             password=connection_info["password"],
             progress_tracking=progress_tracking,
         )
+    session.cert = connection_info.get("cert")
+    session.verify = connection_info.get("verify", True)
     # If this session hook is not installed, you get an error from lemonpy.py:
     # AttributeError: No handler found for response status 301
     # This happens on alpha but not on a local dev VM.
     session.hooks["response"].status_301 = lambda r: r
     try:
-        response = session.get(
-            api_url,
-            verify=connection_info.get("verify", False),
-            cert=connection_info.get("cert"),
-        )
+        response = session.get(api_url)
     except Exception as err:
         sanitized_connection_info = connection_info.copy()
         if "password" in sanitized_connection_info:
             sanitized_connection_info["password"] = "*****"
+        if "token" in sanitized_connection_info:
+            sanitized_connection_info["token"] = "*****"
         msg = (
-            "Error getting Crunch API session: {err}\n"
+            "Error getting Crunch API session: {err.__class__.__name__}: {err}\n"
             "API URL: {api_url}\n"
             "Connection info: {sanitized_connection_info}"
         ).format(
@@ -121,9 +132,92 @@ def connect_pycrunch(connection_info, verbose=False):
             api_url=api_url,
             sanitized_connection_info=sanitized_connection_info,
         )
-        raise Exception(msg)
+        raise RuntimeError(msg)
     site = response.payload
     return site
+
+
+def login_pycrunch(connection_info, verbose=False):
+    """
+    Log in to Crunch using email/password and generate a bearer token.
+    This only works for users that have the 'pwhash' Auth method.
+    connection_info: dictionary containing connection parameters:
+        api_url: URL of the Crunch API
+        email: Email address passed in user credentials
+        username: Used if email is not set
+        password: Password used for authentication
+        cert: (optional) Passed through to requests library if given
+        verify: (optional) Passed through to requests library if given.
+            Set this to False when testing against local development server.
+        progress_timeout: (optional) Number of seconds to wait before giving up
+        progress_interval: (optional) Number of seconds to sleep between retries
+    Return:
+        a pycrunch.shoji.Catalog "site" object. It has a session attribute that
+        is derived from requests.sessions.Session, which can be used for making
+        HTTP requests to the API server.
+        site.session.token is the returned Bearer token.
+    """
+    progress_timeout = float(
+        connection_info.get(
+            "progress_timeout", pycrunch.progress.DEFAULT_PROGRESS_TIMEOUT
+        )
+    )
+    progress_interval = float(
+        connection_info.get(
+            "progress_interval", pycrunch.progress.DEFAULT_PROGRESS_INTERVAL
+        )
+    )
+    progress_tracking = pycrunch.progress.DefaultProgressTracking(
+        timeout=progress_timeout, interval=progress_interval
+    )
+    user_email = connection_info.get("email") or connection_info.get("username")
+    if not user_email:
+        raise ValueError("Missing email or username in connection_info")
+    if "password" not in connection_info:
+        raise ValueError("Missing password in connection_info")
+    vlog = VerboseLogger(verbose)
+    session = pycrunch.Session(progress_tracking=progress_tracking)
+    session.cert = connection_info.get("cert")
+    session.verify = connection_info.get("verify", True)
+    # If this session hook is not installed, you get an error from lemonpy.py:
+    # AttributeError: No handler found for response status 301
+    # This happens on alpha but not on a local dev VM.
+    session.hooks["response"].status_301 = lambda r: r
+    api_url = connection_info["api_url"]
+    if not api_url.endswith("/"):
+        api_url += "/"
+    login_url = api_url + "public/login/"
+    vlog("Logging in to %s as %r", login_url, user_email)
+    try:
+        response = session.post(
+            login_url,
+            json={
+                "email": user_email,
+                "password": connection_info["password"],
+                "token": True,  # tells the server to return a Bearer token
+            },
+        )
+    except Exception as err:
+        sanitized_connection_info = connection_info.copy()
+        if "password" in sanitized_connection_info:
+            sanitized_connection_info["password"] = "*****"
+        if "token" in sanitized_connection_info:
+            sanitized_connection_info["token"] = "*****"
+        msg = (
+            "Error logging in to Crunch API: {err.__class__.__name__}: {err}\n"
+            "Login URL: {login_url}\n"
+            "Connection info: {sanitized_connection_info}"
+        ).format(
+            err=err,
+            login_url=login_url,
+            sanitized_connection_info=sanitized_connection_info,
+        )
+        raise Exception(msg)
+    # Get the Bearer token from the response
+    new_token = response.payload.access_token
+    # Make sure the correct authorization header is sent on all future requests
+    session.headers["Authorization"] = "Bearer " + new_token
+    return session.get(api_url).payload
 
 
 def get_dataset_by_id(site, dataset_id):
