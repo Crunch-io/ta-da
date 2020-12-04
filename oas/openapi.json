@@ -31542,819 +31542,6 @@
         ]
       }
     },
-    "/datasets/{dataset_id}/decks/{deck_id}/slides/{slide_id}/analyses/": {
-      "get": {
-        "description": "Each slide contains one or more analyses. An analysis \u2013 a table or graph with some specific combination of variables defining measures, rows, columns, and tabs; and settings such as percentage direction and decimal places \u2013 can be saved to a deck, which can then be exported, or the analysis can be reloaded in whole in the application or even exported as a standalone embeddable result. Note that while a slide can have multiple analyses, only the first analysis for each slide is used when exporting to Excel or PowerPoint.\n\nAn analysis is defined by a query, query environment, and display settings. To save an analysis, POST these to a deck as a new slide.\n\nAnalysis queries are described in detail in the feature guide. Filters may contain a mix of stored filters or expressions. Expressions may contain an optional name which may be used to label results.\n\nDisplay settings can be anything a client may need to reproduce the view of the data returned from the query. The settings the Crunch web client uses are shown here, but other clients are free to store other attributes as they see fit. Display settings should be objects with a value member.",
-        "operationId": "get-datasets-dataset_id-decks-deck_id-slides-slide_id-analyses",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "description": "List of all analyses inside this slide",
-                      "element": "shoji:catalog",
-                      "index": {
-                        "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/2049af9d9fa645edb3b595f51f9dc336/": {
-                          "display_settings": {},
-                          "query": {
-                            "dimensions": [
-                              {
-                                "local": "v1.variables"
-                              },
-                              {
-                                "local": "v1.subvariables"
-                              },
-                              {
-                                "local": "v1.categories"
-                              }
-                            ],
-                            "measures": {
-                              "count": {
-                                "args": [],
-                                "function": "cube_count"
-                              }
-                            },
-                            "with": {
-                              "v1": {
-                                "args": [
-                                  [
-                                    {
-                                      "args": [
-                                        {
-                                          "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
-                                        }
-                                      ],
-                                      "function": "as_selected"
-                                    },
-                                    {
-                                      "args": [
-                                        {
-                                          "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
-                                        }
-                                      ],
-                                      "function": "as_selected"
-                                    }
-                                  ]
-                                ],
-                                "function": "fuse"
-                              }
-                            }
-                          },
-                          "query_environment": {}
-                        }
-                      },
-                      "self": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/decks/39e837852d1e4d22ada34fbe7cb7bb38/slides/eaf7b61a91e8481e9f5756a034f1db77/analyses/"
-                    }
-                  }
-                },
-                "schema": {
-                  "description": "",
-                  "properties": {
-                    "description": {
-                      "minLength": 1,
-                      "type": "string"
-                    },
-                    "element": {
-                      "$ref": "#/components/schemas/Shoji-catalog-element"
-                    },
-                    "index": {
-                      "properties": {
-                        "analysis_url": {
-                          "properties": {
-                            "display_settings": {
-                              "description": "An object containing client-specific instructions on how to recreate the analysis.",
-                              "properties": {
-                                "countsOrPercents": {
-                                  "properties": {
-                                    "value": {
-                                      "minLength": 1,
-                                      "type": "string"
-                                    }
-                                  },
-                                  "type": "object"
-                                },
-                                "decimalPlaces": {
-                                  "properties": {
-                                    "value": {
-                                      "type": "number"
-                                    }
-                                  },
-                                  "type": "object"
-                                },
-                                "percentageDirection": {
-                                  "properties": {
-                                    "value": {
-                                      "minLength": 1,
-                                      "type": "string"
-                                    }
-                                  },
-                                  "type": "object"
-                                },
-                                "uiView": {
-                                  "properties": {
-                                    "value": {
-                                      "minLength": 1,
-                                      "type": "string"
-                                    }
-                                  },
-                                  "type": "object"
-                                },
-                                "vizType": {
-                                  "properties": {
-                                    "value": {
-                                      "minLength": 1,
-                                      "type": "string"
-                                    }
-                                  },
-                                  "type": "object"
-                                }
-                              },
-                              "type": "object"
-                            },
-                            "query": {
-                              "description": "Includes the query body for this analysis.",
-                              "properties": {
-                                "dimensions": {
-                                  "items": {
-                                    "properties": {
-                                      "local": {
-                                        "minLength": 1,
-                                        "type": "string"
-                                      }
-                                    },
-                                    "type": "object"
-                                  },
-                                  "minItems": 1,
-                                  "type": "array",
-                                  "uniqueItems": true
-                                },
-                                "measures": {
-                                  "properties": {
-                                    "count": {
-                                      "properties": {
-                                        "args": {
-                                          "items": {
-                                            "type": "object"
-                                          },
-                                          "type": "array"
-                                        },
-                                        "function": {
-                                          "minLength": 1,
-                                          "type": "string"
-                                        }
-                                      },
-                                      "type": "object"
-                                    }
-                                  },
-                                  "type": "object"
-                                },
-                                "with": {
-                                  "properties": {
-                                    "v1": {
-                                      "properties": {
-                                        "args": {
-                                          "items": {
-                                            "properties": {
-                                              "0": {
-                                                "items": {
-                                                  "properties": {
-                                                    "args": {
-                                                      "items": {
-                                                        "properties": {
-                                                          "variable": {
-                                                            "minLength": 1,
-                                                            "type": "string"
-                                                          }
-                                                        },
-                                                        "type": "object"
-                                                      },
-                                                      "minItems": 1,
-                                                      "type": "array",
-                                                      "uniqueItems": true
-                                                    },
-                                                    "function": {
-                                                      "minLength": 1,
-                                                      "type": "string"
-                                                    }
-                                                  },
-                                                  "type": "object"
-                                                },
-                                                "minItems": 1,
-                                                "type": "array",
-                                                "uniqueItems": true
-                                              }
-                                            },
-                                            "type": "object"
-                                          },
-                                          "type": "array"
-                                        },
-                                        "function": {
-                                          "minLength": 1,
-                                          "type": "string"
-                                        }
-                                      },
-                                      "type": "object"
-                                    }
-                                  },
-                                  "type": "object"
-                                }
-                              },
-                              "type": "object"
-                            },
-                            "query_environment": {
-                              "properties": {
-                                "filter": {
-                                  "items": {
-                                    "properties": {
-                                      "args": {
-                                        "items": {
-                                          "type": "object"
-                                        },
-                                        "type": "array"
-                                      },
-                                      "function": {
-                                        "minLength": 1,
-                                        "type": "string"
-                                      },
-                                      "name": {
-                                        "minLength": 1,
-                                        "type": "string"
-                                      }
-                                    },
-                                    "type": "object"
-                                  },
-                                  "minItems": 1,
-                                  "type": "array",
-                                  "uniqueItems": true
-                                },
-                                "weight": {
-                                  "description": "A variable URL, null, or `weight` may be omitted. A variable URL must correspond to a variable in the `weight_variables` collection for the dataset. A value of `null` indicates unweighted. When the weight key is omitted, the current-weight of the user making the evaluate/render/export request is used and may vary between users.",
-                                  "minLength": 1,
-                                  "type": "string"
-                                }
-                              },
-                              "type": "object"
-                            },
-                            "transform": {
-                              "description": "An object containing client-specific instructions on how to manipulate results, such as order and renaming.",
-                              "type": "object"
-                            },
-                            "viz_specs": {
-                              "description": "An object containing client-specific instructions on how to display the results of the `query`.\n",
-                              "properties": {
-                                "default": {
-                                  "properties": {
-                                    "format": {
-                                      "properties": {
-                                        "decimal_places": {
-                                          "properties": {
-                                            "moe": {
-                                              "type": "number"
-                                            },
-                                            "other": {
-                                              "type": "number"
-                                            },
-                                            "percentages": {
-                                              "type": "number"
-                                            }
-                                          },
-                                          "type": "object"
-                                        },
-                                        "show_empty": {
-                                          "description": "Specifies whether a row or column containing no valid responses will be displayed.",
-                                          "type": "boolean"
-                                        }
-                                      },
-                                      "type": "object"
-                                    },
-                                    "measures": {
-                                      "description": "The (single) second-order analysis (SOA) measure to display in the visualization. If present, it must contain exactly one measure keyword. Options include `col_percent`,\n`row_percent`,\n`table_percent`,\n`count_weighted`,\n`count_unweighted`,\n`col_base_weighted`,\n`col_base_unweighted`,\n`row_base_weighted`,\n`row_base_unweighted`,\n`table_base_weighted`,\n`table_base_unweighted`,\n`columns_moe`,\n`columns_std_dev`,\n`columns_std_err`,\n`row_percent_moe`,\n`row_std_dev`,\n`row_std_err`,\n`table_percent_moe`,\n`table_std_dev`,\n`table_std_err`,\n`z_score`,\n`p_value`,\n`col_index`,\n`pairwise_t_test`,\n`population`,\nand `population_moe`.",
-                                      "items": {
-                                        "type": "string"
-                                      },
-                                      "type": "array"
-                                    }
-                                  },
-                                  "type": "object"
-                                },
-                                "table": {
-                                  "properties": {
-                                    "format": {
-                                      "properties": {
-                                        "pval_colors": {
-                                          "description": "Specifies whether value-cells should be shaded red or green depending on the p-value (a statistical-significance measure) of that cell.",
-                                          "type": "boolean"
-                                        }
-                                      },
-                                      "type": "object"
-                                    },
-                                    "measures": {
-                                      "description": "The (single) second-order analysis (SOA) measure to display in the visualization. If present, it must contain exactly one measure keyword. Options include `col_percent`,\n`row_percent`,\n`table_percent`,\n`count_weighted`,\n`count_unweighted`,\n`col_base_weighted`,\n`col_base_unweighted`,\n`row_base_weighted`,\n`row_base_unweighted`,\n`table_base_weighted`,\n`table_base_unweighted`,\n`columns_moe`,\n`columns_std_dev`,\n`columns_std_err`,\n`row_percent_moe`,\n`row_std_dev`,\n`row_std_err`,\n`table_percent_moe`,\n`table_std_dev`,\n`table_std_err`,\n`z_score`,\n`p_value`,\n`col_index`,\n`pairwise_t_test`,\n`population`,\nand `population_moe`.",
-                                      "items": {
-                                        "type": "string"
-                                      },
-                                      "type": "array"
-                                    },
-                                    "page_layout": {
-                                      "properties": {
-                                        "measure_layout": {
-                                          "enum": [
-                                            "wide",
-                                            "long"
-                                          ],
-                                          "minLength": 1,
-                                          "type": "string"
-                                        },
-                                        "rows": {
-                                          "description": "Optional object field specifying the summary rows to appear in the exported table.",
-                                          "properties": {
-                                            "bottom": {
-                                              "items": {
-                                                "type": "object"
-                                              },
-                                              "type": "array"
-                                            },
-                                            "top": {
-                                              "items": {
-                                                "type": "object"
-                                              },
-                                              "type": "array"
-                                            }
-                                          },
-                                          "type": "object"
-                                        }
-                                      },
-                                      "type": "object"
-                                    },
-                                    "pairwise_comparison": {
-                                      "description": "This optional object field specifies settings that govern pairwise significance testing. In an exported table, this appears as the addition of alphabetical column headings and a pairwise_t_test measure indicating which other-column cells are pairwise-significant by their column letter, e.g. `AcdGj`.\n\n`\u201cpairwise_comparison\u201d: {\u201csig_threshold\u201d: [0.05, 0.1]}`",
-                                      "properties": {
-                                        "compare_by": {
-                                          "minLength": 1,
-                                          "type": "string"
-                                        },
-                                        "sig_threshold": {
-                                          "items": {
-                                            "type": "object"
-                                          },
-                                          "type": "array"
-                                        }
-                                      },
-                                      "type": "object"
-                                    }
-                                  },
-                                  "type": "object"
-                                }
-                              },
-                              "type": "object"
-                            }
-                          },
-                          "type": "object"
-                        }
-                      },
-                      "type": "object"
-                    },
-                    "self": {
-                      "minLength": 1,
-                      "type": "string"
-                    }
-                  },
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Success"
-          }
-        },
-        "summary": "List analyses",
-        "tags": [
-          "Slides"
-        ],
-        "x-code-samples": [
-          {
-            "lang": "SHELL",
-            "source": "curl -X GET https://app.crunch.io/api/datasets/0001a/decks/0001g/slides/0001f/analyses/ \\\n  -H 'Authorization: Bearer 598d9e1105'",
-            "syntaxLang": "bash"
-          },
-          {
-            "lang": "JAVASCRIPT",
-            "source": "const getDatasetsDataset_idDecksDeck_idSlidesSlide_idAnalyses = await fetch(\n  'https://app.crunch.io/api/datasets/0001a/decks/0001g/slides/0001f/analyses/',\n{\n   method: 'GET',\n   headers: {\n    'Authorization': 'Bearer 598d9e1105'\n   }\n })\n .then(response => response.json())\n .then(jsonResponse => jsonResponse.index)",
-            "syntaxLang": "javascript"
-          }
-        ]
-      },
-      "parameters": [
-        {
-          "description": "Unique ID of the dataset you are working with",
-          "in": "path",
-          "name": "dataset_id",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "description": "Unique ID of the deck you are working with",
-          "in": "path",
-          "name": "deck_id",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "description": "Unique ID of the slide you are working with",
-          "in": "path",
-          "name": "slide_id",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ],
-      "patch": {
-        "description": "Use this endpoint to edit an analysis. Editable attributes include:\n\n* query\n* query_environment\n* display_settings\n* transform\n* viz_specs\n\nProviding invalid values for those attributes or extra attributes will be rejected with a 400 response from the server.\n\nEditing an analysis query on a public deck cannot add reference to a secure variable; such a request results in a 400 response. Hidden variables, however, are permitted.",
-        "operationId": "patch-datasets-dataset_id-decks-deck_id-slides-slide_id-analyses",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "examples": {
-                "example-1": {
-                  "value": {
-                    "body": {
-                      "display_settings": {},
-                      "query": {
-                        "dimensions": [
-                          {
-                            "local": "v1.variables"
-                          },
-                          {
-                            "local": "v1.subvariables"
-                          },
-                          {
-                            "local": "v1.categories"
-                          }
-                        ],
-                        "measures": {
-                          "count": {
-                            "args": [],
-                            "function": "cube_count"
-                          }
-                        },
-                        "with": {
-                          "v1": {
-                            "args": [
-                              [
-                                {
-                                  "args": [
-                                    {
-                                      "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
-                                    }
-                                  ],
-                                  "function": "as_selected"
-                                },
-                                {
-                                  "args": [
-                                    {
-                                      "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
-                                    }
-                                  ],
-                                  "function": "as_selected"
-                                }
-                              ]
-                            ],
-                            "function": "fuse"
-                          }
-                        }
-                      },
-                      "query_environment": {}
-                    },
-                    "element": "shoji:entity"
-                  }
-                }
-              },
-              "schema": {
-                "description": "",
-                "properties": {
-                  "body": {
-                    "properties": {
-                      "display_settings": {
-                        "description": "An object containing client-specific instructions on how to recreate the analysis.",
-                        "properties": {
-                          "countsOrPercents": {
-                            "properties": {
-                              "value": {
-                                "minLength": 1,
-                                "type": "string"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "decimalPlaces": {
-                            "properties": {
-                              "value": {
-                                "type": "number"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "percentageDirection": {
-                            "properties": {
-                              "value": {
-                                "minLength": 1,
-                                "type": "string"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "uiView": {
-                            "properties": {
-                              "value": {
-                                "minLength": 1,
-                                "type": "string"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "vizType": {
-                            "properties": {
-                              "value": {
-                                "minLength": 1,
-                                "type": "string"
-                              }
-                            },
-                            "type": "object"
-                          }
-                        },
-                        "type": "object"
-                      },
-                      "query": {
-                        "description": "Includes the query body for this analysis.",
-                        "properties": {
-                          "dimensions": {
-                            "items": {
-                              "properties": {
-                                "local": {
-                                  "minLength": 1,
-                                  "type": "string"
-                                }
-                              },
-                              "type": "object"
-                            },
-                            "minItems": 1,
-                            "type": "array",
-                            "uniqueItems": true
-                          },
-                          "measures": {
-                            "properties": {
-                              "count": {
-                                "properties": {
-                                  "args": {
-                                    "items": {
-                                      "type": "object"
-                                    },
-                                    "type": "array"
-                                  },
-                                  "function": {
-                                    "minLength": 1,
-                                    "type": "string"
-                                  }
-                                },
-                                "type": "object"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "with": {
-                            "properties": {
-                              "v1": {
-                                "properties": {
-                                  "args": {
-                                    "items": {
-                                      "properties": {
-                                        "0": {
-                                          "items": {
-                                            "properties": {
-                                              "args": {
-                                                "items": {
-                                                  "properties": {
-                                                    "variable": {
-                                                      "minLength": 1,
-                                                      "type": "string"
-                                                    }
-                                                  },
-                                                  "type": "object"
-                                                },
-                                                "minItems": 1,
-                                                "type": "array",
-                                                "uniqueItems": true
-                                              },
-                                              "function": {
-                                                "minLength": 1,
-                                                "type": "string"
-                                              }
-                                            },
-                                            "type": "object"
-                                          },
-                                          "minItems": 1,
-                                          "type": "array",
-                                          "uniqueItems": true
-                                        }
-                                      },
-                                      "type": "object"
-                                    },
-                                    "type": "array"
-                                  },
-                                  "function": {
-                                    "minLength": 1,
-                                    "type": "string"
-                                  }
-                                },
-                                "type": "object"
-                              }
-                            },
-                            "type": "object"
-                          }
-                        },
-                        "type": "object"
-                      },
-                      "query_environment": {
-                        "properties": {
-                          "filter": {
-                            "items": {
-                              "properties": {
-                                "args": {
-                                  "items": {
-                                    "type": "object"
-                                  },
-                                  "type": "array"
-                                },
-                                "function": {
-                                  "minLength": 1,
-                                  "type": "string"
-                                },
-                                "name": {
-                                  "minLength": 1,
-                                  "type": "string"
-                                }
-                              },
-                              "type": "object"
-                            },
-                            "minItems": 1,
-                            "type": "array",
-                            "uniqueItems": true
-                          },
-                          "weight": {
-                            "description": "A variable URL, null, or `weight` may be omitted. A variable URL must correspond to a variable in the `weight_variables` collection for the dataset. A value of `null` indicates unweighted. When the weight key is omitted, the current-weight of the user making the evaluate/render/export request is used and may vary between users.",
-                            "minLength": 1,
-                            "type": "string"
-                          }
-                        },
-                        "type": "object"
-                      },
-                      "transform": {
-                        "description": "An object containing client-specific instructions on how to manipulate results, such as order and renaming.",
-                        "type": "object"
-                      },
-                      "viz_specs": {
-                        "description": "An object containing client-specific instructions on how to display the results of the `query`.\n",
-                        "properties": {
-                          "default": {
-                            "properties": {
-                              "format": {
-                                "properties": {
-                                  "decimal_places": {
-                                    "properties": {
-                                      "moe": {
-                                        "type": "number"
-                                      },
-                                      "other": {
-                                        "type": "number"
-                                      },
-                                      "percentages": {
-                                        "type": "number"
-                                      }
-                                    },
-                                    "type": "object"
-                                  },
-                                  "show_empty": {
-                                    "description": "Specifies whether a row or column containing no valid responses will be displayed.",
-                                    "type": "boolean"
-                                  }
-                                },
-                                "type": "object"
-                              },
-                              "measures": {
-                                "description": "The (single) second-order analysis (SOA) measure to display in the visualization. If present, it must contain exactly one measure keyword. Options include `col_percent`,\n`row_percent`,\n`table_percent`,\n`count_weighted`,\n`count_unweighted`,\n`col_base_weighted`,\n`col_base_unweighted`,\n`row_base_weighted`,\n`row_base_unweighted`,\n`table_base_weighted`,\n`table_base_unweighted`,\n`columns_moe`,\n`columns_std_dev`,\n`columns_std_err`,\n`row_percent_moe`,\n`row_std_dev`,\n`row_std_err`,\n`table_percent_moe`,\n`table_std_dev`,\n`table_std_err`,\n`z_score`,\n`p_value`,\n`col_index`,\n`pairwise_t_test`,\n`population`,\nand `population_moe`.",
-                                "items": {
-                                  "type": "string"
-                                },
-                                "type": "array"
-                              }
-                            },
-                            "type": "object"
-                          },
-                          "table": {
-                            "properties": {
-                              "format": {
-                                "properties": {
-                                  "pval_colors": {
-                                    "description": "Specifies whether value-cells should be shaded red or green depending on the p-value (a statistical-significance measure) of that cell.",
-                                    "type": "boolean"
-                                  }
-                                },
-                                "type": "object"
-                              },
-                              "measures": {
-                                "description": "The (single) second-order analysis (SOA) measure to display in the visualization. If present, it must contain exactly one measure keyword. Options include `col_percent`,\n`row_percent`,\n`table_percent`,\n`count_weighted`,\n`count_unweighted`,\n`col_base_weighted`,\n`col_base_unweighted`,\n`row_base_weighted`,\n`row_base_unweighted`,\n`table_base_weighted`,\n`table_base_unweighted`,\n`columns_moe`,\n`columns_std_dev`,\n`columns_std_err`,\n`row_percent_moe`,\n`row_std_dev`,\n`row_std_err`,\n`table_percent_moe`,\n`table_std_dev`,\n`table_std_err`,\n`z_score`,\n`p_value`,\n`col_index`,\n`pairwise_t_test`,\n`population`,\nand `population_moe`.",
-                                "items": {
-                                  "type": "string"
-                                },
-                                "type": "array"
-                              },
-                              "page_layout": {
-                                "properties": {
-                                  "measure_layout": {
-                                    "enum": [
-                                      "wide",
-                                      "long"
-                                    ],
-                                    "minLength": 1,
-                                    "type": "string"
-                                  },
-                                  "rows": {
-                                    "description": "Optional object field specifying the summary rows to appear in the exported table.",
-                                    "properties": {
-                                      "bottom": {
-                                        "items": {
-                                          "type": "object"
-                                        },
-                                        "type": "array"
-                                      },
-                                      "top": {
-                                        "items": {
-                                          "type": "object"
-                                        },
-                                        "type": "array"
-                                      }
-                                    },
-                                    "type": "object"
-                                  }
-                                },
-                                "type": "object"
-                              },
-                              "pairwise_comparison": {
-                                "description": "This optional object field specifies settings that govern pairwise significance testing. In an exported table, this appears as the addition of alphabetical column headings and a pairwise_t_test measure indicating which other-column cells are pairwise-significant by their column letter, e.g. `AcdGj`.\n\n`\u201cpairwise_comparison\u201d: {\u201csig_threshold\u201d: [0.05, 0.1]}`",
-                                "properties": {
-                                  "compare_by": {
-                                    "minLength": 1,
-                                    "type": "string"
-                                  },
-                                  "sig_threshold": {
-                                    "items": {
-                                      "type": "object"
-                                    },
-                                    "type": "array"
-                                  }
-                                },
-                                "type": "object"
-                              }
-                            },
-                            "type": "object"
-                          }
-                        },
-                        "type": "object"
-                      }
-                    },
-                    "type": "object"
-                  },
-                  "description": {
-                    "minLength": 1,
-                    "type": "string"
-                  },
-                  "element": {
-                    "$ref": "#/components/schemas/Shoji-entity-element"
-                  }
-                },
-                "type": "object"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "summary": "Change analysis"
-      }
-    },
     "/datasets/{dataset_id}/decks/{deck_id}/slides/{slide_id}/analyses/{analysis_id}/": {
       "get": {
         "description": "An analysis is defined by a query, query environment, and display settings. To save an analysis, POST these to a deck as a new slide.\n\nAnalysis queries are described in detail in the feature guide. Filters may contain a mix of stored filters or expressions. Expressions may contain an optional name which may be used to label results.\n\nDisplay settings can be anything a client may need to reproduce the view of the data returned from the query. The settings the Crunch web client uses are shown here, but other clients are free to store other attributes as they see fit. Display settings should be objects with a value member.",
@@ -33644,7 +32831,7 @@
         }
       ],
       "patch": {
-        "description": "Editable attributes are:\n\n* query\n* query_environment\n* display_settings\n* transform\n\nProviding invalid values for those attributes or extra attributes will be rejected with a 400 response from the server.\n\nEditing an analysis query on a public deck cannot add reference to a secure variable; such a request results in a 400 response. Hidden variables, however, are permitted.",
+        "description": "Use this endpoint to edit an analysis. Editable attributes include:\n\n* query\n* query_environment\n* display_settings\n* transform\n* viz_specs\n\nProviding invalid values for those attributes or extra attributes will be rejected with a 400 response from the server.\n\nEditing an analysis query on a public deck cannot add reference to a secure variable; such a request results in a 400 response. Hidden variables, however, are permitted.",
         "operationId": "patch-datasets-dataset_id-decks-deck_id-slides-slide_id-analyses-analysis_id",
         "parameters": [],
         "requestBody": {
@@ -33652,6 +32839,59 @@
             "application/json": {
               "examples": {
                 "example-1": {
+                  "value": {
+                    "body": {
+                      "display_settings": {},
+                      "query": {
+                        "dimensions": [
+                          {
+                            "local": "v1.variables"
+                          },
+                          {
+                            "local": "v1.subvariables"
+                          },
+                          {
+                            "local": "v1.categories"
+                          }
+                        ],
+                        "measures": {
+                          "count": {
+                            "args": [],
+                            "function": "cube_count"
+                          }
+                        },
+                        "with": {
+                          "v1": {
+                            "args": [
+                              [
+                                {
+                                  "args": [
+                                    {
+                                      "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/0e4674f46dcb4188adc82b7fca1f3ede/"
+                                    }
+                                  ],
+                                  "function": "as_selected"
+                                },
+                                {
+                                  "args": [
+                                    {
+                                      "variable": "https://app.crunch.io/api/datasets/3b7aea07d2554426baa1f4b50342e6b0/variables/e19bb384f740410a833ee361a08a21a5/"
+                                    }
+                                  ],
+                                  "function": "as_selected"
+                                }
+                              ]
+                            ],
+                            "function": "fuse"
+                          }
+                        }
+                      },
+                      "query_environment": {}
+                    },
+                    "element": "shoji:entity"
+                  }
+                },
+                "example-2": {
                   "value": {
                     "body": {
                       "display_settings": {
@@ -33843,7 +33083,7 @@
                     }
                   }
                 },
-                "example-2": {
+                "example-3": {
                   "value": {
                     "body": {
                       "query": {
@@ -33863,7 +33103,7 @@
                     "element": "shoji:entity"
                   }
                 },
-                "example-3": {
+                "example-4": {
                   "value": {
                     "body": {
                       "display_settings": {
@@ -33902,7 +33142,7 @@
                     "element": "shoji:entity"
                   }
                 },
-                "example-4": {
+                "example-5": {
                   "value": {
                     "body": {
                       "display_settings": {
@@ -34077,1130 +33317,308 @@
                 }
               },
               "schema": {
-                "additionalProperties": false,
+                "description": "",
                 "properties": {
                   "body": {
-                    "additionalProperties": false,
                     "properties": {
                       "display_settings": {
-                        "additionalProperties": false,
+                        "description": "An object containing client-specific instructions on how to recreate the analysis.",
                         "properties": {
-                          "bins": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "type": "integer"
-                              }
-                            },
-                            "required": [],
-                            "title": "Bins",
-                            "type": "object"
-                          },
-                          "bivariateCycle": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "columnSignificance": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "countMarginType": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
                           "countsOrPercents": {
-                            "additionalProperties": false,
                             "properties": {
                               "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "currentTab": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "type": "integer"
-                              }
-                            },
-                            "required": [],
-                            "title": "Bins",
-                            "type": "object"
-                          },
-                          "decimalPlaces": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "type": "integer"
-                              }
-                            },
-                            "required": [],
-                            "title": "Bins",
-                            "type": "object"
-                          },
-                          "dropdownSettings": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "type": "integer"
-                              }
-                            },
-                            "required": [],
-                            "title": "Bins",
-                            "type": "object"
-                          },
-                          "geoChart": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "groupMode": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "marginLocation": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "minBaseSize": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "type": "integer"
-                              }
-                            },
-                            "required": [],
-                            "title": "Bins",
-                            "type": "object"
-                          },
-                          "percentageDirection": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "pivot": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "populationMagnitude": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "type": "integer"
-                              }
-                            },
-                            "required": [],
-                            "title": "Bins",
-                            "type": "object"
-                          },
-                          "populationSize": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "type": "integer"
-                              }
-                            },
-                            "required": [],
-                            "title": "Bins",
-                            "type": "object"
-                          },
-                          "preferredBarPlotMode": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "selectedColumn": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "type": "integer"
-                              }
-                            },
-                            "required": [],
-                            "title": "Bins",
-                            "type": "object"
-                          },
-                          "separateOrCombined": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "showCategoriesSubtotals": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "showDescription": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "showEmpty": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "disabled": {
-                                "type": "boolean"
-                              },
-                              "value": {
-                                "type": "boolean"
-                              }
-                            },
-                            "required": [],
-                            "title": "ShowEmpty",
-                            "type": "object"
-                          },
-                          "showMean": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "showSignif": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "showValueLabels": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "showVisualization": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "simpleOrExtended": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "sortDirection": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "type": "integer"
-                              }
-                            },
-                            "required": [],
-                            "title": "Bins",
-                            "type": "object"
-                          },
-                          "sortKey": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "type": "integer"
-                              }
-                            },
-                            "required": [],
-                            "title": "Bins",
-                            "type": "object"
-                          },
-                          "sortSource": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "suppressOnMinBaseSize": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "uiView": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          },
-                          "vizType": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "value": {
-                                "anyOf": [
-                                  {
-                                    "type": "boolean"
-                                  },
-                                  {
-                                    "additionalProperties": false,
-                                    "properties": {
-                                      "col_id": {
-                                        "type": "integer"
-                                      },
-                                      "row_id": {
-                                        "type": "integer"
-                                      }
-                                    },
-                                    "required": [],
-                                    "title": "ValueClass",
-                                    "type": "object"
-                                  },
-                                  {
-                                    "nullable": true
-                                  },
-                                  {
-                                    "type": "string"
-                                  }
-                                ],
-                                "title": "ValueUnion"
-                              }
-                            },
-                            "required": [],
-                            "title": "BivariateCycle",
-                            "type": "object"
-                          }
-                        },
-                        "required": [],
-                        "title": "DisplaySettings",
-                        "type": "object"
-                      },
-                      "query": {
-                        "additionalProperties": false,
-                        "properties": {
-                          "dimensions": {
-                            "items": {
-                              "additionalProperties": false,
-                              "properties": {
-                                "variable": {
-                                  "format": "uri",
-                                  "type": "string",
-                                  "x-qt-uri-protocols": [
-                                    "https"
-                                  ]
-                                }
-                              },
-                              "required": [],
-                              "title": "Dimension",
-                              "type": "object"
-                            },
-                            "type": "array"
-                          },
-                          "measures": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "count": {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "args": {
-                                    "items": {},
-                                    "type": "array"
-                                  },
-                                  "function": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": [],
-                                "title": "Count",
-                                "type": "object"
-                              }
-                            },
-                            "required": [],
-                            "title": "Measures",
-                            "type": "object"
-                          }
-                        },
-                        "required": [],
-                        "title": "Query",
-                        "type": "object"
-                      },
-                      "transform": {
-                        "additionalProperties": false,
-                        "properties": {
-                          "app_schema": {
-                            "additionalProperties": false,
-                            "properties": {
-                              "rows_dimension": {
-                                "additionalProperties": false,
-                                "properties": {
-                                  "elements": {
-                                    "additionalProperties": {
-                                      "additionalProperties": false,
-                                      "properties": {
-                                        "fill": {
-                                          "type": "string"
-                                        }
-                                      },
-                                      "required": [],
-                                      "title": "Element",
-                                      "type": "object"
-                                    },
-                                    "type": "object"
-                                  }
-                                },
-                                "required": [],
-                                "title": "RowsDimension",
-                                "type": "object"
-                              },
-                              "version": {
+                                "minLength": 1,
                                 "type": "string"
                               }
                             },
-                            "required": [],
-                            "title": "AppSchema",
                             "type": "object"
                           },
-                          "rows_dimension": {
-                            "additionalProperties": false,
+                          "decimalPlaces": {
                             "properties": {
-                              "elements": {
-                                "additionalProperties": {
-                                  "additionalProperties": false,
-                                  "properties": {
-                                    "fill": {
-                                      "type": "string"
-                                    }
+                              "value": {
+                                "type": "number"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "percentageDirection": {
+                            "properties": {
+                              "value": {
+                                "minLength": 1,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "uiView": {
+                            "properties": {
+                              "value": {
+                                "minLength": 1,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "vizType": {
+                            "properties": {
+                              "value": {
+                                "minLength": 1,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "query": {
+                        "description": "Includes the query body for this analysis.",
+                        "properties": {
+                          "dimensions": {
+                            "items": {
+                              "properties": {
+                                "local": {
+                                  "minLength": 1,
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "minItems": 1,
+                            "type": "array",
+                            "uniqueItems": true
+                          },
+                          "measures": {
+                            "properties": {
+                              "count": {
+                                "properties": {
+                                  "args": {
+                                    "items": {
+                                      "type": "object"
+                                    },
+                                    "type": "array"
                                   },
-                                  "required": [],
-                                  "title": "Element",
-                                  "type": "object"
+                                  "function": {
+                                    "minLength": 1,
+                                    "type": "string"
+                                  }
                                 },
                                 "type": "object"
                               }
                             },
-                            "required": [],
-                            "title": "RowsDimension",
                             "type": "object"
                           },
-                          "version": {
+                          "with": {
+                            "properties": {
+                              "v1": {
+                                "properties": {
+                                  "args": {
+                                    "items": {
+                                      "properties": {
+                                        "0": {
+                                          "items": {
+                                            "properties": {
+                                              "args": {
+                                                "items": {
+                                                  "properties": {
+                                                    "variable": {
+                                                      "minLength": 1,
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  "type": "object"
+                                                },
+                                                "minItems": 1,
+                                                "type": "array",
+                                                "uniqueItems": true
+                                              },
+                                              "function": {
+                                                "minLength": 1,
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "minItems": 1,
+                                          "type": "array",
+                                          "uniqueItems": true
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "function": {
+                                    "minLength": 1,
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "query_environment": {
+                        "properties": {
+                          "filter": {
+                            "items": {
+                              "properties": {
+                                "args": {
+                                  "items": {
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                },
+                                "function": {
+                                  "minLength": 1,
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "minLength": 1,
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "minItems": 1,
+                            "type": "array",
+                            "uniqueItems": true
+                          },
+                          "weight": {
+                            "description": "A variable URL, null, or `weight` may be omitted. A variable URL must correspond to a variable in the `weight_variables` collection for the dataset. A value of `null` indicates unweighted. When the weight key is omitted, the current-weight of the user making the evaluate/render/export request is used and may vary between users.",
+                            "minLength": 1,
                             "type": "string"
                           }
                         },
-                        "required": [],
-                        "title": "Transform",
+                        "type": "object"
+                      },
+                      "transform": {
+                        "description": "An object containing client-specific instructions on how to manipulate results, such as order and renaming.",
                         "type": "object"
                       },
                       "viz_specs": {
-                        "additionalProperties": false,
+                        "description": "An object containing client-specific instructions on how to display the results of the `query`.\n",
                         "properties": {
-                          "kpi": {
-                            "additionalProperties": false,
+                          "default": {
                             "properties": {
-                              "aux_indicators": {
-                                "additionalProperties": false,
-                                "title": "AuxIndicators",
-                                "type": "object"
-                              },
-                              "select": {
-                                "additionalProperties": false,
+                              "format": {
                                 "properties": {
-                                  "value": {
-                                    "anyOf": [
-                                      {
-                                        "type": "boolean"
+                                  "decimal_places": {
+                                    "properties": {
+                                      "moe": {
+                                        "type": "number"
                                       },
-                                      {
-                                        "additionalProperties": false,
-                                        "properties": {
-                                          "col_id": {
-                                            "type": "integer"
-                                          },
-                                          "row_id": {
-                                            "type": "integer"
-                                          }
-                                        },
-                                        "required": [],
-                                        "title": "ValueClass",
-                                        "type": "object"
+                                      "other": {
+                                        "type": "number"
                                       },
-                                      {
-                                        "nullable": true
-                                      },
-                                      {
-                                        "type": "string"
+                                      "percentages": {
+                                        "type": "number"
                                       }
-                                    ],
-                                    "title": "ValueUnion"
+                                    },
+                                    "type": "object"
+                                  },
+                                  "show_empty": {
+                                    "description": "Specifies whether a row or column containing no valid responses will be displayed.",
+                                    "type": "boolean"
                                   }
                                 },
-                                "required": [],
-                                "title": "BivariateCycle",
+                                "type": "object"
+                              },
+                              "measures": {
+                                "description": "The (single) second-order analysis (SOA) measure to display in the visualization. If present, it must contain exactly one measure keyword. Options include `col_percent`,\n`row_percent`,\n`table_percent`,\n`count_weighted`,\n`count_unweighted`,\n`col_base_weighted`,\n`col_base_unweighted`,\n`row_base_weighted`,\n`row_base_unweighted`,\n`table_base_weighted`,\n`table_base_unweighted`,\n`columns_moe`,\n`columns_std_dev`,\n`columns_std_err`,\n`row_percent_moe`,\n`row_std_dev`,\n`row_std_err`,\n`table_percent_moe`,\n`table_std_dev`,\n`table_std_err`,\n`z_score`,\n`p_value`,\n`col_index`,\n`pairwise_t_test`,\n`population`,\nand `population_moe`.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "table": {
+                            "properties": {
+                              "format": {
+                                "properties": {
+                                  "pval_colors": {
+                                    "description": "Specifies whether value-cells should be shaded red or green depending on the p-value (a statistical-significance measure) of that cell.",
+                                    "type": "boolean"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "measures": {
+                                "description": "The (single) second-order analysis (SOA) measure to display in the visualization. If present, it must contain exactly one measure keyword. Options include `col_percent`,\n`row_percent`,\n`table_percent`,\n`count_weighted`,\n`count_unweighted`,\n`col_base_weighted`,\n`col_base_unweighted`,\n`row_base_weighted`,\n`row_base_unweighted`,\n`table_base_weighted`,\n`table_base_unweighted`,\n`columns_moe`,\n`columns_std_dev`,\n`columns_std_err`,\n`row_percent_moe`,\n`row_std_dev`,\n`row_std_err`,\n`table_percent_moe`,\n`table_std_dev`,\n`table_std_err`,\n`z_score`,\n`p_value`,\n`col_index`,\n`pairwise_t_test`,\n`population`,\nand `population_moe`.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "page_layout": {
+                                "properties": {
+                                  "measure_layout": {
+                                    "enum": [
+                                      "wide",
+                                      "long"
+                                    ],
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "rows": {
+                                    "description": "Optional object field specifying the summary rows to appear in the exported table.",
+                                    "properties": {
+                                      "bottom": {
+                                        "items": {
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      },
+                                      "top": {
+                                        "items": {
+                                          "type": "object"
+                                        },
+                                        "type": "array"
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "pairwise_comparison": {
+                                "description": "This optional object field specifies settings that govern pairwise significance testing. In an exported table, this appears as the addition of alphabetical column headings and a pairwise_t_test measure indicating which other-column cells are pairwise-significant by their column letter, e.g. `AcdGj`.\n\n`\u201cpairwise_comparison\u201d: {\u201csig_threshold\u201d: [0.05, 0.1]}`",
+                                "properties": {
+                                  "compare_by": {
+                                    "minLength": 1,
+                                    "type": "string"
+                                  },
+                                  "sig_threshold": {
+                                    "items": {
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
                                 "type": "object"
                               }
                             },
-                            "required": [],
-                            "title": "Kpi",
                             "type": "object"
                           }
                         },
-                        "required": [],
-                        "title": "VizSpecs",
                         "type": "object"
                       }
                     },
-                    "required": [],
-                    "title": "Body",
                     "type": "object"
+                  },
+                  "description": {
+                    "minLength": 1,
+                    "type": "string"
                   },
                   "element": {
                     "$ref": "#/components/schemas/Shoji-entity-element"
-                  },
-                  "query_environment": {
-                    "additionalProperties": false,
-                    "properties": {
-                      "filter": {
-                        "items": {},
-                        "type": "array"
-                      }
-                    },
-                    "required": [],
-                    "title": "QueryEnvironment",
-                    "type": "object"
                   }
                 },
-                "required": [],
-                "title": "DatasetsDatasetIDDecksDeckIDSlidesSlideIDAnalysesAnalysisIDPatchRequest",
                 "type": "object"
               }
             }
@@ -35208,45 +33626,13 @@
         },
         "responses": {
           "204": {
-            "description": "Item updated"
+            "description": "No Content"
           },
           "400": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "exception": [
-                        "Cannot edit attribute: x"
-                      ],
-                      "message": "Cannot edit attribute: x",
-                      "status": "400 Bad Request"
-                    }
-                  }
-                },
-                "schema": {
-                  "properties": {
-                    "exception": {
-                      "items": {
-                        "type": "string"
-                      },
-                      "type": "array"
-                    },
-                    "message": {
-                      "type": "string"
-                    },
-                    "status": {
-                      "type": "string"
-                    }
-                  },
-                  "type": "object"
-                }
-              }
-            },
             "description": "Bad Request"
           }
         },
-        "summary": "Update analysis",
+        "summary": "Change analysis",
         "tags": [
           "Slides"
         ],
