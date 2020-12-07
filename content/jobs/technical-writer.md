@@ -19,7 +19,7 @@ You’ll work closely with both our product and development teams to understand 
 # What you'll do
 
 ## External Documentation
-- Modernize our [API documentation](https://docs.crunch.io/)
+- Modernize our [API documentation](https://crunch.io/api/reference/)
 - Update the developer documentation for our [R](https://github.com/Crunch-io/rcrunch) and [Python](https://github.com/Crunch-io/pycrunch) SDKs
 - Write customer release notes, [product feature announcements](https://crunch.io/dev/features/), and how-tos
 - Redesign, reorganize, and rewrite our [customer support documents](http://support.crunch.io/)
