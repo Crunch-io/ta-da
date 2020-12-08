@@ -61,8 +61,10 @@ def connect_pycrunch(connection_info, verbose=False):
         api_url: URL of the Crunch API
         token: If given, used for token authentication.
         email: Email address passed in user credentials
-        username: Used if email is not set
-        password: Use for password authentication when token not given
+        username: Used in place of email if email is not set
+        password: Used for password authentication when token not given
+        bearer: If true and token given, send token in Authorization header,
+            not in cookie. If false or not given, send token in cookie named 'token'.
         cert: (optional) Passed through to requests library if given
         verify: (optional) Passed through to requests library if given.
             Set this to False when testing against local development server.
@@ -92,12 +94,21 @@ def connect_pycrunch(connection_info, verbose=False):
     user_email = connection_info.get("email") or connection_info.get("username")
     vlog = VerboseLogger(verbose)
     if connection_info.get("token"):
-        vlog("Connecting to %s using token in cookie", api_url)
+        if connection_info.get("bearer"):
+            vlog("Connecting to %s using bearer token", api_url)
+            cookie_token = None
+            bearer_token = connection_info["token"]
+        else:
+            vlog("Connecting to %s using cookie token", api_url)
+            cookie_token = connection_info["token"]
+            bearer_token = None
         session = pycrunch.Session(
-            token=connection_info["token"],
+            token=cookie_token,
             domain=urllib_parse.urlparse(api_url).netloc,
             progress_tracking=progress_tracking,
         )
+        if bearer_token:
+            session.headers["Authorization"] = "Bearer " + bearer_token
     else:
         if not user_email:
             raise ValueError("Missing email or username in connection_info")
@@ -140,7 +151,7 @@ def connect_pycrunch(connection_info, verbose=False):
 def login_pycrunch(connection_info, verbose=False):
     """
     Log in to Crunch using email/password and generate a bearer token.
-    This only works for users that have the 'pwhash' Auth method.
+
     connection_info: dictionary containing connection parameters:
         api_url: URL of the Crunch API
         email: Email address passed in user credentials
@@ -155,7 +166,7 @@ def login_pycrunch(connection_info, verbose=False):
         a pycrunch.shoji.Catalog "site" object. It has a session attribute that
         is derived from requests.sessions.Session, which can be used for making
         HTTP requests to the API server.
-        site.session.token is the returned Bearer token.
+        site.session.headers['Authorization'] contains the returned Bearer token.
     """
     progress_timeout = float(
         connection_info.get(
@@ -218,6 +229,119 @@ def login_pycrunch(connection_info, verbose=False):
     # Make sure the correct authorization header is sent on all future requests
     session.headers["Authorization"] = "Bearer " + new_token
     return session.get(api_url).payload
+
+
+def get_user_by_email(site, email):
+    """
+    Return the pycrunch.shoji.Entity object for the user with the given email address
+
+    site:
+        pycrunch.shoji.Catalog object returned by connect_pycrunch() or login_pycrunch()
+    email:
+        Email address of user. If no user has that email address, None is returned.
+
+    Use ``site.user_url`` to get the Entity for the current authenticated user.
+    Even though the attribute name ends with "_url" actually it is a shoji Entity.
+    """
+    # TODO: I shouldn't have to iterate through all users to find one by email.
+    # But that would require an API enhancement.
+    email_key = email.lower()
+    for user_url, user_tuple in site.users.index.items():
+        if user_tuple.email.lower() == email_key:
+            return site.session.get(user_url).payload
+    return None
+
+
+def get_current_user(site):
+    """
+    Return the shoji Entity for the current authenticated user.
+
+    site:
+        pycrunch.shoji.Catalog object returned by connect_pycrunch() or login_pycrunch()
+
+    This function just returns ``site.user_url``. However, I'm hoping the
+    existence of this function will save someone time looking for the way to
+    get their user info. The name of the ``user_url`` attribute makes it look
+    like a URL string, but actually it is a pycrunch.shoji.Entity.
+    """
+    return site.user_url
+
+
+def get_current_auth_token(site):
+    """
+    Return the current authentication token being used with the Crunch API.
+
+    site:
+        pycrunch.shoji.Catalog object returned by connect_pycrunch() or login_pycrunch()
+
+    This is useful if e.g. you want to store the token in a config file for later use
+    by a script. Make sure to keep it secure.
+    """
+    # Check headers first because Crunch API prefers Bearer token over cookies
+    token = _get_token_from_headers(site)
+    if token:
+        return token
+    return _get_token_from_cookies(site)
+
+
+def _get_token_from_headers(site):
+    authorization = site.session.headers.get("Authorization")
+    if not authorization:
+        return None
+    prefix = "Bearer "
+    if not authorization.startswith(prefix):
+        return None
+    return authorization[len(prefix) :].strip('"')
+
+
+def _get_token_from_cookies(site):
+    # There can be multiple cookies named "token" so dictionary-style access might crash
+    # One will have a "domain" value like ".crunch.io" and the other "alpha.crunch.io".
+    domain = urllib_parse.urlparse(site.self).netloc.lower()
+    for cookie in site.session.cookies:
+        if cookie.name != "token":
+            continue
+        if domain.endswith(cookie.domain.lower()):
+            token = cookie.value
+            if not token:
+                continue
+            return token.strip('"')
+    return None
+
+
+def logout_pycrunch(site):
+    """
+    Log out the currently authenticated Crunch API user.
+
+    site:
+        pycrunch.shoji.Catalog object returned by connect_pycrunch() or login_pycrunch()
+
+    This function just accesses the ``site.logout_url`` attribute.
+    Hopefully the existence of this function will make it easier for someone
+    to discover how to log out using pycrunch. Accessing an attribute with a
+    name ending in "_url" would not usually have this side effect, so it's
+    confusing.
+    """
+    site.logout_url
+
+
+def set_password(site, old_pw, new_pw):
+    """
+    Set or change the password for the currently authenticated Crunch API user.
+
+    site:
+        pycrunch.shoji.Catalog object returned by connect_pycrunch() or login_pycrunch()
+    old_pw:
+        The current password. If the current authentication method is not 'pwhash'
+        (check ``site.user_url.body.id_method``) then pass an empty string here.
+    new_pw:
+        The new password for the user. If the current authentication method is
+        not 'pwhash' then this password will only be useful to get a Bearer token.
+        See: ``login_pycrunch()``
+    """
+    user = site.user_url  # this is an Entity, not a string containing a URL
+    password_url = user.password  # this is a string containing a URL, not a a password
+    site.session.post(password_url, json={"old_pw": old_pw, "new_pw": new_pw})
 
 
 def get_dataset_by_id(site, dataset_id):
