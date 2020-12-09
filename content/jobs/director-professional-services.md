@@ -65,4 +65,4 @@ continue to build one of the best companies in the world!
 
 - Knowledge of SQL
 
-<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>
+<button class="btn btn-success" onclick="location.href='https://smrtr.io/4F6hw';">Apply now</button>

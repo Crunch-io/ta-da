@@ -1,7 +1,7 @@
 +++
 date = "2020-05-18T17:10:21-04:00"
 draft = false
-title = "Conquering Survey Trackers"
+title = "How to Conquer Survey Trackers"
 label = "White Paper"
 url = "//info.crunch.io/conquering-survey-trackers-lp"
 weight = 200

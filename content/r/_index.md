@@ -11,7 +11,7 @@ At Crunch, we understand that no graphical interface is going to be able to
 accomplish every single task that faces an analyst. For instance if you need to
 fit a statistical model, perform text analysis, or send data to a downstream
 process an open source tool like R is probably the most convenient option. This
-is why we’ve designed Crunch around an [accessible API](http://docs.crunch.io/)
+is why we’ve designed Crunch around an [accessible API](https://crunch.io/api/reference/)
 and built several R clients for accessing and manipulating data stored in
 Crunch. These tools allow you to combine the power and dynamism of the R
 ecosystem with the user-friendliness of the Crunch graphical interface.

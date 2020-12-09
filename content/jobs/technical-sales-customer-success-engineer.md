@@ -57,4 +57,4 @@ collaborative and collegial in nature.
 asked to be on the constant lookout for the best talent to bring in to help us
 continue to build one of the best companies in the world!
 
-<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>
+<button class="btn btn-success" onclick="location.href='https://smrtr.io/4F6hw';">Apply now</button>

@@ -40,4 +40,4 @@ We are looking for a world-class Data Visualization Specialist to join our remot
 - Interest in machine learning and statistical computing
 - Time zone / work hours amenable to working closely with US-based Product team
 
-<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>
+<button class="btn btn-success" onclick="location.href='https://smrtr.io/4F6hw';">Apply now</button>

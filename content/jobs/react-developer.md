@@ -62,4 +62,4 @@ If you have experience or interest in these additional areas, you may have the o
 - Bachelor’s Degree in Programming, Computer Science, or Engineering-related field.
 - Current or former contributor to a significant open-source React library.
 
-<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>
+<button class="btn btn-success" onclick="location.href='https://smrtr.io/4F6hw';">Apply now</button>
