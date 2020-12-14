@@ -1,6 +1,5 @@
 +++
-date = "2020-12-03T14:08:05-04:00"
-publishdate = "2020-12-03T19:26:13+0000"
+date = "2020-12-14T15:18:29-04:00"
 draft = false
 title = "Perform trend analysis on wave data"
 news_description = "Identify trends over time by applying moving averages with just a few clicks. Click here to learn more."
@@ -9,7 +8,7 @@ weight = 20
 tags = ["analyses", "graphs", "time series"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 
 +++
@@ -28,7 +27,5 @@ This feature makes use of the new [categorical date variable type](https://help.
 Your chosen smoothing settings are saved with your analyses when you add them to your deck, and are then reflected in both exports (Excel and PowerPoint) and on dashboards. Table coloring and column comparison are not yet available for smoothed trend estimates.
 
 For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360053244351).
-
-Currently this feature is only available if you have enabled [Early access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access?) in your application settings.
 
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
