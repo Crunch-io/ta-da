@@ -8,7 +8,7 @@ weight = 20
 tags = ["analyses", "graphs", "time series"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 
 +++
