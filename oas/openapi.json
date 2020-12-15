@@ -17840,7 +17840,7 @@
                       },
                       "self": "https://crunch.io/api/datasets/30e4a9/batches/",
                       "views": {
-                        "compare": "https://alpha.crunch.io/api/datasets/30e4a9/batches/compare/"
+                        "compare": "https://app.crunch.io/api/datasets/30e4a9/batches/compare/"
                       }
                     }
                   }
