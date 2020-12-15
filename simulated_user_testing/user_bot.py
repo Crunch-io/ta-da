@@ -13,6 +13,7 @@ Options:
     --dataset-template=TEMPLATE_ID  [default: gb_plus]
     --stderr                Log to standard error instead of to syslog
     --loglevel=LEVEL        Logging level [default: INFO]
+    --tracing               Turn on Honeycomb/Datadog tracing
 
 Commands:
     cold-load               Search for an old dataset matching the template and
@@ -61,6 +62,9 @@ def main():
     logging.getLogger("").setLevel(level)
     logging.getLogger("").addHandler(handler)
     log.info("Starting User Bot")
+    if args["--tracing"]:
+        log.info("Turning on Honeycomb/Datadog tracing")
+        sim_util.init_tracing(APP_NAME)
     with io.open(args["-c"], "r", encoding="UTF-8") as f:
         config = yaml.safe_load(f)
     site = sim_util.connect_api(config, args)
