@@ -155,7 +155,7 @@ def _simulate_editor(config, args):
         )
     )
     with track_activity(APP_NAME, msg):
-        prev_ds = sim_util.find_latest_good_dataset_in_project(project, ds_name_pattern)
+        prev_ds = sim_util.find_newest_good_dataset_in_project(project, ds_name_pattern)
     if prev_ds is not None:
         msg = "Copying from dataset '{}' to dataset '{}'".format(
             sim_util.get_entity_name(prev_ds), sim_util.get_entity_name(ds)

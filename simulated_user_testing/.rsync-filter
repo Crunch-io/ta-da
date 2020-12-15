@@ -14,3 +14,6 @@ exclude .vscode/
 
 # Don't copy vim swap files
 exclude *.swp
+
+# Don't overwrite remote config file
+exclude config*.yaml

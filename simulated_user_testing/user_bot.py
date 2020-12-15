@@ -28,7 +28,6 @@ import sys
 import time
 
 import docopt
-from pycrunch.elements import ElementSession
 import yaml
 
 import sim_util
@@ -64,11 +63,11 @@ def main():
     log.info("Starting User Bot")
     with io.open(args["-c"], "r", encoding="UTF-8") as f:
         config = yaml.safe_load(f)
-    saved_user_agent = ElementSession.headers["user-agent"]
-    ElementSession.headers["user-agent"] = APP_NAME
+    site = sim_util.connect_api(config, args)
+    site.session.headers["user-agent"] = APP_NAME
     try:
         if args["cold-load"]:
-            return simulate_cold_load(config, args)
+            return simulate_cold_load(site, args)
         raise ValueError("Unknown command")
     except KeyboardInterrupt:
         log.warning("Stopped by KeyboardInterrupt")
@@ -79,23 +78,20 @@ def main():
     except BaseException:
         log.exception("Unexpected exception")
         return 3
-    finally:
-        ElementSession.headers["user-agent"] = saved_user_agent
 
 
-def simulate_cold_load(config, args):
+def simulate_cold_load(site, args):
     t0 = time.time()
     ds_template_id = args["--dataset-template"]
     ds_name_prefix = sim_util.get_ds_name_prefix(ds_template_id)
     ds_name_pattern = r"^{}".format(re.escape(ds_name_prefix))
-    site = sim_util.connect_api(config, args)
     with track_activity(APP_NAME, "Getting 'Sim Profiles' project by name"):
         project = sim_util.get_project_by_name(site, "Sim Profiles")
     msg = "Finding oldest dataset in project '{}' " "matching pattern '{}'".format(
         sim_util.get_entity_name(project), ds_name_pattern
     )
     with track_activity(APP_NAME, msg):
-        old_ds = sim_util.find_oldest_good_dataset_in_project(project, ds_name_pattern)
+        old_ds = sim_util.find_oldest_dataset_in_project(project, ds_name_pattern)
     t1 = time.time()
     with track_activity(APP_NAME, "Do something with oldest dataset"):
         do_something_with_dataset(old_ds)

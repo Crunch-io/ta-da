@@ -104,6 +104,12 @@ def yield_project_datasets_matching_name(project, ds_name_pattern):
 
 
 def sort_ds_tuples_by_creation_datetime(ds_tuples, reverse=True):
+    """
+    ds_tuples: Sequence of dataset Tuples (pycrunch.shoji.Tuple)
+    reverse: If true, sort newest dataset first (default: True)
+    Return the Tuples in a list sorted by creation_time.
+    """
+
     def _sort_key(ds_tuple):
         datetime_str = ds_tuple.creation_time
         if datetime_str.endswith("+00:00"):
@@ -118,16 +124,33 @@ def sort_ds_tuples_by_creation_datetime(ds_tuples, reverse=True):
 
 
 def ds_is_good(ds):
+    """
+    Return true iff `ds` is a datset with non-zero columns and rows.
+    Warning: This will load the full dataset details if it they aren't loaded already.
+    """
     if isinstance(ds, pycrunch.shoji.Tuple):
         ds = ds.entity
     return ds.body.size.columns > 0 and ds.body.size.rows > 0
 
 
-def find_latest_good_dataset_in_project(project, ds_name_pattern):
+def find_newest_dataset_in_project(project, ds_name_pattern):
     """
     Return a dataset tuple for the most recent dataset entity in the given
-    project that has a name matching ds_name_prefix and looks like it isn't
-    hosed (has non-zero columns and rows), or None if there aren't any.
+    project that has a name matching regular expression `ds_name_pattern` or
+    None if there aren't any.
+    """
+    ds_tuples = yield_project_datasets_matching_name(project, ds_name_pattern)
+    sorted_ds_tuples = sort_ds_tuples_by_creation_datetime(ds_tuples)
+    return sorted_ds_tuples[0] if sorted_ds_tuples else None
+
+
+def find_newest_good_dataset_in_project(project, ds_name_pattern):
+    """
+    Return a dataset tuple for the most recent dataset entity in the given
+    project that has a name matching regular expression `ds_name_pattern` and
+    looks like it isn't hosed (has non-zero columns and rows), or None if
+    there aren't any.
+    This can go slow because it loads each dataset to check for "goodness".
     """
     ds_tuples = yield_project_datasets_matching_name(project, ds_name_pattern)
     for ds_tuple in sort_ds_tuples_by_creation_datetime(ds_tuples):
@@ -136,11 +159,23 @@ def find_latest_good_dataset_in_project(project, ds_name_pattern):
     return None
 
 
+def find_oldest_dataset_in_project(project, ds_name_pattern):
+    """
+    Return a dataset tuple for oldest dataset in the given project that has a
+    name matching regular expression `ds_name_pattern` or None if there
+    aren't any.
+    """
+    ds_tuples = yield_project_datasets_matching_name(project, ds_name_pattern)
+    sorted_ds_tuples = sort_ds_tuples_by_creation_datetime(ds_tuples)
+    return sorted_ds_tuples[0] if sorted_ds_tuples else None
+
+
 def find_oldest_good_dataset_in_project(project, ds_name_pattern):
     """
-    Return a dataset tuple for oldest dataset entity in the given project
-    that has a name matching ds_name_prefix and looks like it isn't hosed
-    (has non-zero columns and rows), or None if there aren't any.
+    Return a dataset tuple for oldest dataset in the given project that has a
+    name matching regular expression `ds_name_prefix` and looks like it isn't
+    hosed (has non-zero columns and rows), or None if there aren't any.
+    This can go slow because it loads each dataset to check for "goodness".
     """
     result = None
     ds_tuples = yield_project_datasets_matching_name(project, ds_name_pattern)
