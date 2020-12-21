@@ -41,7 +41,7 @@ if [ -n "${GITHUB_PULL_REQUEST}" ]; then
         # Add publishdate
         find ./content/dev -name "*.md" | xargs -n 1 -I{} bash -c "publish {}"
         git add .
-        if git commit -m "Setting publication date: ${NOW}"; then
+        if [[ -z $(git status --porcelain) ]]; then
             # If there are new posts, commit and push them, then exit
             # (let the Travis build for that push be the one to deploy the site)
             #
