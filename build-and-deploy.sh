@@ -16,8 +16,8 @@ export -f publish
 
 install_hugo () {
     git clone --branch v2 https://github.com/go-yaml/yaml $GOPATH/src/gopkg.in/yaml.v2
-    mkdir ${TRAVIS_HOME}/src
-    cd ${TRAVIS_HOME}/src
+    mkdir ${HOME}/src
+    cd ${HOME}/src
     git clone https://github.com/gohugoio/hugo.git
     cd hugo
     go install
@@ -31,11 +31,11 @@ build_site () {
     hugo
 }
 
-if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
+if [ "${GITHUB_PULL_REQUEST}" = "false" ]; then
     git config --global user.email "systems+crunchbot@crunch.io"
     git config --global user.name "Crunchbot"
 
-    if [ "${TRAVIS_BRANCH}" = "src" ]; then
+    if [ "${GITHUB_BRANCH}" = "src" ]; then
         # Production
 
         # Add publishdate
@@ -48,7 +48,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
             # To do this, we need to do a fresh clone with our token so that
             # we're authorized to push, and redo the find/replace there. Lame
             # but that's cheap enough
-            git clone -b src https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG.git PUBLISHDATE
+            git clone -b src https://${GH_TOKEN}@github.com/${GITHUB_REPO}.git PUBLISHDATE
             cd PUBLISHDATE
             find ./content/dev -name "*.md" | xargs -n 1 -I{} bash -c "publish {}"
             git add .
@@ -59,12 +59,12 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
             install_hugo
             build_site
 
-            git clone -b master https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG.git OUTPUT
+            git clone -b master https://${GH_TOKEN}@github.com/${GITHUB_REPO}.git OUTPUT
             cd OUTPUT
             git rm -rf .
             cp -r ../public/. .
             git add .
-            git commit -m "Updating built site (build ${TRAVIS_BUILD_NUMBER})" || true
+            git commit -m "Updating built site (build ${GITHUB_RUN_NUMBER})" || true
             git push origin master || true
         fi
     else
@@ -84,7 +84,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
         cp -r public/. ../crunchy/newsite
         cd ../crunchy
         git add .
-        git commit -m "Updating test version of company website (build ${TRAVIS_BUILD_NUMBER})" || true
+        git commit -m "Updating test version of company website (build ${GITHUB_RUN_NUMBER})" || true
         git push origin gh-pages || true
     fi
 fi
