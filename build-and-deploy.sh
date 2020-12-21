@@ -1,5 +1,5 @@
 #!/bin/bash
-set -evx
+set -ev
 
 publish ()
 {
@@ -31,11 +31,11 @@ build_site () {
     hugo
 }
 
-if [ -n "${GITHUB_PULL_REQUEST}" ]; then
+if [ -z "${GITHUB_PULL_REQUEST}" ]; then
     git config --global user.email "systems+crunchbot@crunch.io"
     git config --global user.name "Crunchbot"
 
-    if [ "${GITHUB_BRANCH_NAME}" = "debug-actions" ]; then
+    if [ "${GITHUB_BRANCH_NAME}" = "src" ]; then
         # Production
 
         # Add publishdate
@@ -64,8 +64,8 @@ if [ -n "${GITHUB_PULL_REQUEST}" ]; then
             git rm -rf .
             cp -r ../public/. .
             git add .
-            #git commit -m "Updating built site (build ${GITHUB_RUN_NUMBER})" || true
-            #git push origin master || true
+            git commit -m "Updating built site (build ${GITHUB_RUN_NUMBER})" || true
+            git push origin master || true
         fi
     else
         # Dev (because travis.yml says only to run on src and dev)
