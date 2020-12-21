@@ -22,7 +22,7 @@ install_hugo () {
     cd hugo
     go install
 
-    cd ${GOPATH}/src/github.com/Crunch-io/ta-da
+    cd ${HOME}
 }
 
 build_site () {
@@ -64,8 +64,8 @@ if [ -n "${GITHUB_PULL_REQUEST}" ]; then
             git rm -rf .
             cp -r ../public/. .
             git add .
-            git commit -m "Updating built site (build ${GITHUB_RUN_NUMBER})" || true
-            git push origin master || true
+            #git commit -m "Updating built site (build ${GITHUB_RUN_NUMBER})" || true
+            #git push origin master || true
         fi
     else
         # Dev (because travis.yml says only to run on src and dev)
