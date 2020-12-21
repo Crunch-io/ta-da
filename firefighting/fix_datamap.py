@@ -429,9 +429,9 @@ def main():
     )
     parser.add_argument("--send-file", help="Send file (read), only used by --stream")
     parser.add_argument("--done-file", help="Done file (append), only used by --stream")
-    parser.add_argument("--datadir", default="/var/lib/crunch.io/zz9data")
+    parser.add_argument("--datadir", default="/var/local/fake_zz9data")
     parser.add_argument("--repodir", default="/var/lib/crunch.io/zz9repo")
-    parser.add_argument("--tmpdir", default="/var/lib/crunch.io/zz9tmp")
+    parser.add_argument("--tmpdir", default="/var/local/fake_zz9tmp")
     args = parser.parse_args()
     # Set attributes required by functions imported from check_datamaps
     args.local = False
