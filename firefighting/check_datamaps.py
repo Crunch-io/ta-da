@@ -681,9 +681,9 @@ def main():
         action="store_true",
         help="Raise DatamapCheckError instead of printing message",
     )
-    parser.add_argument("--datadir", default="/var/lib/crunch.io/zz9data")
+    parser.add_argument("--datadir", default="/var/local/fake_zz9data")
     parser.add_argument("--repodir", default="/var/lib/crunch.io/zz9repo")
-    parser.add_argument("--tmpdir", default="/var/lib/crunch.io/zz9tmp")
+    parser.add_argument("--tmpdir", default="/var/local/fake_zz9tmp")
     args = parser.parse_args()
 
     if args.fromfile:
