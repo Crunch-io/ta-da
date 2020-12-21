@@ -35,7 +35,7 @@ if [ "${GITHUB_PULL_REQUEST}" = "false" ]; then
     git config --global user.email "systems+crunchbot@crunch.io"
     git config --global user.name "Crunchbot"
 
-    if [ "${GITHUB_REF##*/}" = "src" ]; then
+    if [ "${GITHUB_BRANCH_NAME}" = "src" ]; then
         # Production
 
         # Add publishdate
