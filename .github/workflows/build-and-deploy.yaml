@@ -25,5 +25,11 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: '1.14.3'
+      - name: Get variables
+        run: |
+          echo ${GITHUB_REPO}
+          echo ${GITHUB_REF##*/}
+          echo ${GITHUB_PULL_REQUEST}
+          echo ${HOME}
       - name: Run Build and deploy script
         run: bash 'build-and-deploy.sh'
