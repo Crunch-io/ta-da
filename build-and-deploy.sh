@@ -31,7 +31,7 @@ build_site () {
     hugo
 }
 
-if [ "${GITHUB_PULL_REQUEST}" = "false" ]; then
+if [ -z "${GITHUB_PULL_REQUEST}" ]; then
     git config --global user.email "systems+crunchbot@crunch.io"
     git config --global user.name "Crunchbot"
 
