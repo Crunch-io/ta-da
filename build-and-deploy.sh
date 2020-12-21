@@ -15,7 +15,7 @@ publish ()
 export -f publish
 
 install_hugo () {
-    git clone --branch v2 https://github.com/go-yaml/yaml $GOPATH/src/gopkg.in/yaml.v2
+    git clone --branch v2 https://github.com/go-yaml/yaml ${GOPATH}/src/gopkg.in/yaml.v2
     mkdir ${HOME}/src
     cd ${HOME}/src
     git clone https://github.com/gohugoio/hugo.git
@@ -35,7 +35,7 @@ if [ "${GITHUB_PULL_REQUEST}" = "false" ]; then
     git config --global user.email "systems+crunchbot@crunch.io"
     git config --global user.name "Crunchbot"
 
-    if [ "${GITHUB_BRANCH}" = "src" ]; then
+    if [ "${GITHUB_BRANCH_NAME}" = "src" ]; then
         # Production
 
         # Add publishdate

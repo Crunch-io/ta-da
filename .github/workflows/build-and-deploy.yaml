@@ -16,7 +16,6 @@ jobs:
     env:
       GH_TOKEN: ${{ secrets.GH_ACCESS }}
       GITHUB_REPO: ${{ github.repository }} # This var replaces TRAVIS_REPO_SLUG
-      GITHUB_BRANCH: ${{ github.head_ref }} # Replaces TRAVIS_BRANCH
       GITHUB_PULL_REQUEST: ${{ github.event.number }} # Replaces TRAVIS_PULL_REQUEST
       HOME: ${{ github.workspace }}
     steps:
@@ -25,5 +24,18 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: '1.14.3'
+      - name: Get variables
+        run: |
+          echo ${GITHUB_PULL_REQUEST}
+      - name: Extract branch name on non pull request
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "GITHUB_BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
+      - name: Extract branch name on pull requests
+        if: github.event_name == 'pull_request'
+        run: echo "GITHUB_BRANCH_NAME=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
+
       - name: Run Build and deploy script
         run: bash 'build-and-deploy.sh'
+        env:
+          GOPATH: /home/runner/work/ta-da/ta-da/go
