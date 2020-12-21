@@ -33,6 +33,8 @@ jobs:
         run: echo "GITHUB_BRANCH_NAME=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
         # Run Script
       - name: Run Build and deploy script
-        run: bash 'build-and-deploy.sh'
+        run: |
+          perl -V
+          bash 'build-and-deploy.sh'
         env:
           GOPATH: /home/runner/work/ta-da/ta-da/go
