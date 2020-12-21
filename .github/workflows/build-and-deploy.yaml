@@ -3,6 +3,10 @@ on:
     branches:
       - dev
       - src
+  push:
+    branches:      
+      - dev
+      - src
 
 name: build-and-deploy
 
