@@ -25,7 +25,7 @@ if [ -n "${GITHUB_PULL_REQUEST}" ]; then
     git config --global user.email "systems+crunchbot@crunch.io"
     git config --global user.name "Crunchbot"
 
-    if [ "${GITHUB_BRANCH_NAME}" = "debug_actions" ]; then
+    if [ "${GITHUB_BRANCH_NAME}" = "debug-actions" ]; then
         # Production
 
         # Add publishdate
@@ -65,7 +65,6 @@ if [ -n "${GITHUB_PULL_REQUEST}" ]; then
         find ./content/dev -name "*.md" | xargs -n 1 -I{} bash -c "publish {}"
 
         # Just publish to the dev site
-        # empty
         build_site
 
         git clone --branch gh-pages https://${GH_TOKEN}@github.com/Crunch-io/crunchy.git ../crunchy
