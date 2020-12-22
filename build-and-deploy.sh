@@ -14,18 +14,8 @@ publish ()
 }
 export -f publish
 
-install_hugo () {
-    git clone --branch v2 https://github.com/go-yaml/yaml ${GOPATH}/src/gopkg.in/yaml.v2
-    mkdir ${HOME}/src
-    cd ${HOME}/src
-    git clone https://github.com/gohugoio/hugo.git
-    cd hugo
-    go install
-
-    cd ${GOPATH}/src/github.com/Crunch-io/ta-da
-}
-
 build_site () {
+    cd ${HOME}
     npm install
     npm run build:scss
     hugo
@@ -41,7 +31,7 @@ if [ -z "${GITHUB_PULL_REQUEST}" ]; then
         # Add publishdate
         find ./content/dev -name "*.md" | xargs -n 1 -I{} bash -c "publish {}"
         git add .
-        if git commit -m "Setting publication date: ${NOW}"; then
+        if [[ -z $(git status --porcelain) ]]; then
             # If there are new posts, commit and push them, then exit
             # (let the Travis build for that push be the one to deploy the site)
             #
@@ -56,7 +46,6 @@ if [ -z "${GITHUB_PULL_REQUEST}" ]; then
             git push
         else
             # Build and publish the site
-            install_hugo
             build_site
 
             git clone -b master https://${GH_TOKEN}@github.com/${GITHUB_REPO}.git OUTPUT
@@ -76,7 +65,6 @@ if [ -z "${GITHUB_PULL_REQUEST}" ]; then
         find ./content/dev -name "*.md" | xargs -n 1 -I{} bash -c "publish {}"
 
         # Just publish to the dev site
-        install_hugo
         build_site
 
         git clone --branch gh-pages https://${GH_TOKEN}@github.com/Crunch-io/crunchy.git ../crunchy
