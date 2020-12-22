@@ -14,18 +14,8 @@ publish ()
 }
 export -f publish
 
-install_hugo () {
-    git clone --branch v2 https://github.com/go-yaml/yaml ${GOPATH}/src/gopkg.in/yaml.v2
-    mkdir ${HOME}/src
-    cd ${HOME}/src
-    git clone https://github.com/gohugoio/hugo.git
-    cd hugo
-    go install
-
-    cd ${HOME}
-}
-
 build_site () {
+    cd ${HOME}
     npm install
     npm run build:scss
     hugo
@@ -56,7 +46,6 @@ if [ -n "${GITHUB_PULL_REQUEST}" ]; then
             git push
         else
             # Build and publish the site
-            cd ${HOME}
             build_site
 
             git clone -b master https://${GH_TOKEN}@github.com/${GITHUB_REPO}.git OUTPUT
@@ -76,7 +65,6 @@ if [ -n "${GITHUB_PULL_REQUEST}" ]; then
         find ./content/dev -name "*.md" | xargs -n 1 -I{} bash -c "publish {}"
 
         # Just publish to the dev site
-        install_hugo
         build_site
 
         git clone --branch gh-pages https://${GH_TOKEN}@github.com/Crunch-io/crunchy.git ../crunchy
