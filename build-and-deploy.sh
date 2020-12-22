@@ -53,6 +53,7 @@ if [ -n "${GITHUB_PULL_REQUEST}" ]; then
             #git rm -rf .
             cp -r ../public/. .
             git add .
+            ls -lrt
             #git commit -m "Updating built site (build ${GITHUB_RUN_NUMBER})" || true
             #git push origin master || true
         fi
