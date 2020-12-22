@@ -50,7 +50,7 @@ if [ -n "${GITHUB_PULL_REQUEST}" ]; then
 
             git clone -b master https://${GH_TOKEN}@github.com/${GITHUB_REPO}.git OUTPUT
             cd OUTPUT
-            git rm -rf .
+            #git rm -rf .
             cp -r ../public/. .
             git add .
             #git commit -m "Updating built site (build ${GITHUB_RUN_NUMBER})" || true

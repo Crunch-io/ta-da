@@ -38,5 +38,3 @@ jobs:
           hugo-version: 'latest'
       - name: Run Build and deploy script
         run: bash 'build-and-deploy.sh'
-        env:
-          GOPATH: /home/runner/work/ta-da/ta-da/go
