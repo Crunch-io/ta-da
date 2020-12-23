@@ -8,6 +8,8 @@ Example:
 The difference between this script and the previous check_datamaps.py script
 is that this one imports and uses the zz9d datamap consistency checking code
 that was written after the original check_datamaps.py script.
+
+WARNING: Modify this file carefully. It is imported by fix_datamap2.py.
 """
 from __future__ import print_function
 import argparse
