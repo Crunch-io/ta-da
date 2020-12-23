@@ -55,7 +55,7 @@ class CannotRepair(Exception):
     pass
 
 
-def fix_datamap(args):
+def fix_datamap(args):  # noqa: C901
     if not args.yes:
         print("***** DANGEROUS - this script modifies a datamap in EFS directly.")
         if args.dry_run:
@@ -87,6 +87,8 @@ def fix_datamap(args):
         print(exc)
         rc = 1
     except Exception:
+        if args.raise_on_error:
+            raise
         traceback.print_exc()
         rc = 1
     except KeyboardInterrupt:
@@ -153,17 +155,18 @@ class DatamapRepairer(object):
             else:
                 var_extensions[root_var] = [extension]
 
+        var_lookup = frame_vardef[frame_id].lookup
         if var_ids is None:
             self.var_ids = [
                 var_id
-                for (var_id, var_def) in six.iteritems(frame_vardef[frame_id])
+                for (var_id, var_def) in six.iteritems(var_lookup)
                 if var_def.get("type", {}).get("class") == "text"
             ]
         else:
             for var_id in var_ids:
-                if var_id not in frame_vardef:
+                if var_id not in var_lookup:
                     raise CannotRepair("{} is not a valid variable ID".format(var_id))
-                classname = frame_vardef[var_id].get("type", {}).get("class")
+                classname = var_lookup[var_id].get("type", {}).get("class")
                 if classname != "text":
                     raise CannotRepair(
                         "Column {} is class '{}'. Can only repair text".format(
@@ -219,11 +222,13 @@ class DatamapRepairer(object):
         var_id: ID of column to be repaired
         """
         data_path, data_variant, structure_type, shape = self._check_data_path(var_id)
+        frame_id = "primary"
 
         # All filename extensions including the always-required .data.zz9
+        # Note: the extensions in the list already begin with '.'
         expected_file_extensions = self.datamap.column_extension_map[structure_type]
         expected_paths = [
-            "/primary/{}.{}".format(var_id, extension)
+            "/{}/{}{}".format(frame_id, var_id, extension)
             for extension in expected_file_extensions
         ]
 
@@ -255,7 +260,7 @@ class DatamapRepairer(object):
 
         # Make list of paths that exist in the datamap but should not be there
         paths_to_del = []
-        var_path_prefix = "{}.".format(var_id)
+        var_path_prefix = "/{}/{}.".format(frame_id, var_id)
         for path in self.datamap.map:
             if not path.startswith(var_path_prefix):
                 continue
@@ -281,7 +286,7 @@ class DatamapRepairer(object):
 
         print(
             "INFO: Variable {} repaired: removed {}, added {}".format(
-                paths_to_del, paths_to_add
+                var_id, paths_to_del, paths_to_add
             )
         )
         sys.stdout.flush()
@@ -335,7 +340,8 @@ class DatamapRepairer(object):
                 )
             )
 
-        column_data_file = "{}/{}".format(data_variant, data_path)
+        # FYI data_path begins with '/'. column_data_file should *not* begin with '/'
+        column_data_file = "{}{}".format(data_variant, data_path)
         check_column_args = (
             column_data_file,
             self.var_extensions,
@@ -384,7 +390,7 @@ class DatamapRepairer(object):
                 )
             )
 
-        var_info = self.frame_vardef[frame_id].get(var_id)
+        var_info = self.frame_vardef[frame_id].lookup.get(var_id)
         if not var_info:
             raise CannotRepair(
                 "Variable {} in node {}: not in the variables metadata".format(
@@ -515,12 +521,17 @@ def main():
     parser.add_argument("--datadir", default="/var/local/fake_zz9data")
     parser.add_argument("--repodir", default="/var/lib/crunch.io/zz9repo")
     parser.add_argument("--tmpdir", default="/var/local/fake_zz9tmp")
+    parser.add_argument(
+        "--raise-on-error",
+        action="store_true",
+        help="Raise exception instead of printing error message",
+    )
     args = parser.parse_args()
     # Set attributes required by functions imported from check_datamaps
     args.local = False
     args.oneline = False
-    args.raise_on_error = True
     if args.stream:
+        args.raise_on_error = True
         return stream_fix_datamaps(args)
     else:
         return fix_datamap(args)

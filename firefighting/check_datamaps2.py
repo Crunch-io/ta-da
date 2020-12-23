@@ -151,7 +151,7 @@ def _print_oneline_summary(ds_id, result):
         if isinstance(status, int):
             if status > 0:
                 print(
-                    "{}@{}:ERROR {} columns with errors".format(ds_id, node_id, status)
+                    "{}@{}:ERROR {} errors".format(ds_id, node_id, status)
                 )
             else:
                 print("{}@{}:ERROR Code {}".format(ds_id, node_id, status))
@@ -187,7 +187,7 @@ def _format_status(status):
         if status == 0:
             return (True, "No errors")
         elif status > 0:
-            return (False, "{} columns with errors".format(status))
+            return (False, "{} errors".format(status))
         else:
             return (False, "Error code {}".format(status))
     elif isinstance(status, Exception):
