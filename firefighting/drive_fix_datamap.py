@@ -66,7 +66,7 @@ TIMESTAMP_FORMAT = "%Y-%m-%dT%H:%M:%S.%f"
 
 INPUT_PATTERN = re.compile(r"^(?P<ds_id>\w+)@(?P<node_id>[^: ]*)(:(?P<status>.*))?$")
 
-REPAIRABLE_STATUS_PATTERN = re.compile(r"ERROR (\d+) columns with errors")
+REPAIRABLE_STATUS_PATTERN = re.compile(r"ERROR (\d+) (?:columns with )?errors")
 
 
 def _cr_lib_init(args):
@@ -82,7 +82,7 @@ def _read_input_ids(input_filename):  # noqa: C901
     # Read the <dataset-id>@<node-id> pairs to process.
     # Map ds_id to list of node_ids using OrderedDict to preserve dataset order
     # If status is given, skip lines except where status looks repairable:
-    # "ERROR <n> columns with errors"
+    # "ERROR <n> columns with errors" or "ERROR <n> errors"
     input_ids = OrderedDict()
     deleted_datasets = None
     ok_versions = None
