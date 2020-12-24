@@ -4,13 +4,11 @@ Perform limited repairs directly on a datamap in EFS
 
 This script can repair a column in a datamap if:
 - It is a text column AND
-- It has extra paths in the datamap OR
-- It has paths missing from the datamap but present in the repo
+- It has extra paths in the datamap OR pathis in the repo not in the datamap
+- It appears in the datamap but not in variable metadata (remove from datamap)
 
 If running this script in --stream mode, messages will be received via the "send" file
-and replies posted via the "done" file. On the other end, the drive_fix_datamap.py
-script writes to the send file and reads from the done file. See that script for
-details.
+and replies posted via the "done" file. See drive_fix_datamap.py for details.
 
 Before running this script, you should:
 
@@ -117,7 +115,6 @@ class DatamapRepairer(object):
         self.args = args
         self.ds_id = ds_id
         self.node_id = node_id
-        self.var_ids = var_ids
 
         #
         # Load up data used by many methods
@@ -135,7 +132,7 @@ class DatamapRepairer(object):
         self.datamap_items_to_test = datamap_items_to_test = {
             "%s%s" % (variant, f)
             for f, variant in datamap.map.items()
-            if f.startswith("/primary")
+            if f.startswith("/{}/".format(frame_id))
         }
 
         # column_data_files = {
@@ -157,14 +154,31 @@ class DatamapRepairer(object):
 
         var_lookup = frame_vardef[frame_id].lookup
         if var_ids is None:
-            self.var_ids = [
+            # Get all text variable IDs
+            self.var_ids = sorted(
                 var_id
                 for (var_id, var_def) in six.iteritems(var_lookup)
                 if var_def.get("type", {}).get("class") == "text"
-            ]
+            )
+            if args.deleted_vars:
+                # Allow removing datamap entries not in variable metadata
+                datamap_var_id_set = set(
+                    path.split("/")[-1].partition(".")[0]
+                    for path in datamap.map
+                    if path.endswith(".data.zz9")
+                )
+                self.var_ids.extend(
+                    var_id
+                    for var_id in sorted(datamap_var_id_set)
+                    if var_id not in var_lookup
+                )
         else:
-            for var_id in var_ids:
+            self.var_ids = sorted(set(var_ids))
+            for var_id in self.var_ids:
                 if var_id not in var_lookup:
+                    if args.deleted_vars:
+                        # Allow removing datamap entries not in variable metadata
+                        continue
                     raise CannotRepair("{} is not a valid variable ID".format(var_id))
                 classname = var_lookup[var_id].get("type", {}).get("class")
                 if classname != "text":
@@ -211,9 +225,7 @@ class DatamapRepairer(object):
             sys.stdout.flush()
 
         if num_ok_vars == len(var_ids):
-            raise DoesNotNeedRepair(
-                "All {} text variables were Ok".format(len(var_ids))
-            )
+            raise DoesNotNeedRepair("All {} variables were Ok".format(len(var_ids)))
 
         return self.datamap.map.copy()
 
@@ -221,16 +233,27 @@ class DatamapRepairer(object):
         """
         var_id: ID of column to be repaired
         """
-        data_path, data_variant, structure_type, shape = self._check_data_path(var_id)
         frame_id = "primary"
+        data_path = "/{}/{}.data.zz9".format(frame_id, var_id)
+        data_variant = self.datamap.map.get(data_path)
+        # Note: variant can be zero, so check specifically for None!
+        if data_variant is None:
+            raise CannotRepair(
+                "{} does not exist in the node {} datamap".format(
+                    data_path, self.node_id
+                )
+            )
 
-        # All filename extensions including the always-required .data.zz9
-        # Note: the extensions in the list already begin with '.'
-        expected_file_extensions = self.datamap.column_extension_map[structure_type]
-        expected_paths = [
-            "/{}/{}{}".format(frame_id, var_id, extension)
-            for extension in expected_file_extensions
-        ]
+        vardef = self.frame_vardef[frame_id]
+        if self.args.deleted_vars and var_id not in vardef.lookup:
+            # Not in variable metadata. Trying to get column structure would crash,
+            # so we can't call _calc_expected_paths. Instead, set expected paths to
+            # an empty list, since a non-existent variable is not expected to be in
+            # the datamap. (Because this is tricky, fragile, and dangerous, it is
+            # controlled by the deleted_vars option.)
+            expected_paths = []
+        else:
+            expected_paths = self._calc_expected_paths(var_id)
 
         # Make sure each of the required paths exists on disk in the correct variant
         for expected_path in expected_paths:
@@ -292,6 +315,20 @@ class DatamapRepairer(object):
         )
         sys.stdout.flush()
 
+    def _calc_expected_paths(self, var_id):
+        structure_type, shape = self._check_data_path(var_id)
+        frame_id = "primary"
+
+        # All filename extensions including the always-required .data.zz9
+        # Note: the extensions in the list already begin with '.'
+        expected_file_extensions = self.datamap.column_extension_map[structure_type]
+        expected_paths = [
+            "/{}/{}{}".format(frame_id, var_id, extension)
+            for extension in expected_file_extensions
+        ]
+
+        return expected_paths
+
     def _path_exists(self, path, variant=None):
         """
         Return true iff a datafile exists for the given datamap path.
@@ -327,7 +364,7 @@ class DatamapRepairer(object):
         Raise DoesNotNeedRepair if this column is OK
         Raise CannotRepair if the data file is such that this column can't be repaired
         Otherwise, if this is a potentially repairable broken text column, return:
-            (data_path, data_variant, structure_type, shape)
+            (structure_type, shape)
         structure_type: structure of variable from datamap.find_column_structure_type()
         shape: tuple if data file in numpy format, else None
         """
@@ -335,13 +372,7 @@ class DatamapRepairer(object):
         var_file_name = "{}.data.zz9".format(var_id)  # as found in datamap, no .lz4
         data_path = "/{}/{}".format(frame_id, var_file_name)
         data_variant = self.datamap.map.get(data_path)
-        # Note: variant can be zero, so check specifically for None!
-        if data_variant is None:
-            raise CannotRepair(
-                "{} does not exist in the node {} datamap".format(
-                    data_path, self.node_id
-                )
-            )
+        assert data_variant is not None  # this was checked earlier
 
         # FYI data_path begins with '/'. column_data_file should *not* begin with '/'
         column_data_file = "{}{}".format(data_variant, data_path)
@@ -404,7 +435,7 @@ class DatamapRepairer(object):
         if classname != "text":
             raise CannotRepair("Column {} is not a text variable".format(var_id))
 
-        return (data_path, data_variant, structure_type, shape)
+        return (structure_type, shape)
 
     def _replace_datamap(self, dm):
         ds_dir = self._get_ds_repo_dir()
@@ -518,6 +549,11 @@ def main():
         "--stream",
         action="store_true",
         help="Streaming mode: read from send file, append to done file",
+    )
+    parser.add_argument(
+        "--deleted-vars",
+        action="store_true",
+        help="Also remove datamap entries missing from variable metadata",
     )
     parser.add_argument("--send-file", help="Send file (read), only used by --stream")
     parser.add_argument("--done-file", help="Done file (append), only used by --stream")
