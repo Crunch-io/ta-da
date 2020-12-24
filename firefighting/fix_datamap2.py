@@ -235,14 +235,15 @@ class DatamapRepairer(object):
         # Make sure each of the required paths exists on disk in the correct variant
         for expected_path in expected_paths:
             cur_variant = self.datamap.map.get(expected_path)
-            if cur_variant:
+            # Note: variant can be zero, so check specifically for None!
+            if cur_variant is not None:
                 path_exists_on_disk = self._path_exists(expected_path)
             else:
                 path_exists_on_disk = self._path_exists(
                     expected_path, variant=data_variant
                 )
             if not path_exists_on_disk:
-                if cur_variant:
+                if cur_variant is not None:
                     expected_variant_str = " in variant {}".format(cur_variant)
                 else:
                     expected_variant_str = ""
@@ -251,7 +252,7 @@ class DatamapRepairer(object):
                         expected_path, var_id, expected_variant_str
                     )
                 )
-            elif cur_variant and cur_variant != data_variant:
+            elif cur_variant is not None and cur_variant != data_variant:
                 raise CannotRepair(
                     "Expected path {} for variable {} is in variant {} not {}".format(
                         expected_path, var_id, cur_variant, data_variant
@@ -299,10 +300,11 @@ class DatamapRepairer(object):
         Otherwise, temporarily set or override the datamap variant.
         """
         cur_variant = self.datamap.map.get(path)
-        if not cur_variant and not variant:
+        # Note: variant can be zero, so check specifically for None!
+        if cur_variant is None and variant is None:
             # We don't have a variant to check. Assume it doesn't exist.
             return False
-        if variant and cur_variant != variant:
+        if variant is not None and cur_variant != variant:
             # Temporarily set or override datamap entry
             self.datamap.map[path] = variant
         try:
@@ -314,8 +316,8 @@ class DatamapRepairer(object):
                 return True
         finally:
             # Restore datamap if it was temporarily changed
-            if variant and cur_variant != variant:
-                if cur_variant:
+            if variant is not None and cur_variant != variant:
+                if cur_variant is not None:
                     self.datamap.map[path] = cur_variant
                 else:
                     del self.datamap.map[path]
@@ -333,7 +335,8 @@ class DatamapRepairer(object):
         var_file_name = "{}.data.zz9".format(var_id)  # as found in datamap, no .lz4
         data_path = "/{}/{}".format(frame_id, var_file_name)
         data_variant = self.datamap.map.get(data_path)
-        if not data_variant:
+        # Note: variant can be zero, so check specifically for None!
+        if data_variant is None:
             raise CannotRepair(
                 "{} does not exist in the node {} datamap".format(
                     data_path, self.node_id
