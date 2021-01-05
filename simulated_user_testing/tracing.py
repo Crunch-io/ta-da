@@ -31,3 +31,26 @@ def init_tracing(
         tracer._init_datadog(
             service_name=service_name, system=hconf.get("SYSTEM", "unknown")
         )
+
+
+class PycrunchTracer(object):
+    """
+    Use an instance of this to add performance tracing to a span of pycrunch
+    requests.
+
+    >>> import uuid
+    >>> import crunch_util
+    >>> trace_id = uuid.uuid4().hex
+    >>> crunch_util.patch_pre_http_request(site.session, PycrunchTracer(trace_id))
+    """
+
+    def __init__(self, trace_id):
+        self.trace_id = trace_id
+
+    def __call__(self, session, method, url, **kwparams):
+        header_value = "{}, {}, {}".format(
+            self.trace_id, tracer.active_hc_span_id, tracer.active_dd_span_id
+        )
+        # Uncomment to trace HTTP requests
+        # print("{} {} X-Crunch-Tracing: {}".format(method, url, header_value))
+        session.headers["X-Crunch-Tracing"] = header_value

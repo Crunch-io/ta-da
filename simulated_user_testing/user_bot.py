@@ -27,12 +27,15 @@ import logging.handlers
 import re
 import sys
 import time
+import uuid
 
 import docopt
 import yaml
 
+import crunch_util
 import sim_util
 from sim_util import ErrorDuringActivity, track_activity
+from tracing import init_tracing, tracer, PycrunchTracer
 
 APP_NAME = "user-bot"
 log = logging.getLogger(APP_NAME)
@@ -64,11 +67,17 @@ def main():
     log.info("Starting User Bot")
     if args["--tracing"]:
         log.info("Turning on Honeycomb/Datadog tracing")
-        sim_util.init_tracing(APP_NAME)
+        init_tracing(APP_NAME)
     with io.open(args["-c"], "r", encoding="UTF-8") as f:
         config = yaml.safe_load(f)
     site = sim_util.connect_api(config, args)
     site.session.headers["user-agent"] = APP_NAME
+
+    trace_id = uuid.uuid4().hex
+    log.info("trace_id: %s", trace_id)
+    if args["--tracing"]:
+        tracer.start_trace(APP_NAME, trace_id=trace_id, emit=True)
+        crunch_util.patch_pre_http_request(site.session, PycrunchTracer(trace_id))
     try:
         if args["cold-load"]:
             return simulate_cold_load(site, args)
@@ -82,25 +91,32 @@ def main():
     except BaseException:
         log.exception("Unexpected exception")
         return 3
+    finally:
+        if args["--tracing"]:
+            tracer.finish_trace()
+            if tracer._beeline:
+                tracer._beeline.close()
 
 
 def simulate_cold_load(site, args):
     t0 = time.time()
-    ds_template_id = args["--dataset-template"]
-    ds_name_prefix = sim_util.get_ds_name_prefix(ds_template_id)
-    ds_name_pattern = r"^{}".format(re.escape(ds_name_prefix))
-    with track_activity(APP_NAME, "Getting 'Sim Profiles' project by name"):
-        project = sim_util.get_project_by_name(site, "Sim Profiles")
-    msg = "Finding oldest dataset in project '{}' " "matching pattern '{}'".format(
-        sim_util.get_entity_name(project), ds_name_pattern
-    )
-    with track_activity(APP_NAME, msg):
-        old_ds = sim_util.find_oldest_dataset_in_project(project, ds_name_pattern)
-    t1 = time.time()
-    with track_activity(APP_NAME, "Do something with oldest dataset"):
-        do_something_with_dataset(old_ds)
+    with tracer.tracer(f"{APP_NAME}.cold-load"):
+        ds_template_id = args["--dataset-template"]
+        ds_name_prefix = sim_util.get_ds_name_prefix(ds_template_id)
+        ds_name_pattern = r"^{}".format(re.escape(ds_name_prefix))
+        with track_activity(APP_NAME, "Getting 'Sim Profiles' project by name"):
+            project = sim_util.get_project_by_name(site, "Sim Profiles")
+        msg = "Finding oldest dataset in project '{}' " "matching pattern '{}'".format(
+            sim_util.get_entity_name(project), ds_name_pattern
+        )
+        with track_activity(APP_NAME, msg):
+            old_ds = sim_util.find_oldest_dataset_in_project(project, ds_name_pattern)
+        t1 = time.time()
+        with track_activity(APP_NAME, "Do something with oldest dataset"):
+            with tracer.tracer(f"{APP_NAME}.do_something_with_dataset"):
+                do_something_with_dataset(old_ds)
     tn = time.time()
-    log.info("simulate_cold_load         : %.6f seconds", tn - t0)
+    log.info("cold-load                  : %.6f seconds", tn - t0)
     log.info("  do_something_with_dataset: %.6f seconds", tn - t1)
     return 1
 
@@ -118,7 +134,8 @@ def do_something_with_dataset(ds):
     type_count = defaultdict(int)
     t0 = time.time()
     log.info("Dataset '%s' (%s): Requesting variable catalog", ds_name, ds_id)
-    variables_index = ds.entity.variables.index
+    with tracer.tracer(f"{APP_NAME}.get-variables-catalog"):
+        variables_index = ds.entity.variables.index
     log.info(
         "Dataset '%s' (%s): Got variables catalog in %.6f seconds",
         ds_name,

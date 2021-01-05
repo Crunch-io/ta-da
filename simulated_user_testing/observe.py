@@ -1,4 +1,76 @@
 # Originally copied from zz9/zz9lib/src/zz9lib/observe.py
+"""Tracing subsystem for Crunch projects.
+
+The `Tracer` class is the primary interface for this functionality,
+and typically requires calls at three different levels of your code.
+
+First, when you start your service, you need to initialize the tracer with
+some configuration details. Instantiate a Tracer and import that instance
+everywhere you need it.
+
+    tracer = Tracer(collect_times=True, profit=True)
+
+Passing `profit=False` will disable the legacy "silhouette" tracing subsystem
+(that subsystem and this option will be removed in a future release).
+
+Next, initialize Honeycomb and/or Datadog APM with either or both
+of the following commands:
+
+    tracer._init_honeycomb(
+        writekey="<Honeycomb API Key>",  # see pow
+        dataset="API",
+        service_name="worker" if is_worker else "API",
+        sample_rate=250,
+        system=conf.get("SYSTEM", "unknown"),
+    )
+
+    tracer._init_datadog(
+        service_name="worker" if is_worker else "API",
+        system=hconf.get("SYSTEM", "unknown"),
+    )
+
+Second, wrap each request (task, script execution, or whatever the "top level"
+of your service is) with a call to `start_trace` and, in a finally: block or
+some other guaranteed way, a call to `finish_trace`:
+
+    tracer.start_trace(
+        "api.request",  # name of the top-level span
+        trace_id=request_id,
+        hc_parent_id=hc_parent_id,
+        dd_parent_id=dd_parent_id,
+        emit=emit,
+    )
+    try:
+        handle_request()
+    finally:
+        tracer.finish_trace()
+
+The name of the top-level span is required. You then have some options:
+  * If the request is truly the top level, generate a trace_id via uuid
+    or some other means and pass it.
+  * If the request is potentially being called by some other service,
+    pass the trace_id of the caller and the "parent ids" of the span
+    in the caller which is calling this nested service. These fields
+    may be passed in a variety of ways.
+
+Next, you may control which traces are emitted. Both Honeycomb and Datadog APM
+provide random sampling, but this is per span, not per trace. To unequivocally
+emit a certain trace pass `emit=True`, or `emit=False` to not emit any spans
+for this request. For example, you might pass `emit=True` for any request which
+is being called from another service, on the agreement that the calling service
+only passes span ids when has decided to emit spans for the entire trace.
+If `emit` is None (the default), then the trace is emitted by random sample
+according to the tracer's sample_rate.
+
+Finally, for each region in your code where you want a separate nested span,
+use the `tracer` contextmanager. In general, you only need to pass a span name.
+
+    with tracer.tracer(span_name):
+        value = do_stuff()
+        tracer.add_context({"param": value})
+
+You can add fields to the span via `add_context`.
+"""
 from contextlib import contextmanager
 import datetime
 from functools import wraps
@@ -186,6 +258,8 @@ class Tracer:
     @contextmanager
     def _maybe_consolidate(self, name, new_consolidate_time=None):
         ctx = self._thread_ctx
+        old_consolidations = None
+        old_consolidation_time = None
         if new_consolidate_time is not None:
             # New consolidation context requested.
             # Stash any ongoing consolidations.
