@@ -1,0 +1,8 @@
+# Put this file in /etc/cron.d/
+MAILTO=david@crunch.io
+
+# Run every hour at 35 minutes past the hour
+35 * * * *  crunchweb   /remote/simulated_user_testing/user-bot.sh cold-load
+
+# Run every weekday at 13:35 UTC
+# 35 13 * * 1,2,3,4,5  crunchweb   /remote/simulated_user_testing/user-bot.sh cold-load
