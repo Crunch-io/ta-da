@@ -1,0 +1,44 @@
+on:
+  pull_request:
+    branches:
+      - dev
+      - src
+  push:
+    branches:      
+      - dev
+      - src
+
+name: build-and-deploy
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_ACCESS }}
+      GITHUB_REPO: ${{ github.repository }} # This var replaces TRAVIS_REPO_SLUG
+      GITHUB_PULL_REQUEST: ${{ github.event.number }} # Replaces TRAVIS_PULL_REQUEST
+      HOME: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.14.3'
+      - name: Extract branch name on non pull request
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "GITHUB_BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
+      - name: Extract branch name on pull requests
+        if: github.event_name == 'pull_request'
+        run: echo "GITHUB_BRANCH_NAME=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
+        # Run Script
+      - name: Install Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Run Build and deploy script
+        run: bash 'build-and-deploy.sh'
