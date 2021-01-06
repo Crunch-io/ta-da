@@ -128,3 +128,136 @@ news_description = "Decks can now be downloaded directly to PowerPoint. Click he
 date = "2018-09-25T10:20:47-04:00"
 +++
 ```
+
+## Alternative Domain Setup
+
+GitHub pages support only one custom domain, e.g crunch.io. In order to use https://www.crunch.io, with a valid SSL certificate, a DNS redirect needs to be setup. Our DNS provider, Dnsmadeeasy, supports http redirects; however, it lacks proper support for https to https redirects. One solution is to use S3 static website hosting and cloudfront.
+
+### Overview 
+
+1. Create AWS managed SSL certificate 
+2. Create S3 bucket with static website hosting enabled
+3. Create CDN
+4. Update DNS
+
+### Step by step procedure 
+
+1. Variable Initialization 
+
+```toml
+export REGION="eu-west-1"
+export DOMAIN="www.crunch.io"
+```
+
+1. Create an AWS managed SSL certificate.
+
+```toml
+export ACM=$(aws acm request-certificate \
+                            --domain-name ${DOMAIN} \
+                            --validation-method DNS \
+                            --subject-alternative-names ${DOMAIN#www.} \
+                            --region us-east-1 \
+                            --query 'CertificateArn' \
+                            --output text \
+                            --no-cli-pager)
+```
+
+2. Ensure the certificate validation status is SUCCESS.
+
+```toml
+aws acm describe-certificate --certificate-arn ${ACM} \
+                            --region us-east-1 \
+                            --no-cli-pager \
+                            --query 'Certificate.DomainValidationOptions[*].[ValidationDomain,ValidationStatus]'
+
+--- Output ---
+
+[
+    [
+        "www.crunch.io",
+        "SUCCESS"
+    ],
+    [
+        "crunch.io",
+        "SUCCESS"
+    ]
+]
+
+```
+
+3. (Optional) If a certificate does not pass validation, a CNAME record needs to be created. Get the record sets by running the following command. 
+
+```toml
+aws acm describe-certificate --certificate-arn ${ACM} \
+                            --region us-east-1 \
+                            --no-cli-pager \
+                            --query 'Certificate.DomainValidationOptions[*].ResourceRecord'
+
+--- Output ---
+
+[
+    {
+        "Name": "_87b8c51f4d96e6b0eb0ab5f30c1819fa.www.crunch.io.",
+        "Type": "CNAME",
+        "Value": "_0a0f08d5914caefd2e01f68abd732e0e.rlltrpyzyf.acm-validations.aws."
+    },
+    {
+        "Name": "_01598d04e21a4d0b2deef3feba09e70c.crunch.io.",
+        "Type": "CNAME",
+        "Value": "_33201923459074bfcc50d0428b3b7c7a.auiqqraehs.acm-validations.aws."
+    }
+]
+
+```
+
+4. Create S3 bucket. The bucket name should match the domain name. 
+
+```toml
+aws s3api create-bucket --bucket ${DOMAIN} \
+                            --region ${REGION}  \
+                            --create-bucket-configuration LocationConstraint=${REGION} \
+                            --no-cli-pager
+
+--- Output ---
+
+{
+    "Location": "http://www.crunch.io.s3.amazonaws.com/"
+}
+```
+
+5. Create bucket configuration file to enable https redirect. 
+
+```toml
+cat <<EOF > /tmp/redirect.json
+{
+    "RedirectAllRequestsTo": {
+        "HostName": "${DOMAIN#www.}",
+        "Protocol": "https"
+    }
+}
+EOF
+```
+
+6. Apply the bucket configuration file
+
+```toml
+aws s3api put-bucket-website --bucket ${DOMAIN} \
+                            --website-configuration file:///tmp/redirect.json \
+                            --no-cli-pager
+
+```
+
+7. Create CDN
+
+```toml
+export CDN=$(aws cloudfront create-distribution \
+                            --origin-domain-name ${DOMAIN}.s3-website-${REGION}.amazonaws.com \
+                            --no-cli-pager \
+                            --output text \
+                            --region ${REGION} \
+                            --query '[ETag, Distribution.Id]')
+```
+
+9. Update CDN CNAME and Certificates using the web console. (the update file for cli would complicated so it is easier to do via the web console)
+
+10. Update DNS eg. www.crunch.io -> cdn address.
