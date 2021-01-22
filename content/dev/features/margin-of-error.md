@@ -16,7 +16,7 @@ By using the new options panel revealed by clicking the three-dots icon in the d
 
 The margin of error is also an optional cell value for both for tab books and for custom exports from the deck.
 
-N.B.: Bases are currently only shown for column percentages.
+:bulb: Bases are currently only shown for column percentages.
 
 For full details of all of the options available, see the [help center](https://help.crunch.io/hc/en-us/articles/360040932251-Customizing-a-Table-or-Graph#more-options).
 
