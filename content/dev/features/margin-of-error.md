@@ -8,7 +8,7 @@ weight = 20
 tags = ["margin of error, analytics, statistics"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 +++
 
@@ -16,7 +16,7 @@ By using the new options panel revealed by clicking the three-dots icon in the d
 
 The margin of error is also an optional cell value for both for tab books and for custom exports from the deck.
 
-N.B.: Bases are currently only shown for column percentages.
+:bulb: Bases are currently only shown for column percentages.
 
 For full details of all of the options available, see the [help center](https://help.crunch.io/hc/en-us/articles/360040932251-Customizing-a-Table-or-Graph#more-options).
 
