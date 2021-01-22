@@ -8,7 +8,7 @@ weight = 20
 tags = ["margin of error, analytics, statistics"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 +++
 
