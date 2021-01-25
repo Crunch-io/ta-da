@@ -1,0 +1,66 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="blog-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-8 text-center">
+                                <h1 class="display-5">Release Notes</h1>
+                            </div>
+                        </div> <!-- /.row -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.blog-content -->
+
+            <div class="secondary-content">
+              <div class="container">
+
+                  <div class="row spacer-top spacer-bottom justify-content-md-center">
+                      <div class="col-md-8">
+                          <h2 class="text-center"><span>{{ .Content }}</span></h2>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      {{ range .Paginator.Pages.ByPublishDate.Reverse }}
+                          <div class="col-md-6 col-lg-4">
+                              <div class="post-card post-min-height" onclick="location.href='{{ .Permalink }}'">
+                                  <div class="posts">
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                      <span>{{ .PublishDate.Format "January 2, 2006" }}</span>
+                                      <p>{{ .Params.description }}</p>
+                                      <a href="{{ .Permalink }}">Learn More &#10230;</a>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+                  </div>
+
+                  {{ partial "blog/pagination" . }}
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+            <div class="footer-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Learn about <span>our team</span></h1>
+                                <a href="team" class="btn btn-link">Our team &#10230;</a>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer" . }}
