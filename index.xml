@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Jan 2021 18:00:00 +0200</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Jan 2021 18:00:00 +0200</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prodege</title>
       <link>//crunch.io/case-studies/prodege/</link>
@@ -463,6 +463,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
     
     <item>
       <title>Release 2021.5</title>
+      <link>//crunch.io/release-notes/2021-01-26/</link>
+      <pubDate>Tue, 26 Jan 2021 18:00:00 +0200</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-01-26/</guid>
+      <description>Documentation  Added new page on xyz  </description>
+    </item>
+    
+    <item>
+      <title>Release 2021.4</title>
       <link>//crunch.io/release-notes/2021-01-25/</link>
       <pubDate>Mon, 25 Jan 2021 18:00:00 +0200</pubDate>
       
@@ -471,7 +480,7 @@ The Account Executive will be responsible for driving sales of Crunch products w
     </item>
     
     <item>
-      <title>Release 2021.4</title>
+      <title>Release 2021.3</title>
       <link>//crunch.io/release-notes/2021-01-24/</link>
       <pubDate>Sun, 24 Jan 2021 18:00:00 +0200</pubDate>
       
@@ -480,7 +489,7 @@ The Account Executive will be responsible for driving sales of Crunch products w
     </item>
     
     <item>
-      <title>Release 2021.3</title>
+      <title>Release 2021.2</title>
       <link>//crunch.io/release-notes/2021-01-23/</link>
       <pubDate>Sat, 23 Jan 2021 18:00:00 +0200</pubDate>
       
@@ -489,7 +498,7 @@ The Account Executive will be responsible for driving sales of Crunch products w
     </item>
     
     <item>
-      <title>Release 2021.2</title>
+      <title>Release 2021.1</title>
       <link>//crunch.io/release-notes/2021-01-22/</link>
       <pubDate>Fri, 22 Jan 2021 18:00:00 +0200</pubDate>
       
@@ -498,7 +507,7 @@ The Account Executive will be responsible for driving sales of Crunch products w
     </item>
     
     <item>
-      <title>Release 2021.1</title>
+      <title>Release 2020.19</title>
       <link>//crunch.io/release-notes/2021-01-21/</link>
       <pubDate>Mon, 21 Dec 2020 18:00:00 +0200</pubDate>
       
