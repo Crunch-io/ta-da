@@ -8,11 +8,12 @@
         <div class="container-fluid">
 
             <div class="blog-content">
-                <div class="jumbotron">
+                <div class="jumbotron" style="padding-top: 47px; padding-bottom: 30px;">
                     <div class="container">
                         <div class="row justify-content-md-center">
                             <div class="col-md-8 text-center">
                                 <h1 class="display-5">Release Notes</h1>
+                                <p>{{ .Content }}</p>
                             </div>
                         </div> <!-- /.row -->
                     </div> <!-- /.container -->
@@ -22,13 +23,22 @@
             <div class="secondary-content">
               <div class="container">
 
+<!--
                   <div class="row spacer-top spacer-bottom justify-content-md-center">
-                      <div class="col-md-8">
-                          <h2 class="text-center"><span>{{ .Content }}</span></h2>
+                      <div class="col-md-4">
+                          {{ partial "subscribe-release-notes" . }}
                       </div>
                   </div>
+-->
 
                   <div class="row">
+                      <div class="col-md-6 col-lg-4">
+                          <div class="post-card post-min-height" style="background-color: inherit;">
+                              <div class="posts">
+                                  {{ partial "subscribe-release-notes" . }}
+                              </div>
+                          </div>
+                      </div>
                       {{ range .Paginator.Pages.ByPublishDate.Reverse }}
                           <div class="col-md-6 col-lg-4">
                               <div class="post-card post-min-height" onclick="location.href='{{ .Permalink }}'">
