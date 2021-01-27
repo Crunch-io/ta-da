@@ -1,0 +1,50 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="blog-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-8 text-center">
+                                <h1 class="display-5">Release Notes</h1>
+                            </div>
+                        </div> <!-- /.row -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.blog-content -->
+
+            <div class="blog-content">
+                    <div class="container spacer-top">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <h2>{{ .Title | emojify }}</h2>
+                                <p><a href="/release-notes/" style="color: black;">&#8592; Other release notes</a></p>
+                                <hr>
+                                <p>{{ .Params.description }}</p>
+                                <span>{{ .PublishDate.Format "January 2, 2006" }} </span>
+                            </div>
+                        </div> <!-- /.row -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.blog-content -->
+
+            <div class="secondary-content">
+              <div class="container blog-content-mg">
+
+                  <div class="row spacer-bottom">
+                      <div class="col-md-10 offset-md-1">
+                          {{ .Content | emojify }}
+                      </div>
+                  </div>
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

@@ -1,5 +1,6 @@
 +++
 date = "2021-01-06T15:00:10-04:00"
+publishdate = "2021-01-06T15:00:10-04:00"
 draft = false
 title = "Greater flexibility to customize exports of tables from decks and dashboards"
 news_description = "Apply the same customizations of tables saved to decks as you already can for tab books, including new measures of uncertainty, summary statistics, and greater control for indications of statistical significance. Click here to learn more."
