@@ -1,4 +1,9 @@
-{{ partial "head.html" . }}
+{{ partial "head-start.html" . }}
+{{ if eq .Dir "dev/" }}
+<meta http-equiv="refresh" content="0; url=dev/features/"/>
+{{ end }}
+
+{{ partial "head-finish.html" . }}
 
 {{ partial "header.html" . }}
 
