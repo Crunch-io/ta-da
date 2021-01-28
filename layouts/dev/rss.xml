@@ -24,6 +24,7 @@
       <noProfiles>{{ .Params.no_profiles | default false}}</noProfiles>
       <pinned>{{ .Params.pinned | default false}}</pinned>
       <description>{{ .Params.news_description | default .Description | emojify | html }}</description>
+      <content>{{ .Content | emojify | html }}</content>
     </item>
     {{ end }}
     {{ end }}
