@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Manually trigger a pending append to a dataset — appendStream • Crunch</title>
+<title>Get measure type of cube result — cubeMeasureType • Crunch</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,13 +54,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Manually trigger a pending append to a dataset — appendStream" />
-<meta property="og:description" content="Crunch allows you to stream data to a dataset. Streaming data is useful for
-datasets which have frequent updates (see the
-Crunch API documentation
-for more information). Crunch automatically appends streamed data
-periodically; however, if you would like to trigger appending pending
-streamed data to a dataset, you can call appendStream()." />
+<meta property="og:title" content="Get measure type of cube result — cubeMeasureType" />
+<meta property="og:description" content="Returns a string describing the measure type of the cube result,
+such as &quot;count&quot;, &quot;mean&quot;, &quot;sd&quot;, etc." />
 <meta property="og:image" content="http://crunch.io/r/crunch/logo.png" />
 
 
@@ -193,35 +189,55 @@ streamed data to a dataset, you can call appendStream()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Manually trigger a pending append to a dataset</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Crunch-io/rcrunch/blob/master/R/dataset-stream.R'><code>R/dataset-stream.R</code></a></small>
-    <div class="hidden name"><code>appendStream.Rd</code></div>
+    <h1>Get measure type of cube result</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Crunch-io/rcrunch/blob/master/R/cube-result.R'><code>R/cube-result.R</code></a></small>
+    <div class="hidden name"><code>cubeMeasureType.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Crunch allows you to stream data to a dataset. Streaming data is useful for
-datasets which have frequent updates (see the
-<a href='https://crunch.io/api/reference/#post-/datasets/-dataset_id-/stream/'>Crunch API documentation</a>
-for more information). Crunch automatically appends streamed data
-periodically; however, if you would like to trigger appending pending
-streamed data to a dataset, you can call <code>appendStream()</code>.</p>
+    <p>Returns a string describing the measure type of the cube result,
+such as "count", "mean", "sd", etc.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>appendStream</span><span class='op'>(</span><span class='va'>ds</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>cubeMeasureType</span><span class='op'>(</span><span class='va'>x</span>, measure <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
+
+<span class='co'># S4 method for CrunchCube</span>
+<span class='fu'>cubeMeasureType</span><span class='op'>(</span><span class='va'>x</span>, measure <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>ds</th>
-      <td><p>a CrunchDataset</p></td>
+      <th>x</th>
+      <td><p>A <code>CrunchCube</code></p></td>
+    </tr>
+    <tr>
+      <th>measure</th>
+      <td><p>Which measure in the cube to check, can index by position
+with numbers or by name. NULL, the default, will select a "sum" type measure
+first, "mean" if no sum is available, and will use the cube's names in alphabetic
+order if there are no "sum" or "mean" measures (or if a tie breaker between two
+measure types is needed).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>the dataset with pending stream data appended.</p>
+    <p>A string describing the cube's measure type</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>cube1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='crtabs.html'>crtabs</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>allpets</span>, <span class='va'>ds</span><span class='op'>)</span>
+<span class='fu'>cubeMeasureType</span><span class='op'>(</span><span class='va'>cube1</span><span class='op'>)</span>
+<span class='co'>#&gt; "count"</span>
+
+<span class='va'>cube2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='crtabs.html'>crtabs</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fu'>n</span><span class='op'>(</span><span class='op'>)</span>, b <span class='op'>=</span> <span class='fu'><a href='crunch-uni.html'>mean</a></span><span class='op'>(</span><span class='va'>age</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>allpets</span>, <span class='va'>ds</span><span class='op'>)</span>
+<span class='fu'>cubeMeasureType</span><span class='op'>(</span><span class='va'>cube2</span><span class='op'>)</span>
+<span class='co'>#&gt; "count"</span>
+<span class='fu'>cubeMeasureType</span><span class='op'>(</span><span class='va'>cube2</span>, <span class='st'>"b"</span><span class='op'>)</span>
+<span class='co'>#&gt; "mean"</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
