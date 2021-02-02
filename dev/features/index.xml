@@ -5,7 +5,7 @@
     <description>Recent content in Feature Announcements on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2021-02-02T06:45:34+00:00</lastBuildDate>
+    <lastBuildDate>2021-02-02T12:53:07+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>See the margin of error and other helpful statistics in tables</title>
       <link>//crunch.io/dev/features/margin-of-error/</link>
-      <pubDate>2021-02-02T06:45:19+00:00</pubDate>
+      <pubDate>2021-02-02T12:52:52+00:00</pubDate>
       
       <guid>//crunch.io/dev/features/margin-of-error/</guid>
       <labsOnly>false</labsOnly>
