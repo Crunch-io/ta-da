@@ -1,5 +1,5 @@
 +++
-date = "2020-10-02T11:07:59-04:00"
+date = "2021-02-04T15:32:11-04:00"
 draft = false
 title = "Crunch.io Demo: Fast Track Your Survey Data Analysis with an All-in-One Platform"
 label = "Virtual Event"
