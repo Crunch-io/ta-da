@@ -1,5 +1,6 @@
 +++
-date = "2021-01-22T11:52:22-04:00"
+date = "2021-01-22T18:00:00-04:00"
+publishdate = "2021-01-22T18:00:00-04:00"
 draft = false
 title = "See the margin of error and other helpful statistics in tables"
 news_description = "Tables now show margins of error in tooltips, as well as counts and bases. Click here to learn more."
