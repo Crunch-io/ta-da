@@ -13,7 +13,8 @@
       <pubDate>Fri, 29 Jan 2021 18:00:00 +0200</pubDate>
       
       <guid>//crunch.io/release-notes/2021-01-29/</guid>
-      <description>&lt;h3 id=&#34;crunch-app&#34;&gt;Crunch app&lt;/h3&gt;
+      <description>Crunch app  Refactor and performance enhancements to Search, making it easier for you to find things. Fix issue where dates could be shown incorrectly on project browser. We understand how frustrating it is when dates don&amp;rsquo;t appear correctly so we fixed this. Search behavior has now been changed to only search when you press return. Focusing on the control will open any previously obtained results. This will make search queries easier to use.</description>
+      <content>&lt;h3 id=&#34;crunch-app&#34;&gt;Crunch app&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Refactor and performance enhancements to Search, making it easier for you to find things.&lt;/li&gt;
 &lt;li&gt;Fix issue where dates could be shown incorrectly on project browser. We understand how frustrating it is when dates don&amp;rsquo;t appear correctly so we fixed this.&lt;/li&gt;
@@ -43,7 +44,7 @@
 &lt;li&gt;Updated &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360044362492-The-Definitive-Guide-to-Importing-and-Preparing-Data&#34;&gt;The Definitive Guide to Importing and Preparing Data&lt;/a&gt; article to include numerous new examples and uses cases.&lt;/li&gt;
 &lt;li&gt;Numerous additions to &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360041769292-Crunch-Automation-basics&#34;&gt;Crunch Automation basics&lt;/a&gt; article.&lt;/li&gt;
 &lt;/ul&gt;
-</description>
+</content>
     </item>
     
     <item>
@@ -52,7 +53,8 @@
       <pubDate>Fri, 22 Jan 2021 18:00:00 +0200</pubDate>
       
       <guid>//crunch.io/release-notes/2021-01-22/</guid>
-      <description>&lt;h3 id=&#34;crunch-app&#34;&gt;Crunch app&lt;/h3&gt;
+      <description>Crunch app  Provide you with the ability to customize table slide exports. See the help documentation for more information. Improve the &amp;lsquo;Margin of Error / Cell details&amp;rsquo; feature. See the help documentation for more information. Fix to the UI so that it now correctly shows the N range on a categorical array graph.  API Endpoints and API Reference  API endpoint documentation is live in its new home! See Crunch API Reference for more information.</description>
+      <content>&lt;h3 id=&#34;crunch-app&#34;&gt;Crunch app&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Provide you with the ability to customize table slide exports. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360041481052-Customizing-your-tables-for-export-or-dashboards&#34;&gt;help documentation&lt;/a&gt; for more information.&lt;/li&gt;
 &lt;li&gt;Improve the &amp;lsquo;Margin of Error / Cell details&amp;rsquo; feature. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040932251-Customizing-a-Table-or-Graph#more-options&#34;&gt;help documentation&lt;/a&gt; for more information.&lt;/li&gt;
@@ -71,7 +73,7 @@
 &lt;ul&gt;
 &lt;li&gt;Numerous CSS fixes to improve the look, feel, and navigation of our &lt;a href=&#34;https://help.crunch.io/hc/en-us/&#34;&gt;help center&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-</description>
+</content>
     </item>
     
   </channel>
