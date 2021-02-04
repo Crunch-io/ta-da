@@ -1,5 +1,9 @@
-{{ partial "head.html" . }}
+{{ partial "head-start.html" . }}
+{{ if eq .Dir "dev/" }}
+<meta http-equiv="refresh" content="0; url=dev/features/"/>
+{{ end }}
 
+{{ partial "head-finish.html" . }}
 {{ partial "header.html" . }}
 
 <div id="wrapper">
@@ -38,6 +42,13 @@
                   </div>
 
                   <div class="row">
+                      <div class="col-md-6 col-lg-4">
+                          <div class="post-card post-min-height" style="background-color: inherit;">
+                              <div class="posts">
+                                  {{ partial "subscribe-whats-new" . }}
+                              </div>
+                          </div>
+                      </div>
                       {{ range .Paginator.Pages.ByPublishDate.Reverse }}
                           <div class="col-md-6 col-lg-4">
                               <div class="post-card" onclick="location.href='{{ .Permalink }}'">
