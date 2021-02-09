@@ -244,6 +244,7 @@
     @include vp-transition(all .1s ease-in-out);
     cursor: pointer;
     border-radius: 2px;
+    border: 1px solid #e5e5e5;
 
     &:hover {
         box-shadow: 2px 2px 15px 2px rgba(0,0,0,0.1);
@@ -367,6 +368,7 @@
 
         p {
             margin-top: 20px;
+            color: red;
         }
 
         .post-card-links {
@@ -480,9 +482,8 @@
 
 }
 
-
 .post-min-height {
-    min-height: 200px;
+    min-height: 230px;
 }
 
 // Figure images in content .md
