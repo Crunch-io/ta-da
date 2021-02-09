@@ -776,3 +776,24 @@ figure {
         border: 1px solid $color-grey-normal;
     }
 }
+
+.subscribe-whats-new {
+    background-color: $color-green;
+    padding: 20px;
+    border-radius: 2px;
+
+    #mc_embed_signup {
+        background-color: transparent;
+        color: $color-white;
+
+        #mc_embed_signup_scroll h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 100;
+            font-size: 24px;
+        }
+
+        #mc-embedded-subscribe {
+            background-color: $--light-secondary-color;
+        }
+    }
+}

@@ -8,6 +8,7 @@ description = "You can now see the margin of error as well as unweighted base wh
 weight = 20
 tags = ["margin of error, analytics, statistics"]
 categories = ["feature"]
+series = "main"
 images = ["https://crunch.io/img/logo-1200x630.png"]
 labs_only = false
 no_profiles = true
