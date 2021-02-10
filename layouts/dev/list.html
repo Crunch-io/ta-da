@@ -16,7 +16,7 @@
                     <div class="container">
                         <div class="row justify-content-md-center">
                             <div class="col-md-12 header-content-container">
-                                <h1 class="display-4">{{ .Title }}</h1>
+                                <h1 style="line-height: 1em;">{{ .Title }}</h1>
                                 <p>{{ .Content }}</p>
                             </div>
                         </div> <!-- /.row -->
@@ -26,22 +26,22 @@
 
                 <div class="container resources-main">
                   {{ range where .Pages "Params.series" "main" }}
-                  <div class="row" style="margin-top: -100px;">
+                  <div class="row" style="margin-top: -70px;">
                       <div class="col-md-8 post-card-main-content">
-                          <div class="post-card post-min-height">
+                          <div class="post-card post-min-height" style="margin-bottom: 0;">
                               <div class="posts">
-                                  <h1 class="post-title">{{ with .Title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} <i>{{ index (split . " ") 8 }}</i> {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }} {{ end }}</h1>
+                                  <h1 class="post-title">{{ with .Title }} {{ index (split . " ") 0 }} <i>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }}</i> {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }} {{ end }}</h1>
                                   <p style="color: #444;">{{ .Params.description }}</p>
                                   <span>{{ .Params.eventdate }}</span>
 
                                   <br>
 
                                   <div class="row">
-                                      <div class="col-md-9">
+                                      <div class="col-md-9 col-lg-9">
                                           <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
                                       </div>
 
-                                      <div class="col-md-3">
+                                      <div class="col-md-3 col-lg-3" style="text-align: right;">
                                           <a href="{{ .Permalink }}">Learn More &#10230;</a>
                                       </div>
 
@@ -74,7 +74,7 @@
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
                                       <p>{{ .Params.description | truncate 75 }}</p>
 
-                                      <div class="row">
+                                      <div class="row post-card-links" style="width: 100%;">
                                           <div class="col-md-7">
                                               <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
                                           </div>
