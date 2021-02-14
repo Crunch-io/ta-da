@@ -1,0 +1,23 @@
+profiles:
+
+    local:
+        api_url: 'https://local.crunch.io:28443/api'
+        # Turn off certificate verification for local server
+        verify: false
+        users:
+            default:
+                username: 'captain@crunch.io'
+                password: 'A$dfasdfasdf1'
+
+    alpha:
+        api_url: 'https://alpha.crunch.io/api'
+        users:
+            default:
+                email: 'YOU@crunch.io'
+
+                # To get your authentication token:
+                # Connect to whaam at https://alpha.crunch.io/
+                # Show developer tools in Chrome browser (Ctrl-Shift-I)
+                # Application -> Cookies -> https://alpha.crunch.io -> token
+                # Copy the cookie value, paste it as the token value below.
+                token: 'Fyna66PhzhEYcmzueL9w9ibip3bt_suV2I2UQKwNoR8='
