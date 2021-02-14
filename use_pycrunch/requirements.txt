@@ -1,2 +1,4 @@
+docopt
 pycrunch
-PyYAML<=5.1,>=3.10
+PyYAML
+six

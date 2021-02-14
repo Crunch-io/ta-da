@@ -22,13 +22,12 @@ import sys
 
 import docopt
 import six
-from six.moves.urllib import parse as urllib_parse
 import yaml
 
 from crunch_util import connect_pycrunch, connection_info_from_config
 
 
-def main():
+def main():  # noqa: C901
     args = docopt.docopt(__doc__.format(program=os.path.basename(sys.argv[0])))
     logging.basicConfig(level=logging.INFO)
 
@@ -55,9 +54,9 @@ def main():
         personal_projects_url = site.catalogs.projects + "personal/"
         catalog = site.session.get(personal_projects_url).payload
         for item_url, item in six.iteritems(catalog.index):
-            if item.type == 'dataset' and args["--projects"]:
+            if item.type == "dataset" and args["--projects"]:
                 continue
-            elif item.type != 'dataset' and not args["--projects"]:
+            elif item.type != "dataset" and not args["--projects"]:
                 continue
             print(u"{item.id} {item.name}".format(item=item))
 
@@ -66,9 +65,9 @@ def main():
         project_url = "{}{}/".format(site.catalogs.projects, project_id)
         catalog = site.session.get(project_url).payload
         for item_url, item in six.iteritems(catalog.index):
-            if item.type == 'dataset' and args["--projects"]:
+            if item.type == "dataset" and args["--projects"]:
                 continue
-            elif item.type != 'dataset' and not args["--projects"]:
+            elif item.type != "dataset" and not args["--projects"]:
                 continue
             print(u"{item.id} {item.name}".format(item=item))
 
