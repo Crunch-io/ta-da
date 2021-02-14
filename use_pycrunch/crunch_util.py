@@ -16,6 +16,7 @@ import os
 import shutil
 import tempfile
 import time
+import types
 import warnings
 
 import pycrunch
@@ -1059,3 +1060,20 @@ def set_pk_alias(ds, alias):
     )
     response.raise_for_status()
     return response
+
+
+def patch_pre_http_request(session, callback):
+    """
+    Patch a requests.Session object to intercept the request() method and
+    allow a callback to mutate the session before calling session.request().
+
+    callback should be callable like this:
+        callback(session, method, url, **kwparams)
+    """
+    original_request = session.request
+
+    def _patched_request(self, method, url, **kwparams):
+        callback(self, method, url, **kwparams)
+        return original_request(method, url, **kwparams)
+
+    session.request = types.MethodType(_patched_request, session)

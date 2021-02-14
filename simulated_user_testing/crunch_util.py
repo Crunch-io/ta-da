@@ -22,7 +22,7 @@ import warnings
 import pycrunch
 import pycrunch.progress
 import six
-from urllib import parse as urllib_parse
+from six.moves.urllib import parse as urllib_parse
 import urllib3.exceptions
 
 # Certificate for local.crunch.io has no `subjectAltName`, which causes warnings
@@ -54,6 +54,63 @@ class VerboseLogger(object):
     def __call__(self, msg, *args, **kwargs):
         if self.verbose:
             log.info(msg, *args, **kwargs)
+
+
+def connection_info_from_config(config, args):
+    """
+    Extract connection info from config based on args
+
+    config:
+        dictionary containing configuration loaded from YAML with this layout:
+
+        profiles:
+            <profile-name>:
+                api_url: <URL>
+                ...
+                users:
+                    <user-name>:
+                        email: <email-addr>
+                        password: <password> # this or token
+                        token: <token> # this or password
+                        ...
+    args:
+        dictionary containing command-line arguments with at least these keys:
+        {
+            '-p': <profile-name>,
+            '-u': <user-name>,
+            ...
+        }
+
+    The returned dictionary can be used as the first parameter to
+    connect_pycrunch(). See that function's docstring for more details.
+    """
+    if "profiles" not in config:
+        raise ValueError("Missing 'profiles' key in config")
+    if "-p" not in args:
+        raise ValueError("Missing '-p' key in args")
+    if "-u" not in args:
+        raise ValueError("Missing '-u' key in args")
+
+    profiles = config["profiles"]
+    profile_name = args["-p"]
+    if profile_name not in profiles:
+        raise ValueError("Invalid profile name '{}'".format(profile_name))
+    profile = copy.deepcopy(profiles[profile_name])
+    if "api_url" not in profile:
+        raise ValueError("Profile '{}' is missing api_url key".format(profile_name))
+
+    if "users" not in profile:
+        raise ValueError("Profile '{}' is missing users key")
+    users = profile.pop("users")
+    user_name = args["-u"]
+    if user_name not in users:
+        raise ValueError(
+            "User '{}' not found in profile '{}'".format(user_name, profile_name)
+        )
+
+    connection_info = profile.copy()
+    connection_info.update(users[user_name])
+    return connection_info
 
 
 def connect_pycrunch(connection_info, verbose=False):
