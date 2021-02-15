@@ -14,49 +14,75 @@
             <div class="blog-content">
                 <div class="jumbotron">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h1>The <span>latest</span></h1>
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-12 header-content-container">
+                                <h1 style="font-size: 2.5em; line-height: 1em;">{{ with .Title }} <i>{{ index (split . " ") 0 }}</i> {{ index (split . " ") 1 }} {{ end }}</h1>
+                                <p>{{ .Content }}</p>
                             </div>
-                            {{ range first 1 .Data.Pages.ByPublishDate.Reverse }}
-                            <div class="col-md-8" onclick="location.href='{{ .Permalink }}'" style="cursor: pointer;">
-                                <h2>{{ .Title | emojify }}</h2>
-                                <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
-                                <p class="lead">{{ .Summary | emojify }}...</p>
-                                <a href="{{ .Permalink }}">Learn More &#10230;</a>
-                            </div>
-                            {{ end }}
                         </div> <!-- /.row -->
 
                     </div> <!-- /.container -->
                 </div> <!-- /.jumbotron -->
+
+                <div class="container resources-main">
+                  {{ range where .Pages "Params.series" "main" }}
+                  <div class="row" style="margin-top: -70px;">
+                      <div class="col-md-8 post-card-main-content">
+                          <div class="post-card post-min-height announcements-main" style="margin-bottom: 0;" onclick="location.href='{{ .Permalink }}'">
+                              <div class="posts">
+                                  <h1 class="post-title">{{ with .Title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <i>{{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }}</i> {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }} {{ end }}</h1>
+                                  <p style="color: #444;">{{ .Params.description }}</p>
+                                  <span>{{ .Params.eventdate }}</span>
+
+                                  <br>
+
+                                  <div class="row">
+                                      <div class="col">
+                                          <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
+                                      </div>
+
+                                      <div class="col" style="text-align: right;">
+                                          <a href="{{ .Permalink }}">Learn More &#10230;</a>
+                                      </div>
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div> <!-- /.col-md-5 -->
+
+                      <div class="col-md-4 subscribe-whats-new">
+                          {{ partial "subscribe-whats-new" . }}
+                      </div>
+
+                      <!-- <div class="col-md-6 offset-md-1 figure d-none d-md-block d-lg-block"> </div> -->
+                  </div> <!-- /.row -->
+
+                  {{ end }}
+                </div>
             </div> <!-- /.blog-content -->
+
+            <br>
 
             <div class="secondary-content">
               <div class="container">
 
-                  <div class="row spacer-top spacer-bottom justify-content-md-center">
-                      <div class="col-md-8">
-                          <h2 class="text-center"><span>{{ .Content }}</span></h2>
-                      </div>
-                  </div>
-
                   <div class="row">
-                      <div class="col-md-6 col-lg-4">
-                          <div class="post-card post-min-height" style="background-color: inherit;">
-                              <div class="posts">
-                                  {{ partial "subscribe-whats-new" . }}
-                              </div>
-                          </div>
-                      </div>
                       {{ range .Paginator.Pages.ByPublishDate.Reverse }}
                           <div class="col-md-6 col-lg-4">
-                              <div class="post-card" onclick="location.href='{{ .Permalink }}'">
+                              <div class="post-card post-min-height-sm" onclick="location.href='{{ .Permalink }}'">
                                   <div class="posts">
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
-                                      <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
-                                      <p>{{ .Params.description }}</p>
-                                      <a href="{{ .Permalink }}">Learn More &#10230;</a>
+                                      <p>{{ .Params.description | truncate 75 }}</p>
+
+                                      <div class="row post-card-links" style="width: 88%;">
+                                          <div class="col">
+                                              <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
+                                          </div>
+
+                                          <div class="col text-right">
+                                              <a href="{{ .Permalink }}">Learn More &#10230;</a>
+                                          </div>
+                                      </div>
                                   </div>
                               </div>
                           </div>

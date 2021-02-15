@@ -9,4 +9,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-Feature Announcements
+Read about Crunch.io newest features and updates

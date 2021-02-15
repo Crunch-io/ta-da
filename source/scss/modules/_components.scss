@@ -244,6 +244,7 @@
     @include vp-transition(all .1s ease-in-out);
     cursor: pointer;
     border-radius: 2px;
+    border: 1px solid #e5e5e5;
 
     &:hover {
         box-shadow: 2px 2px 15px 2px rgba(0,0,0,0.1);
@@ -258,6 +259,7 @@
 
         p {
             margin-top: 20px;
+            line-height: 22px;
         }
 
         .post-card-links {
@@ -367,6 +369,7 @@
 
         p {
             margin-top: 20px;
+            color: red;
         }
 
         .post-card-links {
@@ -480,9 +483,38 @@
 
 }
 
-
 .post-min-height {
     min-height: 200px;
+}
+
+.post-min-height-sm {
+    min-height: 230px;
+
+    span {
+        font-weight: 700;
+        color: $color-off-black;
+    }
+
+    a {
+        color: $color-off-black;
+        font-family: 'Libre Baskerville', serif;
+        font-style: italic;
+    }
+}
+
+.announcements-main {
+    span {
+        font-weight: 700;
+        color: $color-off-black;
+        font-size: 14px;
+    }
+
+    a {
+        color: $color-off-black;
+        font-family: 'Libre Baskerville', serif;
+        font-style: italic;
+        font-size: 14px;
+    }
 }
 
 // Figure images in content .md
@@ -774,5 +806,41 @@ figure {
 .resources-filter {
     .post-card {
         border: 1px solid $color-grey-normal;
+    }
+}
+
+.subscribe-whats-new {
+    #mc_embed_signup {
+        background-color: transparent;
+
+        form {
+            background-color: $color-green;
+            background-image: linear-gradient( $color-green, $--darker-secondary-color);
+            padding: 20px;
+            color: $color-white;
+            border-radius: 2px;
+            min-height: 270px;
+
+            .email {
+                border: 0;
+            }
+
+            #mc-embedded-subscribe {
+                background-color: #0B6752;
+                color: #D3E3DF;
+            }
+
+            #mc_embed_signup_scroll h2 {
+                font-family: 'Libre Baskerville', serif;
+                font-weight: 100;
+                font-size: 22px;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    #mc_embed_signup {
+        margin-top: 25px;
     }
 }
