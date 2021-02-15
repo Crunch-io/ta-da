@@ -37,11 +37,11 @@
                                   <br>
 
                                   <div class="row">
-                                      <div class="col-md-9 col-lg-9">
+                                      <div class="col">
                                           <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
                                       </div>
 
-                                      <div class="col-md-3 col-lg-3" style="text-align: right;">
+                                      <div class="col" style="text-align: right;">
                                           <a href="{{ .Permalink }}">Learn More &#10230;</a>
                                       </div>
 
@@ -74,12 +74,12 @@
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
                                       <p>{{ .Params.description | truncate 75 }}</p>
 
-                                      <div class="row post-card-links" style="width: 100%;">
-                                          <div class="col-md-7">
+                                      <div class="row post-card-links" style="width: 88%;">
+                                          <div class="col">
                                               <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
                                           </div>
 
-                                          <div class="col-md-5">
+                                          <div class="col text-right">
                                               <a href="{{ .Permalink }}">Learn More &#10230;</a>
                                           </div>
                                       </div>
