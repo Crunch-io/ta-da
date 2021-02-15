@@ -259,6 +259,7 @@
 
         p {
             margin-top: 20px;
+            line-height: 22px;
         }
 
         .post-card-links {
@@ -814,17 +815,19 @@ figure {
 
         form {
             background-color: $color-green;
+            background-image: linear-gradient( $color-green, $--darker-secondary-color);
             padding: 20px;
             color: $color-white;
             border-radius: 2px;
-            min-height: 287px;
+            min-height: 270px;
 
             .email {
                 border: 0;
             }
 
             #mc-embedded-subscribe {
-                background-color: $--light-secondary-color;
+                background-color: #0B6752;
+                color: #D3E3DF;
             }
 
             #mc_embed_signup_scroll h2 {
@@ -833,5 +836,11 @@ figure {
                 font-size: 22px;
             }
         }
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    #mc_embed_signup {
+        margin-top: 25px;
     }
 }
