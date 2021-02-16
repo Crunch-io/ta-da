@@ -7,32 +7,34 @@
     <meta name="description" content="Prepare and analyze survey data quickly and easily.">
     <meta name="keywords" content="Crunch, Crunch io, data, datasets, survey, analytics, analysis, technology, insights, research, software">
     <base href="//crunch.io/">
-    <title>Crunch | Release Notes</title>
+    <title>Crunch | Release 2021.4</title>
 
     <link rel="icon" href="img/favicon.ico">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <meta property="og:title" content="Release Notes &middot; Modern survey data analysis">
-<meta property="og:description" content="Developer notes, bug fixes, documentation, API, and application changes.">
+    <meta property="og:title" content="Release 2021.4 &middot; Modern survey data analysis">
+<meta property="og:description" content="Prepare and analyze survey data quickly and easily.">
 <meta property="og:type" content="website" >
-<meta property="og:url" content="//crunch.io/release-notes/">
+<meta property="og:url" content="//crunch.io/release-notes/2021-02-12/">
 <meta property="og:locale" content="en">
 
+
     
-        
-            <meta property="og:image" content="//crunch.io/img/logo-1200x630.png">
-        
+        <meta property="og:image" content="https://crunch.io/img/logo-1200x630.png">
     
 
 
-  <meta property="og:updated_time" content="2021-01-20T14:08:35&#43;02:00">
+
+  <meta property="og:updated_time" content="2021-02-12T10:00:00-07:00">
 
 
     <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://crunch.io/img/logo-1200x630.png"/>
 
-<meta name="twitter:title" content="Release Notes"/>
-<meta name="twitter:description" content="Developer notes, bug fixes, documentation, API, and application changes."/>
+<meta name="twitter:title" content="Release 2021.4"/>
+<meta name="twitter:description" content="Crunch web application Changes
+ Made the invite button available before the permission list is loaded. Added support for analyses involving a multiple response variable crossed with a numeric array variable.  Bugfixes
+ Fixed timeplot, which was displaying wrong N count. Fixed tooltip value for Margin of Error. Fixed broken scrollbar behavior on filter builder in the categorical variable builder.  SDKs (rCrunch, pyCrunch, and sCrunch)  Improved sCrunch Backfill code."/>
 
     
     <link rel="stylesheet" href="css/main.css">
@@ -137,131 +139,71 @@
         <div class="container-fluid">
 
             <div class="blog-content">
-                <div class="jumbotron" style="padding-top: 47px; padding-bottom: 30px;">
+                <div class="jumbotron">
                     <div class="container">
                         <div class="row justify-content-md-center">
                             <div class="col-md-8 text-center">
                                 <h1 class="display-5">Release Notes</h1>
-                                <p><p>Developer notes, bug fixes, documentation, API, and application changes.</p>
-</p>
                             </div>
                         </div> 
                     </div> 
+                </div> 
+            </div> 
+
+            <div class="blog-content">
+                    <div class="container spacer-top">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <h2>Release 2021.4</h2>
+                                <p><a href="/release-notes/" style="color: black;">&#8592; Other release notes</a></p>
+                                <hr>
+                                <p></p>
+                                <span>February 12, 2021 </span>
+                            </div>
+                        </div> 
                 </div> 
             </div> 
 
             <div class="secondary-content">
-              <div class="container">
+              <div class="container blog-content-mg">
 
+                  <div class="row spacer-bottom">
+                      <div class="col-md-10 offset-md-1">
+                          <h3 id="crunch-web-application">Crunch web application</h3>
+<p><strong>Changes</strong></p>
+<ul>
+<li>Made the invite button available before the permission list is loaded.</li>
+<li>Added support for analyses involving a multiple response variable crossed with a numeric array variable.</li>
+</ul>
+<p><strong>Bugfixes</strong></p>
+<ul>
+<li>Fixed timeplot, which was displaying wrong N count.</li>
+<li>Fixed tooltip value for Margin of Error.</li>
+<li>Fixed broken scrollbar behavior on filter builder in the categorical variable builder.</li>
+</ul>
+<h3 id="sdks-rcrunch-pycrunch-and-scrunch">SDKs (<code>rCrunch</code>, <code>pyCrunch</code>, and <code>sCrunch</code>)</h3>
+<ul>
+<li>Improved sCrunch Backfill code.</li>
+</ul>
+<h3 id="crunch-automation">Crunch Automation</h3>
+<ul>
+<li>Released the CREATE NUMERIC ARRAY command. See <a href="https://help.crunch.io/hc/en-us/articles/360057078531-CREATE-NUMERIC-ARRAY-command">article</a> for more information.</li>
+</ul>
+<h3 id="help-desk-improvements">Help desk improvements</h3>
+<ul>
+<li>Published the following Qualtrics support documentation:
+<ul>
+<li><a href="https://help.crunch.io/hc/en-us/articles/360056831391-How-to-import-from-Qualtrics-into-Crunch">How to import from Qualtrics into Crunch</a></li>
+<li><a href="https://help.crunch.io/hc/en-us/articles/360056419652-How-your-survey-metadata-maps-from-Qualtrics-into-Crunch">How your survey metadata maps from Qualtrics into Crunch</a></li>
+</ul>
+</li>
+</ul>
 
-
-                  <div class="row">
-                      <div class="col-md-6 col-lg-4">
-                          <div class="post-card post-min-height" style="background-color: inherit;">
-                              <div class="posts">
-                                  
-<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
-     
-</style>
-<div id="mc_embed_signup">
-    <form action="https://crunch.us20.list-manage.com/subscribe/post?u=0d29cf89c3f465ed1f368bc02&amp;id=e2470fae4d" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate style="padding-top: 0px;">
-        <div id="mc_embed_signup_scroll">
-            <h2 style="margin-top: 0px;">Subscribe to automatically receive release notes via email:</h2>
-            <div class="mc-field-group" style="margin-bottom: 0px;">
-                <label for="mce-EMAIL">Email Address </label>
-                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-            </div>
-            <div class="mc-field-group input-group" style="display: none;">
-                <strong>Interest Group </strong>
-                <ul>
-                    <li><input type="checkbox" value="1" name="group[7235][1]" id="mce-group[7235]-7235-0" checked><label for="mce-group[7235]-7235-0">Release Notes</label></li>
-                    <li><input type="checkbox" value="2" name="group[7235][2]" id="mce-group[7235]-7235-1"><label for="mce-group[7235]-7235-1">Feature announcements</label></li>
-                    <li><input type="checkbox" value="4" name="group[7235][4]" id="mce-group[7235]-7235-2"><label for="mce-group[7235]-7235-2">Monthly newsletter</label></li>
-                </ul>
-            </div>
-            <div id="mce-responses" class="clear">
-                <div class="response" id="mce-error-response" style="display:none"></div>
-                <div class="response" id="mce-success-response" style="display:none"></div>
-            </div>    
-            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_0d29cf89c3f465ed1f368bc02_e2470fae4d" tabindex="-1" value=""></div>
-            <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-        </div>
-    </form>
-</div>
-<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[6]='COMPANY';ftypes[6]='text';fnames[7]='TITLE';ftypes[7]='text';fnames[8]='MESSAGE';ftypes[8]='text';fnames[9]='MMERGE9';ftypes[9]='text';fnames[10]='MMERGE10';ftypes[10]='text';fnames[11]='MMERGE11';ftypes[11]='text';fnames[12]='MMERGE12';ftypes[12]='text';fnames[13]='MMERGE13';ftypes[13]='text';fnames[14]='MMERGE14';ftypes[14]='text';fnames[15]='MMERGE15';ftypes[15]='text';fnames[16]='MMERGE16';ftypes[16]='text';fnames[17]='MMERGE17';ftypes[17]='text';fnames[18]='MMERGE18';ftypes[18]='text';fnames[19]='MMERGE19';ftypes[19]='text';fnames[20]='MMERGE20';ftypes[20]='text';fnames[21]='MMERGE21';ftypes[21]='text';fnames[22]='MMERGE22';ftypes[22]='text';fnames[23]='MMERGE23';ftypes[23]='text';fnames[24]='MMERGE24';ftypes[24]='text';fnames[25]='MMERGE25';ftypes[25]='text';fnames[26]='MMERGE26';ftypes[26]='text';fnames[27]='MMERGE27';ftypes[27]='text';fnames[28]='MMERGE28';ftypes[28]='text';fnames[29]='MMERGE29';ftypes[29]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-
-
-                              </div>
-                          </div>
                       </div>
-                      
-                          <div class="col-md-6 col-lg-4">
-                              <div class="post-card post-min-height" onclick="location.href='\/\/crunch.io\/release-notes\/2021-02-12\/'">
-                                  <div class="posts">
-                                      <h4 class="post-title">Release 2021.4</h4>
-                                      <span>February 12, 2021</span>
-                                      <p></p>
-                                      <a href="//crunch.io/release-notes/2021-02-12/">Learn More &#10230;</a>
-                                  </div>
-                              </div>
-                          </div>
-                      
-                          <div class="col-md-6 col-lg-4">
-                              <div class="post-card post-min-height" onclick="location.href='\/\/crunch.io\/release-notes\/2021-02-05\/'">
-                                  <div class="posts">
-                                      <h4 class="post-title">Release 2021.3</h4>
-                                      <span>February 5, 2021</span>
-                                      <p></p>
-                                      <a href="//crunch.io/release-notes/2021-02-05/">Learn More &#10230;</a>
-                                  </div>
-                              </div>
-                          </div>
-                      
-                          <div class="col-md-6 col-lg-4">
-                              <div class="post-card post-min-height" onclick="location.href='\/\/crunch.io\/release-notes\/2021-01-29\/'">
-                                  <div class="posts">
-                                      <h4 class="post-title">Release 2021.2</h4>
-                                      <span>January 29, 2021</span>
-                                      <p></p>
-                                      <a href="//crunch.io/release-notes/2021-01-29/">Learn More &#10230;</a>
-                                  </div>
-                              </div>
-                          </div>
-                      
-                          <div class="col-md-6 col-lg-4">
-                              <div class="post-card post-min-height" onclick="location.href='\/\/crunch.io\/release-notes\/2021-01-22\/'">
-                                  <div class="posts">
-                                      <h4 class="post-title">Release 2021.1</h4>
-                                      <span>January 22, 2021</span>
-                                      <p></p>
-                                      <a href="//crunch.io/release-notes/2021-01-22/">Learn More &#10230;</a>
-                                  </div>
-                              </div>
-                          </div>
-                      
                   </div>
-
-                  
-
-
 
               </div> 
             </div> 
-
-            <div class="footer-content">
-                <div class="jumbotron">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h1>Learn about <span>our team</span></h1>
-                                <a href="team" class="btn btn-link">Our team &#10230;</a>
-                            </div>
-                        </div> 
-                    </div> 
-                </div> 
-            </div>
 
             <footer class="footer d-flex justify-content-center bg-black">
                 <ul class="list-inline">

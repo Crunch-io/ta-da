@@ -8,6 +8,47 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.4</title>
+      <link>//crunch.io/release-notes/2021-02-12/</link>
+      <pubDate>Fri, 12 Feb 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-02-12/</guid>
+      <description>Crunch web application Changes
+ Made the invite button available before the permission list is loaded. Added support for analyses involving a multiple response variable crossed with a numeric array variable.  Bugfixes
+ Fixed timeplot, which was displaying wrong N count. Fixed tooltip value for Margin of Error. Fixed broken scrollbar behavior on filter builder in the categorical variable builder.  SDKs (rCrunch, pyCrunch, and sCrunch)  Improved sCrunch Backfill code.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Changes&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Made the invite button available before the permission list is loaded.&lt;/li&gt;
+&lt;li&gt;Added support for analyses involving a multiple response variable crossed with a numeric array variable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Bugfixes&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed timeplot, which was displaying wrong N count.&lt;/li&gt;
+&lt;li&gt;Fixed tooltip value for Margin of Error.&lt;/li&gt;
+&lt;li&gt;Fixed broken scrollbar behavior on filter builder in the categorical variable builder.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sdks-rcrunch-pycrunch-and-scrunch&#34;&gt;SDKs (&lt;code&gt;rCrunch&lt;/code&gt;, &lt;code&gt;pyCrunch&lt;/code&gt;, and &lt;code&gt;sCrunch&lt;/code&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Improved sCrunch Backfill code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Released the CREATE NUMERIC ARRAY command. See &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360057078531-CREATE-NUMERIC-ARRAY-command&#34;&gt;article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-improvements&#34;&gt;Help desk improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Published the following Qualtrics support documentation:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360056831391-How-to-import-from-Qualtrics-into-Crunch&#34;&gt;How to import from Qualtrics into Crunch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360056419652-How-your-survey-metadata-maps-from-Qualtrics-into-Crunch&#34;&gt;How your survey metadata maps from Qualtrics into Crunch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.3</title>
       <link>//crunch.io/release-notes/2021-02-05/</link>
       <pubDate>Fri, 05 Feb 2021 10:00:00 -0700</pubDate>

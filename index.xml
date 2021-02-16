@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Feb 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Feb 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prodege</title>
       <link>//crunch.io/case-studies/prodege/</link>
@@ -477,6 +477,17 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <description>Reports to: VP of Sales
 Work location: Remote, United States or Canada
 The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.</description>
+    </item>
+    
+    <item>
+      <title>Release 2021.4</title>
+      <link>//crunch.io/release-notes/2021-02-12/</link>
+      <pubDate>Fri, 12 Feb 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-02-12/</guid>
+      <description>Crunch web application Changes
+ Made the invite button available before the permission list is loaded. Added support for analyses involving a multiple response variable crossed with a numeric array variable.  Bugfixes
+ Fixed timeplot, which was displaying wrong N count. Fixed tooltip value for Margin of Error. Fixed broken scrollbar behavior on filter builder in the categorical variable builder.  SDKs (rCrunch, pyCrunch, and sCrunch)  Improved sCrunch Backfill code.</description>
     </item>
     
     <item>
