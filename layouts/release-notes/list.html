@@ -23,21 +23,9 @@
             <div class="secondary-content">
               <div class="container">
 
-<!--
-                  <div class="row spacer-top spacer-bottom justify-content-md-center">
-                      <div class="col-md-4">
-                          {{ partial "subscribe-release-notes" . }}
-                      </div>
-                  </div>
--->
-
                   <div class="row">
-                      <div class="col-md-6 col-lg-4">
-                          <div class="post-card post-min-height" style="background-color: inherit;">
-                              <div class="posts">
-                                  {{ partial "subscribe-release-notes" . }}
-                              </div>
-                          </div>
+                      <div class="col-md-6 col-lg-4 subscribe-release-notes">
+                          {{ partial "subscribe-release-notes" . }}
                       </div>
                       {{ range .Paginator.Pages.ByPublishDate.Reverse }}
                           <div class="col-md-6 col-lg-4">
