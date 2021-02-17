@@ -828,6 +828,11 @@ figure {
             #mc-embedded-subscribe {
                 background-color: #0B6752;
                 color: #D3E3DF;
+
+                &:hover {
+                    background-color: #D3E3DF;
+                    color: #0B6752;
+                }
             }
 
             #mc_embed_signup_scroll h2 {
@@ -839,8 +844,52 @@ figure {
     }
 }
 
+.subscribe-release-notes {
+    #mc_embed_signup {
+        background-color: transparent;
+
+        form {
+            background-color: $color-green;
+            background-image: linear-gradient( $color-green, $--darker-secondary-color);
+            padding: 10px 20px 15px 20px;
+            color: $color-white;
+            border-radius: 2px;
+            min-height: 190px;
+
+            .email {
+                border: 0;
+            }
+
+            #mc_embed_signup_scroll h2 {
+                font-family: 'Libre Baskerville', serif;
+                font-weight: 100;
+                font-size: 20px;
+                color: $color-white;
+            }
+
+            #mc-embedded-subscribe {
+                background-color: #0B6752;
+                color: #D3E3DF;
+
+                &:hover {
+                    background-color: #D3E3DF;
+                    color: #0B6752;
+                }
+            }
+        }
+    }
+}
+
 @include media-breakpoint-down(xs) {
     #mc_embed_signup {
         margin-top: 25px;
+    }
+
+    .subscribe-release-notes {
+        margin-bottom: 20px;
+
+        #mc_embed_signup {
+            margin-top: 0;
+        }
     }
 }
