@@ -48,6 +48,11 @@
   </url>
   
   <url>
+    <loc>//crunch.io/dev/features/dataset-sharing/</loc>
+    <lastmod>2021-02-16T18:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/dev/features/margin-of-error/</loc>
     <lastmod>2021-01-22T18:00:00-04:00</lastmod>
   </url>
@@ -273,8 +278,33 @@
   </url>
   
   <url>
+    <loc>//crunch.io/categories/</loc>
+    <lastmod>2021-02-16T18:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/datasets/</loc>
+    <lastmod>2021-02-16T18:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/categories/feature/</loc>
+    <lastmod>2021-02-16T18:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//crunch.io/</loc>
-    <lastmod>2021-02-12T10:00:00-07:00</lastmod>
+    <lastmod>2021-02-16T18:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/sharing/</loc>
+    <lastmod>2021-02-16T18:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>//crunch.io/tags/</loc>
+    <lastmod>2021-02-16T18:00:00-07:00</lastmod>
   </url>
   
   <url>
@@ -293,22 +323,7 @@
   </url>
   
   <url>
-    <loc>//crunch.io/categories/</loc>
-    <lastmod>2021-01-22T18:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/categories/feature/</loc>
-    <lastmod>2021-01-22T18:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//crunch.io/tags/margin-of-error-analytics-statistics/</loc>
-    <lastmod>2021-01-22T18:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/</loc>
     <lastmod>2021-01-22T18:00:00-04:00</lastmod>
   </url>
   
@@ -495,11 +510,6 @@
   <url>
     <loc>//crunch.io/tags/exports/</loc>
     <lastmod>2019-04-05T23:20:47-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//crunch.io/tags/datasets/</loc>
-    <lastmod>2019-02-10T23:20:47-04:00</lastmod>
   </url>
   
   <url>
