@@ -1,7 +1,8 @@
 +++
-date = "2021-02-16T21:28:11-04:00"
+date = "2021-02-16T18:00:00-07:00"
+publishdate = "2021-02-16T18:00:00-07:00"
 draft = false
-title = "Dataset Sharing has changed"
+title = "Simplified options for Dataset Sharing"
 news_description = "The sharing options for a dataset have been simplified and consolidated. Click here to learn more."
 description = "The sharing options for a dataset have been simplified and consolidated."
 weight = 20
@@ -10,6 +11,7 @@ categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
 labs_only = false
 no_profiles = true
+series = "main"
 
 +++
 

@@ -8,10 +8,10 @@ description = "You can now see the margin of error as well as unweighted base wh
 weight = 20
 tags = ["margin of error, analytics, statistics"]
 categories = ["feature"]
-series = "main"
 images = ["https://crunch.io/img/logo-1200x630.png"]
 labs_only = false
 no_profiles = true
+
 +++
 
 By using the new options panel revealed by clicking the three-dots icon in the display controller, users can choose which of these figures to display in the tooltip for table cells. The default statistics shown are the margin of error and unweighted base. Your chosen cell details are persisted as a user preference. For margin of error, you can also specify the number of decimal places you want to see.
