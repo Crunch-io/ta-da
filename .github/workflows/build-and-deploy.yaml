@@ -41,4 +41,9 @@ jobs:
         with:
           node-version: '14'
       - name: Run Build and deploy script
-        run: bash 'build-and-deploy.sh'
+        uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 3
+          max_attempts: 2
+          retry_on: timeout
+          command: build-and-deploy.sh
