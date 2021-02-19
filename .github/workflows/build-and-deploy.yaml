@@ -46,4 +46,4 @@ jobs:
           timeout_minutes: 3
           max_attempts: 2
           retry_on: timeout
-          command: build-and-deploy.sh
+          command: bash 'build-and-deploy.sh'
