@@ -5,7 +5,7 @@
     <description>Recent content in Feature Announcements on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2021-02-19T16:40:28+00:00</lastBuildDate>
+    <lastBuildDate>2021-02-19T19:27:22+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
     
@@ -21,10 +21,8 @@
       <noProfiles>true</noProfiles>
       <pinned>false</pinned>
       <description>The sharing options for a dataset have been simplified and consolidated. Click here to learn more.</description>
-      <content:encoded>&lt;p&gt;The sharing options for a dataset have been simplified and consolidated. Previously, both &lt;strong&gt;share&lt;/strong&gt; and &lt;strong&gt;members&lt;/strong&gt; links were
-visible to dataset editors. To simplify, dataset editors can only now see the &lt;strong&gt;members&lt;/strong&gt; link. The share link option for
-dataset editors has been removed.&lt;/p&gt;
-&lt;p&gt;For dataset viewers, the sharing option with &lt;strong&gt;share&lt;/strong&gt; link has not changed.&lt;/p&gt;
+      <content:encoded>&lt;p&gt;The sharing options for a dataset have been simplified and consolidated. Previously, both &lt;strong&gt;Share&lt;/strong&gt; and &lt;strong&gt;Members&lt;/strong&gt; links were visible to Dataset Editors. To simplify, Dataset Editors can only now see the &lt;strong&gt;Members&lt;/strong&gt; link. The &lt;strong&gt;Share&lt;/strong&gt; link option for Dataset Editors has been removed.&lt;/p&gt;
+&lt;p&gt;For Dataset Viewers, the sharing option with &lt;strong&gt;Share&lt;/strong&gt; link has not changed.&lt;/p&gt;
 &lt;p&gt;Below we have outlined how you can share a dataset for different permission levels: Editors and Viewers.&lt;/p&gt;
 &lt;h1 id=&#34;sharing-a-dataset-for-dataset-editors&#34;&gt;&lt;strong&gt;Sharing a dataset for Dataset Editors&lt;/strong&gt;&lt;/h1&gt;
 &lt;p&gt;To share a dataset with individual users or teams of users:&lt;/p&gt;
