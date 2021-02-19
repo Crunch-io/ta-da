@@ -1,24 +1,22 @@
-+++ 
++++
 date = "2021-02-16T18:00:00-07:00"
 publishdate = "2021-02-16T18:00:00-07:00"
-draft = false 
+draft = false
 title = "Simplified options for Dataset Sharing"
 news_description = "The sharing options for a dataset have been simplified and consolidated. Click here to learn more."
 description = "The sharing options for a dataset have been simplified and consolidated."
-weight = 20 
+weight = 20
 tags = ["datasets", "sharing"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = false 
-no_profiles = true 
+labs_only = false
+no_profiles = true
 series = "main"
 +++
 
-The sharing options for a dataset have been simplified and consolidated. Previously, both **share** and **members** links were
-visible to dataset editors. To simplify, dataset editors can only now see the **members** link. The share link option for
-dataset editors has been removed.
+The sharing options for a dataset have been simplified and consolidated. Previously, both **Share** and **Members** links were visible to Dataset Editors. To simplify, Dataset Editors can only now see the **Members** link. The **Share** link option for Dataset Editors has been removed.
 
-For dataset viewers, the sharing option with **share** link has not changed.
+For Dataset Viewers, the sharing option with **Share** link has not changed.
 
 Below we have outlined how you can share a dataset for different permission levels: Editors and Viewers.
 
