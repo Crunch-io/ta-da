@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ev
+set -evx
 
 publish ()
 {
@@ -16,8 +16,8 @@ export -f publish
 
 build_site () {
     cd ${HOME}
-    npm install
-    npm run build:scss
+    npm install --loglevel verbose
+    npm run build:scss --loglevel verbose
     hugo
 }
 
