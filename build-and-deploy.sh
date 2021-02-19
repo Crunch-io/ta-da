@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ev
+set -evx
 
 publish ()
 {
@@ -16,9 +16,9 @@ export -f publish
 
 build_site () {
     cd ${HOME}
-    npm install
-    npm run build:scss
-    hugo
+    npm install --loglevel verbose
+    npm run build:scss --loglevel verbose
+    hugo -v
 }
 
 if [ -z "${GITHUB_PULL_REQUEST}" ]; then
