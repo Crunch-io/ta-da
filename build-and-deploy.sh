@@ -16,11 +16,8 @@ export -f publish
 
 build_site () {
     cd ${HOME}
-    sleep 5
-    npm install
-    sleep 5
-    npm run build:scss
-    sleep 5
+    npm install --loglevel verbose
+    npm run build:scss --loglevel verbose
     hugo
 }
 
