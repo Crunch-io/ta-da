@@ -68,7 +68,7 @@
 
                   <div class="row">
                       {{ range .Paginator.Pages.ByPublishDate.Reverse }}
-                          <div class="col-md-6 col-lg-4">
+                          <div class="col-md-6 col-lg-4" id="feature-post">
                               <div class="post-card post-min-height-sm" onclick="location.href='{{ .Permalink }}'">
                                   <div class="posts">
                                       <h4 class="post-title">{{ .Title | emojify }}</h4>
