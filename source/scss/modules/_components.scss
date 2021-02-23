@@ -847,6 +847,7 @@ figure {
 .subscribe-release-notes {
     #mc_embed_signup {
         background-color: transparent;
+        margin-bottom: 10px;
 
         form {
             background-color: $color-green;
@@ -896,4 +897,12 @@ figure {
 
 #feature-post:first-child {
     display: none;
+}
+
+#mce-responses a {
+    color: $color-white;
+}
+
+#mc_embed_signup div.response {
+    padding: 0 !important;
 }
