@@ -82,7 +82,7 @@ def open_admin(kind="eu"):
 
 def set_user(args):
     if args.USER is None:
-        if args.ROLE == "db":
+        if args.ROLE in ("db", "dbservers") and args.environment == "eu":
             args.USER = "centos"
         else:
             args.USER = "ec2-user"
