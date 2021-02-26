@@ -80,6 +80,13 @@ def open_admin(kind="eu"):
     if not admin_servers:
         raise ValueError("Unable to identify a valid webserver.")
 
+def set_user(args):
+    if args.USER is None:
+        if args.ROLE == "db":
+            args.USER = "centos"
+        else:
+            args.USER = "ec2-user"
+
 
 def main():
     parser = argparse.ArgumentParser(description="List or connect to Crunch Hosts")
@@ -130,8 +137,8 @@ def main():
         "-u",
         "--user",
         dest="USER",
-        default="ec2-user",
-        help="User that should be used to connect " "to the remot host.",
+        default=None,
+        help="User that should be used to connect " "to the remote host.",
     )
 
     adminparser = subparsers.add_parser("admin")
@@ -153,6 +160,7 @@ def main():
         for idx, s in enumerate(servers):
             print("\t", idx, s)
     elif args.subcommand == "connect":
+        set_user(args)
         servers = gather_servers(args.environment, args.ROLE)
         try:
             server_index = int(args.INDEX)
@@ -222,6 +230,7 @@ class HostPropertyDetector(object):
     }
 
     def __init__(self, args):
+        set_user(args)
         self._args = args
 
     def detect(self, servers, predicate):
