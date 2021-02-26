@@ -438,7 +438,7 @@
 
     .posts {
         .post-title {
-            color: $color-green;
+            color: $color-blue;
             font-size: 28px;
             margin-top: 15px;
         }
@@ -449,15 +449,16 @@
     }
 
     span {
-        color: $color-green;
+        color: $color-blue;
         text-transform: uppercase;
         font-weight: 400;
         font-size: 12px;
 
          img {
+             fill: $color-blue;
              margin-right: 10px;
              margin-top: -7px;
-             width: 100px;
+             width: 30px;
          }
     }
 
