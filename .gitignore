@@ -29,6 +29,7 @@ pip-log.txt
 .tox
 nosetests.xml
 *.prof
+.python_version
 .pytest_cache
 
 # Translations

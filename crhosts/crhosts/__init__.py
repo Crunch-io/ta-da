@@ -11,6 +11,15 @@ import requests
 import webbrowser
 from paramiko.client import SSHClient, WarningPolicy
 
+ec2_hosts_data = None
+
+def get_ec2_hosts_data():
+    global ec2_hosts_data
+    if ec2_hosts_data is None:
+        ec2_hosts_data = requests.get(
+            "http://dev.crunch.io/ec2-hosts.txt", auth=("paster", "youseeit")
+        ).text
+    return ec2_hosts_data
 
 class tunnel(object):
     JUMP_HOSTS = {
@@ -49,11 +58,9 @@ class tunnel(object):
 
 
 def gather_servers(kind="eu", role="dbservers"):
-    req = requests.get(
-        "http://dev.crunch.io/ec2-hosts.txt", auth=("paster", "youseeit")
-    )
     servers = []
-    for server in csv.DictReader(StringIO(req.text), delimiter="\t"):
+
+    for server in csv.DictReader(StringIO(get_ec2_hosts_data()), delimiter="\t"):
         if kind != server["System"]:
             continue
         if role not in server["Ansible Role"]:
@@ -65,21 +72,23 @@ def gather_servers(kind="eu", role="dbservers"):
 
 
 def gather_tags(kind="eu"):
-    req = requests.get(
-        "http://dev.crunch.io/ec2-hosts.txt", auth=("paster", "youseeit")
-    )
+    from trepan.api import debug; debug()
     tags = set()
-    for server in csv.DictReader(StringIO(req.text), delimiter="\t"):
+    for server in csv.DictReader(StringIO(get_ec2_hosts_data()), delimiter="\t"):
         for role in server["Ansible Role"].split(","):
             tags.add(role.strip())
     return tags
-
 
 def open_admin(kind="eu"):
     admin_servers = gather_servers(kind=kind, role="webservers")
     if not admin_servers:
         raise ValueError("Unable to identify a valid webserver.")
 
+# This is a bit hacky, fragile, and likely to change.
+# however in ec2hosts we don't really store the user to use, just the ansible role.
+# And figuring out the role from that isn't easy.
+# In the future we may be kubernetes so possibly anything we do here will
+# be obsolete.
 def set_user(args):
     if args.USER is None:
         if args.ROLE in ("db", "dbservers") and args.environment == "eu":
