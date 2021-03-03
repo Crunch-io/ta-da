@@ -72,7 +72,6 @@ def gather_servers(kind="eu", role="dbservers"):
 
 
 def gather_tags(kind="eu"):
-    from trepan.api import debug; debug()
     tags = set()
     for server in csv.DictReader(StringIO(get_ec2_hosts_data()), delimiter="\t"):
         for role in server["Ansible Role"].split(","):
