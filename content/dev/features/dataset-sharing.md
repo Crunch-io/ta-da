@@ -11,7 +11,7 @@ categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
 labs_only = false
 no_profiles = true
-series = "main"
+
 +++
 
 The sharing options for a dataset have been simplified and consolidated. Previously, both **Share** and **Members** links were visible to Dataset Editors. To simplify, Dataset Editors can only now see the **Members** link. The **Share** link option for Dataset Editors has been removed.
