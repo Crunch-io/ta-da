@@ -1,3 +1,6 @@
+# get these two values from https://start.1password.com/open/i?a=2JQVFSBKL5BIVEN4LLY572FK4M&v=p5bqs2nopqzzsr7e5ldg3qort4&i=3ugfygcy7orekfwisx44geuyyy&h=crunchio.1password.com
 PIVOTAL_PROJECT_ID=
 PIVOTAL_API_KEY=
+
+# get this value from https://start.1password.com/open/i?a=2JQVFSBKL5BIVEN4LLY572FK4M&v=yrkn7qszvxq336rvdw22omzgce&i=v4ag4dm4zflhjvahjjkw2mkmkq&h=crunchio.1password.com
 SENDGRID_API_KEY=
