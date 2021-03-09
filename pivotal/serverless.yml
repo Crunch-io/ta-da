@@ -1,4 +1,4 @@
-service: pivotal-webhook
+service: pivotal
 useDotenv: true
 
 provider:
@@ -16,9 +16,9 @@ provider:
 #    SENDGRID_API_KEY: abc
 
 functions:
-  post:
+  webhook-post:
     description: This function is fronted by an api gateway url which pivotal tracker POSTs to every time a pivotal story is updated.
-    handler: handler.post
+    handler: handler.pivotalStoryWebhook
     #   Normal memory usage is 80MB so set 128MB as max
     memorySize: 128
     #   Normal time needed is 900ms so set 20 seconds as max
@@ -27,4 +27,14 @@ functions:
       - http:
           path: pivotal
           method: post
-
+  recently-accepted-stories:
+    description: Returns a csv file containing recently accepted stories
+    handler: handler.recentlyAcceptedStories
+    #   Normal memory usage is 80MB so set 128MB as max
+    memorySize: 512
+    #   Normal time needed is 900ms so set 20 seconds as max
+    timeout: 20
+    events:
+      - http:
+          path: pivotal/recently-accepted-stories
+          method: get

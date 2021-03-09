@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from "axios"
+import {sendEmail} from "./email"
 import * as qs from 'qs'
-import {sendEmail} from './email'
 
 // See https://www.pivotaltracker.com/help/api/rest/v5#Stories for additional parameters
 interface pivotalStoryFilter {
@@ -8,12 +8,11 @@ interface pivotalStoryFilter {
     limit?: number
 }
 
-// @ts-ignore
-Date.prototype.formatMMDDYYYY = function () {
-    return (this.getMonth() + 1) +
-        "/" + this.getDate() +
-        "/" + this.getFullYear();
-}
+// load env variables from .creds file (serverless doesn't copy in .env file)
+require('dotenv').config({path: '.creds'})
+
+// set up pivotal people dictionary
+const pivotalPeople = {}
 
 // set up pivotal network request client
 const pivotal = axios.create({
@@ -23,12 +22,6 @@ const pivotal = axios.create({
         'X-TrackerToken': process.env.PIVOTAL_API_KEY
     }
 })
-
-// load env variables from .creds file (serverless doesn't copy in .env file)
-require('dotenv').config({path: '.creds'})
-
-// set up pivotal people dictionary
-const pivotalPeople = {}
 
 const fetchPivotalProjectPeople = async () => {
     const url = `projects/${process.env.PIVOTAL_PROJECT_ID}/memberships`
@@ -75,19 +68,17 @@ const fetchPivotalPeople = async () => {
         .catch(err => console.log(err))
 }
 
-const populatePivotalPeople = async () => {
+const fetchAllPivotalPeople = async () => {
     await fetchPivotalPeople()
     await fetchMe()
     await fetchPivotalProjectPeople()
     console.log(`Fetched all pivotal people`)
 }
 
-const storyUpdatedWebhook = async (postBody) => {
+const storyUpdated = async (postBody) => {
 
-    const body = postBody
-    const time = new Date().toISOString()
-    body.req_time = time
-
+    // if lambda stays running long enough then this will already be populated
+    if (Object.keys(pivotalPeople).length < 1) await fetchAllPivotalPeople()
 
     // story was accepted
     if (postBody.highlight === 'accepted') {
@@ -118,12 +109,12 @@ const storyUpdatedWebhook = async (postBody) => {
                     console.log(`Reset story ${story.id} description`)
                 })
             }
-            sendStoryUpdatedWebhookEmail(story, pivotalPeople[ownerId])
+            await sendStoryUpdatedEmail(story, pivotalPeople[ownerId])
         }
     }
 }
 
-const sendStoryUpdatedWebhookEmail = async (story, owner) => {
+const sendStoryUpdatedEmail = async (story, owner) => {
     let ownerEmailAddress = owner.email
     console.log(`Sending email for story ${story.id} to ${owner.email}`)
     const emailHtml = `
@@ -178,20 +169,47 @@ Thanks
 
 }
 
-export const post = async (event, context, callback) => {
-    const data = JSON.parse(event.body)
+const fetchPivotalStories = async (filter: pivotalStoryFilter) => {
+    const apiPath = `projects/${process.env.PIVOTAL_PROJECT_ID}/stories`
+    const url = `${apiPath}?${qs.stringify(filter)}`
+    return pivotal.get(url)
+        .then(res => {
+            // console.log(`got stories`)
+            // fs.writeFileSync('stories.json', JSON.stringify(res.data, null, 2))
+            return res.data
+        })
+        .catch(err => console.log(err))
+}
 
-    // if lambda stays running long enough then this will already be populated
-    if (Object.keys(pivotalPeople).length < 1) await populatePivotalPeople()
+const fetchRecentlyAcceptedStories = async () => {
 
-    // update pivotal story
-    await storyUpdatedWebhook(data)
-
-    // create a response
-    const response = {
-        statusCode: 200,
-        // body: JSON.stringify(data)
+    let dt = new Date() // start with today
+    dt.setDate(dt.getDate() - 14) // subtract 14 days
+    const filter: pivotalStoryFilter = {
+        accepted_after: dt.toISOString(),
+        limit: 10000
     }
 
-    callback(null, response)
+    const [stories] = await Promise.all([
+        fetchPivotalStories(filter)
+    ])
+
+    return stories.filter(story => story.story_type !== 'release').map(story => {
+        return {
+            // @ts-ignore
+            shipped: new Date(story.accepted_at).formatMMDDYYYY(),
+            type: story.story_type,
+            name: story.name,
+            description: story.description,
+            developer: pivotalPeople[story.owned_by_id]?.name,
+            developer_email: pivotalPeople[story.owned_by_id]?.email,
+            url: story.url,
+        }
+    })
+}
+
+
+export {
+    fetchRecentlyAcceptedStories,
+    storyUpdated,
 }

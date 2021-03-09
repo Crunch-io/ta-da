@@ -1,4 +1,4 @@
-import {post} from "./handler"
+import { pivotalStoryWebhook } from "./handler"
 /*
 To test this handler, simply pass in via the command line the exact POST body that pivotal would post to the
 api endpoint.
@@ -9,7 +9,7 @@ api endpoint.
 
 const lastArg = process.argv[process.argv.length - 1]
 
-post(
+pivotalStoryWebhook(
     {
         body: lastArg
     },

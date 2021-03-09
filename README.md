@@ -7,11 +7,10 @@ A set of internal scripts and libraries, including:
 * [elbr](./elbr) (R): an R package for doing ELB log analysis
 * [superadmin](./superadmin) (R): an R package CLI for our superadmin UI
 * [kaboom](./kaboom) (Python): a load-testing project using Locust
-* [bootstrap](./bootstrap)(bash/Python): a set of scripts to reset your local dataset for functional (swoosh) testing.
-* [pivotal webhook](./pivotal_webhook)(typescript): A rest api endpoint that runs as an AWS lambda function accessible via
-  AWS api gateway that pivotal tracker POSTs to every time a pivotal story gets updated. Currently we filter down to a 
-  specific type of story and status and email developers a friendly reminder to add a release note to the story 
-  description. In the future we may change this webhook to do more things.
+* [bootstrap](./bootstrap) (bash/Python): a set of scripts to reset your local dataset for functional (swoosh) testing.
+* [pivotal](./pivotal) (typescript): A rest api endpoint that runs as an AWS lambda function accessible via
+  AWS api gateway that pivotal tracker POSTs to every time a pivotal story gets updated. Also an api endpoint that returns
+  a csv file containing recently accepted stories.
 
 ## Cron jobs
 
