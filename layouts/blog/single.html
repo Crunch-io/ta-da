@@ -1,0 +1,37 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="blog-content">
+                    <div class="container spacer-top">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <h2>{{ .Title | emojify }}</h2>
+                                <hr>
+                                <p>{{ .Params.description }}</p>
+                                <span>{{ .PublishDate.Format "Jan 2, 2006" }} </span>
+                            </div>
+                        </div> <!-- /.row -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.blog-content -->
+
+            <div class="secondary-content">
+              <div class="container blog-content-mg">
+
+                  <div class="row spacer-bottom">
+                      <div class="col-md-10 offset-md-1">
+                          {{ .Content | emojify }}
+                      </div>
+                  </div>
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

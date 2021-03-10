@@ -1,0 +1,112 @@
+{{ partial "head-start.html" . }}
+{{ if eq .Dir "blog/" }}
+<meta http-equiv="refresh" content="0; url=blog/automation/"/>
+{{ end }}
+
+{{ partial "head-finish.html" . }}
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="blog-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-12 header-content-container">
+                                <h1 style="font-size: 2.5em; line-height: 1em;">{{ with .Title }} <i>{{ index (split . " ") 0 }}</i> {{ index (split . " ") 1 }} {{ end }}</h1>
+                                <p>{{ .Content }}</p>
+                            </div>
+                        </div> <!-- /.row -->
+
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+
+                <div class="container resources-main">
+                  {{ range where .Pages "Params.series" "main" }}
+                  <div class="row" style="margin-top: -70px;">
+                      <div class="col-md-8 post-card-main-content">
+                          <div class="post-card post-min-height announcements-main" style="margin-bottom: 0;" onclick="location.href='{{ .Permalink }}'">
+                              <div class="posts">
+                                  <h1 class="post-title">{{ with .Title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <i>{{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }}</i> {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }} {{ end }}</h1>
+                                  <p style="color: #444; margin-bottom: 98px">{{ .Params.description }}</p>
+                                  <span>{{ .Params.eventdate }}</span>
+
+                                  <br>
+
+                                  <div class="row">
+                                      <div class="col">
+                                          <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
+                                      </div>
+
+                                      <div class="col" style="text-align: right;">
+                                          <a href="{{ .Permalink }}">Learn More &#10230;</a>
+                                      </div>
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div> <!-- /.col-md-5 -->
+
+                      <div class="col-md-4 subscribe-whats-new">
+                          {{ partial "subscribe-whats-new" . }}
+                      </div>
+
+                      <!-- <div class="col-md-6 offset-md-1 figure d-none d-md-block d-lg-block"> </div> -->
+                  </div> <!-- /.row -->
+
+                  {{ end }}
+                </div>
+            </div> <!-- /.blog-content -->
+
+            <br>
+
+            <div class="secondary-content">
+              <div class="container">
+
+                  <div class="row">
+                      {{ range .Paginator.Pages.ByPublishDate.Reverse }}
+                          <div class="col-md-6 col-lg-4" id="feature-post">
+                              <div class="post-card post-min-height-sm" onclick="location.href='{{ .Permalink }}'">
+                                  <div class="posts">
+                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                      <p>{{ .Params.description | truncate 75 }}</p>
+
+                                      <div class="row post-card-links" style="width: 88%;">
+                                          <div class="col">
+                                              <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
+                                          </div>
+
+                                          <div class="col text-right">
+                                              <a href="{{ .Permalink }}">Learn More &#10230;</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      {{ end }}
+                  </div>
+
+                  {{ partial "blog/pagination" . }}
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+            <div class="footer-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Learn about <span>our team</span></h1>
+                                <a href="team" class="btn btn-link">Our team &#10230;</a>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer" . }}
