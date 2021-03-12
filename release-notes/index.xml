@@ -8,6 +8,42 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.8</title>
+      <link>//crunch.io/release-notes/2021-03-12/</link>
+      <pubDate>Fri, 12 Mar 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-03-12/</guid>
+      <description>Crunch web application  Fixed case where missing columns in the response data can fail when importing a Qualtrics dataset. Adjusted y-axis min value so that it now be set to zero for the case of time plots. Fixed the extended panel when it opens from the display controller so that it no longer shrinks the displayed table or graph. Corrected how axis and tooltip labeling appears when displaying population estimates along the vertical axis of a time plot.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed case where missing columns in the response data can fail when importing a Qualtrics dataset.&lt;/li&gt;
+&lt;li&gt;Adjusted y-axis min value so that it now be set to zero for the case of time plots.&lt;/li&gt;
+&lt;li&gt;Fixed the extended panel when it opens from the display controller so that it no longer shrinks the displayed table or graph.&lt;/li&gt;
+&lt;li&gt;Corrected how axis and tooltip labeling appears when displaying population estimates along the vertical axis of a time plot.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;API Endpoints and API Reference&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added improved code sample to &lt;a href=&#34;https://crunch.io/api/reference/#get-/search/&#34;&gt;Cross-dataset search&lt;/a&gt; endpoint.&lt;/li&gt;
+&lt;li&gt;Added improved code sample and a &lt;code&gt;200&lt;/code&gt; response example to &lt;a href=&#34;https://crunch.io/api/reference/#get-/search/aggregate/&#34;&gt;Aggregate search results by folder&lt;/a&gt; endpoint.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sdks-rcrunch-pycrunch-and-scrunch&#34;&gt;SDKs (&lt;code&gt;rCrunch&lt;/code&gt;, &lt;code&gt;pyCrunch&lt;/code&gt;, and &lt;code&gt;sCrunch&lt;/code&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the function &lt;code&gt;makeDimTransform()&lt;/code&gt; to the &lt;code&gt;R&lt;/code&gt; package, which helps set transforms on slide analyses, such as color palettes, hiding elements, and setting the order.&lt;/li&gt;
+&lt;li&gt;Also added the ability to use &lt;code&gt;palettes()&lt;/code&gt; and &lt;code&gt;defaultPalette()&lt;/code&gt; functions in the &lt;code&gt;R&lt;/code&gt; package to access the palettes associated with a dataset.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;MISSING&lt;/code&gt; functionality added to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360056799552-CREATE-MULTIPLE-DICHOTOMY-FROM-CONDITIONS-command&#34;&gt;CREATE MULTIPLE DICHOTOMY FROM CONDITIONS command&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SELECTED&lt;/code&gt; and &lt;code&gt;LABELS&lt;/code&gt; arguments added to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360044079971-CREATE-MULTIPLE-SELECTION-command&#34;&gt;CREATE MULTIPLE SELECTION command&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Created a new help desk article for &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040054752-How-to-upload-a-PowerPoint-template&#34;&gt;How to upload a PowerPoint template&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.7</title>
       <link>//crunch.io/release-notes/2021-03-05/</link>
       <pubDate>Fri, 05 Mar 2021 10:00:00 -0700</pubDate>
