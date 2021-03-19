@@ -7,32 +7,32 @@
     <meta name="description" content="Prepare and analyze survey data quickly and easily.">
     <meta name="keywords" content="Crunch, Crunch io, data, datasets, survey, analytics, analysis, technology, insights, research, software">
     <base href="//crunch.io/">
-    <title>Crunch | time-series, analytics, visualizations, trackers</title>
+    <title>Crunch | Release 2021.9</title>
 
     <link rel="icon" href="img/favicon.ico">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <meta property="og:title" content="time-series, analytics, visualizations, trackers &middot; Modern survey data analysis">
+    <meta property="og:title" content="Release 2021.9 &middot; Modern survey data analysis">
 <meta property="og:description" content="Prepare and analyze survey data quickly and easily.">
 <meta property="og:type" content="website" >
-<meta property="og:url" content="//crunch.io/tags/time-series-analytics-visualizations-trackers/">
+<meta property="og:url" content="//crunch.io/release-notes/2021-03-19/">
 <meta property="og:locale" content="en">
 
+
     
-        
-            <meta property="og:image" content="//crunch.io/img/logo-1200x630.png">
-        
+        <meta property="og:image" content="https://crunch.io/img/logo-1200x630.png">
     
 
 
-  <meta property="og:updated_time" content="2021-03-05T11:44:48-04:00">
+
+  <meta property="og:updated_time" content="2021-03-19T10:00:00-07:00">
 
 
     <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="//crunch.io/img/logo-1200x630.png"/>
+<meta name="twitter:image" content="https://crunch.io/img/logo-1200x630.png"/>
 
-<meta name="twitter:title" content="time-series, analytics, visualizations, trackers"/>
-<meta name="twitter:description" content="Prepare and analyze survey data quickly and easily."/>
+<meta name="twitter:title" content="Release 2021.9"/>
+<meta name="twitter:description" content="Crunch web application  Reorganized the options on the Export settings panels for both slide exports and tab book exports for improved usability. Please refer to the help page for more information. Added a legend entry when exporting a single-measure numeric value to reflect what measure is being exported. Fixed the horizontal axis for time plots so that they no longer show empty time periods that might be present at either the beginning or the end of the categorical dates (in early access)."/>
 
     
     <link rel="stylesheet" href="css/main.css">
@@ -51,6 +51,7 @@
   </head>
 
   <body>
+
 
 
 
@@ -130,33 +131,97 @@
     </nav>
 
 
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="blog-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-8 text-center">
+                                <h1 class="display-5">Release Notes</h1>
+                            </div>
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+
+            <div class="blog-content">
+                    <div class="container spacer-top">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <h2>Release 2021.9</h2>
+                                <p><a href="/release-notes/" style="color: black;">&#8592; Other release notes</a></p>
+                                <hr>
+                                <p></p>
+                                <span>March 19, 2021 </span>
+                            </div>
+                        </div> 
+                </div> 
+            </div> 
+
+            <div class="secondary-content">
+              <div class="container blog-content-mg">
+
+                  <div class="row spacer-bottom">
+                      <div class="col-md-10 offset-md-1">
+                          <h3 id="crunch-web-application">Crunch web application</h3>
+<ul>
+<li>Reorganized the options on the Export settings panels for both slide exports and tab book exports for improved usability. Please refer to the <a href="https://help.crunch.io/hc/en-us/articles/360040498732-Exporting-Tab-Books#toc1">help page</a> for more information.</li>
+<li>Added a legend entry when exporting a single-measure numeric value to reflect what measure is being exported.</li>
+<li>Fixed the horizontal axis for time plots so that they no longer show empty time periods that might be present at either the beginning or the end of the categorical dates (in early access).</li>
+<li>Improved aspect ratio handling for time plots depicted in Tables and Graphs mode (in early access).</li>
+<li>Added responsiveness to changes in the decimal places setting for graphs in which the column variable is a numeric value.</li>
+</ul>
+<h3 id="sdks-rcrunch-pycrunch-and-scrunch">SDKs (<code>rCrunch</code>, <code>pyCrunch</code>, and <code>sCrunch</code>)</h3>
+<ul>
+<li>Enabled sCrunch datasets to run Crunch Automation commands, via <code>dataset.scripts.execute(&lt;script body&gt;)</code>.</li>
+</ul>
+<h3 id="crunch-automation">Crunch Automation</h3>
+<ul>
+<li>Added <code>EACH MISSING</code> functionality to the OVERWRITE VALUES command. See <a href="https://help.crunch.io/hc/en-us/articles/360057819011-OVERWRITE-VALUES-command">documentation</a> for more information.</li>
+<li>Updated the docs to include using an optional <code>,</code> (comma) between statements for both the <a href="https://help.crunch.io/hc/en-us/articles/360042039192-CREATE-CATEGORICAL-CASE-command">CREATE CATEGORICAL CASE</a> and <a href="https://help.crunch.io/hc/en-us/articles/360045656352-CREATE-NUMERIC-CASE-command">CREATE NUMERIC CASE</a> commands.</li>
+<li>Updated the <a href="https://help.crunch.io/hc/en-us/articles/360042247331-RENAME-command">RENAME command</a> with improved syntax and examples (logical expressions in Crunch automation now support both <code>&lt;</code> and <code>&gt;</code> with datetime strings.</li>
+<li>Added <code>STARTSWITH()</code> and <code>ENDSWITH()</code> functionality. See the <a href="https://help.crunch.io/hc/en-us/articles/360041769292#toc7">documentation</a> for more information.</li>
+</ul>
+<h3 id="developer-documentation">Developer documentation</h3>
+<ul>
+<li>Added a new function on automation expressions (<code>add_valid</code>), which returns a numeric column with the sum of the input numeric variables; returns no data when all the columns are missing. See the <a href="https://help.crunch.io/hc/en-us/articles/360042411792#toc8">documentation</a> for more information.</li>
+</ul>
+<h3 id="help-desk-and-website-improvements">Help desk and website improvements</h3>
+<ul>
+<li>Cleaned up and organized the <a href="https://help.crunch.io/hc/en-us/articles/360040498012-Orientation-videos">Orientation Videos</a>.</li>
+<li>Added new content and better examples to the <a href="https://help.crunch.io/hc/en-us/articles/360052195131-The-Definitive-Guide-to-Tracking">Definitive Guide to Tracking</a> article.</li>
+<li>Cleaned up the <a href="https://help.crunch.io/hc/en-us/articles/360042695251-How-to-Use-the-Crunch-API">How to Use the Crunch API</a> article to help enable faster onboarding.</li>
+</ul>
+
+                      </div>
+                  </div>
+
+              </div> 
+            </div> 
+
+            <footer class="footer d-flex justify-content-center bg-black">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a class="nav-link active" href="about">About</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="team">Team</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="http://help.crunch.io/">Support</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="http://status.crunch.io/" target="_blank">Status</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="about/privacy">Privacy</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/">Sign in</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="contact">Contact us</a></li>
+                </ul>
+            </footer>
+
+        </div> 
+
+    </div> 
+
+</div> 
 
 
-<div id="post-box">
-    <div class="intro-post">
-        <h1>time-series, analytics, visualizations, trackers</h1>
-        <p><br></p>
-    </div>
-
-    <ul id="posts">
-      <div class="list-item" itemscope itemtype="http://schema.org/CreativeWork">
-    <h2 class="title">
-        <a href="//crunch.io/dev/features/new-time-plots/" itemprop="headline">Great new visualizations for time-series analyses and trackers</a>
-    </h2>
-    
-    <p itemprop="about">Crunch now has a completely redesigned time plot that offers confidence bands, smoothing, and custom selection of categories to show/hide.</p>
-    <time class="summary post-time">
-  Published <span datetime="2021-03-19T21:42:45&#43;00:00">19 Mar 2021</span>
-
-</time>
-    
-</div>
- 
-      <section>
-
-</section>
-    </ul>
-</div>
 <div class="alert alert-dismissible text-center cookiealert" role="alert">
   <div class="cookiealert-container">
       <div class="row">

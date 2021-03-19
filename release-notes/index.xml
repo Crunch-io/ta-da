@@ -8,6 +8,45 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.9</title>
+      <link>//crunch.io/release-notes/2021-03-19/</link>
+      <pubDate>Fri, 19 Mar 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-03-19/</guid>
+      <description>Crunch web application  Reorganized the options on the Export settings panels for both slide exports and tab book exports for improved usability. Please refer to the help page for more information. Added a legend entry when exporting a single-measure numeric value to reflect what measure is being exported. Fixed the horizontal axis for time plots so that they no longer show empty time periods that might be present at either the beginning or the end of the categorical dates (in early access).</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Reorganized the options on the Export settings panels for both slide exports and tab book exports for improved usability. Please refer to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040498732-Exporting-Tab-Books#toc1&#34;&gt;help page&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Added a legend entry when exporting a single-measure numeric value to reflect what measure is being exported.&lt;/li&gt;
+&lt;li&gt;Fixed the horizontal axis for time plots so that they no longer show empty time periods that might be present at either the beginning or the end of the categorical dates (in early access).&lt;/li&gt;
+&lt;li&gt;Improved aspect ratio handling for time plots depicted in Tables and Graphs mode (in early access).&lt;/li&gt;
+&lt;li&gt;Added responsiveness to changes in the decimal places setting for graphs in which the column variable is a numeric value.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sdks-rcrunch-pycrunch-and-scrunch&#34;&gt;SDKs (&lt;code&gt;rCrunch&lt;/code&gt;, &lt;code&gt;pyCrunch&lt;/code&gt;, and &lt;code&gt;sCrunch&lt;/code&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Enabled sCrunch datasets to run Crunch Automation commands, via &lt;code&gt;dataset.scripts.execute(&amp;lt;script body&amp;gt;)&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added &lt;code&gt;EACH MISSING&lt;/code&gt; functionality to the OVERWRITE VALUES command. See &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360057819011-OVERWRITE-VALUES-command&#34;&gt;documentation&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Updated the docs to include using an optional &lt;code&gt;,&lt;/code&gt; (comma) between statements for both the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042039192-CREATE-CATEGORICAL-CASE-command&#34;&gt;CREATE CATEGORICAL CASE&lt;/a&gt; and &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360045656352-CREATE-NUMERIC-CASE-command&#34;&gt;CREATE NUMERIC CASE&lt;/a&gt; commands.&lt;/li&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042247331-RENAME-command&#34;&gt;RENAME command&lt;/a&gt; with improved syntax and examples (logical expressions in Crunch automation now support both &lt;code&gt;&amp;lt;&lt;/code&gt; and &lt;code&gt;&amp;gt;&lt;/code&gt; with datetime strings.&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;STARTSWITH()&lt;/code&gt; and &lt;code&gt;ENDSWITH()&lt;/code&gt; functionality. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360041769292#toc7&#34;&gt;documentation&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;developer-documentation&#34;&gt;Developer documentation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added a new function on automation expressions (&lt;code&gt;add_valid&lt;/code&gt;), which returns a numeric column with the sum of the input numeric variables; returns no data when all the columns are missing. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042411792#toc8&#34;&gt;documentation&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Cleaned up and organized the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040498012-Orientation-videos&#34;&gt;Orientation Videos&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Added new content and better examples to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360052195131-The-Definitive-Guide-to-Tracking&#34;&gt;Definitive Guide to Tracking&lt;/a&gt; article.&lt;/li&gt;
+&lt;li&gt;Cleaned up the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042695251-How-to-Use-the-Crunch-API&#34;&gt;How to Use the Crunch API&lt;/a&gt; article to help enable faster onboarding.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.8</title>
       <link>//crunch.io/release-notes/2021-03-12/</link>
       <pubDate>Fri, 12 Mar 2021 10:00:00 -0700</pubDate>
