@@ -1,5 +1,6 @@
 +++
 date = "2021-03-05T11:44:48-04:00"
+publishdate = "2021-03-05T11:44:48-04:00"
 draft = false
 title = "Great new visualizations for time-series analyses and trackers"
 news_description = "Crunch now has a completely redesigned time plot that offers confidence bands, smoothing, and custom selection of categories to show/hide. Click here to learn more."
