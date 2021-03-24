@@ -5,7 +5,7 @@
     <description>Recent content in Feature Announcements on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2021-03-22T23:05:37+00:00</lastBuildDate>
+    <lastBuildDate>2021-03-24T00:08:34+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Great new visualizations for time-series analyses and trackers</title>
       <link>//crunch.io/dev/features/new-time-plots/</link>
-      <pubDate>2021-03-22T23:02:23+00:00</pubDate>
+      <pubDate>2021-03-05T11:44:48-04:00</pubDate>
       
       <guid>//crunch.io/dev/features/new-time-plots/</guid>
       <labsOnly>true</labsOnly>
