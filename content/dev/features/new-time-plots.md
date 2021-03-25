@@ -1,5 +1,6 @@
 +++
 date = "2021-03-05T11:44:48-04:00"
+publishdate = "2021-03-05T11:44:48-04:00"
 draft = false
 title = "Great new visualizations for time-series analyses and trackers"
 news_description = "Crunch now has a completely redesigned time plot that offers confidence bands, smoothing, and custom selection of categories to show/hide. Click here to learn more."
@@ -20,19 +21,19 @@ Line graphs are great at showing how values are changing over time and therefore
 
 Line graphs become really hard to read when there are lots of lines shown simultaneously, so Crunch now defaults to showing just the top 5, but you can pick whichever combination of lines (including showing more or fewer than 5) from the new "Select categories" interface. This allows you to show just the lines that tell your chosen data story. And your selection is then reflected in PowerPoint exports and dashboards.
 
-{{<figure src="dev/features/images/new-time-plot_01.gif" class="img-fluid">}}
+{{<figure src="https://crunch.io/dev/features/images/new-time-plot_01.gif" class="img-fluid">}}
 
 **Confidence bands**
 
 Crunch's line graphs now support the display of confidence bands, calculated at 95% confidence, and you can turn these on or off with the click of the * asterisk button.
 
-{{<figure src="dev/features/images/new-time-plot_02.gif" class="img-fluid">}}
+{{<figure src="https://crunch.io/dev/features/images/new-time-plot_02.gif" class="img-fluid">}}
 
 **Draggable bar**
 
 As well as being able to hover over points to see their values, there's a vertical bar that you can drag to any point in the time-series to see all the values and ranking at that point in time.
 
-{{<figure src="dev/features/images/new-time-plot_03.gif" class="img-fluid">}}
+{{<figure src="https://crunch.io/dev/features/images/new-time-plot_03.gif" class="img-fluid">}}
 
 **Smoothing**
 
