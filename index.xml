@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 19 Mar 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Mar 2021 14:41:50 -0400</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prodege</title>
       <link>//crunch.io/case-studies/prodege/</link>
@@ -279,6 +279,19 @@ To create one, simply save an analysis of any kind – table, chart or variable 
     </item>
     
     <item>
+      <title>Technical Customer Support Engineer</title>
+      <link>//crunch.io/jobs/technical-customer-support/</link>
+      <pubDate>Thu, 25 Mar 2021 14:41:50 -0400</pubDate>
+      
+      <guid>//crunch.io/jobs/technical-customer-support/</guid>
+      <description>Reports to: Manager of Customer Service
+Work location: Remote
+We have a growing product and user base and need an organized, detail-oriented person to join our customer support team.
+The role of the Technical Customer Support Engineer is centered around 4 key areas:
+ Customer support - triage and resolve highly complex, technical, and application-related support issues which impact product performance and customer success. Product testing - test our new product features, systematically and with attention to detail, detecting back bugs and contributing to new documentation.</description>
+    </item>
+    
+    <item>
       <title>Survey Data Analysis Trends: Your Data in One Place or All Over the Place?</title>
       <link>//crunch.io/info.crunch.io/quirks-virtual-crunch-session-2021</link>
       <pubDate>Thu, 25 Feb 2021 16:32:11 -0400</pubDate>
@@ -468,36 +481,12 @@ We are hiring an Advanced React Developer to help develop our platform. We are i
     </item>
     
     <item>
-      <title>Senior Director, Professional Services</title>
-      <link>//crunch.io/jobs/director-professional-services/</link>
-      <pubDate>Mon, 02 Dec 2019 15:08:35 +0200</pubDate>
-      
-      <guid>//crunch.io/jobs/director-professional-services/</guid>
-      <description>Reports to: President, Crunch.io
-Location: Remote or at one of our offices
-The Senior Director, Professional Services will be responsible for understanding customer needs and processes and adapting them to Crunch workflows via a combination of training, consulting, and customized software development. We are a startup so digging in and solving problems across a variety of areas is part of the fun of the job.
-Our start-up culture is casual and high-energy.</description>
-    </item>
-    
-    <item>
       <title>Sharing Data</title>
       <link>//crunch.io/knowledge-base/sharing-data/</link>
       <pubDate>Mon, 02 Dec 2019 15:08:35 +0200</pubDate>
       
       <guid>//crunch.io/knowledge-base/sharing-data/</guid>
       <description>Sharing Data Sharing data is really fun</description>
-    </item>
-    
-    <item>
-      <title>Technical Sales and Customer Success Engineer</title>
-      <link>//crunch.io/jobs/technical-sales-customer-success-engineer/</link>
-      <pubDate>Mon, 02 Dec 2019 14:08:35 +0200</pubDate>
-      
-      <guid>//crunch.io/jobs/technical-sales-customer-success-engineer/</guid>
-      <description>Reports to: VP of Sales
-Location: Remote, United States
-The Technical Sales Engineer (TSE) is responsible for explaining and demonstrating to prospective customers how Crunch works and then making sure it works once they are customers. We are a startup so digging in and solving problems across a variety of areas is part of the fun of the job.
-Our start-up culture is casual and high-energy. We all work remote, with the center of gravity in San Francisco.</description>
     </item>
     
     <item>
