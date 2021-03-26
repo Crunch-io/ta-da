@@ -19,11 +19,11 @@ We are hiring a Software Delivery Manager to help expand our platform and operat
 
 We are looking for someone who is a quick study, who is eager to learn and grow with us, and who has experience in Agile cultures. At Crunch, we believe in learning together: we recognize that we don’t have all the answers, and we try to ask each other the right questions. As Crunch employees are completely distributed, it’s crucial that you can work well independently and keep yourself motivated and focused.
 
-# Our stack
+**Our stack**
 
 We currently run our in-house production Python code against Redis, MongoDB, and ElasticSearch services. We proxy API requests through NGINX, load balance with ELBs, and deploy our React web application to AWS CloudFront CDN. Our current CI/CD process is built around GitHub, Jenkins, and Cypress.io, including unit, integration, end-to-end tests, and automated system deployments. We deploy to Auto Scaling Groups using Ansible and Cloud-Init.
 
-# What you’ll do
+**What you’ll do**
 
 - Manage and lead a team of front-end (React) and back-end (Python) software developers distributed across North America and Europe.
 - Collaborate with product managers in defining the product vision and helping write product requirements.
@@ -45,7 +45,7 @@ We currently run our in-house production Python code against Redis, MongoDB, and
 - Participate in evaluating, hiring, on-boarding, training, and mentoring new employees.
 - Provide leadership and guidance to coach, motivate, and lead team members to performance targets and career development.
 
-# Basic qualifications
+**Basic qualifications**
 
 - 3+ years of project/team management and leadership experience in a software development organization.
 - 5+ years experience working in software design, development, release cycle and delivering software products to market.
@@ -58,7 +58,7 @@ We currently run our in-house production Python code against Redis, MongoDB, and
 - Ability to see the big picture while also being detail-oriented.
 - A keen interest in learning new things.
 
-# Advanced (preferred) qualifications
+**Advanced (preferred) qualifications**
 
 - Experience with managing the development of SaaS and cloud-based applications.
 - Bachelor’s Degree in Statistics, Science, Programming or Engineering related field.
