@@ -11,7 +11,7 @@
                     <div class="container spacer-top">
                         <div class="row">
                             <div class="col-md-10 offset-md-1">
-                                <span>{{ .PublishDate.Format "Jan 2, 2006" }} </span>
+                                <span class="date">{{ .PublishDate.Format "Jan 2, 2006" }} </span>
                                 <h2 class="title">{{ .Title | emojify }}</h2>
                                 <p class="blog-description">{{ .Params.description }}</p>
                             </div>
