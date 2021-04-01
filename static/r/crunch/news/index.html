@@ -196,6 +196,7 @@
 <a href="#crunch-1278-development-version" class="anchor"></a>crunch 1.27.8 (Development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li>Variables catalogs are now loaded lazily, which means some dataset operations will be much faster. You can override this behavior (useful for eg testing or rare situations when working on many datasets at once by using <code><a href="../reference/forceVariableCatalog.html">forceVariableCatalog()</a></code> or <code><a href="https://rdrr.io/r/base/options.html">option(crunch.lazy.variable.catalog = FALSE)</a></code>).</li>
 <li>You can now set the filter, weight and viz_type of a slide when creating it.</li>
 </ul>
 </div>
