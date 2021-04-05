@@ -203,7 +203,7 @@ of text variables. See <a href='https://crunch.io/api/reference/#get-/search/'>t
 more information about searching Crunch.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>searchDatasets</span><span class='op'>(</span><span class='va'>query</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>searchDatasets</span><span class='op'>(</span><span class='va'>query</span>, f <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -212,6 +212,12 @@ more information about searching Crunch.</p>
       <th>query</th>
       <td><p>the text to search for in datasets and their variables (note:
 only alpha characters will be used, numbers and other characters will be discarded.)</p></td>
+    </tr>
+    <tr>
+      <th>f</th>
+      <td><p>A list of filter parameters, see the filter parameters of
+<a href='https://crunch.io/api/reference/#get-/search/'>the API Documentation</a>
+for more details.</p></td>
     </tr>
     <tr>
       <th>...</th>
