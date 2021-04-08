@@ -6,6 +6,8 @@ description = "Crunch Automation looks like a bit like SPSS syntax (and SQL comm
 weight = 20
 images = ["https://crunch.io/img/logo-1200x630.png"]
 series = "main"
+author = "Matt Steele"
+tags = ["Recording", "Dashboards"]
 
 +++
 
