@@ -1,0 +1,54 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="secondary-content-wrapper">
+              <div class="container">
+
+                  <div class="row">
+                      <div class="col-md-3">
+                          <p>Show articles tagged <br>"{{ .Title }}"</p>
+                          <ul class="list-inline ml-0 share-links">
+                              <li class="list-inline-item"><p>Tags</p></li>
+                              {{ range $i, $e := .Params.tags }}
+                              {{ if $i }} {{ end }}
+                              <li class="list-inline-item">
+                                  <span class="badge bg-light text-dark"><a href='{{ "/tags/" | relLangURL }}{{ . | urlize }}'>{{ $e | humanize }}</a></span>
+                              </li>
+                              {{ end }}
+                          </ul>
+                      </div>
+
+                      <div class="col-md-8 offset-md-1 spacer-xs">
+                            <div id="post-box">
+                                <ul class="list-unstyled" id="posts">
+                                    {{ range .Paginator.Pages.ByWeight }} {{ partial "blog/page-summary" . }} {{ end }}
+                                </ul>
+                            </div>
+                      </div>
+                  </div>
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+            <div class="footer-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Learn about <span>our team</span></h1>
+                                <a href="team" class="btn btn-link">Our team &#10230;</a>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}
