@@ -8,6 +8,33 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.13</title>
+      <link>//crunch.io/release-notes/2021-04-16/</link>
+      <pubDate>Fri, 16 Apr 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-04-16/</guid>
+      <description>Crunch web application  Fixed a bug on the Decipher importer to instead show a full list when importing. Fixed a bug so that dashboards appear properly when switching tabs. Fixed a bug so that dropdown menus for individual dashboard tiles work properly. Improved PowerPoint graph exports to correctly show expected colors for negative values. Enhanced how standard deviations appear in tab book exports so that they correctly show the row variable as a numeric measure.</description>
+      <content:encoded>&lt;h2 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed a bug on the Decipher importer to instead show a full list when importing.&lt;/li&gt;
+&lt;li&gt;Fixed a bug so that dashboards appear properly when switching tabs.&lt;/li&gt;
+&lt;li&gt;Fixed a bug so that dropdown menus for individual dashboard tiles work properly.&lt;/li&gt;
+&lt;li&gt;Improved PowerPoint graph exports to correctly show expected colors for negative values.&lt;/li&gt;
+&lt;li&gt;Enhanced how standard deviations appear in tab book exports so that they correctly show the row variable as a numeric measure.&lt;/li&gt;
+&lt;li&gt;Improved how time plots reposition in the far-right location when the horizontal axis range changes (in early access).&lt;/li&gt;
+&lt;li&gt;Fixed a bug that causes new connections to Qualtrics to fail.&lt;/li&gt;
+&lt;li&gt;Improved how the time marker for a time plot appears when it moves to the left of its docked position — it now retains that position when also selecting a filter, applying a weight, or enabling/disabling confidence bands (in early access).&lt;/li&gt;
+&lt;li&gt;Improved horizontal and vertical bar graphs so that negative values now display.&lt;/li&gt;
+&lt;li&gt;Fixed dashboard URLs that specify filters to work properly when another filter is added.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Made improvements about aliases and variables in the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360041769292-Crunch-Automation-basics&#34;&gt;Crunch Automation basics&lt;/a&gt; article.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.12</title>
       <link>//crunch.io/release-notes/2021-04-09/</link>
       <pubDate>Fri, 09 Apr 2021 10:00:00 -0700</pubDate>

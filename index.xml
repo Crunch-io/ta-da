@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Apr 2021 13:27:32 -0400</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Apr 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prodege</title>
       <link>//crunch.io/case-studies/prodege/</link>
@@ -518,6 +518,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <description>Reports to: VP of Sales
 Work location: Remote, United States or Canada
 The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.</description>
+    </item>
+    
+    <item>
+      <title>Release 2021.13</title>
+      <link>//crunch.io/release-notes/2021-04-16/</link>
+      <pubDate>Fri, 16 Apr 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-04-16/</guid>
+      <description>Crunch web application  Fixed a bug on the Decipher importer to instead show a full list when importing. Fixed a bug so that dashboards appear properly when switching tabs. Fixed a bug so that dropdown menus for individual dashboard tiles work properly. Improved PowerPoint graph exports to correctly show expected colors for negative values. Enhanced how standard deviations appear in tab book exports so that they correctly show the row variable as a numeric measure.</description>
     </item>
     
     <item>
