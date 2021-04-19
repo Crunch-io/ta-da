@@ -346,6 +346,10 @@
     .blog-content {
         color: $color-off-black;
 
+        &.page-summary {
+            margin: 20px 10px;
+        }
+
         .jumbotron {
             color: $color-white;
             background-image: linear-gradient( $color-blue, $--darker-primary-color);
@@ -373,6 +377,12 @@
             margin-top: 20px;
             margin-bottom: 30px;
         }
+
+        h4.title {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
 
         .blog-description {
             font-weight: 700;
