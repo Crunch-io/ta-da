@@ -11,24 +11,23 @@
               <div class="container">
 
                   <div class="row">
-                      <div class="col-md-3">
-                          <p>Show articles tagged <br><strong>"{{ .Title }}"</strong></p>
-                          <ul class="list-inline ml-0 share-links">
-                              <li class="list-inline-item"><p>Tags</p></li>
-                              {{ range $i, $e := .Params.tags }}
-                              {{ if $i }} {{ end }}
-                              <li class="list-inline-item">
-                                  <span class="badge bg-light text-dark"><a href='{{ "/tags/" | relLangURL }}{{ . | urlize }}'>{{ $e | humanize }}</a></span>
-                              </li>
-                              {{ end }}
-                          </ul>
-                      </div>
 
-                      <div class="col-md-8 offset-md-1 spacer-xs">
+                      <div class="col-md-8 offset-md-2 spacer-xs">
                             <div id="post-box">
-                                <ul class="list-unstyled" id="posts">
-                                    {{ range .Paginator.Pages.ByWeight }} {{ partial "blog/page-summary" . }} {{ end }}
-                                </ul>
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="javascript:history.back()" class="btn btn-link px-0">⟵ Back</a>
+                                    </div>
+                                    <div class="col">
+                                        <p class="float-right mb-5 mt-2">Show articles tagged <strong>"{{ .Title }}"</strong></p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <ul class="list-unstyled mx-0" id="posts">
+                                        {{ range .Paginator.Pages.ByWeight }} {{ partial "blog/page-summary" . }} {{ end }}
+                                    </ul>
+                                </div>
                             </div>
                       </div>
                   </div>
