@@ -13,3 +13,6 @@ images = ["//crunch.io/img/logo-1200x630.png"]
 
 [markup.goldmark.renderer]
 unsafe= true
+
+[taxonomies]
+  tag = "tags"
