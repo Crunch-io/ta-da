@@ -24,6 +24,16 @@
                                 </div>
 
                                 <div class="row">
+                                    <p><i>Tags</i></p>
+                                </div>
+
+                                <div class="row">
+                                    {{ range $name, $items := .Site.Taxonomies.tags }}
+                                    <div class="article-tags bg-light mx-1 mb-2"><a href="{{ .Page.Permalink }}" title="{{ $name }}">{{ .Page.Title }}</a></div>
+                                    {{ end }}
+                                </div>
+
+                                <div class="row">
                                     <ul class="list-unstyled mx-0" id="posts">
                                         {{ range .Paginator.Pages.ByWeight }} {{ partial "blog/page-summary" . }} {{ end }}
                                     </ul>

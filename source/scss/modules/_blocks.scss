@@ -414,3 +414,17 @@ table {
 .show-filter {
     display: block;
 }
+
+// Tags
+.article-tags {
+    padding: 8px;
+    border-radius: 2px;
+    border: 1px solid $color-grey-normal;
+    text-transform: uppercase;
+    font-size: .7em;
+    font-weight: 700;
+
+    a {
+        color: $color-off-black;
+    }
+}
