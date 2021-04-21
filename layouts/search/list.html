@@ -12,11 +12,9 @@
 
                   <div class="row mb-5">
                         <div class="col-md-4">
-                            <p>Show articles tagged <br><span cass="fw-bold text-lowercase"><strong>"{{ .Title }}"</strong></span></p>
-
                             <div class="row">
                                 <div class="col">
-                                    <p class="mb-2 mt-4"><strong>Other tags to explore</strong></p>
+                                    <p class="mb-2"><strong>Other tags to explore</strong></p>
                                 </div>
                             </div>
 
@@ -28,17 +26,32 @@
                         </div>
 
                         <div class="col-md-8">
-                              {{ if site.Params.search }}
-                              {{ "<!-- search -->" | safeHTML }}
-                              <form class="has-search" action="{{ site.BaseURL }}/search">
-                                 <span class="fa fa-search form-control-feedback"></span>
+                            {{ if site.Params.search }}
+                            {{ "<!-- search -->" | safeHTML }}
+                            <form class="has-search" action="{{ site.BaseURL }}/search">
+                                <span class="fa fa-search form-control-feedback"></span>
                                 <input class="form-control" type="search" placeholder="Search" id="search-query" name="s">
-                              </form>
-                              {{ end }}
+                            </form>
+                            {{ end }}
 
-                            <ul class="list-unstyled mx-0" id="posts">
-                                {{ range .Paginator.Pages.ByWeight }} {{ partial "blog/page-summary" . }} {{ end }}
-                            </ul>
+                            <p class="mt-2"><strong>Search results:</strong></p>
+
+                            <div id="search-results"></div>
+                            <script id="search-result-template" type="text/x-js-template">
+                                <ul class="list-unstyled mx-0 mt-2" id="summary-${key}">
+                                    <li class="border-bottom">
+                                        <div class="blog-content page-summary">
+                                            <h4 class="title">
+                                                <a href="${link}" itemprop="headline">${title}</a>
+                                            </h4>
+                                            <p itemprop="about">${snippet}</p>
+                                            ${ isset tags }<p>Tags: ${tags}</p>${ end }
+                                            ${ isset categories }<p>Categories: ${categories}</p>${ end }
+                                        </div>
+                                    </li>
+                                </ul>
+                            </script>
+
                         </div>
                   </div>
 
@@ -57,6 +70,13 @@
                     </div> <!-- /.container -->
                 </div> <!-- /.jumbotron -->
             </div>
+
+
+            {{ "<!-- Search index -->" | safeHTML }}
+            <script>
+              var indexURL = {{"index.json" | absURL}}
+            </script>
+
 
 {{ partial "footer-nav.html" . }}
 

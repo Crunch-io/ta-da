@@ -5,11 +5,15 @@ title = "Modern survey data analysis"
 MetaDataFormat = "toml"
 paginate = 9
 
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
 [params]
 description = "Prepare and analyze survey data quickly and easily."
 product = "xtabs_intro.gif"
 arrow = "arrow.png"
 images = ["//crunch.io/img/logo-1200x630.png"]
+search = true
 
 [markup.goldmark.renderer]
 unsafe= true
