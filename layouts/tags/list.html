@@ -10,36 +10,28 @@
             <div class="secondary-content-wrapper">
               <div class="container">
 
-                  <div class="row">
+                  <div class="row mb-5">
+                        <div class="col-md-4">
+                            <p>Show articles tagged <br><span cass="fw-bold text-lowercase"><strong>"{{ .Title }}"</strong></span></p>
 
-                      <div class="col-md-8 offset-md-2 spacer-xs">
-                            <div id="post-box">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="javascript:history.back()" class="btn btn-link px-0">⟵ Back</a>
-                                    </div>
-                                    <div class="col">
-                                        <p class="float-right mb-5 mt-2">Show articles tagged <span cass="fw-bold text-lowercase"><strong>"{{ .Title }}"</strong></span></p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <p><i>Tags</i></p>
-                                </div>
-
-                                <div class="row">
-                                    {{ range $name, $items := .Site.Taxonomies.tags }}
-                                    <div class="article-tags bg-light mx-1 mb-2"><a href="{{ .Page.Permalink }}" title="{{ $name }}">{{ .Page.Title }}</a></div>
-                                    {{ end }}
-                                </div>
-
-                                <div class="row">
-                                    <ul class="list-unstyled mx-0" id="posts">
-                                        {{ range .Paginator.Pages.ByWeight }} {{ partial "blog/page-summary" . }} {{ end }}
-                                    </ul>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="mb-2 mt-4"><strong>Other tags to explore</strong></p>
                                 </div>
                             </div>
-                      </div>
+
+                            <div class="row mx-0">
+                                {{ range $name, $items := .Site.Taxonomies.tags }}
+                                <div class="article-tags bg-light mx-1 mb-2"><a href="{{ .Page.Permalink }}" title="{{ $name }}">{{ .Page.Title }}</a></div>
+                                {{ end }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <ul class="list-unstyled mx-0" id="posts">
+                                {{ range .Paginator.Pages.ByWeight }} {{ partial "blog/page-summary" . }} {{ end }}
+                            </ul>
+                        </div>
                   </div>
 
               </div> <!-- /.container -->
