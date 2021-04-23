@@ -1,6 +1,6 @@
 +++
-date = "2021-03-05T11:44:48-04:00"
-publishdate = "2021-03-05T11:44:48-04:00"
+date = "2021-04-23T08:20:48-04:00"
+publishdate = "2021-04-23T08:20:48-04:00"
 draft = false
 title = "Great new visualizations for time-series analyses and trackers"
 news_description = "Crunch now has a completely redesigned time plot that offers confidence bands, smoothing, and custom selection of categories to show/hide. Click here to learn more."
@@ -9,8 +9,9 @@ weight = 20
 tags = ["time-series", "analytics", "visualizations", "trackers"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
+series = "main"
 
 +++
 
@@ -43,7 +44,5 @@ Smoothing, also known as "moving averages" or "rolling averages", has been avail
 Another advantage of using categorical variables with the new date attribute is that you now have control over the labels that are displayed for the x-axis. So if you want to call them something more meaningful to you (or your client) such as "Wave 17" or "Extra Christmas boost" then you can.
 
 For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360057226852-Time-series-analysis-with-time-plots).
-
-Currently this feature is only available if you have enabled [Early access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) in your application settings.
 
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
