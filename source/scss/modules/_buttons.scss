@@ -106,3 +106,34 @@
 .btn-filter {
     text-align: center;
 }
+
+.share-links {
+    li {
+        p {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: .8em;
+        }
+
+        span {
+            padding: 8px;
+            border-radius: 2px;
+            border: 1px solid $color-grey-normal;
+
+            &.text-dark {
+                text-transform: uppercase;
+                font-size: .7em;
+                font-weight: 700;
+            }
+
+            a {
+                color: $color-off-black;
+                vertical-align: middle;
+
+                i {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}

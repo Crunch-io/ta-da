@@ -9,12 +9,12 @@
 @import "node_modules/font-awesome/scss/core";
 @import "node_modules/font-awesome/scss/larger";
 @import "node_modules/font-awesome/scss/fixed-width";
+@import "node_modules/font-awesome/scss/icons";
 //@import "list";
 //@import "bordered-pulled";
 //@import "animated";
 //@import "rotated-flipped";
 //@import "stacked";
-//@import "icons";
 // selectively import icons we need from font-awesome
 // see: node_modules/font-awesome/scss/_icons.scss
 .#{$fa-css-prefix}-tag:before { content: $fa-var-tag; }
