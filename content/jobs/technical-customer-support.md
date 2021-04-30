@@ -14,7 +14,13 @@ controls = "tcsupport"
 **Work location**: Remote
 
 
-We have a growing product and user base and need an organized, detail-oriented person to join our customer support team.
+Are you a quantitative market researcher looking for a change of direction? Here is an opportunity to join the supplier side, in software.
+
+We have a growing product and user base and need an organized, detail-oriented person to join our customer support team for our online data analysis and reporting app: Crunch.io.
+
+You will be supporting market researchers around the world who use our rapidly evolving, cutting-edge app for market research data analysis and reporting.
+
+This is the perfect role for a market research analyst who is highly technical and enjoys helping others.
 
 **The role of the Technical Customer Support Engineer is centered around 4 key areas**:
 
@@ -37,10 +43,10 @@ Communicate with customers via email and online web calls (e.g. Zoom) to ensure 
 
 **Basic qualifications**
 
-* Experience & Background. Experience in data processing for market research surveys (cleaning, tab specs, programming, etc). You have a background in market research operations, good understanding of survey analysis concepts, tools, and methods, and competency in a statistical programming language (eg: SPSS syntax or R)
+* Experience & Background. Experience in quantitative market research, with hands-on data manipulation. You have a background in market research operations, good understanding of survey analysis concepts, tools, and methods, and competency in a statistical programming language (eg: SPSS syntax or R). You need experience working with analysis software (eg: SPSS or R or Q), not just working from tabs.
 * Education. BA/BS degree in Computer Science and/or statistics preferred but other technical or quantitative degrees or equivalent work experience will also be considered.
 * Problem Solver. You are a natural problem solver with a curiosity about technology. Others describe you as a highly creative, curious technologist, and you have excellent research skills, and strong analytical and deductive skills, important for isolating the cause of bugs.
-* Communicator. Your verbal and written skills are top notch. You have excellent spoken and written English language skills. You have an outstanding ability to empathize with customers and convey confidence, and are skilled with conflict resolution, collaboration and small group facilitation skills.
+* Communicator. Your verbal and written skills are top notch. You have excellent spoken and written English language skills. You will primarily be communicating with users in the United States and United Kingdom. You have an outstanding ability to empathize with customers and convey confidence, and are skilled with conflict resolution, collaboration and small group facilitation skills.
 * Organized. You must be able to juggle and prioritize a high volume workload and handle details accurately and in a timely manner under pressure.
 * Flexible. You have the ability to multitask and handle frequent interruptions.
 * Detail oriented.  Attention to detail is your trademark with a strong desire to find solutions for problems.
