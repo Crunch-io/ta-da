@@ -8,6 +8,44 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.15</title>
+      <link>//crunch.io/release-notes/2021-04-30/</link>
+      <pubDate>Fri, 30 Apr 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-04-30/</guid>
+      <description>Crunch web application  Improved the web app by displaying a descriptive error when an integration update fails. Improved the user experience when deleting a deck. Moved the N label in graphs to the bottom right and increased the font size.  API Endpoints and API Reference  Updated the API so that you can now add a suffix to your &amp;ldquo;join&amp;rdquo; API call, which allows the source variables to include a suffix to avoid conflicts.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Improved the web app by displaying a descriptive error when an integration update fails.&lt;/li&gt;
+&lt;li&gt;Improved the user experience when deleting a deck.&lt;/li&gt;
+&lt;li&gt;Moved the N label in graphs to the bottom right and increased the font size.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;API Endpoints and API Reference&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the API so that you can now add a suffix to your &amp;ldquo;join&amp;rdquo; API call, which allows the source variables to include a suffix to avoid conflicts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360054720992-The-Quick-Editor-a-generator-for-Crunch-Automation#toc3&#34;&gt;Variable Editor (v2.1.0)&lt;/a&gt; with the following improvements:
+&lt;ul&gt;
+&lt;li&gt;Added support for turning numeric variables into numeric arrays via the array builder.&lt;/li&gt;
+&lt;li&gt;Added checks to verify user-entered variable titles are unique.&lt;/li&gt;
+&lt;li&gt;Fixed bug so that organizing variables into the hidden folder doesn&amp;rsquo;t create a new personal folder called hidden.&lt;/li&gt;
+&lt;li&gt;Set reasonable default column widths on the variables tab and turned off automatic auto-fit resizing.&lt;/li&gt;
+&lt;li&gt;Fixed bug in automation script by adding backticks to variable aliases that contain spaces.&lt;/li&gt;
+&lt;li&gt;Reset and disabled the source variable folder, title, description, and notes fields when using the array builder.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360060308211-Envelope-Specification&#34;&gt;Envelope Specification&lt;/a&gt; documentation to provide more information about Shoji, a JSON-based data interchange format.&lt;/li&gt;
+&lt;li&gt;Added &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360060244212-Integrations-Continuous-updates-to-your-dataset-via-the-direct-importers&#34;&gt;Integrations: Continuous updates to your dataset via the direct importers&lt;/a&gt; documentation to show how to enable users to add new cases that have been directly imported, without having to go through an append process.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.14</title>
       <link>//crunch.io/release-notes/2021-04-23/</link>
       <pubDate>Fri, 23 Apr 2021 10:00:00 -0700</pubDate>
