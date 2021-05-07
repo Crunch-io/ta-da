@@ -8,6 +8,38 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.16</title>
+      <link>//crunch.io/release-notes/2021-05-07/</link>
+      <pubDate>Fri, 07 May 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-05-07/</guid>
+      <description>Crunch web application  Added the ability to show the title and description for a column variable beneath the graph in edit preview and dashboards. Improved how datasets on a dashboard appear on a landing page so that the member&amp;rsquo;s panel no longer switches to a dashboard when closing it. Fixed a bug that improves how formulas for subtotals and differences are saved. Made numerous improvements to the Confirmit importer, including:  Cleaned up the formatting of both folders, variable names, and descriptions.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the ability to show the title and description for a column variable beneath the graph in edit preview and dashboards.&lt;/li&gt;
+&lt;li&gt;Improved how datasets on a dashboard appear on a landing page so that the member&amp;rsquo;s panel no longer switches to a dashboard when closing it.&lt;/li&gt;
+&lt;li&gt;Fixed a bug that improves how formulas for subtotals and differences are saved.&lt;/li&gt;
+&lt;li&gt;Made numerous improvements to the Confirmit importer, including:
+&lt;ul&gt;
+&lt;li&gt;Cleaned up the formatting of both folders, variable names, and descriptions. Some variables were being missed on import and are now being imported properly.&lt;/li&gt;
+&lt;li&gt;Added proper support for numeric array integrations.&lt;/li&gt;
+&lt;li&gt;Added more language support in Confirmit integrations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Re-enabled the hypothesis testing &amp;ldquo;set&amp;rdquo; comparison option when working with a categorical array that has subvariables within the columns and categories within the rows.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Improved how Crunch Automation handles scripts that have numerous commands (&amp;gt; than 1MB) or on a dataset with 1000s of variables. The validation step now returns a 202 asynchronous progress response.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;developer-documentation&#34;&gt;Developer documentation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added a new article about &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360060324892-Insertions&#34;&gt;Insertions&lt;/a&gt;. You can read more about definition attributes in the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042410872-Variable-Definitions#toc11&#34;&gt;Variable Definitions&lt;/a&gt; article.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.15</title>
       <link>//crunch.io/release-notes/2021-04-30/</link>
       <pubDate>Fri, 30 Apr 2021 10:00:00 -0700</pubDate>

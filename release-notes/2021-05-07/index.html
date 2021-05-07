@@ -7,15 +7,15 @@
     <meta name="description" content="Prepare and analyze survey data quickly and easily.">
     <meta name="keywords" content="Crunch, Crunch io, data, datasets, survey, analytics, analysis, technology, insights, research, software">
     <base href="//crunch.io/">
-    <title>Crunch | Combine categories in dashboard filter variables</title>
+    <title>Crunch | Release 2021.16</title>
 
     <link rel="icon" href="img/favicon.ico">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <meta property="og:title" content="Combine categories in dashboard filter variables &middot; Modern survey data analysis">
-<meta property="og:description" content="Editors can now choose to allow dashboard users to make multiple selections within dashboard “Groups” variables — e.g. “Midwest” and “West” selected simultaneously, thereby creating a filter that includes everyone in either of these regions.">
+    <meta property="og:title" content="Release 2021.16 &middot; Modern survey data analysis">
+<meta property="og:description" content="Prepare and analyze survey data quickly and easily.">
 <meta property="og:type" content="website" >
-<meta property="og:url" content="//crunch.io/dev/features/multiple-selections-in-groups/">
+<meta property="og:url" content="//crunch.io/release-notes/2021-05-07/">
 <meta property="og:locale" content="en">
 
 
@@ -25,14 +25,14 @@
 
 
 
-  <meta property="og:updated_time" content="2020-09-21T16:54:11&#43;00:00">
+  <meta property="og:updated_time" content="2021-05-07T10:00:00-07:00">
 
 
     <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://crunch.io/img/logo-1200x630.png"/>
 
-<meta name="twitter:title" content="Combine categories in dashboard filter variables"/>
-<meta name="twitter:description" content="Editors can now choose to allow dashboard users to make multiple selections within dashboard “Groups” variables — e.g. “Midwest” and “West” selected simultaneously, thereby creating a filter that includes everyone in either of these regions."/>
+<meta name="twitter:title" content="Release 2021.16"/>
+<meta name="twitter:description" content="Crunch web application  Added the ability to show the title and description for a column variable beneath the graph in edit preview and dashboards. Improved how datasets on a dashboard appear on a landing page so that the member&rsquo;s panel no longer switches to a dashboard when closing it. Fixed a bug that improves how formulas for subtotals and differences are saved. Made numerous improvements to the Confirmit importer, including:  Cleaned up the formatting of both folders, variable names, and descriptions."/>
 
     
     <link rel="stylesheet" href="css/main.css">
@@ -137,13 +137,26 @@
         <div class="container-fluid">
 
             <div class="blog-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-8 text-center">
+                                <h1 class="display-5">Release Notes</h1>
+                            </div>
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+
+            <div class="blog-content">
                     <div class="container spacer-top">
                         <div class="row">
                             <div class="col-md-10 offset-md-1">
-                                <h2>Combine categories in dashboard filter variables</h2>
+                                <h2>Release 2021.16</h2>
+                                <p><a href="/release-notes/" style="color: black;">&#8592; Other release notes</a></p>
                                 <hr>
-                                <p>Editors can now choose to allow dashboard users to make multiple selections within dashboard “Groups” variables — e.g. “Midwest” and “West” selected simultaneously, thereby creating a filter that includes everyone in either of these regions.</p>
-                                <span>Sep 21, 2020 </span>
+                                <p></p>
+                                <span>May 7, 2021 </span>
                             </div>
                         </div> 
                 </div> 
@@ -154,18 +167,28 @@
 
                   <div class="row spacer-bottom">
                       <div class="col-md-10 offset-md-1">
-                          <p>The Groups on dashboards can now optionally allow multiple category selections to effectively combine categories in the filter. Dashboard editors can set an option on the configuration screen for dashboard “Groups” that allows users to make multiple selections within each variable. For example, if you choose an age categories variable as a group and turn on this new option, the dashboard users will be able to select both “18–24” and “25–34” simultaneously, thereby creating a filter that includes anyone aged 18–34.</p>
-<p>The new option can be found at the top of the Edit Groups panel.</p>
-<figure class="img-fluid"><img src="dev/features/images/selection-within-groups.png"/>
-</figure>
-
-<p>The default is single selection, but with multiple selection enabled, the user is able to create group definitions.</p>
-<figure class="img-fluid"><img src="dev/features/images/multiple-selection-in-groups-sidebar.png"/>
-</figure>
-
-<p>As before, you can click the “×” to remove a category from your selection or click “Reset Groups” at the bottom of the panel to clear all group filtering.</p>
-<p>For full details, see the <a href="https://help.crunch.io/hc/en-us/articles/360040053432-How-to-apply-filters-to-a-dataset-dashboard">help center</a>.</p>
-<p>We’d love your feedback at <a href="mailto:support@crunch.io">support@crunch.io</a>.</p>
+                          <h3 id="crunch-web-application">Crunch web application</h3>
+<ul>
+<li>Added the ability to show the title and description for a column variable beneath the graph in edit preview and dashboards.</li>
+<li>Improved how datasets on a dashboard appear on a landing page so that the member&rsquo;s panel no longer switches to a dashboard when closing it.</li>
+<li>Fixed a bug that improves how formulas for subtotals and differences are saved.</li>
+<li>Made numerous improvements to the Confirmit importer, including:
+<ul>
+<li>Cleaned up the formatting of both folders, variable names, and descriptions. Some variables were being missed on import and are now being imported properly.</li>
+<li>Added proper support for numeric array integrations.</li>
+<li>Added more language support in Confirmit integrations.</li>
+</ul>
+</li>
+<li>Re-enabled the hypothesis testing &ldquo;set&rdquo; comparison option when working with a categorical array that has subvariables within the columns and categories within the rows.</li>
+</ul>
+<h3 id="crunch-automation">Crunch Automation</h3>
+<ul>
+<li>Improved how Crunch Automation handles scripts that have numerous commands (&gt; than 1MB) or on a dataset with 1000s of variables. The validation step now returns a 202 asynchronous progress response.</li>
+</ul>
+<h3 id="developer-documentation">Developer documentation</h3>
+<ul>
+<li>Added a new article about <a href="https://help.crunch.io/hc/en-us/articles/360060324892-Insertions">Insertions</a>. You can read more about definition attributes in the <a href="https://help.crunch.io/hc/en-us/articles/360042410872-Variable-Definitions#toc11">Variable Definitions</a> article.</li>
+</ul>
 
                       </div>
                   </div>
