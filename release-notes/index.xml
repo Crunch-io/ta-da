@@ -8,6 +8,42 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.17</title>
+      <link>//crunch.io/release-notes/2021-05-14/</link>
+      <pubDate>Fri, 14 May 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-05-14/</guid>
+      <description>Crunch web application  Improved the time marker bar so that when you click the diamond symbol it now expands to display the margin of error when confidence bands are enabled in time plots. Improved the export settings functionality (for both deck and tab book exports), so that it now features a &amp;lsquo;bases&amp;rsquo; options for numeric measures. Added performance improvements and fixed various bugs to the export settings crosstab sections (tab book and edit slide).</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Improved the time marker bar so that when you click the diamond symbol it now expands to display the margin of error when confidence bands are enabled in time plots.&lt;/li&gt;
+&lt;li&gt;Improved the export settings functionality (for both deck and tab book exports), so that it now features a &amp;lsquo;bases&amp;rsquo; options for numeric measures.&lt;/li&gt;
+&lt;li&gt;Added performance improvements and fixed various bugs to the export settings crosstab sections (tab book and edit slide).&lt;/li&gt;
+&lt;li&gt;Fixed how decks appear, which are now alphabetically sorted.&lt;/li&gt;
+&lt;li&gt;Improved how long format exports are handled when &amp;ldquo;All variables on one sheet&amp;rdquo; is selected so that legends are now separately included for both crosstabs and numeric exports where applicable.&lt;/li&gt;
+&lt;li&gt;Enhanced how calculations are performed when population estimates in a crosstab include a categorical date variable – each wave is now assumed to represent the entire population.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;API Endpoints and API Reference&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the API email policy so that users with appropriate permissions may still change a user&amp;rsquo;s email through the &lt;code&gt;/api/user/&amp;lt;userID&amp;gt;/change_email/&lt;/code&gt; endpoint.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sdks-rcrunch-pycrunch-and-scrunch&#34;&gt;SDKs (&lt;code&gt;rCrunch&lt;/code&gt;, &lt;code&gt;pyCrunch&lt;/code&gt;, and &lt;code&gt;sCrunch&lt;/code&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed a bug that caused some sCrunch library commands to fail when fetching data from the &lt;code&gt;/tables/&lt;/code&gt; endpoint.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed a bug in the Crunch Automation script runner that caused certain Unicode strings in categories to be incorrectly matched.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Created a new &lt;a href=&#34;https://help.crunch.io/hc/en-us/categories/360006281331-Integrations&#34;&gt;section&lt;/a&gt; and &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360061204751-Crunch-importers-overview&#34;&gt;overview&lt;/a&gt; article for integrations, in order to help users easily find information on how to import data from popular data-collection platforms into Crunch. We&amp;rsquo;ll be adding new information on all of the platforms in the coming weeks.&lt;/li&gt;
+&lt;li&gt;Added new information about how to use web app and Crunch Automation for &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360045631232-Nets-on-a-multiple-response-variable&#34;&gt;nets on a multiple response variable&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.16</title>
       <link>//crunch.io/release-notes/2021-05-07/</link>
       <pubDate>Fri, 07 May 2021 10:00:00 -0700</pubDate>

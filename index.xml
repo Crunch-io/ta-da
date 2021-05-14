@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 May 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 May 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prodege</title>
       <link>//crunch.io/case-studies/prodege/</link>
@@ -527,6 +527,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <description>Reports to: VP of Sales
 Work location: Remote, United States or Canada
 The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.</description>
+    </item>
+    
+    <item>
+      <title>Release 2021.17</title>
+      <link>//crunch.io/release-notes/2021-05-14/</link>
+      <pubDate>Fri, 14 May 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-05-14/</guid>
+      <description>Crunch web application  Improved the time marker bar so that when you click the diamond symbol it now expands to display the margin of error when confidence bands are enabled in time plots. Improved the export settings functionality (for both deck and tab book exports), so that it now features a &amp;lsquo;bases&amp;rsquo; options for numeric measures. Added performance improvements and fixed various bugs to the export settings crosstab sections (tab book and edit slide).</description>
     </item>
     
     <item>
