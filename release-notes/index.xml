@@ -8,6 +8,42 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.18</title>
+      <link>//crunch.io/release-notes/2021-05-21/</link>
+      <pubDate>Fri, 21 May 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-05-21/</guid>
+      <description>Crunch web application  Added the ability for organizations to route user questions and problems directly to personnel or online resources (blogs, knowledge base, help center, videos, etc) for any folder via the &amp;ldquo;Report an Issue&amp;rdquo; menu option. For example, you may want to configure a top-level regional folder to route user issues to your own, branded https://help.mycomany.com and configure a lower-level folder to route user questions to a specific email address like usa-questions@mycompany.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the ability for organizations to route user questions and problems directly to personnel or online resources (blogs, knowledge base, help center, videos, etc) for any folder via the &amp;ldquo;Report an Issue&amp;rdquo; menu option. For example, you may want to configure a top-level regional folder to route user issues to your own, branded &lt;a href=&#34;https://help.mycomany.com&#34;&gt;&lt;code&gt;https://help.mycomany.com&lt;/code&gt;&lt;/a&gt; and configure a lower-level folder to route user questions to a specific email address like &lt;code&gt;usa-questions@mycompany.com&lt;/code&gt;. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360061158712-End-user-support-requests&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Added support that tracks how users are interacting with datasets: upon request, Crunch will send clickstream data to each organization&amp;rsquo;s Google Analytics reports. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360061144172-Understanding-end-user-usage&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Made the following improvements to the variable organizer when accessed by selecting &amp;ldquo;Edit Variables&amp;rdquo; from dataset properties:
+&lt;ul&gt;
+&lt;li&gt;Dragging and dropping are smoother, and a dropzone now appears with a dashed border where the dragged variables are moved, making it easier to see.&lt;/li&gt;
+&lt;li&gt;When clicking or dragging to &amp;ldquo;Move&amp;hellip;&amp;rdquo; a &amp;lsquo;Move to&amp;hellip;&amp;rsquo; dialog appears, which allows you to more easily navigate your folder hierarchy and even create new folders as part of the moving process.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Improved how &amp;ldquo;Export this table&amp;rdquo; performs so that it correctly exports the displayed measure and decimal place setting in multitable view.&lt;/li&gt;
+&lt;li&gt;Improved how the &amp;ldquo;Above table&amp;rdquo; and &amp;ldquo;Below table&amp;rdquo; bases options are properly reflected in the tab book export for crosstabs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the &lt;code&gt;MINUS&lt;/code&gt; modifier info to the DISPLAY command. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042038692-DISPLAY-command&#34;&gt;help article&lt;/a&gt; for more information and examples.&lt;/li&gt;
+&lt;li&gt;Made speed improvements when working with large scripts or datasets in the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042038132-CHANGE-command&#34;&gt;CHANGE&lt;/a&gt;, &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360044079971-CREATE-MULTIPLE-SELECTION-command&#34;&gt;CREATE MULTIPLE SELECTION&lt;/a&gt;, and &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042457291-ORGANIZE-command&#34;&gt;ORGANIZE command&lt;/a&gt;s.&lt;/li&gt;
+&lt;li&gt;Fixed a bug in the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360044080131-SET-DATES-command&#34;&gt;SET DATES command&lt;/a&gt; when working on derived variables.&lt;/li&gt;
+&lt;li&gt;Added support for the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042038132-CHANGE-command&#34;&gt;CHANGE LABELS command&lt;/a&gt; to allow you to change subvariable labels for numeric arrays.&lt;/li&gt;
+&lt;li&gt;Added the ability to delete a script even if multitables or filters depend on any of the variables created by the script.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360061158712-End-user-support-requests&#34;&gt;documentation&lt;/a&gt; that describes how to use the &amp;ldquo;Report an Issue&amp;rdquo; feature within the Crunch web app.&lt;/li&gt;
+&lt;li&gt;Made improvements to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040059832-Target-Population&#34;&gt;Target Population&lt;/a&gt; help desk article.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.17</title>
       <link>//crunch.io/release-notes/2021-05-14/</link>
       <pubDate>Fri, 14 May 2021 10:00:00 -0700</pubDate>
