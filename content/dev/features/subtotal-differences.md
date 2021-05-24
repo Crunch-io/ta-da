@@ -15,7 +15,7 @@ series = "main"
 
 +++
 
-You’ve been able to create subtotals in Crunch for a long time, and they’re great for quickly seeing what proportion of respondents hold similar views, such as any level of agreement with a statement or any level of liking of a brand etc. But sometimes you also need to take into account the strength of *opposing* views — those who disagree or those who dislike, and for that you want to sum those who agree and take away the sum of those who disagree, leaving you with an overall measure you can use for simple comparisons. The well-known Net Promoter Score™ measure works in this way. Crunch now supports these calculated differences and you create them in a very similar way to how you create regular subtotals:
+You’ve been able to create subtotals in Crunch for a long time, and they’re great for quickly seeing what proportion of respondents hold similar views, such as any level of agreement with a statement or any level of liking of a brand etc. But sometimes you also need to take into account the strength of *opposing* views — those who disagree or those who dislike, and for that you want to sum those who agree and take away the sum of those who disagree, leaving you with an overall measure you can use for simple comparisons. The well-known Net Promoter Score™ measure works in this way. For dataset editors, Crunch now supports these calculated differences and you create them in a very similar way to how you create regular subtotals:
 
 Enter the Properties panel for a categorical variable you are allowed to edit and choose the new option called “Subtotals and differences”.
 
