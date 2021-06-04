@@ -8,6 +8,32 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.20</title>
+      <link>//crunch.io/release-notes/2021-06-04/</link>
+      <pubDate>Fri, 04 Jun 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-06-04/</guid>
+      <description>Crunch web application  Improved backend support to allow creation of custom variables into views. Added a search field to the &amp;lsquo;Select&amp;rsquo; categories panel for time plots, which is displayed when the list of categories exceeds the available space in a view. Fixed a bug for integration updates when a subvariable with a duplicate name would cause a failure. Added the base size (N) to the tooltips above data points within vertical and horizontal bar graphs as well as pie graphs.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Improved backend support to allow creation of custom variables into views.&lt;/li&gt;
+&lt;li&gt;Added a search field to the &amp;lsquo;Select&amp;rsquo; categories panel for time plots, which is displayed when the list of categories exceeds the available space in a view.&lt;/li&gt;
+&lt;li&gt;Fixed a bug for integration updates when a subvariable with a duplicate name would cause a failure.&lt;/li&gt;
+&lt;li&gt;Added the base size (N) to the tooltips above data points within vertical and horizontal bar graphs as well as pie graphs.&lt;/li&gt;
+&lt;li&gt;Fixed an issue that prevented export settings from being opened.&lt;/li&gt;
+&lt;li&gt;Enhanced how calculations are performed for population estimates when a filter is applied: in a scenario where that filter consists of a single wave of a categorical date variable, that wave is now assumed to represent the entire population.&lt;/li&gt;
+&lt;li&gt;Added the base value to the lower right of univariate graphs.&lt;/li&gt;
+&lt;li&gt;Corrected a scenario in which Numeric Array analyses sometimes are not able to be added to a deck.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Made improvements when running scripts that include multiple &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042457091-CREATE-FILTER-command&#34;&gt;CREATE FILTER command&lt;/a&gt;s, which increases performance.&lt;/li&gt;
+&lt;li&gt;Fixed an issue that occurred when attempting to delete a script that creates variables that are later used in the dataset&amp;rsquo;s exclusion filter: this will now show a conflict.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.19</title>
       <link>//crunch.io/release-notes/2021-05-28/</link>
       <pubDate>Fri, 28 May 2021 10:00:00 -0700</pubDate>
