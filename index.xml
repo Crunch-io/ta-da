@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 11 Jun 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Jun 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prodege</title>
       <link>//crunch.io/case-studies/prodege/</link>
@@ -518,6 +518,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <description>Reports to: VP of Sales
 Work location: Remote, United States or Canada
 The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.</description>
+    </item>
+    
+    <item>
+      <title>Release 2021.22</title>
+      <link>//crunch.io/release-notes/2021-06-18/</link>
+      <pubDate>Fri, 18 Jun 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-06-18/</guid>
+      <description>Crunch web application  Updated the Crunch app so that numeric arrays can be saved to a deck from the &amp;lsquo;Variable Summaries&amp;rsquo; view. Added options in the &amp;lsquo;Edit Slide/Tile&amp;rsquo; panel to allow you to hide the x-axis title and description for a graph. Fixed an issue when numeric arrays sometimes don&amp;rsquo;t display in the &amp;lsquo;Tables &amp;amp; Graphs&amp;rsquo; view when a weight has been applied. Fixed an issue that sometimes caused the &amp;lsquo;Edit &amp;gt; Export Settings&amp;rsquo; page to not load properly.</description>
     </item>
     
     <item>
