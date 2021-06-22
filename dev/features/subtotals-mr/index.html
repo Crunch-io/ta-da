@@ -7,32 +7,32 @@
     <meta name="description" content="Prepare and analyze survey data quickly and easily.">
     <meta name="keywords" content="Crunch, Crunch io, data, datasets, survey, analytics, analysis, technology, insights, research, software">
     <base href="//crunch.io/">
-    <title>Crunch | Tags</title>
+    <title>Crunch | Add subtotals (a.k.a. &#34;nets&#34;) to your multiple response variables</title>
 
     <link rel="icon" href="img/favicon.ico">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <meta property="og:title" content="Tags &middot; Modern survey data analysis">
-<meta property="og:description" content="Prepare and analyze survey data quickly and easily.">
+    <meta property="og:title" content="Add subtotals (a.k.a. &#34;nets&#34;) to your multiple response variables &middot; Modern survey data analysis">
+<meta property="og:description" content="Simplify your analyses to get the insights you need with fewer distractions.">
 <meta property="og:type" content="website" >
-<meta property="og:url" content="//crunch.io/tags/">
+<meta property="og:url" content="//crunch.io/dev/features/subtotals-mr/">
 <meta property="og:locale" content="en">
 
+
     
-        
-            <meta property="og:image" content="//crunch.io/img/logo-1200x630.png">
-        
+        <meta property="og:image" content="https://crunch.io/img/logo-1200x630.png">
     
+
 
 
   <meta property="og:updated_time" content="2021-06-22T11:29:37-04:00">
 
 
     <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="//crunch.io/img/logo-1200x630.png"/>
+<meta name="twitter:image" content="https://crunch.io/img/logo-1200x630.png"/>
 
-<meta name="twitter:title" content="Tags"/>
-<meta name="twitter:description" content="Prepare and analyze survey data quickly and easily."/>
+<meta name="twitter:title" content="Add subtotals (a.k.a. &#34;nets&#34;) to your multiple response variables"/>
+<meta name="twitter:description" content="Simplify your analyses to get the insights you need with fewer distractions."/>
 
     
     <link rel="stylesheet" href="css/main.css">
@@ -51,6 +51,7 @@
   </head>
 
   <body>
+
 
 
 
@@ -130,180 +131,68 @@
     </nav>
 
 
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="blog-content">
+                    <div class="container spacer-top">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <h2>Add subtotals (a.k.a. "nets") to your multiple response variables</h2>
+                                <hr>
+                                <p>Simplify your analyses to get the insights you need with fewer distractions.</p>
+                                <span>Jun 22, 2021 </span>
+                            </div>
+                        </div> 
+                </div> 
+            </div> 
+
+            <div class="secondary-content">
+              <div class="container blog-content-mg">
+
+                  <div class="row spacer-bottom">
+                      <div class="col-md-10 offset-md-1">
+                          <p>Dataset editors have been able to add subtotals (a.k.a. “nets”) to categorical and categorical array variables for a long time, but this hasn’t been the case for multiple response variables. There are many applications for subtotals on multiple response variables — a common one is a group of products or sub-brands within a brand, or a grouping of statements into themes. Previously, users had to define new variables with often complex logic to describe each combination, and then hide the input variable. Now, Crunch provides a way to specify combinations of items directly on multiple response variables. And even better, these subtotal categories will appear on graphs in Crunch, including on time-series graphs.</p>
+<p>The method of creating multiple response variable subtotals is the same as the method for creating categorical variable subtotals.</p>
+<ul>
+<li>Open the <strong>Properties</strong> panel for a variable and choose the new <strong>Subtotals</strong> button.</li>
+<li>In the screen that appears, click <strong>Create subtotal</strong>.</li>
+<li>Drag the categories that you want to combine into the dropzone and give the subtotal a name.</li>
+<li>Click save.</li>
+</ul>
+<p>You can then reposition the subtotal to somewhere other than the top if you wish. If you choose to position the subtotal at the top or the bottom then it will stay in this position, but if you move the subtotal to somewhere else in the list then this will attach it to the category immediately above it and the subtotal will then be kept immediately below that anchor category as the list is sorted. From this screen, you can also delete the subtotal or click <strong>edit</strong> to make changes to the subtotal’s definition or its name.</p>
+<p>Once you’ve saved your subtotals, you will see them added in bold to the variable. Note that this is a change made to the original variable, and therefore will be visible to all users of the dataset. That&rsquo;s why it&rsquo;s only available to dataset editors.</p>
+<p>For full details of this new feature, see the <a href="https://help.crunch.io/hc/en-us/articles/360050364772-Category-Subtotals">help center</a>.</p>
+<p>Currently this feature is only available if you have enabled <a href="https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access">Early access</a> in your application settings.</p>
+<p>We’d love your feedback at <a href="mailto:support@crunch.io">support@crunch.io</a>.</p>
+
+                      </div>
+                  </div>
+
+              </div> 
+            </div> 
+
+            <footer class="footer d-flex justify-content-center bg-black">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a class="nav-link active" href="about">About</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="team">Team</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="http://help.crunch.io/">Support</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="http://status.crunch.io/" target="_blank">Status</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="about/privacy">Privacy</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/">Sign in</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="contact">Contact us</a></li>
+                </ul>
+            </footer>
+
+        </div> 
+
+    </div> 
+
+</div> 
 
 
-<div id="post-box">
-    <div class="intro-post">
-        <h1>Tags</h1>
-        <p><br></p>
-    </div>
-
-    <ul id="posts">
-      <div class="list-item" itemscope itemtype="http://schema.org/CreativeWork">
-    <h2 class="title">
-        <a href="//crunch.io/tags/graphs/" itemprop="headline">graphs</a>
-    </h2>
-    
-</div>
-  <div class="list-item" itemscope itemtype="http://schema.org/CreativeWork">
-    <h2 class="title">
-        <a href="//crunch.io/tags/time-series/" itemprop="headline">time series</a>
-    </h2>
-    
-</div>
-  <div class="list-item" itemscope itemtype="http://schema.org/CreativeWork">
-    <h2 class="title">
-        <a href="//crunch.io/tags/analysis-tab-books-multitable-exports/" itemprop="headline">analysis, tab books, multitable, exports</a>
-    </h2>
-    
-</div>
-  <div class="list-item" itemscope itemtype="http://schema.org/CreativeWork">
-    <h2 class="title">
-        <a href="//crunch.io/tags/analyses-dashboards-tabs/" itemprop="headline">analyses, dashboards, tabs</a>
-    </h2>
-    
-</div>
-  <div class="list-item" itemscope itemtype="http://schema.org/CreativeWork">
-    <h2 class="title">
-        <a href="//crunch.io/tags/analyses-dashboards-groups-filters/" itemprop="headline">analyses, dashboards, groups, filters</a>
-    </h2>
-    
-</div>
-  <div class="list-item" itemscope itemtype="http://schema.org/CreativeWork">
-    <h2 class="title">
-        <a href="//crunch.io/tags/analyses-dashboards/" itemprop="headline">analyses, dashboards</a>
-    </h2>
-    
-</div>
-  <div class="list-item" itemscope itemtype="http://schema.org/CreativeWork">
-    <h2 class="title">
-        <a href="//crunch.io/tags/analysis-multiple-response-categorical-array-variables/" itemprop="headline">analysis, multiple response, categorical array, variables</a>
-    </h2>
-    
-</div>
-  <div class="list-item" itemscope itemtype="http://schema.org/CreativeWork">
-    <h2 class="title">
-        <a href="//crunch.io/tags/analysis-graphs-dashboards/" itemprop="headline">analysis, graphs, dashboards</a>
-    </h2>
-    
-</div>
-  <div class="list-item" itemscope itemtype="http://schema.org/CreativeWork">
-    <h2 class="title">
-        <a href="//crunch.io/tags/dashboards/" itemprop="headline">dashboards</a>
-    </h2>
-    
-</div>
- 
-      <section>
-
-<div class="row">
-    <div class="col-md-3">
-        <div class="page-item">
-            <a href="/tags/" class="page-link" aria-label="Previous"><span aria-hidden="true">&#10229; Previous</span></a>
-        </div>
-    </div>
-    <div class="col-md-6">
-        
-        
-        
-        
-        
-        
-        
-            
-            
-        
-
-        <ul class="pagination justify-content-center">
-            
-            <li class="page-item">
-                <a class="page-link page-number" href="/tags/">1</a>
-            </li>
-            
-            
-        
-        
-        
-        
-            
-            
-        
-
-        <ul class="pagination justify-content-center">
-            
-            <li class="page-item active">
-                <a class="page-link page-number" href="/tags/page/2/">2</a>
-            </li>
-            
-            
-        
-        
-        
-        
-            
-            
-        
-
-        <ul class="pagination justify-content-center">
-            
-            <li class="page-item">
-                <a class="page-link page-number" href="/tags/page/3/">3</a>
-            </li>
-            
-            
-        
-        
-        
-        
-            
-            
-        
-
-        <ul class="pagination justify-content-center">
-            
-            <li class="page-item disabled">
-                <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
-            </li>
-            
-            
-        
-        
-        
-        
-            
-            
-        
-
-        <ul class="pagination justify-content-center">
-            
-            
-        
-        
-        
-        
-            
-            
-        
-
-        <ul class="pagination justify-content-center">
-            
-            <li class="page-item">
-                <a class="page-link page-number" href="/tags/page/6/">6</a>
-            </li>
-            
-            
-        </ul>
-    </div>
-    <div class="col-md-3 text-right">
-        <div class="page-item">
-            <a href="/tags/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">Next &#10230;</span></a>
-        </div>
-    </div>
-</div>
-
-</section>
-    </ul>
-</div>
 <div class="alert alert-dismissible text-center cookiealert" role="alert">
   <div class="cookiealert-container">
       <div class="row">
