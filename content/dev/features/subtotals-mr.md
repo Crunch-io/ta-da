@@ -30,4 +30,6 @@ Once you’ve saved your subtotals, you will see them added in bold to the varia
 
 For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/360050364772-Category-Subtotals).
 
+Currently this feature is only available if you have enabled [Early access](http://support.crunch.io/crunch/crunch_user-display-settings.html#early-access) in your application settings.
+
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
