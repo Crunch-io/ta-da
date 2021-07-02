@@ -2,7 +2,7 @@
 date = "2021-06-22T11:29:37-04:00"
 publishdate = "2021-06-22T11:29:37-04:00"
 draft = false
-title = 'Add subtotals to your multiple response variables'
+title = 'Add subtotals to multiple response variables'
 news_description = "Simplify your analyses to get the insights you need with fewer distractions. Click here to learn more."
 description = "Simplify your analyses to get the insights you need with fewer distractions."
 weight = 20
