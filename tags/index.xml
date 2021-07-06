@@ -6,13 +6,31 @@
     <description>Recent content in Tags on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Jun 2021 11:29:37 -0400</lastBuildDate><atom:link href="//crunch.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Jul 2021 11:27:47 -0400</lastBuildDate><atom:link href="//crunch.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>analyses</title>
       <link>//crunch.io/tags/analyses/</link>
-      <pubDate>Tue, 22 Jun 2021 11:29:37 -0400</pubDate>
+      <pubDate>Tue, 06 Jul 2021 11:27:47 -0400</pubDate>
       
       <guid>//crunch.io/tags/analyses/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dashboards</title>
+      <link>//crunch.io/tags/dashboards/</link>
+      <pubDate>Tue, 06 Jul 2021 11:27:47 -0400</pubDate>
+      
+      <guid>//crunch.io/tags/dashboards/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>graphs</title>
+      <link>//crunch.io/tags/graphs/</link>
+      <pubDate>Tue, 06 Jul 2021 11:27:47 -0400</pubDate>
+      
+      <guid>//crunch.io/tags/graphs/</guid>
       <description></description>
     </item>
     
@@ -89,15 +107,6 @@
     </item>
     
     <item>
-      <title>graphs</title>
-      <link>//crunch.io/tags/graphs/</link>
-      <pubDate>Mon, 14 Dec 2020 15:18:29 -0400</pubDate>
-      
-      <guid>//crunch.io/tags/graphs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>time series</title>
       <link>//crunch.io/tags/time-series/</link>
       <pubDate>Mon, 14 Dec 2020 15:18:29 -0400</pubDate>
@@ -157,15 +166,6 @@
       <pubDate>Mon, 29 Jun 2020 12:14:51 -0400</pubDate>
       
       <guid>//crunch.io/tags/analysis-graphs-dashboards/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dashboards</title>
-      <link>//crunch.io/tags/dashboards/</link>
-      <pubDate>Tue, 14 Jan 2020 10:03:24 -0400</pubDate>
-      
-      <guid>//crunch.io/tags/dashboards/</guid>
       <description></description>
     </item>
     
