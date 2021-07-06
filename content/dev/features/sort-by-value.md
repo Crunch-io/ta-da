@@ -1,6 +1,6 @@
 +++
-date = "2021-07-05T12:49:53-04:00"
-publishdate = "2021-07-05T12:49:53-04:00"
+date = "2021-07-06T11:27:47-04:00"
+publishdate = "2021-07-06T11:27:47-04:00"
 draft = false
 title = "Sort your graph categories automatically"
 news_description = "Sort the categories of your graphs automatically based on value, and have the order update dynamically as you apply filters. Click here to learn more."
