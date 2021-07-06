@@ -30,7 +30,7 @@
                       <div class="col-md-8 post-card-main-content">
                           <div class="post-card post-min-height announcements-main" style="margin-bottom: 0;" onclick="location.href='{{ .Permalink }}'">
                               <div class="posts">
-                                  <h1 class="post-title">{{ with .Title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} <i>{{ index (split . " ") 3 }} {{ index (split . " ") 4 }}</i> {{ index (split . " ") 5 }} {{ end }}</h1>
+                                  <h1 class="post-title">{{ with .Title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} <i>{{ index (split . " ") 4 }}</i>{{ end }}</h1>
                                   <p style="color: #444; margin-bottom: 98px">{{ .Params.description }}</p>
                                   <span>{{ .Params.eventdate }}</span>
 
