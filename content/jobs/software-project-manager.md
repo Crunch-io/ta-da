@@ -1,11 +1,11 @@
 +++
 date = "2020-10-06T14:08:35+02:00"
 draft = false
-title = "Software Delivery Manager"
+title = "Software Project Manager"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Engineering & Data"
-id = "software-delivery-manager"
+id = "software-project-manager"
 controls = "emgr"
 +++
 
