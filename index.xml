@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 06 Jul 2021 11:27:47 -0400</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Jul 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prodege</title>
       <link>//crunch.io/case-studies/prodege/</link>
@@ -536,6 +536,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <description>Reports to: VP of Sales
 Work location: Remote, United States or Canada
 The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.</description>
+    </item>
+    
+    <item>
+      <title>Release 2021.25-26</title>
+      <link>//crunch.io/release-notes/2021-07-16/</link>
+      <pubDate>Fri, 16 Jul 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-07-16/</guid>
+      <description>Crunch web application  Made the following fixes and improvements:  Exports of scorecards now work properly. Variables can now be added to dashboard groups. A graph size now updates correctly when empty rows/columns are deselected. A multitable now loads properly when its definition includes a collection of variables that begins with a date/time variable. Display results no longer show &amp;lsquo;no data&amp;rsquo; values under certain conditions. The &amp;lsquo;Combine&amp;rsquo; categories panel no longer incorrectly includes subtotals and differences among the list of categories to combine, as well as no longer showing incorrect counts if subtotals or differences are defined in the variable.</description>
     </item>
     
     <item>

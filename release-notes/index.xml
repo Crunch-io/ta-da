@@ -8,6 +8,54 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.25-26</title>
+      <link>//crunch.io/release-notes/2021-07-16/</link>
+      <pubDate>Fri, 16 Jul 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-07-16/</guid>
+      <description>Crunch web application  Made the following fixes and improvements:  Exports of scorecards now work properly. Variables can now be added to dashboard groups. A graph size now updates correctly when empty rows/columns are deselected. A multitable now loads properly when its definition includes a collection of variables that begins with a date/time variable. Display results no longer show &amp;lsquo;no data&amp;rsquo; values under certain conditions. The &amp;lsquo;Combine&amp;rsquo; categories panel no longer incorrectly includes subtotals and differences among the list of categories to combine, as well as no longer showing incorrect counts if subtotals or differences are defined in the variable.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Made the following fixes and improvements:
+&lt;ul&gt;
+&lt;li&gt;Exports of scorecards now work properly.&lt;/li&gt;
+&lt;li&gt;Variables can now be added to dashboard groups.&lt;/li&gt;
+&lt;li&gt;A graph size now updates correctly when empty rows/columns are deselected.&lt;/li&gt;
+&lt;li&gt;A multitable now loads properly when its definition includes a collection of variables that begins with a date/time variable.&lt;/li&gt;
+&lt;li&gt;Display results no longer show &amp;lsquo;no data&amp;rsquo; values under certain conditions.&lt;/li&gt;
+&lt;li&gt;The &amp;lsquo;Combine&amp;rsquo; categories panel no longer incorrectly includes subtotals and differences among the list of categories to combine, as well as no longer showing incorrect counts if subtotals or differences are defined in the variable.&lt;/li&gt;
+&lt;li&gt;Values now properly display on bar graphs when using the &amp;lsquo;Show values&amp;rsquo; setting.&lt;/li&gt;
+&lt;li&gt;Variable cards from a saved deck analysis now open and render properly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Added support for third-party integrations when deleting a variable from a datasource so that it also removes it from the Crunch dataset if no other variables depend on the deleted variable.&lt;/li&gt;
+&lt;li&gt;Updated the &amp;lsquo;Set Comparison&amp;rsquo; option so that it no longer displays if the measure is set to row percent.&lt;/li&gt;
+&lt;li&gt;Removed left and right browsing arrows on &amp;lsquo;Tables &amp;amp; Graphs&amp;rsquo; and &amp;lsquo;Multitable&amp;rsquo; views.&lt;/li&gt;
+&lt;li&gt;Added the ability to automatically sort graph categories.&lt;/li&gt;
+&lt;li&gt;Enabled vertical and horizontal bar graphs as visualization options for means analyses.&lt;/li&gt;
+&lt;li&gt;Improved search performance when filtering a search by folder ID.&lt;/li&gt;
+&lt;li&gt;Enabled scorecards to display multiple response subtotals.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed an issue in the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360041769292-Crunch-Automation-basics#toc16&#34;&gt;REPLACE commands&lt;/a&gt; when using function expansions.&lt;/li&gt;
+&lt;li&gt;Improved the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042038692-DISPLAY-command&#34;&gt;DISPLAY command&lt;/a&gt; by adding the ability to add nets to multiple response variables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added comprehensive survey metadata mapping information to the following articles:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/4403966631309-How-your-survey-metadata-maps-from-Confirmit-into-Crunch&#34;&gt;Confirmit&lt;/a&gt; — updated&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360062142812-How-your-survey-metadata-maps-from-Decipher-into-Crunch#toc4&#34;&gt;Decipher&lt;/a&gt; — updated&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/4404356327693-How-your-survey-metadata-maps-from-SurveyMonkey-into-Crunch&#34;&gt;SurveyMonkey&lt;/a&gt; — &lt;em&gt;New!&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360039306152-Tables-and-charts-with-drag-and-drop&#34;&gt;Tables and charts with drag-and-drop&lt;/a&gt; article with new information about how to sort tables and graphs.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.23-24</title>
       <link>//crunch.io/release-notes/2021-07-02/</link>
       <pubDate>Fri, 02 Jul 2021 10:00:00 -0700</pubDate>
