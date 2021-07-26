@@ -8,6 +8,44 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.27</title>
+      <link>//crunch.io/release-notes/2021-07-26/</link>
+      <pubDate>Mon, 26 Jul 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-07-26/</guid>
+      <description>Crunch web application  Added functionality to prepend &amp;lsquo;Loop Names&amp;rsquo; to loop variables, which makes them work better in the UI and prevents clashes between variables. Fixed a bug in the Confirmit importer, which caused the variable name to be the same as the alias. Fixed a bug that caused integrated datasets to not have a working update dropdown. Made the following fixes and improvements:  Negative differences now display properly if the checkbox &amp;lsquo;Empty rows/columns&amp;rsquo; in the display controller is deselected.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added functionality to prepend &amp;lsquo;Loop Names&amp;rsquo; to loop variables, which makes them work better in the UI and prevents clashes between variables.&lt;/li&gt;
+&lt;li&gt;Fixed a bug in the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/4403966631309-How-your-survey-metadata-maps-from-Confirmit-into-Crunch&#34;&gt;Confirmit importer&lt;/a&gt;, which caused the variable name to be the same as the alias.&lt;/li&gt;
+&lt;li&gt;Fixed a bug that caused integrated datasets to not have a working update dropdown.&lt;/li&gt;
+&lt;li&gt;Made the following fixes and improvements:
+&lt;ul&gt;
+&lt;li&gt;Negative differences now display properly if the checkbox &amp;lsquo;Empty rows/columns&amp;rsquo; in the display controller is deselected.&lt;/li&gt;
+&lt;li&gt;Displayed categories now correctly match the selected list of categories in dashboard time plots.&lt;/li&gt;
+&lt;li&gt;Pairwise comparisons now appear correctly for an analysis that has a multiple response variable in the column position (in cases where the multiple response variable included at least one subtotal).&lt;/li&gt;
+&lt;li&gt;The UI now works properly when &amp;lsquo;Missing&amp;rsquo; categories are positioned anywhere outside of the bottom of the category list.&lt;/li&gt;
+&lt;li&gt;The anchoring of subtotals at the bottom of the list of categories now correctly renders the relevant variable summary card.&lt;/li&gt;
+&lt;li&gt;Tooltips above table cells now display the correct information.&lt;/li&gt;
+&lt;li&gt;The properties panel for a categorical array now displays correct information when one or more subtotals or differences were defined on the categories.&lt;/li&gt;
+&lt;li&gt;The &amp;lsquo;Set comparison&amp;rsquo; hypothesis testing option is now available in cases where subvariables are in the column position.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Created new &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/4405014460301-SPSS-datafile-specifications&#34;&gt;SPSS datafile specifications&lt;/a&gt; article.&lt;/li&gt;
+&lt;li&gt;Created new &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/4405077579405-Cleaning-relabeling-categories&#34;&gt;Cleaning/relabeling categories&lt;/a&gt; article.&lt;/li&gt;
+&lt;li&gt;Added new info to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360041300531-Dataset-Level-User-Access&#34;&gt;Dataset Level User Access&lt;/a&gt; article.&lt;/li&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360044362492-The-Definitive-Guide-to-Importing-and-Preparing-Data&#34;&gt;Definitive Guide to Importing and Preparing Data&lt;/a&gt; article.&lt;/li&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360045930891-Setting-category-numeric-values-dates&#34;&gt;Setting category numeric values &amp;amp; dates&lt;/a&gt; with new information.&lt;/li&gt;
+&lt;li&gt;Added Crunch Automation commands to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360059213452-Category-Differences&#34;&gt;Category Differences&lt;/a&gt; article.&lt;/li&gt;
+&lt;li&gt;Added more info and links to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360044737751-Multidimensional-Analysis&#34;&gt;Multidimensional Analysis&lt;/a&gt; article.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.25-26</title>
       <link>//crunch.io/release-notes/2021-07-16/</link>
       <pubDate>Fri, 16 Jul 2021 10:00:00 -0700</pubDate>
