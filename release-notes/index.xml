@@ -8,6 +8,26 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.28</title>
+      <link>//crunch.io/release-notes/2021-08-02/</link>
+      <pubDate>Mon, 02 Aug 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-08-02/</guid>
+      <description>Crunch web application  Improved Confirmit integrations by streamlining the types of files they can accept. Fixed issue in which &amp;lsquo;sort by value&amp;rsquo; does not work properly if the display controller is set to display only subtotals.  Crunch Automation  Added the REPLACE MULTIPLE DICHOTOMY FROM command, which allows you to convert in place a categorical array into a multiple response variable. See documentation for more information. Fixed an issue that occurred when combining CREATE CONVERT and UNSET NUMERIC VALUE commands in the same script for the same variable.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Improved &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/4403966631309-How-your-survey-metadata-maps-from-Confirmit-into-Crunch&#34;&gt;Confirmit integrations&lt;/a&gt; by streamlining the types of files they can accept.&lt;/li&gt;
+&lt;li&gt;Fixed issue in which &amp;lsquo;sort by value&amp;rsquo; does not work properly if the display controller is set to display only subtotals.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the REPLACE MULTIPLE DICHOTOMY FROM command, which allows you to convert in place a categorical array into a multiple response variable. See &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/4406071596301-REPLACE-MULTIPLE-DICHOTOMY-FROM-command&#34;&gt;documentation&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Fixed an issue that occurred when combining &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360047136371-CREATE-CONVERT-command&#34;&gt;CREATE CONVERT&lt;/a&gt; and &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360049589551-UNSET-NUMERIC-VALUE-command&#34;&gt;UNSET NUMERIC VALUE&lt;/a&gt; commands in the same script for the same variable.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.27</title>
       <link>//crunch.io/release-notes/2021-07-26/</link>
       <pubDate>Mon, 26 Jul 2021 10:00:00 -0700</pubDate>
