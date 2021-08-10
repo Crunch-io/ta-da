@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 Aug 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Aug 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prodege</title>
       <link>//crunch.io/case-studies/prodege/</link>
@@ -536,6 +536,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <description>Reports to: VP of Sales
 Work location: Remote, United States or Canada
 The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.</description>
+    </item>
+    
+    <item>
+      <title>Release 2021.29</title>
+      <link>//crunch.io/release-notes/2021-08-09/</link>
+      <pubDate>Mon, 09 Aug 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-08-09/</guid>
+      <description>Crunch web application  Fixed an issue when hypothesis-testing shading was not being reflected in the &amp;lsquo;Mean&amp;rsquo; row when a column was selected for comparison. Added support for ascending/descending sorting of the labels column. Fixed an Excel export issue that occurred when creating filters through the &amp;lsquo;Filter by dropzone&amp;rsquo; that then resulted as an &amp;ldquo;on-the-fly&amp;rdquo; expression instead of the actual filter description. Fixed an issue that occurred when row labels could sometimes disappear when horizontal scrolling through a large bivariate analysis.</description>
     </item>
     
     <item>
