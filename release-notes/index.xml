@@ -8,6 +8,32 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.30</title>
+      <link>//crunch.io/release-notes/2021-08-16/</link>
+      <pubDate>Mon, 16 Aug 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-08-16/</guid>
+      <description>Crunch web application  Changed how the N values are listed at the top of the marker bar in a time plot so that they always reflect the unweighted N value. Fixed an issue that occurred when time plots cannot be created in certain circumstances for a categorical variable with only one category. Added PowerPoint support so that &amp;lsquo;Min&amp;rsquo; and &amp;lsquo;Max&amp;rsquo; Y-axis settings are now reflected in graph exports. Updated population estimates for &amp;ldquo;at least N of&amp;rdquo; filters so that they are now consistent when &amp;ldquo;complete cases&amp;rdquo; is turned off for the filter.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Changed how the N values are listed at the top of the marker bar in a time plot so that they always reflect the unweighted N value.&lt;/li&gt;
+&lt;li&gt;Fixed an issue that occurred when time plots cannot be created in certain circumstances for a categorical variable with only one category.&lt;/li&gt;
+&lt;li&gt;Added PowerPoint support so that &amp;lsquo;Min&amp;rsquo; and &amp;lsquo;Max&amp;rsquo; Y-axis settings are now reflected in graph exports.&lt;/li&gt;
+&lt;li&gt;Updated population estimates for &amp;ldquo;at least N of&amp;rdquo; filters so that they are now consistent when &amp;ldquo;complete cases&amp;rdquo; is turned off for the filter.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;API Endpoints and API Reference&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added a &lt;a href=&#34;https://crunch.io/api/reference/#patch-/projects/-project_id-/&#34;&gt;/projects&lt;/a&gt; path, which changes project settings and allows you to move datasets and sub-projects into it.&lt;/li&gt;
+&lt;li&gt;Removed the &lt;code&gt;/datasets/{id}/folders/trash/&lt;/code&gt; endpoint.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Unmaterialize materialized commands — went back to creating derived variables in automation &lt;code&gt;CREATE VARIABLE&lt;/code&gt; commands.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.29</title>
       <link>//crunch.io/release-notes/2021-08-09/</link>
       <pubDate>Mon, 09 Aug 2021 10:00:00 -0700</pubDate>
