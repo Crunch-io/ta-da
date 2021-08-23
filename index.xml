@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Aug 2021 16:52:04 -0400</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Aug 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prodege</title>
       <link>//crunch.io/case-studies/prodege/</link>
@@ -545,6 +545,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <description>Reports to: VP of Sales
 Work location: Remote, United States or Canada
 The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.</description>
+    </item>
+    
+    <item>
+      <title>Release 2021.31</title>
+      <link>//crunch.io/release-notes/2021-08-23/</link>
+      <pubDate>Mon, 23 Aug 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-08-23/</guid>
+      <description>Crunch web application  Fixed an issue in which confidence bands were not displaying on time plots. Improved the positioning of horizontal axis labels when exporting PowerPoint graphs.  Crunch Automation  Created DROP VARIABLES, which is a new Crunch Automation schema command that allows you to drop multiple variables in a dataset. Fixed the DISPLAY command so that it no longer overwrites other variable display attributes.  Help desk and website improvements  Added updated information about how to use Crunch Automation schema commands when writing a script.</description>
     </item>
     
     <item>
