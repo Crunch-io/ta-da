@@ -31,6 +31,8 @@ Crunch's line graphs now support the display of confidence bands, calculated at 
 
 {{<figure src="https://crunch.io/dev/features/images/date-time-variables_02.gif" class="img-fluid">}}
 
+<div id="draggable" style="padding-top:80px;"></div>
+
 **Draggable bar**
 
 As well as being able to hover over points to see their values, there's a vertical bar that you can drag to any point in the time-series to see all the values and ranking at that point in time.
