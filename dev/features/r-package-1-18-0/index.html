@@ -161,7 +161,7 @@
 <p>Since the last CRAN release in June (1.17.0), some significant features have been added. A full list of changes can be found <a href="/r/crunch/news/#crunch-1-18-0">here</a>, but here is an overview of the main additions.</p>
 <h2 id="mapping">Mapping</h2>
 <p>Crunch-hosted geographic data can now be set and updated. Use <a href="/r/crunch/reference/geo.html"><code>geo()</code></a> on a variable to see if there is already associated geographic data. Use the <a href="/r/crunch/reference/addGeoMetadata.html"><code>addGeoMetadata()</code></a> function to match a text or categorical variable with available geodata based on the contents of the variable and metadata associated with Crunch-hosted geographic data. This function looks at the contents of the variable and the currently available geodata files that are available on Crunch. In most cases, you can set the geographic connection with just</p>
-<pre><code class="language-{r}" data-lang="{r}">geo(ds$state) &lt;- addGeoMetadata(ds$state)
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">geo(ds$state) &lt;- addGeoMetadata(ds$state)
 </code></pre><p>Once a variable has been associated with geographic data, you can use the Crunch web app to make beautiful choropleths like this:</p>
 <div class="crunchbox-container">
     <div class="crunchbox">
@@ -172,7 +172,7 @@
 <h2 id="new-variable-builders">New variable builders</h2>
 <p>This release adds support for case variables, what the &ldquo;<a href="http://support.crunch.io/crunch/crunch_creating-a-categorical-variable.html">Build Categorical Variable</a>&rdquo; interface allows you to do in the web application. <a href="/r/crunch/reference/makeCaseVariable.html"><code>makeCaseVariable()</code></a> takes a sequence of case statements to derive a new variable based on the values from other variables.</p>
 <p>Case variables are useful when you want a categorical variable that is dependent on the contents of other variables. For example, we had two 10 point scores for how likely a respondent was to recommend ACME corp, both unaided and aided, but what we want is an overall net promoter score for ACME corp across both aided and unaided recommendations. We could create this NPS variable simply with a case variable as follows:</p>
-<pre><code class="language-{r}" data-lang="{r}">ds_pets$ACME_NPS &lt;- makeCaseVariable(
+<pre tabindex="0"><code class="language-{r}" data-lang="{r}">ds_pets$ACME_NPS &lt;- makeCaseVariable(
     Promoter = ds_pets$ACME_unaided &gt;= 9 | ds_pets$ACME_aided &gt;= 9,
     Neutral = ds_pets$ACME_unaided &gt;= 7 | ds_pets$ACME_aided &gt;= 7,
     Detractor = ds_pets$ACME_unaided &lt;= 6 | ds_pets$ACME_aided &lt;= 6,
