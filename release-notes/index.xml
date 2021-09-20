@@ -8,6 +8,34 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2021.35</title>
+      <link>//crunch.io/release-notes/2021-09-20/</link>
+      <pubDate>Mon, 20 Sep 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-09-20/</guid>
+      <description>Crunch web application  Fixed an issue that occurred when a tab on a dashboard tile was not allowing the user to change the selection. Improved the behavior in the &amp;lsquo;Dashboards Group&amp;rsquo; panel in situations when one or more of the filter variables have been deleted from the dataset. Fixed an issue that occurred when selecting a category in the &amp;lsquo;Dashboard Group&amp;rsquo; panel that sometimes did not reflect in the rendering of the dashboard.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed an issue that occurred when a tab on a dashboard tile was not allowing the user to change the selection.&lt;/li&gt;
+&lt;li&gt;Improved the behavior in the &amp;lsquo;Dashboards Group&amp;rsquo; panel in situations when one or more of the filter variables have been deleted from the dataset.&lt;/li&gt;
+&lt;li&gt;Fixed an issue that occurred when selecting a category in the &amp;lsquo;Dashboard Group&amp;rsquo; panel that sometimes did not reflect in the rendering of the dashboard.&lt;/li&gt;
+&lt;li&gt;Fixed a bug in &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/4403966631309-How-your-survey-metadata-maps-from-Confirmit-into-Crunch&#34;&gt;Confirmit integrations&lt;/a&gt; when response data was smaller than expected.&lt;/li&gt;
+&lt;li&gt;Corrected an issue that occurred when a dashboard tile no longer reflects the column selected for hypothesis testing comparisons after changing the selection in the tab pulldown within that tile.&lt;/li&gt;
+&lt;li&gt;Added the ability to remove a stale reference in dashboard &amp;lsquo;groups&amp;rsquo; when a variable has been deleted from the dataset.&lt;/li&gt;
+&lt;li&gt;Added the ability to download a Crunch Automaton script (a series of &lt;code&gt;organize&lt;/code&gt; commands) reflecting the current variable folder structure from the &amp;lsquo;Edit variables&amp;rsquo; interface.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;API endpoints and API reference&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated an endpoint that allows users to &lt;a href=&#34;https://crunch.io/api/reference/#get-/datasets/-dataset_id-/folders/script/&#34;&gt;generate a Crunch Automation script&lt;/a&gt; containing &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042457291-ORGANIZE-command&#34;&gt;ORGANIZE commands&lt;/a&gt; that are necessary in order to recreate the current dataset&amp;rsquo;s variables organization.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed a bug that occurred when parsing Crunch Automation comparisons to &lt;code&gt;NULL&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2021.34</title>
       <link>//crunch.io/release-notes/2021-09-13/</link>
       <pubDate>Mon, 13 Sep 2021 10:00:00 -0700</pubDate>

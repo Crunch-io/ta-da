@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Sep 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Sep 2021 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prodege</title>
       <link>//crunch.io/case-studies/prodege/</link>
@@ -554,6 +554,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <description>Reports to: VP of Sales
 Work location: Remote, United States or Canada
 The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.</description>
+    </item>
+    
+    <item>
+      <title>Release 2021.35</title>
+      <link>//crunch.io/release-notes/2021-09-20/</link>
+      <pubDate>Mon, 20 Sep 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-09-20/</guid>
+      <description>Crunch web application  Fixed an issue that occurred when a tab on a dashboard tile was not allowing the user to change the selection. Improved the behavior in the &amp;lsquo;Dashboards Group&amp;rsquo; panel in situations when one or more of the filter variables have been deleted from the dataset. Fixed an issue that occurred when selecting a category in the &amp;lsquo;Dashboard Group&amp;rsquo; panel that sometimes did not reflect in the rendering of the dashboard.</description>
     </item>
     
     <item>
