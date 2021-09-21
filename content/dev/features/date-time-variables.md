@@ -1,6 +1,6 @@
 +++
-date = "2021-08-17T16:52:04-04:00"
-publishdate = "2021-08-17T16:52:04-04:00"
+date = "2021-09-21T13:39:46-04:00"
+publishdate = "2021-09-21T13:39:46-04:00"
 draft = false
 title = "Crunch's new visualizations for time-series analyses and trackers are now extended to Date/Time variables"
 news_description = "Crunch's completely redesigned time plot that offers confidence bands and custom selection of categories to show/hide is now available for all line graphs. Click here to learn more."
@@ -9,7 +9,7 @@ weight = 20
 tags = ["analyses", "graphs", "time series"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 series = "main"
 
@@ -42,7 +42,5 @@ As well as being able to hover over points to see their values, there's a vertic
 Note that there are two benefits *not* available for Date/Time analyses because they rely on the new Categorical Date variable type: Smoothing (a.k.a. "Rolling averages") and editable time-axis labels. There is therefore still good motivation for using Categorical Date variables in your projects. You can read more about the smoothing feature [here](https://help.crunch.io/hc/en-us/articles/360053244351-Time-series-smoothing-moving-average-) and about the editable labels [here](https://help.crunch.io/hc/en-us/articles/360050751471-Defining-survey-wave-variables).
 
 For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360057226852-Time-series-analysis-with-time-plots).
-
-Currently this feature is only available if you have enabled [Early access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) in your application settings.
 
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
