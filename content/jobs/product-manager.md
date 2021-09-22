@@ -13,22 +13,11 @@ controls = "seven"
 
 **Reports to**: VP of Product Development
 
-**Work location**: Chicago, IL, USA, 100% remote
+**Work location**: Remote, United States
 
 **Contract type**: Permanent | Full-time
 
 **People manager**: No
-
-
-**Company Description**
-
-YouGov is an international research and data analytics group.
-
-Our mission is to supply a continuous stream of accurate data and insight into what the world thinks so that companies, governments and institutions can better serve the people and communities that sustain them.
-
-Each day, our highly engaged members provide us with thousands of data points on consumer opinions, attitudes and behaviour. We are looking for a Senior Product Manager who will be responsible YouGov’s member-facing products, serving more than 10 million users globally on web and mobile.
-
-**Job Description**
 
 Crunch.io, part of YouGov PLC, is seeking a Product Manager, helping build the tools for the next generation of analytics tools for survey data. You will align with our workflows team, headquartered in US Mountain Time, providing them with both big picture product vision and day to day delivery support. You will collaborate internally and externally to develop a vision for how users can work together to share and move data and insights.
 
