@@ -1,6 +1,6 @@
 +++
-date = "2021-06-22T11:29:37-04:00"
-publishdate = "2021-06-22T11:29:37-04:00"
+date = "2021-09-22T12:30:25-04:00"
+publishdate = "2021-09-22T12:30:25-04:00"
 draft = false
 title = 'Add subtotals to multiple response variables'
 news_description = "Simplify your analyses to get the insights you need with fewer distractions. Click here to learn more."
@@ -9,7 +9,7 @@ weight = 20
 tags = ["analyses", "nets", "subtotals", "differences"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 
 +++
@@ -28,7 +28,5 @@ You can then reposition the subtotal to somewhere other than the top if you wish
 Once you’ve saved your subtotals, you will see them added in bold to the variable. Note that this is a change made to the original variable, and therefore will be visible to all users of the dataset. That's why it's only available to dataset editors.
 
 For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/360050364772-Category-Subtotals).
-
-Currently this feature is only available if you have enabled [Early access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) in your application settings.
 
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
