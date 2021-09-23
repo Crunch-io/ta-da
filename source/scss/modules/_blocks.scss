@@ -414,3 +414,18 @@ table {
 .show-filter {
     display: block;
 }
+
+// announcement images
+.max-width-img-md {
+    max-width: 600px;
+}
+
+.max-width-img-sm {
+    max-width: 200px;
+}
+
+.max-width-img-xs-fl {
+    max-width: 190px;
+    float: left;
+    margin: 0 20px;
+}
