@@ -19,22 +19,24 @@ Numeric Arrays enable you to work efficiently with groups of numeric variables t
 
 Numeric Arrays appear in Variable Summaries mode like this...
 
-{{<figure src="https://crunch.io/dev/features/images/numeric-arrays_01.png" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/numeric-arrays-01.png" class="img-fluid text-center">}}
 
 The dot represents the mean value (x̄) while the extending lines (known as whiskers) show +/-1 standard deviation each side of the mean. Hovering over each point will show a tool-tip with the mean, the standard deviation, and the sample size for that variable.
 
-{{<figure src="https://crunch.io/dev/features/images/numeric-arrays_02.png" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/numeric-arrays-02.png" class="img-fluid text-center">}}
 
 In Tables and Graphs mode, Numeric Arrays can be displayed as tables, as bar graphs or as line graphs (when combined with a time-series variable). They can also be exported to PowerPoint or Excel as well as used in a dashboard.
 
-{{<figure src="https://crunch.io/dev/features/images/numeric-arrays_03.png" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/numeric-arrays-12.png" class="img-fluid text-center">}}
 
 As well as displaying means, Crunch can switch to showing two other measures - Sum and Percentage Share. You can read more about these in the documentation linked at the end of this page, where you will also find information on how to create Numeric Arrays and more.
 
-{{<figure src="https://crunch.io/dev/features/images/numeric-arrays_04.png" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/numeric-arrays-06.png" class="img-fluid text-center">}}
 
-{{<figure src="https://crunch.io/dev/features/images/numeric-arrays_05.png" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/numeric-arrays-07.png" class="img-fluid text-center">}}
 
-For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360039306152-Tables-and-charts-with-drag-and-drop#sort-tables-graphs).
+<br/>
+
+For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/4409897907981-Numeric-Arrays).
 
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
