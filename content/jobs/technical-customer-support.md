@@ -14,17 +14,17 @@ controls = "tcsupport"
 **Work location**: Remote
 
 
-Are you a quantitative market researcher looking for a change of direction? Here is an opportunity to join the supplier side, in software.
+Do you work with market research data? Looking for a change of direction away from traditional market research data processing and analysis? Here is an opportunity to join the supplier side, in software.
 
 We have a growing product and user base and need an organized, detail-oriented person to join our customer support team for our online data analysis and reporting app: Crunch.io.
 
 You will be supporting market researchers around the world who use our rapidly evolving, cutting-edge app for market research data analysis and reporting.
 
-This is the perfect role for a market research analyst who is highly technical and enjoys helping others.
+This is the perfect role for someone who is highly technical with data, enjoys the stimulation of a new and evolving tool, and likes helping others.
 
 **The role of the Technical Customer Support Engineer is centered around 4 key areas**:
 
-1. **Customer support** - triage and resolve highly complex, technical, and application-related support issues which impact product performance and customer success.
+1. **Customer support** - triage and resolve highly complex, technical, and application-related support issues, which impact product performance and customer success.
 2. **Product testing** - test our new product features, systematically and with attention to detail, detecting back bugs and contributing to new documentation.
 3. **Supporting the sales team** - review prospects data and prepare datasets for demonstration. Proactively assist new users with post-sales education and onboarding.
 4. **Professional services** - manage and execute specific projects where Crunch.io has been engaged to set up customer data on their behalf.
@@ -32,7 +32,7 @@ This is the perfect role for a market research analyst who is highly technical a
 **What you’ll do**
 
 * Develop a deep understanding of the application and internal Crunch documentation, becoming a Crunch expert.
-Communicate with customers via email and online web calls (e.g. Zoom) to ensure effective use of our app in line with best-practice.
+Communicate with customers via email and online web calls (e.g. Zoom) to ensure effective use of our app in line with best practices.
 * Maintain excellent relationships with customers by applying superb customer service and technical skills.
 * Field user questions, report problems and triage them appropriately in our centralized international support desk using the Zendesk app.
 * Develop and deliver reports on customer account usage on a periodic basis.
@@ -43,7 +43,7 @@ Communicate with customers via email and online web calls (e.g. Zoom) to ensure 
 
 **Basic qualifications**
 
-* Experience & Background. Experience in quantitative market research, with hands-on data manipulation. You have a background in market research operations, good understanding of survey analysis concepts, tools, and methods, and competency in a statistical programming language (eg: SPSS syntax or R). You need experience working with analysis software (eg: SPSS or R or Q), not just working from tabs.
+* Experience & Background. Experience in the preparation and use of quantitative market research with hands-on data manipulation. You have a background in market research operations, a good understanding of survey analysis concepts, tools, and methods, and competency in a statistical programming language (eg: SPSS syntax or R). Competencies working with SQL, Python or other programmatic languages are valuable too.
 * Education. BA/BS degree in Computer Science and/or statistics preferred but other technical or quantitative degrees or equivalent work experience will also be considered.
 * Problem Solver. You are a natural problem solver with a curiosity about technology. Others describe you as a highly creative, curious technologist, and you have excellent research skills, and strong analytical and deductive skills, important for isolating the cause of bugs.
 * Communicator. Your verbal and written skills are top notch. You have excellent spoken and written English language skills. You will primarily be communicating with users in the United States and United Kingdom. You have an outstanding ability to empathize with customers and convey confidence, and are skilled with conflict resolution, collaboration and small group facilitation skills.
@@ -53,10 +53,10 @@ Communicate with customers via email and online web calls (e.g. Zoom) to ensure 
 
 **Remote working**
 
-We are a remote company, with all employees working remotely. We believe in hiring the best people, not restricted by geography. For this role, we need flexibility in time zone coverage (eg: may encompass coverage of US & European time zones for support). Working remotely requires high motivation and the ability to report back on productivity.  We also believe that it fosters an excellent work/life balance for our employees.
+We are a remote company, with all employees working remotely. We believe in hiring the best people, not restricted by geography. For this role, we need flexibility in time zone coverage (e.g. may encompass coverage of US & European time zones for support). Working remotely requires high motivation and the ability to report back on productivity.  We also believe that it fosters an excellent work/life balance for our employees.
 
 **Employee benefits**
 
-We are a startup, with a fast paced startup culture. We are funded by and operate as a wholly owned subsidiary of a public company, so our employees benefit from the excellent benefits and opportunities provided by a large company.
+We are a startup, with a fast-paced startup culture. We are funded by and operate as a wholly-owned subsidiary of a public company, so our employees benefit from the excellent benefits and opportunities provided by a large company.
 
 <button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>
