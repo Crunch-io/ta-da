@@ -1,7 +1,7 @@
 +++
 date = "2020-10-06T14:08:35+02:00"
 draft = false
-title = "Software Project Manager"
+title = "Engineering Manager, Software Project Management"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Engineering & Data"
@@ -13,9 +13,9 @@ controls = "emgr"
 
 **Work location**: North America, 100% remote
 
-**Direct reports**: 6 to 10 software engineers
+**Direct reports**: 8 to 12 software engineers
 
-We are hiring a Software Project Manager to help expand our platform and operations excellence. The successful candidate will have been a software engineer and has grown into a project manager and team manager role, or possibly an experienced software project manager with no programming background. We invite you to join our small, fully remote team of developers and operators, helping make our platform faster, more secure, and reliable. You will be self-motivated and disciplined to work with our fully distributed team.
+We are hiring an Engineering Manager to help expand our platform and operations excellence. The successful candidate will have been a software engineer and has grown into a project manager and team manager role, or possibly an experienced software project manager with no programming background. We invite you to join our small, fully remote team of developers and operators, helping make our platform faster, more secure, and reliable. You will be self-motivated and disciplined to work with our fully distributed team.
 
 We are looking for a quick study eager to learn and grow with us and has experience in Agile cultures. At Crunch, we believe in learning together: we recognize that we don't have all the answers, and we try to ask each other the right questions. As our team is 100% remote, we need someone who can work well independently and keep themselves motivated and focused.
 
