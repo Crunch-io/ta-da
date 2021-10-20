@@ -596,6 +596,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
     </item>
     
     <item>
+      <title>Release 2021.38</title>
+      <link>//crunch.io/release-notes/2021-10-18/</link>
+      <pubDate>Mon, 18 Oct 2021 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2021-10-18/</guid>
+      <description>Crunch web application  Fixed an issue that occurred when sorting a bivariate table where the column variable had an intermediate category with N=0 followed by at least one category with N&amp;gt;0. Added a visual footnote to support the following features in the Crunch UI:  within the export output — the footnote reflects when standard errors of test statistics have been adjusted for overlap between columns of a multiple response variable.</description>
+    </item>
+    
+    <item>
       <title>Release 2021.37</title>
       <link>//crunch.io/release-notes/2021-10-04/</link>
       <pubDate>Mon, 04 Oct 2021 10:00:00 -0700</pubDate>
