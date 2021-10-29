@@ -25,15 +25,15 @@ The output format is a delimited text file of results that is ready to put into 
 
 {{<figure src="https://crunch.io/dev/features/images/export-bi-ready-format-2.png" class="img-fluid">}}
 
+{{<figure src="https://crunch.io/dev/features/images/export-bi-ready-format-3.png" class="img-fluid">}}
+
 You have a few options to customize your file (noted below).
 
 To generate your file, navigate to your multitable. In the upper right hand corner, click **Export** and select **Export settings** from the dropdown menu.
 
-{{<figure src="https://crunch.io/dev/features/images/export-bi-ready-format-3.png" class="img-fluid">}}
+{{<figure src="https://crunch.io/dev/features/images/export-bi-ready-format-4.png" class="img-fluid">}}
 
 This screen will appear:
-
-{{<figure src="https://crunch.io/dev/features/images/export-bi-ready-format-4.png" class="img-fluid">}}
 
 {{<figure src="https://crunch.io/dev/features/images/export-bi-ready-format-5.png" class="img-fluid">}}
 
