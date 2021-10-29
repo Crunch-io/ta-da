@@ -6,7 +6,7 @@
     <description>Recent content on Modern survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Oct 2021 16:18:39 -0400</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 29 Oct 2021 16:52:54 -0400</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prodege</title>
       <link>//crunch.io/case-studies/prodege/</link>
@@ -36,6 +36,16 @@ They have appended over 45 years of public opinion datasets into one dataset, pr
       <guid>//crunch.io/case-studies/yougov/</guid>
       <description>YouGov, whose current brand slogan is “the best panel - the best data - the best tools”, has one of the world’s largest research networks with a proprietary panel of over 8 million individuals in 44 markets. Researchers at YouGov use Crunch.io to perform analysis and deliver data and insights to clients via the Crunch.io web application, CrunchBoxes, and dashboards.
 YouGov uses Crunch.io enterprise-wide for both custom research and Data Products, such as YouGov Profiles, which provides syndicated segmentation and product data for agencies and brands.</description>
+    </item>
+    
+    <item>
+      <title>Export Crunch survey results in a BI-ready format</title>
+      <link>//crunch.io/dev/features/export-tabulated-data/</link>
+      <pubDate>Fri, 29 Oct 2021 16:52:54 -0400</pubDate>
+      
+      <guid>//crunch.io/dev/features/export-tabulated-data/</guid>
+      <description>Crunch gives you the best of all worlds — you analyze all your survey data in Crunch, and now you can export those results into your other reporting tools (such as Tableau, Google Data Studio, PowerBI) so that you can see your survey results alongside your other business metrics.
+Your tables (tab books) can now be exported in a specialized output format. This format contains a row for each cell of the table you see in the Crunch app.</description>
     </item>
     
     <item>

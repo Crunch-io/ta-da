@@ -29,6 +29,9 @@
     <loc>//crunch.io/knowledge-base/</loc>
     <lastmod>2017-07-18T14:08:35+02:00</lastmod>
   </url><url>
+    <loc>//crunch.io/dev/features/export-tabulated-data/</loc>
+    <lastmod>2021-10-29T16:52:54-04:00</lastmod>
+  </url><url>
     <loc>//crunch.io/dev/features/numeric-arrays/</loc>
     <lastmod>2021-09-23T14:05:22-04:00</lastmod>
   </url><url>
@@ -200,8 +203,26 @@
     <loc>//crunch.io/knowledge-base/getting-started/</loc>
     <lastmod>2018-10-12T14:08:35+02:00</lastmod>
   </url><url>
+    <loc>//crunch.io/categories/</loc>
+    <lastmod>2021-10-29T16:52:54-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/csv/</loc>
+    <lastmod>2021-10-29T16:52:54-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/export/</loc>
+    <lastmod>2021-10-29T16:52:54-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/categories/feature/</loc>
+    <lastmod>2021-10-29T16:52:54-04:00</lastmod>
+  </url><url>
     <loc>//crunch.io/</loc>
-    <lastmod>2021-10-18T16:18:39-04:00</lastmod>
+    <lastmod>2021-10-29T16:52:54-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/tabulated-data/</loc>
+    <lastmod>2021-10-29T16:52:54-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/</loc>
+    <lastmod>2021-10-29T16:52:54-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2021-10-18/</loc>
     <lastmod>2021-10-18T10:00:00-07:00</lastmod>
@@ -218,16 +239,7 @@
     <loc>//crunch.io/tags/arrays/</loc>
     <lastmod>2021-09-23T14:05:22-04:00</lastmod>
   </url><url>
-    <loc>//crunch.io/categories/</loc>
-    <lastmod>2021-09-23T14:05:22-04:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/categories/feature/</loc>
-    <lastmod>2021-09-23T14:05:22-04:00</lastmod>
-  </url><url>
     <loc>//crunch.io/tags/numeric/</loc>
-    <lastmod>2021-09-23T14:05:22-04:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/</loc>
     <lastmod>2021-09-23T14:05:22-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/differences/</loc>
@@ -460,9 +472,6 @@
   </url><url>
     <loc>//crunch.io/tags/tables/</loc>
     <lastmod>2019-07-03T15:20:47-04:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/export/</loc>
-    <lastmod>2019-05-04T23:20:47-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/tab-books/</loc>
     <lastmod>2019-05-04T23:20:47-04:00</lastmod>
