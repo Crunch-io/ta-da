@@ -88,11 +88,21 @@
 
             <div class="container">
                 <div class="row spacer share-insights">
-                    <div class="col order-0 order-md-0">
-                        <img src="{{ .Params.gif }}" alt="" class="img-fluid add-shadow sp-mb-t rounded">
+                    <div class="col-sm-12 col-md-5 order-1 order-md-0">
+                        <div class="quote-block">
+                            <p class="punctuation">“</p>
+                            <p>I’m tired of scavenging for and then digging through hundreds of spreadsheets. It takes way too much of my time.</p>
+                            <p class="punctuation">”</p>
+                            <br>
+
+                            <div class="author">
+                                <p>Insights Director</p>
+                                <p>at a Financial Services Firm</p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-sm-12 col-md-4 order-1">
+                    <div class="col-sm-12 col-md-4 offset-md-2 order-0">
                         <h2 class="label">{{ .Params.label }}</h2>
                         <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} <span>{{ index (split . " ") 5 }} {{ index (split . " ") 6 }}</span> {{ end }}</h2>
 
@@ -118,6 +128,24 @@
                         <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} <span>{{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }}</span> {{ end }}</h2>
 
                         <p>{{ .Content }}</p>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <ul style="text-align:left;">
+                                    <li>Weighting</li>
+                                    <li>Stats testing</li>
+                                    <li>Advanced filters (nesting variables)</li>
+                                    <li>Custom interactions</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <ul style="text-align:left;">
+                                    <li>Multiway tables or 3D tables with 3 variables</li>
+                                    <li>Time series charts</li>
+                                    <li>Grids & scorecards</li>
+                                </ul>
+                            </div>
+                        </div>
 
                     </div>
                 </div> <!-- /.row. -->

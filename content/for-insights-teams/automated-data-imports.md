@@ -9,8 +9,3 @@ gif = "img/stat-speed.gif"
 +++
 
 Crunch’s automated import process makes your data ready for analysis:
-
-* Cleans your data
-* Clearly labels everything
-* Organizes questions into logical folders
-* Appends new tracker waves

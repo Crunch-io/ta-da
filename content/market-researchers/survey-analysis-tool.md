@@ -9,11 +9,3 @@ gif = "img/stat-speed.gif"
 +++
 
 Use the intuitive interface to quickly apply or build:
-
-* Weighting
-* Stats testing
-* Advanced filters (nesting variables)
-* Custom interactions
-* Multiway tables or 3D tables with 3 variables
-* Time series charts
-* Grids & scorecards
