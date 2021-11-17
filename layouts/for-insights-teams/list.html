@@ -30,7 +30,7 @@
             {{ if and (eq .Type "for-insights-teams") (eq .Title "Incredibly easy self-service") }}
             <div class="container">
                 <div class="row spacer share-insights">
-                    <div class="col-12 col-md-6 order-1 order-md-0 sp-mb-t my-auto">
+                    <div class="col-12 col-md-6 order-1 order-md-0 sp-mb-t my-auto spacer-bottom">
                         <div id="carouselCaptions" class="carousel slide cr-carousel" data-ride="carousel">
                             <ol class="carousel-indicators">
                               <li data-target="#carouselCaptions" data-slide-to="0" class="active"></li>
@@ -73,6 +73,7 @@
                               <span class="sr-only">Next</span>
                             </a>
                         </div>
+                        <br>
                     </div>
 
                     <div class="col-12 col-md-4 offset-md-1 order-0 order-md-1">
@@ -127,7 +128,7 @@
 
         {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "Automated data imports") }}
-            <div class="container speed-section">
+            <div class="container tool-section">
                 <div class="row spacer share-insights text-md-center justify-content-center align-self-center">
                     <div class="col-sm-10 col-md-8 col-lg-6">
                         <h2 class="label">{{ .Params.label }}</h2>
