@@ -4,7 +4,6 @@ draft = false
 title = "Exceed expectations"
 subtitle = "Meet your customers’ demand for online self-service"
 label = "Exceed expectations"
-gif = "img/survey_data_expertise/weight_estimation.gif"
 
 +++
 

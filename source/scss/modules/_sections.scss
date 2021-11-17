@@ -901,3 +901,18 @@
         height: 620px;
     }
 }
+
+// Tool Section
+.tool-section {
+    height: 810px;
+    position: relative;
+}
+
+@include media-breakpoint-only(xs) {
+    .tool-section {
+        height: 800px;
+    }
+    ul {
+        margin-bottom: 0px;
+    }
+}
