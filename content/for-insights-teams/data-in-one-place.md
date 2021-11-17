@@ -4,7 +4,6 @@ draft = false
 title = "All your data in one place"
 subtitle = "Imported from multiple vendors & DIY platforms"
 label = "All your data in one place"
-gif = "img/survey_data_expertise/weight_estimation.gif"
 
 +++
 
