@@ -4,8 +4,9 @@ draft = false
 title = "Team Lead, SRE and Devops"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
-id = "sre-tm"
-controls = "esre"
+label = "Engineering & Data"
+id = "sre-mgr"
+controls = "esremgr"
 +++
 
 **Reports to**: VP Software Engineering
