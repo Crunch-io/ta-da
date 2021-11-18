@@ -1,9 +1,11 @@
 +++
-date = "2019-10-17T14:08:35+02:00"
+date = "2021-11-18T14:08:35+02:00"
 draft = false
 title = "Team Lead, Systems Reliability Engineering (SRE) and Development Operations (Devops)"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
+id = "sretm"
+controls = "esretm"
 +++
 
 **Reports to**: VP Software Engineering
