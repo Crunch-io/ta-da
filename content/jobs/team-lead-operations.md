@@ -1,7 +1,7 @@
 +++
 date = "2019-10-17T14:08:35+02:00"
-draft = true
-title = "Team Lead, Systems Engineering and Operations"
+draft = false
+title = "Team Lead, Systems Reliability Engineering (SRE) and Development Operations (Devops)"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 +++
