@@ -1,7 +1,7 @@
 baseURL = "//crunch.io/"
 
 languageCode = "en-us"
-title = "Modern survey data analysis"
+title = "Online survey data analysis"
 MetaDataFormat = "toml"
 paginate = 9
 
