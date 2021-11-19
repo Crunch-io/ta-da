@@ -3,7 +3,7 @@ date = "2019-09-27T11:20:25+01:00"
 draft = false
 title = "Contact Us to Get Started"
 subtitle = "Power made simple"
-description = "Crunch.io is a modern survey data analysis platform. We focus on simplicity and usability, so all your researchers and clients can easily collaborate."
+description = "Crunch.io is the leading online survey data analysis platform. We focus on simplicity and usability, so all your researchers and clients can easily collaborate."
 images = ["https://crunch.io/img/logo-1200x630.png"]
 video = "https://player.vimeo.com/video/343376948"
 
