@@ -1,6 +1,6 @@
 +++
-date = "2021-10-29T16:52:54-04:00"
-publishdate = "2021-10-29T16:52:54-04:00"
+date = "2021-11-19T15:18:09-04:00"
+publishdate = "2021-11-19T15:18:09-04:00"
 draft = false
 title = "Export Crunch survey results in a BI-ready format"
 news_description = "New tabulated data export format for multitables. Click here to learn more."
@@ -9,7 +9,7 @@ weight = 20
 tags = ["tabulated data", "export", "csv"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 series = "main"
 
@@ -46,7 +46,5 @@ Once you’ve downloaded your tabulated results file, consult the documentation 
 {{<figure src="https://crunch.io/dev/features/images/export-bi-ready-format-6.png" class="img-fluid">}}
 
 Details regarding this new feature can be found in the [help center](https://help.crunch.io/hc/en-us/articles/4412334662157-Export-tabulated-data).
-
-Currently, this feature is only available for [early access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) users.
 
 Questions or feedback on this feature? Please contact [support@crunch.io](mailto:support@crunch.io) and use “Tabulated results export” in the subject line.
