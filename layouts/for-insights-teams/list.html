@@ -30,7 +30,14 @@
             {{ if and (eq .Type "for-insights-teams") (eq .Title "Incredibly easy self-service") }}
             <div class="container">
                 <div class="row spacer share-insights">
-                    <div class="col-12 col-md-6 order-1 order-md-0 sp-mb-t my-auto spacer-bottom">
+                    <div class="col-12 col-md-4 offset-md-1 order-0 order-md-0 sp-mb-t my-auto">
+                        <h2 class="label">{{ .Params.label }}</h2>
+                        <h2 class="secondary-title">{{ with .Params.subtitle }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h2>
+
+                        <p>{{ .Content }}</p>
+                    </div>
+
+                    <div class="col-12 col-md-6 offset-md-1 order-1 order-md-1 spacer-bottom">
                         <div id="carouselCaptions" class="carousel slide cr-carousel" data-ride="carousel">
                             <ol class="carousel-indicators">
                               <li data-target="#carouselCaptions" data-slide-to="0" class="active"></li>
@@ -60,7 +67,7 @@
                               <div class="carousel-item">
                                 <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Fourth slide" alt="Build dashboards in 5 minutes" src="{{ .Params.carousel_img_4 }}" data-holder-rendered="true">
                                 <div class="carousel-caption">
-                                  <h5>Append wave data in one click</h5>
+                                  <h5>New tracker waves appended quickly</h5>
                                 </div>
                               </div>
                             </div>
@@ -75,13 +82,6 @@
                         </div>
                         <br>
                     </div>
-
-                    <div class="col-12 col-md-4 offset-md-1 order-0 order-md-1">
-                        <h2 class="label">{{ .Params.label }}</h2>
-                        <h2 class="secondary-title">{{ with .Params.subtitle }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h2>
-
-                        <p>{{ .Content }}</p>
-                    </div>
                 </div> <!-- /.row. -->
             </div> <!-- /.container -->
             {{ end }}
@@ -93,16 +93,10 @@
         <div class="container-fluid cr-section-grey cr-section-block">
         {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "All your data in one place") }}
+
             <div class="container">
                 <div class="row spacer share-insights">
-                    <div class="col-sm-12 col-md-4">
-                        <h2 class="label">{{ .Params.label }}</h2>
-                        <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <span>{{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }}</span> {{ end }}</h2>
-
-                        <p>{{ .Content }}</p>
-                    </div>
-
-                    <div class="col-sm-12 col-md-5 offset-md-2 sp-bt-xs">
+                    <div class="col-sm-12 col-md-5 order-1 order-md-0">
                         <div class="quote-block">
                             <p class="punctuation">“</p>
                             <p>I’m tired of scavenging for and then digging through hundreds of spreadsheets. It takes way too much of my time.</p>
@@ -114,6 +108,13 @@
                                 <p>at a Financial Services Firm</p>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-4 offset-md-2 order-0">
+                        <h2 class="label">{{ .Params.label }}</h2>
+                        <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <span>{{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }}</span> {{ end }}</h2>
+
+                        <p>{{ .Content }}</p>
                     </div>
                 </div> <!-- /.row. -->
 
@@ -136,12 +137,20 @@
 
                         <p>{{ .Content }}</p>
 
-                        <ul style="list-style-position: inside;">
-                            <li>Cleans your data</li>
-                            <li>Clearly labels everything</li>
-                            <li>Organizes questions into logical folders</li>
-                            <li>Appends new tracker waves</li>
-                        </ul>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <ul style="text-align:left;">
+                                    <li>Cleans your data</li>
+                                    <li>Clearly labels everything</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <ul style="text-align:left;">
+                                    <li>Organizes questions into logical folders</li>
+                                    <li>Appends new tracker waves</li>
+                                </ul>
+                            </div>
+                        </div>
 
                     </div>
                 </div> <!-- /.row. -->
