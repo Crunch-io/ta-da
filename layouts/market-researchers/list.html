@@ -30,14 +30,14 @@
             {{ if and (eq .Type "market-researchers") (eq .Title "Deliver survey results faster") }}
             <div class="container">
                 <div class="row spacer share-insights">
-                    <div class="col-12 col-md-4 offset-md-1 order-0 order-md-0 sp-mb-t my-auto">
+                    <div class="col-12 col-md-5 offset-md-1 order-0 order-md-0 sp-mb-t my-auto">
                         <h2 class="label">{{ .Params.label }}</h2>
                         <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span>  {{ index (split . " ") 2 }} <span>{{ index (split . " ") 3 }} {{ index (split . " ") 4 }}</span> {{ end }}</h2>
 
                         <p>{{ .Content }}</p>
                     </div>
 
-                    <div class="col-12 col-md-6 offset-md-1 order-1 order-md-1">
+                    <div class="col-12 col-md-5 offset-md-1 order-1 order-md-1">
                         <div id="carouselCaptions" class="carousel slide cr-carousel" data-ride="carousel">
                             <ol class="carousel-indicators">
                               <li data-target="#carouselCaptions" data-slide-to="0" class="active"></li>
@@ -102,7 +102,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-12 col-md-4 offset-md-2 order-0">
+                    <div class="col-sm-12 col-md-5 offset-md-2 order-0">
                         <h2 class="label">{{ .Params.label }}</h2>
                         <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} <span>{{ index (split . " ") 5 }} {{ index (split . " ") 6 }}</span> {{ end }}</h2>
 
@@ -138,7 +138,7 @@
                                     <li>Custom interactions</li>
                                 </ul>
                             </div>
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-sm-12 col-md-5">
                                 <ul style="text-align:left;">
                                     <li>Multiway tables or 3D tables with 3 variables</li>
                                     <li>Time series charts</li>
