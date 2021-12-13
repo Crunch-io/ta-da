@@ -29,6 +29,9 @@
     <loc>//crunch.io/knowledge-base/</loc>
     <lastmod>2017-07-18T14:08:35+02:00</lastmod>
   </url><url>
+    <loc>//crunch.io/dev/features/graphing-subtotals-and-differences/</loc>
+    <lastmod>2021-12-13T12:17:13-05:00</lastmod>
+  </url><url>
     <loc>//crunch.io/dev/features/export-tabulated-data/</loc>
     <lastmod>2021-11-19T15:18:09-04:00</lastmod>
   </url><url>
@@ -203,14 +206,32 @@
     <loc>//crunch.io/knowledge-base/getting-started/</loc>
     <lastmod>2018-10-12T14:08:35+02:00</lastmod>
   </url><url>
+    <loc>//crunch.io/tags/analyses/</loc>
+    <lastmod>2021-12-13T12:17:13-05:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/categories/</loc>
+    <lastmod>2021-12-13T12:17:13-05:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/differences/</loc>
+    <lastmod>2021-12-13T12:17:13-05:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/categories/feature/</loc>
+    <lastmod>2021-12-13T12:17:13-05:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/nets/</loc>
+    <lastmod>2021-12-13T12:17:13-05:00</lastmod>
+  </url><url>
     <loc>//crunch.io/</loc>
-    <lastmod>2021-12-06T10:00:00-07:00</lastmod>
+    <lastmod>2021-12-13T12:17:13-05:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/subtotals/</loc>
+    <lastmod>2021-12-13T12:17:13-05:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/</loc>
+    <lastmod>2021-12-13T12:17:13-05:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2021-12-06/</loc>
     <lastmod>2021-12-06T10:00:00-07:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/categories/</loc>
-    <lastmod>2021-11-19T15:18:09-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/csv/</loc>
     <lastmod>2021-11-19T15:18:09-04:00</lastmod>
@@ -218,13 +239,7 @@
     <loc>//crunch.io/tags/export/</loc>
     <lastmod>2021-11-19T15:18:09-04:00</lastmod>
   </url><url>
-    <loc>//crunch.io/categories/feature/</loc>
-    <lastmod>2021-11-19T15:18:09-04:00</lastmod>
-  </url><url>
     <loc>//crunch.io/tags/tabulated-data/</loc>
-    <lastmod>2021-11-19T15:18:09-04:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/</loc>
     <lastmod>2021-11-19T15:18:09-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2021-11-15/</loc>
@@ -242,23 +257,11 @@
     <loc>//crunch.io/release-notes/2021-09-27/</loc>
     <lastmod>2021-09-27T10:00:00-07:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/analyses/</loc>
-    <lastmod>2021-09-23T14:05:22-04:00</lastmod>
-  </url><url>
     <loc>//crunch.io/tags/arrays/</loc>
     <lastmod>2021-09-23T14:05:22-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/numeric/</loc>
     <lastmod>2021-09-23T14:05:22-04:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/differences/</loc>
-    <lastmod>2021-09-22T12:30:25-04:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/nets/</loc>
-    <lastmod>2021-09-22T12:30:25-04:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/subtotals/</loc>
-    <lastmod>2021-09-22T12:30:25-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/graphs/</loc>
     <lastmod>2021-09-21T13:39:46-04:00</lastmod>
