@@ -7,6 +7,6 @@ label = "Exceed expectations"
 
 +++
 
-* Deliver data and insights to clients in new ways, including online dashboards and interactive analysis.
+* Deliver data and insights to clients in new ways, including <br> online dashboards and interactive analysis.
 * Free up your time. Enable your clients to answer their own questions.  
 * Let your clients export editable PowerPoint slides for their stakeholders.
