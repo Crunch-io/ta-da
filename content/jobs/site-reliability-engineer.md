@@ -1,7 +1,7 @@
 +++
 date = "2020-09-01T14:08:35+02:00"
-draft = true
-title = "Site Reliability Engineer"
+draft = false  
+title = "Site Reliability/Devops Engineer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Engineering & Data"
@@ -9,9 +9,9 @@ id = "sre"
 controls = "esre"
 +++
 
-**Reports to**: Team Lead, Systems Engineering and Operations
+**Reports to**: Team Lead, SRE and Devops
 
-**Work location**: USA or Canada, 100% remote
+**Work location**: Forever 100% remote within Western Hemisphere timezones and work hours
 
 **Direct reports**: 0
 
@@ -21,7 +21,7 @@ We are looking for someone who is a quick study, who is eager to learn and grow 
 
 **Our stack**
 
-We currently run our in-house production Python code against Redis, MongoDB, and ElasticSearch services. We proxy API requests through NGINX, load balance with ELBs, and deploy our React web application to AWS CloudFront CDN. We use EFS for persistent storage. Our current CI/CD process is built around GitHub, Jenkins, BlueOcean including unit, integration, and end to end tests and automated system deployments. We deploy to auto-scaling Groups using Ansible and Cloud-Init.
+We currently run our in-house production Python code against Redis, MongoDB, and ElasticSearch services. We proxy API requests through NGINX, load balance with ELBs, and deploy our React web application to AWS CloudFront CDN. We use EFS for persistent storage. Our current CI/CD process is built around GitHub, Jenkins, BlueOcean including unit, integration, and end-to-end tests and automated system deployments. We deploy to auto-scaling Groups using Ansible and Cloud-Init.
 
 In the future (and to some degree currently), all or part of our platform will include Kubernetes, Helm, FluxV2, and Spinnaker.
 
@@ -45,22 +45,20 @@ In the future (and to some degree currently), all or part of our platform will i
 
 **Basic qualifications**
 
-- Experience being an on-call DevOps, SRE, or Cloud Operations senior engineer (at least 5 years)
-- Experience implementing Terraform best practices for infrastructure in AWS (at least 2 years)
-- Proven track record of designing, building, sizing, optimizing, and maintaining cloud infrastructure especially in AWS
-- Proven experience automation glue code, and managing production infrastructure in AWS
-- Proven track record of designing, implementing, and maintaining full build/release pipelines in a cloud environment (Jenkins experience preferred)
-- Experience with containers and container orchestration tools (Docker / Kubernetes / Helm production experience required) (Spinnaker experience preferred)
-- Experience with improving developer experience with desktop tooling and scripts
-- Expertise with Linux system administration (2 yrs) and networking technologies including (IPv6 nice to have).
-- Knowledge of NoSQL database operations and concepts
-- Experience with MongoDB, Elasticsearch, and Redis (at least 1 year)
-- Capability to write programs/scripts to solve both short-term systems problems and to automate repetitive workflows (Python and Bash preferred)
+- Experience being an on-call DevOps, SRE, or Cloud Operations senior engineer.
+- Experience implementing Terraform best practices for infrastructure in AWS.
+- Proven track record of designing, building, sizing, optimizing, and maintaining cloud infrastructure especially in AWS.
+- Experience with containers and container orchestration tools (Docker / Kubernetes / Helm production experience required) (Spinnaker experience preferred).
+- Experience with improving developer experience with desktop tooling and scripts.
+- Expertise with Linux system administration and networking technologies including (IPv6 nice to have).
+- Knowledge of NoSQL database operations and concepts.
+- Experience with MongoDB, Elasticsearch, and Redis.
+- Capability to write programs/scripts to solve both short-term systems problems and to automate repetitive workflows (Python and Bash preferred).
 - Exceptional English communication and troubleshooting skills.
-- Understanding and experience with implementing best security practices in AWS / Linux / Kubernetes and other listed services, pen testing and internal vulnerability analysis / incident response
-- Experience in monitoring, system performance data collection and analysis, and reporting
-- Filling in for IT when necessary for the Crunch.io org
-- A keen interest in learning new things and keeping up to date with best practices and latest tooling methods
+- Understanding and experience with implementing good security practices in AWS / Linux / Kubernetes and other listed services, pen testing and internal vulnerability analysis / incident response.
+- Experience in monitoring, system performance data collection and analysis, and reporting.
+- Filling in for IT when necessary for the Crunch.io organization.
+- A keen interest in learning new things and keeping up to date with best practices and latest tooling methods.
 
 **Advanced (preferred) qualifications**
 
@@ -69,4 +67,3 @@ In the future (and to some degree currently), all or part of our platform will i
 - Software development experience using Python or JavaScript
 - Bachelor's Degree in Statistics, Science, Programming or Engineering related field
 
-<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>

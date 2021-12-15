@@ -4,7 +4,7 @@ publishdate = "2017-05-01T23:20:47-04:00"
 draft = false
 title = "Tab Book Improvements"
 description = "By popular demand, Excel tab books just gained a bunch of new capabilities."
-tags = ["tabbook", "export"]
+tags = ["tab books", "exports"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
 

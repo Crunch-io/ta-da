@@ -1,0 +1,83 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper" style="border-top: 1px solid #e5e5e5; padding-top: 20px;">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="secondary-content-wrapper">
+              <div class="container">
+
+                  <div class="row mb-5">
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="mb-2"><strong>Other tags to explore</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="row mx-0">
+                                {{ range $name, $items := .Site.Taxonomies.tags }}
+                                <div class="article-tags bg-light mx-1 mb-2"><a href="{{ .Page.Permalink }}" title="{{ $name }}">{{ .Page.Title }}</a></div>
+                                {{ end }}
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            {{ if site.Params.search }}
+                            {{ "<!-- search -->" | safeHTML }}
+                            <form class="has-search" action="{{ site.BaseURL }}/search">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input class="form-control" type="search" placeholder="Search" id="search-query" name="s">
+                            </form>
+                            {{ end }}
+
+                            <p class="mt-2"><strong>Search results:</strong></p>
+
+                            <div id="search-results"></div>
+                            <script id="search-result-template" type="text/x-js-template">
+                                <ul class="list-unstyled mx-0 mt-2" id="summary-${key}">
+                                    <li class="border-bottom">
+                                        <div class="blog-content page-summary">
+                                            <h4 class="title">
+                                                <a href="${link}" itemprop="headline">${title}</a>
+                                            </h4>
+                                            <p itemprop="about">${snippet}</p>
+                                            ${ isset tags }<p>Tags: ${tags}</p>${ end }
+                                            ${ isset categories }<p>Categories: ${categories}</p>${ end }
+                                        </div>
+                                    </li>
+                                </ul>
+                            </script>
+
+                        </div>
+                  </div>
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+            <div class="footer-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Learn about <span>our team</span></h1>
+                                <a href="team" class="btn btn-link">Our team &#10230;</a>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+
+            {{ "<!-- Search index -->" | safeHTML }}
+            <script>
+              var indexURL = {{"index.json" | absURL}}
+            </script>
+
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

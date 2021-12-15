@@ -76,7 +76,7 @@ We will only retain your personal data for as long as we need to in order to ful
 
 ### Personal data collected from other sources
 
-We may also use personal data about you that we have obtained from other sources, such as companies that sell data. For example, we may purchase access to a database to find consumer insights and market research contacts for use in our marketing and lead generation.
+We may also use personal data about you that we have obtained from other sources, such as companies that sell data.
 
 We may also use personal data about you that we have obtained from other sources:
 
@@ -178,8 +178,6 @@ In order to use personal data in the ways described above, we may share it with 
 <br>
 
 ### Legal grounds for processing your personal data
-
-We do not envisage that any decisions that will have a legal or other significant effect on you will be taken about you using purely automated means, however we will update this notice if this position changes and notify you of those changes.
 
 We are committed to the lawful, fair and transparent use of personal data.  In processing personal data for the purposes of providing our customers with our products and services, we process your personal data on the grounds that our processing is necessary for legitimate interests we pursue as a business, namely that our business relies entirely on the ability to use your personal data to provide our Services.
 

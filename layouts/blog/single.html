@@ -1,0 +1,54 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="blog-content">
+                    <div class="container spacer-top">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <span class="date">Written by {{ .Params.author }} {{ .PublishDate.Format "Jan 2, 2006" }} </span>
+                                <h2 class="title">{{ .Title | emojify }}</h2>
+                                <p class="blog-description">{{ .Params.description }}</p>
+                            </div>
+                        </div> <!-- /.row -->
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.blog-content -->
+
+            <div class="secondary-content">
+              <div class="container blog-content-mg">
+
+                  <div class="row spacer-bottom">
+                      <div class="col-md-10 offset-md-1">
+                          {{ .Content | emojify }}
+                      </div>
+                  </div>
+
+                  <div class="row spacer-bottom">
+                      <div class="col-xs-12 col-md-7 offset-md-1">
+                          <ul class="list-inline ml-0 share-links">
+                              <li class="list-inline-item"><p>Tags</p></li>
+                              {{ range $i, $e := .Params.tags }}
+                              {{ if $i }} {{ end }}
+                              <li class="list-inline-item">
+                                  <span class="badge bg-light text-dark"><a href='{{ "/tags/" | relLangURL }}{{ . | urlize }}'>{{ $e | humanize }}</a></span>
+                              </li>
+                              {{ end }}
+                          </ul>
+                      </div>
+                      <div class="col-xs-12 col-md-3 d-flex justify-content-end">
+                          {{ partial "share-buttons.html" . }}
+                      </div>
+
+                  </div>
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}
