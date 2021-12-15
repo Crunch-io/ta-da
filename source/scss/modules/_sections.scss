@@ -344,7 +344,11 @@
 
     // Blog content
     .blog-content {
-        color: $color-blue;
+        color: $color-off-black;
+
+        &.page-summary {
+            margin: 20px 10px;
+        }
 
         .jumbotron {
             color: $color-white;
@@ -360,10 +364,30 @@
             }
         }
 
-        h2 {
-            font-family: 'ProximaNova', sans-serif;
-            font-weight: 700;
+        .date {
+            font-family: 'Libre Baskerville', serif;
+            font-style: italic;
+            font-size: .8em;
+        }
+
+        .title {
+            font-family: 'Libre Baskerville', serif;
             font-size: 2em;
+            color: $color-blue;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        h4.title {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+
+        .blog-description {
+            font-weight: 700;
+            font-size: 1.5em;
+            line-height: 1.1em;
         }
 
     }
@@ -875,5 +899,20 @@
 @include media-breakpoint-only(xs) {
     .speed-section {
         height: 620px;
+    }
+}
+
+// Tool Section
+.tool-section {
+    height: 810px;
+    position: relative;
+}
+
+@include media-breakpoint-only(xs) {
+    .tool-section {
+        height: 800px;
+    }
+    ul {
+        margin-bottom: 0px;
     }
 }
