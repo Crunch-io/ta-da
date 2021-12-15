@@ -53,6 +53,9 @@
     <loc>//crunch.io/dev/features/new-time-plots/</loc>
     <lastmod>2021-04-23T08:20:48-04:00</lastmod>
   </url><url>
+    <loc>//crunch.io/blog/automation/crunch-automation/</loc>
+    <lastmod>2021-03-28T11:44:48-04:00</lastmod>
+  </url><url>
     <loc>//crunch.io/dev/features/dataset-sharing/</loc>
     <lastmod>2021-02-16T18:00:00-07:00</lastmod>
   </url><url>
@@ -209,13 +212,7 @@
     <loc>//crunch.io/tags/analyses/</loc>
     <lastmod>2021-12-13T12:17:13-05:00</lastmod>
   </url><url>
-    <loc>//crunch.io/categories/</loc>
-    <lastmod>2021-12-13T12:17:13-05:00</lastmod>
-  </url><url>
     <loc>//crunch.io/tags/differences/</loc>
-    <lastmod>2021-12-13T12:17:13-05:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/categories/feature/</loc>
     <lastmod>2021-12-13T12:17:13-05:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/nets/</loc>
@@ -244,6 +241,30 @@
   </url><url>
     <loc>//crunch.io/release-notes/2021-11-15/</loc>
     <lastmod>2021-11-15T10:00:00-07:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/for-insights-teams/data-in-one-place/</loc>
+    <lastmod>2021-11-10T17:17:49-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/for-insights-teams/automated-data-imports/</loc>
+    <lastmod>2021-11-10T17:17:49-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/for-insights-teams/</loc>
+    <lastmod>2021-11-10T17:17:49-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/market-researchers/</loc>
+    <lastmod>2021-11-10T17:17:49-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/market-researchers/deliver-surveys-faster/</loc>
+    <lastmod>2021-11-10T17:17:49-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/market-researchers/exceed-expectations/</loc>
+    <lastmod>2021-11-10T17:17:49-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/for-insights-teams/self-service/</loc>
+    <lastmod>2021-11-10T17:17:49-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/market-researchers/survey-analysis-tool/</loc>
+    <lastmod>2021-11-10T17:17:49-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2021-11-01/</loc>
     <lastmod>2021-11-01T10:00:00-07:00</lastmod>
@@ -332,7 +353,13 @@
     <loc>//crunch.io/release-notes/2021-04-23/</loc>
     <lastmod>2021-04-23T10:00:00-07:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/time-series-analytics-visualizations-trackers/</loc>
+    <loc>//crunch.io/tags/analytics/</loc>
+    <lastmod>2021-04-23T08:20:48-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/trackers/</loc>
+    <lastmod>2021-04-23T08:20:48-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/visualizations/</loc>
     <lastmod>2021-04-23T08:20:48-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2021-04-16/</loc>
@@ -343,6 +370,12 @@
   </url><url>
     <loc>//crunch.io/release-notes/2021-04-02/</loc>
     <lastmod>2021-04-02T10:00:00-07:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/blog/</loc>
+    <lastmod>2021-03-28T11:44:48-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/recording/</loc>
+    <lastmod>2021-03-28T11:44:48-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2021-03-26/</loc>
     <lastmod>2021-03-26T10:00:00-07:00</lastmod>
@@ -389,7 +422,10 @@
     <loc>//crunch.io/request-demo/release-notes/2021-01-29/</loc>
     <lastmod>2021-01-29T18:00:00+02:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/margin-of-error-analytics-statistics/</loc>
+    <loc>//crunch.io/tags/margin-of-error/</loc>
+    <lastmod>2021-01-22T18:00:00-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/statistics/</loc>
     <lastmod>2021-01-22T18:00:00-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2021-01-22/</loc>
@@ -404,19 +440,28 @@
     <loc>//crunch.io/request-demo/release-notes/</loc>
     <lastmod>2021-01-20T14:08:35+02:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/analysis-exports/</loc>
+    <loc>//crunch.io/tags/analysis/</loc>
+    <lastmod>2021-01-06T15:00:10-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/exports/</loc>
     <lastmod>2021-01-06T15:00:10-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/request-demo/capabilities/</loc>
     <lastmod>2020-10-02T14:51:43-04:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/analysis-tab-books-multitable-exports/</loc>
+    <loc>//crunch.io/tags/multitable/</loc>
     <lastmod>2020-09-23T16:12:35-04:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/analyses-dashboards-tabs/</loc>
+    <loc>//crunch.io/tags/tab-books/</loc>
+    <lastmod>2020-09-23T16:12:35-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/tabs/</loc>
     <lastmod>2020-09-22T09:39:05-04:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/analyses-dashboards-groups-filters/</loc>
+    <loc>//crunch.io/tags/filters/</loc>
+    <lastmod>2020-09-21T16:54:11+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/groups/</loc>
     <lastmod>2020-09-21T16:54:11+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/about/our-mission/</loc>
@@ -424,9 +469,6 @@
   </url><url>
     <loc>//crunch.io/about/who-we-are/</loc>
     <lastmod>2020-09-03T15:47:05-04:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/analyses-dashboards/</loc>
-    <lastmod>2020-08-31T09:26:59-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/player.vimeo.com/video/446961229/</loc>
     <lastmod>2020-08-26T14:45:58-04:00</lastmod>
@@ -455,11 +497,14 @@
     <loc>//crunch.io/crunchbox/</loc>
     <lastmod>2020-07-27T14:56:53-04:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/analysis-multiple-response-categorical-array-variables/</loc>
+    <loc>//crunch.io/tags/categorical-array/</loc>
     <lastmod>2020-07-16T17:34:21-04:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/analysis-graphs-dashboards/</loc>
-    <lastmod>2020-06-29T12:14:51-04:00</lastmod>
+    <loc>//crunch.io/tags/multiple-response/</loc>
+    <lastmod>2020-07-16T17:34:21-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/variables/</loc>
+    <lastmod>2020-07-16T17:34:21-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/about/privacy/</loc>
     <lastmod>2020-05-31T17:09:26-04:00</lastmod>
@@ -479,20 +524,11 @@
     <loc>//crunch.io/request-demo/</loc>
     <lastmod>2019-09-27T11:20:25+01:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/statistics/</loc>
-    <lastmod>2019-07-03T15:20:47-04:00</lastmod>
-  </url><url>
     <loc>//crunch.io/tags/tables/</loc>
     <lastmod>2019-07-03T15:20:47-04:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/tab-books/</loc>
-    <lastmod>2019-05-04T23:20:47-04:00</lastmod>
-  </url><url>
     <loc>//crunch.io/tags/xlsx/</loc>
     <lastmod>2019-05-04T23:20:47-04:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/exports/</loc>
-    <lastmod>2019-04-05T23:20:47-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/organization/</loc>
     <lastmod>2019-02-10T23:20:47-04:00</lastmod>
@@ -505,9 +541,6 @@
   </url><url>
     <loc>//crunch.io/visualization/</loc>
     <lastmod>2018-10-05T10:08:35+02:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/analysis/</loc>
-    <lastmod>2018-09-25T10:20:47-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/charts/</loc>
     <lastmod>2018-09-25T10:20:47-04:00</lastmod>
@@ -525,9 +558,6 @@
     <lastmod>2018-08-03T12:12:10-07:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/data-visualization/</loc>
-    <lastmod>2018-08-03T12:12:10-07:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/categories/general/</loc>
     <lastmod>2018-08-03T12:12:10-07:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/ggplot2/</loc>
@@ -620,6 +650,9 @@
     <loc>//crunch.io/tags/text/</loc>
     <lastmod>2017-08-21T23:20:47-04:00</lastmod>
   </url><url>
+    <loc>//crunch.io/blog/automation/</loc>
+    <lastmod>2017-07-18T14:08:35+02:00</lastmod>
+  </url><url>
     <loc>//crunch.io/dev/features/</loc>
     <lastmod>2017-07-18T14:08:35+02:00</lastmod>
   </url><url>
@@ -653,9 +686,6 @@
     <loc>//crunch.io/dev/features/tab-book-improvements/</loc>
     <lastmod>2017-05-01T23:20:47-04:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/tabbook/</loc>
-    <lastmod>2017-05-01T23:20:47-04:00</lastmod>
-  </url><url>
     <loc>//crunch.io/about/</loc>
     <lastmod>2015-07-18T14:08:35+02:00</lastmod>
   </url><url>
@@ -670,6 +700,10 @@
     <loc>//crunch.io/product/powerful-analytics/</loc>
   </url><url>
     <loc>//crunch.io/product/</loc>
+  </url><url>
+    <loc>//crunch.io/search/search/</loc>
+  </url><url>
+    <loc>//crunch.io/search/</loc>
   </url><url>
     <loc>//crunch.io/product/trackers-tamed/</loc>
   </url><url>
