@@ -4,7 +4,7 @@ draft = false
 title = "Technical Customer Support Engineer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
-label = "Engineering & Data"
+label = "Sales & Marketing"
 id = "technical-customer-support"
 controls = "tcsupport"
 +++
