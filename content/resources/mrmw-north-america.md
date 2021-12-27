@@ -1,10 +1,10 @@
 +++
-date = "2021-12-27T12:15:18-04:00"
+date = "2021-12-27T12:10:45-04:00"
 draft = false
-title = "AAPOR"
-eventdate = "May 11 - 13"
+title = "MRMW North America"
+eventdate = "June 15 - 16"
 label = "Event"
-url = "//info.crunch.io/aapor-2022"
+url = "//info.crunch.io/mrmw-north-america"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Book a Meeting"
