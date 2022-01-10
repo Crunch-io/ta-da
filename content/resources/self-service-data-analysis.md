@@ -8,7 +8,7 @@ url = "//info.crunch.io/tmre-brands-webinar-2021-lp"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
-series = "main"
-icon = "img/icons/webinar-icon-blue.svg"
+series = "webinars"
+icon = "img/icons/webinar-icon.svg"
 
 +++
