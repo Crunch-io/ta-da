@@ -5,6 +5,7 @@ title = "The Chicago Council on Global Affairs"
 industry = "Think Tank"
 about = "Global affairs  independent, nonpartisan organization"
 region = "Global"
+case = "Historical data"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
 logo = "img/logos/logo_chicago_council.png"
