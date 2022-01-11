@@ -5,6 +5,7 @@ title = "YouGov"
 industry = "Market research"
 about = "Internet-based research data and analytics group"
 region = "Global"
+case = "Syndicated data"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
 logo = "img/logos/logo_yougov.png"

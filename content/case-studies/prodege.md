@@ -5,6 +5,7 @@ title = "Prodege"
 industry = "Market research"
 about = "Data and Insights provider"
 region = "Global"
+case = "Integration with DIY tool, online delivery to clients, interactive dashboards"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
 logo = "img/logos/logo_prodege.jpg"
