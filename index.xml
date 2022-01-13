@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Dec 2021 12:20:23 -0400</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jan 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prodege</title>
       <link>//crunch.io/case-studies/prodege/</link>
@@ -686,6 +686,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <description>Reports to: VP of Sales
 Work location: Remote, United States or Canada
 The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.</description>
+    </item>
+    
+    <item>
+      <title>Release 2022.01</title>
+      <link>//crunch.io/release-notes/2022-01-10/</link>
+      <pubDate>Mon, 10 Jan 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-01-10/</guid>
+      <description>Crunch web application  Fixed an error that disabled the ability for Confirmit-integrated datasets to be updated.  API endpoints and API reference  Added a new field to the View Filter Details endpoint (definition), which is a CrunchCL expression that represents the filter at the time it was created or last modified.  SDKs (rCrunch, pyCrunch, and sCrunch)  Made further updates and improvements to the latest versions of pyCrunch (v0.</description>
     </item>
     
     <item>
