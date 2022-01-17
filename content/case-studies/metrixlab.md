@@ -8,6 +8,9 @@ region = "Global"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
 logo = "img/logos/logo_metrixlab.png"
+series = "case-studies"
+icon = "img/icons/case-studies-icon.svg"
+link = "Learn more"
 
 +++
 

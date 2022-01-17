@@ -4,11 +4,15 @@ draft = false
 title = "Gojek"
 industry = "Technology"
 about = "On-demand multi-service app platform and digital payment technology group"
+description = "Large scale Customer Satisfaction Trackers analyzed for technology company"
 region = "Southeast Asia"
 case = "Online delivery to clients Large scale, multi-country scale trackers"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
 logo = "img/logos/logo_gojek.jpg"
+series = "case-studies"
+icon = "img/icons/case-studies-icon.svg"
+link = "Learn more"
 
 +++
 

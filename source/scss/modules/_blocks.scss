@@ -118,12 +118,28 @@
         margin-bottom: 20px;
     }
     .table {
+        background-color: #444;
+        color: $color-white;
+        border-radius: 2px;
+
         tr {
             vertical-align: top;
         }
 
-        .table-space {
-            padding: 8px 8px 8px 0;
+        .table-space-t {
+            padding: 10px 20px 5px 20px;
+        }
+
+        .table-space-b {
+            padding: 10px 20px 5px 20px;
+        }
+
+        .table-only-t {
+            padding-top: 20px;
+        }
+
+        .table-only-b {
+            padding-bottom: 20px;
         }
 
         .table-border {

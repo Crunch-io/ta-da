@@ -4,12 +4,16 @@ draft = false
 title = "YouGov"
 industry = "Market research"
 about = "Internet-based research data and analytics group"
+description = "Subsecond response times for one of the world’s largest research networks"
 region = "Global"
 case = "Syndicated data"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
 logo = "img/logos/logo_yougov.png"
 img = "img/yougov_case_study_dash.jpg"
+series = "main"
+icon = "img/icons/case-studies-icon-blue.svg"
+link = "Learn more"
 
 +++
 
