@@ -12,7 +12,8 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 logo = "img/logos/logo_yougov.png"
 img = "img/yougov_case_study_dash.jpg"
 series = "main"
-icon = "img/icons/case-studies-icon-blue.svg"
+icon = "img/icons/case-studies-icon.svg"
+iconblue = "img/icons/case-studies-icon-blue.svg"
 link = "Learn more"
 
 +++
