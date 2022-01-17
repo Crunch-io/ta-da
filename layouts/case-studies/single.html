@@ -1,0 +1,106 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="resources-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-12 header-content-container">
+                                <h1 class="display-4">Case Studies</h1>
+                                <p></p>
+                                <p>Over 1,000 companies and 60,000 registered users use Crunch.io to analyze their survey data.</p>
+                            </div>
+                        </div> <!-- /.row -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+            <div class="secondary-content">
+                    <div class="container spacer-top spacer-bottom">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <h1><img src="{{ .Params.logo }}" alt="" class="img-logo"></h1>
+                                <p class="headline">{{ .Params.description }}</p>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="col-md-12 offset-md-1">
+                                  <p>{{ .Content }}</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5 offset-md-1 sp-bt-xs">
+
+                                <table style="margin-bottom: 10px;" class="table">
+                                    <tr>
+                                      <th scope="row" class="table-space-t table-only-t"><strong>Industry</strong></th>
+                                      <td class="table-space-b table-only-t">{{ .Params.industry }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" class="table-space-t"><strong>About</strong></th>
+                                      <td class="table-space-b">{{ .Params.about }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" class="table-space-t"><strong>Region</strong></th>
+                                      <td class="table-space-b">{{ .Params.region }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row" class="table-space-t table-only-b"><strong>Case</strong></th>
+                                      <td class="table-space-b table-only-b">{{ .Params.case }}</td>
+                                    </tr>
+                                </table>
+
+                                <img src="{{ .Params.img }}" class="img-fluid">
+
+                                {{ if isset .Params "quote" }}
+                                <div class="quote-block" style="margin-top:10px;">
+                                    <p class="punctuation">“</p>
+                                    <p>{{ .Params.quote }}</p>
+                                    <p class="punctuation">”</p>
+                                    <br>
+
+                                    <div class="author">
+                                        <p>{{ .Params.author }}</p>
+                                        <p>{{ .Params.role}}</p>
+                                    </div>
+                                </div>
+                                {{ end }}
+                            </div>
+
+                        </div> <!-- /.row -->
+
+                        <div class="row spacer-top">
+                            <div class="col-md-8 offset-md-2">
+                                <h3 class="text-center emphasis">Other case studies</h3>
+                            </div>
+                        </div> <!-- /.row -->
+
+                        <div class="row spacer-bottom">
+                            {{ partial "case-studies.html" . }}
+                        </div>
+                </div> <!-- /.jumbotron -->
+            </div> <!-- /.blog-content -->
+
+
+            <div class="footer-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1>Learn about <span>our platform</span></h1>
+                                <a href="request-demo" class="btn btn-link">Request a demo &#10230;</a>
+                            </div>
+                        </div> <!-- /.row. -->
+                    </div> <!-- /.container -->
+                </div> <!-- /.jumbotron -->
+            </div>
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}

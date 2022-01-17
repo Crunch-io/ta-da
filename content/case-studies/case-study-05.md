@@ -4,10 +4,14 @@ draft = false
 title = "Live Nation"
 industry = "Entertainment"
 about = "Producer of live entertainment and ticketing platform"
+description = "Insights team analyzed global COVID-19 study results within 48 hours of field completion"
 region = "Global"
 case = "Large scale, multi-country trackers Ad hoc studies analysis"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
+series = "case-studies"
+icon = "img/icons/case-studies-icon.svg"
+link = "Learn more"
 
 +++
 

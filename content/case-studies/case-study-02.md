@@ -4,10 +4,14 @@ draft = false
 title = "Harvard"
 industry = "University"
 about = "A widely-regarded universities in the United States"
+description = "Top US universities analyzes 50-State COVID-19 survey in Crunch.io"
 region = "United States"
 case = "One online source of truth for multiple survey data sources Large scale tracker PowerPoint exports and reports"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
+series = "case-studies"
+icon = "img/icons/case-studies-icon.svg"
+link = "Learn more"
 
 +++
 

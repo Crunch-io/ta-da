@@ -4,11 +4,14 @@ draft = false
 title = "Activision Blizzard"
 industry = "Gaming"
 about = "Video game company that owns properties, such as Call of Duty, Guitar Hero and World of Warcraft"
+description = "Interactive dashboards win sponsor support for gaming company"
 region = "Global"
 case = "Interactive dashboards"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
-logo = "img/logos/logo_activision_blizzard.png"
+series = "case-studies"
+icon = "img/icons/case-studies-icon.svg"
+link = "Learn more"
 
 +++
 

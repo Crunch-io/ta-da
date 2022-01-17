@@ -4,12 +4,20 @@ draft = false
 title = "Prodege"
 industry = "Market research"
 about = "Data and Insights provider"
+description = "Integrating platforms leads to fast turnaround of research data and insights"
 region = "Global"
 case = "Integration with DIY tool, online delivery to clients, interactive dashboards"
 weight = 1
 images = ["https://crunch.io/img/logo-1200x630.png"]
 logo = "img/logos/logo_prodege.jpg"
 img = "img/prodege_case_study_dash.jpg"
+series = "case-studies"
+icon = "img/icons/case-studies-icon.svg"
+link = "Learn more"
+label = "quote"
+quote = "Partnering with Crunch has helped Prodege deliver an all-in-one solution to our clients which helps them navigate the research process from data collection to visualization more quickly and efficiently than ever before."
+author = "Mark Scheckner"
+role = "Senior Manager Data Analytics & Visualization, Prodege"
 
 +++
 
