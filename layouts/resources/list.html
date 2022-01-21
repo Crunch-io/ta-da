@@ -27,7 +27,7 @@
                               <div class="col-md-5 post-card-main-content">
                                   <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
                                   <h4 class="post-title">{{ with .Title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <i>{{ index (split . " ") 2 }} {{ index (split . " ") 3 }}</i> {{ end }}</h4>
-                                  <span>{{ .Params.eventdate }}</span>
+                                  <p style="color: #0064a4">{{ .Params.about }}</p>
 
                                   <br>
                                   <a class="btn btn-primary" href="{{ .Params.url }}"  target="_blank" >{{ .Params.link }}</a>
