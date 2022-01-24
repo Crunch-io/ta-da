@@ -62,12 +62,13 @@
                                 <div class="quote-block" style="margin-top:10px;">
                                     <p class="punctuation">“</p>
                                     <p>{{ .Params.quote }}</p>
+                                    <p>{{ .Params.longer_quote }}</p>
                                     <p class="punctuation">”</p>
                                     <br>
 
                                     <div class="author">
                                         <p>{{ .Params.author }}</p>
-                                        <p>{{ .Params.role}}</p>
+                                        <p>{{ .Params.role}} <br/> {{ .Params.company }}</p>
                                     </div>
                                 </div>
                                 {{ end }}
