@@ -1,7 +1,7 @@
 +++
 date = "2022-01-11T11:25:37-04:00"
 draft = false
-title = "Harvard"
+title = "Universities"
 industry = "University"
 about = "A widely-regarded universities in the United States"
 description = "Top US universities analyzes 50-State COVID-19 survey in Crunch.io"

@@ -1,7 +1,7 @@
 +++
 date = "2022-01-10T16:46:15-04:00"
 draft = false
-title = "Live Nation"
+title = "Entertainment"
 industry = "Entertainment"
 about = "Producer of live entertainment and ticketing platform"
 description = "Insights team analyzed global COVID-19 study results within 48 hours of field completion"
