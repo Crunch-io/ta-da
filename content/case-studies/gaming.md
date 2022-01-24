@@ -1,7 +1,7 @@
 +++
 date = "2022-01-10T16:54:15-04:00"
 draft = false
-title = "Activision Blizzard"
+title = "Gaming"
 industry = "Gaming"
 about = "Video game company that owns properties, such as Call of Duty, Guitar Hero and World of Warcraft"
 description = "Interactive dashboards win sponsor support for gaming company"
