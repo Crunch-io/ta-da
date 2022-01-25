@@ -1,5 +1,5 @@
 +++
-date = "2022-01-10T16:46:15-04:00"
+date = "2022-01-10T16:45:15-04:00"
 draft = false
 title = "Entertainment"
 industry = "Entertainment"
