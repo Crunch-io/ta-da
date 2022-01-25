@@ -1,0 +1,41 @@
+{{ range first 3 (where .Site.RegularPages "Section" "case-studies" | shuffle) }}
+{{ if not (eq .RelPermalink $.Page.RelPermalink) }}
+<div class="col-md-6 col-lg-4">
+    <div class="post-card post-min-height" onclick="location.href='{{ .Permalink }}'">
+        <div class="posts">
+            <h4 class="post-title">{{ .Params.description | emojify }}</h4>
+
+            <div class="post-card-links">
+                <div class="post-label float-left">
+                    <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.industry }}</span>
+                </div>
+
+                <div class="post-url float-right">
+                    <a href="{{ .Permalink }}">{{ .Params.link }} &#10230;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ else }}
+
+<div class="col-md-6 col-lg-4">
+    <div class="post-card post-min-height" onclick="location.href='/case-studies'">
+        <div class="posts">
+            <h4 class="post-title">See how customers use Crunch.io</h4>
+
+            <div class="post-card-links">
+                <div class="post-label float-left">
+                    <span><img src="{{ .Params.icon }}" alt="Icon">Case Studies</span>
+                </div>
+
+                <div class="post-url float-right">
+                    <a href="/case-studies">Learn more &#10230;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ end }}
+{{ end }}

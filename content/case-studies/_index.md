@@ -7,4 +7,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-Over 1,000 distinct companies and 30,000 registered users use Crunch.io to analyze their survey data.
+Over 1,000 companies and 60,000 registered users use Crunch.io to analyze their survey data.
