@@ -172,6 +172,11 @@
 <p>The crunch R package will use the key automatically if it is stored in environment variable <code>R_CRUNCH_API_KEY</code>. To store your key there, you can run the following code from your R console:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://usethis.r-lib.org" class="external-link">"usethis"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"usethis"</span><span class="op">)</span>
+<span class="co"># Note: After running this command, R may ask you one or two questions.</span>
+<span class="co"># While you likely *do* want to update the dependency packages, you likely</span>
+<span class="co"># *do not* want to install any package from source, so you can answer something</span>
+<span class="co"># like "update all packages from CRAN" if it asks which packages to update, </span>
+<span class="co"># and "No" if it asks you to install from source.</span>
 <span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/edit.html" class="external-link">edit_r_environ</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>This will open a file where you can put the following (replacing <code>your-secret-key</code> with the key from the web app, and <code>api-url</code> with the API for your company, generally something like <code>"https://your-brand.crunch.io/api/"</code>):</p>
 <pre><code><span class="va">R_CRUNCH_API</span><span class="op">=</span><span class="va">api</span><span class="op">-</span><span class="va">url</span>
