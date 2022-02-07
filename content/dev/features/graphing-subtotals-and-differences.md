@@ -1,6 +1,6 @@
 +++
-date = "2021-12-13T12:17:13-05:00"
-publishdate = "2021-12-13T12:17:13-05:00"
+date = "2022-02-07T21:37:48Z"
+publishdate = "2022-02-07T21:37:48Z"
 draft = false
 title = "Subtotals and calculated differences can now be shown on graphs"
 news_description = "See at a glance how your groups differ by using summary values and differences in your graphs - on screen, in dashboards and in PPTX export. Click here to learn more."
@@ -9,7 +9,7 @@ weight = 20
 tags = ["analyses", "nets", "subtotals", "differences"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 series = "main"
 
@@ -62,7 +62,5 @@ This can be a particularly useful  feature when you then want to show this summa
 {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/graphing-subtotals-diffs-09.png" class="img-fluid max-width-img-md">}}
 
 For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/4416232124813-Graphing-Subtotals-and-Differences).
-
-Currently this feature is only available if you have enabled [Early access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) in your application settings.
 
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
