@@ -188,18 +188,6 @@
 <p>Check out <code><a href="reference/listDatasets.html">listDatasets()</a></code> to see the names of your existing datasets, which you can load like <code>ds &lt;- loadDataset("The name of my dataset")</code>. New Crunch datasets can be made from a <code>data.frame</code>, a .csv or .sav file, or a URL to a file with <code><a href="reference/newDataset.html">newDataset()</a></code>. See the help for these functions or <a href="https://crunch.io/r/crunch/articles/crunch.html" class="external-link"><code>vignette("crunch")</code></a> for more information.</p>
 </div>
 <div class="section level2">
-<h2 id="additional-configuration">Additional configuration<a class="anchor" aria-label="anchor" href="#additional-configuration"></a>
-</h2>
-<p>You can set several parameters in your .Rprofile to simplify your workflow:</p>
-<ul>
-<li>
-<code>crunch.email</code> and <code>crunch.pw</code>: you can save your Crunch credentials so that you don’t have to enter them each time. I.e., you can just <code>&gt; login()</code>. Please be advised of the risks of storing your password like this. See <code><a href="reference/login.html">?login</a></code> for more information. Also, note that you can opt to store just your <code>crunch.email</code> and enter your password each time you log in–a mix of convenience and security.</li>
-<li>
-<code>crunch.api</code>: if not defined, it defaults to “<code>https://app.crunch.io/api/</code>”, the production server. To specify a different location, either set it in your .Rprofile or after loading the <code>crunch</code> package, do <code>&gt; options(crunch.api="https://otherapi.crunch.io/api/")</code>.</li>
-</ul>
-<p>If you prefer, you can set the environment variables <code>R_CRUNCH_EMAIL</code>, <code>R_CRUNCH_PW</code>, and <code>R_CRUNCH_API</code>.</p>
-</div>
-<div class="section level2">
 <h2 id="for-developers">For developers<a class="anchor" aria-label="anchor" href="#for-developers"></a>
 </h2>
 <p><code>crunch</code> requires R version 3.0 or greater. Note that if you’re on Ubuntu, particularly older versions, you’ll need to add an alternative PPA before trying to <code>apt-get install</code> R. For 12.04 Precise, for example,</p>
