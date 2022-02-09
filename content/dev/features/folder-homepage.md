@@ -26,7 +26,7 @@ Expected use cases for these homepages include...
 1. A welcome message for analysts accessing your data
 2. An opportunity to add your branding and logos
 3. Privacy notices and other terms & conditions, including external links
-4. Guidance on how to navigate folders and sub-folders, including shortcutss to particular resources
+4. Guidance on how to navigate folders and sub-folders, including shortcuts to particular resources
 5. Promotional text and/or images to other products and services that you offer (an opportunity for cross-selling) including links to further information
 6. Hints and tips for using Crunch - "Did you know...?" - style feature reminders
 7. Fieldwork information - perhaps talking about the periodicity of a tracker and when the next update is due
