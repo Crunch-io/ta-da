@@ -17,7 +17,7 @@ series = "main"
 
 Folder Homepages can contain images, formatted text, and links to other resources to provide Crunch customization, as well as to aide in navigation to other resources such as terms and conditions. You can tailor the experience for your teammates and clients when they arrive into Crunch.
 
-![Folder Homepages mockup - generic example.png](https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/folder-homepages-01.png)
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/folder-homepages-01.png" class="img-fluid">}}
 
 ## Examples of usage
 
