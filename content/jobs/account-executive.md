@@ -1,7 +1,7 @@
 +++
 date = "2018-10-12T14:08:35+02:00"
 draft = false
-title = "Strategic Account Executive (SAE)"
+title = "Strategic Account Executive"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Sales & Marketing"
