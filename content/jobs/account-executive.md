@@ -1,7 +1,7 @@
 +++
 date = "2018-10-12T14:08:35+02:00"
 draft = false
-title = "Account Executive, New Business"
+title = "Strategic Account Executive"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Sales & Marketing"
@@ -14,7 +14,7 @@ controls = "five"
 
 **Work location:** Remote, United States or Canada
 
-The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.
+The Strategic Account Executive (SAE) will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The SAE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.
 
 **What you'll do**
 

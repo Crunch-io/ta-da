@@ -1,11 +1,11 @@
 +++
 date = "2021-03-25T14:41:50-04:00"
 draft = false
-title = "Technical Customer Support Engineer"
+title = "Customer Support Analyst"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Sales & Marketing"
-id = "technical-customer-support"
+id = "customer-analyst"
 controls = "tcsupport"
 +++
 
@@ -22,7 +22,7 @@ You will be supporting market researchers around the world who use our rapidly e
 
 This is the perfect role for someone who is highly technical with data, enjoys the stimulation of a new and evolving tool, and likes helping others.
 
-**The role of the Technical Customer Support Engineer is centered around 4 key areas**:
+**The role of the Customer Support Analyst is centered around 4 key areas**:
 
 1. **Customer support** - triage and resolve highly complex, technical, and application-related support issues, which impact product performance and customer success.
 2. **Product testing** - test our new product features, systematically and with attention to detail, detecting back bugs and contributing to new documentation.
