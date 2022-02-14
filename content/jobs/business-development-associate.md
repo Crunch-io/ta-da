@@ -16,7 +16,7 @@ controls = "four"
 
 **What you'll do**
 
-The Business Development Manager will have responsibility for driving market share, qualifying leads that build pipeline for the sales organization, and for closing smaller deals. The BDR will follow up on web inquiries, pre‐qualify leads, close smaller opportunities, and develop larger leads to the point of handoff to outside sales. In addition to inbound inquiries the BDR will perform prospecting, marketing event outreach and perform general sales development functions to build a pipeline within targeted accounts designated by management. An implicit responsibility of the BDR is to conduct business dealings with prospects in a way that creates a superior customer/prospect experience to set the stage for future product sales for Crunch.io.
+The Business Development Associate (BDA) will have responsibility for driving market share, qualifying leads that build pipeline for the sales organization, and for closing smaller deals. The BDA will follow up on web inquiries, pre‐qualify leads, close smaller opportunities, and develop larger leads to the point of handoff to outside sales. In addition to inbound inquiries the BDA will perform prospecting, marketing event outreach and perform general sales development functions to build a pipeline within targeted accounts designated by management. An implicit responsibility of the BDA is to conduct business dealings with prospects in a way that creates a superior customer/prospect experience to set the stage for future product sales for Crunch.io.
 
 **Some of the things you’ll be doing include:**
 

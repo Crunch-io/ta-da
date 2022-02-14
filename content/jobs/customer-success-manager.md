@@ -24,7 +24,7 @@ The Crunch team all work remotely online - our “center of gravity” is in San
 
 The Customer Success Manager (CSM) is responsible for explaining and demonstrating Crunch.io to prospective customers, and then to continue to make sure it is deployed successfully in their organization. You are the technical side of the sales process for new prospects, but you are also working with existing customers to look for new opportunities in their workflows for Crunch.io.
 
-You will be part of a small team that is rapidly growing. We are taking on many new developers (for programming), new support staff (to handle queries and professional services), and now we are looking for more Customer Success engineers as well. The TSCSE is part of the Sales & Marketing team, but you work closely with Product teams and individual developers.
+You will be part of a small team that is rapidly growing. We are taking on many new developers (for programming), new support staff (to handle queries and professional services), and now we are looking for more Customer Success engineers as well. The CSM is part of the Sales & Marketing team, but you work closely with Product teams and individual developers.
 
 This role offers stimulation and creativity for the technically minded. Crunch.io is a rapidly evolving app, with new features being deployed all the time. As you interact directly with prospective and existing customers, using your strong market research domain knowledge, you will collate and feedback customers’ requests to the product team which drives the development of the app forward.
 
