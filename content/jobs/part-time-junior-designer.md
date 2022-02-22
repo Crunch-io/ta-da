@@ -33,5 +33,4 @@ We are looking for someone who can implement the creative vision on our customer
 - Good to have: After Effects (Editing skills)
 - Excellent typography skills
 - Attention to detail
-- Ability to give and take creative direction and feedback
 - Excellent verbal and written communication skills
