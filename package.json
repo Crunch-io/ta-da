@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:scss-dev": "node-sass --include-path node_modules --watch source/scss/ -o static/css/",
-    "build:scss": "node-sass --include-path node_modules source/scss/ -o static/css/",
+    "build:scss": "sass -I . source/scss/:static/css/",
     "build:fonts": "cp node_modules/font-awesome/fonts/* static/fonts",
     "serve-local": "hugo serve -b tada.crunch.io --bind 0.0.0.0"
   },
@@ -15,7 +14,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
-    "node-sass": "^4.12.0",
+    "sass": "1.32.*",
     "sass-autoprefixer": "^1.0.1"
   }
 }
