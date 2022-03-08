@@ -7,7 +7,7 @@ label = "Demo Day"
 url = "//info.crunch.io/brand-tracking-demo-2022"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
-link = "Register Now"
+link = "Watch Now"
 series = "main"
 icon = "img/icons/webinar-icon-blue.svg"
 
