@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Mar 2022 11:42:25 +0000</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Mar 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -758,6 +758,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <description>Reports to: VP of Sales
 Work location: Remote, United States or Canada
 The Strategic Account Executive (SAE) will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The SAE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.</description>
+    </item>
+    
+    <item>
+      <title>Release 2022.05</title>
+      <link>//crunch.io/release-notes/2022-03-14/</link>
+      <pubDate>Mon, 14 Mar 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-03-14/</guid>
+      <description>Crunch web application  Fixed the following issues:  Multitable column header titles and descriptions could sometimes overlap. An analysis with a multiple response variable in the column position and means in the cell positions may show dashes instead of actual means. Exporting a tabbook would sometimes fail to report that an error occurred during the processing of a request. Timeplots would sometimes not save to a deck successfully.   Improved numeric array analyses so that blank columns are now suppressed if the setting to show empty rows/columns is not checked.</description>
     </item>
     
     <item>
