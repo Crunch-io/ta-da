@@ -1,6 +1,6 @@
 +++
-date = "2022-03-24T17:39:14Z"
-publishdate = "2022-03-24T17:39:14Z"
+date = "2022-03-28T15:57:46+01:00"
+publishdate = "2022-03-28T15:57:46+01:00"
 draft = false
 title = "Give a great welcome to your customers by branding and customizing the appearance of folders"
 news_description = "Folder pages can now show formatted text and images above the list of datasets, enabling you to introduce Crunch and your data your way. Click here to learn more."
