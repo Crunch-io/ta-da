@@ -181,9 +181,9 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="op">$</span><span class="st"> </span>R</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="op">&gt;</span><span class="st"> </span><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"usethis"</span>)) <span class="kw">install.packages</span>(<span class="st">"usethis"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="op">&gt;</span><span class="st"> </span>usethis<span class="op">::</span><span class="kw">edit_r_environ</span>()</span></code></pre></div>
-<p>And then you can add environment variables by adding the following (filling in for <code>&lt;API-URL&gt;</code> and <code>&lt;API-KEY&gt;</code>).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>R_CRUNCH_API=<span class="er">&lt;</span>API<span class="op">-</span>URL<span class="op">&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>R_CRUNCH_API_KEY=<span class="er">&lt;</span>API<span class="op">-</span>KEY<span class="op">&gt;</span></span></code></pre></div>
+<p>And then you can add environment variables by adding the following (filling in the correct values for for <code>https://my-awesome-brand.crunch.io/api/</code> and <code>secret-key-goes-here</code>, with one set of quotation marks around the url and key).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>R_CRUNCH_API=<span class="st">"https://my-awesome-brand.crunch.io/api/"</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>R_CRUNCH_API_KEY=<span class="st">"secret-key-goes-here"</span></span></code></pre></div>
 <p>Restart your R session, or run command <code>readRenviron("~/.Renviron")</code>, and then you will be authenticated automatically.</p>
 <p>Check out <code><a href="reference/listDatasets.html">listDatasets()</a></code> to see the names of your existing datasets, which you can load like <code>ds &lt;- loadDataset("The name of my dataset")</code>. New Crunch datasets can be made from a <code>data.frame</code>, a .csv or .sav file, or a URL to a file with <code><a href="reference/newDataset.html">newDataset()</a></code>. See the help for these functions or <a href="https://crunch.io/r/crunch/articles/crunch.html" class="external-link"><code>vignette("crunch")</code></a> for more information.</p>
 </div>
