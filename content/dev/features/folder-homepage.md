@@ -17,6 +17,8 @@ series = "main"
 
 Crunch’s folders give you the power to organize your datasets and control access.  Now folders can also be a great landing page for new and existing data consumers.
 
+Crunch’s folders give you the power to organize your datasets and control access.  Now folders can also be a great landing page for new and existing data consumers.
+
 {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/folder-homepages-01.png" class="img-fluid">}}
 
 ## Examples of usage
