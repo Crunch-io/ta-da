@@ -117,7 +117,9 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.29.1" id="crunch-1291-development-version">crunch 1.29.1 (Development version)<a class="anchor" aria-label="anchor" href="#crunch-1291-development-version"></a></h2>
-</div>
+<ul><li>Fix a bug where environment variables could not set numeric or logical options like “R_CRUNCH_TIMEOUT”. (<a href="https://github.com/Crunch-io/rcrunch/issues/593" class="external-link">#593</a>)</li>
+<li>Uses the “public” variable folder rather than the root to pave the way for an upcoming join feature. In general end users should not notice. (<a href="https://github.com/Crunch-io/rcrunch/issues/592" class="external-link">#592</a>)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.29.0" id="crunch-1290">crunch 1.29.0<small>2022-01-27</small><a class="anchor" aria-label="anchor" href="#crunch-1290"></a></h2>
 <ul><li>Authenticating with an API key is now the recommended way to use the R crunch package. See the <code><a href="../articles/crunch.html">vignette("crunch")</a></code> or <code>?crunch-api-key</code> for more details. The <code><a href="../reference/login.html">login()</a></code> authentication flow is deprecated and will be removed from an upcoming release.</li>
