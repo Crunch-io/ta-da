@@ -8,6 +8,38 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2022.07</title>
+      <link>//crunch.io/release-notes/2022-04-11/</link>
+      <pubDate>Mon, 11 Apr 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-04-11/</guid>
+      <description>Crunch web application  Folder Homepages is now available in wide release. Made the following PowerPoint export improvements:  Removed the “All” title from exports of univariate bar graphs. Exports for a tabbed graph analysis now reflect the tab&amp;rsquo;s name corresponding to the data on the slide.   Fixed the following issues:  The search query was not working properly when a query contained an ampersand (&amp;amp;) character. Graph categories were rendered with incorrect colors if certain categories were suppressed.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://crunch.io/dev/features/folder-homepage/&#34;&gt;Folder Homepages&lt;/a&gt; is now available in wide release.&lt;/li&gt;
+&lt;li&gt;Made the following PowerPoint export improvements:
+&lt;ul&gt;
+&lt;li&gt;Removed the “All” title from exports of univariate bar graphs.&lt;/li&gt;
+&lt;li&gt;Exports for a tabbed graph analysis now reflect the tab&amp;rsquo;s name corresponding to the data on the slide.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Fixed the following issues:
+&lt;ul&gt;
+&lt;li&gt;The search query was not working properly when a query contained an ampersand (&lt;code&gt;&amp;amp;&lt;/code&gt;) character.&lt;/li&gt;
+&lt;li&gt;Graph categories were rendered with incorrect colors if certain categories were suppressed.&lt;/li&gt;
+&lt;li&gt;For numeric array timeplot analyses, the vertical axis would adjust incorrectly if there were negative values to plot.&lt;/li&gt;
+&lt;li&gt;The color assignment was sometimes assigned incorrectly for CrunchBoxes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed an issue in the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042039012-CREATE-CATEGORICAL-RECODE-command&#34;&gt;RECODE command&lt;/a&gt; where duplicate category IDs are created under certain conditions.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2022.06</title>
       <link>//crunch.io/release-notes/2022-03-28/</link>
       <pubDate>Mon, 28 Mar 2022 10:00:00 -0700</pubDate>

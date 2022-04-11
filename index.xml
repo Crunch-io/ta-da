@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Mar 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Apr 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -757,6 +757,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <description>Reports to: VP of Sales
 Work location: Remote, United States or Canada
 The Strategic Account Executive (SAE) will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The SAE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.</description>
+    </item>
+    
+    <item>
+      <title>Release 2022.07</title>
+      <link>//crunch.io/release-notes/2022-04-11/</link>
+      <pubDate>Mon, 11 Apr 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-04-11/</guid>
+      <description>Crunch web application  Folder Homepages is now available in wide release. Made the following PowerPoint export improvements:  Removed the “All” title from exports of univariate bar graphs. Exports for a tabbed graph analysis now reflect the tab&amp;rsquo;s name corresponding to the data on the slide.   Fixed the following issues:  The search query was not working properly when a query contained an ampersand (&amp;amp;) character. Graph categories were rendered with incorrect colors if certain categories were suppressed.</description>
     </item>
     
     <item>
