@@ -587,10 +587,10 @@
     <loc>//crunch.io/profiles/</loc>
     <lastmod>2019-09-27T11:20:25+01:00</lastmod>
   </url><url>
-    <loc>//crunch.io/request-demo-email/</loc>
+    <loc>//crunch.io/request-demo/</loc>
     <lastmod>2019-09-27T11:20:25+01:00</lastmod>
   </url><url>
-    <loc>//crunch.io/request-demo/</loc>
+    <loc>//crunch.io/request-demo-email/</loc>
     <lastmod>2019-09-27T11:20:25+01:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/tables/</loc>
@@ -710,10 +710,10 @@
     <loc>//crunch.io/tags/derived-variables/</loc>
     <lastmod>2017-08-21T23:20:47-04:00</lastmod>
   </url><url>
-    <loc>//crunch.io/dev/features/sentiment-analysis/</loc>
+    <loc>//crunch.io/tags/sentiment-analysis/</loc>
     <lastmod>2017-08-21T23:20:47-04:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/sentiment-analysis/</loc>
+    <loc>//crunch.io/dev/features/sentiment-analysis/</loc>
     <lastmod>2017-08-21T23:20:47-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/text/</loc>
