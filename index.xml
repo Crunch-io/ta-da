@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 Apr 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 May 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -757,6 +757,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <description>Reports to: VP of Sales
 Work location: Remote, United States or Canada
 The Strategic Account Executive (SAE) will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The SAE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.</description>
+    </item>
+    
+    <item>
+      <title>Release 2022.08</title>
+      <link>//crunch.io/release-notes/2022-05-02/</link>
+      <pubDate>Mon, 02 May 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-05-02/</guid>
+      <description>Crunch web application  Fixed the following issues:  Certain messages were not sent to clients who have requested notification, specifically for dataset sharing. Time plots using categorical dates with the date format YYYY-Www were not rendering properly. Time plots would sometimes not save properly to the deck. Scorecard creation would sometimes not work. Vertical scrolling was not working properly for folders that have homepages defined for them.   Updated the Decipher variable format.</description>
     </item>
     
     <item>
