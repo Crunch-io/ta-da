@@ -10,7 +10,7 @@ carousel_img_3 = "img/dashboards/logo-and-brand.svg"
 
 +++
 
-* Drag-and-drop to create dashboard
+* Drag-and-drop to create dashboard.
 
 * Add filters, tables, and graphs in a few clicks
 

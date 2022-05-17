@@ -4,8 +4,9 @@ draft = false
 title = "Our mission"
 subtitle = "Power made simple."
 label = "Our mission"
-card_1 = "See how customers use Crunch.io today"
-card_2 = "Build the leading online survey data analysis platform"
+card_1 = "See how customers use Crunch.io today."
+card_2 = "Build the leading online survey data analysis platform."
+
 icon_1 = "img/icons/case-studies-icon.svg"
 icon_2 = "img/icons/careers-icon.svg"
 url_1 = "case-studies"
