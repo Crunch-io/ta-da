@@ -1,6 +1,6 @@
 +++
 date = "2021-11-17T14:08:35+02:00"
-draft = true
+draft = false
 title = "Team Lead, SRE and Devops"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
