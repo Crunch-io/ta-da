@@ -1,6 +1,6 @@
 +++
 date = "2020-09-01T14:08:35+02:00"
-draft = true
+draft = true  
 title = "Site Reliability/Devops Engineer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
@@ -66,4 +66,3 @@ In the future (and to some degree currently), all or part of our platform will i
 - Familiarity with Agile Manifesto and SCRUM / Kanban / Scrumban
 - Software development experience using Python or JavaScript
 - Bachelor's Degree in Statistics, Science, Programming or Engineering related field
-

@@ -27,7 +27,7 @@ Posts are .md files inside the `/content` directory. There are templates and oth
 
 ## Adding team members to the site
 
-Team members are .yml files inside the `/data/team/members` directory. Hugo uses its data template functionality to render the page at `/layouts/team/list.html`.  To add a new team member, simply copy one of the existing .yml files and update the information contained therein to match the new employee information. Please follow the examples of existing entries for city, country. 
+Team members are .yml files inside the `/data/team/members` directory. Hugo uses its data template functionality to render the page at `/layouts/team/list.html`.  To add a new team member, simply copy one of the existing .yml files and update the information contained therein to match the new employee information. Please follow the examples of existing entries for city, country.
 
 Please also add a professional-looking headshot image in folder `static/img/team`. The image dimensions should be 600x600 pixels.
 
@@ -38,7 +38,7 @@ Our web app uses the [RSS feed](https://crunch.io/dev/features/index.xml) of the
 * Title: default is to use the same `title` as for the blog post. You may define an alternate `news_title` for use in the in-app notification, in case you want a shorter or otherwise different headline appropriate for the context of the web application.
 * Description: likewise, it uses `description` unless you provide an alternative `news_description`. For blog posts, `description` is often a summary sentence or two, while for in-app announcements, you may want a "click here for more" type of call to action. `description` should be plain text only. `news_description` supports html tags.
 * Date and publishdate: the feed requires a `publishdate`. If the publishdate listed for the item in the RSS feed is newer than the web app user's date of last reading of the notification feed, the user will be alerted that there is a new item. If publishdate is missing, Hugo will report this is a new item regardless of how many times the user has seen it. We also have a mailchimp email campaign that sends every time there is a new post and it reads from publishdate. If publishdate is missing, the same email will be sent and reset to the email list every day over and over again. Previously, Travis was configured to fill in the publishdate automatically but now we need to supply that date manually.
-  
+
 Note that emoji using the `:notation:` are valid in the title and description (but not in `date` ;).
 
 If there is a feature announcement blog post you want to exclude from in-app announcements, include `show_news = false` in the front matter.
