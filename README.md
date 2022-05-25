@@ -127,4 +127,3 @@ description = "Download your Crunch deck as a PowerPoint presentation complete w
 news_description = "Decks can now be downloaded directly to PowerPoint. Click here to learn more."
 date = "2018-09-25T10:20:47-04:00"
 +++
-```
