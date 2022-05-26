@@ -1,6 +1,10 @@
 .btn {
     padding: 10px 50px;
     border-radius: 2px;
+
+    &:focus, &.focus{
+        box-shadow: 0 0 0 0 transparent;
+    }
 }
 
 .btn-sm {
