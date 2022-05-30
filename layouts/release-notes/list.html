@@ -27,7 +27,8 @@
                       <div class="col-md-6 col-lg-4 subscribe-release-notes">
                           {{ partial "subscribe-release-notes" . }}
                       </div>
-                      {{ range .Paginator.Pages.ByPublishDate.Reverse }}
+                     
+                      {{ range (.Paginator 11).Pages.ByPublishDate.Reverse }}
                           <div class="col-md-6 col-lg-4">
                               <div class="post-card post-min-height" onclick="location.href='{{ .Permalink }}'">
                                   <div class="posts">
