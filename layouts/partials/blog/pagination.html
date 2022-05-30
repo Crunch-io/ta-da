@@ -1,7 +1,7 @@
 {{ $pag := $.Paginator }}
 {{ if gt $pag.TotalPages 1 }}
-<div class="row">
-    <div class="col-md-3">
+<div class="row my-3">
+    <div class="col d-none d-md-block">
         <div class="page-item{{ if not $pag.HasPrev }} disabled{{ end }}">
             <a {{ if $pag.HasPrev }}href="{{ $pag.Prev.URL }}"{{ end }} class="page-link" aria-label="Previous"><span aria-hidden="true">&#10229; Previous</span></a>
         </div>
@@ -34,7 +34,7 @@
             {{ end }}
         </ul>
     </div>
-    <div class="col-md-3 text-right">
+    <div class="col d-none d-md-block text-right">
         <div class="page-item{{ if not $pag.HasNext }} disabled{{ end }}">
             <a {{ if $pag.HasNext }}href="{{ $pag.Next.URL }}"{{ end }} class="page-link" aria-label="Next"><span aria-hidden="true">Next &#10230;</span></a>
         </div>
