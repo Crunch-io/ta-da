@@ -3,7 +3,7 @@ baseURL = "//crunch.io/"
 languageCode = "en-us"
 title = "Online survey data analysis"
 MetaDataFormat = "toml"
-paginate = 9
+paginate = 10
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
