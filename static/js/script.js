@@ -181,9 +181,11 @@ $(document).ready(function() {
 
     // Hidden elements of accordion that ar active
     var accordionTargets;
-    $("#accordion-container .accordion .card-title button").on("click",function(e){
+    $("#accordion-container button").on("click",function(e){
+      console.log("click event");
       accordionTargets = $(this).data("target");
       $(accordionTargets).on('show.bs.collapse', function (e) {
+        console.log("collapse");
         jQuery(".hide.collapse.show").collapse('hide');
       })
     });
