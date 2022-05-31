@@ -7,15 +7,15 @@
     <meta name="description" content="Prepare and analyze survey data quickly and easily.">
     <meta name="keywords" content="Crunch, Crunch io, data, datasets, survey, analytics, analysis, technology, insights, research, software">
     <base href="//crunch.io/">
-    <title>Crunch | Release 2021.40</title>
+    <title>Crunch | Release 2022.09</title>
 
     <link rel="icon" href="img/favicon.ico">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <meta property="og:title" content="Release 2021.40 &middot; Online survey data analysis">
+    <meta property="og:title" content="Release 2022.09 &middot; Online survey data analysis">
 <meta property="og:description" content="Prepare and analyze survey data quickly and easily.">
 <meta property="og:type" content="website" >
-<meta property="og:url" content="//crunch.io/release-notes/2021-11-15/">
+<meta property="og:url" content="//crunch.io/release-notes/2022-05-30/">
 <meta property="og:locale" content="en">
 
 
@@ -25,14 +25,14 @@
 
 
 
-  <meta property="og:updated_time" content="2021-11-15T10:00:00-07:00">
+  <meta property="og:updated_time" content="2022-05-30T10:00:00-07:00">
 
 
     <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://crunch.io/img/logo-1200x630.png"/>
 
-<meta name="twitter:title" content="Release 2021.40"/>
-<meta name="twitter:description" content="Crunch web application Fixed an issue that occurred when sorting on the Unweighted &lsquo;N&rsquo; column of an analysis and then saving it to the deck sometimes did not work properly. API endpoints and API reference Enhanced the documentation for creating, updating, and deleting API keys. SDKs (rCrunch, pyCrunch, and sCrunch) Added the following enhancements to the Crunch package for R: make and edit markdown slides, including images. create slides with more than one filter."/>
+<meta name="twitter:title" content="Release 2022.09"/>
+<meta name="twitter:description" content="Crunch web application Fixed the following in Confirmit integrations: Errors occurred when non-numeric category IDs are used. Surveys were not being displayed because they exist on subsequent pages. Fixed the following in the web ap: The numeric scale for a CrunchBox could mismatch the selected measure. Changes to the ‘Min’ and ‘Max’ value axis settings for a graph were not persisting. Enabled Dataset Views (in early access). See the announcement and documentation for more information."/>
 
     
     <link rel="stylesheet" href="css/main.css">
@@ -158,11 +158,11 @@
                     <div class="container spacer-top">
                         <div class="row">
                             <div class="col-md-10 offset-md-1">
-                                <h2>Release 2021.40</h2>
+                                <h2>Release 2022.09</h2>
                                 <p><a href="/release-notes/" style="color: black;">&#8592; Other release notes</a></p>
                                 <hr>
                                 <p></p>
-                                <span>November 15, 2021 </span>
+                                <span>May 30, 2022 </span>
                             </div>
                         </div> 
                 </div> 
@@ -175,30 +175,28 @@
                       <div class="col-md-10 offset-md-1">
                           <h3 id="crunch-web-application">Crunch web application</h3>
 <ul>
-<li>Fixed an issue that occurred when sorting on the Unweighted &lsquo;N&rsquo; column of an analysis and then saving it to the deck sometimes did not work properly.</li>
-</ul>
-<h3 id="api-endpoints-and-api-reference">API endpoints and API reference</h3>
+<li>Fixed the following in <a href="https://help.crunch.io/hc/en-us/articles/360060784772-How-to-import-from-Confirmit-into-Crunch">Confirmit integrations</a>:
 <ul>
-<li>Enhanced the documentation for creating, updating, and deleting <a href="https://crunch.io/api/reference/#post-/apikeys/">API keys</a>.</li>
-</ul>
-<h3 id="sdks-rcrunch-pycrunch-and-scrunch">SDKs (<code>rCrunch</code>, <code>pyCrunch</code>, and <code>sCrunch</code>)</h3>
-<ul>
-<li>Added the following enhancements to the <a href="https://crunch.io/r/crunch/">Crunch package for R</a>:
-<ul>
-<li>make and edit markdown slides, including images.</li>
-<li>create slides with more than one filter.</li>
-<li>create subtotals on multiple response variables.</li>
-<li>export tab books to a CSV format, for use in BI software such as Tableau.</li>
+<li>Errors occurred when non-numeric category IDs are used.</li>
+<li>Surveys were not being displayed because they exist on subsequent pages.</li>
 </ul>
 </li>
+<li>Fixed the following in the web ap:
+<ul>
+<li>The numeric scale for a CrunchBox could mismatch the selected measure.</li>
+<li>Changes to the ‘Min’ and ‘Max’ value axis settings for a graph were not persisting.</li>
+</ul>
+</li>
+<li>Enabled Dataset Views (<em>in early access</em>). See the <a href="https://crunch.io/dev/features/dataset-views/">announcement</a> and <a href="https://help.crunch.io/hc/en-us/articles/4405522348301-Dataset-Views">documentation</a> for more information.</li>
 </ul>
 <h3 id="crunch-automation">Crunch Automation</h3>
 <ul>
-<li>Added additional information on how to use the <code>ALIASES</code> option in the <a href="https://help.crunch.io/hc/en-us/articles/360042039392-CREATE-CATEGORICAL-ARRAY-command">CREATE CATEGORICAL ARRAY command</a>.</li>
+<li>Fixed an issue that occurred when using the <a href="https://help.crunch.io/hc/en-us/articles/360057819011-OVERWRITE-VALUES-command">OVERWRITE VALUES command</a> to overwrite numeric array subvariables.</li>
+<li>Added the <a href="https://help.crunch.io/hc/en-us/articles/6354863541133-CREATE-TEXT-CONCATENATE-command">CREATE TEXT CONCATENATE command</a>, which allows you to create a new text variable by concatenating multiple inputs by alias and using an optional separator.</li>
 </ul>
 <h3 id="help-desk-and-website-improvements">Help desk and website improvements</h3>
 <ul>
-<li>Updated the downloadable binary files to Version 2.2.3 in <a href="https://help.crunch.io/hc/en-us/articles/360054720992-The-Quick-Editor-a-generator-for-Crunch-Automation#toc3">The Quick Editor: a generator for Crunch Automation</a>, which includes enhancements and bug fixes.</li>
+<li>Created a <a href="https://help.crunch.io/hc/en-us/articles/6134285384205-Adding-an-API-key-in-the-browser">new article</a> that describes how to add an API key in your browser.</li>
 </ul>
 
                       </div>
