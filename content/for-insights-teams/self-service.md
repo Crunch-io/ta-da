@@ -13,7 +13,7 @@ carousel_img_4 = "img/for_insights_teams/wave_data_click.svg"
 +++
 
 * Don’t wait 2 days for new cuts from vendors.
-* Easily slice, dice, and filter respondent-level data anytime <br> you want.
+* Easily slice, dice, and filter respondent-level data anytime you want.
 * Answer your own questions and find insights faster.
 * Create and apply a new filter in seconds e.g. 18-25 year olds, female, purchased your brand in last 6 months.
 * Easily deliver to your stakeholders.

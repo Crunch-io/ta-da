@@ -30,14 +30,14 @@
             {{ if and (eq .Type "for-insights-teams") (eq .Title "Incredibly easy self-service") }}
             <div class="container">
                 <div class="row spacer share-insights">
-                    <div class="col-12 col-md-5 offset-md-1 order-0 order-md-0 sp-mb-t my-auto">
+                    <div class="col-12 col-md-6 offset-md-1 order-0 order-md-0 sp-mb-t my-auto">
                         <h2 class="label">{{ .Params.label }}</h2>
                         <h2 class="secondary-title">{{ with .Params.subtitle }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h2>
 
                         <p>{{ .Content }}</p>
                     </div>
 
-                    <div class="col-12 col-md-5 offset-md-1 order-1 order-md-1 spacer-bottom">
+                    <div class="col-12 col-md-5 offset-md-0 order-1 order-md-1 spacer-bottom">
                         <div id="carouselCaptions" class="carousel slide cr-carousel" data-ride="carousel">
                             <ol class="carousel-indicators">
                               <li data-target="#carouselCaptions" data-slide-to="0" class="active"></li>
