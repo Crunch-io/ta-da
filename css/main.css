@@ -11824,6 +11824,9 @@ table td:nth-child(2) cr- {
   padding: 10px 50px;
   border-radius: 2px;
 }
+.btn:focus, .btn.focus {
+  box-shadow: 0 0 0rem rgba(0, 123, 255, 0);
+}
 
 .btn-sm {
   padding: 10px 10px;
@@ -13240,11 +13243,15 @@ figure figcaption h4 {
   color: #004571;
 }
 .accordion .card .card-header .card-title button::before {
-  content: "⟶";
+  content: "";
+  background: url("../img/angle-right.svg");
+  background-size: cover;
   color: #1D1D26;
-  top: 8px;
+  height: 15px;
+  top: 28%;
   left: 15px;
   position: absolute;
+  width: 15px;
 }
 .accordion .card .card-header .card-title button[aria-expanded=true]::before {
   transform: rotate(90deg);
