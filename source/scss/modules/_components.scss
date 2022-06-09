@@ -746,7 +746,6 @@ figure {
                         position: absolute;
                         width:15px;
                     }
-
                     &[aria-expanded="true"]::before {
                         transform: rotate(90deg);
                     }
