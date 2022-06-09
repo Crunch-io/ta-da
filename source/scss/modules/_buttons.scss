@@ -60,7 +60,9 @@
     background-color: $color-green;
     border-color: $color-green;
     @include box_shadow("green");
-
+    a{
+        color:#D3E3DF;
+    }
     &:hover {
         background-color: $--darker-secondary-color;
         border-color: $--darker-secondary-color;
