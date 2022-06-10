@@ -736,14 +736,14 @@ figure {
                     }
 
                     &::before {
-                        content: "";
-                        background: url(../img/angle-right.svg);
+                        background:url("../img/angle-right.svg");
+                        background-size:cover;
                         color: $color-off-black;
-                        height:20px;
-                        top: 8px;
+                        height:15px;
+                        top: 28%;
                         left: 15px;
                         position: absolute;
-                        width:20px;
+                        width:15px;
                     }
 
                     &[aria-expanded="true"]::before {
