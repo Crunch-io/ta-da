@@ -736,6 +736,7 @@ figure {
                     }
 
                     &::before {
+                        content: "";
                         background:url("../img/angle-right.svg");
                         background-size:cover;
                         color: $color-off-black;
