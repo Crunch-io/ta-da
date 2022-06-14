@@ -666,6 +666,10 @@ figure {
     background: url("../img/angle-right.svg");
 }
 
+a.carousel-control-next {
+    justify-content: flex-start;
+}
+
 // Hero video
 .hero-video {
     position: relative;
