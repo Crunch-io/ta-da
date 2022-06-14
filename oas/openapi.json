@@ -7550,7 +7550,7 @@
         ]
       }
     },
-    "/api/pptx/create/{datasetId}/{dashboardId}": {
+    "/pptx/create/{datasetId}/{dashboardId}": {
       "post": {
         "operationId": "CreatePptx",
         "parameters": [
@@ -7639,7 +7639,7 @@
         ]
       }
     },
-    "/api/pptx/create/{datasetId}/{dashboardId}/groups": {
+    "/pptx/create/{datasetId}/{dashboardId}/groups": {
       "post": {
         "description": "Generate a PowerPoint document for every group in a Crunch dashboard.",
         "operationId": "CreateGroupPptx",
@@ -7729,7 +7729,7 @@
         ]
       }
     },
-    "/api/pptx/create/{datasetId}/{dashboardId}/groups/pdf": {
+    "/pptx/create/{datasetId}/{dashboardId}/groups/pdf": {
       "post": {
         "operationId": "CreateGroupPdf",
         "parameters": [
@@ -7810,7 +7810,7 @@
         ]
       }
     },
-    "/api/pptx/create/{datasetId}/{dashboardId}/pdf": {
+    "/pptx/create/{datasetId}/{dashboardId}/pdf": {
       "post": {
         "operationId": "CreatePdf",
         "parameters": [
@@ -7891,7 +7891,7 @@
         ]
       }
     },
-    "/api/pptx/create/{datasetId}/{dashboardId}/templates": {
+    "/pptx/create/{datasetId}/{dashboardId}/templates": {
       "post": {
         "description": "Download example PowerPoint templates and a PowerPoint of the dashboard using each template.",
         "operationId": "templates",
@@ -7973,7 +7973,7 @@
         ]
       }
     },
-    "/api/pptx/update": {
+    "/pptx/update": {
       "post": {
         "description": "Update chart data inside existing PowerPoint slides.",
         "operationId": "UpdatePptx",
