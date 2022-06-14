@@ -633,7 +633,9 @@ figure {
         color: $color-blue;
         font-style: normal;
         font-size: 27px;
+        
     }
+    
     .carousel-item {
         height: 300px;
         img {
@@ -646,6 +648,26 @@ figure {
             font-weight: normal;
         }
     }
+}
+
+.carousel-control-prev .carousel-controls-icons::before {
+    content: "";
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    background: url("../img/angle-left.svg");
+}
+
+.carousel-control-next .carousel-controls-icons::before {
+    content: "";
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    background: url("../img/angle-right.svg");
+}
+
+a.carousel-control-next {
+    justify-content: flex-start;
 }
 
 // Hero video
