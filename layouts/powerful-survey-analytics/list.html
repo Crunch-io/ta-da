@@ -22,11 +22,11 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <div class="hero-video d-none d-md-block">
-                                <iframe src="{{ .Params.video }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
+                                <iframe src="{{ .Params.video }}" loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
                             </div>
 
                             <div class="hero-video d-block d-md-none">
-                                <iframe src="{{ .Params.mob_video }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
+                                <iframe src="{{ .Params.mob_video }}" loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
                             </div>
                         </div>
                     </div> <!-- /.row. -->
@@ -45,7 +45,7 @@
             {{ if and (eq .Type "powerful-survey-analytics") (eq .Title "Tool") }}
 
             <div class="d-none d-md-block hero-img-right">
-                <img src="{{ .Params.gif }}" alt="" class="img-fluid add-shadow sp-mb-t rounded">
+                <img src="{{ .Params.gif }}" alt="{{ .Params.label }}" loading="lazy" width="680" height="442"  class="img-fluid add-shadow sp-mb-t rounded">
             </div>
 
             <div class="container">
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="col order-1 d-block d-md-none">
-                        <img src="{{ .Params.gif }}" alt="" class="img-fluid add-shadow sp-mb-t rounded">
+                        <img src="{{ .Params.gif }}" alt="{{ .Params.label }}" loading="lazy" width="680" height="442"  class="img-fluid add-shadow sp-mb-t rounded">
                     </div>
                 </div> <!-- /.row. -->
 
@@ -84,21 +84,21 @@
                             </ol>
                             <div class="carousel-inner">
                               <div class="carousel-item">
-                                <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide" alt="Drag and drop to create analyses" src="{{ .Params.carousel_img_1 }}" data-holder-rendered="true">
+                                <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide" width="356" height="236" alt="Drag and drop to create analyses" src="{{ .Params.carousel_img_1 }}" data-holder-rendered="true">
                                 <div class="carousel-caption">
-                                  <h5>Drag and drop to create analyses</h5>
+                                  <h3>Drag and drop to create analyses</h3>
                                 </div>
                               </div>
                               <div class="carousel-item active">
-                                <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide" alt="Create tables and charts" src="{{ .Params.carousel_img_2 }}" data-holder-rendered="true">
+                                <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide" width="356" height="236" alt="Create tables and charts" src="{{ .Params.carousel_img_2 }}" data-holder-rendered="true">
                                 <div class="carousel-caption">
-                                  <h5>Create tables and charts</h5>
+                                  <h3>Create tables and charts</h3>
                                 </div>
                               </div>
                               <div class="carousel-item">
-                                <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide" alt="Build dashboards in 5 minutes" src="{{ .Params.carousel_img_3 }}" data-holder-rendered="true">
+                                <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide" width="356" height="236" alt="Build dashboards in 5 minutes" src="{{ .Params.carousel_img_3 }}" data-holder-rendered="true">
                                 <div class="carousel-caption">
-                                  <h5>Build dashboards in 5 minutes</h5>
+                                  <h3>Build dashboards in 5 minutes</h3>
                                 </div>
                               </div>
                             </div>
@@ -141,7 +141,7 @@
                     </div>
 
                     <div class="col-12 col-md-6 offset-md-2 order-1 order-md-1 my-auto">
-                        <img src="{{ .Params.img }}" alt="" class="img-fluid sp-mb-t">
+                        <img src="{{ .Params.img }}" width="450" height="226" loading="lazy" alt="{{ .Params.subtitle }}" class="img-fluid sp-mb-t">
                     </div>
 
                 </div> <!-- /.row. -->
@@ -169,7 +169,7 @@
 
                 <div class="row text-center justify-content-center align-self-center">
                     <div class="col-md-12 hero-img-bottom">
-                        <img src="{{ .Params.gif }}" alt="" class="img-fluid add-shadow sp-mb-t rouded">
+                        <img src="{{ .Params.gif }}" alt="{{ .Params.subtitle }}" width="910" height="589" loading="lazy" class="img-fluid add-shadow sp-mb-t rouded">
                     </div>
                 </div> <!-- /.row. -->
 
