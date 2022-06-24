@@ -21,7 +21,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <img src="{{ .Params.gif }}" class="img-fluid add-shadow-xl rounded" style="max-width: 750px;">
+                            <img src="{{ .Params.gif }}" alt="{{.Params.title}}" class="img-fluid add-shadow-xl rounded" style="max-width: 750px;" width="750" height="501">
                         </div>
                     </div> <!-- /.row. -->
                 </div>
@@ -58,7 +58,7 @@
                     <div class="col-12 col-md-6 offset-md-1 order-1 order-md-1">
                         <div class="crunchbox-container">
                             <div class="crunchbox add-shadow-xl">
-                                <iframe src="{{ .Params.crunchbox }}" width="100%" height="450"></iframe>
+                                <iframe src="{{ .Params.crunchbox }}" title="{{ .Params.subtitle }}" width="100%" height="450"></iframe>
                             </div>
                         </div>
                     </div>
