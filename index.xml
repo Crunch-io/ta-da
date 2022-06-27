@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Jun 2022 04:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Jun 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -752,6 +752,15 @@ The Strategic Account Executive (SAE) will be responsible for driving sales of C
       
       <guid>//crunch.io/info.crunch.io/tmre-2022</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2022.10</title>
+      <link>//crunch.io/release-notes/2022-06-27/</link>
+      <pubDate>Mon, 27 Jun 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-06-27/</guid>
+      <description>Crunch web application Fixed the following issues: Sharing of decks, filters, and multitables now works for subfolders so there is no longer a need to share the subfolder with a team as well. When exporting a tab book, it would sometimes fail when using certain setting combinations. The ‘edit tile footer’ field would sometimes display an inconsistent response when typing values into it. Made performance improvements to Confirmit integrations. Crunch Automation Fixed the following issues: The CREATE TEXT CONCATENATE command now works with categorical and text variables.</description>
     </item>
     
     <item>
