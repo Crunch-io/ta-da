@@ -8,7 +8,7 @@ url = "//info.crunch.io/brand-tracking-demo-2022"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
-series = "main"
+series = "webinar"
 icon = "img/icons/webinar-icon-blue.svg"
 
 +++
