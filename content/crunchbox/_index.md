@@ -19,6 +19,6 @@ crunchbox = "https://s.crunch.io/widget/index.html#/ds/72c27f64a12028b887d7cae24
 
 |  |  |
 |------|------------------------------------------------------------------|
-| <img src="img/icons/filter-icon.svg" alt="Icon"> | Use the filter menu to filter by age, gender, or education level |
-| <img src="img/icons/chart-icon.svg" alt="Icon"> | Change the chart type or view a table                            |
-| <img src="img/icons/share-icon.svg" alt="Icon"> | Share a link, embed on a website, or share via social media      |
+| <img src="img/icons/filter-icon.svg" alt="Icon" width="26" height="9"> | Use the filter menu to filter by age, gender, or education level |
+| <img src="img/icons/chart-icon.svg" alt="Icon"  width="14" height="14"> | Change the chart type or view a table                            |
+| <img src="img/icons/share-icon.svg" alt="Icon"  width="14" height="14"> | Share a link, embed on a website, or share via social media      |
