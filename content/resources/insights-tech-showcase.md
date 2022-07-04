@@ -9,6 +9,6 @@ weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
 series = "webinars"
-icon = "img/icons/webinar-icon-blue.svg"
+icon = "img/icons/webinar-icon.svg"
 
 +++
