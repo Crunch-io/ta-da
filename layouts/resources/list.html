@@ -26,9 +26,14 @@
                           <div class="row">
                               <div class="col-md-5 post-card-main-content">
                                   <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
-                                  <h4 class="post-title">{{ with .Title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} <i>{{ index (split . " ") 3 }} {{ index (split . " ") 4 }}</i> {{ end }}</h4>
+                                  <h4 class="post-title">
+                                    
+                                    {{ with .Title }} 
+                                      
+                                            {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} <i>{{ index (split . " ") 3 }} {{ index (split . " ") 4 }}</i>
+                                    
+                                    {{ end }}</h4>
                                   <p style="color: #0064a4">{{ .Params.about }}</p>
-
                                   <br>
                                   <a class="btn btn-primary" href="{{ .Params.url }}"  target="_blank" >{{ .Params.link }}</a>
                               </div>
