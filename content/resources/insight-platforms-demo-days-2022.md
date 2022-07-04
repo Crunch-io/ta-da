@@ -1,7 +1,7 @@
 +++
 date = "2022-7-5T12:20:23-04:00"
 draft = false
-title = "Insight Platforms  Demo Days"
+title = "Insight Platforms Demo Days"
 about = "See Crunch.io in action presented by Jeff Coombs, President, and Chris Jones, Senior Director of Product."
 schedule = "July 5th,  11 AM ET | 4 PM BST"
 label = "Demo Recording"
