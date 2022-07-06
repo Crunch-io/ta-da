@@ -3,13 +3,13 @@ date = "2022-06-05T11:29:38+01:00"
 publishdate = "2022-06-05T11:29:38+01:00"
 draft = false
 title = "Navigate, locate, and organize datasets more easily"
-news_description = "We’re excited to share the latest update to dataset folders — a new sidebar on the left side of the “all datasets” page makes sharing and organizing datasets easier."
+news_description = "We’re excited to share the latest update to dataset folders — a new sidebar on the left side of the “all datasets” page makes sharing and organizing datasets easier. Click here to learn more."
 description = "We’re excited to share the latest update to dataset folders — a new sidebar on the left side of the “all datasets” page makes sharing and organizing datasets easier."
 weight = 20
-tags = ["datasets", "views", "analyze"]
+tags = ["datasets", "folders", "organize"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 series = "main"
 
