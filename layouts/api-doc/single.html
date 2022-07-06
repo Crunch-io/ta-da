@@ -33,7 +33,9 @@
                         <div class="row justify-content-md-center">
                             <div class="col-md-8 text-center">
                                 <h1 class="display-5">{{ .Title }}</h1>
-                                <p class="mt-5 mb-0"><a class="menuLink" href='{{ $.Param "linkHref" }}'>{{ $.Param "linkText" }}</a></p>
+                                {{if .Param "linkHref" }}
+                                <p class="mt-5 mb-0"><a class="menuLink" href='{{ .Param "linkHref" }}' aria-label='{{ .Param "linkText" }}'>{{ .Param "linkText" }}</a></p>
+                                {{end}}
                             </div>
                         </div> <!-- /.row -->
                     </div> <!-- /.container -->

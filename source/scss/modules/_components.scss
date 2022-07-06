@@ -442,6 +442,7 @@
             color: $color-blue;
             font-size: 28px;
             margin-top: 15px;
+            max-width: 80%;
         }
     }
 
@@ -643,7 +644,7 @@ figure {
             margin: auto;
             margin-top: 20px;
         }
-        h5 {
+        h3 {
             color: $color-blue;
             font-weight: normal;
         }
