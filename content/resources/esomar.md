@@ -1,5 +1,6 @@
 +++
-date = "2022-9-21T17:00:00-00:00"
+date = "2022-9-18T00:00:00+03:00"
+customdate = "2022-09-18T00:00:00+03:00"
 draft = false
 title = "ESOMAR"
 eventdate = "September 18 - 21"
