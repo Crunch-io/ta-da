@@ -64,6 +64,7 @@
                   <div class="row spacer-bottom">
 
                       {{ range where .Pages "Params.series" "events" }}
+                        
                           <div class="col-md-6 col-lg-4 resources-filter events-filter">
                               <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
                                   <div class="posts">
@@ -84,7 +85,7 @@
                           </div>
                       {{ end }}
 
-                      {{ range where .Pages "Params.series" "webinars" }}
+                      {{ range  where .Pages "Params.series" "webinars" }}
                           <div class="col-md-6 col-lg-4 resources-filter webinars-filter">
                               <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
                                   <div class="posts">

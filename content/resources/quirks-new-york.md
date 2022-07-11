@@ -1,5 +1,5 @@
 +++
-date = "2022-20-21T12:19:23-04:00"
+date = "2022-7-21T17:00:00-00:00"
 draft = false
 title = "Quirks New York"
 eventdate = "July 20 - 21"
