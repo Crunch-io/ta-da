@@ -8,7 +8,7 @@ label = "Demo Recording"
 url = "//info.crunch.io/demo-days-2022"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
-link = "Register Now"
+link = "Watch Now"
 series = "main"
 icon = "img/icons/webinar-icon-blue.svg"
 +++
