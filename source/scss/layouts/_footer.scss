@@ -1,8 +1,48 @@
 // Footer
 .footer {
+    background: transparent linear-gradient(254deg, #010102 0%, #333346 100%) 0% 0% no-repeat padding-box;
     position: relative;
     z-index: 10;
     padding: 20px 0;
+    color: $color-white;
+
+    li{
+        list-style: none;
+    }
+
+    #btn-subscribe{
+        margin-bottom: 1rem;
+    }
+
+    #call-action {
+        height: 0px;
+    }
+
+    #email-subscribe{
+        border-radius: 4px;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+
+    .border-top {
+        border-top:solid 1px #333346 !important;
+    }
+    
+    .btn-primary {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-radius: 4px;
+    }
+
+    .cta{
+        transform: translateY(-70px);
+    }
+
+    .label{
+        color: $color-white;
+        margin-bottom: 10px;
+        text-transform: initial;
+    }
 
     .nav {
         .nav-item a {
@@ -13,6 +53,19 @@
             }
         }
     }
+
+    .phone-icon,
+    .email-icon
+    {
+        fill:$color-white;
+        min-width:22px;
+    }
+
+    .phone-icon{
+        fill:$color-white;
+        height:25px;
+    }
+    
 }
 
 @include media-breakpoint-down(xs) {
@@ -26,18 +79,27 @@
             }
 
         }
+        #copy{
+            text-align: center;
+        }
+        #suscribe{
+            max-width: 90vw;
+            margin: auto;
+        }
+        
     }
 
 }
 
 .bg-black {
     background-color: $color-off-black;
-
+    a,
     .nav-link {
         color: $color-white;
 
         &:hover {
             color: $color-grey-darker;
+            text-decoration: none;
         }
     }
 }
