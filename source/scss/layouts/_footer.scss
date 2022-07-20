@@ -68,7 +68,20 @@
     
 }
 
-@include media-breakpoint-down(xs) {
+label#label-email-1d9b0565-b0af-44b5-a0fa-c389768043c7 {
+    display: none;
+}
+.hs-error-msg{
+    color:$color-danger
+}
+
+.hs_error_rollup {
+    bottom: 0;
+    color:$color-danger;
+    left: -8px;
+    position: absolute;
+}
+    @include media-breakpoint-down(xs) {
 
     .footer {
 
@@ -87,6 +100,12 @@
             margin: auto;
         }
         
+    }
+    .hs_error_rollup {
+        bottom: 13px;
+        color:$color-danger;
+        left: -28px;
+        position: relative;
     }
 
 }
