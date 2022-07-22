@@ -12,5 +12,7 @@ gif = "img/trackers.gif"
 
 * Drag and drop to compare waves instantly.
 * Plot data over time.
-* Easily append new survey waves.
-* Automatically update dashboards and PowerPoints.
+* Update dashboards and PowerPoints immediately when tracker waves come out of field.
+* Start analysis halfway through fielding.
+* Align and combine tracker waves with Crunch Automation.
+* Scale to all your tracker data, historical and current.

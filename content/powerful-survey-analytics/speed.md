@@ -8,4 +8,4 @@ gif = "img/stat-speed.gif"
 
 +++
 
-The CrunchDB columnar database is purpose built to handle even your largest survey datasets with millions of respondents (rows), and thousands of variables (columns).
+The CrunchDB columnar database is purpose built to handle even your largest survey datasets with millions of respondents, and thousands of variables.
