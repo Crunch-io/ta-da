@@ -6,4 +6,4 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-Crunch.io is a leading online data analysis platform focused on simplicity and usability.
+Crunch.io is a leading online, self-service survey data analysis platform focused on simplicity, speed, and usability.
