@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 Jul 2022 09:43:45 +0100</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Jul 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -771,6 +771,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/tmre-2022</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2022.11</title>
+      <link>//crunch.io/release-notes/2022-07-18/</link>
+      <pubDate>Tue, 19 Jul 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-07-18/</guid>
+      <description>Crunch web application Made the following improvements to tab book exports: Fixed the error messaging that appears when something fails during the export of a tab book. The values list within an exported tab book is now returned in the specified order for variables and subvariables. A bug previously prevented the order to output properly, which has been fixed. Improved Confirmit integrations by enabling surveys that have image-based fields. Enabled numeric means so that they can be: Rendered as a bar graph.</description>
     </item>
     
     <item>
