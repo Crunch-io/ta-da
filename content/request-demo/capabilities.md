@@ -17,8 +17,12 @@ With Crunch.io, you can:
 
 * Build crosstabs with a drag-and-drop.
 
-* Build a graph with one click.
+* Add visualizations with one click.
 
-* Export real PowerPoint objects.
+* Export editable PowerPoint objects.
 
-* Build and deliver a dashboard in 5 minutes.
+* Get rid of two-day turnarounds to answer questions.
+
+* Create no-coding dashboards.
+
+* Automate tracker wave updates of reports and dashboards.

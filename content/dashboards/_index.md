@@ -11,8 +11,12 @@ mob_video = "https://player.vimeo.com/video/446617722"
 
 Revolutionize the way you deliver survey data and insights. It’s so easy and quick, you’ll use them all the time.
 
-* Drag-and-drop. No coding.
+* Drag-and-drop to create visually-compelling dashboards. No programming or DP expertise required.
 
-* Add filters, tables, graphs.
+* Add filters, tables, and graphs in just a few clicks.
 
-* Make changes in a few clicks.
+* Resize, reorder, brand, and customize without coding.
+
+* Broadly and quickly deploy dashboards with lower costs and fewer resources.
+
+* Instantly create multiple dashboards for different audiences from one master dashboard with Crunch Views.
