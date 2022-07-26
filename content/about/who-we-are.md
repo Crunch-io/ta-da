@@ -9,6 +9,6 @@ mob_video = "https://player.vimeo.com/video/446617800"
 
 +++
 
-We’re a group of survey experts, market researchers, designers,and engineers.
+We’re a group of survey experts, market researchers, designers, and engineers.
 
-We were frustrated by the current tools used to analyze, visualize, and deliver survey data. So, we built Crunch to bring easy self-service to survey data analysis.
+We were frustrated by the current tools used to analyze, visualize, and deliver survey data. So, we built Crunch.io to bring easy self-service to survey data analysis.
