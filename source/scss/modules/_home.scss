@@ -1,0 +1,79 @@
+
+.crunch-reflection{
+    box-shadow: 0px 3px 20px #00000029;
+    border-radius: 8px;
+    overflow: hidden;
+
+}
+.crunch-reflection::before{
+        content: "";
+        border-radius: 20px;
+        transform: translate(-10px, 25px);
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 95%;
+}
+.crunch-reflection-left-top::before{
+    transform: translate(-10px, -25px);
+}
+.crunch-reflection-left-bottom::before{
+    transform: translate(-10px, 25px);
+}
+.crunch-reflection-right-top::before{
+    transform: translate(42px, -25px);
+}
+.crunch-reflection-right-bottom::before{
+    transform: translate(10px, 25px);
+}
+.crunch-background-green::before{
+    background-color: $color-green;
+}
+.crunch-background-blue::before{
+    background-color: $color-blue
+}
+.crunch-background-purple::before{
+    background-color: $color-purple;
+}
+
+#home{
+    h1,h2,h3,h4,h5,h6{
+        font: normal normal bold 50px/65px Proxima Nova;
+
+    }
+    h2{
+        font-size: 2rem;
+    }
+    h3{
+        font-size: 1.8rem;
+    }
+    .section-heading{
+        font-size: 3rem;
+        font-weight: bold;
+    }
+}
+
+#self-services{
+    background: transparent linear-gradient(60deg, #FFFFFFA8 0%, #F2F2F2 100%) 0% 0% no-repeat padding-box;
+    font-family: 'proximanova-regular';
+    
+    img{
+        mix-blend-mode: multiply;
+        
+    }
+
+    h1{
+        font-size: 3.8rem;
+    }
+    
+    h2{
+        font-size: 2rem;
+    }
+}
+
+#all-your-data{
+    figure{
+        height: 198px;
+    }
+}
