@@ -13,16 +13,16 @@ mob_video = "https://player.vimeo.com/video/446617800"
 
 With Crunch.io, you can:
 
-* Get rid of two day turnarounds to answer questions.
+* Analyze all your data in one place
 
-* Build crosstabs with a drag-and-drop.
+* Build crosstabs with a drag-and-drop
 
-* Add visualizations with one click.
+* Add visualizations with one click
 
-* Export editable PowerPoint objects.
+* Export editable PowerPoint objects
 
-* Get rid of two-day turnarounds to answer questions.
+* Get rid of two-day turnarounds to answer questions
 
-* Create no-coding dashboards.
+* Create no-coding dashboards
 
-* Automate tracker wave updates of reports and dashboards.
+* Automate tracker wave updates of reports and dashboards

@@ -9,9 +9,9 @@ img = "img/diy.jpg"
 
 +++
 
-* Easily import data from with Crunch direct importers for survey software, including SurveyMonkey, Decipher, Qualtrics, and Confirmit.  
-* Embed white-labeled Crunch.io in your portal.
-* Enable single sign-on.
-* Use scripting to automate data preparation.
-* Data flows to Crunch.io when fielding closes.
-* Share dashboards with collaborators and clients.
+* Easily import data from with Crunch direct importers for survey software, including SurveyMonkey, Decipher, Qualtrics, and Confirmit
+* Embed white-labeled Crunch.io in your portal
+* Enable single sign-on
+* Use scripting to automate data preparation
+* Data flows to Crunch.io when fielding closes
+* Share dashboards with collaborators and clients
