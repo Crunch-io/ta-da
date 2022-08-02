@@ -1,19 +1,66 @@
 .crunch-reflection{
     box-shadow: 0px 3px 20px #00000029;
+    background-color: #fff;
     border-radius: 8px;
+    display: flex;
     overflow: hidden;
+    max-height: 361px;
+    max-width: 653px;
+    height: calc(100%);
+    width: calc(100%);
 
 }
 .crunch-reflection::before{
         content: "";
         border-radius: 20px;
-        transform: translate(-10px, 25px);
-        position: absolute;
-        top: 0px;
         left: 0px;
         height: calc(100%);
-        width: 95%;
+        position: absolute;
+        top: 0px;
+        width: calc(100%);
+        z-index: -1;
+
 }
+
+.crunch-reflection-large{
+    height: calc(100%);
+    width: calc(100%);
+    max-height: 353px;
+    max-width: 656px;
+
+}
+
+.crunch-reflection-small{
+    height: 323px;
+    width: 585px;
+}
+
+.crunch-reflection-large.crunch-reflection::before{
+    content: "";
+    border-radius: 20px;
+    max-height: 353px;
+    max-width: 656px;
+    left: 0px;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    width: calc(100% - 8%);
+
+}
+
+.crunch-reflection-small.crunch-reflection::before{
+    content: "";
+    border-radius: 20px;
+    max-height: 309px;
+    max-width: 589px;
+    left: 0px;
+    height: calc(100%);
+    position: absolute;
+    top: 0px;
+    width: calc(100%);
+
+}
+
 .crunch-reflection-left-top::before{
     transform: translate(-10px, -25px);
 }
@@ -37,9 +84,14 @@
 }
 
 #home{
-    font-size: 16px;
+    font-weight: normal;
+    font-size: 18px/22px;
+    font-family: "proximanova-regular";
+    color: $font-color-off-black;
     h1,h2,h3,h4,h5,h6{
-        font: normal normal bold 50px/65px Proxima Nova;
+        font-weight: bold;
+        font-family: "proximanova-semibold";
+        color: $font-color-off-black;
 
     }
     h2{
@@ -53,6 +105,11 @@
     .section-heading{
         font-size: 3rem;
         font-weight: bold;
+    }
+    .btn{
+        background: transparent linear-gradient(270deg, #2477B6 0%, #18649A 100%) 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 6px;
     }
 }
 
@@ -89,7 +146,8 @@
 
 // Responsive Home Styles
 
-@include media-breakpoint-only(sm) {
+
+@include media-breakpoint-only(md) {
     .crunch-reflection::before{
         content: "";
         border-radius: 12px;
@@ -97,74 +155,116 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        height: calc(90% - 50%);
-        width: 90%;
+        height: calc(100%);
+        width: calc(100%);
+        z-index: -1;
     }
-    .crunch-reflection-left-top::before{
-        transform: translate(3px, -13px);
-        height: 70%;
+
+    // .crunch-reflection-large{
+    //     height: calc(353px - 10%);
+    //     width: 656px;
+    // }
+    
+    .crunch-reflection-small{
+        height: 323px;
+        width: 585px;
+    }
+
+    .crunch-reflection-large.crunch-reflection::before{
+        content: "";
+        border-radius: 20px;
+        max-height: 353px;
+        max-width: 656px;
+        left: 0px;
+        height: calc(100%);
+        position: absolute;
+        top: 0px;
+        width: calc(100%);
+    }
+    
+    .crunch-reflection-small.crunch-reflection::before{
+        content: "";
+        border-radius: 20px;
+        max-height: 309px;
+        max-width: 589px;
+        left: 0px;
+        height: calc(100%);
+        position: absolute;
+        top: 0px;
+        width: calc(100%);
+    
     }
 }
 
-@media screen and (max-width:1430px) {
-    .crunch-reflection-right-top::before,
-    .crunch-reflection-left-top::before{
-        height: 92%;
+@media (max-width: 991.98px) {
+
+    .crunch-reflection-left-bottom::before{
+        transform: translate(-10px, 25px);
     }
-    .crunch-reflection-left-bottom::before {
-        transform: translate(-10px, 55px);
-        height: 92%;
+
+    .crunch-reflection-large{
+        height: calc(353px - 18%);
+        width: calc(100%);
+    }
+    
+    .crunch-reflection-large.crunch-reflection::before{
+        content: "";
+        border-radius: 20px;
+        max-height: calc(353px - 17%);
+        max-width: calc(90%);
+        left: 0px;
+        height: calc(100%);
+        position: absolute;
+        top: 0px;
+        width: calc(100%);
     }
 }
 
-@media screen and (max-width:1290px) {
-    .crunch-reflection-right-top::before{
-        height: 80%;
+@media (max-width: 767.98px) { 
+    .crunch-reflection-left-bottom::before{
+        transform: translate(-10px, 25px);
     }
-    .crunch-reflection-left-top::before{
-        height: 90%;
+
+    .crunch-reflection-large{
+        height: calc(100%);
+        width: calc(100%);
     }
-    .crunch-reflection-left-bottom::before {
-        transform: translate(-10px, 55px);
-        height: 92%;
+    
+    .crunch-reflection-large.crunch-reflection::before{
+        content: "";
+        border-radius: 20px;
+        max-height: calc(100%);
+        max-width: calc(100%);
+        left: 0px;
+        height: calc(100%);
+        position: absolute;
+        top: 0px;
+        width: calc(100%);
     }
 }
 
-@media screen and (max-width:1290px) {
-    .crunch-reflection-right-top::before{
-        height: 70%;
+@include media-breakpoint-only(sm) {
+    .crunch-reflection-left-bottom::before{
+        transform: translate(-10px, 25px);
     }
 
-    .crunch-reflection-left-bottom::before {
-        transform: translate(-10px, 35px);
-        height: 95%;
+    .crunch-reflection-large{
+        height: calc(100%);
+        width: calc(100%);
+    }
+    
+    .crunch-reflection-large.crunch-reflection::before{
+        content: "";
+        border-radius: 20px;
+        max-height: calc(100%);
+        max-width: calc(100%);
+        left: 0px;
+        height: calc(100%);
+        position: absolute;
+        top: 0px;
+        width: calc(90%);
     }
 }
-
-@media screen and (max-width:1160px) {
-    .crunch-reflection-right-top::before{
-        height: 70%;
-    }
-
-    .crunch-reflection-left-bottom::before {
-        transform: translate(-10px, 35px);
-        height: 95%;
-    }
-}
-
-@media screen and (max-width:1145px) {
-    .crunch-reflection-right-top::before{
-        height: 60%;
-    }
-    .crunch-reflection-left-top::before{
-        height: 65%;
-    }
-    .crunch-reflection-left-bottom::before {
-        transform: translate(-10px, 35px);
-        height: 75%;
-    }
-}
-
 
 @include media-breakpoint-only(xs) {
     #home .section-heading {
