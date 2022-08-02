@@ -11,7 +11,7 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        height: 100%;
+        height: calc(100%);
         width: 95%;
 }
 .crunch-reflection-left-top::before{
@@ -37,7 +37,7 @@
 }
 
 #home{
-
+    font-size: 16px;
     h1,h2,h3,h4,h5,h6{
         font: normal normal bold 50px/65px Proxima Nova;
 
@@ -154,7 +154,7 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        height: 100%;
+        height: calc(90% - 50%);
         width: 90%;
     }
     .crunch-reflection-left-top::before{
@@ -164,3 +164,63 @@
 }
 
 @include media-breakpoint-only(md) {}
+
+ @media screen and (max-width:1430px) {
+    .crunch-reflection-right-top::before,
+    .crunch-reflection-left-top::before{
+        height: 92%;
+    }
+    .crunch-reflection-left-bottom::before {
+        transform: translate(-10px, 55px);
+        height: 92%;
+    }
+}
+
+@media screen and (max-width:1290px) {
+    .crunch-reflection-right-top::before{
+        height: 80%;
+    }
+    .crunch-reflection-left-top::before{
+        height: 90%;
+    }
+    .crunch-reflection-left-bottom::before {
+        transform: translate(-10px, 55px);
+        height: 92%;
+    }
+}
+
+@media screen and (max-width:1290px) {
+    .crunch-reflection-right-top::before{
+        height: 70%;
+    }
+
+    .crunch-reflection-left-bottom::before {
+        transform: translate(-10px, 35px);
+        height: 95%;
+    }
+}
+
+
+@media screen and (max-width:1160px) {
+    .crunch-reflection-right-top::before{
+        height: 70%;
+    }
+
+    .crunch-reflection-left-bottom::before {
+        transform: translate(-10px, 35px);
+        height: 95%;
+    }
+}
+
+@media screen and (max-width:1145px) {
+    .crunch-reflection-right-top::before{
+        height: 60%;
+    }
+    .crunch-reflection-left-top::before{
+        height: 65%;
+    }
+    .crunch-reflection-left-bottom::before {
+        transform: translate(-10px, 35px);
+        height: 75%;
+    }
+}
