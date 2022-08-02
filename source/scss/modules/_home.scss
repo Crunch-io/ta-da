@@ -56,8 +56,6 @@
     }
 }
 
-
-
 #self-services{
     background: transparent linear-gradient(60deg, #FFFFFFA8 0%, #F2F2F2 100%) 0% 0% no-repeat padding-box;
     font-family: 'proximanova-regular';
@@ -90,6 +88,83 @@
 }
 
 // Responsive Home Styles
+
+@include media-breakpoint-only(sm) {
+    .crunch-reflection::before{
+        content: "";
+        border-radius: 12px;
+        transform: translate(3px, 11px);
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: calc(90% - 50%);
+        width: 90%;
+    }
+    .crunch-reflection-left-top::before{
+        transform: translate(3px, -13px);
+        height: 70%;
+    }
+}
+
+@media screen and (max-width:1430px) {
+    .crunch-reflection-right-top::before,
+    .crunch-reflection-left-top::before{
+        height: 92%;
+    }
+    .crunch-reflection-left-bottom::before {
+        transform: translate(-10px, 55px);
+        height: 92%;
+    }
+}
+
+@media screen and (max-width:1290px) {
+    .crunch-reflection-right-top::before{
+        height: 80%;
+    }
+    .crunch-reflection-left-top::before{
+        height: 90%;
+    }
+    .crunch-reflection-left-bottom::before {
+        transform: translate(-10px, 55px);
+        height: 92%;
+    }
+}
+
+@media screen and (max-width:1290px) {
+    .crunch-reflection-right-top::before{
+        height: 70%;
+    }
+
+    .crunch-reflection-left-bottom::before {
+        transform: translate(-10px, 35px);
+        height: 95%;
+    }
+}
+
+@media screen and (max-width:1160px) {
+    .crunch-reflection-right-top::before{
+        height: 70%;
+    }
+
+    .crunch-reflection-left-bottom::before {
+        transform: translate(-10px, 35px);
+        height: 95%;
+    }
+}
+
+@media screen and (max-width:1145px) {
+    .crunch-reflection-right-top::before{
+        height: 60%;
+    }
+    .crunch-reflection-left-top::before{
+        height: 65%;
+    }
+    .crunch-reflection-left-bottom::before {
+        transform: translate(-10px, 35px);
+        height: 75%;
+    }
+}
+
 
 @include media-breakpoint-only(xs) {
     #home .section-heading {
@@ -132,95 +207,15 @@
 
     .crunch-reflection-left-top::before{
         transform: translate(3px, -13px);
-        height: 70%;
     }
     .crunch-reflection-left-bottom::before{
-        transform: translate(-10px, 25px);
+        transform: translate(0px, 17px);
     }
     .crunch-reflection-right-top::before{
-        transform: translate(35px, -13px);
+        transform: translate(38px, -11px);
     }
     .crunch-reflection-right-bottom::before{
         transform: translate(10px, 25px);
     }
 
-}
-
-@include media-breakpoint-only(sm) {
-    .crunch-reflection::before{
-        content: "";
-        border-radius: 12px;
-        transform: translate(3px, 11px);
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        height: calc(90% - 50%);
-        width: 90%;
-    }
-    .crunch-reflection-left-top::before{
-        transform: translate(3px, -13px);
-        height: 70%;
-    }
-}
-
-@include media-breakpoint-only(md) {}
-
- @media screen and (max-width:1430px) {
-    .crunch-reflection-right-top::before,
-    .crunch-reflection-left-top::before{
-        height: 92%;
-    }
-    .crunch-reflection-left-bottom::before {
-        transform: translate(-10px, 55px);
-        height: 92%;
-    }
-}
-
-@media screen and (max-width:1290px) {
-    .crunch-reflection-right-top::before{
-        height: 80%;
-    }
-    .crunch-reflection-left-top::before{
-        height: 90%;
-    }
-    .crunch-reflection-left-bottom::before {
-        transform: translate(-10px, 55px);
-        height: 92%;
-    }
-}
-
-@media screen and (max-width:1290px) {
-    .crunch-reflection-right-top::before{
-        height: 70%;
-    }
-
-    .crunch-reflection-left-bottom::before {
-        transform: translate(-10px, 35px);
-        height: 95%;
-    }
-}
-
-
-@media screen and (max-width:1160px) {
-    .crunch-reflection-right-top::before{
-        height: 70%;
-    }
-
-    .crunch-reflection-left-bottom::before {
-        transform: translate(-10px, 35px);
-        height: 95%;
-    }
-}
-
-@media screen and (max-width:1145px) {
-    .crunch-reflection-right-top::before{
-        height: 60%;
-    }
-    .crunch-reflection-left-top::before{
-        height: 65%;
-    }
-    .crunch-reflection-left-bottom::before {
-        transform: translate(-10px, 35px);
-        height: 75%;
-    }
 }
