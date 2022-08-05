@@ -62,7 +62,7 @@
 }
 
 .crunch-reflection-left-top::before{
-    transform: translate(-10px, -25px);
+    transform: translate(-27px, -25px);
 }
 .crunch-reflection-left-bottom::before{
     transform: translate(-10px, 30px);
@@ -285,6 +285,9 @@
     .crunch-reflection-right-top::before{
         transform: translate(48px, -30px);
     }
+    .crunch-reflection-left-top::before{
+        transform: translate(-27px, -26px)
+    }
 }
 
 @include media-breakpoint-only(sm) {
@@ -350,7 +353,7 @@
     }
 
     .crunch-reflection-left-top::before{
-        transform: translate(3px, -13px);
+        transform: translate(-27px, -26px)
     }
     .crunch-reflection-left-bottom::before{
         transform: translate(0px, 17px);
