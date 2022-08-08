@@ -89,8 +89,8 @@
     font-family: "proximanova-regular";
     color: $font-color-off-black;
     h1,h2,h3,h4,h5,h6{
-        font-weight: bold;
-        font-family: "proxima_novabold";
+        font-weight: 700;
+        font-family: "ProximaNova";
         color: $font-color-off-black;
 
     }
@@ -104,7 +104,7 @@
 
     .section-heading{
         font-size: 3rem;
-        font-weight: bold;
+        font-weight: 700;
     }
     .btn{
         background: transparent linear-gradient(270deg, #2477B6 0%, #18649A 100%) 0% 0% no-repeat padding-box;
@@ -133,6 +133,7 @@
     
     h2{
         font-size: 2rem;
+        font-weight: 400;
     }
 }
 
