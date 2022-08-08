@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Jul 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Aug 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -771,6 +771,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/tmre-2022</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2022.12</title>
+      <link>//crunch.io/release-notes/2022-08-08/</link>
+      <pubDate>Mon, 08 Aug 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-08-08/</guid>
+      <description>Crunch web application Fixed the following issues: Slides were sometimes not appearing properly within a deck. Some columns within a multitable were no longer visible after decreasing the browser page magnification. Double-clicking on a tile in dashboard view did not switch to ‘tables &amp;amp; graphs’ view. Changes made to the sorting order of a univariate analysis in the Edit &amp;gt; Categories panel were not able to be saved. Crunch integrations Made the following Confirmit-integration fixes: Responses now load properly when the capitalization doesn&amp;rsquo;t match the metadata.</description>
     </item>
     
     <item>
