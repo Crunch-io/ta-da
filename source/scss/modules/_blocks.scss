@@ -76,9 +76,11 @@
 
         a {
             color: $font-color-off-black;
+            display: inline !important;
             margin-left: 10px;
             font-family: 'ProximaNova', serif;
             font-weight: 700;
+
 
             &:hover {
                 text-decoration: none;
