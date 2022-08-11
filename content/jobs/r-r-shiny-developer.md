@@ -40,3 +40,5 @@ Please send your resume, a paragraph outlining your interest in the role, and a 
 This is a 100% remote role.
 
 We strive to write accurate job descriptions, but we know that great talent comes in many forms and from many backgrounds. Please apply even if you aren’t sure you meet all of the criteria
+
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now via email to careers@crunch.io</button>
