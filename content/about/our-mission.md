@@ -14,4 +14,4 @@ url_2 = "jobs"
 
 +++
 
-Our mission is to empower marketers and market researchers to collaborate in a secure, cloud-based environment with a simple drag-and-drop interface to analyze, visualize, and deliver survey data.
+Our mission is to empower insights teams and market researchers to collaborate in a secure, online environment with a simple, self-service interface to quickly analyze, visualize, and deliver survey data.
