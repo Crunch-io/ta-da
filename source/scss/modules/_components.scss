@@ -2,6 +2,125 @@
 .jumbotron {
     border-radius: 0;
 }
+// startCrunch reflection frames 
+    .feak-image{
+        background-color: antiquewhite;
+        border:solid 1px #D3E3DF;
+        height: 100%;
+        width: 100%;
+        margin: 15px;
+    }
+    .crunch-h1,.crunch-h2,.crunch-h3,.crunch-h4,.crunch-h5,.crunch-h6{
+        font-weight: 700;
+        font-family: "ProximaNova";
+        color: $font-color-off-black;
+    }
+
+    .crunch-h1{
+        font-size: 3.5rem;
+        font-weight: 700;
+    }
+
+    .crunch-h2{
+        font-size: 2.5rem;
+    }
+
+    .crunch-h3{
+        font-size: 1.9rem;
+    }
+
+.crunch-gradient-gray{
+    background: transparent linear-gradient(62deg, #FFFFFFA8 0%, #F2F2F2 100%) 0% 0% no-repeat padding-box;
+}
+.crunch-reflection{
+    box-shadow: 0px 3px 20px #00000029;
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    overflow: hidden;
+    max-height: 361px;
+    max-width: 653px;
+    height: calc(100%);
+    width: calc(100%);
+
+}
+.crunch-reflection::before{
+        content: "";
+        border-radius: 20px;
+        left: 0px;
+        height: calc(100%);
+        position: absolute;
+        top: 0px;
+        width: calc(100%);
+        z-index: -1;
+
+}
+
+.crunch-reflection-large{
+    height: calc(100%);
+    width: calc(100%);
+    max-height: 361px;
+    max-width: 656px;
+
+}
+
+.crunch-reflection-small{
+    height: 323px;
+    width: 585px;
+}
+
+.crunch-reflection-large.crunch-reflection::before{
+    content: "";
+    border-radius: 20px;
+    max-height: 353px;
+    max-width: 656px;
+    left: 0px;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    width: calc(100% - 8%);
+
+}
+
+.crunch-reflection-small.crunch-reflection::before{
+    content: "";
+    border-radius: 20px;
+    max-height: 309px;
+    max-width: 589px;
+    left: auto;
+    height: calc(100%);
+    position: absolute;
+    top: auto;
+    width: calc(100% - 5%);
+
+}
+
+.crunch-reflection-left-top::before{
+    transform: translate(-27px, -25px);
+}
+.crunch-reflection-left-bottom::before{
+    transform: translate(-10px, 30px);
+}
+.crunch-reflection-right-top::before{
+    transform: translate(26px, -30px);
+}
+.crunch-reflection-right-bottom::before{
+    transform: translate(10px, 25px);
+}
+.crunch-background-green::before{
+    background-color: $color-green;
+}
+.crunch-background-blue::before{
+    background-color: $color-blue
+}
+.crunch-background-purple::before{
+    background-color: $color-purple;
+}
+
+// end Crunch reflection frames 
+
+
+
 
 // Intro-content jumbotron
 #page-content-wrapper {
@@ -769,7 +888,6 @@ a.carousel-control-next {
                         position: absolute;
                         width:15px;
                     }
-
                     &[aria-expanded="true"]::before {
                         transform: rotate(90deg);
                     }
