@@ -3,14 +3,16 @@
     <div id="secondary-pages-wrapper">
         <div class="container-fluid cr-section-grey cr-section-block spacer-top-md-hero">
             {{ range .Site.Pages }}
-                {{ if and (eq .Type "product") (eq .Title "Powerful online analytics") }}
+                {{ if and (eq .Type "product") (eq .Title "All your data in one place") }}
                 <div class="container">
                     <div class="row spacer share-insights justify-content-center">
                         <div class="text-center">
                             <h2 class="label">{{ .Params.label }}</h2>
-                            <h2 class="secondary-title">All your survey data,<br/> <span>in one place.</span></h2>
+                            <h2 class="secondary-title">
+                                {{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} <br/><span> {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }}</span> {{ end }}
+                            </h2>
                             <div class="col-md-6 m-auto">
-                                <p>Instantly search across all your projects. Analyze all your survey data – current and historical data from multiple survey sources.</p>
+                                <p>{{ .Content }}</p>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 +++
 title = "Trackers tamed"
-subtitle = "Work together seamlessly with the best-in-class platform."
+subtitle = "Work together seamlessly with the best-in-class platform"
 label = "COLLABORATIVE"
 gif = "img/stat-speed.gif"
 images = ["https://crunch.io/img/logo-1200x630.png"]
