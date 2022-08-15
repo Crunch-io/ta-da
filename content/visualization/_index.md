@@ -13,10 +13,14 @@ carousel_img_4 = "img/visualization_and_delivery/crunchbox.svg"
 
 +++
 
-* Drag-and-drop to create interactive tables, charts, and graphs.
+* Drag and drop to create interactive and intuitive tables, charts, time plots, and graphs
 
-* Quickly build a custom a custom [dashboard](dashboards) with no coding.
+* Export editable, instantly useable tables, charts, and crosstabs to PowerPoint and Excel
 
-* Export editable tables and charts to PowerPoint and Excel.
+* Easily add your branding and colors. Automatically apply custom templates to downloads.
 
-* With a few clicks, deliver or embed a [CrunchBox](crunchbox) - the easiest and quickest way to slice and dice survey data with zero training.
+* Build dashboards with no coding
+
+* Perform smoothing, stats testing, and sample size checks
+
+* With a few clicks, deliver or embed a CrunchBox - the easiest and quickest way to slice and dice survey data with zero training
