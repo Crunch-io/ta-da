@@ -1367,12 +1367,9 @@ Re-labeled column headers in Edit Categories panel. Hid &amp;ldquo;viztype&amp;r
       <pubDate>Fri, 02 Oct 2020 14:51:43 -0400</pubDate>
       
       <guid>//crunch.io/request-demo/capabilities/</guid>
-      <description>With Crunch.io, you can:
-Get rid of two day turnarounds to answer questions.
-Build crosstabs with a drag-and-drop.
-Build a graph with one click.
-Export real PowerPoint objects.
-Build and deliver a dashboard in 5 minutes.</description>
+      <description>Crunch.io is a leading online, self-service survey data analysis platform focused on simplicity, speed, and usability.
+With Crunch.io, you can:
+Analyze all your data in one place Build crosstabs with a drag-and-drop Add visualizations with one click Export editable PowerPoint objects Get rid of two-day turnarounds to answer questions Create no-coding dashboards Automate tracker wave updates of reports and dashboards </description>
     </item>
     
     <item>
@@ -1381,7 +1378,7 @@ Build and deliver a dashboard in 5 minutes.</description>
       <pubDate>Thu, 03 Sep 2020 15:47:05 -0400</pubDate>
       
       <guid>//crunch.io/about/our-mission/</guid>
-      <description>Our mission is to empower marketers and market researchers to collaborate in a secure, cloud-based environment with a simple drag-and-drop interface to analyze, visualize, and deliver survey data.</description>
+      <description>Our mission is to empower insights teams and market researchers to collaborate in a secure, online environment with a simple, self-service interface to quickly analyze, visualize, and deliver survey data.</description>
     </item>
     
     <item>
@@ -1390,8 +1387,7 @@ Build and deliver a dashboard in 5 minutes.</description>
       <pubDate>Thu, 03 Sep 2020 15:47:05 -0400</pubDate>
       
       <guid>//crunch.io/about/who-we-are/</guid>
-      <description>We’re a group of survey experts, market researchers, data scientists, and engineers.
-We were frustrated by the current tools used to analyze, visualize, and deliver survey data. So, we built Crunch to bring simplicity and usability to survey data analysis.</description>
+      <description>We’re a group of survey experts, market researchers, designers, and engineers. We were frustrated by the current tools used to analyze, visualize, and deliver survey data. So, we built Crunch.io to bring easy self-service to survey data analysis.</description>
     </item>
     
     <item>
@@ -1411,9 +1407,11 @@ Export key tables and visualization as editable PowerPoint objects, ready for pr
       <pubDate>Wed, 26 Aug 2020 14:45:58 -0400</pubDate>
       
       <guid>//crunch.io/dashboards/the-new-normal/</guid>
-      <description>Drag-and-drop to create dashboard
-Add filters, tables, and graphs in a few clicks
-Resize, reorder, brand, and customize without coding</description>
+      <description>Drag and drop to create visually-compelling dashboards. No programming or DP expertise required.
+Add filters, tables, and graphs in just a few clicks
+Resize, reorder, brand, and customize without coding
+Broadly and quickly deploy dashboards with lower costs and fewer resources
+Instantly create multiple dashboards for different audiences from one master dashboard with Crunch Views</description>
     </item>
     
     <item>
@@ -1422,7 +1420,7 @@ Resize, reorder, brand, and customize without coding</description>
       <pubDate>Mon, 10 Aug 2020 16:37:03 -0400</pubDate>
       
       <guid>//crunch.io/powerful-survey-analytics/scalability/</guid>
-      <description> All your data in one place, in the cloud. Instantly searchable across all your datasets. Everyone can analyze. It’s so easy to use. Deploy dashboards broadly because they’re so quick to build. </description>
+      <description> Instantly search across all your datasets Empower anyone to analyze or view findings Quickly and broadly deploy easy-to-build dashboards </description>
     </item>
     
     <item>
@@ -1431,7 +1429,7 @@ Resize, reorder, brand, and customize without coding</description>
       <pubDate>Mon, 10 Aug 2020 16:37:03 -0400</pubDate>
       
       <guid>//crunch.io/powerful-survey-analytics/simplicity/</guid>
-      <description> Analyze data with little or no training. Create tables and charts. Filter data. Build dashboards in 5 minutes. Empower customers and clients to answer their own questions. </description>
+      <description> Analyze data with little or no training Create tables and charts Filter data Build dashboards in 5 minutes Empower customers and clients to answer their own questions </description>
     </item>
     
     <item>
@@ -1440,7 +1438,7 @@ Resize, reorder, brand, and customize without coding</description>
       <pubDate>Mon, 10 Aug 2020 16:37:03 -0400</pubDate>
       
       <guid>//crunch.io/powerful-survey-analytics/speed/</guid>
-      <description>The CrunchDB columnar database is purpose built to handle even your largest survey datasets with millions of respondents (rows), and thousands of variables (columns).</description>
+      <description>The CrunchDB columnar database is purpose built to handle even your largest survey datasets with millions of respondents and thousands of variables.</description>
     </item>
     
     <item>
@@ -1689,6 +1687,15 @@ To that end, we’ve recently developed a draft and publish feature that allows 
     </item>
     
     <item>
+      <title>All your data in one place</title>
+      <link>//crunch.io/product/built-for-surve-data/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//crunch.io/product/built-for-surve-data/</guid>
+      <description>Instantly search across all your projects. Analyze all your survey data – current and historical data from multiple survey sources.</description>
+    </item>
+    
+    <item>
       <title>Create crunchbox</title>
       <link>//crunch.io/crunchbox/create-crunchbox/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -1703,7 +1710,7 @@ To that end, we’ve recently developed a draft and publish feature that allows 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//crunch.io/product/enterprise-scalable/</guid>
-      <description> Everyone works on the same data, simultaneously, in the cloud. End the version control nightmare. Scale to all your datasets, even ones with millions of respondents (rows), and thousands of variables (columns) with sub-second response Analyze with sub-second response Instantly search across all your datasets. </description>
+      <description> Find quick answers to your questions on your own. No more 2-day turnarounds with DP or vendors. Scale to all your datasets, even ones with millions of respondents and thousands of variables, with subsecond query response, powered by the Crunch columnar database built for survey data. Automate workflows, reporting, and dashboards for faster delivery to stakeholders </description>
     </item>
     
     <item>
@@ -1721,7 +1728,7 @@ To that end, we’ve recently developed a draft and publish feature that allows 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//crunch.io/product/powerful-analytics/</guid>
-      <description> Empower everyone, from CMO to PhD, to analyze with an easy-to-use interface. Find insights faster. Stop pouring over hundreds of Excel tabs. No more 2-day turnarounds with DP to answer simple questions. Check awareness among female, millennial, Californians in 1 minute. Build an interactive dashboard in 5 minutes. </description>
+      <description> Empower everyone, from CMO to PhD, to analyze with easy drag-and-drop Create your own data cuts anytime Slice, dice, and filter with ease Change visualization types with one click Check awareness among female, millennial, Californians in 1 minute Build an interactive, no-coding dashboard in 5 minutes. No coding or DP expertise required. </description>
     </item>
     
     <item>
@@ -1740,8 +1747,7 @@ Setting a very low sitemap priority will tell search engines this is not importa
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>//crunch.io/product/trackers-tamed/</guid>
-      <description>Track awareness across survey waves with one click. Automatically append tracking study waves. Plot data over time.
-Learn more</description>
+      <description>Everyone works on the same data, simultaneously, in the cloud. Reports and dashboards are stored online, accessible anytime by your whole team. End the version control nightmare. Securely control access to data.</description>
     </item>
     
     <item>
