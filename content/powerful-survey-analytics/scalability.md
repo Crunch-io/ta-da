@@ -9,7 +9,7 @@ gif = "img/survey_data_expertise/weight_estimation.gif"
 
 +++
 
-* Instantly search across all your datasets.
-* Empower anyone to analyze or view findings.
-* Quickly and broadly deploy easy-to-build dashboards.
+* Instantly search across all your datasets
+* Empower anyone to analyze or view findings
+* Quickly and broadly deploy easy-to-build dashboards
 

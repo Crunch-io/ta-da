@@ -14,5 +14,3 @@ mob_video = "https://player.vimeo.com/video/446617800"
 * Change visualization types with one click 
 * Check awareness among female, millennial, Californians in 1 minute 
 * Build an interactive, no-coding dashboard in 5 minutes. No coding or DP expertise required.
-
-<button type="button" class="btn btn-success" onclick="window.location.href='/request-demo'">Learn more</button>
