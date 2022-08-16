@@ -1,15 +1,13 @@
 +++
 title = "Enterprise scalable"
-label = "Enterprise scalable"
-subtitle = "Democratize survey data analysis."
+label = "FAST"
+subtitle = "Accelerate your survey data analysis and delivery"
 images = ["https://crunch.io/img/logo-1200x630.png"]
 carousel_img_1 = "img/powerful_survey_analytics/drag_and_drop.svg"
 carousel_img_2 = "img/powerful_survey_analytics/tables_and_charts.svg"
 carousel_img_3 = "img/powerful_survey_analytics/dashboards.svg"
 +++
 
-* Everyone works on the same data, simultaneously, in the cloud.
-* End the version control nightmare.
-* Scale to all your datasets, even ones with millions of respondents (rows), and thousands of variables (columns) with sub-second response
-* Analyze with sub-second response
-* Instantly search across all your datasets.
+* Find quick answers to your questions on your own. No more 2-day turnarounds with DP or vendors. 
+* Scale to all your datasets, even ones with millions of respondents and thousands of variables, with subsecond query response, powered by the Crunch columnar database built for survey data. 
+* Automate workflows, reporting, and dashboards for faster delivery to stakeholders

@@ -10,15 +10,15 @@ mob_video = "https://player.vimeo.com/video/446617800"
 
 +++
 
+Crunch.io is a leading online, self-service survey data analysis platform focused on simplicity, speed, and usability.
 
 With Crunch.io, you can:
 
-* Get rid of two day turnarounds to answer questions.
+* Analyze all your data in one place
+* Build crosstabs with a drag-and-drop 
+* Add visualizations with one click
+* Export editable PowerPoint objects
+* Get rid of two-day turnarounds to answer questions
+* Create no-coding dashboards
+* Automate tracker wave updates of reports and dashboards
 
-* Build crosstabs with a drag-and-drop.
-
-* Build a graph with one click.
-
-* Export real PowerPoint objects.
-
-* Build and deliver a dashboard in 5 minutes.
