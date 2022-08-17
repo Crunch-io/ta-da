@@ -1,6 +1,6 @@
 #home{
     font-weight: normal;
-    font-size: 18px;
+    font-size: 19px;
     font-family: "ProximaNova";
     color: $font-color-off-black;
     
@@ -26,7 +26,11 @@
     .btn{
         background: transparent linear-gradient(270deg, #2477B6 0%, #18649A 100%) 0% 0% no-repeat padding-box;
         box-shadow: 0px 3px 6px #00000029;
-        border-radius: 6px;
+        border-radius: 5px;
+        &:hover{
+            background: transparent linear-gradient(270deg, #195E91 0%, #10476F 100%) 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 6px #00000029;
+        }
     }
 }
 
@@ -36,7 +40,7 @@
     padding: 65px 75px 18px;
     
     .container-fluid{
-        max-width: 1600px;
+        max-width: 1400px;
     }
     
     img{
@@ -58,7 +62,7 @@
     padding: 65px 75px 0px;
 
     .container-fluid{
-        max-width: 1600px;
+        max-width: 1400px;
     }
 
     figure{
@@ -69,6 +73,6 @@
 #crunchio-is-for{
     padding: 65px 75px 0px;
     .container-fluid{
-        max-width: 1600px;
+        max-width: 1400px;
     }
 }
