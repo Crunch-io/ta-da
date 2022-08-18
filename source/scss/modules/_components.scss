@@ -32,6 +32,14 @@
 .crunch-gradient-gray{
     background: transparent linear-gradient(62deg, #FFFFFFA8 0%, #F2F2F2 100%) 0% 0% no-repeat padding-box;
 }
+
+.crunch-green{
+    background:$color-green;
+    color:$color-white;
+    .label{
+        color:$color-white;
+    }
+}
 .crunch-reflection{
     box-shadow: 0px 3px 20px #00000029;
     background-color: #fff;

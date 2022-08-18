@@ -35,11 +35,10 @@
 
                     <div class="col-md-4  col-12 d-flex  mr-4 justify-content-center align-items-center">
                         <div class="py-md-5">
-                            <h3 class="crunch-h3">{{ with .Params.subtitle }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h3>
+                            <h3 class="crunch-h3">{{ with .Params.organize }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h3>
 
                             <div class="d-none d-sm-block">
-                                <p>Analyze survey data from multiple vendors & DIY platforms, like Qualtrics, SurveyMonkey, and Decipher, in one platform. Create your own data cuts with drag-and-drop. Eliminate back and forth with vendors.</p>
-                                <a href="/for-insights-teams/" aria-label="Learn more about Insights Teams"  class="btn btn-primary mt-3">Learn more</a>
+                                <p>{{.Params.content_organize}}</p>
                             </div>
                         </div>  
                     </div>
@@ -62,22 +61,20 @@
 
                     <div class="col-md-4  col-12 d-flex  mr-4 justify-content-center align-items-center">
                         <div class="py-md-5">
-                            <h3 class="crunch-h3">{{ with .Params.subtitle }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h3>
+                            <h3 class="crunch-h3">{{ with .Params.filter }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h3>
                             
                             <div class="d-none d-sm-block">
-                                <p>Analyze survey data from multiple vendors & DIY platforms, like Qualtrics, SurveyMonkey, and Decipher, in one platform. Create your own data cuts with drag-and-drop. Eliminate back and forth with vendors.</p>
-                                <a href="/for-insights-teams/" aria-label="Learn more about Insights Teams"  class="btn btn-primary mt-3">Learn more</a>
+                                <p>{{.Params.content_filter }}</p> 
                             </div>
                         </div>  
                     </div>
 
                     <div class="col-md-4  col-12 d-flex  mr-4 justify-content-center align-items-center">
                         <div class="py-md-5">
-                            <h3 class="crunch-h3">{{ with .Params.subtitle }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h3>
+                            <h3 class="crunch-h3">{{ with .Params.append }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h3>
                             
                             <div class="d-none d-sm-block">
-                                <p>Analyze survey data from multiple vendors & DIY platforms, like Qualtrics, SurveyMonkey, and Decipher, in one platform. Create your own data cuts with drag-and-drop. Eliminate back and forth with vendors.</p>
-                                <a href="/for-insights-teams/" aria-label="Learn more about Insights Teams"  class="btn btn-primary mt-3">Learn more</a>
+                                <p>{{.Params.content_append}}</p><a href="/for-insights-teams/" aria-label="Learn more about Insights Teams"  class="btn btn-primary mt-3">Learn more</a>
                             </div>
                         </div>  
                     </div>
@@ -98,9 +95,9 @@
     </div>
 
     <div id="secondary-pages-wrapper">
-        <div class="container-fluid crunch-gradient-gray cr-section-block">
+        <div class="container-fluid crunch-green cr-section-block">
         {{ range .Site.Pages }}
-            {{ if and (eq .Type "for-insights-teams") (eq .Title "This is as easy as it gets") }}
+            {{ if and (eq .Type "for-insights-teams") (eq .Title "webinar") }}
 
             <div class="container">
                 <div class="row spacer share-insights">
