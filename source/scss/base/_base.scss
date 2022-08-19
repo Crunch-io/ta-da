@@ -1,10 +1,10 @@
 body {
     color: $color-off-black;
-    font-family: ProximaNova, sans-serif;
+    font-family: "ProximaNova", sans-serif;
     line-height: 1.7;
     height: 100%;
     @include font-smoothing(antialiased);
-    font-size: 15px;
+    font-size: 20px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -45,7 +45,11 @@ ol {
 }
 
 .container-fluid {
-    padding: 0;
+    padding: 75px;
+    .row{
+        max-width: 1400px;
+        margin: auto;
+    }
 }
 
 .down-arrow {

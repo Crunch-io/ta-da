@@ -43,6 +43,11 @@
     }
 }
 
+.btn-crunch-green{
+    background: transparent linear-gradient(270deg, #8EB7AD 0%, #D3E3DF 100%) 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+}
+
 .btn-tertiary {
     background-color: $--lighter-primary-color;
     border-color: $--lighter-primary-color;

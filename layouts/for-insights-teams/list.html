@@ -4,7 +4,7 @@
 
 
     <div class="container-fluid py-5 crunch-gradient-gray">
-                <div class="container">
+                <div class="">
                     <div class="row">
                             <div class="col-md-6 ">
                                 <h1 class="crunch-h1">{{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }}<br/> {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ end }}</h1>
@@ -27,23 +27,23 @@
 
         {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "This is as easy as it gets") }}
-            <div class="container">
-                <div class="row spacer share-insights">
-                    <div class="col-md-12 pt-ls-5 pt-0 mb-md-4">
+        
+                <div class="row row justify-content-between">
+                    <div class="col-md-12 pt-ls-5 pt-0 mb-md-4 order-0">
                         <h2 class="crunch-h2">{{ .Params.label }}</h2>
                     </div>
 
-                    <div class="col-md-4  col-12 d-flex  mr-4 justify-content-center align-items-center">
+                    <div class="col-md-4  col-12 d-flex  mr-4 justify-content-start justify-content-md-center align-items-center order-1">
                         <div class="py-md-5">
                             <h3 class="crunch-h3">{{ with .Params.organize }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h3>
 
-                            <div class="d-none d-sm-block">
+                            <div>
                                 <p>{{.Params.content_organize}}</p>
                             </div>
                         </div>  
                     </div>
                 
-                    <div class="col-12 col-sm-12  col-md-6 d-flex align-items-center py-5">
+                    <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-center py-5 order-2">
                         <div class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                             <div class="embed-responsive embed-responsive-16by9">
                                 
@@ -51,7 +51,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-sm-12  col-md-6 d-flex align-items-center py-5">
+                    <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-center py-5 order-4 order-md-3">
                         <div class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple">
                             <div class="embed-responsive embed-responsive-16by9">
                                 
@@ -59,27 +59,27 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4  col-12 d-flex  mr-4 justify-content-center align-items-center">
+                    <div class="col-md-4  col-12 d-flex  mr-4 justify-content-start justify-content-md-center  align-items-center order-3 order-md-4">
                         <div class="py-md-5">
                             <h3 class="crunch-h3">{{ with .Params.filter }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h3>
                             
-                            <div class="d-none d-sm-block">
+                            <div>
                                 <p>{{.Params.content_filter }}</p> 
                             </div>
                         </div>  
                     </div>
 
-                    <div class="col-md-4  col-12 d-flex  mr-4 justify-content-center align-items-center">
+                    <div class="col-md-4  col-12 d-flex  mr-4 justify-content-start justify-content-md-center  align-items-center order-5">
                         <div class="py-md-5">
                             <h3 class="crunch-h3">{{ with .Params.append }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h3>
                             
-                            <div class="d-none d-sm-block">
-                                <p>{{.Params.content_append}}</p><a href="/for-insights-teams/" aria-label="Learn more about Insights Teams"  class="btn btn-primary mt-3">Learn more</a>
+                            <div>
+                                <p>{{.Params.content_append}}</p>
                             </div>
                         </div>  
                     </div>
                     
-                    <div class="col-12 col-sm-12  col-md-6 d-flex align-items-center py-5">
+                    <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-center py-5 order-6">
                         <div class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                             <div class="embed-responsive embed-responsive-16by9">
                                 
@@ -88,38 +88,32 @@
                     </div>
 
                 </div> <!-- /.row. -->
-            </div> <!-- /.container -->
+            
             {{ end }}
         {{ end }}
         </div>
     </div>
 
     <div id="secondary-pages-wrapper">
-        <div class="container-fluid crunch-green cr-section-block">
+        <div class="container-fluid crunch-green py-5">
         {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "webinar") }}
 
-            <div class="container">
-                <div class="row spacer share-insights">
-                    <div class="col-sm-12 col-md-5 order-1 order-md-0">
-                        <div class="quote-block">
-                            <p class="punctuation">“</p>
-                            <p>I’m tired of scavenging for and then digging through hundreds of spreadsheets. It takes way too much of my time.</p>
-                            <p class="punctuation">”</p>
-                            <br>
-
-                            <div class="author">
-                                <p>Insights Director</p>
-                                <p>at a Financial Services Firm</p>
-                            </div>
+            <div class="">
+                <div class="row  share-insights">
+                    <div class="col-sm-12 col-md-4">
+                        <div>
+                            <img src="{{ .Params.gif }}" alt="{{ .Params.label }}">
                         </div>
                     </div>
 
-                    <div class="col-sm-12 col-md-4 offset-md-2 order-0">
+                    <div class="col-sm-12 col-md-8">
                         <h2 class="label">{{ .Params.label }}</h2>
-                        <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <span>{{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }}</span> {{ end }}</h2>
+                        <h2 class="crunch-h3">{{  .Params.subtitle }}</h2>
 
                         <p>{{ .Content }}</p>
+                        <a href="/request-demo/" aria-label="Request a demo" class="btn btn-crunch-green btn-primary btn-lg cta   d-sm-inline-block">Download</a>
+
                     </div>
                 </div> <!-- /.row. -->
 
@@ -133,43 +127,35 @@
         <div class="container-fluid">
 
         {{ range .Site.Pages }}
-            {{ if and (eq .Type "for-insights-teams") (eq .Title "Automated data imports") }}
-            <div class="container tool-section">
-                <div class="row spacer share-insights text-md-center justify-content-center align-self-center">
-                    <div class="col-sm-10 col-md-8 col-lg-6">
-                        <h2 class="label">{{ .Params.label }}</h2>
-                        <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} <span>{{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }}</span> {{ end }}</h2>
+            {{ if and (eq .Type "for-insights-teams") (eq .Title "Find insights right away") }}
+            
+                <div class="row  justify-content-start align-self-center">
+                    <div class="col-12">
+                            <h2 class="crunch-h2">{{ .Params.label }}</h2>
+                    </div>
 
-                        <p>{{ .Content }}</p>
+                    <div class="col-12 col-sm-12  col-md-6 d-flex align-items-center justify-content-center py-5">
+                            <div class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
+                                <img src="{{ .Params.gif }}" alt="" class="img-fluid add-shadow sp-mb-t rouded">
+                            </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-sm-12 col-md-5">
-                                <ul style="text-align:left;">
-                                    <li>Cleans your data</li>
-                                    <li>Clearly labels everything</li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-12 col-md-7">
-                                <ul style="text-align:left;">
-                                    <li>Organizes questions into logical folders</li>
-                                    <li>Appends new tracker waves</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="col-md-5 align-items-center justify-content-center pt-5">
+                    
+                        <h3 class="crunch-h3">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} <span>{{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }}</span> {{ end }}</h3>
+
+                        {{ .Content }}
 
                     </div>
+                    
                 </div> <!-- /.row. -->
 
-                <div class="row text-center justify-content-center align-self-center">
-                    <div class="col-md-12 hero-img-bottom">
-                        <img src="{{ .Params.gif }}" alt="" class="img-fluid add-shadow sp-mb-t rouded">
-                    </div>
-                </div> <!-- /.row. -->
+       
 
-            </div> <!-- /.container -->
             {{ end }}
         {{ end }}
-
+    </div> <!-- /.container -->
+</div>
 {{ partial "footer-nav.html" . }}
 
 {{ partial "footer.html" . }}
