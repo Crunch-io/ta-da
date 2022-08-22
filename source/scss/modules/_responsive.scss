@@ -1,5 +1,14 @@
 
 @include media-breakpoint-only(md) {
+
+    .container-fluid {
+        padding: 35px;
+        .row{
+            max-width: 1400px;
+            margin: auto;
+        }
+    }
+
     .crunch-reflection::before{
         content: "";
         border-radius: 12px;
@@ -87,6 +96,15 @@
 }
 
 @media (max-width: 767.98px) { 
+
+    .container-fluid {
+        padding: 15px;
+        .row{
+            max-width: 1400px;
+            margin: auto;
+        }
+    }
+
     .crunch-reflection-left-bottom::before{
         transform: translate(-10px, 25px);
     }
@@ -133,6 +151,15 @@
 }
 
 @include media-breakpoint-only(sm) {
+
+    .container-fluid {
+        padding: 15px;
+        .row{
+            max-width: 1400px;
+            margin: auto;
+        }
+    }
+
     .crunch-reflection-left-bottom::before{
         transform: translate(-10px, 25px);
     }

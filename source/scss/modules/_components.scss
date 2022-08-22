@@ -9,12 +9,49 @@
 //     font-family: "ProximaNova";
 //     color: $font-color-off-black;
     
+
+    .feak-image{
+        background-color: antiquewhite;
+        border:solid 1px #D3E3DF;
+        height: 100%;
+        width: 100%;
+        margin: 15px;
+    }
+
     .crunch-h1,.crunch-h2,.crunch-h3,.crunch-h4,.crunch-h5,.crunch-h6{
         font-weight: 700;
         font-family: "ProximaNova";
         color: $font-color-off-black;
     }
 
+
+    .crunch-h1{
+        font-size: 3.5rem;
+        font-weight: 700;
+    }
+
+    .crunch-h2{
+        font-size: 2.5rem;
+    }
+
+    .crunch-h3{
+        font-size: 1.9rem;
+    }
+
+.crunch-gradient-gray{
+    background: transparent linear-gradient(62deg, #FFFFFFA8 0%, #F2F2F2 100%) 0% 0% no-repeat padding-box;
+}
+
+.crunch-green{
+    background:$color-green;
+    color:$color-white;
+    font-family: "ProximaNova";
+    h2,
+    .label{
+        color:$color-white;
+    }
+}
+>>>>>>> for-insights-teams
 .crunch-reflection{
     box-shadow: 0px 3px 20px #00000029;
     background-color: #fff;
@@ -101,8 +138,6 @@
 }
 
 // end Crunch reflection frames 
-
-
 
 // Intro-content jumbotron
 #page-content-wrapper {
@@ -870,7 +905,6 @@ a.carousel-control-next {
                         position: absolute;
                         width:15px;
                     }
-
                     &[aria-expanded="true"]::before {
                         transform: rotate(90deg);
                     }
