@@ -1,10 +1,13 @@
-.btn {
-    padding: 10px 50px;
-    border-radius: 2px;
+.btn{
+    background: transparent linear-gradient(270deg, #2477B6 0%, #18649A 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 5px;
 
-    &:focus, &.focus{
-        box-shadow: 0 0 0rem rgb(0 123 255 / 0%);
+    &:focus, &.focus, &:hover{
+        background: transparent linear-gradient(270deg, #195E91 0%, #10476F 100%) 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 6px #00000029;
     }
+
 }
 
 .btn-sm {

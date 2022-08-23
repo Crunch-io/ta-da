@@ -23,8 +23,11 @@
 @import './modules/_buttons.scss';
 @import './modules/_sections.scss';
 @import './modules/_components.scss';
+@import './modules/_home.scss';
 
 /* LAYOUTS - Page Layouts */
 @import './layouts/_sidebar.scss';
 @import './layouts/_nav.scss';
 @import './layouts/_footer.scss';
+
+@import './modules/_responsive.scss';

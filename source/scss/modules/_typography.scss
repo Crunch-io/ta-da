@@ -1,5 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i');
 
+@font-face {
+    font-family: 'proximanova-regular';
+    src: url('/fonts/proximanova-regular-webfont.woff2') format('woff2'),
+         url('/fonts/proximanova-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'proximanova-semibold';
+    src: url('/fonts/proximanova-semibold-webfont.woff2') format('woff2'),
+         url('/fonts/proximanova-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'proxima_novabold';
+    src: url('/fonts/fontsfree-net-proxima-nova-bold-webfont.woff2') format('woff2'),
+         url('/fonts/fontsfree-net-proxima-nova-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 h1 {
     font-family: 'Libre Baskerville', serif;
     font-size: 2em;

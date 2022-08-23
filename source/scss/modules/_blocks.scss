@@ -71,18 +71,20 @@
 
     .banner-text {
         padding: 6px;
-        color: $color-blue;
+        color: $font-color-off-black;
         margin-bottom: 0;
 
         a {
-            color: $color-blue;
+            color: $font-color-off-black;
+            display: inline !important;
             margin-left: 10px;
-            font-family: 'Libre Baskerville', serif;
-            font-style: italic;
+            font-family: 'ProximaNova', serif;
+            font-weight: 700;
+
 
             &:hover {
                 text-decoration: none;
-                color: $--darker-primary-color;
+                color: $font-color-off-black;
             }
 
             &::after {
@@ -95,7 +97,7 @@
 }
 
 .headline {
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'ProximaNova', serif;
     color: $color-blue;
     font-size: 27px;
     max-width: 750px;
@@ -210,9 +212,15 @@
     transition: all 500ms ease-out;
     @include box_shadow("black");
 
+    .acceptcookies{
+        background: transparent linear-gradient(270deg, #2477B6 0%, #18649A 100%) 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 4px;
+    }
+    
     a {
-        color: $color-green;
-
+        color: $color-blue;
+        
         &:hover {
             color: $--darker-secondary-color;
             text-decoration: none;
