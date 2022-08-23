@@ -112,9 +112,9 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-4 offset-md-1 order-0 order-md-1">
+                    <div class="col-12 col-md-5 offset-md-1 order-0 order-md-1">
                         <h2 class="label">{{ .Params.label }}</h2>
-                        <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} </span> {{ end }}</h2>
+                        <h2 class="secondary-title">{{ with .Params.subtitle }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h2>
 
                         <p>{{ .Content }}</p>
                     </div>
