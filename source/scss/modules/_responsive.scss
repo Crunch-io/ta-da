@@ -263,5 +263,12 @@
         width: calc(100% - 12%);
     }
 
+    #webinar img{
+        transform: translateY(-55px);
+    }
+    .container-fluid.crunch-green.py-5 {
+        padding-top: 0px !important;
+    }
+
 
 }

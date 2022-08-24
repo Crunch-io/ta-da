@@ -4,7 +4,7 @@ draft = false
 title = "webinar"
 subtitle = "It’s Time to Go Online: Self Service Data Analysis for Insights Teams"
 label = "WEBINAR"
-gif = "img/webinar-insights-team.png"
+gif = "img/for_insights_teams/webinar-insights-team.svg"
 
 +++
 

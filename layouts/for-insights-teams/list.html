@@ -28,7 +28,7 @@
         {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "This is as easy as it gets") }}
         
-                <div class="row row justify-content-between">
+                <div class="row py-5 justify-content-between ">
                     <div class="col-md-12 pt-ls-5 pt-0 mb-md-4 order-0">
                         <h2 class="crunch-h2">{{ .Params.label }}</h2>
                     </div>
@@ -95,7 +95,7 @@
     </div>
 
     <div id="secondary-pages-wrapper">
-        <div class="container-fluid crunch-green py-5">
+        <div id="webinar" class="container-fluid crunch-green py-5">
         {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "webinar") }}
 
@@ -112,7 +112,7 @@
                         <h2 class="crunch-h3">{{  .Params.subtitle }}</h2>
 
                         <p>{{ .Content }}</p>
-                        <a href="/request-demo/" aria-label="Request a demo" class="btn btn-crunch-green btn-primary btn-lg cta   d-sm-inline-block">Download</a>
+                        <a href="/request-demo/" aria-label="Request a demo" class="btn btn-crunch-green btn-primary btn-lg d-block cta   d-sm-inline-block">Download</a>
 
                     </div>
                 </div> <!-- /.row. -->
@@ -129,7 +129,7 @@
         {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "Find insights right away") }}
             
-                <div class="row  justify-content-start align-self-center">
+                <div class="row  py-5 justify-content-start align-self-center">
                     <div class="col-12">
                             <h2 class="crunch-h2">{{ .Params.label }}</h2>
                     </div>
