@@ -58,11 +58,12 @@
     border-radius: 8px;
     display: flex;
     overflow: hidden;
-    max-height: 361px;
-    max-width: 653px;
     height: calc(100%);
+    max-height: 400px;
     width: calc(100%);
-
+    img{
+        height: 100%;
+    }
 }
 .crunch-reflection::before{
         content: "";
@@ -71,7 +72,7 @@
         height: calc(100%);
         position: absolute;
         top: 0px;
-        width: calc(100%);
+        width: calc(97%);
         z-index: -1;
 
 }
@@ -137,7 +138,22 @@
     background-color: $color-purple;
 }
 
-// end Crunch reflection frames 
+
+.testimonial-image {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 10px 10px 12px #00000029;
+    height: 366px !important;
+    position: absolute;
+    top: calc(0% - 140px);
+    width: 313px !important;
+}
+
+.footer{
+    .container-fluid{
+        max-width: 1400px;
+    }
+}
 
 // Intro-content jumbotron
 #page-content-wrapper {
@@ -226,6 +242,8 @@
             }
         }
     }
+
+    
 
     .footer-content {
         color: $color-white;
@@ -717,7 +735,7 @@ figure {
 
 // Hubspot forms
 .hbspt-form .hs-form-iframe {
-  width: 100% !important;
+    width: 100% !important;
 }
 
 // Hero cropped images
@@ -860,6 +878,7 @@ a.carousel-control-next {
 
 // Accordion
 
+
 .accordion {
     margin-bottom: 50px;
 
@@ -918,6 +937,19 @@ a.carousel-control-next {
             border: 1px solid $color-grey-normal;
             margin-left: 50px;
             margin-bottom: 25px;
+        }
+    }
+    button:focus{
+        box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
+    }
+    button[aria-expanded="false"]{ 
+        svg {
+            transform: translate(-8px, -3px) scale(1.2);
+        }
+    }
+    button[aria-expanded="true"]{ 
+        svg {
+            transform:translate(-8px, -3px) scale(1.2) rotate(90deg);
         }
     }
 }

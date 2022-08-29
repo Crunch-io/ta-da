@@ -1,14 +1,14 @@
-.btn{
-    background: transparent linear-gradient(270deg, #2477B6 0%, #18649A 100%) 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
-    border-radius: 5px;
-    font-size: 1rem;
-    &:focus, &.focus, &:hover{
-        background: transparent linear-gradient(270deg, #195E91 0%, #10476F 100%) 0% 0% no-repeat padding-box;
-box-shadow: 0px 3px 6px #00000029;
-    }
+// .btn{
+//     background: transparent linear-gradient(270deg, #2477B6 0%, #18649A 100%) 0% 0% no-repeat padding-box;
+//     box-shadow: 0px 3px 6px #00000029;
+//     border-radius: 5px;
+//     font-size: 1rem;
+//     &:focus, &.focus, &:hover{
+//         background: transparent linear-gradient(270deg, #195E91 0%, #10476F 100%) 0% 0% no-repeat padding-box;
+// box-shadow: 0px 3px 6px #00000029;
+//     }
 
-}
+// }
 
 .btn-sm {
     padding: 10px 10px;
@@ -25,13 +25,12 @@ box-shadow: 0px 3px 6px #00000029;
 }
 
 .btn-primary {
-    background-color: $color-blue;
-    border-color: $color-blue;
-    @include box_shadow("blue");
-
-    &:hover {
-        background-color: $--darker-primary-color;
-        border-color: $--darker-primary-color;
+    background: transparent linear-gradient(270deg, #2477B6 0%, #18649A 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 5px;
+    &:focus, &.focus, &:hover{
+        background: transparent linear-gradient(270deg, #195E91 0%, #10476F 100%) 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 6px #00000029;
     }
 }
 
@@ -49,6 +48,11 @@ box-shadow: 0px 3px 6px #00000029;
 .btn-crunch-green{
     background: transparent linear-gradient(270deg, #8EB7AD 0%, #D3E3DF 100%) 0% 0% no-repeat padding-box;
     border-radius: 5px;
+    border-color: #429A85;
+    &:hover{
+        background: transparent linear-gradient(270deg, #429A85 0%, #429A85 100%) 0% 0% no-repeat padding-box;
+        border-color: #429A85;
+    }
 }
 
 .btn-tertiary {
@@ -67,10 +71,6 @@ box-shadow: 0px 3px 6px #00000029;
 .btn-success {
     background-color: $color-green;
     border-color: $color-green;
-    @include box_shadow("green");
-    a{
-        color:#D3E3DF;
-    }
     &:hover {
         background-color: $--darker-secondary-color;
         border-color: $--darker-secondary-color;
