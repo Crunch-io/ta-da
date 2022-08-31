@@ -6,4 +6,10 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-Crunch.io is a leading online data analysis platform focused on simplicity and usability.
+**With Crunch.io you can:**
+
+* Get rid of two day turnarounds to answer questions 
+* Build crosstabs with a drag-and-drop 
+* Build a graph with one click 
+* Export real PowerPoint objects 
+* Build and deliver a dashboard in 5 minutes
