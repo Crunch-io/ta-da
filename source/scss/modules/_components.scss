@@ -9,11 +9,48 @@
 //     font-family: "ProximaNova";
 //     color: $font-color-off-black;
     
+
+    .feak-image{
+        background-color: antiquewhite;
+        border:solid 1px #D3E3DF;
+        height: 100%;
+        width: 100%;
+        margin: 15px;
+    }
+
     .crunch-h1,.crunch-h2,.crunch-h3,.crunch-h4,.crunch-h5,.crunch-h6{
         font-weight: 700;
         font-family: "ProximaNova";
         color: $font-color-off-black;
     }
+
+
+    .crunch-h1{
+        font-size: 3.5rem;
+        font-weight: 700;
+    }
+
+    .crunch-h2{
+        font-size: 2.5rem;
+    }
+
+    .crunch-h3{
+        font-size: 1.9rem;
+    }
+
+.crunch-gradient-gray{
+    background: transparent linear-gradient(62deg, #FFFFFFA8 0%, #F2F2F2 100%) 0% 0% no-repeat padding-box;
+}
+
+.crunch-green{
+    background:$color-green;
+    color:$color-white;
+    font-family: "ProximaNova";
+    h2,
+    .label{
+        color:$color-white;
+    }
+}
 
 .crunch-reflection{
     box-shadow: 0px 3px 20px #00000029;
@@ -21,11 +58,12 @@
     border-radius: 8px;
     display: flex;
     overflow: hidden;
-    max-height: 361px;
-    max-width: 653px;
     height: calc(100%);
+    max-height: 400px;
     width: calc(100%);
-
+    img{
+        height: 100%;
+    }
 }
 .crunch-reflection::before{
         content: "";
@@ -34,7 +72,7 @@
         height: calc(100%);
         position: absolute;
         top: 0px;
-        width: calc(100%);
+        width: calc(97%);
         z-index: -1;
 
 }
@@ -100,9 +138,22 @@
     background-color: $color-purple;
 }
 
-// end Crunch reflection frames 
 
+.testimonial-image {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 10px 10px 12px #00000029;
+    height: 366px !important;
+    position: absolute;
+    top: calc(0% - 140px);
+    width: 313px !important;
+}
 
+.footer{
+    .container-fluid{
+        max-width: 1400px;
+    }
+}
 
 
 // Intro-content jumbotron
@@ -192,6 +243,8 @@
             }
         }
     }
+
+    
 
     .footer-content {
         color: $color-white;
@@ -683,7 +736,7 @@ figure {
 
 // Hubspot forms
 .hbspt-form .hs-form-iframe {
-  width: 100% !important;
+    width: 100% !important;
 }
 
 // Hero cropped images
@@ -826,6 +879,7 @@ a.carousel-control-next {
 
 // Accordion
 
+
 .accordion {
     margin-bottom: 50px;
 
@@ -884,6 +938,19 @@ a.carousel-control-next {
             border: 1px solid $color-grey-normal;
             margin-left: 50px;
             margin-bottom: 25px;
+        }
+    }
+    button:focus{
+        box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
+    }
+    button[aria-expanded="false"]{ 
+        svg {
+            transform: translate(-8px, -3px) scale(1.2);
+        }
+    }
+    button[aria-expanded="true"]{ 
+        svg {
+            transform:translate(-8px, -3px) scale(1.2) rotate(90deg);
         }
     }
 }
