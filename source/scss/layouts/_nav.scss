@@ -117,18 +117,7 @@
             margin-left: 4px;
         }
         .dropdown {
-            &::before {
-                content: "";
-                background: url(../img/angle-right.svg);
-                background-size: cover;
-                color: #575656;
-                height: 15px;
-                left: calc(100% - 34.5px );
-                position: absolute;
-                transition: all 0.2s ease-out;
-                top: 12px;
-                width: 15px;
-            }
+            
             .dropdown-menu {
                 border:0;
                 width: fit-content;

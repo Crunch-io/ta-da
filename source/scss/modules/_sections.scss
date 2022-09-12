@@ -844,7 +844,7 @@
 }
 
 // Request a Demo
-.request-demo-content {
+#request-demo-content {
 
     .request-demo-form {
         padding: 0 30px;
@@ -860,21 +860,14 @@
         }
     }
 
-    .jumbotron {
-        h1 {
-            font-family: ProximaNova, sans-serif;
-            font-size: 18px;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-    }
 
-    h2 {
-        color: $color-blue;
-        font-family: 'Libre Baskerville', serif;
-        font-size: 16px;
-        padding-top: 2px;
+    h1 {
+        font-family: ProximaNova, sans-serif;
+        font-size: 5em;
+        margin-bottom: 20px;
+        font-weight: 700;
     }
+    
 
     @include media-breakpoint-up(md) {
         .request-demo-copy {
