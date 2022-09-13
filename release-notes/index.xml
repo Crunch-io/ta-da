@@ -8,6 +8,42 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2022.13</title>
+      <link>//crunch.io/release-notes/2022-09-12/</link>
+      <pubDate>Mon, 12 Sep 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-09-12/</guid>
+      <description>Crunch web application Fixed an issue that occurred when CrunchBoxes did not display weighted values when applicable. Crunch integrations Made numerous Confirmit-integration fixes, including: Improved how categories are handled. Fixed HTML image-tag spacing issues. Fixed how subvariables and variables are imported, as well as ensuring that multiple/duplicate subvariable aliases are handled correctly. Corrected category IDs so that they are instead treated as integers (and not strings). Made additional looping and parsing fixes to further optimize Confirmit integrations.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed an issue that occurred when CrunchBoxes did not display weighted values when applicable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-integrations&#34;&gt;Crunch integrations&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Made numerous  &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360060784772-How-to-import-from-Confirmit-into-Crunch&#34;&gt;Confirmit-integration&lt;/a&gt; fixes, including:
+&lt;ul&gt;
+&lt;li&gt;Improved how categories are handled.&lt;/li&gt;
+&lt;li&gt;Fixed HTML image-tag spacing issues.&lt;/li&gt;
+&lt;li&gt;Fixed how subvariables and variables are imported, as well as ensuring that multiple/duplicate subvariable aliases are handled correctly.&lt;/li&gt;
+&lt;li&gt;Corrected category IDs so that they are instead treated as integers (and not strings).&lt;/li&gt;
+&lt;li&gt;Made additional looping and parsing fixes to further optimize Confirmit integrations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360047136371-CREATE-CONVERT-command&#34;&gt;CONVERT NUMERIC TO CATEGORICAL command&lt;/a&gt; so that it now creates the output categories in a specified order.&lt;/li&gt;
+&lt;li&gt;Implemented speed and performance improvements across all Crunch Automation commands when working with large datasets (with a lot of variables) as well as when viewing the the list of scripts on datasets that have multiple large scripts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added new uses cases to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360045984071-Recoding-case-level-missing-valid-values-rebasing-&#34;&gt;Recoding: case-level missing &amp;amp; valid values&lt;/a&gt; (&amp;ldquo;rebasing&amp;rdquo;) article.&lt;/li&gt;
+&lt;li&gt;Created a new article that describes &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/8778243127565-Folder-sharing&#34;&gt;how to share a folder&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2022.12</title>
       <link>//crunch.io/release-notes/2022-08-08/</link>
       <pubDate>Mon, 08 Aug 2022 10:00:00 -0700</pubDate>
