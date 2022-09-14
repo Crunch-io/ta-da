@@ -97,6 +97,14 @@
 
 @media (max-width: 767.98px) { 
 
+
+    #self-services{
+        padding-top: 75px;
+        h1.crunch-h1{
+            font-size: 3em;
+        }
+    }
+
     .container-fluid {
         padding: 15px;
         .row{
@@ -201,6 +209,12 @@
         top: 0px;
         width: calc(90%);
     }
+    #self-services{
+        padding-top: 75px;
+        h1.crunch-h1{
+            font-size: 3em;
+        }
+    }
 }
 
 @include media-breakpoint-only(xs) {
@@ -212,21 +226,25 @@
     #crunchio-is-for,
     #all-your-data,
     #self-services{
-        padding: 5px 25px 18px;
+        padding: 5px 0px 18px;
         .btn{
             display: flex;
             margin: 30px auto 60px;
-            max-width: 68vw;
+        
             justify-content: center;
             justify-self: center;
             text-align: center;
         }
+
     }
     #all-your-data{
         padding-top: 40px;
     }
     #self-services{
         padding-top: 75px;
+        h1.crunch-h1{
+            font-size: 3em;
+        }
     }
     #icon-search{
         padding-top: 20px;
