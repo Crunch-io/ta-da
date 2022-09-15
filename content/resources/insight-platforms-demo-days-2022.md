@@ -4,11 +4,10 @@ draft = false
 title = "Insight Platforms Demo Days"
 about = "See Crunch.io in action presented by Jeff Coombs, President, and Chris Jones, Senior Director of Product."
 schedule = ""
-label = "Demo Recording"
+label = "webinars"
 url = "//info.crunch.io/demo-days-2022"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
-series = "main"
 icon = "img/icons/webinar-icon-blue.svg"
 +++
