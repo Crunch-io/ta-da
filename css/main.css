@@ -12203,7 +12203,7 @@ table td:nth-child(2) cr- {
 #secondary-pages-wrapper .resources-content .jumbotron {
   background-color: #0064a4;
   background-image: linear-gradient(#0064a4, #004571);
-  height: 285px;
+  height: 315px;
 }
 #secondary-pages-wrapper .resources-content .resources-main {
   margin-top: -80px;
@@ -12212,7 +12212,7 @@ table td:nth-child(2) cr- {
 @media (min-width: 768px) {
   #secondary-pages-wrapper .header-content-container {
     text-align: center;
-    max-width: 520px;
+    max-width: 580px;
   }
 }
 #secondary-pages-wrapper .blog-content {
