@@ -24,22 +24,22 @@
                   <div class="post-card post-card-main post-min-height">
                       <div class="posts">
                           <div class="row">
-                              <div class="col-md-5 post-card-main-content">
+                              <div class="col-md-7 col-sm-7 col-xs-12 post-card-main-content">
                                   <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
                                   <h4 class="post-title">
                                     
                                     {{ with .Title }} 
                                     
-                                            {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <br/><i>{{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }}</i>
+                                            {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}<br/> <i> {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }}</i>
                                     
                                     {{ end }}</h4>
                                     <p style="color: #0064a4">{{ .Params.about }}</p>
                                     <p style="color: #0064a4"> {{ .Params.schedule }}</p>
-                                    <br>
+                       
                                     <a class="btn btn-primary" href="{{ .Params.url }}"  target="_blank" >{{ .Params.link }}</a>
                               </div>
 
-                              <div class="col-md-6 offset-md-1 d-none d-md-block d-lg-block">
+                              <div class="col-md-5 col-sm-5 d-none d-md-block d-lg-block">
                                     <img src="img/greenbook-event.png" alt="" class="img-fluid">
                               </div>
 
