@@ -4,7 +4,6 @@ draft = false
 title = "Crunch Automation"
 subtitle = "Analyze all your survey data, past and present, in one place."
 description = "Automate your entire workflow from data upload to dashboard delivery."
-label = "Focus your team on insights. Not repetitive tasks."
 img = "img/trackers_webinar_tile.jpg"
 gif = "img/trackers.gif"
 

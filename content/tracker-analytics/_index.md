@@ -8,16 +8,6 @@ label = "Power your large-scale trackers"
 img = "img/trackers_webinar_tile.jpg"
 gif = "img/trackers.gif"
 
-
-<<<<<<< HEAD
-* Drag and drop to compare waves instantly
-* Plot data over time
-* Update dashboards and PowerPoints immediately when tracker waves come out of field
-* Start analysis halfway through fielding
-* Align and combine tracker waves with Crunch Automation
-* Scale to all your tracker data, historical and current
-=======
-
 carousel_img_1 = "img/dashboards/custom-layouts.svg"
 carousel_img_2 = "img/dashboards/powerpoint.svg"
 carousel_img_3 = "https://crunch.io/img/trackers.gif"
@@ -35,4 +25,3 @@ content_3 = "Start analyzing immediately after a wave comes out-of-field with ac
 
 
 +++
->>>>>>> brand-page-update-2022

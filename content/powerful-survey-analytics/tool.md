@@ -3,11 +3,8 @@ date = "2020-08-10T16:37:03-04:00"
 draft = false
 title = "Tool"
 subtitle = "Effortlessly handles survey data"
-<<<<<<< HEAD
-label = "A BI TOOL BUILT FOR MARKET RESEARCH"
-=======
 label = "Work quickly and more efficiently"
->>>>>>> brand-page-update-2022
+
 gif = "img/survey_data_expertise/weight_estimation.gif"
 
 
