@@ -15,7 +15,7 @@ carousel_img_2 = "img/dashboards/powerpoint.svg"
 carousel_img_3 = "https://crunch.io/img/trackers.gif"
 carousel_img_4 = "img/dashboards/logo-and-brand.svg"
 
-title_1 = ""
+title_1 = "Unmatched scalability"
 title_2 = "Unparalleled experience"
 title_3 = "Built-in automation"
 
