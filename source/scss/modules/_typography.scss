@@ -1,32 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i');
 
-@font-face {
-    font-family: 'proximanova-regular';
-    src: url('/fonts/proximanova-regular-webfont.woff2') format('woff2'),
-         url('/fonts/proximanova-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'proximanova-semibold';
-    src: url('/fonts/proximanova-semibold-webfont.woff2') format('woff2'),
-         url('/fonts/proximanova-semibold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'proxima_novabold';
-    src: url('/fonts/fontsfree-net-proxima-nova-bold-webfont.woff2') format('woff2'),
-         url('/fonts/fontsfree-net-proxima-nova-bold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
+h1,h2,h3,h4,h5,h6{
+    font-family: 'ProximaNova', serif;
 }
 
 h1 {
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'ProximaNova', serif;
     font-size: 2em;
 
     span {
@@ -36,9 +15,11 @@ h1 {
 
 h2 {
     font-size: 1.5em;
+    font-family: 'ProximaNova', serif;
+
 
     &.secondary-title {
-        font-family: 'Libre Baskerville', serif;
+        font-family: 'ProximaNova', serif;
         font-size: 1.8em;
         color: $color-green;
 
@@ -85,14 +66,14 @@ h4 {
 .emphasis {
     color: $color-blue;
     font-style: italic;
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'ProximaNova', serif;
     margin-bottom: 40px;
 }
 
 .emphasis-black {
     color: $color-off-black;
     font-style: italic;
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'ProximaNova', serif;
     margin-bottom: 40px;
 }
 

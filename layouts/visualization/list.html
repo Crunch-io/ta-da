@@ -1,41 +1,30 @@
-{{ partial "head.html" . }}
+{{ partial "head.html" . }} {{ partial "header.html" . }}
 
-{{ partial "header.html" . }}
-
-<div id="page-content-wrapper">
-    <div class="container-fluid">
-
-        <div class="intro-content">
-            <div class="jumbotron jumbotron-secondary-pages">
-                <div class="container">
-                    <div class="row justify-content-md-center">
-                            <div class="col-md-12 text-center">
-                                <h1>{{ with .Params.title }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</h1>
-                                <h2>{{ .Description }}</h2>
-                            </div>
-                    </div> <!-- /.row -->
-                </div> <!-- /.container -->
-            </div> <!-- /.jumbotron -->
-
-            <div class="intro-container secondary-intro-container">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <img src="{{ .Params.gif }}" alt="{{ .Params.title }}" width="920" height="590"  class="img-fluid add-shadow-xl rounded">
-                        </div>
-                    </div> <!-- /.row. -->
-                </div>
-            </div> <!-- /.intro-animated-gif -->
-
-        </div> <!-- /.intro-content -->
+<div class="container-fluid py-5 crunch-gradient-gray">
+    <div class="">
+        <div class="row">
+            <div class="col-md-5">
+                <h1 class="crunch-h1">{{ .Params.title }}</h1>
+                <p class="semibold-string word-wrap overflow-wrap text-break">{{ .Description }}</p>
+                <a href="/request-demo/" aria-label="Request a demo"
+                    class="btn btn-primary btn-lg cta mt-3 mb-5 justify-s d-none d-sm-inline-block">Request a demo</a>
+            </div>
+            <div class="col-md-6 offset-md-1">
+                <img src="{{ .Params.gif }}" alt="{{ .Params.title }}" class="img-fluid"/>
+            </div>
+        </div>
+        <!-- /.row -->
     </div>
+    <!-- /.container -->
 </div>
 
 <div id="wrapper">
-
     <div id="secondary-pages-wrapper">
         <div class="container-fluid">
+            {{ range .Site.Pages }} {{ if and (eq .Type "visualization") (eq .Title
+            "Visualization and Delivery") }}
 
+<<<<<<< HEAD
             <div class="container">
                 <div class="row spacer spacer-xs share-insights section-list">
                     <div class="col-12 col-md-5 order-0 order-md-0">
@@ -89,17 +78,115 @@
                               <span class="carousel-controls-icons" aria-hidden="true"></span>
                               <span class="sr-only">Next</span>
                             </a>
+=======
+            <div class="row py-5 justify-content-between">
+                <div class="col-md-12 pt-ls-5 pt-0 mb-md-4 order-0">
+                    <h2 class="crunch-h2">{{ .Params.label }}</h2>
+                </div>
+
+                <div
+                    class="col-md-4 col-12 d-flex mr-4 justify-content-start justify-content-md-center align-items-center order-1">
+                    <div class="py-md-5">
+                        <h3 class="crunch-h3">
+                            {{ with .Params.organize }}
+                            <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{
+                                index (split . " ") 2 }}</span>
+                            {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index
+                            (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
+                        </h3>
+
+                        <div>
+                            <p>{{.Params.content_organize}}</p>
+>>>>>>> brand-page-update-2022
                         </div>
-
-                        <br>
-
-                        <button type="button" class="btn btn-success btn-lg btn-block d-block d-sm-none spacer-top" onclick="window.location.href='/request-demo'">Learn more</button>
-
                     </div>
+                </div>
 
-                </div> <!-- /.row. -->
-            </div> <!-- /.container -->
+                <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-center py-5 order-2">
+                    <div
+                        class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
+                        <img src="{{ .Params.carousel_img_1 }}" alt="{{ .Params.title }}" class="img-fluid p-5"/>
+                    </div>
+                </div>
 
-{{ partial "footer-nav.html" . }}
+                <div
+                    class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-center py-5 order-4 order-md-3">
+                    <div
+                        class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple">
+                        <img src="{{ .Params.carousel_img_2 }}" alt="{{ .Params.title }}" class="img-fluid p-5"/>
+                    </div>
+                </div>
 
-{{ partial "footer.html" . }}
+                <div
+                    class="col-md-4 col-12 d-flex mr-4 justify-content-start justify-content-md-center align-items-center order-3 order-md-4">
+                    <div class="py-md-5">
+                        <h3 class="crunch-h3">
+                            {{ with .Params.filter }}
+                            <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{
+                                index (split . " ") 2 }}</span>
+                            {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index
+                            (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
+                        </h3>
+
+                        <div>
+                            <p>{{.Params.content_filter }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="col-md-4 col-12 d-flex mr-4 justify-content-start justify-content-md-center align-items-center order-5">
+                    <div class="py-md-5">
+                        <h3 class="crunch-h3">
+                            {{ with .Params.append }}
+                            <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{
+                                index (split . " ") 2 }}</span>
+                            {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index
+                            (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
+                        </h3>
+
+                        <div>
+                            <p>{{.Params.content_append}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-center py-5 order-6">
+                    <div
+                        class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-green">
+                        <img src="{{ .Params.carousel_img_3 }}" alt="{{ .Params.title }}" class="img-fluid p-5"/>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-center py-5 order-md-7 order-8">
+                    <div
+                        class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
+                        <img src="{{ .Params.carousel_img_4 }}" alt="{{ .Params.title }}" class="img-fluid p-5"/>
+                    </div>
+                </div>
+
+                <div
+                    class="col-md-4 col-12 d-flex mr-4 justify-content-start justify-content-md-center align-items-center order-md-8 order-7 ">
+                    <div class="py-md-5">
+                        <h3 class="crunch-h3">
+                            {{ with .Params.flexible }}
+                            <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{
+                                index (split . " ") 2 }}</span>
+                            {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index
+                            (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
+                        </h3>
+
+                        <div>
+                            <p>{{.Params.content_flexible}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row. -->
+
+            {{ end }} {{ end }}
+        </div>
+    </div>
+
+    {{ partial "footer-nav.html" . }} {{ partial "footer.html" . }}
+</div>

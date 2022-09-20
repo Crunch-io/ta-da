@@ -6,7 +6,7 @@
     
     h1,h2,h3,h4,h5,h6{
         font-weight: 700;
-        font-family: "ProximaNova";
+        font-family: "proximanova-bold";
         color: $font-color-off-black;
     }
 
@@ -23,12 +23,14 @@
         font-weight: 700;
     }
 }
-
+#crunchio-is-for,
+#all-your-data,
+#self-services{
+    padding-top: 50px;
+}
 #self-services{
     background: transparent linear-gradient(60deg, #FFFFFFA8 0%, #F2F2F2 100%) 0% 0% no-repeat padding-box;
     font-family: 'ProximaNova';
-    padding: 65px 75px 18px;
-    
     .container-fluid{
         max-width: 1400px;
     }
@@ -49,8 +51,6 @@
 }
 
 #all-your-data{
-    padding: 65px 75px 0px;
-
     .container-fluid{
         max-width: 1400px;
     }
@@ -61,7 +61,6 @@
 }
 
 #crunchio-is-for{
-    padding: 65px 75px 0px;
     .container-fluid{
         max-width: 1400px;
     }
