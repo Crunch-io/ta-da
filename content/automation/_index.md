@@ -1,10 +1,10 @@
 +++
 date = "2020-05-06T15:45:12-04:00"
 draft = false
-title = "Tracker Analytics"
+title = "Crunch Automation"
 subtitle = "Analyze all your survey data, past and present, in one place."
-description = "The industry leader for tracker data analysis."
-label = "Power your large-scale trackers"
+description = "Automate your entire workflow from data upload to dashboard delivery."
+label = "Focus your team on insights. Not repetitive tasks."
 img = "img/trackers_webinar_tile.jpg"
 gif = "img/trackers.gif"
 
@@ -15,11 +15,11 @@ carousel_img_2 = "img/dashboards/powerpoint.svg"
 carousel_img_3 = "https://crunch.io/img/trackers.gif"
 carousel_img_4 = "img/dashboards/logo-and-brand.svg"
 
-title_1 = "Unmatched scalability"
+title_1 = ""
 title_2 = "Unparalleled experience"
 title_3 = "Built-in automation"
 
-content_1 = "Scale to your largest historical datasets with hundreds of thousands of columns and even millions of respondents. Analyze all your data with sub-second query response, powered by the Crunch columnar database purpose-built for survey data."
+content_1 = "Fast track to insights with Crunch Automation scripting. Automate tracker wave updates of data and dashboards."
 
 content_2 = "Leverage a platform with proven success with thousands of trackers, including multi-market surveys."
 

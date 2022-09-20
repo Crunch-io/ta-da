@@ -4,9 +4,10 @@ draft = false
 title = "Visualization and Delivery"
 label = "Create and deliver effortlessly"
 subtitle = "Deliver visualizations and insights within minutes after fielding completes."
-description = "Create and download visually-appealing analyses in just a few clicks. Build a no-coding dashboard in minutes."
+description = "Create and download visually-appealing analyses in just a few clicks. Build a   no-coding dashboard in minutes."
 images = ["https://crunch.io/img/logo-1200x630.png"]
 gif = "img/visualization_and_delivery.gif"
+
 carousel_img_1 = "img/visualization_and_delivery/drag_and_drop.svg"
 carousel_img_2 = "img/visualization_and_delivery/dashboards.svg"
 carousel_img_3 = "img/visualization_and_delivery/export.svg"

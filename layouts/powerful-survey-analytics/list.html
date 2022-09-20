@@ -9,7 +9,7 @@
         <div class="row">
                 <div class="col-md-5 ">
                     <h1 class="crunch-h1">{{ .Params.title }}</h1>
-                    <p >{{ .Description }}</p>
+                    <p class="semibold-string">{{ .Description }}</p>
                     
                 </div>
                 <div class="col-md-6 ">
@@ -30,7 +30,7 @@
 {{ range .Site.Pages }}
 {{ if and (eq .Type "powerful-survey-analytics") (eq .Title "Tool") }}
 
-    <div class="row py-5 justify-content-between ">
+    <div class="row py-5 justify-content-between mb-5">
         <div class="col-md-12 pt-ls-5 pt-0 mb-md-4 order-0">
             <h2 class="crunch-h2">{{ .Params.label }}</h2>
         </div>
@@ -79,7 +79,7 @@
             </div>  
         </div>
         
-        <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-center py-5 order-6">
+        <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-center py-5 order-6 ">
             <div class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-green">
                 <img src="{{ .Params.gif }}" alt="{{ .Params.label }}" loading="lazy" width="680" height="442"  class="img-fluid add-shadow sp-mb-t rounded">
            
@@ -95,23 +95,22 @@
     </div>
 </div>
 
-<div id="secondary-pages-wrapper">
+<section>
     <div id="webinar" class="container-fluid crunch-green py-5">
         {{ range .Site.Pages }}
             {{ if and (eq .Type "powerful-survey-analytics") (eq .Title "Free Resources") }}
         
-            <div class="">
-                <div class="row  share-insights">
-                    <div class="col-sm-12 col-md-4">
-                        <div>
-                            <img src="{{ .Params.img }}" alt="{{ .Params.label }}">
-                        </div>
+            <div class="share-insights py-5">
+                <div class="row ">
+                    <div class="col-sm-12 col-md-4 d-none d-sm-block">
+            
+                            <img src="{{ .Params.img }}" class="img-fluid " alt="{{ .Params.label }}">
+    
                     </div>
         
                     <div class="col-sm-12 col-md-8">
                         <h2 class="label">{{ .Params.label }}</h2>
                         <h2 class="crunch-h3">{{  .Params.subtitle }}</h2>
-        
                         <p>{{ .Content }}</p>
                         <a href="/request-demo/" aria-label="Request a demo" class="btn btn-crunch-green btn-primary btn-lg d-block cta   d-sm-inline-block">Download</a>
         
@@ -122,9 +121,9 @@
             {{ end }}
         {{ end }}
     </div>
-</div>
+</section>
 
-<div id="secondary-pages-wrapper" >
+<section>
     <div class="container-fluid mb-5 pb-5">
     
     {{ range .Site.Pages }}
@@ -154,7 +153,7 @@
         {{ end }}
     {{ end }}
     </div> <!-- /.container -->
-</div>
+</section>
 
 
 {{ partial "footer-nav.html" . }}
