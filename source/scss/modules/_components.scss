@@ -185,11 +185,8 @@
     width: 313px !important;
 }
 
-
-.footer {
-    .container-fluid {
-        max-width: 1400px;
-    }
+.container-fluid {
+    max-width: 1366px !important;
 }
 
 
@@ -791,6 +788,8 @@ figure {
     padding: 20px 20px 0 20px;
 }
 
+
+
 @include media-breakpoint-only(xs) {
     .hero-img-bottom {
         height: 330px;
@@ -805,6 +804,71 @@ figure {
 }
 
 // carousel
+
+.carousel-indicators{ 
+    li {
+        box-sizing: content-box;
+        flex: 0 1 auto;
+        width: 30px;
+        height: 3px;
+        margin-right: 3px;
+        margin-left: 3px;
+        text-indent: -999px;
+        cursor: pointer;
+        background-color: transparent !important;
+        background-clip: padding-box;
+        opacity: 1;
+        transition: opacity 0.6s ease;
+        border:solid 3px $color-blue;
+        &.active{
+            background-color: $color-blue !important;
+        }
+    }
+}
+.carousel-control-next,
+.carousel-control-prev{
+    background:  transparent linear-gradient(270deg, #2477B6 0%, #18649A 100%) 0% 0% no-repeat padding-box;
+    opacity: 1;
+    height: 50px;
+    border-radius: 50%;
+    width: 50px;
+}
+.carousel-control-next{
+    transform: translate(-50%,248%);
+}
+.carousel-control-prev{
+    transform: translate(10%,248%);
+}
+.carousel-inner{
+    height: 80%;
+    display: flex;
+    align-items: center;
+    .carousel-item img{
+        transform: translateY(30px);
+    }
+    .carousel-caption{
+        height: 100%;
+        color:$color-off-black;
+        display: flex;
+        h4{
+            font-family: 'ProximaNova', serif;
+            font-weight: 700;
+            font-size: 20px;
+            transform: translateY(-20px);
+        }
+        p{
+            transform: translateY(-20px);
+        }
+        h5{
+            font-family: 'ProximaNova', serif;
+            font-weight: 700;
+            font-size: 17px;
+            transform: translateY(115px);
+        }
+    }
+
+}
+
 .cr-carousel {
     .carousel-indicators {
         li {

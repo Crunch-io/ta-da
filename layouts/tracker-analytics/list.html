@@ -3,28 +3,30 @@
 {{ partial "header.html" . }}
 
 
+<section class="crunch-gradient-gray">
+    <div class="container-fluid py-5">
+        <div class="">
+            <div class="row">
+                <div class="col-md-5 d-flex align-items-center">
+                    <div>
+                        <h1 class="crunch-h1">{{ .Params.title }}</h1>
+                        <p class="semibold-string word-wrap overflow-wrap text-break">{{ .Description }}</p>
+                        <a href="/request-demo/" aria-label="Request a demo"
+                            class="btn btn-primary btn-lg cta mt-3 mb-5 justify-s d-none d-sm-inline-block">Request a
+                            demo</a>
 
-<div class="container-fluid py-5 crunch-gradient-gray">
-    <div class="">
-        <div class="row">
-            <div class="col-md-5 d-flex align-items-center">
-                <div>
-                    <h1 class="crunch-h1">{{ .Params.title }}</h1>
-                <p class="semibold-string word-wrap overflow-wrap text-break">{{ .Description }}</p>
-                <a href="/request-demo/" aria-label="Request a demo"
-                    class="btn btn-primary btn-lg cta mt-3 mb-5 justify-s d-none d-sm-inline-block">Request a demo</a>
-
-                </div>            </div>
-            <div class="col-md-7 ">
-               <img src="{{ .Params.gif }}" alt="{{ .Params.title }}" width="920" height="auto" class="img-fluid add-shadow-xl rounded">
-                      
+                    </div>
+                </div>
+                <div class="col-md-7 ">
+                    <img src="{{ .Params.gif }}" alt="{{ .Params.title }}" width="920" height="auto"
+                        class="img-fluid add-shadow-xl rounded">
+                </div>
             </div>
+            <!-- /.row -->
         </div>
-        <!-- /.row -->
+        <!-- /.container -->
     </div>
-    <!-- /.container -->
-</div>
-
+</section>
 <div id="wrapper">
     <div>
         <div class="container-fluid">
@@ -40,8 +42,8 @@
                     class="col-md-4 col-12 d-flex mr-4 justify-content-start justify-content-md-center align-items-center order-1">
                     <div class="py-md-5">
                         <h3 class="crunch-h3">
-                            {{  .Params.title_1 }}
-                            
+                            {{ .Params.title_1 }}
+
                         </h3>
 
                         <div>
@@ -53,7 +55,7 @@
                 <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-center py-5 order-2">
                     <div
                         class="crunch-reflection crunch-reflection-small justify-content-center  crunch-reflection-right-top crunch-background-blue">
-                        <img src="{{ .Params.carousel_img_1 }}" alt="{{ .Params.title }}" class="img-fluid p-3"/>
+                        <img src="{{ .Params.carousel_img_1 }}" alt="{{ .Params.title }}" class="img-fluid p-3" />
                     </div>
                 </div>
 
@@ -61,7 +63,7 @@
                     class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-center py-5 order-4 order-md-3">
                     <div
                         class="crunch-reflection crunch-reflection-small justify-content-center text crunch-reflection-left-top crunch-background-purple">
-                        <img src="{{ .Params.carousel_img_2 }}" alt="{{ .Params.title }}" class="img-fluid p-3"/>
+                        <img src="{{ .Params.carousel_img_2 }}" alt="{{ .Params.title }}" class="img-fluid p-3" />
                     </div>
                 </div>
 
@@ -69,7 +71,7 @@
                     class="col-md-4 col-12 d-flex mr-4 justify-content-start justify-content-md-center align-items-center order-3 order-md-4">
                     <div class="py-md-5">
                         <h3 class="crunch-h3">
-                            {{  .Params.title_2 }}
+                            {{ .Params.title_2 }}
                         </h3>
 
                         <div>
@@ -85,7 +87,7 @@
                     <div class="py-md-5">
                         <h3 class="crunch-h3">
                             {{ .Params.title_3 }}
-                        
+
                         </h3>
 
                         <div>
@@ -97,7 +99,7 @@
                 <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-center py-5 order-7">
                     <div
                         class="crunch-reflection crunch-reflection-small justify-content-center text crunch-reflection-right-top crunch-background-green">
-                        <img src="{{ .Params.carousel_img_3 }}" alt="{{ .Params.title }}" class="img-fluid p-3"/>
+                        <img src="{{ .Params.carousel_img_3 }}" alt="{{ .Params.title }}" class="img-fluid p-3" />
                     </div>
                 </div>
             </div>
@@ -107,6 +109,6 @@
         </div>
     </div>
 
-{{ partial "footer-nav.html" . }}
+    {{ partial "footer-nav.html" . }}
 
-{{ partial "footer.html" . }}
+    {{ partial "footer.html" . }}

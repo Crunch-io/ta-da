@@ -21,6 +21,7 @@
 .btn-primary {
     background: transparent linear-gradient(270deg, #2477B6 0%, #18649A 100%) 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
+    border:0px;
     border-radius: 5px;
     &:focus, &.focus, &:hover{
         background: transparent linear-gradient(270deg, #195E91 0%, #10476F 100%) 0% 0% no-repeat padding-box;
