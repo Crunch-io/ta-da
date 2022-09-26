@@ -1,8 +1,9 @@
 {{ partial "head.html" . }}
 
 {{ partial "header.html" . }}
+<section class="crunch-gradient-gray" >
 
-<div class="container-fluid py-5 crunch-gradient-gray">
+<div class="container-fluid py-5">
         <div class="row">
                 <div class="col-md-6 ">
                     <h1 class="crunch-h1">{{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }}<br/> {{ index (split . " ") 2 }} <br/>{{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5}} {{ index (split . " ") 6}} {{ end }}</h1>
@@ -18,7 +19,7 @@
                 </div>
         </div> <!-- /.row -->
 </div>
-
+</section>
 <div id="wrapper">
     {{ range .Site.Pages }}
     {{ if and (eq .Type "market-researchers") (eq .Title "Work quicker and more efficiently") }}
@@ -74,11 +75,11 @@
 {{ end }}
 </div>
 
-<div id="direcctor-comments" class="mt-5">
+<div id="direcctor-comments" class="mt-5 crunch-green">
     {{ range .Site.Pages }}
         {{ if and (eq .Type "market-researchers") (eq .Title "testimonial") }}
 
-            <div class="container-fluid crunch-green py-3">
+            <div class="container-fluid py-3">
                 <div class="row py-5">
 
                     <div class="col-md-3">
