@@ -64,7 +64,7 @@
 }
 
 .semibold-string{
-    font-family: "ProximaNova";
+    font-family: "ProximaNova" !important;
     font-weight: 400;
     font-size: 1.6rem;
 }
@@ -189,7 +189,9 @@
     max-width: 1366px !important;
 }
 
-
+button.carousel-control-prev svg {
+    transform: rotate(180deg);
+}
 // Intro-content jumbotron
 #page-content-wrapper {
     .intro-content {
@@ -322,6 +324,8 @@
                 }
             }
         }
+
+       
 
         @include media-breakpoint-down(sm) {
             .jumbotron {
@@ -738,8 +742,8 @@ figure {
 
 .carousel {
     .carousel-indicators li {
-        width: 12px;
-        height: 12px;
+        width: 9px;
+        height: 9px;
         border-radius: 50%;
     }
 
@@ -829,15 +833,15 @@ figure {
 .carousel-control-prev{
     background:  transparent linear-gradient(270deg, #2477B6 0%, #18649A 100%) 0% 0% no-repeat padding-box;
     opacity: 1;
-    height: 50px;
+    height: 38px;
     border-radius: 50%;
-    width: 50px;
+    width: 38px;
 }
 .carousel-control-next{
-    transform: translate(-50%,248%);
+    transform: translate(-50%,372%);
 }
 .carousel-control-prev{
-    transform: translate(10%,248%);
+    transform: translate(50%,372%);
 }
 .carousel-inner{
     height: 80%;

@@ -2,124 +2,79 @@
 
 {{ partial "header.html" . }}
 
-      <div id="wrapper">
+<section class="crunch-gradient-gray" >
+    <div class="container-fluid py-5">
+                <div id="jumbotron">
+                    <div class="row py-5">
+                            <div class="col-md-5 ">
+                                <h1 class="crunch-h1">{{ .Params.title }}</h1>
+                                <p>{{ .Content }}</p>
+                            </div>
+                            <div class="col-md-6 ">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe src="{{ .Params.video }}"  style=" width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
 
-          <div id="secondary-pages-wrapper">
-              <div class="container-fluid">
-
-                  <div class="about-content">
-                      <div class="jumbotron">
-                          <div class="container">
-                              <div class="row justify-content-md-center">
-                                  <div class="col-md-12 header-content-container">
-                                      <h1 class="display-4">Our <span>origins</span></h1>
-                                  </div>
-
-                                  <div class="col-md-12">
-                                      <img src="img/arrow.png" alt="Down arrow" class="img-fluid down-arrow d-md-none d-sm-block">
-                                  </div>
-
-                              </div> <!-- /.row -->
-
-                          </div> <!-- /.container -->
-                      </div> <!-- /.jumbotron -->
-                  </div> <!-- /.about-content -->
-
-                  <div id="secondary-pages-wrapper">
-                      <div class="container-fluid">
-
-                      {{ range .Site.Pages }}
-                          {{ if and (eq .Type "about") (eq .Title "Who we are") }}
-                          <div class="container">
-                              <div class="row spacer share-insights">
-                                      <div class="col-12 col-md-6 order-1 order-md-0 sp-mb-t my-auto d-none d-md-block">
-                                          <div id="learn-more-img-2">
-                                              <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
-                                                   <iframe src="{{ .Params.video }}"
-                                                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
-                                               </div>
-                                          </div>
-                                      </div>
-
-                                      <div class="col-12 col-md-6 order-1 order-md-0 sp-mb-t my-auto d-md-none">
-                                          <div id="learn-more-img-2">
-                                              <div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
-                                                   <iframe src="{{ .Params.mob_video }}"
-                                                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
-                                               </div>
-                                          </div>
-                                      </div>
-
-                                      <div class="col-12 col-md-4 offset-md-1 order-0 order-md-1">
-                                          <h2 class="label">{{ .Params.label }}</h2>
-                                          <h2 class="secondary-title">{{ with .Params.subtitle }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ end }}</h2>
-
-                                          <p>{{ .Content }}</p>
-                                      </div>
-                              </div> <!-- /.row. -->
-                          </div> <!-- /.container -->
-                          {{ end }}
-                      {{ end }}
-                    </div>
-                </div>
-
-                <div id="secondary-pages-wrapper">
-                    <div class="container-fluid cr-section-grey">
-
-                    {{ range .Site.Pages }}
-                        {{ if and (eq .Type "about") (eq .Title "Our mission") }}
-                        <div class="container">
-                            <div class="row spacer share-insights">
-                                <div class="col-xs-12 col-sm-5 col-md-5 order-0 order-md-0">
-                                    <h2 class="label">{{ .Params.label }}</h2>
-                                    <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <span>{{ index (split . " ") 2 }}</span> {{ end }}</h2>
-
-                                    <p>{{ .Content }}</p>
                                 </div>
+                            </div>
+                    </div> <!-- /.row -->
+                </div> <!-- /.container -->
+    </div>
 
-                                <div class="col-xs-12 col-sm-7 col-md-6 offset-md-1 order-1 order-md-1 my-auto">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-12 col-md-6">
-                                            <div class="posts-in-section">
-                                                <h3 class="post-title">{{ with .Params.card_1 }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} <span>{{ index (split . " ") 4 }}</span> {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ end }}</h3>
+</section>
 
-                                                <div class="post-card-links">
-                                                    <div class="post-label">
-                                                        <span><img src="{{ .Params.icon_1 }}" alt="Icon">Case studies</span>
-                                                    </div>
 
-                                                    <div class="post-url">
-                                                        <a href="{{ .Params.url_1 }}">Read now &#10230;</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+<section>
+    <div class="container-fluid">
 
-                                        <div class="col-xs-12 col-sm-12 col-md-6">
-                                            <div class="posts-in-section">
-                                                <h3 class="post-title">{{ with .Params.card_2 }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ end }}</h3>
-
-                                                <div class="post-card-links">
-
-                                                    <div class="post-label">
-                                                        <span><img src="{{ .Params.icon_2 }}" alt="Icon">Careers</span>
-                                                    </div>
-
-                                                    <div class="post-url">
-                                                        <a href="{{ .Params.url_2 }}">View jobs &#10230;</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div> <!-- /.row. -->
-                        </div> <!-- /.container -->
-                        {{ end }}
-                    {{ end }}
+        {{ range .Site.Pages }}
+            {{ if and (eq .Type "about") (eq .Title "Our mission") }}
+            
+                <div class="row  py-5 justify-content-start align-self-center">
+                    
+                    <div class="col-md-5 align-items-center justify-content-center ml-md-5 pt-5">
+                    
+                        <h2 class="crunch-h2">{{ .Params.label }}</h2>
+                        {{ .Content }}
                     </div>
-                </div>
+                    <div class="col-12 col-sm-12  col-md-6 d-flex align-items-center justify-content-center py-5">
+                            <div class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-green">
+                                <iframe src="{{ .Params.video }}"  style=" width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
+                            </div>
+                    </div>
+
+                </div> <!-- /.row. -->
+            {{ end }}
+        {{ end }}
+    </div> <!-- /.container -->
+</section>
+
+<section>
+    <div class="container-fluid">
+
+        {{ range .Site.Pages }}
+            {{ if and (eq .Type "about") (eq .Title "Our team") }}
+            
+                <div class="row  py-5 justify-content-start align-self-center">
+
+                    <div class="col-12 col-sm-12  col-md-6 d-flex align-items-center justify-content-center py-5">
+                            <div class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
+                                <iframe src="{{ .Params.video }}"  style=" width: 100%; height: 100%;" allowfullscreen frameborder="0" title="Crunch"></iframe>
+                            </div>
+                    </div>
+
+                    <div class="col-md-5 align-items-center justify-content-center ml-md-5 pt-5">
+                    
+                        <h2 class="crunch-h2">{{ .Params.label }}</h2>
+
+                        {{ .Content }}
+
+                    </div>
+
+                </div> <!-- /.row. -->
+            {{ end }}
+        {{ end }}
+    </div> <!-- /.container -->
+</section>
 
 {{ partial "footer-nav.html" . }}
 

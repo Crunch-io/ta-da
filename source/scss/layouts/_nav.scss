@@ -21,7 +21,8 @@
             }
 
             a {
-                color: $font-color-dark-grey;
+                color: $font-color-off-black;
+                font-size: 16px;
             }
 
             .btn-primary,
@@ -37,8 +38,8 @@
             height: 16px;
             width: 16px;
             position: absolute;
-            top: calc(38%);
-            right: calc(0px - 18px);
+            top: calc(24%);
+            right: calc(0px - 12px);
             transform: rotate(90deg);
         }
         .nav-link[aria-expanded="true"]::after{

@@ -1,9 +1,9 @@
 +++
 date = "2020-09-03T15:47:05-04:00"
 draft = false
-title = "Our mission"
+title = "Our team"
 subtitle = "Power made simple."
-label = "Our mission"
+label = "Our team"
 card_1 = "See how customers use Crunch.io today."
 card_2 = "Build the leading online survey data analysis platform."
 
@@ -16,5 +16,4 @@ url_2 = "jobs"
 
 +++
 
-Our mission is to empower teams to collaborate in a secure, online environment with a simple, self-service interface to quickly analyze, visualize, and deliver survey data. Power made simple. 
-
+While our origins are in the San Francisco Bay Area, we’ve been completely remote since day 1. Most of us are in the Americas, but we range from Australia to the Dominican Republic. We don’t just allow remote working. We embrace it. 
