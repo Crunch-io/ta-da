@@ -93,9 +93,43 @@
     .crunch-reflection-left-top::before{
         transform: translate(-26px, -25px);
     }
+
+    .carousel-inner{
+        height: 90%;
+        display: flex;
+        align-items: center;
+        .carousel-item img{
+            transform: translateY(0px);
+        }
+        .carousel-caption{
+            height: 100%;
+            color:$color-off-black;
+            display: flex;
+            h4{
+                font-family: 'ProximaNova', serif;
+                font-weight: 700;
+                font-size: 20px;
+                transform: translateY(0px);
+            }
+            p{
+                transform: translateY(0px);
+            }
+            h5{
+                font-family: 'ProximaNova', serif;
+                font-weight: 700;
+                font-size: 17px;
+                transform: translateY(110px);
+            }
+        }
+    
+    }
 }
 
 @media (max-width: 767.98px) { 
+
+
+
+ 
 
 
     #self-services{

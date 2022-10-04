@@ -823,7 +823,7 @@ figure {
         background-clip: padding-box;
         opacity: 1;
         transition: opacity 0.6s ease;
-        border:solid 3px $color-blue;
+        border:solid 1px $color-blue;
         &.active{
             background-color: $color-blue !important;
         }
@@ -844,11 +844,11 @@ figure {
     transform: translate(50%,372%);
 }
 .carousel-inner{
-    height: 80%;
+    height: 90%;
     display: flex;
     align-items: center;
     .carousel-item img{
-        transform: translateY(30px);
+        transform: translateY(0px);
     }
     .carousel-caption{
         height: 100%;
@@ -858,16 +858,16 @@ figure {
             font-family: 'ProximaNova', serif;
             font-weight: 700;
             font-size: 20px;
-            transform: translateY(-20px);
+            transform: translateY(30px);
         }
         p{
-            transform: translateY(-20px);
+            transform: translateY(25px);
         }
         h5{
             font-family: 'ProximaNova', serif;
             font-weight: 700;
             font-size: 17px;
-            transform: translateY(115px);
+            transform: translateY(180px);
         }
     }
 
