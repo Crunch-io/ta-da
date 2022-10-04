@@ -14,7 +14,10 @@
 
     .navbar-nav {
         .nav-item {
+            align-items: center;
+            display: flex;
             margin-left: 30px;
+            
 
             .btn-primary {
                 padding: 8px 45px;
@@ -38,7 +41,7 @@
             height: 16px;
             width: 16px;
             position: absolute;
-            top: calc(24%);
+            top: calc(38%);
             right: calc(0px - 12px);
             transform: rotate(90deg);
         }

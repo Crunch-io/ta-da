@@ -3,7 +3,7 @@
 {{ partial "header.html" . }}
 
 <section class="crunch-gradient-gray">
-    <div class="container-fluid py-5">
+    <div class="container-fluid px-md-0 px-sm-3 py-5">
         <div id="jumbotron">
             <div class="row py-5">
                 <div class="col-md-5 ">
@@ -14,7 +14,7 @@
                         demo</a>
 
                 </div>
-                <div class="col-md-6 ">
+                <div class="col-md-6 offset-md-1 offset-sm-0">
                     <div class="embed-responsive embed-responsive-16by9">
                         <video autoplay>
                             <source src="{{ .Params.local_video }}" type="video/mp4">
@@ -30,7 +30,7 @@
 <div id="wrapper">
 
     <div id="secondary-pages-wrapper">
-        <div class="container-fluid">
+        <div class="container-fluid px-md-0 px-sm-3">
 
             {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "Find insights faster") }}
@@ -41,7 +41,7 @@
                 </div>
 
                 <div
-                    class="col-md-4  col-12 d-flex  mr-4 justify-content-start justify-content-md-center align-items-center order-1">
+                    class="col-md-4  col-12 d-flex  justify-content-start justify-content-md-end align-items-center order-1">
                     <div class="py-md-5">
                         <h3 class="crunch-h3">{{ with .Params.organize }} <span>{{ index (split . " ") 0 }} {{ index
                                 (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{
@@ -54,7 +54,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-center py-5 order-2">
+                <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-end py-5 order-2">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                         <div class="embed-responsive embed-responsive-16by9">
@@ -64,7 +64,7 @@
                 </div>
 
                 <div
-                    class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-center py-5 order-4 order-md-3">
+                    class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-start py-5 order-4 order-md-3">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple">
 
@@ -143,7 +143,7 @@
                 </div>
 
                 <div
-                    class="col-md-4  col-12 d-flex  mr-4 justify-content-start justify-content-md-center  align-items-center order-3 order-md-4">
+                    class="col-md-5  col-12 d-flex  justify-content-start justify-content-md-center  align-items-center order-3 order-md-4">
                     <div class="py-md-5">
                         <h3 class="crunch-h3">{{ with .Params.filter }} <span>{{ index (split . " ") 0 }} {{ index
                                 (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{
@@ -157,7 +157,7 @@
                 </div>
 
                 <div
-                    class="col-md-4  col-12 d-flex  mr-4 justify-content-start justify-content-md-center  align-items-center order-5">
+                    class="col-md-5  col-12 d-flex  justify-content-start justify-content-md-center  align-items-center order-5">
                     <div class="py-md-5">
                         <h3 class="crunch-h3">{{ with .Params.append }} <span>{{ index (split . " ") 0 }} {{ index
                                 (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{
@@ -170,7 +170,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-center py-5 order-6">
+                <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-end py-5 order-6">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-green">
                         <div class="embed-responsive embed-responsive-16by9">
@@ -187,7 +187,7 @@
     </div>
 
     <div class="crunch-green">
-        <div id="webinar" class="container-fluid py-5">
+        <div id="webinar" class="container-fluid px-md-0 px-sm-3 py-5">
             {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "webinar") }}
 
@@ -217,7 +217,7 @@
     </div>
 
     <div id="secondary-pages-wrapper">
-        <div class="container-fluid mb-5 pb-5">
+        <div class="container-fluid px-md-0 px-sm-3 mb-5 pb-5">
 
             {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "Find insights right away") }}
@@ -227,7 +227,7 @@
                     <h2 class="crunch-h2">{{ .Params.label }}</h2>
                 </div>
 
-                <div class="col-12 col-sm-12  col-md-6 d-flex align-items-center justify-content-center py-5">
+                <div class="col-12 col-sm-12  col-md-6 d-flex align-items-center justify-content-start py-5">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                         <img src="{{ .Params.gif }}" alt="{{ .Params.label }}"
@@ -235,7 +235,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-5 align-items-center justify-content-center ml-md-5 pt-5">
+                <div class="col-md-5 align-items-center justify-content-center offset-md-1 offset-sm-0 pt-5">
 
                     <h3 class="crunch-h3">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ")
                         1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{

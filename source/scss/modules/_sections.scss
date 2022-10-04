@@ -845,7 +845,8 @@
 
 // Request a Demo
 #request-demo-content {
-
+    position: relative;
+    z-index: -2;
     .request-demo-form {
         padding: 0 30px;
     }
@@ -878,6 +879,12 @@
     @include media-breakpoint-down(sm) {
         .request-demo-copy {
             margin-top: 40px;
+        }
+        h1 {
+            font-family: ProximaNova, sans-serif;
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 700;
         }
     }
 
