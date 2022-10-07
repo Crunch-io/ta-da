@@ -13,6 +13,12 @@
     }
 
     .navbar-nav {
+
+        button.btn.btn-primary.btn-lg.btn-block.cta.mb-2 {
+            font-size: 18px;
+            padding: 4px 24px;
+        }
+        
         .nav-item {
             align-items: center;
             display: flex;
