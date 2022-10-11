@@ -2,6 +2,160 @@
 
 {{ partial "header.html" . }}
 
+
+
+<section id="resources" class="sections crunch-gradient-gray py-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5 pt-5">
+                <h1 class="crunch-h1">{{ .Title }}</h1>
+                <p>{{ .Content }}</p>
+            </div>
+            <div class="col-md-6 my-5 offset-md-1 offset-sm-0">
+                <div
+                    class="crunch-reflection crunch-reflection-small crunch-reflection-left-bottom crunch-background-green">
+                    <div class="embed-responsive embed-responsive-16by9">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="upcoming-events" class="sections py-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <h2 class="crunch-h2">Upcoming events</h2>
+            </div>
+            <div class="col-md-12 d-flex">
+                <div class="card mr-5" style="width: 18rem;">
+                    <div class="card-body shadow rounded  d-flex flex-wrap">
+                        <div class="align-self-stretch mb-3">
+                            <h6 class="card-subtitle mb-2 ">Demo</h6>
+                            <h4 class="card-title crunch-h4">Insights Tech Showcase: Brand Tracking</h4>
+                            <p class="card-text">September 23 12pm PT</p>
+                        </div>
+                        <a href="#" class="btn btn-primary d-block card-link mt-auto w-100  ">Another link</a>
+                    </div>
+                </div>
+
+                <div class="card mr-5" style="width: 18rem;">
+                    <div class="card-body shadow rounded  d-flex flex-wrap">
+                        <div class="align-self-stretch mb-3">
+                            <h6 class="card-subtitle mb-2 ">Event</h6>
+                            <h4 class="card-title crunch-h4">ESOMAR</h4>
+                            <p class="card-text">September 18-21, 2022</p>
+                        </div>
+                        <a href="#" class="btn btn-primary d-block card-link mt-auto w-100  ">Another link</a>
+                    </div>
+                </div>
+
+                <div class="card mr-5" style="width: 18rem;">
+                    <div class="card-body shadow rounded d-flex flex-wrap">
+                        <div class="align-self-stretch mb-3">
+                            <h6 class="card-subtitle mb-2 ">Event</h6>
+                            <h4 class="card-title crunch-h4">TMRE</h4>
+                            <p class="card-text">November 14-16</p>
+                        </div>
+
+                        <a href="#" class="btn btn-primary d-block card-link mt-auto w-100 ">Another link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="industry-product-resources" class="sections py-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <h2 class="crunch-h2">Industry & Product Resources</h2>
+                <div>
+                    <button class="btn-filter btn-primary btn" onclick="filterSelection('all-filter')"> All</button>
+                        <button class="btn-filter btn" onclick="filterSelection('events-filter')">  Events</button>
+                        <button class="btn-filter btn" onclick="filterSelection('webinars-filter')">  Webinars</button>
+                        <button class="btn-filter btn" onclick="filterSelection('videos-filter')">  Videos</button>
+                        <button class="btn-filter btn" onclick="filterSelection('whitepapers-filter')">  Whitepapers</button>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row row-cols-1 row-cols-md-2">
+                {{ $pages := where .Pages "Params.series" "events"}}
+
+                {{ range sort ($pages.ByParam "customdate") }}
+                <div class="col mb-4 card-item resources-filter events-filter">
+                    <div class="d-flex shadow rounded">
+                        <div class="card-body w-50">
+                            <h5 class="card-title">{{ .Params.label }}</h5>
+                            <h4 class="card-text crunch-h4">{{ .Title | emojify }}</h4>
+                            <button class="btn btn-primary w-75" type="button"  onclick="location.href='{{ .Params.url }}'" aria-controls="">Watch now</button>
+                        </div>
+                        <div class="w-50">
+                            <img src="..." class="card-img-top" alt="...">
+                        </div>
+                    </div>
+                </div><!-- /.card-item -->
+                {{ end }}
+
+
+                {{ range where .Pages "Params.series" "webinars" }}
+                <div class="col mb-4 card-item resources-filter webinars-filter">
+                    <div class="d-flex shadow rounded">
+                        <div class="card-body w-50">
+                            <h5 class="card-title">{{ .Params.label }}</h5>
+                            <h4 class="card-text crunch-h4">{{ .Title | emojify }}</h4>
+                            <button class="btn btn-primary w-75" type="button"  onclick="location.href='{{ .Params.url }}'" aria-controls="">Watch now</button>
+                        </div>
+                        <div class="w-50">
+                            <img src="..." class="card-img-top" alt="...">
+                        </div>
+                    </div>
+                </div><!-- /.card-item -->
+                {{ end }}
+
+                {{ range where .Pages "Params.series" "videos" }}
+                <div class="col mb-4 card-item resources-filter videos-filter">
+                    <div class="d-flex shadow rounded">
+                        <div class="card-body w-50">
+                            <h5 class="card-title">{{ .Params.label }}</h5>
+                            <h4 class="card-text crunch-h4">{{ .Title | emojify }}</h4>
+                            <button class="btn btn-primary w-75" type="button"  onclick="location.href='{{ .Params.url }}'" aria-controls="">Watch now</button>
+                        </div>
+                        <div class="w-50">
+                            <img src="..." class="card-img-top" alt="...">
+                        </div>
+                    </div>
+                </div><!-- /.card-item -->
+                {{ end }}
+
+                {{ range where .Pages "Params.series" "whitepapers" }}
+                <div class="col mb-4 card-item resources-filter whitepapers-filter">
+                    <div class="d-flex shadow rounded">
+                        <div class="card-body w-50">
+                            <h5 class="card-title">{{ .Params.label }}</h5>
+                            <h4 class="card-text crunch-h4">{{ .Title | emojify }}</h4>
+                            <button class="btn btn-primary w-75" type="button"  onclick="location.href='{{ .Params.url }}'" aria-controls="">Watch now</button>
+                        </div>
+                        <div class="w-50">
+                            <img src="..." class="card-img-top" alt="...">
+                        </div>
+                    </div>
+                </div><!-- /.card-item -->
+                {{ end }}
+            </div><!-- /.row -->
+        </div><!-- /.col -->
+
+    </div>
+
+</section>
+<!-- OLD HTML  -->
 <div id="wrapper">
 
     <div id="secondary-pages-wrapper">
@@ -12,142 +166,149 @@
                     <div class="container">
                         <div class="row justify-content-md-center">
                             <div class="col-md-12 header-content-container">
-                                <h1 class="display-4">{{ .Title }}</h1>
-                                <p>{{ .Content }}</p>
+                                <h2 class="display-4">{{ .Title }}</h1>
+                                    <p>{{ .Content }}</p>
                             </div>
                         </div> <!-- /.row -->
 
                     </div> <!-- /.container -->
                 </div> <!-- /.jumbotron -->
                 <div class="container resources-main">
-                  {{ range where .Pages "Params.series" "main" }}
-                  <div class="post-card post-card-main post-min-height">
-                      <div class="posts">
-                          <div class="row">
-                              <div class="col-md-5 post-card-main-content">
-                                  <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
-                                  <h4 class="post-title">
-                                    
-                                    {{ with .Title }} 
-                                    
-                                            {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <br/><i>{{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }}</i>
-                                    
-                                    {{ end }}</h4>
+                    {{ range where .Pages "Params.series" "main" }}
+                    <div class="post-card post-card-main post-min-height">
+                        <div class="posts">
+                            <div class="row">
+                                <div class="col-md-5 post-card-main-content">
+                                    <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                    <h4 class="post-title">
+
+                                        {{ with .Title }}
+
+                                        {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} <br /><i>{{ index (split
+                                            . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }}</i>
+
+                                        {{ end }}</h4>
                                     <p style="color: #0064a4">{{ .Params.about }}<br> {{ .Params.schedule }}</p>
                                     <br>
-                                    <a class="btn btn-primary" href="{{ .Params.url }}"  target="_blank" >{{ .Params.link }}</a>
-                              </div>
+                                    <a class="btn btn-primary" href="{{ .Params.url }}" target="_blank">{{ .Params.link
+                                        }}</a>
+                                </div>
 
-                              <div class="col-md-6 offset-md-1 d-none d-md-block d-lg-block">
+                                <div class="col-md-6 offset-md-1 d-none d-md-block d-lg-block">
                                     <img src="img/insights-chart.png" alt="" class="img-fluid">
-                              </div>
+                                </div>
 
-                              <!-- <div class="col-md-6 offset-md-1 figure d-none d-md-block d-lg-block"> </div> -->
-                          </div>
-                      </div>
-                  </div>
-                  {{ end }}
+                                <!-- <div class="col-md-6 offset-md-1 figure d-none d-md-block d-lg-block"> </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    {{ end }}
                 </div>
             </div> <!-- /.jobs-content -->
 
             <div class="secondary-content">
-              <div class="container">
+                <div class="container">
 
-                  <div class="resources-filter-container" id="resources-filter-container">
-                      <button class="btn-filter active-filter" onclick="filterSelection('all-filter')"> All</button>
-                      <button class="btn-filter" onclick="filterSelection('events-filter')"> <span><img src="img/icons/event-icon.svg" alt="Icon"></span> Events</button>
-                      <button class="btn-filter" onclick="filterSelection('webinars-filter')"> <span><img src="img/icons/webinar-icon.svg" alt="Icon"></span> Webinars</button>
-                      <button class="btn-filter" onclick="filterSelection('videos-filter')"> <span><img src="img/icons/video-icon.svg" alt="Icon"></span> Videos</button>
-                      <button class="btn-filter" onclick="filterSelection('whitepapers-filter')"> <span><img src="img/icons/whitepaper-icon.svg" alt="Icon"></span> Whitepapers</button>
-                  </div>
+                    <div class="resources-filter-container" id="resources-filter-container">
+                        <button class="btn-filter active-filter" onclick="filterSelection('all-filter')"> All</button>
+                        <button class="btn-filter" onclick="filterSelection('events-filter')"> <span><img
+                                    src="img/icons/event-icon.svg" alt="Icon"></span> Events</button>
+                        <button class="btn-filter" onclick="filterSelection('webinars-filter')"> <span><img
+                                    src="img/icons/webinar-icon.svg" alt="Icon"></span> Webinars</button>
+                        <button class="btn-filter" onclick="filterSelection('videos-filter')"> <span><img
+                                    src="img/icons/video-icon.svg" alt="Icon"></span> Videos</button>
+                        <button class="btn-filter" onclick="filterSelection('whitepapers-filter')"> <span><img
+                                    src="img/icons/whitepaper-icon.svg" alt="Icon"></span> Whitepapers</button>
+                    </div>
 
-                  <div class="row spacer-bottom">
-                     {{ $pages := where .Pages "Params.series" "events"}}
-                      {{ range sort ($pages.ByParam "customdate")  }}
-                        
-                          <div class="col-md-6 col-lg-4 resources-filter events-filter">
-                              <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
-                                  <div class="posts">
-                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
-                                      <span>{{ .Params.eventdate }}</span>
+                    <div class="row spacer-bottom">
+                        {{ $pages := where .Pages "Params.series" "events"}}
+                        {{ range sort ($pages.ByParam "customdate") }}
 
-                                      <div class="post-card-links">
-                                          <div class="post-label float-left">
-                                              <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
-                                          </div>
+                        <div class="col-md-6 col-lg-4 resources-filter events-filter">
+                            <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
+                                <div class="posts">
+                                    <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                    <span>{{ .Params.eventdate }}</span>
 
-                                          <div class="post-url float-right">
-                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      {{ end }}
+                                    <div class="post-card-links">
+                                        <div class="post-label float-left">
+                                            <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                        </div>
 
-                      {{ range where .Pages "Params.series" "webinars" }}
-                          <div class="col-md-6 col-lg-4 resources-filter webinars-filter">
-                              <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
-                                  <div class="posts">
-                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                        <div class="post-url float-right">
+                                            <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ end }}
 
-                                      <div class="post-card-links">
-                                          <div class="post-label float-left">
-                                              <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
-                                          </div>
+                        {{ range where .Pages "Params.series" "webinars" }}
+                        <div class="col-md-6 col-lg-4 resources-filter webinars-filter">
+                            <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
+                                <div class="posts">
+                                    <h4 class="post-title">{{ .Title | emojify }}</h4>
 
-                                          <div class="post-url float-right">
-                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      {{ end }}
+                                    <div class="post-card-links">
+                                        <div class="post-label float-left">
+                                            <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                        </div>
 
-                      {{ range where .Pages "Params.series" "videos" }}
-                          <div class="col-md-6 col-lg-4 resources-filter videos-filter">
-                              <div class="post-card post-min-height video-btn" data-toggle="modal" data-src="{{ .Params.url }}" data-target="#myModal">
-                                  <div class="posts">
-                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                        <div class="post-url float-right">
+                                            <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ end }}
 
-                                      <div class="post-card-links">
-                                          <div class="post-label float-left">
-                                              <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
-                                          </div>
+                        {{ range where .Pages "Params.series" "videos" }}
+                        <div class="col-md-6 col-lg-4 resources-filter videos-filter">
+                            <div class="post-card post-min-height video-btn" data-toggle="modal"
+                                data-src="{{ .Params.url }}" data-target="#myModal">
+                                <div class="posts">
+                                    <h4 class="post-title">{{ .Title | emojify }}</h4>
 
-                                          <div class="post-url float-right">
-                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      {{ end }}
+                                    <div class="post-card-links">
+                                        <div class="post-label float-left">
+                                            <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                        </div>
 
-                      {{ range where .Pages "Params.series" "whitepapers" }}
-                          <div class="col-md-6 col-lg-4 resources-filter whitepapers-filter">
-                              <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
-                                  <div class="posts">
-                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
+                                        <div class="post-url float-right">
+                                            <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ end }}
 
-                                      <div class="post-card-links">
-                                          <div class="post-label float-left">
-                                              <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
-                                          </div>
+                        {{ range where .Pages "Params.series" "whitepapers" }}
+                        <div class="col-md-6 col-lg-4 resources-filter whitepapers-filter">
+                            <div class="post-card post-min-height" onclick="location.href='{{ .Params.url }}'">
+                                <div class="posts">
+                                    <h4 class="post-title">{{ .Title | emojify }}</h4>
 
-                                          <div class="post-url float-right">
-                                              <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      {{ end }}
+                                    <div class="post-card-links">
+                                        <div class="post-label float-left">
+                                            <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.label }}</span>
+                                        </div>
 
-                  </div>
+                                        <div class="post-url float-right">
+                                            <a href="{{ .Params.url }}">{{ .Params.link }} &#10230;</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ end }}
 
-              </div> <!-- /.container -->
+                    </div>
+
+                </div> <!-- /.container -->
             </div> <!-- /.secondary-content -->
 
             <div class="footer-content">
@@ -164,7 +325,8 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalVideos" aria-hidden="true">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalVideos"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
@@ -173,7 +335,8 @@
                             </button>
                             <!-- 16:9 aspect ratio -->
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+                                <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always"
+                                    allow="autoplay"></iframe>
                             </div>
                         </div>
                     </div>
@@ -182,6 +345,6 @@
 
 
 
-{{ partial "footer-nav.html" . }}
+            {{ partial "footer-nav.html" . }}
 
-{{ partial "footer.html" . }}
+            {{ partial "footer.html" . }}
