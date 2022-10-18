@@ -1,7 +1,7 @@
 {{ partial "head.html" . }} {{ partial "header.html" . }}
 <section class="crunch-gradient-gray">
     <div class="container-fluid px-md-0 px-sm-3 py-5">
-        <div class="">
+        <div class="py-5">
             <div class="row">
                 <div class="col-md-5">
                     <h1 class="crunch-h1">{{ .Params.title }}</h1>
@@ -11,7 +11,8 @@
                         demo</a>
                 </div>
                 <div class="col-md-6 offset-md-1  offset-sm-0">
-                    <img src="{{ .Params.gif }}" alt="{{ .Params.title }}" class="img-fluid" />
+                    <!-- <img src="{{ .Params.gif }}" alt="{{ .Params.title }}" class="img-fluid" /> -->
+                    <div style="padding:56.34% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/752811968?h=b3a4f01270&amp;badge=0&amp;autopause=0&autoplay=1&loop=1&controls=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="PPT Export"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
                 </div>
             </div>
             <!-- /.row -->
@@ -52,7 +53,7 @@
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                         <div id="instant-graphs" class="carousel slide crun-slider" data-ride="carousel">
 
-                            <ol class="carousel-indicators">
+                            <ol class="carousel-indicators d-none">
                                 <li data-target="#instant-graphs" data-slide-to="0" class="active"></li>
                                 <li data-target="#instant-graphs" data-slide-to="1"></li>
                                 <li data-target="#instant-graphs" data-slide-to="2"></li>
@@ -79,6 +80,34 @@
                                 </div>
 
                             </div>
+                            <div class="caroucel-controls d-none"><button class="carousel-control-prev" type="button" data-target="#instant-graphs"
+                                data-slide="prev">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15.659"
+                                    viewBox="0 0 17 15.659">
+                                    <g id="arrow-right" transform="translate(0.5 1.086)">
+                                        <path id="arrow-left-1" data-name="arrow-left"
+                                            d="M9.11.5l-.693.811L14.934,6.9H.577V7.965H14.934L8.417,13.555l.693.811,7.467-6.4V6.9L9.11.5Z"
+                                            transform="translate(-0.577 -0.498)" fill="#fff" stroke="#fff"
+                                            stroke-width="1" />
+                                    </g>
+                                </svg>
+
+                                <span class="sr-only">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-target="#instant-graphs"
+                                data-slide="next">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15.659"
+                                    viewBox="0 0 17 15.659">
+                                    <g id="arrow-right" transform="translate(0.5 1.086)">
+                                        <path id="arrow-right-2" data-name="arrow-right"
+                                            d="M9.11.5l-.693.811L14.934,6.9H.577V7.965H14.934L8.417,13.555l.693.811,7.467-6.4V6.9L9.11.5Z"
+                                            transform="translate(-0.577 -0.498)" fill="#fff" stroke="#fff"
+                                            stroke-width="1" />
+                                    </g>
+                                </svg>
+
+                                <span class="sr-only">Next</span>
+                            </button></div>
 
                         </div>
                     </div>
@@ -88,7 +117,7 @@
                 <div
                     class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-star py-5 order-4 order-md-3">
                     <div
-                        class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple">
+                        class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple justify-content-center">
                         <img src="{{ .Params.carousel_img_2 }}" alt="{{ .Params.title }}" class="img-fluid p-5" />
                     </div>
                 </div>
@@ -129,15 +158,15 @@
 
                 <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-end py-5 order-6">
                     <div
-                        class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-green">
-                        <img src="{{ .Params.carousel_img_3 }}" alt="{{ .Params.title }}" class="img-fluid p-5" />
+                        class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-green justify-content-center">
+                        <img src="{{ .Params.carousel_img_3 }}" alt="{{ .Params.title }}" class="img-fluid p-5 " />
                     </div>
                 </div>
 
                 <div
                     class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-start py-5 order-md-7 order-8">
                     <div
-                        class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
+                        class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue justify-content-center">
                         <img src="{{ .Params.carousel_img_4 }}" alt="{{ .Params.title }}" class="img-fluid p-5" />
                     </div>
                 </div>
@@ -172,3 +201,24 @@
 
     {{ partial "footer-nav.html" . }} {{ partial "footer.html" . }}
 </div>
+<script type="text/javascript">
+
+    let instant_graphs =  document.getElementById("instant-graphs");
+    instant_graphs.addEventListener('mouseenter', (e) => { 
+        show_dots_controls(document.querySelector(".carousel-indicators"));
+        show_dots_controls(document.querySelector(".caroucel-controls"));
+    });
+
+    instant_graphs.addEventListener('mouseleave', (e) => { 
+        hidden_dots_controls(document.querySelector(".carousel-indicators"));
+        hidden_dots_controls(document.querySelector(".caroucel-controls"));
+    });
+
+    function show_dots_controls(target){
+        target.classList.remove("d-none");
+    }
+    function hidden_dots_controls(target){
+        target.classList.add("d-none");
+    }
+
+</script>

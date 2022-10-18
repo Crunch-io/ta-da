@@ -1,8 +1,20 @@
 
+@media screen and (max-width: 1366px) {
+    .container-fluid {
+        padding-left: 75px !important;
+        padding-right: 75px !important;
+        .row{
+            max-width: 1400px;
+            margin: auto;
+        }
+    }
+}
+
+
 @include media-breakpoint-only(md) {
 
     .container-fluid {
-        padding: 35px;
+        padding: 15px;
         .row{
             max-width: 1400px;
             margin: auto;
@@ -52,6 +64,16 @@
 }
 
 @media (max-width: 991.98px) {
+
+
+    .container-fluid {
+        padding-left: 75px !important;
+        padding-right: 75px !important;
+        .row{
+            max-width: 1400px;
+            margin: auto;
+        }
+    }
 
     .crunch-reflection-left-bottom::before{
         transform: translate(-10px, 25px);
@@ -126,11 +148,6 @@
 }
 
 @media (max-width: 767.98px) { 
-
-
-
- 
-
 
     #self-services{
         padding-top: 75px;

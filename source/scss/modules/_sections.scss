@@ -896,6 +896,31 @@
     position: relative;
 }
 
+// resources
+
+#content-resources{
+    position: relative;
+    z-index: -2;
+    
+    .crunch-reflection img {
+        height: auto;
+        width: 100%;
+    }
+    .crunch-reflection-left-bottom::before {
+        transform: translate(-25px, 60px);
+    }
+
+}
+
+#upcoming-events{
+    .card{
+        border:0px;
+        .card-body{
+            border-radius: 12px;
+        }
+    }
+}
+
 @include media-breakpoint-only(xs) {
     .speed-section {
         height: 620px;

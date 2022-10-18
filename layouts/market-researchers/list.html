@@ -1,131 +1,105 @@
-{{ partial "head.html" . }}
-
-{{ partial "header.html" . }}
-<section class="crunch-gradient-gray" >
-
-<div class="container-fluid py-5">
+{{ partial "head.html" . }} {{ partial "header.html" . }}
+<section class="crunch-gradient-gray">
+    <div class="container-fluid py-5">
         <div class="row">
-                <div class="col-md-6 ">
-                    <h1 class="crunch-h1">{{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }}<br/> {{ index (split . " ") 2 }} <br/>{{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5}} {{ index (split . " ") 6}} {{ end }}</h1>
-                    <h2 class="semibold-string p-0 col-11">{{ .Description }}</h2>
-                    <a href="/request-demo/" 
-                        aria-label="Request a demo" 
-                        class="btn btn-primary btn-lg cta mt-3 mb-5 justify-s d-none d-sm-inline-block">Request a demo</a>
+            <div class="col-md-6">
+                <h1 class="crunch-h1">
+                    {{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split .
+                    " ") 1 }}<br />
+                    {{ index (split . " ") 2 }} <br />{{ index (split . " ") 3 }} {{ index
+                    (split . " ") 4 }} {{ index (split . " ") 5}} {{ index (split . " ")
+                    6}} {{ end }}
+                </h1>
+                <h2 class="semibold-string p-0 col-11">{{ .Description }}</h2>
+                <a href="/request-demo/" aria-label="Request a demo"
+                    class="btn btn-primary btn-lg cta mt-3 mb-5 justify-s d-none d-sm-inline-block">Request a demo</a>
+            </div>
+            <div class="col-md-6">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe
+                        src="https://player.vimeo.com/video/752797294?h=33fb05f386&amp;loop=1&autoplay=1&controls=0&badge=0&amp;autopause=0&amp;player_id=0&amp;"
+                        width="640" height="361" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen></iframe>
                 </div>
-                <div class="col-md-6 ">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe src="{{ .Site.Params.video }} " frameborder="0"></iframe>
-                    </div>
-                </div>
-        </div> <!-- /.row -->
-</div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
 </section>
 <div id="wrapper">
-    {{ range .Site.Pages }}
-    {{ if and (eq .Type "market-researchers") (eq .Title "Work quicker and more efficiently") }}
+    {{ range .Site.Pages }} {{ if and (eq .Type "market-researchers") (eq .Title
+    "Work quicker and more efficiently") }}
     <div>
         <div class="container-fluid">
             <div class="row py-5">
                 <div class="col-12 mb-5">
                     <h2 class="crunch-h2">{{ .Params.label }}</h2>
                 </div>
-                <div class="col-md-4">
-    
-                    <div class="accordion mb-1" id="accordion">
-                    {{ range  .Params.accordion }}
-                        
-                        <h2 class="mb-2 ">
-                            <button class="btn btn-link btn-block text-left  crunch-h3" 
-                                    type="button" 
-                                    data-toggle="collapse" 
-                                    data-target="#{{ index . 1 }}"
-                                    aria-expanded="{{ index . 3 }}" 
-                                    aria-controls="{{ index . 1 }}">
 
-                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15.659" viewBox="0 0 17 15.659">
-                                <g id="arrow-right" transform="translate(0.5 1.086)">
-                                  <path id="arrow-right-2" data-name="arrow-right" d="M9.11.5l-.693.811L14.934,6.9H.577V7.965H14.934L8.417,13.555l.693.811,7.467-6.4V6.9L9.11.5Z" transform="translate(-0.577 -0.498)" fill="#1d1d25" stroke="#1d1d26" stroke-width="1"/>
-                                </g>
-                              </svg>
-                            {{ index . 0 }}
-                            </button>
-                        </h2>
-
-                        <div id="{{ index . 1 }}" class="collapse {{ index . 4 }}" aria-labelledby="{{ index . 1 }}" data-parent="#accordion">
-                        
-                            {{ index . 2 }}
-                        
-                        </div>
-                    {{ end }}
+                {{ range .Params.accordion }}
+                <div class="col-md-5 d-flex align-items-center  {{ index . 3 }}">
+                    <div>
+                        <h2 class="mb-2 crunch-h2">{{ index . 0 }}</h2>
+                        {{ index . 2 }}
                     </div>
                 </div>
 
-                <div class="col-md-7 justify-content-end offset-1">
-                        <div class="crunch-reflection  crunch-reflection crunch-reflection-left-top crunch-background-purple ">
-                            <div class="">
-                                <img src="{{ .Params.gif }}" class="img-fluid" alt="{{ .Params.label }}"/>
-                            </div>
+                <div class="col-md-6 {{ index . 4 }}">
+                    <div class="crunch-reflection crunch-reflection-small {{ index . 6 }}">
+                        <div class="">
+                            <img src="{{ index . 5 }}" class="img-fluid" alt="{{ index . 0 }}" />
                         </div>
+                    </div>
                 </div>
-                
+
+                {{ end }}
             </div>
         </div>
     </div>
-    {{ end }}
-{{ end }}
+    {{ end }} {{ end }}
 </div>
 
 <div id="direcctor-comments" class="mt-5 crunch-green">
-    {{ range .Site.Pages }}
-        {{ if and (eq .Type "market-researchers") (eq .Title "testimonial") }}
+    {{ range .Site.Pages }} {{ if and (eq .Type "market-researchers") (eq .Title
+    "testimonial") }}
 
-            <div class="container-fluid py-3">
-                <div class="row py-5">
-
-                    <div class="col-md-3">
-                        <div class="testimonial-image">
-                            <img src="{{ .Params.gif }}" class="img-fluid"  alt="{{ .Params.Title }}"/>
-                        </div>
-                    </div>
-
-                    <div class="col-md-7 comments ml-md-5">
-                        {{ .Content }}
-                    </div>
-
+    <div class="container-fluid py-3">
+        <div class="row py-5">
+            <div class="col-md-3">
+                <div class="testimonial-image">
+                    <img src="{{ .Params.gif }}" class="img-fluid" alt="{{ .Params.Title }}" />
                 </div>
             </div>
 
-        {{ end }}
-    {{ end }}
-</div>
-
-
-    <div class="container-fluid">
-        <div class="row py-5">
-            {{ range .Site.Pages }}
-                {{ if and (eq .Type "market-researchers") (eq .Title "The survey analysis tool you need") }}
-
-                <div class="col-12 mb-5">
-                        <h2 class="crunch-h2">{{ .Params.label }}</h2>
-                    </div>
-
-                    <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-start py-5">
-                        <div class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
-                                <img src="{{ .Params.gif }}" class="img-fluid"  alt="{{ .Params.Title }}"/>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <h3 class="crunch-h3">{{ .Params.subtitle }}</h3>
-                        {{ .Content }}
-                    </div>
-
-                    {{ end }}
-            {{ end }}
+            <div class="col-md-7 comments ml-md-5">{{ .Content }}</div>
         </div>
     </div>
 
+    {{ end }} {{ end }}
+</div>
 
-{{ partial "footer-nav.html" . }}
+<div class="container-fluid">
+    <div class="row py-5">
+        {{ range .Site.Pages }} {{ if and (eq .Type "market-researchers") (eq .Title
+        "The survey analysis tool you need") }}
 
-{{ partial "footer.html" . }}
+        <div class="col-12 mb-5">
+            <h2 class="crunch-h2">{{ .Params.label }}</h2>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-start py-5">
+            <div class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
+                <img src="{{ .Params.gif }}" class="img-fluid" alt="{{ .Params.Title }}" />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="crunch-h3">{{ .Params.subtitle }}</h3>
+            {{ .Content }}
+        </div>
+
+        {{ end }} {{ end }}
+    </div>
+</div>
+
+{{ partial "footer-nav.html" . }} {{ partial "footer.html" . }}
