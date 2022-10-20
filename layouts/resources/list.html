@@ -91,13 +91,13 @@
         </div>
 
         <div class="col-md-12">
-            <div class="row row-cols-1 row-cols-md-2">
+            <div class="row row-cols-1 row-cols-md-2 justify-content-between">
                 {{ $pages := where .Pages "Params.series" "events"}}
                 {{ range .Pages  }}
                 <div class="col mb-5 card-item resources-filter {{.Params.series}}-filter">
                     <div class="d-flex shadow ">
                         
-                        <div class="card-body  d-flex flex-wrap col-7">
+                        <div class="card-body  d-flex flex-wrap col-7 ">
 
                             <div class="align-self-stretch mb-3 w-100">
                                 <h5 class="card-title">{{ .Params.label }}</h5>

@@ -2,6 +2,50 @@
 
 {{ partial "header.html" . }}
 
+
+
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <h1 class="crunch-h1">Leadership</h1>"
+      </div>
+      <div class="col-md-8">
+        <div class="row">        {{ range sort $.Site.Data.team.board "date" }}
+            <div class=" col-sm-6">
+              <figure class="figure">
+                
+                <!--<a href="#" data-toggle="popover" data-placement="right">-->
+                <!--</a>-->
+                <!--<div class="popover-title d-none">-->
+                <!--<h4>{{ .Params.firstname }} {{ .Params.lastname }}</h4>-->
+                <!--<p>{{ .Params.position }}</p>-->
+                <!--</div>-->
+                <!--<div class="popover-content d-none">-->
+                <!--<p>{{ .Params.description }}</p>-->
+                <!--</div>-->
+                <figcaption class="figure-caption">
+                    <div class="row lead-title">
+                        <div class="col">
+                            <h3 class="crunch-h3">{{ .firstname }} {{ .lastname }}</h3>
+                        
+                            <p >{{ .role }}</p>
+                        </div>
+                    </div>
+                 
+                </figcaption>
+                <img src="img/team/{{.img}}" alt="{{ .firstname }}" class="img-fluid" height="320" width="320">
+              </figure>
+            </div>
+            {{ end }}
+            </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OLD HTML -->
+
 <div id="wrapper">
 
   <div id="secondary-pages-wrapper">

@@ -3,7 +3,7 @@
 {{ partial "header.html" . }}
 
 
-<section class="crunch-gradient-gray">
+<section class="crunch-gradient-gray py-5">
     <div class="container-fluid px-md-0 px-sm-3 py-5">
         <div class="">
             <div class="row">
@@ -33,7 +33,7 @@
             {{ range .Site.Pages }} {{ if and (eq .Type "tracker-analytics") (eq .Title
             "Tracker Analytics") }}
 
-            <div class="row py-5 justify-content-between">
+            <div class="row py-5 justify-content-around">
                 <div class="col-md-12 pt-ls-5 pt-0 mb-md-4 order-0">
                     <h2 class="crunch-h2">{{ .Params.label }}</h2>
                 </div>

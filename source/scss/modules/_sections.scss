@@ -912,6 +912,16 @@
 
 }
 
+#industry-product-resources{
+    .card-item{
+        max-width: 48%;
+        .d-flex.shadow {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+    }
+}
+
 #upcoming-events{
     .card{
         border:0px;
