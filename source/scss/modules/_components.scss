@@ -51,6 +51,16 @@
 .crunch-gradient-gray {
     background: transparent linear-gradient(62deg, #ffffffa8 0%, #f2f2f2 100%) 0% 0% no-repeat padding-box;
 }
+.crunch-decoration-background-blue:after,
+.crunch-brand-background-blue{
+    content: "";
+    background-color:  $color-blue;
+ 
+}
+.crunch-decoration-background-green:after,
+.crunch-brand-background-green{
+    background-color: $color-green;
+}
 
 .crunch-green {
     background: $color-green;
@@ -62,6 +72,8 @@
         color: $color-white;
     }
 }
+
+
 
 .semibold-string{
     font-family: "ProximaNova" !important;
@@ -769,6 +781,15 @@ figure {
 // Hubspot forms
 .hbspt-form .hs-form-iframe {
     width: 100% !important;
+}
+
+
+input.btn.btn-primary.btn-block.mx-2 {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-radius: 4px;
+        padding: 9px 25px;
+        margin-left: 21px !important;
 }
 
 // Hero cropped images

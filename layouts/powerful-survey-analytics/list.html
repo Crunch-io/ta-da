@@ -1,44 +1,49 @@
-{{ partial "head.html" . }}
+{{ partial "head.html" . }} {{ partial "header.html" . }}
 
-{{ partial "header.html" . }}
+<section class="crunch-gradient-gray p-5">
 
-
-<section class="crunch-gradient-gray">
     <div class="container-fluid px-md-0 px-sm-3 py-5">
-        
-            <div class="row">
-                <div class="col-md-5 ">
-                    <h1 class="crunch-h1">{{ .Params.title }}</h1>
-                    <p class="semibold-string">{{ .Description }}</p>
+        <div class="row">
+            <div class="col-md-5">
+                <h1 class="crunch-h1">{{ .Params.title }}</h1>
+                <p class="semibold-string">{{ .Description }}</p>
+            </div>
+            <div class="col-md-6 offset-md-1 offset-sm-0">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe src="{{ .Params.video }}" loading="lazy" style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            " allowfullscreen frameborder="0" title="Crunch"></iframe>
                 </div>
-                <div class="col-md-6 offset-md-1 offset-sm-0 ">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe src="{{ .Params.video }}" loading="lazy"
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen
-                            frameborder="0" title="Crunch"></iframe>
-                    </div>
-                </div>
-            </div> <!-- /.row -->
-        </div> <!-- /.container -->
-    
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
 </section>
 <div id="wrapper">
-
     <div id="secondary-pages-wrapper">
         <div class="container-fluid px-md-0 px-sm-3">
+            {{ range .Site.Pages }} {{ if and (eq .Type "powerful-survey-analytics")
+            (eq .Title "Tool") }}
 
-            {{ range .Site.Pages }}
-            {{ if and (eq .Type "powerful-survey-analytics") (eq .Title "Tool") }}
-
-            <div class="row py-5 justify-content-between mb-5">
+            <div class="row py-5 justify-content-between ">
                 <div class="col-md-12 pt-ls-5 pt-0 mb-md-4 order-0">
                     <h2 class="crunch-h2">{{ .Params.label }}</h2>
                 </div>
 
                 <div
-                    class="col-md-4  col-12 d-flex  mr-4 justify-content-start justify-content-md-center align-items-center order-1">
+                    class="col-md-4 col-12 d-flex mr-4 justify-content-start justify-content-md-center align-items-center order-1">
                     <div class="py-md-5">
-                        <h3 class="crunch-h3">{{ with .Params.organize }} <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{  index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
+                        <h3 class="crunch-h3">
+                            {{ with .Params.organize }}
+                            <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{
+                                index (split . " ") 2 }}</span>
+                            {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index
+                            (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
                         </h3>
 
                         <div>
@@ -47,20 +52,20 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-end py-5 order-2">
+                <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-end py-5 order-2">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                         <img src="{{ .Params.gif }}" alt="{{ .Params.label }}" loading="lazy" width="680" height="442"
-                            class="img-fluid add-shadow sp-mb-t rounded">
+                            class="img-fluid add-shadow sp-mb-t rounded" />
                     </div>
                 </div>
 
                 <div
-                    class="col-12 col-sm-12  col-md-6 d-flex align-items-center justify-content-start py-5 order-4 order-md-3">
-                    <div class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple">
+                    class="col-12 col-sm-12 col-md-6 d-flex align-items-center justify-content-start py-5 order-4 order-md-3">
+                    <div
+                        class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple">
                         <div id="collaborate-slider" class="carousel slide crun-slider" data-ride="carousel"
                             data-touch="false" data-interval="false">
-
                             <ol class="carousel-indicators">
                                 <li data-target="#collaborate-slider" data-slide-to="0" class="active"></li>
                                 <li data-target="#collaborate-slider" data-slide-to="1"></li>
@@ -69,22 +74,13 @@
 
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="img/powerful_survey_analytics/1.jpg" class="d-block w-100"
-                                        alt="..." />
-                                   
-
+                                    <img src="img/powerful_survey_analytics/1.jpg" class="d-block w-100" alt="..." />
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="img/powerful_survey_analytics/2.jpg" class="d-block w-100"
-                                        alt="..." />
-                                   
-
+                                    <img src="img/powerful_survey_analytics/2.jpg" class="d-block w-100" alt="..." />
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="img/powerful_survey_analytics/3.jpg" class="d-block w-100"
-                                        alt="..." />
-                                    
-
+                                    <img src="img/powerful_survey_analytics/3.jpg" class="d-block w-100" alt="..." />
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-target="#collaborate-slider"
@@ -120,11 +116,13 @@
                 </div>
 
                 <div
-                    class="col-md-5  col-12 d-flex   justify-content-start justify-content-md-center  align-items-center order-3 order-md-4">
+                    class="col-md-5 col-12 d-flex justify-content-start justify-content-md-center align-items-center order-3 order-md-4">
                     <div class="py-md-5">
-                        <h3 class="crunch-h3">{{ with .Params.filter }} <span>{{ index (split . " ") 0 }} {{ index
-                                (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{
-                            index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
+                        <h3 class="crunch-h3">
+                            {{ with .Params.filter }}
+                            <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span>
+                            {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index
+                            (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
                         </h3>
 
                         <div>
@@ -134,11 +132,13 @@
                 </div>
 
                 <div
-                    class="col-md-4  col-12 d-flex   justify-content-start justify-content-md-center  align-items-center order-5">
+                    class="col-md-4 col-12 d-flex justify-content-start justify-content-md-center align-items-center order-5">
                     <div class="py-md-5">
-                        <h3 class="crunch-h3">{{ with .Params.append }} <span>{{ index (split . " ") 0 }} {{ index
-                                (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{
-                            index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
+                        <h3 class="crunch-h3">
+                            {{ with .Params.append }}
+                            <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}</span>
+                            {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index
+                            (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
                         </h3>
 
                         <div>
@@ -147,34 +147,30 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-end py-5 order-6 ">
+                <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-end py-5 order-6">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-green">
                         <img src="{{ .Params.gif }}" alt="{{ .Params.label }}" loading="lazy" width="680" height="442"
-                            class="img-fluid add-shadow sp-mb-t rounded">
+                            class="img-fluid add-shadow sp-mb-t rounded" />
                     </div>
                 </div>
+            </div>
+            <!-- /.row. -->
 
-            </div> <!-- /.row. -->
-
-            {{ end }}
-            {{ end }}
-
+            {{ end }} {{ end }}
         </div>
     </div>
 </div>
 
 <section class="crunch-green">
-    <div id="webinar" class="container-fluid px-md-0 px-sm-3  py-5">
-        {{ range .Site.Pages }}
-        {{ if and (eq .Type "powerful-survey-analytics") (eq .Title "Free Resources") }}
+    <div id="webinar" class="container-fluid px-md-0 px-sm-3 py-5">
+        {{ range .Site.Pages }} {{ if and (eq .Type "powerful-survey-analytics") (eq
+        .Title "Free Resources") }}
 
         <div class="share-insights py-5">
-            <div class="row ">
+            <div class="row">
                 <div class="col-sm-12 col-md-4 d-none d-sm-block">
-
-                    <img src="{{ .Params.img }}" class="img-fluid " alt="{{ .Params.label }}">
-
+                    <img src="{{ .Params.img }}" class="img-fluid" alt="{{ .Params.label }}" />
                 </div>
 
                 <div class="col-sm-12 col-md-8">
@@ -182,52 +178,49 @@
                     <h2 class="crunch-h3">{{ .Params.subtitle }}</h2>
                     <p>{{ .Content }}</p>
                     <a href="/request-demo/" aria-label="Request a demo"
-                        class="btn btn-crunch-green btn-primary btn-lg d-block cta   d-sm-inline-block">Download</a>
-
+                        class="btn btn-crunch-green btn-primary btn-lg d-block cta d-sm-inline-block">Download</a>
                 </div>
-            </div> <!-- /.row. -->
-
-        </div> <!-- /.container -->
-        {{ end }}
-        {{ end }}
+            </div>
+            <!-- /.row. -->
+        </div>
+        <!-- /.container -->
+        {{ end }} {{ end }}
     </div>
 </section>
 
 <section>
-    <div class="container-fluid px-md-0 px-sm-3 mb-5 pb-5">
+    <div class="container-fluid px-md-0 px-sm-3 pb-5">
+        {{ range .Site.Pages }} {{ if and (eq .Type "powerful-survey-analytics") (eq
+        .Title "Analyze survey data with ease") }}
 
-        {{ range .Site.Pages }}
-        {{ if and (eq .Type "powerful-survey-analytics") (eq .Title "Analyze survey data with ease") }}
-
-        <div class="row  py-5 justify-content-start align-self-center">
+        <div class="row py-5 justify-content-start align-self-center">
             <div class="col-12">
                 <h2 class="crunch-h2">{{ .Params.label }}</h2>
             </div>
 
-            <div class="col-12 col-sm-12  col-md-6 d-flex align-items-center justify-content-start py-5">
+            <div class="col-12 col-sm-12 col-md-6 d-flex align-items-center justify-content-start py-5">
                 <div
                     class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
-                    <img src="{{ .Params.gif }}" alt="" class="img-fluid add-shadow sp-mb-t rouded">
+                    <img src="{{ .Params.gif }}" alt="" class="img-fluid add-shadow sp-mb-t rouded" />
                 </div>
             </div>
 
             <div class="col-md-5 align-items-center justify-content-center pt-5 offset-md-1 offset-sm-0">
-
-                <h3 class="crunch-h3">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1
-                    }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index
-                    (split . " ") 5 }} <span>{{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11
-                        }}</span> {{ end }}
+                <h3 class="crunch-h3">
+                    {{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }}
+                    <span>{{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }}</span>
+                    {{ end }}
                 </h3>
 
                 {{ .Content }}
-
             </div>
+        </div>
+        <!-- /.row. -->
 
-        </div> <!-- /.row. -->
-        {{ end }}
-        {{ end }}
-    </div> <!-- /.container -->
+        {{ end }} {{ end }}
+    </div>
+    <!-- /.container -->
 </section>
 
-{{ partial "footer-nav.html" . }}
-{{ partial "footer.html" . }}
+{{ partial "footer-nav.html" . }} {{ partial "footer.html" . }}
+

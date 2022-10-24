@@ -896,6 +896,97 @@
     position: relative;
 }
 
+// resources
+
+#content-resources{
+    position: relative;
+    z-index: -2;
+    
+    .crunch-reflection img {
+        height: auto;
+        width: 100%;
+    }
+    .crunch-reflection-left-bottom::before {
+        transform: translate(-25px, 60px);
+    }
+
+}
+
+#industry-product-resources{
+    .card-item{
+        max-width: 48%;
+        .d-flex.shadow {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+    }
+}
+
+#upcoming-events{
+    .card{
+        border:0px;
+        .card-body{
+            border-radius: 12px;
+        }
+    }
+}
+
+// #Leadership
+
+#leadership {
+    #team-members{
+        margin: 80px 0px;
+    }
+    .team-leadership,
+    .team-members{
+        align-items: flex-end;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        
+        .figure{
+            background-color: #fff;
+            box-shadow: 0px 3px 20px #00000029;
+            border-radius: 8px;
+            overflow: hidden;
+            .figure-caption{
+                padding: 20px 18px;
+                p{
+                    font-size: 16px;
+                    color:$font-color-off-black;
+                    font-weight: normal;
+                }
+            }
+
+        }
+    }
+    .team-leadership {
+        .figure:after {
+            content: "";
+            height: 90%;
+            width: calc(150px);
+            transform: translateX(0px);
+            position: absolute;
+            z-index: -1;
+            top: 20px;
+            left: 0px;
+            border-radius: 18px;
+        }
+    }
+    .team-members{
+        .figure{
+            max-width: 270px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    }
+
+    .btn-sm {
+        font-size: 0.8em;
+    }
+}
+
 @include media-breakpoint-only(xs) {
     .speed-section {
         height: 620px;

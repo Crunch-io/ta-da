@@ -1,64 +1,56 @@
 {{ partial "head.html" . }}
 
 {{ partial "header.html" . }}
-
-<div id="wrapper">
-
-  <div id="secondary-pages-wrapper">
-    <div class="container-fluid">
-
-      <div class="team-content">
-        <div class="jumbotron">
-          <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col-md-12 header-content-container">
-                    <h1 class="display-4">Our <span>team</span></h1>
-
-                    <p>{{ .Content }}</p>
+<div id="leadership"> 
+<section  class="pt-5">
+  <div class="container-fluid pt-5">
+    <div class="row">
+      <div class="col">
+        <h1 class="crunch-h1">Leadership</h1>
+      </div>
+      <div id="team-leadership" class="col-md-8 col-sm-12 col-xs-12 col-12">
+        <div class="row"> {{ range sort $.Site.Data.team.board "date" }}
+          <div  class="team-leadership col-12 col-xs-8 col-sm-6">
+            <figure class="figure {{ .decorationBackground }}">
+              <!--<a href="#" data-toggle="popover" data-placement="right">-->
+              <!--</a>-->
+              <!--<div class="popover-title d-none">-->
+              <!--<h4>{{ .Params.firstname }} {{ .Params.lastname }}</h4>-->
+              <!--<p>{{ .Params.position }}</p>-->
+              <!--</div>-->
+              <!--<div class="popover-content d-none">-->
+              <!--<p>{{ .Params.description }}</p>-->
+              <!--</div>-->
+              <figcaption class="figure-caption">
+                <div class="row lead-title">
+                  <div class="col">
+                    <h3 class="crunch-h3">{{ .firstname }} {{ .lastname }}</h3>
+                    <p>{{ .role }}</p>
+                  </div>
                 </div>
-            </div> <!-- /.row -->
-          </div> <!-- /.container -->
-        </div> <!-- /.jumbotron -->
+              </figcaption>
+              <img src="img/team/{{.img}}" alt="{{ .firstname }} {{ .lastname }}" class="img-fluid" height="320" width="320">
+            </figure>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- OLD HTML -->
+<section id="team-members">
+  <div class="container-fluid">
 
-        <div class="container team-leads">
-          <div class="row justify-content-center">
-            {{ range sort $.Site.Data.team.board "date" }}
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <figure class="figure">
-                <img src="img/team/{{.img}}" alt="{{ .firstname }}" class="img-fluid" height="320" width="320">
-                <!--<a href="#" data-toggle="popover" data-placement="right">-->
-                <!--</a>-->
-                <!--<div class="popover-title d-none">-->
-                <!--<h4>{{ .Params.firstname }} {{ .Params.lastname }}</h4>-->
-                <!--<p>{{ .Params.position }}</p>-->
-                <!--</div>-->
-                <!--<div class="popover-content d-none">-->
-                <!--<p>{{ .Params.description }}</p>-->
-                <!--</div>-->
-                <figcaption class="figure-caption">
-                    <div class="row lead-title">
-                        <div class="col">
-                            <h3>{{ .firstname }} {{ .lastname }}</h3>
-                        </div>
-                        <div class="col">
-                            <p class="text-right">{{ .role }}</p>
-                        </div>
-                    </div>
-                    <p><img src="img/icons/location-icon.svg" alt="Location" class="location-icon"> {{ .location }}</p>
-                </figcaption>
-              </figure>
-            </div>
-            {{ end }}
-          </div> <!-- /.row -->
-        </div> <!-- /.container -->
-      </div> <!-- /.about-content -->
-
-      <div class="secondary-content">
-        <div class="container">
-          <div class="team-members">
-            {{ range sort $.Site.Data.team.members "firstname" }}
-            <figure class="figure">
-              <img src="img/team/{{.img}}" alt="{{ .firstname }}" class="img-fluid" height="230" width="230">
+        <div  class="row">
+          {{ range sort $.Site.Data.team.members "firstname" }}
+          <div class="team-members align-items-stretch col-xs-6 col-sm-6 col-md-3 col-ls-3">
+            <figure class="figure ">
+              <figcaption class="figure-caption align-items-stretch ">
+                <h3 class="crunch-h4">{{ .firstname }} {{ .lastname }}</h3>
+                <p> {{ .position }}</p>
+              </figcaption>
+              <img src="img/team/{{.img}}" alt="{{ .firstname }}" class="img-fluid" height="auto" width="100%">
               <!--<a href="#" data-toggle="popover">-->
               <!--</a>-->
               <!--<div class="popover-title d-none">-->
@@ -69,29 +61,23 @@
               <!--<div class="popover-content d-none">-->
               <!--{{ .Params.description }}-->
               <!--</div>-->
-              <figcaption class="figure-caption">
-                <h3>{{ .firstname }} {{ .lastname }}</h3>
-                <p><img src="img/icons/location-icon.svg" alt="Location" class="location-icon">  {{ .location }}</p>
-              </figcaption>
             </figure>
-            {{ end }}
           </div>
-        </div> <!-- /.container -->
-      </div> <!-- /.secondary-content -->
-
-      <div class="footer-content">
-        <div class="jumbotron">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-6">
-                <h1>Online survey data analysis.</h1>
-                <a href="mailto:info@crunch.io" class="btn btn-link">Try now &#10230;</a>
-              </div>
-            </div> <!-- /.row. -->
-          </div> <!-- /.container -->
-        </div> <!-- /.jumbotron -->
+          {{ end }}
+          <div class="col-12 p-5">
+            <a href="/jobs/" class="btn btn-primary btn-sm px-4">View jobs</a>
+           </div>
+        </div>
+  </div>
+</section>
+  <section>
+    <div class="container-fluid">
+      <div class="row">
+       
       </div>
+    </div>
+  </section>
+</div><!-- /#Leadership -->
+{{ partial "footer-nav.html" . }}
 
-      {{ partial "footer-nav.html" . }}
-
-      {{ partial "footer.html" . }}
+{{ partial "footer.html" . }}

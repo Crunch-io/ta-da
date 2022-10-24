@@ -25,6 +25,6 @@ content_filter = "Upload custom PowerPoint templates to quickly create branded r
 
 content_append = "Build compelling dashboards with no coding. Share with stakeholders and allow them to easily navigate and engage with dashboard tabs, filters, and pull down menus."
 
-content_flexible  = "Easily deliver to your clients and stakeholders. * PowerPoint decks * Online analytics * Interactive dashboards"
+content_flexible  = "Easily deliver to your clients and stakeholders."
 
 +++
