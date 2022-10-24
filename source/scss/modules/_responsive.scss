@@ -8,6 +8,21 @@
             margin: auto;
         }
     }
+
+}
+
+@media screen and (min-width: 1366px) {
+   
+    #leadership {
+    
+            .team-leadership {
+                .figure:after {
+                    content: "";
+                    transform: translateX(20px);
+            }
+            
+        }
+    }
 }
 
 
