@@ -21,7 +21,7 @@
         color: $color-off-black;
 
         span {
-            font-style: italic;
+            
         }
     }
 }
@@ -104,11 +104,11 @@
         }
 
         h3 {
-            font-family: 'Libre Baskerville', serif;
+            font-family:  "ProximaNova", sans-serif;
             font-size: 1.2em;
 
             span {
-                font-style: italic;
+                
             }
         }
     }
@@ -126,8 +126,8 @@
             color: $color-green;
 
             span {
-                font-family: 'Libre Baskerville', serif;
-                font-style: italic;
+                font-family:  "ProximaNova", sans-serif;
+                
                 color: $color-off-black;
                 line-height: 1.3em;
             }
@@ -217,7 +217,7 @@
                     h3 {
                         font-size: 16px;
                         color: $color-blue;
-                        font-family: 'Libre Baskerville', serif;
+                        font-family:  "ProximaNova", sans-serif;
                     }
 
                 }
@@ -260,7 +260,7 @@
                 h3 {
                     font-size: 16px;
                     color: $color-blue;
-                    font-family: 'Libre Baskerville', serif;
+                    font-family:  "ProximaNova", sans-serif;
                 }
 
                 img {
@@ -365,13 +365,13 @@
         }
 
         .date {
-            font-family: 'Libre Baskerville', serif;
-            font-style: italic;
+            font-family:  "ProximaNova", sans-serif;
+            
             font-size: .8em;
         }
 
         .title {
-            font-family: 'Libre Baskerville', serif;
+            font-family:  "ProximaNova", sans-serif;
             font-size: 2em;
             color: $color-blue;
             margin-top: 20px;
@@ -412,12 +412,12 @@
     .privacy-policy {
         h1 {
             color: $color-green;
-            font-family: 'Libre Baskerville', serif;
+            font-family:  "ProximaNova", sans-serif;
             text-align: center;
             font-size: 28px;
 
             span {
-                font-style: italic;
+                
                 text-transform: lowercase;
                 font-size: 28px;
                 font-weight: 300;
@@ -435,7 +435,7 @@
         margin-top: 30px;
 
         h2 {
-            font-family: 'Libre Baskerville', serif;
+            font-family:  "ProximaNova", sans-serif;
             color: $color-blue;
             font-size: 18px;
             margin-top: 30px;
@@ -496,8 +496,8 @@
         margin-top: 200px;
 
         span {
-            font-family: 'Libre Baskerville', serif;
-            font-style: italic;
+            font-family:  "ProximaNova", sans-serif;
+            
         }
 
         a {
@@ -556,8 +556,8 @@
 
         a {
             color: $color-white;
-            font-family: 'Libre Baskerville', serif;
-            font-style: italic;
+            font-family:  "ProximaNova", sans-serif;
+            
         }
     }
 
@@ -624,10 +624,10 @@
 
         @include media-breakpoint-down(sm) {
             h2 {
-                font-family: 'Libre Baskerville', serif;
+                font-family:  "ProximaNova", sans-serif;
 
                 span {
-                    font-style: italic;
+                    
                 }
             }
 
@@ -655,10 +655,10 @@
 
         @include media-breakpoint-down(sm) {
             h2 {
-                font-family: 'Libre Baskerville', serif;
+                font-family:  "ProximaNova", sans-serif;
 
                 span {
-                    font-style: italic;
+                    
                 }
             }
 
@@ -740,10 +740,10 @@
 
         @include media-breakpoint-down(sm) {
             h2 {
-                font-family: 'Libre Baskerville', serif;
+                font-family:  "ProximaNova", sans-serif;
 
                 span {
-                    font-style: italic;
+                    
                 }
             }
 
@@ -760,10 +760,10 @@
 
         @include media-breakpoint-down(sm) {
             h2 {
-                font-family: 'Libre Baskerville', serif;
+                font-family:  "ProximaNova", sans-serif;
 
                 span {
-                    font-style: italic;
+                    
                 }
             }
 
@@ -837,9 +837,9 @@
     }
 
     a {
-        font-family: 'Libre Baskerville', serif;
+        font-family:  "ProximaNova", sans-serif;
         color: $color-white;
-        font-style: italic;
+        
     }
 }
 
