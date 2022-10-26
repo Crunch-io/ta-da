@@ -8,6 +8,36 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2022.15</title>
+      <link>//crunch.io/release-notes/2022-10-24/</link>
+      <pubDate>Mon, 24 Oct 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-10-24/</guid>
+      <description>Crunch web application Added SAML SSO as an option for user authentication in Crunch. SAML is a secure, industry standard way for organizations to centrally manage users across applications. See the help article for more information. Fixed the ability to edit the definition of logical variables (those created in the filter builder) when using the web app. Fixed table exports so that pairwise column tests between multiple-response columns (when some columns are hidden) now work properly.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added SAML SSO as an option for user authentication in Crunch. SAML is a secure, industry standard way for organizations to centrally manage users across applications. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/9284853041549-Setting-Up-a-Partner-SAML-Provider&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Fixed the ability to edit the definition of logical variables (those created in the filter builder) when using the web app.&lt;/li&gt;
+&lt;li&gt;Fixed table exports so that pairwise column tests between multiple-response columns (when some columns are hidden) now work properly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;API endpoints and API reference&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added new information to the &lt;a href=&#34;https://crunch.io/api/reference/#post-/account/users/&#34;&gt;create account user&lt;/a&gt; endpoint, which describes how account rules  will override the user’s setting when adding the user in the API.&lt;/li&gt;
+&lt;li&gt;Added  a new attribute (&lt;code&gt;path&lt;/code&gt;) to the &lt;a href=&#34;https://crunch.io/api/reference/#get-/datasets/-dataset_id-/folders/-folder_id-/&#34;&gt;folder endpoint&lt;/a&gt;, which represents the folder location in the hierarchy tree.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Created the following new articles to support the new dataset dashboard features:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/9571734333581-Dataset-Homepages&#34;&gt;Dataset Homepages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/9546301672461-How-to-copy-a-dashboard-from-A-to-B&#34;&gt;How to copy a dashboard from A to B&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2022.14</title>
       <link>//crunch.io/release-notes/2022-09-27/</link>
       <pubDate>Wed, 28 Sep 2022 10:00:00 -0700</pubDate>
