@@ -8,10 +8,12 @@ description = "Create and download visually-appealing analyses in just a few cli
 images = ["https://crunch.io/img/logo-1200x630.png"]
 gif = "img/visualization_and_delivery.gif"
 
-carousel_img_1 = "img/visualization_and_delivery/drag_and_drop.svg"
-carousel_img_2 = "img/visualization_and_delivery/dashboards.svg"
-carousel_img_3 = "img/visualization_and_delivery/export.svg"
-carousel_img_4 = "img/visualization_and_delivery/crunchbox.svg"
+carousel_1_img_1 = "img/visualization_and_delivery/drag_and_drop.svg"
+carousel_1_img_2 = "img/visualization_and_delivery/Capabilities_tile_settings.jpg"
+carousel_1_img_3 = "img/visualization_and_delivery/Resize_dashboard.jpg"
+carousel_1_img_4 = "img/visualization_and_delivery/crunchbox.svg"
+
+
 
 organize = "Instant graphs & tables"
 filter = "Custom branding"

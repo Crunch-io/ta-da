@@ -196,3 +196,23 @@ $(document).ready(function() {
 
 // End
 });
+
+function carousel_controls(carousel_identifier) {
+
+  carousel_identifier.addEventListener('mouseenter', (e) => { 
+      show_dots_controls(carousel_identifier.querySelector(".carousel-indicators"));
+      show_dots_controls(carousel_identifier.querySelector(".carousel-controls"));
+  });
+
+  carousel_identifier.addEventListener('mouseleave', (e) => { 
+      hidden_dots_controls(carousel_identifier.querySelector(".carousel-indicators"));
+      hidden_dots_controls(carousel_identifier.querySelector(".carousel-controls"));
+  });
+}
+
+function show_dots_controls(target){
+  target.classList.remove("d-none");
+}
+function hidden_dots_controls(target){
+  target.classList.add("d-none");
+}

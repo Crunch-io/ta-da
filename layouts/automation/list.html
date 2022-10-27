@@ -3,7 +3,7 @@
 {{ partial "header.html" . }}
 
 
-<section class="crunch-gradient-gray py-5">
+<section id="automation" class="crunch-gradient-gray py-5">
     <div class="container-fluid py-5  px-md-0 px-sm-3">
         <div class="row">
             <div class="col-md-5 d-flex align-items-center">
@@ -26,36 +26,24 @@
     </div>
     <!-- /.container -->
 </section>
-<div id="wrapper">
-    <div>
+
+<section id="dashboards-delivery">
         <div class="container-fluid px-md-0 px-sm-3">
             {{ range .Site.Pages }} {{ if and (eq .Type "automation") (eq .Title
             "Crunch Automation") }}
 
             <div class="row py-5 justify-content-around">
-                <div class="col-md-12 pt-ls-5 pt-0 mb-md-4 order-0">
-                    <h2 class="crunch-h2">
-                        Focus your team on insights.
-                    </h2>
-                    <h2 class="crunch-h2">
-                        Not repetitive tasks.
-                    </h2>
-                </div>
-
+           
                 <div
                     class="col-md-5 col-12 d-flex  justify-content-start justify-content-md-center align-items-center order-1">
                     <div class="py-md-5">
 
-
+                        <h2 class="crunch-h2 mb-2">
+                            {{.Params.label}}
+                        </h2>
                         <div>
                             <p>{{.Params.content_1}}</p>
-                            <ul>
-                                <li>Expedite data transfer and quality checking for instant database and dashboard
-                                    updates</li>
-                                <li>Clean and organize data</li>
-                                <li>Update weights</li>
-
-                            </ul>
+                            {{ .Content }}
                         </div>
                     </div>
                 </div>
@@ -63,17 +51,50 @@
                 <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-end py-5 order-2">
                     <div
                         class="crunch-reflection crunch-reflection-small justify-content-center  crunch-reflection-right-top crunch-background-blue">
-                        <img src="{{ .Params.carousel_img_1 }}" alt="{{ .Params.title }}" class="img-fluid p-3" />
+                        <img src="{{ .Params.img }}" alt="{{ .Params.title }}" class="img-fluid p-3" />
                     </div>
                 </div>
-
 
                 <!-- /.row. -->
 
                 {{ end }} {{ end }}
-            </div>
+
         </div>
+</section>
 
-        {{ partial "footer-nav.html" . }}
+<section >
+    <div class="container-fluid px-md-0 px-sm-3">
+        {{ range .Site.Pages }} {{ if and (eq .Type "automation") (eq .Title
+            "Deliver dashboards at scale, fast") }}
 
-        {{ partial "footer.html" . }}
+            <div class="row py-5 justify-content">
+                
+                <div
+                    class="col-md-5 col-12 d-flex  justify-content-end justify-content-md-center align-items-center order-2">
+                    <div class="py-md-5">
+                        <h2 class="crunch-h2">
+                            {{.Params.title}}
+                        </h2>
+                        <div>
+                            {{ .Content }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-start py-5 order-1">
+                    <div
+                        class="crunch-reflection crunch-reflection-small justify-content-center  crunch-reflection-right-top crunch-background-blue">
+                       
+                        <!-- <img src="{{ .Params.carousel_img_2 }}" alt="{{ .Params.title }}" class="img-fluid p-3" /> -->
+                       
+                    </div>
+                </div>
+
+                <!-- /.row. -->
+
+                {{ end }} {{ end }}
+    </div>
+</section>
+
+{{ partial "footer-nav.html" . }}
+{{ partial "footer.html" . }}
