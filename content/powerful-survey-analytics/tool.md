@@ -3,18 +3,24 @@ date = "2020-08-10T16:37:03-04:00"
 draft = false
 title = "Tool"
 subtitle = "Effortlessly handles survey data"
-label = "Work quickly and more efficiently"
+label = "Empower everyone to analyze in the cloud"
 gif = "img/survey_data_expertise/weight_estimation.gif"
 
 
-organize = "Faster survey results"
-filter = "Empower your customers"
-append = "Limitless scalability"
-content_organize = "Search for insights using an intuitive, drag-and-drop interface. No more back and forth with DP for extra cuts. Automate workflows and reports with scripting to save time on repetitive tasks. Get to insights faster."
+organize = "Intuitive & easy"
+content_organize = "Analyze, visualize, and deliver with one incredibly easy-to-use platform built for scalability, speed and collaboration. Quickly review a summary of top-line results or dive deep into your survey data - trackers and ad hocs projects - in seconds with easy drag-and-drop."
 
-content_filter = "Meet the growing demand for online self-service. Let customers answer their own questions, and export to editable PowerPoints. Free up your time so you can focus on growth."
+filter = "Built for survey data"
+content_filter = "Unlike generic BI tools, Crunch.io expertly handles:"
+content_filter_list_1 = "Weighting"
+content_filter_list_2 = "Missingness"
+content_filter_list_3 = "Stats testing"
+content_filter_list_4 = "Multiple response questions"
+content_filter_list_5 = "Advanced analytics"
 
-content_append = "Deliver more projects, faster, with fewer resources. Automate repetitive reports. Analyze even your largest datasets with sub-second responses. Scale to hundreds of users, while retaining complete visibility and control over who has how much access to which data."
+
+append = "Seamless integrations"
+content_append = "Analyze survey data from multiple vendors and DIY survey fielding platforms. Benefit from Crunch.io’s direct integrations with various platforms, including Qualtrics, SurveyMonkey, Confirmit, and Decipher."
 +++
 
 Unlike generic BI tools, Crunch.io handles:

@@ -26,7 +26,7 @@ one_dasboard_2 = "img/dashboards/Views_2.jpeg"
 title_1 = "Dashboards in minutes"
 title_2 = "Effortless design"
 title_3 = "Automation"
-title_4 = "One Dashboard, Multiple Audiences"
+title_4 = "One Dataset, Multiple Audiences"
 
 content_1 = "Create visually-compelling dashboards with drag-and-drop simplicity. Add interactivity with filters, drop downs, and sliders to focus on different time periods. Showcase insights with KPIs, time plots, graphs, and charts. Share with stakeholders with one click."
 

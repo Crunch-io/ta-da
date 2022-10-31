@@ -8,32 +8,35 @@ gif = "img/stat-speed.gif"
 
 accordion =[
     [
-        "Online delivery",
+        "Faster survey results",
         "delivery",
-        "Easily slice, dice, and filter respondent-level data anytime you want. Create and apply a new filter in seconds e.g. 18-25 year olds, female, purchased your brand in last 6 months.",
-        "order-0 d-flex  justify-content-start ",
-         "order-1 offset-1 align-items-center justify-content-end",
-          "761678878?h=fc4d127a27",
-          " crunch-reflection-right-top crunch-background-blue",
+        "Search for insights using an intuitive, drag-and-drop interface. No more back and forth with DP for extra cuts. Automate workflows and reports with scripting to save time on repetitive tasks. Get to insights faster.",
+
+        "order-md-0 order-sm-0  d-flex  justify-content-start ",
+        "order-md-1 order-sm-1  offset-md-1 offset-0 align-items-center justify-content-end",
+        "761678878?h=fc4d127a27",
+        "crunch-reflection-right-top crunch-background-blue",
            
 
     ],[
-       "Quick and efficient",
+       "Empower your customers",
         "efficient",
-        "Easily slice, dice, and filter respondent-level data anytime you want. Create and apply a new filter in seconds e.g. 18-25 year olds, female, purchased your brand in last 6 months.",
-        "order-3 offset-1 align-items-center justify-content-end",
-         "order-2  justify-content-start ",
-          "761678878?h=fc4d127a27",
-          " crunch-reflection-left-top crunch-background-green",
+        "Meet the growing demand for online self-service. Let customers answer their own questions, and export to editable PowerPoints. Free up your time so you can focus on growth.",
+
+        "order-md-3 order-sm-2  offset-md-1 offset-0 align-items-center justify-content-end",
+        "order-md-2 order-sm-3   justify-content-start ",
+        "761678878?h=fc4d127a27",
+        " crunch-reflection-left-top crunch-background-green",
         "false"
     ],[
-       "A BI tool for survey data",
+       "Limitless scalability",
         "survey_data",
-        "Easily slice, dice, and filter respondent-level data anytime you want. Create and apply a new filter in seconds e.g. 18-25 year olds, female, purchased your brand in last 6 months.",
-        "order-4 d-flex  justify-content-start ",
-         "order-5  offset-1 align-items-center justify-content-end",
-          "754747656?h=0cf42fd16d",
-          " crunch-reflection-right-top crunch-background-purple",
+        "Deliver more projects, faster, with fewer resources. Automate repetitive reports. Analyze even your largest datasets with sub-second responses. Scale to hundreds of users, while retaining complete visibility and control over who has how much access to which data.",
+        
+        "order-md-4 order-sm-4 d-flex  justify-content-start ",
+        "order-md-5 order-sm-5  offset-md-1 offset-0 align-items-center justify-content-end",
+        "754747656?h=0cf42fd16d",
+        "crunch-reflection-right-top crunch-background-purple",
           
     ]]
 
