@@ -104,12 +104,9 @@
         }
 
         h3 {
-            font-family:  "ProximaNova", sans-serif;
-            font-size: 1.2em;
+            font-family: "proximanova-bold";
+            color: $font-color-off-black;
 
-            span {
-                
-            }
         }
     }
 
@@ -126,8 +123,8 @@
             color: $color-green;
 
             span {
-                font-family:  "ProximaNova", sans-serif;
-                
+                font-family: "proximanova-bold";
+                color: $font-color-off-black;                
                 color: $color-off-black;
                 line-height: 1.3em;
             }
@@ -217,7 +214,8 @@
                     h3 {
                         font-size: 16px;
                         color: $color-blue;
-                        font-family:  "ProximaNova", sans-serif;
+                        font-family: "proximanova-bold";
+                        color: $font-color-off-black;
                     }
 
                 }
@@ -259,8 +257,8 @@
 
                 h3 {
                     font-size: 16px;
-                    color: $color-blue;
-                    font-family:  "ProximaNova", sans-serif;
+                    font-family: "proximanova-bold";
+                    color: $font-color-off-black;
                 }
 
                 img {
@@ -371,7 +369,8 @@
         }
 
         .title {
-            font-family:  "ProximaNova", sans-serif;
+            font-family: "proximanova-bold";
+            color: $font-color-off-black;
             font-size: 2em;
             color: $color-blue;
             margin-top: 20px;
@@ -411,8 +410,8 @@
     // Privacy policy
     .privacy-policy {
         h1 {
-            color: $color-green;
-            font-family:  "ProximaNova", sans-serif;
+            font-family: "proximanova-bold";
+            color: $font-color-off-black;
             text-align: center;
             font-size: 28px;
 
@@ -435,8 +434,8 @@
         margin-top: 30px;
 
         h2 {
-            font-family:  "ProximaNova", sans-serif;
-            color: $color-blue;
+            font-family: "proximanova-bold";
+            color: $font-color-off-black;
             font-size: 18px;
             margin-top: 30px;
         }
@@ -623,13 +622,7 @@
         }
 
         @include media-breakpoint-down(sm) {
-            h2 {
-                font-family:  "ProximaNova", sans-serif;
-
-                span {
-                    
-                }
-            }
+            
 
             p {
                 margin-top: 0;
@@ -654,13 +647,7 @@
         background-color: $color-green;
 
         @include media-breakpoint-down(sm) {
-            h2 {
-                font-family:  "ProximaNova", sans-serif;
-
-                span {
-                    
-                }
-            }
+            
 
             p {
                 margin-top: 0;
@@ -739,13 +726,7 @@
         }
 
         @include media-breakpoint-down(sm) {
-            h2 {
-                font-family:  "ProximaNova", sans-serif;
-
-                span {
-                    
-                }
-            }
+            
 
             p {
                 margin-top: 0;
@@ -759,13 +740,7 @@
         background-color: $color-green;
 
         @include media-breakpoint-down(sm) {
-            h2 {
-                font-family:  "ProximaNova", sans-serif;
-
-                span {
-                    
-                }
-            }
+            
 
             p {
                 margin-top: 0;
@@ -846,7 +821,7 @@
 // Request a Demo
 #request-demo-content {
     position: relative;
-    z-index: -2;
+ 
     .request-demo-form {
         padding: 0 30px;
     }
@@ -900,7 +875,7 @@
 
 #content-resources{
     position: relative;
-    z-index: -2;
+   // z-index: -2;
     
     .crunch-reflection img {
         height: auto;

@@ -1,7 +1,7 @@
 {{ partial "head.html" . }}
 {{ partial "header.html" . }}
 
-<div id="request-demo-content" class=" crunch-gradient-gray">
+<div id="request-demo-content" class=" crunch-gradient-gray py-5">
     <div class="container-fluid py-5">
         <div class="row">
             <div class="col-md-6 col-sm-12">
@@ -19,7 +19,8 @@
                         src="//js.hsforms.net/forms/v2-legacy.js"
                     ></script>
                     <![endif]-->
-
+                    <div class="crunch-rectangle"></div>
+                    <div class="crunch-form">
                     <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
                     <script>
                         hbspt.forms.create({
@@ -29,6 +30,7 @@
                             version: "V2_PRERELEASE"
                         });
                     </script>
+                    </div>
                 </div>
             </div>
         </div> <!-- /form container -->

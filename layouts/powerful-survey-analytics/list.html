@@ -131,6 +131,13 @@
 
                         <div>
                             <p>{{.Params.content_filter }}</p>
+                            <ul>
+                                <li>{{ .Params.content_filter_list_1 }}</li>
+                                <li>{{ .Params.content_filter_list_2 }}</li>
+                                <li>{{ .Params.content_filter_list_3 }}</li>
+                                <li>{{ .Params.content_filter_list_4 }}</li>
+                                <li>{{ .Params.content_filter_list_5 }}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -168,7 +175,7 @@
     </div>
 </div>
 
-<section class="crunch-green">
+<section  class="d-none crunch-green">
     <div id="webinar" class="container-fluid px-md-0 px-sm-3 py-5">
         {{ range .Site.Pages }} {{ if and (eq .Type "powerful-survey-analytics") (eq
         .Title "Free Resources") }}
@@ -194,7 +201,7 @@
     </div>
 </section>
 
-<section>
+<section class="d-none">
     <div class="container-fluid px-md-0 px-sm-3 pb-5">
         {{ range .Site.Pages }} {{ if and (eq .Type "powerful-survey-analytics") (eq
         .Title "Analyze survey data with ease") }}

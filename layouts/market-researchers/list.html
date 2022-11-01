@@ -5,8 +5,8 @@
             <div class="col-md-6">
                 <h1 class="crunch-h1">
                     {{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split .
-                    " ") 1 }}<br />
-                    {{ index (split . " ") 2 }} <br />{{ index (split . " ") 3 }} {{ index
+                    " ") 1 }}
+                    {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} <br /> {{ index
                     (split . " ") 4 }} {{ index (split . " ") 5}} {{ index (split . " ")
                     6}} {{ end }}
                 </h1>
@@ -37,14 +37,14 @@
                 </div>
 
                 {{ range .Params.accordion }}
-                <div class="col-md-5 d-flex align-items-center  {{ index . 3 }}">
+                <div class="col-lg-5 mb-sm-5 d-flex align-items-center  {{ index . 3 }}">
                     <div>
                         <h2 class="mb-2 crunch-h2">{{ index . 0 }}</h2>
                         {{ index . 2 }}
                     </div>
                 </div>
 
-                <div class="col-md-6 {{ index . 4 }}">
+                <div class="col-lg-6 mb-sm-5 {{ index . 4 }} py-5">
                     <div class="crunch-reflection crunch-reflection-small {{ index . 6 }}">
                         {{ if isset . 7 }}
                         <div id="collaborate-slider" class="carousel slide crun-slider" data-ride="carousel"
@@ -135,15 +135,16 @@
 </div>
 
 <div class="container-fluid">
-    <div class="row py-5">
+    <div class="row py-5 mb-5">
         {{ range .Site.Pages }} {{ if and (eq .Type "market-researchers") (eq .Title
         "The survey analysis tool you need") }}
 
         <div class="col-12 mb-5">
             <h2 class="crunch-h2">{{ .Params.label }}</h2>
+            <p>{{ .Params.descriptions }}</p>
         </div>
 
-        <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-start py-5">
+        <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-start ">
             <div class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe
