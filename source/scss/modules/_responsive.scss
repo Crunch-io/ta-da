@@ -1,8 +1,8 @@
 
 @media screen and (max-width: 1366px) {
     .container-fluid {
-        padding-left: 75px !important;
-        padding-right: 75px !important;
+        padding-left: 75px;
+        padding-right: 75px;
         .row{
             max-width: 1400px;
             margin: auto;
@@ -82,8 +82,8 @@
 
 
     .container-fluid {
-        padding-left: 75px !important;
-        padding-right: 75px !important;
+        padding-left: 75px;
+        padding-right: 75px;
         .row{
             max-width: 1400px;
             margin: auto;
@@ -449,7 +449,16 @@
             margin-top: 120px;
         }
     }
+}
 
-    
-
+@media (max-width: 500px)
+{
+    .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+        .row{
+            max-width: 1400px;
+            margin: auto;
+        }
+    }
 }
