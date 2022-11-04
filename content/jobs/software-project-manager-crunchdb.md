@@ -67,4 +67,4 @@ We currently run our in-house production Python code against Redis, MongoDB, and
 - Software development experience as an individual contributor using Python.
 - Enterprise experience solving complex problems using multiple database systems.
 
-<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now via email to careers@crunch.io</button>
+<button class="btn btn-primary" onclick="location.href='mailto:careers@crunch.io';">Apply now via email to careers@crunch.io</button>

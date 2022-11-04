@@ -58,4 +58,4 @@ We currently run our in-house production Python code against Redis, MongoDB, and
 - Pytest testing experience
 - Design and deployment of Continuous Integration tools (e.g., Jenkins, Bamboo, Travis, etc)
 
-<button class="btn btn-success" onclick="location.href='https://jobs.smartrecruiters.com/oneclick-ui/company/YouGov1/publication/500ebd66-7004-4592-9c7d-24bbaa1f9258?dcr_id=DCRA1';">Apply now</button>
+<button class="btn btn-primary" onclick="location.href='https://jobs.smartrecruiters.com/oneclick-ui/company/YouGov1/publication/500ebd66-7004-4592-9c7d-24bbaa1f9258?dcr_id=DCRA1';">Apply now</button>

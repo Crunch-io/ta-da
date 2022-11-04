@@ -63,4 +63,4 @@ If you have experience or interest in these additional areas, you may have the o
 - Bachelor’s Degree in Programming, Computer Science, or Engineering-related field.
 - Current or former contributor to a significant open-source React library.
 
-<button class="btn btn-success" onclick="location.href='https://jobs.smartrecruiters.com/oneclick-ui/company/YouGov1/publication/19d99e64-f9b4-4167-a2e6-e1967b0d2e2f?dcr_id=DCRA1';">Apply now</button>
+<button class="btn btn-primary" onclick="location.href='https://jobs.smartrecruiters.com/oneclick-ui/company/YouGov1/publication/19d99e64-f9b4-4167-a2e6-e1967b0d2e2f?dcr_id=DCRA1';">Apply now</button>

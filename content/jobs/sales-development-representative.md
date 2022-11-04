@@ -36,4 +36,4 @@ The Sales Development Representative (SDR) will have responsibility for qualifyi
 - A Recruiter! Crunch.io hires company builders and, in this role, you will be asked to be on the constant lookout for the best talent to bring onboard to help us continue to build one of the best companies in the world.
 
 
-<button class="btn btn-success" onclick="location.href='https://smrtr.io/4F6hw';">Apply now</button>
+<button class="btn btn-primary" onclick="location.href='https://smrtr.io/4F6hw';">Apply now</button>
