@@ -5,6 +5,7 @@ title = "Sales Development Representative"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Sales & Marketing"
+filter = "sales-marketing"
 id = "business-dev"
 controls = "four"
 

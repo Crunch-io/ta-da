@@ -5,6 +5,7 @@ title = "Site Reliability/Devops Engineer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Engineering & Data"
+filter = "engineering-data"
 id = "sre"
 controls = "esre"
 +++

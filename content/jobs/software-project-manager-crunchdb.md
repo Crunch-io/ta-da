@@ -5,6 +5,7 @@ title = "Engineering Manager, Database Systems"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Engineering & Data"
+filter = "engineering-data"
 id = "software-project-manager-crunchdb"
 controls = "emgrdb"
 +++

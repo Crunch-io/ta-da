@@ -6,6 +6,7 @@ team = "product"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Product & Design"
+filter = "product-design"
 id = "product"
 controls = "seven"
 

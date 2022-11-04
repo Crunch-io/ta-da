@@ -5,6 +5,7 @@ title = "Account Executive"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Sales & Marketing"
+filter = "sales-marketing"
 id = "account-executive"
 controls = "five"
 
@@ -40,4 +41,4 @@ The Account Executive (AE) will be responsible for driving sales of Crunch produ
 - Domain. Market Research, SaaS, Business Intelligence, Analytics, Data Warehousing, Predictive Modeling or similar background / experience.
 - You are a Recruiter! Crunch hires company builders and, in this role, you will be asked to be on the constant lookout for the best talent to bring on-board to help us continue to build one of the best companies in the world!
 
-<button class="btn btn-success" onclick="location.href='https://smrtr.io/4F6hw';">Apply now</button>
+<button class="btn btn-primary" onclick="location.href='https://smrtr.io/4F6hw';">Apply now</button>

@@ -5,8 +5,10 @@ title = "R/R Shiny Developer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Engineering & Data"
+filter = "engineering-data"
 id = "r-shiny"
 controls = "rshiny"
+resume = "Crunch.io is seeking an R developer to help us build the tools for the next generation of analytics tools for survey data. In this role, you will be working with a team of data scientists, industry experts, market research organizations, designers, and engineers, creating tools for companies ranging from small-to-medium sized businesses to Fortune 500 organizations. You will have two major responsibilities: 1. developing and maintaining R packages for RCrunch, a package we have developed for sophisticated survey researchers. 2. prototyping various R Shiny data visualizations."
 
 +++
 
