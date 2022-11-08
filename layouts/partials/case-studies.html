@@ -1,40 +1,48 @@
-{{ range first 3 (where .Site.RegularPages "Section" "case-studies" | shuffle) }}
+{{ range first 2 (where .Site.RegularPages "Section" "case-studies" | shuffle) }}
 {{ if not (eq .RelPermalink $.Page.RelPermalink) }}
-<div class="col-md-6 col-lg-4">
-    <div class="post-card post-min-height" onclick="location.href='{{ .Permalink }}'">
-        <div class="posts">
-            <h4 class="post-title">{{ .Params.description | emojify }}</h4>
+<div class="col-md-6 ">
+    <div class="mb-5 d-flex align-items-stretch card-item resources-filter {{.Params.series}}-filter col-12" onclick="location.href='{{ .Permalink }}'">
+        <div class="d-flex flex-wrap shadow w-100 p-3">
+            
+            <div class="card-body  col-7 " >
 
-            <div class="post-card-links">
-                <div class="post-label float-left">
-                    <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.industry }}</span>
+                <div class="align-self-stretch mb-3 w-100">
+                
+                    <h5 class="card-title">{{  .Title | emojify}}</h5>
+                    <h4 class="card-text crunch-h4">{{ .Params.description }}</h4>
                 </div>
-
-                <div class="post-url float-right">
-                    <a href="{{ .Permalink }}">{{ .Params.link }} &#10230;</a>
-                </div>
+            </div> <!--/.card-body -->
+        
+            <div class="col pr-0 mr-0" style="background: no-repeat url(img/yougov_case_study_dash_opaque_2.png) center center;">
+                <img src="img/yougov_case_study_dash_opaque_2.png" alt="{{ .Title | emojify }}" class="d-none card-img-top img-fluid w-100"/>
             </div>
-        </div>
-    </div>
+        
+        </div> <!-- /.flex.shadow-->
+
+    </div><!-- /.card-item -->
 </div>
 {{ else }}
 
-<div class="col-md-6 col-lg-4">
-    <div class="post-card post-min-height" onclick="location.href='/case-studies'">
-        <div class="posts">
-            <h4 class="post-title">See how customers use Crunch.io</h4>
+<div class="col-md-6 ">
+    <div class="mb-5 d-flex align-items-stretch card-item resources-filter {{.Params.series}}-filter col-12" onclick="location.href='{{ .Permalink }}'">
+        <div class="d-flex flex-wrap shadow w-100 p-3">
+            
+            <div class="card-body  col-7 " >
 
-            <div class="post-card-links">
-                <div class="post-label float-left">
-                    <span><img src="{{ .Params.icon }}" alt="Icon">Case Studies</span>
+                <div class="align-self-stretch mb-3 w-100">
+                
+                    <h5 class="card-title">{{  .Title | emojify}}</h5>
+                    <h4 class="card-text crunch-h4">{{ .Params.description }}</h4>
                 </div>
-
-                <div class="post-url float-right">
-                    <a href="/case-studies">Learn more &#10230;</a>
-                </div>
+            </div> <!--/.card-body -->
+        
+            <div class="col pr-0 mr-0" style="background: no-repeat url(img/yougov_case_study_dash_opaque_2.png) center center;">
+                <img src="img/yougov_case_study_dash_opaque_2.png" alt="{{ .Title | emojify }}" class="d-none card-img-top img-fluid w-100"/>
             </div>
-        </div>
-    </div>
+        
+        </div> <!-- /.flex.shadow-->
+
+    </div><!-- /.card-item -->
 </div>
 
 {{ end }}
