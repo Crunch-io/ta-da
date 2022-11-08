@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i');
 
 h1,h2,h3,h4,h5,h6{
-    font-family: 'ProximaNova', serif;
+      font-family: "proximanova-bold";
 }
 
 h1 {
-    font-family: 'ProximaNova', serif;
+      font-family: "proximanova-bold";
     font-size: 2em;
 
     span {
@@ -15,11 +15,11 @@ h1 {
 
 h2 {
     font-size: 1.5em;
-    font-family: 'ProximaNova', serif;
+      font-family: "proximanova-bold";
 
 
     &.secondary-title {
-        font-family: 'ProximaNova', serif;
+          font-family: "proximanova-bold";
         font-size: 1.8em;
         color: $color-green;
 
@@ -65,15 +65,14 @@ h4 {
 
 .emphasis {
     color: $color-blue;
-    font-style: italic;
-    font-family: 'ProximaNova', serif;
+    font-family: "proximanova";
     margin-bottom: 40px;
 }
 
 .emphasis-black {
     color: $color-off-black;
-    font-style: italic;
-    font-family: 'ProximaNova', serif;
+    font-weight: 700;
+    font-family: "proximanova";
     margin-bottom: 40px;
 }
 

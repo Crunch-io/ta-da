@@ -2,109 +2,73 @@
 
 {{ partial "header.html" . }}
 
-<div id="wrapper">
 
-    <div id="secondary-pages-wrapper">
-        <div class="container-fluid">
-
-            <div class="resources-content">
-                <div class="jumbotron">
-                    <div class="container">
-                        <div class="row justify-content-md-center">
-                            <div class="col-md-12 header-content-container">
-                                <h1 class="display-4">{{ .Title }}</h1>
-                                <p>{{ .Content }}</p>
-                            </div>
-                        </div> <!-- /.row -->
-                    </div> <!-- /.container -->
-                </div> <!-- /.jumbotron -->
-
-                <div class="container resources-main">
-                  {{ range where .Pages "Params.series" "main" }}
-                  <div class="post-card post-card-main post-min-height">
-                      <div class="posts">
-                          <div class="row">
-                              <div class="col-md-5">
-                                  <span><img src="{{ .Params.iconblue }}" alt="Icon" style="width:25px;"> {{ .Params.industry }}</span>
-                                  <h4 class="post-title">{{ with .Params.description }} <i>{{ index (split . " ") 0 }}</i> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} <i>{{ index (split . " ") 7 }}</i> {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ end }}</h4>
-
-                                  <br>
-                                  <a class="btn btn-primary" href="{{ .Permalink }}">{{ .Params.link }}</a>
-                              </div>
-
-                              <div class="col-md-6 offset-md-1 d-none d-md-block d-lg-block">
-                                  <img src="img/yougov_case_study_dash_opaque.png" alt="" class="img-fluid">
-                              </div>
-
-                              <!-- <div class="col-md-6 offset-md-1 figure d-none d-md-block d-lg-block"> </div> -->
-                          </div>
-                      </div>
-                  </div>
-                  {{ end }}
-                </div>
-            </div> <!-- /.jobs-content -->
-
-            <div class="secondary-content">
-              <div class="container">
-
-                  <div class="row spacer-bottom">
-
-                      {{ range where .Pages "Params.series" "case-studies" }}
-                          <div class="col-md-6 col-lg-4">
-                              <div class="post-card post-min-height" onclick="location.href='{{ .Permalink }}'">
-                                  <div class="posts">
-                                      <h4 class="post-title">{{ .Params.description | emojify }}</h4>
-
-                                      <div class="post-card-links">
-                                          <div class="post-label float-left">
-                                              <span><img src="{{ .Params.icon }}" alt="Icon"> {{ .Params.industry }}</span>
-                                          </div>
-
-                                          <div class="post-url float-right">
-                                              <a href="{{ .Permalink }}">{{ .Params.link }} &#10230;</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      {{ end }}
-
-                  </div>
-
-              </div> <!-- /.container -->
-            </div> <!-- /.secondary-content -->
-
-            <div class="footer-content">
-                <div class="jumbotron">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h1>Learn about <span>our platform</span></h1>
-                                <a href="request-demo" class="btn btn-link">Request a demo &#10230;</a>
-                            </div>
-                        </div> <!-- /.row. -->
-                    </div> <!-- /.container -->
-                </div> <!-- /.jumbotron -->
+<section id="content-resources" class="sections crunch-gradient-gray py-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5 pt-5">
+                <h1 class="crunch-h1">{{ .Title }}</h1>
+                <p>{{ .Content }}</p>
             </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalVideos" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <!-- 16:9 aspect ratio -->
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+            <div class="col-md-6 my-5 offset-md-1 offset-sm-0">
+                <div class="crunch-reflection-container">
+                    <div class="crunch-reflection-content">
+                        
+                            {{ range where .Pages "Params.series" "main" }}
+                            <div class="p-4">
+                                <p>{{ .Params.label }}</p>
+                                <h2 class="crunch-h2"> {{ .Params.Title }}</h2>
+                                <p style="color: #0064a4">{{ .Params.about }}<br> {{ .Params.schedule }}</p>
+                                <br>
+                                <a class="btn btn-primary" href="{{ .Params.url }}" target="_blank">{{ .Params.link
+                                }}</a>
+                                <img src="img/yougov_case_study_dash_opaque.png" alt="{{ .Params.Title }}" class="img-fluid"/>
                             </div>
-                        </div>
+                            {{ end }}
+                        
                     </div>
+                    <div class="crunch-reflection-effect crunch-reflection-left-bottom crunch-background-green"></div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
 
 
+
+<section id="industry-product-resources" class="sections py-5">
+    <div class="container-fluid">
+
+        <div class="col-md-12">
+            <div class="row row-cols-1 row-cols-md-2 justify-content-between">
+                {{ $pages := where .Pages "Params.series" "events"}}
+                {{ range .Pages  }}
+                <div class="mb-5 d-flex align-items-stretch card-item resources-filter {{.Params.series}}-filter col-12" onclick="location.href='{{ .Permalink }}'">
+                    <div class="d-flex flex-wrap shadow w-100 p-3">
+                        
+                        <div class="card-body  col-7 " >
+
+                            <div class="align-self-stretch mb-3 w-100">
+                            
+                                <h5 class="card-title">{{  .Title | emojify}}</h5>
+                                <h4 class="card-text crunch-h4">{{ .Params.description }}</h4>
+                            </div>
+                        </div> <!--/.card-body -->
+                    
+                        <div class="col pr-0 mr-0" style="background: no-repeat url(img/yougov_case_study_dash_opaque_2.png) center center;">
+                            <img src="img/yougov_case_study_dash_opaque_2.png" alt="{{ .Title | emojify }}" class="d-none card-img-top img-fluid w-100"/>
+                        </div>
+                    
+                    </div> <!-- /.flex.shadow-->
+
+                </div><!-- /.card-item -->
+                {{ end }}
+            </div><!-- /.row -->
+        </div><!-- /.col -->
+
+    </div>
+
+</section>
 
 {{ partial "footer-nav.html" . }}
 

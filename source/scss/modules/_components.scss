@@ -82,12 +82,25 @@
 }
 
 
-
-.crunch-form-hbspt {
+.crunch-reflection-container{
     position: relative;
+    display: block;
     height: 100%;
-    min-height: 880px;
-    .crunch-rectangle{    border-radius: 20px;
+    min-height: 570px;
+    .crunch-reflection-content{
+        background-color: #fff;
+        box-shadow: 0px 3px 20px #00000029;
+        border-radius: 18px;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        top: 0px;
+        z-index: 10;
+    }
+    .crunch-reflection-effect{
+        border-radius: 20px;
         background-color: #0b6752;
         height: 99%;
         position: absolute;
@@ -95,6 +108,21 @@
         width: 96%;
         z-index: 1;
     }
+}
+.crunch-form-hbspt {
+    position: relative;
+    height: 100%;
+    min-height: 880px;
+    .crunch-rectangle{    
+        border-radius: 20px;
+        background-color: #0b6752;
+        height: 99%;
+        position: absolute;
+        transform: translate(-29px, 40px);
+        width: 96%;
+        z-index: 1;
+    }
+    
     .crunch-form{
         background-color: #fff;
         box-shadow: 0px 3px 20px #00000029;

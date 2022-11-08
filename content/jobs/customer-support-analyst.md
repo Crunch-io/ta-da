@@ -5,6 +5,7 @@ title = "Customer Support Analyst"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Sales & Marketing"
+filter = "sales-marketing"
 id = "customer-analyst"
 controls = "tcsupport"
 +++
@@ -59,4 +60,4 @@ We are a remote company, with all employees working remotely. We believe in hiri
 
 We are a startup, with a fast-paced startup culture. We are funded by and operate as a wholly-owned subsidiary of a public company, so our employees benefit from the excellent benefits and opportunities provided by a large company.
 
-<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>
+<button class="btn btn-primary" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>

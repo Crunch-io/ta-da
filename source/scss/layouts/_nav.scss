@@ -1,10 +1,5 @@
 .navbar {
     background-color: $color-white;
-
-    .container {
-        max-width: 1450px;
-    }
-
     .navbar-brand {
         img {
             padding-top: 3px;
@@ -22,6 +17,7 @@
         .nav-item {
             align-items: center;
             display: flex;
+            flex-wrap:wrap;
             margin-left: 30px;
             
 
@@ -214,4 +210,20 @@
 
 .borderClass {
     border-bottom: 1px solid $color-grey-normal;
+}
+
+a.circle,
+button.circle{
+    border-radius: 50px;
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+
+}
+
+.circle[aria-expanded="true"]::after{
+    content: "-";
+}
+.circle[aria-expanded="false"]::after{
+    content: "+";
 }
