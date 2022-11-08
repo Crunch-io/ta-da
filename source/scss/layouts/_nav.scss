@@ -56,7 +56,10 @@
             outline: none;
         }
     }
-
+    nav.navbar.sticky-top.navbar-expand-lg.navbar-light,
+    nav.navbar.sticky-top.navbar-expand-lg.navbar-light.borderClass {
+        z-index: 1022 !important;
+    }
     .navbar-toggler {
         border: 0;
     }
