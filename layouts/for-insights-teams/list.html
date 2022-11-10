@@ -3,7 +3,7 @@
 {{ partial "header.html" . }}
 
 <section class="crunch-gradient-gray">
-    <div class="container-fluid px-md-0 px-sm-3 py-5">
+    <div class="container px-md-0 px-sm-3 py-5">
         <div id="jumbotron">
             <div class="row py-5">
                 <div class="col-md-5 ">
@@ -27,7 +27,7 @@
 <div id="wrapper">
 
     <div id="secondary-pages-wrapper">
-        <div class="container-fluid px-md-0 px-sm-3">
+        <div class="container px-md-0 px-sm-3">
 
             {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "Find insights faster") }}
@@ -187,7 +187,7 @@
     </div>
 
     <div class="crunch-green">
-        <div id="webinar" class="container-fluid px-md-0 px-sm-3 py-5">
+        <div id="webinar" class="container px-md-0 px-sm-3 py-5">
             {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "webinar") }}
 
@@ -195,7 +195,7 @@
                 <div class="row  share-insights">
                     <div class="col-sm-12 col-md-4">
                         <div>
-                            <img src="{{ .Params.gif }}" class="img-fluid" alt="{{ .Params.label }}">
+                            <img src="{{ .Params.gif }}" class="img" alt="{{ .Params.label }}">
                         </div>
                     </div>
 
@@ -217,7 +217,7 @@
     </div>
 
     <div id="secondary-pages-wrapper">
-        <div class="container-fluid px-md-0 px-sm-3 mb-5 pb-5">
+        <div class="container px-md-0 px-sm-3 mb-5 pb-5">
 
             {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "Find insights right away") }}
