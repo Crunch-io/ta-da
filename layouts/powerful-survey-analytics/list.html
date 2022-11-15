@@ -1,7 +1,6 @@
 {{ partial "head.html" . }} {{ partial "header.html" . }}
 
-<section class="crunch-gradient-gray p-5">
-
+<section class="crunch-gradient-gray p-2">
     <div class="container px-md-0 px-sm-3 py-5">
 
         <div class="row">
@@ -25,7 +24,7 @@
     </div>
     <!-- /.container -->
 </section>
-<div id="wrapper">
+<div id="wrapper" class="p-2">
     <div id="secondary-pages-wrapper">
         <div class="container px-md-0 px-sm-3">
             {{ range .Site.Pages }} {{ if and (eq .Type "powerful-survey-analytics")
@@ -37,7 +36,7 @@
                 </div>
 
                 <div
-                    class="col-md-4 col-12 d-flex mr-4 justify-content-start justify-content-md-center align-items-center order-1">
+                    class="col-md-4 mb-5 col-12 d-flex mr-4 justify-content-start justify-content-md-center align-items-center order-1">
                     <div class="py-md-5">
                         <h3 class="crunch-h3">
                             {{ with .Params.organize }}
@@ -53,7 +52,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-end py-5 order-2">
+                <div class="col-12  mb-5 col-sm-12 col-md-7 d-flex align-items-center justify-content-end py-5 order-2">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                         <div class="embed-responsive embed-responsive-16by9">
@@ -66,7 +65,7 @@
                 </div>
 
                 <div
-                    class="col-12 col-sm-12 col-md-6 d-flex align-items-center justify-content-start py-5 order-4 order-md-3">
+                    class="col-12  mb-5 col-sm-12 col-md-6 d-flex align-items-center justify-content-start py-5 order-4 order-md-3">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple">
                         <div id="collaborate-slider" class="carousel slide crun-slider" data-ride="carousel"
@@ -121,7 +120,7 @@
                 </div>
 
                 <div
-                    class="col-md-5 col-12 d-flex justify-content-start justify-content-md-center align-items-center order-3 order-md-4">
+                    class="col-md-5  mb-5 col-12 d-flex justify-content-start justify-content-md-center align-items-center order-3 order-md-4">
                     <div class="py-md-5">
                         <h3 class="crunch-h3">
                             {{ with .Params.filter }}
@@ -144,7 +143,7 @@
                 </div>
 
                 <div
-                    class="col-md-4 col-12 d-flex justify-content-start justify-content-md-center align-items-center order-5">
+                    class="col-md-4  mb-5 col-12 d-flex justify-content-start justify-content-md-center align-items-center order-5">
                     <div class="py-md-5">
                         <h3 class="crunch-h3">
                             {{ with .Params.append }}
@@ -159,7 +158,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-end py-5 order-6">
+                <div class="col-12  mb-5 col-sm-12 col-md-7 d-flex align-items-center justify-content-end py-5 order-6">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-green">
                         <div class="embed-responsive embed-responsive-16by9">

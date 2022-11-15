@@ -42,8 +42,8 @@
             background-size: cover;
             content: "";
             position: absolute;
-            height: 16px;
-            width: 16px;
+            height: 14px;
+            width: 14px;
             position: absolute;
             top: calc(38%);
             right: calc(0px - 12px);
@@ -67,7 +67,7 @@
 
     .dropdown {
         .crunch-menu{
-            font-size: 1.3rem;
+            font-size: 16px;
             padding: 0 0 0.5rem;
             left: calc(0vw - 15vw);
             transition: all 0.2s ease-out;
@@ -81,7 +81,7 @@
             box-shadow: 1px 1px 15px 0px #aaaaaa42;
             
             .dropdown-item {
-                font-size: 1.2rem;
+                font-size: 16px;
                 font-weight: 300;
                 transition: all 0.2s ease-out;
 
