@@ -37,14 +37,14 @@
                 </div>
 
                 {{ range .Params.accordion }}
-                <div class="col-lg-5 mb-sm-5 d-flex align-items-center  {{ index . 3 }}">
+                <div class="col-lg-5 mb-sm-5 d-flex align-items-center  {{ index . 3 }} mb-5">
                     <div>
                         <h2 class="mb-2 crunch-h2">{{ index . 0 }}</h2>
                         {{ index . 2 }}
                     </div>
                 </div>
 
-                <div class="col-lg-6 mb-sm-5 {{ index . 4 }} py-5">
+                <div class="col-lg-6 mb-sm-5 {{ index . 4 }} py-5 mb-5">
                     <div class="crunch-reflection crunch-reflection-small {{ index . 6 }}">
                         {{ if isset . 7 }}
                         <div id="collaborate-slider" class="carousel slide crun-slider" data-ride="carousel"
@@ -134,7 +134,7 @@
 </div>
 
 <div class="container">
-    <div class="row py-5 mb-5">
+    <div class="row py-5 mt-5">
         {{ range .Site.Pages }} {{ if and (eq .Type "market-researchers") (eq .Title
         "The survey analysis tool you need") }}
 
@@ -143,7 +143,7 @@
             <p>{{ .Params.descriptions }}</p>
         </div>
 
-        <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-start ">
+        <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-start mb-5">
             <div class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe

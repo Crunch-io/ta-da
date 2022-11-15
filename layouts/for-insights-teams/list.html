@@ -32,7 +32,7 @@
             {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "Find insights faster") }}
 
-            <div class="row py-5 justify-content-between ">
+            <div class="row py-5  justify-content-between ">
                 <div class="col-md-12 pt-ls-5 pt-0 mb-md-4 order-0">
                     <h2 class="crunch-h2">{{ .Params.label }}</h2>
                 </div>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-end py-5 order-2">
+                <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-end mb-5 py-5 order-2">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                         <div class="embed-responsive embed-responsive-16by9">
@@ -63,7 +63,7 @@
                 </div>
 
                 <div
-                    class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-start py-5 order-4 order-md-3">
+                    class="col-12 col-sm-12 mb-5  col-md-7 d-flex align-items-center justify-content-start py-5 mb-5 order-4 order-md-3">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple">
 
@@ -142,7 +142,7 @@
                 </div>
 
                 <div
-                    class="col-md-5  col-12 d-flex  justify-content-start justify-content-md-center  align-items-center order-3 order-md-4">
+                    class="col-md-5 mb-5 col-12 d-flex  justify-content-start justify-content-md-center  align-items-center order-3 order-md-4">
                     <div class="py-md-5">
                         <h3 class="crunch-h3">{{ with .Params.filter }} <span>{{ index (split . " ") 0 }} {{ index
                                 (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{
@@ -156,7 +156,7 @@
                 </div>
 
                 <div
-                    class="col-md-5  col-12 d-flex  justify-content-start justify-content-md-center  align-items-center order-5">
+                    class="col-md-5 mb-5  col-12 d-flex  justify-content-start justify-content-md-center  align-items-center order-5">
                     <div class="py-md-5">
                         <h3 class="crunch-h3">{{ with .Params.append }} <span>{{ index (split . " ") 0 }} {{ index
                                 (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{
@@ -169,7 +169,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-end py-5 order-6">
+                <div class="col-12 col-sm-12 mb-5  col-md-7 d-flex align-items-center justify-content-end py-5 order-6">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-green">
                         <div class="embed-responsive embed-responsive-16by9">
@@ -187,7 +187,7 @@
     </div>
 
     <div class="crunch-green">
-        <div id="webinar" class="container px-md-0 px-sm-3 py-5">
+        <div id="webinar" class="container px-md-0 px-sm-3 py-5 my-5">
             {{ range .Site.Pages }}
             {{ if and (eq .Type "for-insights-teams") (eq .Title "webinar") }}
 
