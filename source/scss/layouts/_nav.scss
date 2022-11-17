@@ -110,6 +110,19 @@
 
 }
 
+.nav-footer {
+    a{
+        font-size: 16px;
+    }
+}
+
+
+path#Path_148:hover,
+path#Path_146:hover {
+    fill:$font-color-light-grey;
+}
+
+
 // Dot nav
 #dot-nav {
     position: fixed;
