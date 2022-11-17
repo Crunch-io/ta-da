@@ -9,6 +9,8 @@ card_2 = "Build the leading online survey data analysis platform."
 
 video = "https://player.vimeo.com/video/446659223"
 
+our_team_img = "/img/Crunch_map.jpg"
+
 icon_1 = "img/icons/case-studies-icon.svg"
 icon_2 = "img/icons/careers-icon.svg"
 url_1 = "case-studies"
