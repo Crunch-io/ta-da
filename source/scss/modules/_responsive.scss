@@ -81,7 +81,7 @@
 @media (max-width: 991.98px) {
 
 
-    .container-fluid {
+    .container {
         padding-left: 75px;
         padding-right: 75px;
         .row{
@@ -178,8 +178,8 @@
             
         }
     }
-    .container-fluid {
-        padding: 15px;
+    .container {
+        padding: 25px;
         .row{
             max-width: 1400px;
             margin: auto;
@@ -262,8 +262,8 @@
 
 @include media-breakpoint-only(sm) {
 
-    .container-fluid {
-        padding: 15px;
+    .container {
+        padding: 25px;
         .row{
             max-width: 1400px;
             margin: auto;
@@ -304,6 +304,21 @@
         .icon-container {
             overflow: hidden;
             max-height: 109px;
+        }
+    }
+    input.btn.btn-primary.btn-block.mx-2 {
+        width: calc(82vw);
+        box-shadow: none;
+        border-radius: 4px;
+        padding: 9px 25px;
+        margin-left: 8px !important;
+
+    }
+
+    .contact-us{
+        font-size: 16px;
+        .crunch-h4{
+            color:#ffffff;
         }
     }
 
@@ -517,9 +532,9 @@
 
 @media (max-width: 500px)
 {
-    .container-fluid {
-        padding-left: 15px;
-        padding-right: 15px;
+    .container {
+        padding-left: 25px;
+        padding-right: 25px;
         .row{
             max-width: 1400px;
             margin: auto;
