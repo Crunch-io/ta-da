@@ -373,7 +373,7 @@
         padding-top: 40px;
     }
     #self-services{
-        padding-top: 75px;
+        padding-top: 15px;
         h1.crunch-h1{
             font-size: 2.8em;
         }
@@ -390,6 +390,10 @@
         left: 0px;
         height: 100%;
         width: 90%;
+    }
+
+    .border-right{
+        border:0px !important;
     }
 
     .crunch-reflection-left-top::before{
