@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Oct 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Nov 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -762,6 +762,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/tmre-2022</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2022.16</title>
+      <link>//crunch.io/release-notes/2022-11-21/</link>
+      <pubDate>Mon, 21 Nov 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-11-21/</guid>
+      <description>Crunch web application Fixed the following in Confirmit integrations: A bug that occurred within surveys that define predefined lists within predefined lists. Confirmit titles with empty strings (&amp;quot;&amp;quot;) are now given a default title (&amp;quot;No Title”). A category mapping is now used to fix column aliases when a grid variable is a categorical array. Numeric arrays are now handled properly when there is missing data due to broken labeling. Fixed the size limit for response data on Decipher integrations.</description>
     </item>
     
     <item>

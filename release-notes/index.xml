@@ -8,6 +8,51 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2022.16</title>
+      <link>//crunch.io/release-notes/2022-11-21/</link>
+      <pubDate>Mon, 21 Nov 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-11-21/</guid>
+      <description>Crunch web application Fixed the following in Confirmit integrations: A bug that occurred within surveys that define predefined lists within predefined lists. Confirmit titles with empty strings (&amp;quot;&amp;quot;) are now given a default title (&amp;quot;No Title”). A category mapping is now used to fix column aliases when a grid variable is a categorical array. Numeric arrays are now handled properly when there is missing data due to broken labeling. Fixed the size limit for response data on Decipher integrations.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed the following in &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360060784772-How-to-import-from-Confirmit-into-Crunch&#34;&gt;Confirmit integrations&lt;/a&gt;:
+&lt;ul&gt;
+&lt;li&gt;A bug that occurred within surveys that define predefined lists &lt;em&gt;within&lt;/em&gt; predefined lists.&lt;/li&gt;
+&lt;li&gt;Confirmit titles with empty strings (&lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt;) are now given a default title (&lt;code&gt;&amp;quot;No Title”&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;A category mapping is now used to fix column aliases when a grid variable is a categorical array.&lt;/li&gt;
+&lt;li&gt;Numeric arrays are now handled properly when there is missing data due to broken labeling.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Fixed the size limit for response data on &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/360013455752-Decipher&#34;&gt;Decipher integrations&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Substantially increased the limit that can be used in subtotals of multiple-response variables. There was previously a de facto limit on the number of items, which rendered them unusable.&lt;/li&gt;
+&lt;li&gt;Reenabled expression filters (i.e., filters that are not named) so that they appear in the footer of dashboard tiles.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;API endpoints and API reference&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added a full &lt;code&gt;path&lt;/code&gt; field, which is now returned whenever project entities are queried.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sdks-rcrunch-pycrunch-and-scrunch&#34;&gt;SDKs (&lt;code&gt;rCrunch&lt;/code&gt;, &lt;code&gt;pyCrunch&lt;/code&gt;, and &lt;code&gt;sCrunch&lt;/code&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the &lt;code&gt;R&lt;/code&gt; package for &lt;code&gt;R-devel&lt;/code&gt; changes to &lt;code&gt;POSIXlt&lt;/code&gt; object comparison.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10343513945869-REPLACE-NUMERIC-CASE-command&#34;&gt;REPLACE NUMERIC CASE command&lt;/a&gt;, which allows you to overwrite a non-derived variable&amp;rsquo;s values with numbers based on multiple cases (conditions).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the following:
+&lt;ul&gt;
+&lt;li&gt;New documentation for &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/10343332025101-Folder-commands&#34;&gt;folder commands&lt;/a&gt;, which allow you to use scripts to automate Crunch.io operations outside of datasets.&lt;/li&gt;
+&lt;li&gt;New and updated articles to support scriptable dashboard workflows. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10749608598157-Scriptable-Dashboard-articles&#34;&gt;complete list of scriptable dashboard articles&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2022.15</title>
       <link>//crunch.io/release-notes/2022-10-24/</link>
       <pubDate>Mon, 24 Oct 2022 10:00:00 -0700</pubDate>
