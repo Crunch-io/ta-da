@@ -9,6 +9,8 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 video = "https://player.vimeo.com/video/761663480?h=2f4c97e692"
 mob_video = "https://player.vimeo.com/video/761663480?h=2f4c97e692"
 
+effortless_design_video = "https://player.vimeo.com/video/773608182?h=1c32ca6c3c"
+
 automation_video = "https://player.vimeo.com/video/761678878?h=fc4d127a27"
 carousel_img_1 = "img/dashboards/custom-layouts.svg"
 carousel_img_2 = "img/dashboards/powerpoint.svg"
@@ -37,3 +39,5 @@ content_3 = "Import a new survey wave or dataset to automatically update dashboa
 content_4  = "Enable one dataset to be easily used by different markets or audiences. Ensure users only see their specified geography or data segment with Crunch Views. Create a Crunch View and apply Crunch Automation scripting to easily replicate a dashboard for each subset of a dataset."
 
 +++
+
+

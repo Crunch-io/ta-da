@@ -203,8 +203,6 @@ path#Path_146:hover {
 
     .page-link {
         color: $color-blue;
-        font-family: 'Libre Baskerville', serif;
-        font-style: italic;
         border: 0;
         border-radius: 0;
 
@@ -240,9 +238,17 @@ button.circle{
 
 }
 
-.circle[aria-expanded="true"]::after{
-    content: "-";
+#minus,
+#plus{
+    width: 22px;
+    margin: auto;
 }
-.circle[aria-expanded="false"]::after{
-    content: "+";
+.circle[aria-expanded="true"] #minus,
+.circle[aria-expanded="false"] #plus{
+    display: block;
+}
+
+.circle[aria-expanded="false"] #minus,
+.circle[aria-expanded="true"] #plus{
+    display: none;
 }

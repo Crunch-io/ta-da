@@ -82,6 +82,35 @@
 }
 
 
+.crunch-card-container{
+    background-color: transparent !important;
+    position: relative;
+    display: block;
+    height: 100%;
+    min-height: 570px;
+
+    .crunch-card-content{
+        background-color: #fff;
+        box-shadow: 0px 3px 20px #00000029;
+        border-radius: 18px;
+        height: 100%;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        z-index: 10;
+    }
+    .crunch-card-bg{
+        border-radius: 20px;
+        background-color: #0b6752;
+        height: 99%;
+        position: absolute;
+        transform: translate(-29px, 40px);
+        width: 96%;
+        z-index: 11;
+    }
+}
+
+
 .crunch-reflection-container{
     position: relative;
     display: block;
@@ -93,6 +122,7 @@
         border-radius: 18px;
         height: 100%;
         width: 100%;
+        overflow: hidden;
         position: absolute;
         bottom: 0px;
         left: 0px;

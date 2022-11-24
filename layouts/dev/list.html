@@ -1,111 +1,89 @@
 {{ partial "head-start.html" . }}
 {{ if eq .File.Dir "dev/" }}
-<meta http-equiv="refresh" content="0; url=dev/features/"/>
+<meta http-equiv="refresh" content="0; url=dev/features/" />
 {{ end }}
 
 {{ partial "head-finish.html" . }}
 {{ partial "header.html" . }}
 
-<div id="wrapper">
-
-    <div id="secondary-pages-wrapper">
-        <div class="container-fluid">
-
-            <div class="blog-content">
-                <div class="jumbotron">
-                    <div class="container">
-                        <div class="row justify-content-md-center">
-                            <div class="col-md-12 header-content-container">
-                                <h1 style="font-size: 2.5em; line-height: 1em;">{{ with .Title }} <i>{{ index (split . " ") 0 }}</i> {{ index (split . " ") 1 }} {{ end }}</h1>
-                                <p>{{ .Content }}</p>
-                            </div>
-                        </div> <!-- /.row -->
-
-                    </div> <!-- /.container -->
-                </div> <!-- /.jumbotron -->
-
-                <div class="container resources-main">
-                  {{ range where .Pages "Params.series" "main" }}
-                  <div class="row" style="margin-top: -70px;">
-                      <div class="col-md-8 post-card-main-content">
-                          <div class="post-card post-min-height announcements-main" style="margin-bottom: 0;" onclick="location.href='{{ .Permalink }}'">
-                              <div class="posts">
-                                  <h1 class="post-title">{{ with .Title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}  {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} <i>{{ index (split . " ") 6 }}</i> {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }} {{ index (split . " ") 12 }} {{ index (split . " ") 13 }} {{ index (split . " ") 14 }} {{ end }}</h1>
-                                  <p style="color: #444; margin-bottom: 98px">{{ .Params.description }}</p>
-                                  <span>{{ .Params.eventdate }}</span>
-
-                                  <br>
-
-                                  <div class="row">
-                                      <div class="col">
-                                          <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
-                                      </div>
-
-                                      <div class="col" style="text-align: right;">
-                                          <a href="{{ .Permalink }}"  aria-label="Learn More">Learn More &#10230;</a>
-                                      </div>
-
-                                  </div>
-                              </div>
-                          </div>
-                      </div> <!-- /.col-md-5 -->
-
-                      <div class="col-md-4 subscribe-whats-new">
-                          {{ partial "subscribe-whats-new" . }}
-                      </div>
-
-                      <!-- <div class="col-md-6 offset-md-1 figure d-none d-md-block d-lg-block"> </div> -->
-                  </div> <!-- /.row -->
-
-                  {{ end }}
-                </div>
-            </div> <!-- /.blog-content -->
-
-            <br>
-
-            <div class="secondary-content">
-              <div class="container">
-
-                  <div class="row">
-                      {{ range .Paginator.Pages.ByPublishDate.Reverse }}
-                          <div class="col-md-6 col-lg-4" id="feature-post">
-                              <div class="post-card post-min-height-sm" onclick="location.href='{{ .Permalink }}'">
-                                  <div class="posts">
-                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
-                                      <p>{{ .Params.description | truncate 75 }}</p>
-
-                                      <div class="row post-card-links" style="width: 88%;">
-                                          <div class="col">
-                                              <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
-                                          </div>
-
-                                          <div class="col text-right">
-                                              <a href="{{ .Permalink }}" aria-label="Learn More">Learn More &#10230;</a>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      {{ end }}
-                  </div>
-
-                  {{ partial "blog/pagination" . }}
-
-              </div> <!-- /.container -->
-            </div> <!-- /.secondary-content -->
-
-            <div class="footer-content">
-                <div class="jumbotron">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h1>Learn about <span>our team</span></h1>
-                                <a href="team" aria-label="Our team" class="btn btn-link">Our team &#10230;</a>
-                            </div>
-                        </div> <!-- /.row. -->
-                    </div> <!-- /.container -->
-                </div> <!-- /.jumbotron -->
+<section id="features" class="crunch-gradient-gray p-5">
+    <div class="container py-sm-5 py-3">
+        <div class="row">
+            <div class="col-md-5">
+                <h1 class="crunch-h1">{{ .Params.title }}</h1>
+                <p class="semibold-string">{{ .Description }}</p>
             </div>
+            <div class="col-md-6 offset-md-1 offset-sm-0">
+                <div class="crunch-reflection-container">
+                    <div class="crunch-reflection-content">
+
+                        {{ partial "subscribe-whats-new" . }}
+
+                    </div>
+                    <div class="crunch-reflection-effect crunch-reflection-left-bottom crunch-background-green"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-stretch">
+            {{ range where .Pages "Params.series" "main" }}
+            <div class="col-md-8 d-flex">
+              
+                    <div class="card-body shadow rounded d-flex flex-wrap " onclick="location.href='{{ .Permalink }}'">
+                        <h1 class="post-title">{{ with .Title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}  {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} <i>{{ index (split . " ") 6 }}</i> {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }} {{ index (split . " ") 12 }} {{ index (split . " ") 13 }} {{ index (split . " ") 14 }} {{ end }}</h1>
+                        <p style="color: #444; margin-bottom: 98px">{{ .Params.description }}</p>
+                        <span>{{ .Params.eventdate }}</span>
+
+                        <div class="col-12 d-flex features-details justify-content-between flex-wrap align-self-end">
+                            <div class="col">
+                                <span>{{ .PublishDate.Format "Jan 2, 2006" }}</span>
+                            </div>
+
+                            <div class="col" style="text-align: right;">
+                                <a href="{{ .Permalink }}" aria-label="Learn More">Learn More &#10230;</a>
+                            </div>
+
+                        </div>
+              
+                </div>
+            </div> <!-- /.col-md-5 -->
+            {{ end }}
+
+            {{ range .Paginator.Pages.ByPublishDate.Reverse }}
+            <div class="col-md-6 col-lg-4 p-4 d-flex">
+                
+                    <div class="card-body shadow rounded d-flex flex-wrap "  onclick="location.href='{{ .Permalink }}'">
+                        <h4 class="post-title">{{ .Title | emojify }}</h4>
+                        <p>{{ .Params.description | truncate 75 }}</p>
+
+                        <div class="row features-details col-12 d-flex justify-content-between flex-wrap align-self-end ">
+                          
+                                <p>{{ .PublishDate.Format "Jan 2, 2006" }}</p>
+                            
+
+                          
+                                <a href="{{ .Permalink }}" aria-label="Learn More">Learn More &#10230;</a>
+                           
+                        </div>
+                    </div>
+               
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        {{ partial "blog/pagination" . }}
+    </div>
+</section>
 
 {{ partial "footer-nav.html" . }}
 
