@@ -6,8 +6,8 @@
 {{ partial "head-finish.html" . }}
 {{ partial "header.html" . }}
 
-<section id="features" class="crunch-gradient-gray p-5">
-    <div class="container py-sm-5 py-3">
+<section id="features" class="crunch-gradient-gray py-sm-5  p-0">
+    <div class="container py-sm-5 py-0">
         <div class="row">
             <div class="col-md-5">
                 <h1 class="crunch-h1">{{ .Params.title }}</h1>
@@ -33,7 +33,7 @@
     <div class="container">
         <div class="d-flex flex-wrap align-items-stretch">
             {{ range where .Pages "Params.series" "main" }}
-            <div class="col-md-8 d-flex">
+            <div class="col-md-8 py-4 d-flex">
               
                     <div class="card-body shadow rounded d-flex flex-wrap " onclick="location.href='{{ .Permalink }}'">
                         <h1 class="post-title">{{ with .Title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}  {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} <i>{{ index (split . " ") 6 }}</i> {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }} {{ index (split . " ") 12 }} {{ index (split . " ") 13 }} {{ index (split . " ") 14 }} {{ end }}</h1>
@@ -56,7 +56,7 @@
             {{ end }}
 
             {{ range .Paginator.Pages.ByPublishDate.Reverse }}
-            <div class="col-md-6 col-lg-4 p-4 d-flex">
+            <div class="col-md-6 col-lg-4 py-4 d-flex">
                 
                     <div class="card-body shadow rounded d-flex flex-wrap "  onclick="location.href='{{ .Permalink }}'">
                         <h4 class="post-title">{{ .Title | emojify }}</h4>
