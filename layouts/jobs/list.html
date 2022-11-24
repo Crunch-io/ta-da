@@ -19,11 +19,12 @@
               <p>Lates opportunity</p>
               <h2 class="crunch-h2"> {{ .Params.Title }}</h2>
               {{.Params.Resume }}
-              
-              <br/>
-              <a class="btn btn-primary mt-3"  data-toggle="collapse" href="#positions-{{.Params.id}}"
-              data-target="#{{.Params.id}}" aria-expanded="false" aria-controls="{{.Params.id}}" target="_blank">Learn More</a>
-              
+
+              <br />
+              <a class="btn btn-primary mt-3" data-toggle="collapse" href="#positions-{{.Params.id}}"
+                data-target="#{{.Params.id}}" aria-expanded="false" aria-controls="{{.Params.id}}" target="_blank">Learn
+                More</a>
+
             </div>
             {{ end }}
 
@@ -37,57 +38,80 @@
 <sections id="careers" class="sections crunch-gradient-gray py-5 my-5 ">
   <div class="container mb-5">
     <div class="row">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 mb-5">
-            <h2 class="crunch-h2 mb-5">Open positions</h2>
-            <div id="resources-filter-container">
-              <button class="btn-filter btn-default-shadow btn-primary btn" onclick="filterSelection('all-filter')">
-                All</button>
-              <button class="btn-filter btn-default-shadow btn" onclick="filterSelection('sales-marketing-filter')">
-                Sales & Marketing</button>
-              <button class="btn-filter btn-default-shadow btn" onclick="filterSelection('engineering-data-filter')">
-                Engineering & Data</button>
-              <button class="btn-filter btn-default-shadow btn" onclick="filterSelection('product-design-filter')">
-                Product & Design</button>
-              <button class="btn-filter btn-default-shadow btn" onclick="filterSelection('operations-filter')">
-                Operations</button>
-            </div>
-          </div>
+      <div class="col-md-12 mb-5">
+        <h2 class="crunch-h2 mb-5">Open positions</h2>
+        <div id="resources-filter-container">
+          <button class="btn-filter btn-default-shadow btn-primary btn" onclick="filterSelection('all-filter')">
+            All</button>
+          <button class="btn-filter btn-default-shadow btn" onclick="filterSelection('sales-marketing-filter')">
+            Sales & Marketing</button>
+          <button class="btn-filter btn-default-shadow btn" onclick="filterSelection('engineering-data-filter')">
+            Engineering & Data</button>
+          <button class="btn-filter btn-default-shadow btn" onclick="filterSelection('product-design-filter')">
+            Product & Design</button>
+          <button class="btn-filter btn-default-shadow btn" onclick="filterSelection('operations-filter')">
+            Operations</button>
         </div>
-
-        <div class="col-md-12">
-          <div class="row row-cols-1  justify-content-between">
-            {{ $pages := where .Pages "Params.series" "events"}}
-            {{ range .Pages }}
-            <div id="positions-{{.Params.id}}"
-              class="mb-5 d-flex flex-wrap align-items-stretch card-item resources-filter {{.Params.filter}}-filter col-12">
-              <div class="shadow w-100">
-                <div class="d-flex align-items-center pl-3 pr-5 justify-content-between w-100">
-
-                  <div class="card-body  ">
-                    <div class="align-self-stretch w-100">
-                      <h5 class="card-title">{{ .Params.label }}</h5>
-                      <h4 class="card-text crunch-h4">{{ .Title | emojify }}</h4>
-                    </div>
-                  </div>
-                  <!--/.card-body -->
-
-                  <button class="btn btn-primary card-link circle collapsed" type="button" data-toggle="collapse"
-                    data-target="#{{.Params.id}}" aria-expanded="false" aria-controls="{{.Params.id}}"></button>
-                </div> <!-- /.flex.shadow-->
-                <div id="{{.Params.id}}" class="collapse pt-2 px-5 pb-5">
-                  {{ .Content }}
-                </div>
-              </div>
-            </div><!-- /.card-item -->
-            {{ end }}
-          </div><!-- /.row -->
-        </div><!-- /.col -->
-
       </div>
     </div>
-  </div>
+
+    <div class="col-md-12">
+      <div class="row row-cols-1  justify-content-between">
+        {{ $pages := where .Pages "Params.series" "events"}}
+        {{ range .Pages }}
+        <div id="positions-{{.Params.id}}"
+          class="mb-5 d-flex flex-wrap align-items-stretch card-item resources-filter {{.Params.filter}}-filter col-12">
+          <div class="shadow w-100 rounded-lg">
+            <div class="d-flex align-items-center pl-ms-3 pr-sm-5 pl-0 pr-5 justify-content-between w-100">
+
+              <div class="card-body  ">
+                <div class="align-self-stretch w-100">
+                  <h5 class="card-title">{{ .Params.label }}</h5>
+                  <h4 class="card-text crunch-h4">{{ .Title | emojify }}</h4>
+                </div>
+              </div>
+              <!--/.card-body -->
+
+              <button class="btn btn-primary card-link circle collapsed" type="button" data-toggle="collapse"
+                data-target="#{{.Params.id}}" aria-expanded="false" aria-controls="{{.Params.id}}">
+                <svg id="plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+                  <defs>
+                    <style>
+                      .cls-1 {
+                        fill: #fff;
+                      }
+                    </style>
+                  </defs>
+                  <g id="Layer_1-2">
+                    <path class="cls-1"
+                      d="M11.53,5.5H6.5V.47c0-.26-.22-.47-.5-.47s-.5,.21-.5,.47V5.5H.47c-.26,0-.47,.22-.47,.5s.21,.5,.47,.5H5.5v5.03c0,.26,.22,.47,.5,.47s.5-.21,.5-.47V6.5h5.03c.26,0,.47-.22,.47-.5s-.21-.5-.47-.5Z" />
+                  </g>
+                </svg>
+
+                <svg id="minus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 1">
+                  <defs>
+                    <style>
+                      .cls-1 {
+                        fill: #fff;
+                      }
+                    </style>
+                  </defs>
+                  <g id="Layer_1-2">
+                    <path class="cls-1"
+                      d="M.47,1H11.53c.26,0,.47-.22,.47-.5s-.21-.5-.47-.5H.47c-.26,0-.47,.22-.47,.5s.21,.5,.47,.5Z" />
+                  </g>
+                </svg>
+              </button>
+            </div> <!-- /.flex.shadow-->
+            <div id="{{.Params.id}}" class="collapse pt-2 pl-ms-3 pr-sm-5 pl-3 pr-3  pb-5">
+              {{ .Content }}
+            </div>
+          </div>
+        </div><!-- /.card-item -->
+        {{ end }}
+      </div><!-- /.row -->
+    </div><!-- /.col -->
+  </div><!-- /.container -->
 </sections>
 
 {{ partial "footer-nav.html" . }}

@@ -2,63 +2,67 @@
 
 {{ partial "header.html" . }}
 
-<div id="wrapper">
 
-    <div id="secondary-pages-wrapper">
-        <div class="container-fluid">
-
-            <div class="blog-content">
-                <div class="jumbotron" style="padding-top: 47px; padding-bottom: 30px;">
-                    <div class="container">
-                        <div class="row justify-content-md-center">
-                            <div class="col-md-8 text-center">
-                                <h1 class="display-5">Release Notes</h1>
-                                <p>{{ .Content }}</p>
-                            </div>
-                        </div> <!-- /.row -->
-                    </div> <!-- /.container -->
-                </div> <!-- /.jumbotron -->
-            </div> <!-- /.blog-content -->
-
-            <div class="secondary-content">
-              <div class="container">
-
-                  <div class="row">
-                      <div class="col-md-6 col-lg-4 subscribe-release-notes">
-                          {{ partial "subscribe-release-notes" . }}
-                      </div>
-                     
-                      {{ range (.Paginator 11).Pages.ByPublishDate.Reverse }}
-                          <div class="col-md-6 col-lg-4">
-                              <div class="post-card post-min-height" onclick="location.href='{{ .Permalink }}'">
-                                  <div class="posts">
-                                      <h4 class="post-title">{{ .Title | emojify }}</h4>
-                                      <span>{{ .PublishDate.Format "January 2, 2006" }}</span>
-                                      <p>{{ .Params.description }}</p>
-                                      <a href="{{ .Permalink }}">Learn More &#10230;</a>
-                                  </div>
-                              </div>
-                          </div>
-                      {{ end }}
-                  </div>
-
-                  {{ partial "blog/pagination" . }}
-
-              </div> <!-- /.container -->
-            </div> <!-- /.secondary-content -->
-
-            <div class="footer-content">
-                <div class="jumbotron">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h1>Learn about <span>our team</span></h1>
-                                <a href="team" class="btn btn-link">Our team &#10230;</a>
-                            </div>
-                        </div> <!-- /.row. -->
-                    </div> <!-- /.container -->
-                </div> <!-- /.jumbotron -->
+<section id="features" class="crunch-gradient-gray py-sm-5  p-0">
+    <div class="container py-sm-5 py-0">
+        <div class="row">
+            <div class="col-md-5">
+                <h1 class="crunch-h1">{{ .Params.title }}</h1>
+                <p class="semibold-string">{{ .Description }}</p>
             </div>
+            <div class="col-md-6 offset-md-1 offset-sm-0">
+                <div class="crunch-reflection-container">
+                    <div class="crunch-reflection-content">
+
+                        {{ partial "subscribe-release-notes" . }}
+
+                    </div>
+                    <div class="crunch-reflection-effect crunch-reflection-left-bottom crunch-background-green"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-stretch">
+            {{ range .Paginator.Pages.ByPublishDate.Reverse }}
+            <div class="col-md-6 col-lg-4 py-4 d-flex">
+                
+                    <div class="card-body shadow rounded d-flex flex-wrap "  onclick="location.href='{{ .Permalink }}'">
+                        <div>
+                            <h4 class="post-title">{{ .Title | emojify }}</h4>
+                        <p><span>{{ .PublishDate.Format "January 2, 2006" }}</span></p>
+                        <p>{{ .Params.description }}</p>
+                        </div>
+                       
+
+                        <div class="row features-details col-12 d-flex justify-content-between flex-wrap align-self-end ">
+                          
+                            
+                            
+
+                          
+                                <a href="{{ .Permalink }}" aria-label="Learn More">Learn More &#10230;</a>
+                           
+                        </div>
+                    </div>
+               
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+       <div class="pb-5"> {{ partial "blog/pagination" . }}</div>
+    </div>
+</section>
+
 
 {{ partial "footer-nav.html" . }}
 

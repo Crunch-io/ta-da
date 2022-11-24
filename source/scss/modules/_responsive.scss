@@ -373,7 +373,7 @@
         padding-top: 40px;
     }
     #self-services{
-        padding-top: 75px;
+        padding-top: 15px;
         h1.crunch-h1{
             font-size: 2.8em;
         }
@@ -390,6 +390,10 @@
         left: 0px;
         height: 100%;
         width: 90%;
+    }
+
+    .border-right{
+        border:0px !important;
     }
 
     .crunch-reflection-left-top::before{
@@ -432,26 +436,26 @@
         width: calc(100% - 12%);
     }
 
-    .crunch-form-hbspt{
-        background-color: #fff;
-        box-shadow: 0px 3px 20px #00000029;
-        border-radius: 18px;
-        overflow: hidden;
-        padding: 21px 15px 15px 24px;
-        margin-top: 20px;
-        margin-bottom: 40px;
-    }
+    // .crunch-form-hbspt{
+    //     background-color: #fff;
+    //     box-shadow: 0px 3px 20px #00000029;
+    //     border-radius: 18px;
+    //     overflow: hidden;
+    //     padding: 21px 15px 15px 24px;
+    //     margin-top: 20px;
+    //     margin-bottom: 40px;
+    // }
     
-    .crunch-form-hbspt:before{
-        content: "";
-        border-radius: 20px;
-        background-color: #0B6752;
-        height: 94%;
-        position: absolute;
-        transform: translate(-47px, -2px);
-        width: 94%;
-        z-index: -1;
-    }
+    // .crunch-form-hbspt:before{
+    //     content: "";
+    //     border-radius: 20px;
+    //     background-color: #0B6752;
+    //     height: 94%;
+    //     position: absolute;
+    //     transform: translate(-47px, -2px);
+    //     width: 94%;
+    //     z-index: -1;
+    // }
 
     #webinar img{
         transform: translateY(-55px);
@@ -550,11 +554,13 @@
     }
     a.circle, button.circle {
         border-radius: 80px;
+        display: flex;
         font-size: 2rem;
+        justify-content: center;
         width: 40px !important;
         height: 40px;
         position: absolute;
-        left: calc(81%);
+        left: calc(77%);
     }
 }
 

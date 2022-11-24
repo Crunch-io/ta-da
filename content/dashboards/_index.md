@@ -9,6 +9,8 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 video = "https://player.vimeo.com/video/761663480?h=2f4c97e692"
 mob_video = "https://player.vimeo.com/video/761663480?h=2f4c97e692"
 
+effortless_design_video = "https://player.vimeo.com/video/773608182?h=1c32ca6c3c"
+
 automation_video = "https://player.vimeo.com/video/761678878?h=fc4d127a27"
 carousel_img_1 = "img/dashboards/custom-layouts.svg"
 carousel_img_2 = "img/dashboards/powerpoint.svg"
@@ -38,6 +40,7 @@ content_4  = "Enable one dataset to be easily used by different markets or audie
 
 +++
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 Revolutionize the way you deliver survey data and insights. It’s so easy and quick, you’ll use them all the time.
 
@@ -51,4 +54,8 @@ Revolutionize the way you deliver survey data and insights. It’s so easy and q
 
 * Instantly create multiple dashboards for different audiences from one master dashboard with Crunch Views
 =======
+>>>>>>> brand-page-update-2022
+=======
+
+
 >>>>>>> brand-page-update-2022

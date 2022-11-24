@@ -19,10 +19,6 @@
 .share-insights {
     a {
         color: $color-off-black;
-
-        span {
-            
-        }
     }
 }
 
@@ -482,6 +478,22 @@
 
 }
 
+// features
+
+#features{
+    .crunch-reflection-container {
+        position: relative;
+        display: block;
+        height: 100%;
+        min-height: 280px;
+    }
+
+}
+
+.features-details{
+    font-size: 16px;
+}
+
 // 404 page
 .page-not-found {
     min-height: 1200px;
@@ -837,12 +849,6 @@
     }
 
 
-    h1 {
-        font-family: ProximaNova, sans-serif;
-        font-size: 5em;
-        margin-bottom: 20px;
-        font-weight: 700;
-    }
     
 
     @include media-breakpoint-up(md) {
