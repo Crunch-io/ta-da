@@ -31,7 +31,7 @@
     "Work quicker and more efficiently") }}
     <div>
         <div class="container">
-            <div class="row py-5">
+            <div class="row pt-5">
                 <div class="col-12 mb-5">
                     <h2 class="crunch-h2">{{ .Params.label }}</h2>
                 </div>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 mb-sm-5 {{ index . 4 }} py-5 mb-5">
+                <div class="col-lg-6 mb-sm-5 {{ index . 4 }} py-5 ">
                     <div class="crunch-reflection crunch-reflection-small {{ index . 6 }}">
                         {{ if isset . 7 }}
                         <div id="collaborate-slider" class="carousel slide crun-slider" data-ride="carousel"
@@ -114,7 +114,7 @@
     {{ end }} {{ end }}
 </div>
 
-<div id="direcctor-comments" class="mt-5 crunch-green">
+<!-- <div id="direcctor-comments" class="mt-5 crunch-green">
     {{ range .Site.Pages }} {{ if and (eq .Type "market-researchers") (eq .Title
     "testimonial") }}
 
@@ -131,10 +131,10 @@
     </div>
 
     {{ end }} {{ end }}
-</div>
-
-<div class="container">
-    <div class="row py-5 mt-5">
+</div> -->
+<section >
+<div class="container ">
+    <div class="row pb-5">
         {{ range .Site.Pages }} {{ if and (eq .Type "market-researchers") (eq .Title
         "The survey analysis tool you need") }}
 
@@ -162,5 +162,5 @@
         {{ end }} {{ end }}
     </div>
 </div>
-
+</section>  
 {{ partial "footer-nav.html" . }} {{ partial "footer.html" . }}
