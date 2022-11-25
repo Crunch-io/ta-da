@@ -1,12 +1,12 @@
 <section id="crunchio-is-for">
-    <div class="container px-ls-0 px-sm-3">
-        <div class="row py-0 py-md-5 justify-content-around">
+    <div class="container">
+        <div class="row  justify-content-around">
 
-            <div class="col-md-12 pt-ls-5 pt-0 mb-md-4">
+            <div class="col-md-12 pt-ls-5 pt-0  mb-md-4">
                 <h2 class="section-heading crunch-h2">Crunch.io is for...</h2>
             </div>
 
-            <div class="col-md-5 col-12 d-flex  align-items-center">
+            <div class="col-md-5 col-12  d-flex  align-items-center">
                 <div class="py-md-5 mt-5">
                     <h3 class="crunch-h3">Insights teams</h3>
                     <div class="d-none d-md-block">
@@ -20,8 +20,8 @@
             </div>
 
             <div
-                class="col-12 col-sm-12  col-md-6 d-flex align-items-center justify-content-end py-5 offset-md-1 offset-sm-0 ">
-                <div
+                class="col-12 col-sm-12   col-md-6 d-flex flex-wrap align-items-center justify-content-end  offset-md-1 offset-sm-0 ">
+                <!-- <div
                     class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe
@@ -29,29 +29,34 @@
                             width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
+                </div> -->
+
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe src="https://player.vimeo.com/video/774913966?h=863cb0816e&autoplay=1&loop=1&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe><script src="https://player.vimeo.com/api/player.js"></script>
                 </div>
 
+                <div class="d-block d-md-none mt-4">
+                    <p>Analyze data from multiple vendors & survey fielding platforms all in one platform. Create
+                        your own data cuts. Quickly find insights. Collaborate across your team and stakeholders.
+                        Eliminate your back and forth with vendors.</p>
+                    <a href="/for-insights-teams/" aria-label="Learn more about Insights Teams"
+                        class="btn btn-primary mt-3 col-5 d-none d-sm-block">Learn more</a>
+    
+                        <a href="/for-insights-teams/" aria-label="Learn more about Market research firms"
+                                class="btn btn-primary btn-block d-block d-sm-none">Learn more</a>
+               
+                </div>
 
-
+                
             </div> <!-- /.d-flex flex-wrap -->
-            <div class="d-block d-md-none">
-                <p>Analyze data from multiple vendors & survey fielding platforms all in one platform. Create
-                    your own data cuts. Quickly find insights. Collaborate across your team and stakeholders.
-                    Eliminate your back and forth with vendors.</p>
-                <a href="/for-insights-teams/" aria-label="Learn more about Insights Teams"
-                    class="btn btn-primary mt-3 col-5 d-none d-sm-block">Learn more</a>
-
-                    <a href="/for-insights-teams/" aria-label="Learn more about Market research firms"
-                            class="btn btn-primary btn-block d-block d-sm-none">Learn more</a>
-           
-            </div>
+            
         </div> <!-- /.row -->
             <div class="row py-2 mb-5">
 
-                <div class="col-12  d-block d-sm-none">
+                <div class="col-12 px-0  d-block d-sm-none">
                     <h3 class="crunch-h3">Market research firms</h3>
                 </div>
-                <div class="col-12 col-sm-12  col-md-6 d-flex align-items-center justify-content-start  py-5">
+                <div class="col-12 col-sm-12   col-md-6 d-flex align-items-center justify-content-start  py-5">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple">
                         <div class="embed-responsive embed-responsive-16by9">
@@ -63,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-5 d-flex justify-content-end align-items-center offset-md-1 offset-sm-0">
+                <div class="col-md-5 d-flex  justify-content-end align-items-center offset-md-1 offset-sm-0">
                     <div>
                         <h3 class="d-none d-sm-block">Market research firms</h3>
                         <p>Find insights fast. All the power you need, all in one place. Analyze. Graph. Weight. Stats
@@ -78,8 +83,8 @@
 
             </div> <!-- /.row. -->
 
-            <div class="d-flex flex-wrap justify-content-around mt-md-5 py-md-5">
-                <div class="col-md-3 col-sm-12 col-12 mb-4  px-0">
+            <div class="d-flex flex-wrap justify-content-between mt-md-5 py-md-5  px-0">
+                <div class="col-md-3  col-sm-12 col-12 mb-4  px-0">
                     <figure class="d-flex justify-content-md-start justify-content-center ">
                         <img class="img-fluid" src="{{.Site.Params.home_images_path}}easy.svg" alt="Easy" />
                     </figure>
