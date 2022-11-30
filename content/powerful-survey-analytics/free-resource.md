@@ -6,7 +6,7 @@ subtitle = "Dashboards 101: Design Tips for Market Researchers"
 label = "Free Resources"
 img = "img/powerful_survey_analytics/scalability.svg"
 gif = "img/survey_data_expertise/weight_estimation.gif"
-
+banner = "https://info.crunch.io/hs-fs/hubfs/dashboard%20purple.png?width=1082&name=dashboard%20purple.png"
 +++
 
 12 tips and tricks to build visually compelling, easily-digestible survey data dashboard that you can mae without an in-house designer or developer

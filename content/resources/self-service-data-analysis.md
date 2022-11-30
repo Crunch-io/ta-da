@@ -10,5 +10,5 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
 series = "webinars"
 icon = "img/icons/webinar-icon.svg"
-
+banner ="https://info.crunch.io/hs-fs/hubfs/TMRE%20Brands%20Webinar%20(1).png?width=1082&name=TMRE%20Brands%20Webinar%20(1).png"
 +++

@@ -9,5 +9,5 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
 series = "webinars"
 icon = "img/icons/webinar-icon.svg"
-
+banner = "https://info.crunch.io/hs-fs/hubfs/600X180%20Quirks_Fall.png?width=1082&name=600X180%20Quirks_Fall.png"
 +++

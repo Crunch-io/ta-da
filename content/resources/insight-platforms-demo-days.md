@@ -10,5 +10,6 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Register Now"
 series = "webinars"
 icon = "img/icons/webinar-icon.svg"
+banner = "https://info.crunch.io/hs-fs/hubfs/Screen%20Shot%202022-01-21%20at%208.16.48%20AM.png?width=904&name=Screen%20Shot%202022-01-21%20at%208.16.48%20AM.png"
 
 +++

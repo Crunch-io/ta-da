@@ -10,5 +10,5 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
 series = "webinars"
 icon = "img/icons/webinar-icon.svg"
-
+banner = "https://info.crunch.io/hs-fs/hubfs/ezgif.com-gif-maker%20(12).gif?width=452&name=ezgif.com-gif-maker%20(12).gif"
 +++
