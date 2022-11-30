@@ -17,10 +17,12 @@
                                 <p>{{ .Params.label }}</p>
                                 <h2 class="crunch-h2"> {{ .Params.Title }}</h2>
                                 <p style="color: #0064a4">{{ .Params.about }}<br> {{ .Params.schedule }}</p>
+                                <img src="{{ .Params.banner }}" alt="{{ .Params.Title }}" class="img-fluid"/>
                                 <br>
-                                <a class="btn btn-primary" href="{{ .Params.url }}" target="_blank">{{ .Params.link
+                                <a class="btn btn-primary mt-4" href="{{ .Params.url }}" target="_blank">{{ .Params.link
                                 }}</a>
-                                <img src="img/yougov_case_study_dash_opaque.png" alt="{{ .Params.Title }}" class="img-fluid"/>
+                                <!-- https://info.crunch.io/hs-fs/hubfs/ezgif.com-gif-maker%20(12).gif -->
+
                             </div>
                             {{ end }}
                         
@@ -57,7 +59,7 @@
                             <h4 class="card-title crunch-h4">ESOMAR</h4>
                             <p class="card-text">September 18-21, 2022</p>
                         </div>
-                        <a href="#" class="btn btn-primary d-block card-link mt-auto w-100  ">Book a meeting</a>
+                        <a href="{{ .Params.url }}" class="btn btn-primary d-block card-link mt-auto w-100  ">Book a meeting</a>
                     </div>
                 </div>
 
@@ -69,7 +71,7 @@
                             <p class="card-text">November 14-16</p>
                         </div>
 
-                        <a href="#" class="btn btn-primary d-block card-link mt-auto w-100 ">Book a meeting</a>
+                        <a href="{{ .Params.url }}" class="btn btn-primary d-block card-link mt-auto w-100 ">Book a meeting</a>
                     </div>
                 </div>
             </div>
@@ -111,9 +113,9 @@
                             <button class="btn btn-primary d-block card-link mt-auto w-75" type="button"  onclick="location.href='{{ .Params.url }}'" aria-controls="">Watch now</button>
                     
                         </div> <!--/.card-body -->
-                    
-                        <div class="col pr-0 mr-0" style="background: no-repeat url(img/yougov_case_study_dash_opaque_2.png) center center;">
-                            <img src="img/yougov_case_study_dash_opaque_2.png" alt="{{ .Title | emojify }}" class="d-none card-img-top img-fluid w-100"/>
+                        
+                        <div class="col pr-0 mr-0" style="background: no-repeat url('{{ .Params.banner }}') left center; background-size: cover;">
+                            <img src="{{ .Params.banner }}" alt="{{ .Title | emojify }}" class="d-none card-img-top img-fluid w-100"/>
                         </div>
                     
                     </div> <!-- /.flex.shadow-->

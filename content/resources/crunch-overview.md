@@ -9,5 +9,6 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
 series = "videos"
 icon = "img/icons/video-icon.svg"
+banner = "https://info.crunch.io/hs-fs/hubfs/dashboard%20purple.png?width=1082&name=dashboard%20purple.png"
 
 +++

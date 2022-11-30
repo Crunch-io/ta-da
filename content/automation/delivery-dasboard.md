@@ -7,7 +7,7 @@ label = "Combine the ease of drag-and-drop functionality with the speed of scrip
 
 video = "https://player.vimeo.com/video/446659223"
 carousel_img_1 = "img/automation/Crunch_Script_panel.jpeg"
-carousel_img_2 = "img/automation/powerpoint.svg"
+carousel_img_2 = "img/dashboards/powerpoint.svg"
 +++
 
 ### Use Crunch Automation to create or replicate a custom dashboard for:
