@@ -277,6 +277,12 @@
             font-size: 3em;
         }
     }
+
+    #industry-product-resources .card-item {
+        cursor: pointer;
+        width: 100%;
+        min-height: 280px;
+    }
 }
 
 @include media-breakpoint-only(xs) {
@@ -342,7 +348,7 @@
         padding: 5px 0px 18px;
         .btn{
             display: flex;
-            margin: 30px auto 60px;
+            margin: 30px auto 0px;
         
             justify-content: center;
             justify-self: center;
@@ -488,9 +494,11 @@
     #industry-product-resources{
         .card-item{
             max-width: 100%;
+            width: 100%;
             .d-flex.shadow {
                 border-radius: 8px;
                 overflow: hidden;
+                width: 100%;
             }
         }
     }
