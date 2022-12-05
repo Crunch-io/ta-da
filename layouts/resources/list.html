@@ -15,12 +15,11 @@
                             {{ range where .Pages "Params.series" "main" }}
                             <div class="p-4">
                                 <p>{{ .Params.label }}</p>
+                                <img src="{{ .Params.banner }}" alt="{{ .Params.Title }}" class="img-fluid mb-3"/>
                                 <h2 class="crunch-h2"> {{ .Params.Title }}</h2>
                                 <p style="color: #0064a4">{{ .Params.about }}<br> {{ .Params.schedule }}</p>
-                                <img src="{{ .Params.banner }}" alt="{{ .Params.Title }}" class="img-fluid"/>
-                                <br>
-                                <a class="btn btn-primary mt-4" href="{{ .Params.url }}" target="_blank">{{ .Params.link
-                                }}</a>
+                                
+                                <a href="{{ .Params.url }}" class="btn btn-primary   px-4 btn-xs  " target="_blank">{{ .Params.link  }}</a>
                                 <!-- https://info.crunch.io/hs-fs/hubfs/ezgif.com-gif-maker%20(12).gif -->
 
                             </div>
@@ -40,38 +39,56 @@
             <div class="col-md-12 mb-4">
                 <h2 class="crunch-h2">Upcoming events</h2>
             </div>
-            <div class="col-md-12 d-flex flex-wrap justify-content-center justify-content-xs-center justify-content-sm-start">
-                <div class="card mr-5 mb-5" style="width: 18rem;">
-                    <div class="card-body p-5 shadow   d-flex flex-wrap">
-                        <div class="align-self-stretch mb-3">
-                            <h6 class="card-subtitle mb-2 ">Demo</h6>
-                            <h4 class="card-title crunch-h4">Insights Tech Showcase: Brand Tracking</h4>
-                            <p class="card-text">September 23 12pm PT</p>
+            <div class="row justify-content-center justify-content-xs-center justify-content-sm-start align-items-stretch">
+                <div class="col-md-3 col-sm-6 col-12 mb-4">
+                    <div class="d-flex align-self-stretch card" >
+                        <div class="card-body px-3 py-4 shadow   d-flex flex-wrap">
+                            <div class="align-self-stretch mb-3">
+                                <h6 class="card-subtitle mb-2 ">Demo</h6>
+                                <h4 class="card-title crunch-h4">Insights Tech Showcase: Brand Tracking</h4>
+                                <p class="card-text">September 23 12pm PT</p>
+                            </div>
+                            <a href="#" class="btn btn-primary d-block card-link mt-auto w-100  ">Book a meeting</a>
                         </div>
-                        <a href="#" class="btn btn-primary d-block card-link mt-auto w-100  ">Book a meeting</a>
                     </div>
                 </div>
 
-                <div class="card mr-5 mb-5" style="width: 18rem;">
-                    <div class="card-body p-5 shadow   d-flex flex-wrap">
-                        <div class="align-self-stretch mb-3">
-                            <h6 class="card-subtitle mb-2 ">Event</h6>
-                            <h4 class="card-title crunch-h4">ESOMAR</h4>
-                            <p class="card-text">September 18-21, 2022</p>
+                <div class="col-md-3 col-sm-6 col-12 mb-4">
+                    <div class="d-flex align-self-stretch card" >
+                        <div class="card-body px-3 py-4 shadow   d-flex flex-wrap">
+                            <div class="align-self-stretch mb-3">
+                                <h6 class="card-subtitle mb-2 ">Event</h6>
+                                <h4 class="card-title crunch-h4">ESOMAR</h4>
+                                <p class="card-text">September 18-21, 2022</p>
+                            </div>
+                            <a href="{{ .Params.url }}" class="btn btn-primary d-block card-link mt-auto w-100  ">Book a meeting</a>
                         </div>
-                        <a href="{{ .Params.url }}" class="btn btn-primary d-block card-link mt-auto w-100  ">Book a meeting</a>
                     </div>
                 </div>
+                <div class="col-md-3 col-sm-6 col-12 mb-4">
+                    <div class="d-flex align-self-stretch card" >
+                        <div class="card-body px-3 py-4 shadow  d-flex flex-wrap">
+                            <div class="align-self-stretch mb-3">
+                                <h6 class="card-subtitle mb-2 ">Event</h6>
+                                <h4 class="card-title crunch-h4">TMRE</h4>
+                                <p class="card-text">November 14-16</p>
+                            </div>
 
-                <div class="card mr-5 mb-5" style="width: 18rem;">
-                    <div class="card-body p-5 shadow  d-flex flex-wrap">
-                        <div class="align-self-stretch mb-3">
-                            <h6 class="card-subtitle mb-2 ">Event</h6>
-                            <h4 class="card-title crunch-h4">TMRE</h4>
-                            <p class="card-text">November 14-16</p>
+                            <a href="{{ .Params.url }}" class="btn btn-primary d-block card-link mt-auto w-100 ">Book a meeting</a>
                         </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-12 mb-4">
+                    <div class="d-flex align-self-stretch card" >
+                        <div class="card-body px-3 py-4 shadow  d-flex flex-wrap">
+                            <div class="align-self-stretch mb-3">
+                                <h6 class="card-subtitle mb-2 ">Event</h6>
+                                <h4 class="card-title crunch-h4">TMRE</h4>
+                                <p class="card-text">November 14-16</p>
+                            </div>
 
-                        <a href="{{ .Params.url }}" class="btn btn-primary d-block card-link mt-auto w-100 ">Book a meeting</a>
+                            <a href="{{ .Params.url }}" class="btn btn-primary d-block card-link mt-auto w-100 ">Book a meeting</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,35 +100,37 @@
 <section id="industry-product-resources" class="sections py-5">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 mb-4">
+            <div class="col-md-12 mb-2">
                 <h2 class="crunch-h2">Industry & Product Resources</h2>
-                <div id="resources-filter-container">
-                    <button class="btn-filter btn-default-shadow btn-primary btn" onclick="filterSelection('all-filter')"> All</button>
-                        <button class="btn-filter btn-default-shadow btn" onclick="filterSelection('events-filter')">  Demo</button>
-                        <button class="btn-filter btn-default-shadow btn" onclick="filterSelection('webinars-filter')">  Webinars</button>
-                        <button class="btn-filter btn-default-shadow btn" onclick="filterSelection('videos-filter')">  Videos</button>
-                        <button class="btn-filter btn-default-shadow btn" onclick="filterSelection('whitepapers-filter')">  Whitepapers</button>
-
-                </div>
+                <nav id="resources-filter-container"  class="navbar-expand-lg mt-4 pl-0">
+                    <ul class="navbar-nav ml-0">
+                        <li class="nav-item ml-0 mr-3 mb-3"><button class="btn-filter btn-default-shadow btn-primary btn" onclick="filterSelection('all-filter')"> All</button></li>
+                        <li class="nav-item mr-3 mb-3"><button class="btn-filter btn-default-shadow btn" onclick="filterSelection('events-filter')">  Demo</button></li>
+                        <li class="nav-item mr-3 mb-3"><button class="btn-filter btn-default-shadow btn" onclick="filterSelection('webinars-filter')">  Webinars</button></li>
+                        <li class="nav-item mr-3 mb-3"><button class="btn-filter btn-default-shadow btn" onclick="filterSelection('videos-filter')">  Videos</button></li>
+                        <li class="nav-item mr-3 mb-3"><button class="btn-filter btn-default-shadow btn" onclick="filterSelection('whitepapers-filter')">  Whitepapers</button></li>
+                    </ul>
+                    
+                </nav>
             </div>
         </div>
 
-        <div class="col-md-12">
-            <div class="row row-cols-1 row-cols-md-2 justify-content-between">
+        
+            <div class=" mt-4  d-flex align-content-stretch flex-wrap justify-content-between">
                 {{ $pages := where .Pages "Params.series" "events"}}
                 {{ range .Pages  }}
-                <div class="mb-5 d-flex align-items-stretch card-item resources-filter {{.Params.series}}-filter col-12">
-                    <div class="d-flex flex-wrap shadow w-100">
+                <div class=" mb-5 card-item resources-filter {{.Params.series}}-filter" >
+                    <div class="d-flex flex-wrap shadow">
                         
-                        <div class="card-body  col-7 ">
+                        <div class="card-body align-self-stretch   col-7 ">
 
-                            <div class="align-self-stretch mb-3 w-100">
-                                <h5 class="card-title">{{ .Params.label }}</h5>
+                            <div class="  mb-3">
+                                <h5 class="card-title ">{{ .Params.label }}</h5>
                                 <h4 class="card-text crunch-h4">{{ .Title | emojify }}</h4>
                             </div>
 
-                            <button class="btn btn-primary d-block card-link mt-auto w-75" type="button"  onclick="location.href='{{ .Params.url }}'" aria-controls="">Watch now</button>
-                    
+                            <button class="btn btn-primary align-self-end d-block card-link mt-auto col-12" type="button"  onclick="location.href='{{ .Params.url }}'" aria-controls="">Watch now</button>
+                            
                         </div> <!--/.card-body -->
                         
                         <div class="col pr-0 mr-0" style="background: no-repeat url('{{ .Params.banner }}') left center; background-size: cover;">
@@ -123,7 +142,7 @@
                 </div><!-- /.card-item -->
                 {{ end }}
             </div><!-- /.row -->
-        </div><!-- /.col -->
+
 
     </div>
 
