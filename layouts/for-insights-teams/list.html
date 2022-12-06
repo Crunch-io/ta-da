@@ -6,18 +6,22 @@
     <div class="container  py-5">
         <div id="jumbotron">
             <div class="row py-mb-5 py-0">
-                <div class="col-md-5 ">
+                <div class="col-md-12 col-lg-5 col-sm-12">
                     <h1 class="crunch-h1">{{ .Params.title }}</h1>
-                    <h2 class="semibold-string mb-4">{{ .Description }}</h2>
+                    <div class="d-lg-block d-none"><h2 class="semibold-string mb-4">{{ .Description }}</h2>
                     <a href="/request-demo/" aria-label="Request a demo"
-                        class="btn btn-primary btn-lg cta mt-3 mb-5 justify-s d-none d-sm-inline-block">Request a
-                        demo</a>
+                        class="btn btn-primary btn-lg cta mt-3 mb-5 justify-s  d-sm-inline-block">Request a
+                        demo</a></div>  
 
                 </div>
-                <div class="col-md-6 offset-md-1 offset-sm-0">
+                <div class="col-md-12 col-sm-12 col-lg-6 offset-ls-1 offset-md-0">
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe src="https://player.vimeo.com/video/762089994?h=630350da8a&amp;quality=540p&autoplay=1&loop=1&muted=1&controls=0&dnt=1&autopause=0&amp;" width="640" height="361" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                     </div>
+                    <div class="d-lg-none mt-4 d-block"><h2 class="semibold-string mb-4">{{ .Description }}</h2>
+                        <a href="/request-demo/" aria-label="Request a demo"
+                            class="btn btn-primary btn-lg cta mt-3 mb-5 justify-s  d-sm-inline-block">Request a
+                            demo</a></div>  
                 </div>
             </div> <!-- /.row -->
         </div> <!-- /.container -->
@@ -38,7 +42,7 @@
                 </div>
 
                 <div
-                    class="col-md-4  col-12 d-flex  justify-content-start justify-content-md-end align-items-center order-1">
+                    class="col-lg-4  col-12 d-flex  justify-content-start justify-content-lg-end align-items-center order-1">
                     <div class="py-md-5">
                         <h3 class="crunch-h3">{{ with .Params.organize }} <span>{{ index (split . " ") 0 }} {{ index
                                 (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{
@@ -51,7 +55,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-12  col-md-7 d-flex align-items-center justify-content-end mb-2 p-md-5  pt-4 pb-5 order-2">
+                <div class="col-12 col-lg-7 d-flex align-items-center justify-content-end mb-2 p-lg-5  pt-4 pb-5 order-2">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                         <div class="embed-responsive embed-responsive-16by9">
@@ -63,9 +67,14 @@
                 </div>
 
                 <div
-                    class="col-12 col-sm-12   col-md-7 d-flex align-items-center justify-content-start  p-md-5  pt-4 pb-5 mb-3 order-4 order-md-3">
-                    <div
-                        class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple">
+                    class="col-12 col-sm-12   col-lg-7 d-flex align-items-center justify-content-start  p-lg-5  pt-4 pb-5 mb-3 order-4 order-lg-3">
+
+                    <div class="crunch-reflection-container">
+                        <div class="crunch-reflection-content">
+                        
+                        
+                    <!-- <div
+                        class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple"> -->
 
                         <div id="collaborate-slider" class="carousel slide crun-slider" data-ride="carousel"
                             data-touch="false" data-interval="false">
@@ -137,12 +146,15 @@
                                 <span class="sr-only">Next</span>
                             </button>
                         </div>
-                    </div>
+                    <!-- </div> -->
+                        </div>
+                    <div class="crunch-reflection-effect crunch-reflection-left-top crunch-background-purple"></div>
+            </div>
 
                 </div>
 
                 <div
-                    class="col-md-5 col-12 d-flex  justify-content-start justify-content-md-center  align-items-center order-3 order-md-4">
+                    class="col-lg-5 col-12 d-flex  justify-content-start justify-content-lg-center  align-items-center order-3 order-lg-4">
                     <div class="py-mb-5 py-2">
                         <h3 class="crunch-h3">{{ with .Params.filter }} <span>{{ index (split . " ") 0 }} {{ index
                                 (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{
@@ -156,8 +168,8 @@
                 </div>
 
                 <div
-                    class="col-md-5 mb-md-5 mb-3  col-12 d-flex  justify-content-start justify-content-md-center  align-items-center order-5">
-                    <div class="py-md-5">
+                    class="col-lg-5 mb-lg-5 mb-3  col-12 d-flex  justify-content-start justify-content-lg-center  align-items-center order-5">
+                    <div class="py-lg-5">
                         <h3 class="crunch-h3">{{ with .Params.append }} <span>{{ index (split . " ") 0 }} {{ index
                                 (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{
                             index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
@@ -169,14 +181,22 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-12   col-md-7 d-flex align-items-center justify-content-end mb-5 p-md-5  pt-4 pb-4 order-6">
-                    <div
+                <div class="col-12 col-sm-12   col-lg-7 d-flex align-items-center justify-content-end mb-5 p-lg-5  pt-4 pb-4 order-6">
+                    
+                    <div class="crunch-reflection-container">
+                        <div class="crunch-reflection-content">
+                            <iframe src="https://player.vimeo.com/video/761673481?h=e1c9a6c0a6&amp;quality=auto&autoplay=1&loop=1&muted=1&controls=0&dnt=1&autopause=0&amp;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Stats Testing 2"></iframe>
+                            <script src="https://player.vimeo.com/api/player.js"></script>
+                        </div>
+                        <div class="crunch-reflection-effect crunch-reflection-right-top crunch-background-green"></div>
+                    </div>
+                    <!-- <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-green">
                         <div class="embed-responsive embed-responsive-16by9">
                             <iframe src="https://player.vimeo.com/video/761673481?h=e1c9a6c0a6&amp;quality=540p&autoplay=1&loop=1&muted=1&controls=0&dnt=1&autopause=0&amp;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Stats Testing 2"></iframe>
                             <script src="https://player.vimeo.com/api/player.js"></script>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
             </div> <!-- /.row. -->
@@ -227,7 +247,7 @@
                     <h2 class="crunch-h2">{{ .Params.label }}</h2>
                 </div>
 
-                <div class="col-12 col-sm-12  col-md-6 d-flex align-items-center justify-content-start py-md-5 pb-3 pt-5 order-1 order-md-0 pb-5">
+                <div class="col-12 col-sm-12  col-lg-6 d-flex align-items-center justify-content-start py-lg-5 pb-3 pt-5 order-1 order-lg-0 pb-5">
                     <div
                         class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                         <div class="embed-responsive embed-responsive-16by9">
@@ -237,7 +257,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-5 align-items-center justify-content-center offset-md-1 offset-sm-0 pt-5 order-0 order-md-1" >
+                <div class="col-lg-5 align-items-center justify-content-center offset-lg-1 offset-sm-0 pt-5 order-0 order-lg-1" >
                     <h3 class="crunch-h3">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ")
                         1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{
                         index (split . " ") 5 }} <span>{{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index
