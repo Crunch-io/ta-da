@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Nov 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 Dec 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -762,6 +762,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/tmre-2022</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2022.17</title>
+      <link>//crunch.io/release-notes/2022-12-12/</link>
+      <pubDate>Mon, 12 Dec 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-12-12/</guid>
+      <description>Crunch web application Fixed the following: Materialization of formulas works properly now when a dataset exclusion filter is applied. Users were sometimes not able to export a multitable that contains a formula weight, which has now been fixed. Passing a variable through a function signature was triggering a type conversion when using the CSV importer, which has been fixed. A bug occurred that prevented users from editing personal variables, which has also been fixed.</description>
     </item>
     
     <item>

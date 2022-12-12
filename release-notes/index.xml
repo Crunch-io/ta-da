@@ -8,6 +8,58 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2022.17</title>
+      <link>//crunch.io/release-notes/2022-12-12/</link>
+      <pubDate>Mon, 12 Dec 2022 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2022-12-12/</guid>
+      <description>Crunch web application Fixed the following: Materialization of formulas works properly now when a dataset exclusion filter is applied. Users were sometimes not able to export a multitable that contains a formula weight, which has now been fixed. Passing a variable through a function signature was triggering a type conversion when using the CSV importer, which has been fixed. A bug occurred that prevented users from editing personal variables, which has also been fixed.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed the following:
+&lt;ul&gt;
+&lt;li&gt;Materialization of formulas works properly now when a dataset exclusion filter is applied.&lt;/li&gt;
+&lt;li&gt;Users were sometimes not able to export a multitable that contains a formula weight, which has now been fixed.&lt;/li&gt;
+&lt;li&gt;Passing a variable through a function signature was triggering a type conversion when using the CSV importer, which has been fixed.&lt;/li&gt;
+&lt;li&gt;A bug occurred that prevented users from editing personal variables, which has also been fixed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sdks-rcrunch-pycrunch-and-scrunch&#34;&gt;SDKs (&lt;code&gt;rCrunch&lt;/code&gt;, &lt;code&gt;pyCrunch&lt;/code&gt;, and &lt;code&gt;sCrunch&lt;/code&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Augmented the rCrunch package so that it now sends a &lt;code&gt;content-type&lt;/code&gt; header when using &lt;code&gt;runCrunchAutomation&lt;/code&gt; to avoid errors when assuming or guessing text or a JSON script.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed a bug that prevented Crunch Automation scripts from creating sufficient project permissions.&lt;/li&gt;
+&lt;li&gt;Added the following system-script (folder) commands (among &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/10343332025101-Folder-commands&#34;&gt;many others&lt;/a&gt;):
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/11309460023565-MOVE-FOLDERS-command&#34;&gt;MOVE FOLDERS command&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/11309694453901-DELETE-FOLDERS-command&#34;&gt;DELETE FOLDERS command&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;developer-documentation&#34;&gt;Developer documentation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Replaced the &lt;code&gt;deselect&lt;/code&gt;function with &lt;code&gt;frame_subset&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Created &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/10519530812557-Dashboard-commands&#34;&gt;new articles&lt;/a&gt; to support scriptable dashboard workflows. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10521850516877-Getting-started-with-dashboard-commands&#34;&gt;Getting Started&lt;/a&gt; article for more information.&lt;/li&gt;
+&lt;li&gt;Added additional &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/10343332025101-Folder-commands&#34;&gt;folder command articles&lt;/a&gt;. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10521594535309-Getting-started-with-folder-scripts&#34;&gt;Getting Started&lt;/a&gt; article for more information.&lt;/li&gt;
+&lt;li&gt;Added a new article about &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10875389879181-Sharing-data-and-dashboards&#34;&gt;how to share data and dashboards&lt;/a&gt;, which describes in detail how to share datasets to members.&lt;/li&gt;
+&lt;li&gt;Updated the following articles:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360052195131-The-Definitive-Guide-to-Tracking&#34;&gt;The Definitive Guide to Tracking&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360044362492-The-Definitive-Guide-to-Importing-and-Preparing-Data&#34;&gt;The Definitive Guide to Importing and Preparing Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10569936352013-Creating-dashboards&#34;&gt;Creating dashboards&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2022.16</title>
       <link>//crunch.io/release-notes/2022-11-21/</link>
       <pubDate>Mon, 21 Nov 2022 10:00:00 -0700</pubDate>
