@@ -2,7 +2,7 @@
 <section class="crunch-gradient-gray">
     <div class="container py-5">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-lg-6">
                 <h1 class="crunch-h1">
                     {{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split .
                     " ") 1 }}
@@ -14,7 +14,7 @@
                 <a href="/request-demo/" aria-label="Request a demo"
                     class="btn btn-primary btn-lg cta mt-3 mb-5 justify-s d-none d-sm-inline-block">Request a demo</a>
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe
                         src="https://player.vimeo.com/video/761665519?h=402c462156&amp;quality=540p&autoplay=1&loop=1&muted=1&controls=0&dnt=1&autopause=0&amp;"
@@ -45,7 +45,8 @@
                 </div>
 
                 <div class="col-lg-6 mb-sm-5 {{ index . 4 }} py-5 ">
-                    <div class="crunch-reflection crunch-reflection-small {{ index . 6 }}">
+                    <div class="crunch-reflection-container ">
+                        <div class="crunch-reflection-content">
                         {{ if isset . 7 }}
                         <div id="collaborate-slider" class="carousel slide crun-slider" data-ride="carousel"
                         data-touch="false" data-interval="false">
@@ -95,6 +96,7 @@
                             <span class="sr-only">Next</span>
                         </button>
                     </div>
+
                         {{ else }}
                         <div class="embed-responsive embed-responsive-16by9">
                             <iframe
@@ -104,6 +106,8 @@
                         </div>
 
                         {{ end }}
+                        </div>
+                        <div class="crunch-reflection-effect {{ index . 6 }}"></div>
                     </div>
                 </div>
 
@@ -143,7 +147,7 @@
             <p>{{ .Params.descriptions }}</p>
         </div>
 
-        <div class="col-12 col-sm-12 col-md-7 d-flex align-items-center justify-content-start mb-5">
+        <div class="col-12 col-sm-12 col-mb-12 col-lg-7 d-flex align-items-center justify-content-start mb-5">
             <div class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe
@@ -154,7 +158,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-lg-4 col-12 col-sm-12 col-mb-12 ">
             <h3 class="crunch-h3">{{ .Params.subtitle }}</h3>
             {{ .Content }}
         </div>
