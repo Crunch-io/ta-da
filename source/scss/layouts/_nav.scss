@@ -131,15 +131,25 @@ path#Path_146:hover {
 	z-index: 999;
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(md) {
     #dot-nav {
         display: none;
+    }
+
+    .navbar .dropdown .crunch-menu, .navbar .dropdown .dropdown-menu {
+        box-shadow: 1px 1px 15px 0px transparent;
     }
 
     .navbar {
         .navbar-nav .nav-item{
             margin-left: 4px;
+            display: block;
+            
+            .border-right{
+                border-right:0px !important;
+            }
         }
+    
         .dropdown {
             
             .dropdown-menu {
