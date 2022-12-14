@@ -46,9 +46,9 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-mb-12 col-lg-7 mb-5 d-flex align-items-center justify-content-end py-5 order-2">
-                    <div
-                        class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue">
+                <div class="col-12 col-mb-12 col-lg-7 mb-5 d-flex align-items-center justify-content-lg-end justify-content-center py-lg-5 order-2">
+                    <div class="crunch-reflection-container">
+                        <div class="crunch-reflection-content">
                         <div id="instant-graphs" class="carousel slide crun-slider" data-ride="carousel">
 
                             <ol class="carousel-indicators d-none">
@@ -108,20 +108,24 @@
                             </button></div>
 
                         </div><!-- /.slide -->
-                    </div>
+                    </div><!-- /.crunch-reflection-content  -->
+                    <div class="crunch-reflection-effect crunch-reflection-right-top crunch-background-blue"></div>
+                </div><!-- .crunch-reflection-content -->
 
                 </div>
 
                 <div
-                    class="col-12 col-mb-12 col-lg-7 mb-5 d-flex align-items-center justify-content-star py-5 order-4 order-lg-3">
-                    <div
-                        class="crunch-reflection crunch-reflection-small crunch-reflection-left-top crunch-background-purple justify-content-center">
-                        <img src="{{ .Params.carousel_1_img_2 }}" alt="{{ .Params.title }}" class="img-fluid p-0" />
-                    </div>
+                    class="col-12 col-mb-12 col-lg-7 mb-5 d-flex align-items-center justify-content-start py-lg-5 order-4 order-lg-3">
+                    <div class="crunch-reflection-container">
+                        <div class="crunch-reflection-content">
+                            <img src="{{ .Params.carousel_1_img_2 }}" alt="{{ .Params.title }}" class="img-fluid p-0" />
+                        </div><!-- /.crunch-reflection-content  -->
+                        <div class="crunch-reflection-effect crunch-reflection-left-top crunch-background-purple"></div>
+                    </div><!-- .crunch-reflection-content -->
                 </div>
 
                 <div
-                    class="col-lg-5 col-12 mb-5 d-flex justify-content-start align-items-center order-3 order-lg-4">
+                    class="col-lg-4 col-12 mb-5 d-flex justify-content-lg-end justify-content-start align-items-center order-3 order-lg-4 offset-lg-1 offset-0">
                     <div class="py-lg-5">
                         <h3 class="crunch-h3">
                             {{ with .Params.filter }}
@@ -138,7 +142,7 @@
                 </div>
 
                 <div
-                    class="col-lg-5 col-12 mb-5 d-flex justify-content-end  align-items-center order-5">
+                    class="col-lg-4 col-12 mb-5 d-flex justify-content-end  align-items-center order-5">
                     <div class="py-lg-5">
                         <h3 class="crunch-h3">
                             {{ with .Params.append }}
@@ -154,27 +158,31 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-mb-12 mb-5 col-lg-7 d-flex align-items-center justify-content-end py-5 order-6">
-                    <div
-                        class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-green justify-content-center">
-                        <img src="{{ .Params.carousel_1_img_3 }}" alt="{{ .Params.title }}" class="img-fluid p-0 " />
-                    </div>
+                <div class="col-12 col-mb-12 mb-5 col-lg-7 d-flex align-items-center justify-content-lg-end justify-content-start py-lg-5  order-6 offset-lg-1 offset-0">
+                    <div class="crunch-reflection-container">
+                        <div class="crunch-reflection-content">
+                            <img src="{{ .Params.carousel_1_img_3 }}" alt="{{ .Params.title }}" class="img-fluid p-0 " />
+                        </div><!-- /.crunch-reflection-content  -->
+                        <div class="crunch-reflection-effect crunch-reflection-right-top crunch-background-green"></div>
+                    </div><!-- .crunch-reflection-content -->
                 </div>
 
                 <div
                     class="col-12 col-mb-12 col-lg-7 mb-5 d-flex align-items-center justify-content-start py-5 order-lg-7 order-8">
-                    <div
-                        class="crunch-reflection crunch-reflection-small crunch-reflection-right-top crunch-background-blue justify-content-center">
+                    <div class="crunch-reflection-container">
+                        <div class="crunch-reflection-content">
                         <div id="delivery-options" class="carousel slide crun-slider" data-ride="carousel">
                             <img src="img/visualization_and_delivery/logo-1200x630.png" class="d-block w-100"
                                         alt="{{.Params.organize}}" />
                         
                         </div>
-                    </div>
+                    </div><!-- /.crunch-reflection-content  -->
+                    <div class="crunch-reflection-effect crunch-reflection-right-top crunch-background-blue"></div>
+                </div><!-- .crunch-reflection-content -->
                 </div>
 
                 <div
-                    class="col-lg-4 col-12 d-flex mr-4 justify-content-end align-items-center order-lg-8 order-7 ">
+                    class="col-lg-4 col-12 d-flex mr-4 justify-content-lg-end justify-content-start align-items-center order-lg-8 order-7 ">
                     <div class="py-lg-5">
                         <h3 class="crunch-h3">
                             {{ with .Params.flexible }}
