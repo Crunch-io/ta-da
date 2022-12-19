@@ -8,19 +8,10 @@
       <div class="col">
         <h1 class="crunch-h1">Leadership</h1>
       </div>
-      <div id="team-leadership" class="col-md-8 col-sm-12 col-xs-12 col-12">
+      <div id="team-leadership" class="col-lg-8 col-sm-12 col-xs-12 col-12">
         <div class="row"> {{ range sort $.Site.Data.team.board "date" }}
           <div  class="team-leadership col-12 col-xs-8 col-sm-6">
             <figure class="figure {{ .decorationBackground }}">
-              <!--<a href="#" data-toggle="popover" data-placement="right">-->
-              <!--</a>-->
-              <!--<div class="popover-title d-none">-->
-              <!--<h4>{{ .Params.firstname }} {{ .Params.lastname }}</h4>-->
-              <!--<p>{{ .Params.position }}</p>-->
-              <!--</div>-->
-              <!--<div class="popover-content d-none">-->
-              <!--<p>{{ .Params.description }}</p>-->
-              <!--</div>-->
               <figcaption class="figure-caption">
                 <div class="row lead-title">
                   <div class="col">
@@ -44,23 +35,13 @@
 
         <div  class="row">
           {{ range sort $.Site.Data.team.members "firstname" }}
-          <div class="team-members align-items-stretch col-xs-6 col-sm-6 col-md-3 col-ls-3">
+          <div class="team-members align-items-stretch col-xs-6 col-sm-6 col-lg-3 col-ls-3">
             <figure class="figure ">
               <figcaption class="figure-caption align-items-stretch ">
                 <h3 class="crunch-h4">{{ .firstname }} {{ .lastname }}</h3>
                 <p> {{ .position }}</p>
               </figcaption>
               <img src="img/team/{{.img}}" alt="{{ .firstname }}" class="img-fluid" height="auto" width="100%">
-              <!--<a href="#" data-toggle="popover">-->
-              <!--</a>-->
-              <!--<div class="popover-title d-none">-->
-              <!--{{ .Params.firstname }} {{ .Params.lastname }}-->
-              <!--<br>-->
-              <!--<span>{{ .Params.position }}</span>-->
-              <!--</div>-->
-              <!--<div class="popover-content d-none">-->
-              <!--{{ .Params.description }}-->
-              <!--</div>-->
             </figure>
           </div>
           {{ end }}

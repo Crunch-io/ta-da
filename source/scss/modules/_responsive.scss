@@ -284,6 +284,15 @@
     }
 }
 
+@include media-breakpoint-only(md) {
+    #resources-filter-container .navbar-nav {
+        display: flex;
+        flex-direction: row !important;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+    }
+}
 @include media-breakpoint-only(sm) {
 
     .container {
