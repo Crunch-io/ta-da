@@ -1,15 +1,15 @@
 {{ partial "head.html" . }} {{ partial "header.html" . }}
 <section class="crunch-gradient-gray p-2">
-    <div class="container py-mb-5 py-3">
+    <div class="container py-lg-5 py-3">
             <div class="row">
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <h1 class="crunch-h1">{{ .Params.title }}</h1>
                     <p class="semibold-string word-wrap overflow-wrap text-break">{{ .Description }}</p>
                     <a href="/request-demo/" aria-label="Request a demo"
                         class="btn btn-primary btn-lg cta mt-3 mb-5 justify-s d-none d-mb-inline-block">Request a
                         demo</a>
                 </div>
-                <div class="col-lg-6 offset-lg-1  offset-mb-0">
+                <div class="col-lg-6 ">
                     <!-- <img src="{{ .Params.gif }}" alt="{{ .Params.title }}" class="img-fluid" /> -->
                     <div style="padding:56.34% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/752811968?h=b3a4f01270&amp;quality=540p&autoplay=1&loop=1&muted=1&controls=0&dnt=1&autopause=0&amp;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="PPT Export"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
                 </div>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-mb-12 col-lg-7 mb-5 d-flex align-items-center justify-content-lg-end justify-content-center py-lg-5 order-2">
+                <div class="col-12 col-mb-12 col-lg-6 mb-5 d-flex align-items-center justify-content-lg-end justify-content-center py-lg-5 order-2">
                     <div class="crunch-reflection-container">
                         <div class="crunch-reflection-content">
                         <div id="instant-graphs" class="carousel slide crun-slider" data-ride="carousel">
@@ -115,7 +115,7 @@
                 </div>
 
                 <div
-                    class="col-12 col-mb-12 col-lg-7 mb-5 d-flex align-items-center justify-content-start py-lg-5 order-4 order-lg-3">
+                    class="col-12 col-mb-12 col-lg-6 mb-5 d-flex align-items-center justify-content-start py-lg-5 order-4 order-lg-3">
                     <div class="crunch-reflection-container">
                         <div class="crunch-reflection-content">
                             <img src="{{ .Params.carousel_1_img_2 }}" alt="{{ .Params.title }}" class="img-fluid p-0" />
@@ -125,18 +125,23 @@
                 </div>
 
                 <div
-                    class="col-lg-4 col-12 mb-5 d-flex justify-content-lg-end justify-content-start align-items-center order-3 order-lg-4 offset-lg-1 offset-0">
+                    class="col-lg-5 col-12 mb-5 d-flex justify-content-lg-end justify-content-start align-items-center order-3 order-lg-4 offset-lg-1 offset-0">
                     <div class="py-lg-5">
                         <h3 class="crunch-h3">
                             {{ with .Params.filter }}
-                            <span>{{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{
-                                index (split . " ") 2 }}</span>
+                                {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{
+                                index (split . " ") 2 }}
                             {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index
                             (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
                         </h3>
 
                         <div>
-                            <p>{{.Params.content_filter }}</p>
+                            <p>{{ with .Params.content_filter }}
+                                {{ index (split . ".") 0 }}. <br/>{{ index (split . ".") 1 }}. {{
+                                index (split . ".") 2 }}
+                            {{ index (split . ".") 3 }} {{ index (split . ".") 4 }} {{ index
+                            (split . ".") 5 }} {{ index (split . ".") 6 }} {{ end }}</p>
+                            
                         </div>
                     </div>
                 </div>
