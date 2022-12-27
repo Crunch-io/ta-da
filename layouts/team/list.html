@@ -9,7 +9,8 @@
         <h1 class="crunch-h1">Leadership</h1>
       </div>
       <div id="team-leadership" class="col-lg-8 col-sm-12 col-xs-12 col-12">
-        <div class="row"> {{ range sort $.Site.Data.team.board "date" }}
+        <div class="row"> 
+          {{ range sort $.Site.Data.team.board "date" }}
           <div  class="team-leadership col-12 col-xs-8 col-sm-6">
             <figure class="figure {{ .decorationBackground }}">
               <figcaption class="figure-caption">
@@ -45,19 +46,13 @@
             </figure>
           </div>
           {{ end }}
-          <div class="col-12 p-5">
+          <div class="col-12 py-5">
             <a href="/jobs/" class="btn btn-primary btn-sm px-4">View jobs</a>
            </div>
         </div>
   </div>
 </section>
-  <section>
-    <div class="container">
-      <div class="row">
-       
-      </div>
-    </div>
-  </section>
+
 </div><!-- /#Leadership -->
 {{ partial "footer-nav.html" . }}
 

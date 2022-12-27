@@ -5,7 +5,7 @@
 <section class="crunch-gradient-gray">
     <div class="container  py-5">
         <div id="jumbotron">
-            <div class="row py-mb-5 py-0">
+            <div class="row justify-content-between py-mb-5 py-0">
                 <div class="col-md-12 col-lg-5 col-sm-12">
                     <h1 class="crunch-h1">{{ .Params.title }}</h1>
                     <div class="d-lg-block d-none"><h2 class="semibold-string mb-4">{{ .Description }}</h2>
@@ -164,7 +164,8 @@
                         </h3>
 
                         <div>
-                            <p>{{.Params.content_filter }}</p>
+                            <p>{{ with .Params.content_filter }}{{ index (split . ".") 0 }} {{ index
+                                (split . ".") 1 }}{{ index (split . ".") 2 }}{{ end }}</p>
                         </div>
                     </div>
                 </div>
@@ -174,11 +175,14 @@
                     <div class="py-lg-5">
                         <h3 class="crunch-h3">{{ with .Params.append }} <span>{{ index (split . " ") 0 }} {{ index
                                 (split . " ") 1 }} {{ index (split . " ") 2 }}</span> {{ index (split . " ") 3 }} {{
-                            index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}
+                            index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }} 
                         </h3>
 
                         <div>
-                            <p>{{.Params.content_append}}</p>
+                           
+                            <p>{{ with .Params.content_append }}{{ index (split . ".") 0 }}. {{ index
+                                (split . ".") 1 }}. {{ index (split . ".") 2 }}.<br/>{{ index (split . ".") 3 }}.<br/>
+                                {{ index (split . ".") 4 }}{{ index (split . ".") 5 }}{{ end }}</p>
                         </div>
                     </div>
                 </div>
