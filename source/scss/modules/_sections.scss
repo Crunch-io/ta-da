@@ -896,8 +896,9 @@
     .card-item{
         cursor: pointer;
         width: 48%;
-        min-height:280px;
-        .d-flex.shadow {
+        min-height:180px;
+        
+        .shadow {
             border-radius: 8px;
             overflow: hidden;
             width: 100%;
