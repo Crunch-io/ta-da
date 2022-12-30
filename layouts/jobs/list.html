@@ -5,11 +5,11 @@
 <sections id="careers-top" class="sections crunch-gradient-gray py-5 my-5">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-lg-5">
+      <div class="col-lg-4">
         <h1 class="crunch-h1">{{ .Title }}</h1>
         <div class="emphasis-black  mb-xs-0">{{ .Content }}</div>
       </div>
-      <div class="col-lg-6 my-5 offset-lg-1 offset-0">
+      <div class="col-lg-7 my-5 offset-lg-1 offset-0">
         <div class="crunch-reflection-container">
           <div class="crunch-reflection-content">
 
@@ -55,25 +55,23 @@
       </div>
     </div>
 
-    <div class="col-md-12">
-      <div class="row row-cols-1  justify-content-between">
+    
+
+      <div class="accordion" id="open-positions">
         {{ $pages := where .Pages "Params.series" "events"}}
         {{ range .Pages }}
-        <div id="positions-{{.Params.id}}"
-          class="mb-5 d-flex flex-wrap align-items-stretch card-item resources-filter {{.Params.filter}}-filter col-12">
-          <div class="shadow w-100 rounded-lg">
-            <div class="d-flex align-items-center pl-ms-3 pr-sm-5 pl-0 pr-5 justify-content-between w-100">
-
-              <div class="card-body  ">
-                <div class="align-self-stretch w-100">
-                  <h5 class="card-title">{{ .Params.label }}</h5>
-                  <h4 class="card-text crunch-h4">{{ .Title | emojify }}</h4>
-                </div>
+        <div class="resources-filter {{.Params.filter}}-filter">
+          <div class="shadow w-100 rounded-lg mb-5">
+            <div id="positions-{{.Params.id}}" class="d-flex justify-content-between p-4">
+              <div>
+                <h5 class="card-title mb-0">{{ .Params.label }}</h5>
+                <h4 class="mb-0 crunch-h4 w-100">
+                  <button class="btn btn-link btn-block text-left p-0" type="button" data-toggle="collapse" data-target="#{{.Params.id}}" aria-expanded="false" aria-controls="{{.Params.id}}">
+                  {{ .Title | emojify }}
+                  </button>
+                </h4>
               </div>
-              <!--/.card-body -->
-
-              <button class="btn btn-primary card-link circle collapsed" type="button" data-toggle="collapse"
-                data-target="#{{.Params.id}}" aria-expanded="false" aria-controls="{{.Params.id}}">
+              <button class="btn btn-primary card-link circle collapsed" type="button" data-toggle="collapse" data-target="#{{.Params.id}}" aria-expanded="false" aria-controls="{{.Params.id}}">
                 <svg id="plus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
                   <defs>
                     <style>
@@ -102,15 +100,19 @@
                   </g>
                 </svg>
               </button>
-            </div> <!-- /.flex.shadow-->
-            <div id="{{.Params.id}}" class="collapse pt-2 pl-ms-3 pr-sm-5 pl-3 pr-3  pb-5">
-              {{ .Content }}
-            </div>
-          </div>
-        </div><!-- /.card-item -->
+            </div> <!-- /.d-flex header -->
+        
+            <div id="{{.Params.id}}" class="collapse" aria-labelledby="positions-{{.Params.id}}" data-parent="#open-positions">
+              <div class="card-body">
+                {{ .Content }}
+              </div>
+            </div> <!-- /.collapse  -->
+          </div><!-- /. body -->
+        </div>
+
         {{ end }}
-      </div><!-- /.row -->
-    </div><!-- /.col -->
+      </div> <!-- /.accordion -->
+
   </div><!-- /.container -->
 </sections>
 

@@ -442,7 +442,7 @@
         }
 
         a {
-            color: $color-green;
+            color: #E1E9E9;
         }
 
         .table-border {
@@ -458,7 +458,7 @@
             width: 100%;
 
             th {
-                background-color: #E1E9E9;
+                background-color: #234086;
                 text-align: center;
 
                 &:first-child {
@@ -896,8 +896,9 @@
     .card-item{
         cursor: pointer;
         width: 48%;
-        min-height:280px;
-        .d-flex.shadow {
+        min-height:180px;
+        
+        .shadow {
             border-radius: 8px;
             overflow: hidden;
             width: 100%;

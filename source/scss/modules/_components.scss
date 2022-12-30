@@ -1173,18 +1173,6 @@ a.carousel-control-next {
     button:focus {
         box-shadow: 0 0 0 0rem rgb(0 123 255 / 25%);
     }
-
-    button[aria-expanded="false"] {
-        svg {
-            transform: translate(-8px, -3px) scale(1.2);
-        }
-    }
-
-    button[aria-expanded="true"] {
-        svg {
-            transform: translate(-8px, -3px) scale(1.2) rotate(90deg);
-        }
-    }
 }
 
 // Resources filterSelection
