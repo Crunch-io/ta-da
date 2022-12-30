@@ -6,7 +6,6 @@ subtitle = "Effortlessly handles survey data"
 label = "Empower everyone to analyze in the cloud"
 gif = "img/survey_data_expertise/weight_estimation.gif"
 
-
 organize = "Intuitive & easy"
 content_organize = "Analyze, visualize, and deliver with one incredibly easy-to-use platform built for scalability, speed and collaboration. Quickly review a summary of top-line results or dive deep into your survey data - trackers and ad hocs projects - in seconds with easy drag-and-drop."
 

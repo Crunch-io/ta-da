@@ -1,5 +1,6 @@
 # New Crunch.io Company Website
 
+
 Our new website is a static site rendered by [Hugo](https://gohugo.io/).
 
 ## Local installation

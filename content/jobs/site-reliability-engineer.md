@@ -67,4 +67,3 @@ In the future (and to some degree currently), all or part of our platform will i
 - Familiarity with Agile Manifesto and SCRUM / Kanban / Scrumban
 - Software development experience using Python or JavaScript
 - Bachelor's Degree in Statistics, Science, Programming or Engineering related field
-

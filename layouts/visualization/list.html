@@ -24,6 +24,7 @@
             {{ range .Site.Pages }} {{ if and (eq .Type "visualization") (eq .Title
             "Visualization and Delivery") }}
 
+
             <div class="row py-5 justify-content-between">
                 <div class="col-lg-12 pt-ls-5 pt-0 mb-lg-4 order-0">
                     <h2 class="crunch-h2">{{ .Params.label }}</h2>
@@ -49,6 +50,7 @@
                 <div class="col-12 col-mb-12 col-lg-6 mb-5 d-flex align-items-center justify-content-lg-end justify-content-center py-lg-5 order-2">
                     <div class="crunch-reflection-container">
                         <div class="crunch-reflection-content">
+
                         <div id="instant-graphs" class="carousel slide crun-slider" data-ride="carousel">
 
                             <ol class="carousel-indicators d-none">
@@ -114,8 +116,10 @@
 
                 </div>
 
+
                 <div
                     class="col-12 col-mb-12 col-lg-6 mb-5 d-flex align-items-center justify-content-start py-lg-5 order-4 order-lg-3">
+
                     <div class="crunch-reflection-container">
                         <div class="crunch-reflection-content">
                             <img src="{{ .Params.carousel_1_img_2 }}" alt="{{ .Params.title }}" class="img-fluid p-0" />
@@ -146,8 +150,8 @@
                     </div>
                 </div>
 
-                <div
-                    class="col-lg-4 col-12 mb-5 d-flex justify-content-end  align-items-center order-5">
+                <div class="col-lg-4 col-12 mb-5 d-flex justify-content-end  align-items-center order-5">
+
                     <div class="py-lg-5">
                         <h3 class="crunch-h3">
                             {{ with .Params.append }}
@@ -186,8 +190,8 @@
                 </div><!-- .crunch-reflection-content -->
                 </div>
 
-                <div
-                    class="col-lg-4 col-12 d-flex mr-4 justify-content-lg-end justify-content-start align-items-center order-lg-8 order-7 ">
+                <div class="col-lg-4 col-12 d-flex mr-4 justify-content-lg-end justify-content-start align-items-center order-lg-8 order-7 ">
+
                     <div class="py-lg-5">
                         <h3 class="crunch-h3">
                             {{ with .Params.flexible }}

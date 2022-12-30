@@ -2,6 +2,7 @@
 date = "2018-10-05T10:08:35+02:00"
 draft = false
 title = "Visualization and Delivery"
+
 label = "Create and deliver effortlessly"
 subtitle = "Deliver visualizations and insights within minutes after fielding completes."
 description = "Create and download visually-appealing analyses in just a few clicks. Build a   no-coding dashboard in minutes."

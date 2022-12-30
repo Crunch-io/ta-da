@@ -8,8 +8,6 @@ label = "Power your large-scale trackers"
 img = "img/trackers_webinar_tile.jpg"
 gif = "img/trackers.gif"
 
-
-
 carousel_img_1 = "img/dashboards/custom-layouts.svg"
 carousel_img_2 = "img/dashboards/powerpoint.svg"
 carousel_img_3 = "https://crunch.io/img/trackers.gif"
