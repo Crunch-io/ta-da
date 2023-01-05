@@ -7,44 +7,37 @@
 <section class="section py-5">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-12">
+            <div class="col-lg-8 col-12">
                 <img src="{{ .Params.logo }}" alt="" class="img-logo" />
                 <h1 class="crunch-h2 mb-5">{{ .Params.description }}</h1>
 
-                <table class="table table-bordered ">
-                    <thead>
-                        <tr>
-                            <th scope="col"><strong>Industry</strong></th>
-                            <th scope="col"><strong>Region</strong></th>
-
-                        </tr>
-                    </thead>
+                <table class="table table-bordered background-grey">
                     <tbody>
                         <tr>
-                            <td class="text-left">{{ .Params.industry }}</th>
-                            <td class="text-left ">{{ .Params.region }}</td>
-
-                        </tr>
-                        <tr class="text-left">
-
-                            <td colspan="2 " class="text-left">
-                                <p class="text-left"><strong>About</strong></p>
-                                {{ .Params.about }}
-                            </td>
+                            <th scope="col" class="pr-4"><strong>Industry</strong></th>
+                            <td class="text-left">{{ .Params.industry }}</td>
                         </tr>
                         <tr>
-
-                            <td colspan="2 " class="text-left">
-                                <p class="text-left"><strong>Handle</strong></p>
-                                {{ .Params.case }}
-                            </td>
+                            <th scope="col" class="pr-4"><strong>Region</strong></th>
+                            <td class="text-left ">{{ .Params.region }}</td>
+                            
+                        </tr>
+                        <tr>
+                            
+                            <th scope="col" class="pr-4"><strong>About</strong></th>
+                            <td class="text-left ">{{ .Params.about }}</td>
+                        </tr>
+                        <tr>
+                        <th scope="col" class="pr-4"><strong>Handle</strong></th>
+                        <td class="text-left ">{{ .Params.case }}</td>
+                                
                         </tr>
                     </tbody>
                 </table>
 
                 <p>{{ .Content }}</p>
             </div>
-            <div class="col-md-6 col-12 pt-5 position-relative">
+            <div class="col-md-4 col-12 pt-5 position-relative">
                 <div class="sticky-top pt-5">
                 <img src="img/yougov_case_study_dash_opaque.png" alt="{{ .Params.Title }}" class="img"/>
                 </div>

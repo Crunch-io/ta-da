@@ -24,6 +24,6 @@ company = "The Chicago Council on Global Affairs"
 
 The Chicago Council on Global Affairs is an independent, nonpartisan organization that provides insight into global issues and policy.
 
-<span class="highlight"><span class="font-italic">The Chicago Council Survey team</span>, part of the Lester Crown Center on US Foreign Policy, uses Crunch.io to <span class="font-italic">analyze data from its annual survey</span> on American public opinion and US foreign policy.</span>
+<span class="highlight">The Chicago Council Survey team, part of the Lester Crown Center on US Foreign Policy, uses Crunch.io to analyze data from its annual survey on American public opinion and US foreign policy.</span>
 
 They have appended over 45 years of public opinion datasets into one dataset, previously only available in separate files, to enable simple and intuitive analysis of historical data.
