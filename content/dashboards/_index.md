@@ -39,8 +39,6 @@ content_3 = "Import a new survey wave or dataset to automatically update dashboa
 content_4  = "Enable one dataset to be easily used by different markets or audiences. Ensure users only see their specified geography or data segment with Crunch Views. Create a Crunch View and apply Crunch Automation scripting to easily replicate a dashboard for each subset of a dataset."
 
 +++
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 Revolutionize the way you deliver survey data and insights. It’s so easy and quick, you’ll use them all the time.
 
@@ -53,9 +51,3 @@ Revolutionize the way you deliver survey data and insights. It’s so easy and q
 * Broadly and quickly deploy dashboards with lower costs and fewer resources
 
 * Instantly create multiple dashboards for different audiences from one master dashboard with Crunch Views
-=======
->>>>>>> brand-page-update-2022
-=======
-
-
->>>>>>> brand-page-update-2022

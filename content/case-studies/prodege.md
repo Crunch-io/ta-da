@@ -24,7 +24,7 @@ company = "Prodege"
 
 Prodege is a leading provider of data and insights fueled by their global proprietary panel of 120 million members in over 125 countries. They leverage their innovative Prodege On-Demand platform (POD) to create and launch surveys for over 1,000 clients worldwide and chose to integrate Crunch.io within the POD platform so that their clients have access to data in exportable charts as well as online dashboards.
 
-<span class="highlight">Prodege specializes in <span class="font-italic">delivering fast</span>, whether clients leverage Prodege’s managed services team of research experts or utilize their DIY version of POD. Integrating with Crunch enables Prodege to quickly provide <span class="font-italic">data analysis and visualization</span> to clients immediately after data collection is complete.</span>
+<span class="highlight">Prodege specializes in delivering fast, whether clients leverage Prodege’s managed services team of research experts or utilize their DIY version of POD. Integrating with Crunch enables Prodege to quickly provide data analysis and visualization to clients immediately after data collection is complete.</span>
 
 Data is automatically uploaded from POD to Crunch.io using the Crunch API. Then Prodege’s team or their DIY client-users may quickly create crosstabs and visualizations with an easy-to-use, drag-and-drop approach. Prodege also builds custom dashboards for each client utilizing each client's branding by applying custom color palettes.
 
