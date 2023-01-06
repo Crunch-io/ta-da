@@ -40,9 +40,7 @@
                 {{ range $pages  }}
                 <div class="d-flex card-item col-12">
                     <div class="shadow w-100 p-2 mb-5">
-                        
-                        <div class="card-body " >
-                        
+                        <div class="card-body" >
                                 <h5 class="card-title">{{  .Title | emojify}}</h5>
                                 <h4 class="card-text crunch-h4"><button type="button" class="btn btn-link p-0 text-left" onclick="location.href='{{ .Permalink }}'">{{ .Params.description }}</h4>
                         

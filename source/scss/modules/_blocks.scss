@@ -273,6 +273,10 @@ table {
     }
 }
 
+.img-logo {
+    max-width: 160px;
+}
+
 @include media-breakpoint-down(sm) {
     .sp-mb-t {
         margin-top: 40px;
