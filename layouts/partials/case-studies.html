@@ -2,42 +2,28 @@
 {{ if not (eq .RelPermalink $.Page.RelPermalink) }}
 <div class="col-md-6 ">
     <div class="mb-5 d-flex align-items-stretch card-item resources-filter {{.Params.series}}-filter col-12" >
-        <div class="d-flex flex-wrap shadow w-100 p-3">
-            
-            <div class="card-body   " >
-
-                <div class="align-self-stretch mb-3 w-100">
-                
+        <div class="d-flex card-item col-12 shadow">
+            <div class=" w-100 p-2 ">
+                <div class="card-body" >
                     <h5 class="card-title">{{  .Title | emojify}}</h5>
-                    <h4 class="card-text crunch-h4"><button type="button" class="btn btn-link text-left" onclick="location.href='{{ .Permalink }}'">{{ .Params.description }}</button></h4>
+                    <h4 class="card-text crunch-h4 "><button type="button" class="btn btn-link text-left px-0 m-0" onclick="location.href='{{ .Permalink }}'">{{ .Params.description }}</button></h4>
                 </div>
             </div> <!--/.card-body -->
-        
-            
-        
         </div> <!-- /.flex.shadow-->
-
     </div><!-- /.card-item -->
 </div>
 {{ else }}
 
 <div class="col-md-6 ">
     <div class="mb-5 d-flex align-items-stretch card-item resources-filter {{.Params.series}}-filter col-12" >
-        <div class="d-flex flex-wrap shadow w-100 p-3">
-            
-            <div class="card-body   " >
-
-                <div class="align-self-stretch mb-3 w-100">
-                
+        <div class="d-flex card-item col-12 shadow">
+            <div class=" w-100 p-2 ">
+                <div class="card-body" >
                     <h5 class="card-title">{{  .Title | emojify}}</h5>
-                    <h4 class="card-text crunch-h4"><button type="button" class="btn btn-link text-left" onclick="location.href='{{ .Permalink }}'">{{ .Params.description }}</button></h4>
+                    <h4 class="card-text crunch-h4 "><button type="button" class="btn btn-link text-left px-0 m-0" onclick="location.href='{{ .Permalink }}'">{{ .Params.description }}</button></h4>
                 </div>
             </div> <!--/.card-body -->
-        
-            
-        
         </div> <!-- /.flex.shadow-->
-
     </div><!-- /.card-item -->
 </div>
 
