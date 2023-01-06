@@ -277,6 +277,12 @@ table {
     max-width: 160px;
 }
 
+#case-studies-carts{
+    .card-item{
+        min-height: 200px;
+    }
+}
+
 @include media-breakpoint-down(sm) {
     .sp-mb-t {
         margin-top: 40px;
