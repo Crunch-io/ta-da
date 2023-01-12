@@ -43,4 +43,4 @@ This is a 100% remote role.
 
 We strive to write accurate job descriptions, but we know that great talent comes in many forms and from many backgrounds. Please apply even if you aren’t sure you meet all of the criteria
 
-<button class="btn btn-primary" onclick="location.href='mailto:careers@crunch.io';">Apply now via email to careers@crunch.io</button>
+<button class="btn btn-primary" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>

@@ -935,7 +935,7 @@
         .figure{
             background-color: #fff;
             box-shadow: 0px 3px 20px #00000029;
-            border-radius: 8px;
+            border-radius: 18px;
             overflow: hidden;
             .figure-caption{
                 padding: 20px 18px;
@@ -957,7 +957,7 @@
             position: absolute;
             z-index: -1;
             top: 20px;
-            left: 0px;
+            left: -10px;
             border-radius: 18px;
         }
     }
@@ -974,6 +974,7 @@
         font-size: 0.8em;
     }
 }
+
 
 @include media-breakpoint-only(xs) {
     .speed-section {
