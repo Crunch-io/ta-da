@@ -4,6 +4,7 @@
     position: relative;
     z-index: 10;
     padding: 20px 0;
+    font-size: 16px;
     color: $color-white;
 
     li{
@@ -16,6 +17,7 @@
 
     #call-action {
         height: 0px;
+        font-size: 20px;
     }
 
     #email-subscribe{

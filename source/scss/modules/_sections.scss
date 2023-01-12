@@ -935,7 +935,7 @@
         .figure{
             background-color: #fff;
             box-shadow: 0px 3px 20px #00000029;
-            border-radius: 8px;
+            border-radius: 18px;
             overflow: hidden;
             .figure-caption{
                 padding: 20px 18px;
@@ -975,6 +975,11 @@
     }
 }
 
+@media (max-width: 1199px) and ( min-width:560px) {
+    #leadership .team-leadership .figure {
+        margin: 12px;
+    }
+}
 @include media-breakpoint-only(xs) {
     .speed-section {
         height: 620px;
