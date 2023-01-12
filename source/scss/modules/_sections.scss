@@ -957,7 +957,7 @@
             position: absolute;
             z-index: -1;
             top: 20px;
-            left: 0px;
+            left: -10px;
             border-radius: 18px;
         }
     }
@@ -975,11 +975,7 @@
     }
 }
 
-@media (max-width: 1199px) and ( min-width:560px) {
-    #leadership .team-leadership .figure {
-        margin: 12px;
-    }
-}
+
 @include media-breakpoint-only(xs) {
     .speed-section {
         height: 620px;
