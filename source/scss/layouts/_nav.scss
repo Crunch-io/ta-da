@@ -262,3 +262,9 @@ button.circle{
 .circle[aria-expanded="true"] #plus{
     display: none;
 }
+
+.nav-link:focus{   
+    border: solid  rgb(3, 62, 131);
+    border-radius: 8px;
+    outline: 1 rgba(3, 62, 131);
+  }
