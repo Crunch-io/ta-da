@@ -5,9 +5,11 @@ title = "Insights Tech Showcase Demo"
 label = "Webinar Recording"
 url = "//info.crunch.io/insights-analytics-showcase-2021"
 weight = 200
+eventdate = "November 14 - 16"
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Watch Now"
-series = "webinars"
+series = "upcoming"
 icon = "img/icons/webinar-icon.svg"
 banner ="https://info.crunch.io/hs-fs/hubfs/Untitled%20design%20(2).png?width=1086&name=Untitled%20design%20(2).png"
+upcoming = "true"
 +++

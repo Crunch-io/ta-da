@@ -20,8 +20,6 @@
                                 <p style="color: #0064a4">{{ .Params.about }}<br> {{ .Params.schedule }}</p>
                                 
                                 <a href="{{ .Params.url }}" class="btn btn-primary   px-4 btn-xs  " target="_blank">{{ .Params.link  }}</a>
-                                <!-- https://info.crunch.io/hs-fs/hubfs/ezgif.com-gif-maker%20(12).gif -->
-
                             </div>
                             {{ end }}
                         
@@ -40,57 +38,24 @@
                 <h2 class="crunch-h2">Upcoming events</h2>
             </div>
             <div class="row justify-content-center justify-content-xs-center justify-content-md-start align-items-stretch">
+                
+                {{ range where .Pages "Params.series" "upcoming" }}
                 <div class="col-lg-3 col-md-6 col-12 mb-4">
                     <div class="d-flex align-self-stretch card" >
                         <div class="card-body px-3 py-4 shadow   d-flex flex-wrap">
                             <div class="align-self-stretch mb-3">
-                                <h6 class="card-subtitle mb-2 ">Demo</h6>
-                                <h4 class="card-title crunch-h4">Insights Tech Showcase: Brand Tracking</h4>
-                                <p class="card-text">September 23 12pm PT</p>
+                                <h6 class="card-subtitle mb-2 ">{{ .Params.label }}</h6>
+                                <h4 class="card-title crunch-h4">{{ .Title | emojify }}</h4>
+                                <p class="card-text">{{ .Params.eventdate }}</p>
                             </div>
-                            <a href="#" class="btn btn-primary d-block card-link mt-auto w-100  ">Book a meeting</a>
+                            <a href="{{ .Params.url }}" class="btn btn-primary d-block card-link mt-auto w-100" target="_blank">{{ .Params.link  }}</a>
                         </div>
                     </div>
                 </div>
+    
+                {{ end }}
 
-                <div class="col-lg-3 col-md-6 col-12 mb-4">
-                    <div class="d-flex align-self-stretch card" >
-                        <div class="card-body px-3 py-4 shadow   d-flex flex-wrap">
-                            <div class="align-self-stretch mb-3">
-                                <h6 class="card-subtitle mb-2 ">Event</h6>
-                                <h4 class="card-title crunch-h4">ESOMAR</h4>
-                                <p class="card-text">September 18-21, 2022</p>
-                            </div>
-                            <a href="{{ .Params.url }}" class="btn btn-primary d-block card-link mt-auto w-100  ">Book a meeting</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-12 mb-4">
-                    <div class="d-flex align-self-stretch card" >
-                        <div class="card-body px-3 py-4 shadow  d-flex flex-wrap">
-                            <div class="align-self-stretch mb-3">
-                                <h6 class="card-subtitle mb-2 ">Event</h6>
-                                <h4 class="card-title crunch-h4">TMRE</h4>
-                                <p class="card-text">November 14-16</p>
-                            </div>
-
-                            <a href="{{ .Params.url }}" class="btn btn-primary d-block card-link mt-auto w-100 ">Book a meeting</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-12 mb-4">
-                    <div class="d-flex align-self-stretch card" >
-                        <div class="card-body px-3 py-4 shadow  d-flex flex-wrap">
-                            <div class="align-self-stretch mb-3">
-                                <h6 class="card-subtitle mb-2 ">Event</h6>
-                                <h4 class="card-title crunch-h4">TMRE</h4>
-                                <p class="card-text">November 14-16</p>
-                            </div>
-
-                            <a href="{{ .Params.url }}" class="btn btn-primary d-block card-link mt-auto w-100 ">Book a meeting</a>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
