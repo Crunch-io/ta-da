@@ -6,9 +6,9 @@ label = "Video"
 url = "//player.vimeo.com/video/343376948"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
-link = "Watch Now"
-series = "videos"
-icon = "img/icons/video-icon.svg"
 banner = "https://info.crunch.io/hs-fs/hubfs/dashboard%20purple.png?width=1082&name=dashboard%20purple.png"
+link = "Watch Now"
+series = "upcoming"
+icon = "img/icons/video-icon.svg"
 
 +++
