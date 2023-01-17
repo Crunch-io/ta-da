@@ -51,4 +51,4 @@ We currently run our in-house production Python code against Redis, MongoDB, and
 - Programming experience using Python as a programming language
 - Experience with data locality problems and caching issues
 
-<button class="btn btn-primary" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now via email to careers@crunch.io</button>

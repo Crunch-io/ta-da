@@ -1,6 +1,6 @@
 +++
 date = "2022-07-08T14:08:35+02:00"
-draft = false
+draft = true
 title = "R/R Shiny Developer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
@@ -8,7 +8,6 @@ label = "Engineering & Data"
 filter = "engineering-data"
 id = "r-shiny"
 controls = "rshiny"
-resume = "Crunch.io is seeking an R developer to help us build the tools for the next generation of analytics tools for survey data. In this role, you will be working with a team of data scientists, industry experts, market research organizations, designers, and engineers, creating tools for companies ranging from small-to-medium sized businesses to Fortune 500 organizations. You will have two major responsibilities: 1. developing and maintaining R packages for RCrunch, a package we have developed for sophisticated survey researchers. 2. prototyping various R Shiny data visualizations."
 
 +++
 
@@ -43,4 +42,4 @@ This is a 100% remote role.
 
 We strive to write accurate job descriptions, but we know that great talent comes in many forms and from many backgrounds. Please apply even if you aren’t sure you meet all of the criteria
 
-<button class="btn btn-primary" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now via email to careers@crunch.io</button>

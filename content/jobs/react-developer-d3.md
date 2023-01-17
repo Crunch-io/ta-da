@@ -5,7 +5,6 @@ title = "React/D3 Developer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Engineering & Data"
-filter = "engineering-data"
 id = "react-dev"
 controls = "ereact"
 
@@ -57,4 +56,4 @@ Front-end developers on our platform are first-class team members. Although your
 - Bachelor’s Degree in Programming, Computer Science, or related Technical field.
 - Current or former contributor to a significant open-source React library.
 
-<button class="btn btn-primary" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>
+<button class="btn btn-success" onclick="location.href='mailto:careers@crunch.io';">Apply now</button>

@@ -6,8 +6,9 @@ label = "Webinar Recording"
 url = "//info.crunch.io/dashboards-webinar-recording-lp"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
+banner ="https://info.crunch.io/hs-fs/hubfs/Screen%20Shot%202022-03-08%20at%2012.59.19%20PM.png?width=1082&name=Screen%20Shot%202022-03-08%20at%2012.59.19%20PM.png"
 link = "Watch Now"
 series = "webinars"
 icon = "img/icons/webinar-icon.svg"
-banner ="https://info.crunch.io/hs-fs/hubfs/Screen%20Shot%202020-01-08%20at%2010.08.51%20AM.png?width=2867&name=Screen%20Shot%202020-01-08%20at%2010.08.51%20AM.png"
+
 +++

@@ -2,7 +2,6 @@
 date = "2018-11-26T14:08:35+02:00"
 draft = true
 title = "Customer Experience Manager"
-filter = "engineering-data"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 application_url = "http://smrtr.io/Q-Fp"
