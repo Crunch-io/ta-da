@@ -4,7 +4,7 @@ draft = true
 title = "Part-Time Junior Digital Designer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
-id = "junior-digital-designer"
+
 +++
 
 **Reports to:** VP of Product Development

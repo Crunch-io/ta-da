@@ -5,7 +5,6 @@ title = "Senior Director, Professional Services"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Operations"
-filter = "operations"
 id = "senior-dir"
 controls = "seven"
 

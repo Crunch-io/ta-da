@@ -5,7 +5,6 @@ title = "Site Reliability/Devops Engineer"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Engineering & Data"
-filter = "engineering-data"
 id = "sre"
 controls = "esre"
 +++
@@ -67,3 +66,4 @@ In the future (and to some degree currently), all or part of our platform will i
 - Familiarity with Agile Manifesto and SCRUM / Kanban / Scrumban
 - Software development experience using Python or JavaScript
 - Bachelor's Degree in Statistics, Science, Programming or Engineering related field
+
