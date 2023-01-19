@@ -17,6 +17,6 @@ link = "Learn more"
 
 When COVID-19 hit, a leading live entertainment and ticketing company didn’t panic. Instead, they launched a large gen-pop survey of almost 10,000 people across 8 countries to research how the pandemic is affecting their customers’ willingness to go to live events in the future.
 
-<span class="highlight">The insights team analyzed key results within 48 hours of field completion with Crunch’s easy-to-use online platform.</span> They prepared, analyzed data, built dashboards and delivered PowerPoint slides all within a few days.
+<span class="highlight">The insights team analyzed <span class="font-italic">key results</span> within 48 hours of field completion with Crunch’s <span class="font-italic">easy-to-use</span> online platform.</span> They prepared, analyzed data, built dashboards and delivered PowerPoint slides all within a few days.
 
 The team continues to leverage Crunch.io to gain new insights and position for future growth through the COVID-19 tracker studies, running monthly, as well as analyze ad hoc studies.

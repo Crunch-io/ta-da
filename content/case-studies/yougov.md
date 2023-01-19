@@ -20,6 +20,6 @@ link = "Learn more"
 
 YouGov, whose current brand slogan is “the best panel - the best data - the best tools”, has one of the world’s largest research networks with a proprietary panel of over 17 million individuals in 50 markets. Researchers at YouGov use Crunch.io to perform analysis and deliver data and insights to clients via the Crunch.io web application, CrunchBoxes, and dashboards.
 
-<span class="highlight">YouGov uses Crunch.io enterprise-wide for both custom research and Data Products, such as YouGov Profiles,</span> which provides syndicated segmentation and product data for agencies and brands. Over 14,000 YouGov Profiles users enjoy sub-second query response times, building on-the-fly crosstabs on a survey database, containing over 309,000 rows (respondents) and 300,000 columns (variables).
+<span class="highlight">YouGov uses Crunch.io <span class="font-italic">enterprise-wide</span> for both custom research and Data Products, such as YouGov Profiles,</span> which provides syndicated segmentation and product data for agencies and brands. Over 14,000 YouGov Profiles users enjoy sub-second query response times, building on-the-fly crosstabs on a survey database, containing over 309,000 rows (respondents) and 300,000 columns (variables).
 
 YouGov will continue to use Crunch.io to process data quickly and efficiently and give its growing customer base the power to explore the data easily and find insights on their own.
