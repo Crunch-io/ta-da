@@ -7,3 +7,4 @@ yarn.lock
 package-lock.json
 .idea/codeStyles/
 .idea/runConfigurations.xml
+.idea/misc.xml
