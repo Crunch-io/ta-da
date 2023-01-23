@@ -8,6 +8,46 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2023.01</title>
+      <link>//crunch.io/release-notes/2023-01-23/</link>
+      <pubDate>Mon, 23 Jan 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-01-23/</guid>
+      <description>Crunch web application Fixed the following: Incorrect cell colors sometimes appeared within three-way tables when switching tabs. Users were not able to open ‘Edit categories’ for logical variables (such as those created via the filter builder). The ‘Edit categories’ option was missing from the variable properties panel for a derived categorical. Categories sometimes could not be renamed in the variable properties panel. The full list of subvariables sometimes did not get displayed on numeric-array variable summary cards.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed the following:
+&lt;ul&gt;
+&lt;li&gt;Incorrect cell colors sometimes appeared within three-way tables when switching tabs.&lt;/li&gt;
+&lt;li&gt;Users were not able to open ‘Edit categories’ for logical variables (such as those created via the filter builder).&lt;/li&gt;
+&lt;li&gt;The ‘Edit categories’ option was missing from the variable properties panel for a derived categorical.&lt;/li&gt;
+&lt;li&gt;Categories sometimes could not be renamed in the variable properties panel.&lt;/li&gt;
+&lt;li&gt;The full list of subvariables sometimes did not get displayed on numeric-array variable summary cards.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Added the following:
+&lt;ul&gt;
+&lt;li&gt;The ability to allow the owner of a dataset to make a filter public even if they are not the current editor.&lt;/li&gt;
+&lt;li&gt;Support the export of images on dashboard tiles to PowerPoint.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;API endpoints and API reference&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added three new endpoints that return the parents structure for special folders (Public, Secure, and Hidden):
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://crunch.io/api/reference/#get-/datasets/-dataset_id-/folders/public/&#34;&gt;List public variables and subfolders&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://crunch.io/api/reference/#get-/datasets/-dataset_id-/folders/hidden/&#34;&gt;List hidden elements&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://crunch.io/api/reference/#get-/datasets/-dataset_id-/folders/secure/&#34;&gt;List private variables&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Updated the docs for the &lt;a href=&#34;https://crunch.io/api/reference/#get-/datasets/-dataset_id-/folders/public/&#34;&gt;List public variables and subfolders&lt;/a&gt; endpoint , which now describes its current behavior: it returns a catalog of folder trees but no longer the contents of the public variable folder.&lt;/li&gt;
+&lt;li&gt;Modified the &lt;a href=&#34;https://crunch.io/api/reference/#get-/users/&#34;&gt;List account and team users&lt;/a&gt; endpoint to allow users to search for accounts using an email address.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2022.17</title>
       <link>//crunch.io/release-notes/2022-12-12/</link>
       <pubDate>Mon, 12 Dec 2022 10:00:00 -0700</pubDate>

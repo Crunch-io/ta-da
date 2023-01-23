@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Dec 2022 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 Jan 2023 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -762,6 +762,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/tmre-2022</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2023.01</title>
+      <link>//crunch.io/release-notes/2023-01-23/</link>
+      <pubDate>Mon, 23 Jan 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-01-23/</guid>
+      <description>Crunch web application Fixed the following: Incorrect cell colors sometimes appeared within three-way tables when switching tabs. Users were not able to open ‘Edit categories’ for logical variables (such as those created via the filter builder). The ‘Edit categories’ option was missing from the variable properties panel for a derived categorical. Categories sometimes could not be renamed in the variable properties panel. The full list of subvariables sometimes did not get displayed on numeric-array variable summary cards.</description>
     </item>
     
     <item>
