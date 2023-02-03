@@ -4,8 +4,8 @@ draft = false
 title = "Dashboards"
 description = "Combine the ease of drag-and-drop with the speed of scripting"
 images = ["https://crunch.io/img/logo-1200x630.png"]
-video = "https://player.vimeo.com/video/446659156"
-mob_video = "https://player.vimeo.com/video/446617722"
+video = "https://player.vimeo.com/video/782595767"
+mob_video = "https://player.vimeo.com/video/782595767"
 
 +++
 
