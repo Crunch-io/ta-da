@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Feb 2023 10:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Feb 2023 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -762,6 +762,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/tmre-2022</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2023.02</title>
+      <link>//crunch.io/release-notes/2023-02-06/</link>
+      <pubDate>Mon, 06 Feb 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-02-06/</guid>
+      <description>Crunch web application Fixed the following: Changes made to the subvariable names of a multiple response variable were not persisting correctly. An exclusion filter could be set but not applied during some operations under rare circumstances — the exclusion is now always applied by default to avoid an accidental failure to apply. Editing the title or description for a derived categorical array was not working. The ‘Save’ button for the deck tray could sometimes get stuck in a disabled state.</description>
     </item>
     
     <item>

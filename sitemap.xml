@@ -245,10 +245,13 @@
   </url><url>
     <loc>//crunch.io/info.crunch.io/tmre-2022</loc>
   </url><url>
-    <loc>//crunch.io/dashboards/</loc>
-    <lastmod>2023-02-01T10:08:35+02:00</lastmod>
-  </url><url>
     <loc>//crunch.io/</loc>
+    <lastmod>2023-02-06T10:00:00-07:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/release-notes/2023-02-06/</loc>
+    <lastmod>2023-02-06T10:00:00-07:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/dashboards/</loc>
     <lastmod>2023-02-01T10:08:35+02:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2023-01-23/</loc>

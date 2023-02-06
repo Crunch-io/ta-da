@@ -8,6 +8,46 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2023.02</title>
+      <link>//crunch.io/release-notes/2023-02-06/</link>
+      <pubDate>Mon, 06 Feb 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-02-06/</guid>
+      <description>Crunch web application Fixed the following: Changes made to the subvariable names of a multiple response variable were not persisting correctly. An exclusion filter could be set but not applied during some operations under rare circumstances — the exclusion is now always applied by default to avoid an accidental failure to apply. Editing the title or description for a derived categorical array was not working. The ‘Save’ button for the deck tray could sometimes get stuck in a disabled state.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fixed the following&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Changes made to the subvariable names of a multiple response variable were not persisting correctly.&lt;/li&gt;
+&lt;li&gt;An exclusion filter could be set but not applied during some operations under rare circumstances — the exclusion is now always applied by default to avoid an accidental failure to apply.&lt;/li&gt;
+&lt;li&gt;Editing the title or description for a derived categorical array was not working.&lt;/li&gt;
+&lt;li&gt;The ‘Save’ button for the deck tray could sometimes get stuck in a disabled state.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Added the following&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Support for exporting KPIs to PowerPoint for non-tabbed analyses.&lt;/li&gt;
+&lt;li&gt;For reasonably complex weight models with numerous marginal targets, the cutoff was previously set at 100 iterations and has now been raised to 200, which will allow for better convergence rates.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added &lt;code&gt;PUBLIC&lt;/code&gt; as a new syntax for &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10521594535309-Getting-started-with-folder-scripts&#34;&gt;folders&lt;/a&gt; in Crunch Automation. Users can refer to the root folder using both keywords (&lt;code&gt;ROOT&lt;/code&gt; and &lt;code&gt;PUBLIC&lt;/code&gt;), which should now behave the same.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Created the following the Scriptable Dashboards help articles, which provide a high-level description of new features and answers to commonly-asked FAQs:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/12483333579277-Scriptable-Dashboards-An-Overview&#34;&gt;Scriptable Dashboards overview&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/12794877407245-Scriptable-Dashboards-FAQs&#34;&gt;Scriptable Dashboards FAQs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2023.01</title>
       <link>//crunch.io/release-notes/2023-01-23/</link>
       <pubDate>Mon, 23 Jan 2023 10:00:00 -0700</pubDate>
