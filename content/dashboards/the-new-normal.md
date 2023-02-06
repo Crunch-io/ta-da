@@ -18,5 +18,5 @@ carousel_img_3 = "img/dashboards/logo-and-brand.svg"
 
 * Customize, resize, reorder, brand
 
-* Export as editable Powerpoint slides
+* Export as editable PowerPoint slides
 
