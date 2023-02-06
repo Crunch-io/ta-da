@@ -2,7 +2,7 @@
 date = "2020-08-26T14:45:58-04:00"
 draft = false
 title = "The new normal"
-subtitle = "Revolutionize the way you deliver survey data and insights"
+subtitle = "Create in the GUI with zero coding know-how requierd"
 label = "The new normal"
 carousel_img_1 = "img/dashboards/custom-layouts.svg"
 carousel_img_2 = "img/dashboards/powerpoint.svg"
@@ -10,13 +10,13 @@ carousel_img_3 = "img/dashboards/logo-and-brand.svg"
 
 +++
 
-* Drag and drop to create visually-compelling dashboards. No programming or DP expertise required.
+* Drag and drop, no code needed
 
-* Add filters, tables, and graphs in just a few clicks
+* Design & create tables, graphs
 
-* Resize, reorder, brand, and customize without coding
+* Add filters with a few clicks
 
-* Broadly and quickly deploy dashboards with lower costs and fewer resources
+* Customize, resize, reorder, brand
 
-* Instantly create multiple dashboards for different audiences from one master dashboard with Crunch Views
+* Export as editable PowerPoint slides
 
