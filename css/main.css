@@ -11412,11 +11412,39 @@ h4 {
   line-height: 1.5em;
 }
 
-@media (max-width: 575.98px) {
-  h1 {
-    font-size: 2em;
-  }
+.new-label {
+  background: #0062a6;
+  color: #fff;
+  border-radius: 50%;
+  height: 65px;
+  width: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform: rotate(-24deg) translate(-71px, -9px);
+  font-family: "Libre Baskerville", serif;
+  font-style: italic;
+  font-size: 14px;
 }
+
+.new-label-video {
+  background: #0062a6;
+  color: #fff;
+  border-radius: 50%;
+  height: 65px;
+  width: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform: rotate(-24deg) translate(-10px, -35px);
+  font-family: "Libre Baskerville", serif;
+  font-style: italic;
+  font-size: 14px;
+  position: absolute;
+}
+
 .subtitle {
   color: #1D1D26;
   font-weight: 700;
@@ -11449,6 +11477,27 @@ h4 {
   font-size: 12px;
 }
 
+@media (max-width: 575.98px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  .new-label {
+    background: #0062a6;
+    color: #fff;
+    border-radius: 50%;
+    height: 65px;
+    width: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: rotate(-24deg) translate(1px, 0px);
+    font-family: "Libre Baskerville", serif;
+    font-style: italic;
+    font-size: 14px;
+  }
+}
 .spacer {
   padding: 100px 0;
 }

@@ -245,8 +245,11 @@
   </url><url>
     <loc>//crunch.io/info.crunch.io/tmre-2022</loc>
   </url><url>
+    <loc>//crunch.io/dashboards/</loc>
+    <lastmod>2023-02-01T10:08:35+02:00</lastmod>
+  </url><url>
     <loc>//crunch.io/</loc>
-    <lastmod>2023-01-23T10:00:00-07:00</lastmod>
+    <lastmod>2023-02-01T10:08:35+02:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2023-01-23/</loc>
     <lastmod>2023-01-23T10:00:00-07:00</lastmod>
@@ -581,7 +584,10 @@
     <loc>//crunch.io/about/who-we-are/</loc>
     <lastmod>2020-09-03T15:47:05-04:00</lastmod>
   </url><url>
-    <loc>//crunch.io/player.vimeo.com/video/446961229/</loc>
+    <loc>//crunch.io/dashboards/use-simple-scripting/</loc>
+    <lastmod>2020-08-26T14:45:58-04:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/player.vimeo.com/video/452266144</loc>
     <lastmod>2020-08-26T14:45:58-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/dashboards/the-new-normal/</loc>
@@ -645,9 +651,6 @@
     <lastmod>2019-02-10T23:20:47-04:00</lastmod>
   </url><url>
     <loc>//crunch.io/api/</loc>
-    <lastmod>2018-10-05T10:08:35+02:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/dashboards/</loc>
     <lastmod>2018-10-05T10:08:35+02:00</lastmod>
   </url><url>
     <loc>//crunch.io/visualization/</loc>

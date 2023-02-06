@@ -6,13 +6,24 @@
     <description>Recent content in Dashboards on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Oct 2018 10:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/dashboards/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Feb 2023 10:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/dashboards/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>No coding</title>
-      <link>//crunch.io/player.vimeo.com/video/446961229/</link>
+      <title>New feature</title>
+      <link>//crunch.io/dashboards/use-simple-scripting/</link>
       <pubDate>Wed, 26 Aug 2020 14:45:58 -0400</pubDate>
       
-      <guid>//crunch.io/player.vimeo.com/video/446961229/</guid>
+      <guid>//crunch.io/dashboards/use-simple-scripting/</guid>
+      <description>With a click, generate a script that defines your dashboard
+Duplicate &amp;amp; customize with copy and paste
+Create reusable templates</description>
+    </item>
+    
+    <item>
+      <title>No coding</title>
+      <link>//crunch.io/player.vimeo.com/video/452266144</link>
+      <pubDate>Wed, 26 Aug 2020 14:45:58 -0400</pubDate>
+      
+      <guid>//crunch.io/player.vimeo.com/video/452266144</guid>
       <description>Your client will:
 Filter, slice, dice and find insights
 Export key tables and visualization as editable PowerPoint objects, ready for presentation, all by themselves.</description>
@@ -24,11 +35,11 @@ Export key tables and visualization as editable PowerPoint objects, ready for pr
       <pubDate>Wed, 26 Aug 2020 14:45:58 -0400</pubDate>
       
       <guid>//crunch.io/dashboards/the-new-normal/</guid>
-      <description>Drag and drop to create visually-compelling dashboards. No programming or DP expertise required.
-Add filters, tables, and graphs in just a few clicks
-Resize, reorder, brand, and customize without coding
-Broadly and quickly deploy dashboards with lower costs and fewer resources
-Instantly create multiple dashboards for different audiences from one master dashboard with Crunch Views</description>
+      <description>Drag and drop, no code needed
+Design &amp;amp; create tables, graphs
+Add filters with a few clicks
+Customize, resize, reorder, brand
+Export as editable PowerPoint slides</description>
     </item>
     
   </channel>
