@@ -2,7 +2,7 @@
 date = "2020-08-26T14:45:58-04:00"
 draft = false
 title = "The new normal"
-subtitle = "Create in the GUI with zero coding know-how requierd"
+subtitle = "Create in the GUI with zero coding know-how required"
 label = "The new normal"
 carousel_img_1 = "img/dashboards/custom-layouts.svg"
 carousel_img_2 = "img/dashboards/powerpoint.svg"
