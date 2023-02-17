@@ -17,6 +17,68 @@
     }
 }
 
+// .browser-screen{
+//     background:url(../img/browser.png) top center no-repeat;
+//     background-size: contain;
+//     height: 100%;
+//     left: 0px;
+//     position:absolute;
+//     top: 0px;
+//     width: 100%;
+// }
+
+
+  
+ 
+
+.img-composition{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    left: 0px;
+    max-width: 700px;
+    mix-blend-mode: normal !important;
+    transition: transform .2s; /* Animation */
+    top: 0px;
+    position: absolute;
+}
+
+
+#self-services-img{
+    max-width: 600px;
+    translate: calc(25%);
+}
+
+#power-img {
+    width: 230px;
+    translate: 671px 125px;
+    transition: transform 0.2s;
+    z-index: 20;
+}
+
+#insite-img {
+    translate: 511px -20px;
+    width: 355px;
+    transition: transform .2s; /* Animation */
+    z-index: 20;
+}
+#Market-img{
+    translate: -160px 90px;
+    width: 460px;
+    transition: transform .2s; /* Animation */
+    z-index: 20;
+}
+
+#power-img img,
+#insite-img img,
+#Market-img img{
+    width: 100%;
+}
+.zoom{
+    transition: transform .2s; /* Animation */
+}
+.zoom:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+
 .feak-image {
     background-color: antiquewhite;
     border: solid 1px #d3e3df;
@@ -24,6 +86,8 @@
     width: 100%;
     margin: 15px;
 }
+
+
 
 .crunch-h1,
 .crunch-h2,
@@ -1083,6 +1147,9 @@ a.carousel-control-next {
     .hero-video {
         margin-top: 0px;
         height: 260px;
+    }
+    .img-composition{
+        display: none;
     }
 }
 
