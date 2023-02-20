@@ -185,6 +185,18 @@
     }
 }
 
+    a.btn-crunch-link {
+        display: block;
+        font-family: 'Libre Baskerville', serif;
+        font-style: italic;
+        color: $color-off-black;
+
+        &:hover {
+            color: $color-blue;
+            text-decoration: none;
+        }
+    }
+
 @include media-breakpoint-only(xs) {
     .crunchbox-container {
         margin-top: 50px;
