@@ -23,4 +23,4 @@ scripting_img_3 = "img/dashboards/script-slide-3.jpg"
 
 * Automate tracker wave updates of data and dashboards for quick turnarounds
 
-<a href="https://help.crunch.io/hc/en-us/categories/360004356012-Crunch-Automation" class="btn-crunch-link d-none">Come learn where automation can speed up your survey analytics and reporting ⟶</a>
+<a href="https://help.crunch.io/hc/en-us/articles/360048802312-Crunch-Automation-video-tutorials" class="btn-crunch-link">Come learn where automation can speed up your survey analytics and reporting ⟶</a>
