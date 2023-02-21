@@ -12858,6 +12858,17 @@ table td:nth-child(2) cr- {
   overflow: hidden;
 }
 
+a.btn-crunch-link {
+  display: block;
+  font-family: "Libre Baskerville", serif;
+  font-style: italic;
+  color: #1D1D26;
+}
+a.btn-crunch-link:hover {
+  color: #0064a4;
+  text-decoration: none;
+}
+
 @media (max-width: 575.98px) {
   .crunchbox-container {
     margin-top: 50px;
