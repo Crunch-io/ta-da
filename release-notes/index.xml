@@ -8,6 +8,45 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2023.03</title>
+      <link>//crunch.io/release-notes/2023-02-27/</link>
+      <pubDate>Mon, 27 Feb 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-02-27/</guid>
+      <description>Crunch web application Fixed the following: The ‘Save’ and tray buttons would occasionally disappear. The mean of a categorical-scale univariate analysis was incorrectly suppressed when the ‘minimum base size warn’ handling was enabled. Mean cell values that were below the minimum base size for the warn scenario were incorrectly exported as percentages. In the extended settings of the Display Controller, the checkboxes for Subtotals, Categories, and Both have been replaced by radio buttons, which better reflect the single-choice nature of these options.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fixed the following&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;The ‘Save’ and tray buttons would occasionally disappear.&lt;/li&gt;
+&lt;li&gt;The mean of a categorical-scale univariate analysis was incorrectly suppressed when the ‘minimum base size warn’ handling was enabled.&lt;/li&gt;
+&lt;li&gt;Mean cell values that were below the minimum base size for the warn scenario were incorrectly exported as percentages.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;In the extended settings of the Display Controller, the checkboxes for Subtotals, Categories, and Both &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/4416232124813#display-controller-radio-button&#34;&gt;have been replaced by radio buttons&lt;/a&gt;, which better reflect the single-choice nature of these options. The &amp;ldquo;Empty rows/columns&amp;rdquo; checkbox option has been moved to the &amp;ldquo;Display&amp;rdquo; column on the left. To accompany this change, Crunch will now shift users to the &amp;ldquo;Categories and subtotals&amp;rdquo; setting if they try to load an analysis that would otherwise appear blank — because their setting is &amp;ldquo;Subtotals only&amp;rdquo; and the analysis has no subtotals.&lt;/li&gt;
+&lt;li&gt;Vastly improved browser performance for large lists of multitables, decks, and filters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Made speed improvements when executing Crunch Automation scripts on large datasets with many derived variables.&lt;/li&gt;
+&lt;li&gt;Added further improvements to &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/10343332025101-Folder-commands&#34;&gt;folder scripts&lt;/a&gt; when running Crunch Automation commands at  the account level.&lt;/li&gt;
+&lt;li&gt;Enhanced the CREATE MULTIPLE DICHOTOMY FROM command by providing the ability to use a single array variable as input (instead of a list of variables). It also now allows the usage of an &lt;code&gt;ALIASES&lt;/code&gt; clause. See &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042039512-CREATE-MULTIPLE-DICHOTOMY-FROM-command&#34;&gt;documentation&lt;/a&gt; for more details and examples.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added new information about how to &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/9400918056333-Delete-or-suspend-a-user&#34;&gt;suspend a user&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Created a new article that describes &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/6357651895309-New-permissions-framework-editing-datasets-and-managing-users&#34;&gt;how to edit datasets and manage users&lt;/a&gt; within the new permissions framework.&lt;/li&gt;
+&lt;li&gt;Published the following &lt;em&gt;new&lt;/em&gt; &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/8865212545293-Folders-folder-based-permissions&#34;&gt;permissions-framework articles&lt;/a&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10521122959117-New-permissions-framework-how-to-share-datasets-in-folders-with-client-users&#34;&gt;How to share datasets in folders with client users&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10491415512461-New-permissions-framework-how-to-share-datasets-in-folders-with-members-in-your-organization&#34;&gt;How to share datasets in folders with members in your organization&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2023.02</title>
       <link>//crunch.io/release-notes/2023-02-06/</link>
       <pubDate>Mon, 06 Feb 2023 10:00:00 -0700</pubDate>

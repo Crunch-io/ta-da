@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Feb 2023 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Feb 2023 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -762,6 +762,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/tmre-2022</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2023.03</title>
+      <link>//crunch.io/release-notes/2023-02-27/</link>
+      <pubDate>Mon, 27 Feb 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-02-27/</guid>
+      <description>Crunch web application Fixed the following: The ‘Save’ and tray buttons would occasionally disappear. The mean of a categorical-scale univariate analysis was incorrectly suppressed when the ‘minimum base size warn’ handling was enabled. Mean cell values that were below the minimum base size for the warn scenario were incorrectly exported as percentages. In the extended settings of the Display Controller, the checkboxes for Subtotals, Categories, and Both have been replaced by radio buttons, which better reflect the single-choice nature of these options.</description>
     </item>
     
     <item>
