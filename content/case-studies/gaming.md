@@ -15,6 +15,6 @@ link = "Learn more"
 
 +++
 
-A video game company uses survey data from players to showcase audience insights and sell sponsorships to its advertisers. <span class="highlight">They chose Crunch.io because of the increased efficiency and time saved</span> analyzing data with the drag-and-drop platform. They work with Crunch.io to analyze tracker data across multiple countries.
+A video game company uses survey data from players to showcase audience insights and sell sponsorships to its advertisers. <span class="highlight">They chose Crunch.io because of the <span class="font-italic">increased efficiency</span> and <span class="font-italic">time saved</span></span> analyzing data with the drag-and-drop platform. They work with Crunch.io to analyze tracker data across multiple countries.
 
 In preparation for a partner event, the company analysts built and presented interactive dashboards customized for each of their partners with Crunch.io’s no-coding, drag-and-drop dashboard builder.
