@@ -1,5 +1,5 @@
 +++
-date = "2022-9-23T12:20:23-04:00"
+date = "2023-03-01T11:42:25Z"
 draft = false
 title = "Taking Tracker Analytics Online"
 about = "Thursday, March 23, 10:00am GMT | 2:00pm EST"
@@ -9,7 +9,8 @@ url = "//info.crunch.io/brand-tracking-demo-sep-2022"
 weight = 200
 images = ["/img/crunch-webinar-event.svg"]
 link = "Register now"
-series = "main"
+series = "webinars"
+main = "main"
 icon = "img/icons/webinar-icon.svg"
 
 +++
