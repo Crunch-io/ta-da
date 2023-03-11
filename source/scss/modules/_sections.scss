@@ -327,12 +327,42 @@
             height: 315px;
         }
 
+        .jumbotron-green {
+            background-color: $color-blue;
+            background-image: linear-gradient( $color-blue, $--darker-primary-color);
+            height: 315px;
+        }
+
         .resources-main {
             margin-top: -80px;
             margin-bottom: 50px;
         }
+        .post-card-main-green{
+       
+            background-color: $color-green;
+            background-image: linear-gradient( $color-green, $--darker-secondary-color);
+            border: 1px solid $color-green;
+            span,
+            p,
+            .post-title{
+                color: $color-white !important;
+            }
+            img{
+                fill: $color-white;
+            }
+            .btn-primary {
+                background-color: #ffffffc2;
+                border-color: #dadbde70;
+                -webkit-box-shadow: 2px 2px 15px 1px $--darker-secondary-color;
+                box-shadow: 2px 2px 15px 1px $--darker-secondary-color;
+                color: $color-green;
+                font-weight: bold;
+            }
+        }
 
     }
+
+    
 
     @include media-breakpoint-up(md) {
 
