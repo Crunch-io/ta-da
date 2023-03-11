@@ -12254,9 +12254,35 @@ table td:nth-child(2) cr- {
   background-image: linear-gradient(#0064a4, #004571);
   height: 315px;
 }
+#secondary-pages-wrapper .resources-content .jumbotron-green {
+  background-color: #0064a4;
+  background-image: linear-gradient(#0064a4, #004571);
+  height: 315px;
+}
 #secondary-pages-wrapper .resources-content .resources-main {
   margin-top: -80px;
   margin-bottom: 50px;
+}
+#secondary-pages-wrapper .resources-content .post-card-main-green {
+  background-color: #107f65;
+  background-image: linear-gradient(#107f65, #0a5241);
+  border: 1px solid #107f65;
+}
+#secondary-pages-wrapper .resources-content .post-card-main-green span,
+#secondary-pages-wrapper .resources-content .post-card-main-green p,
+#secondary-pages-wrapper .resources-content .post-card-main-green .post-title {
+  color: #ffffff !important;
+}
+#secondary-pages-wrapper .resources-content .post-card-main-green img {
+  fill: #ffffff;
+}
+#secondary-pages-wrapper .resources-content .post-card-main-green .btn-primary {
+  background-color: #ffffffc2;
+  border-color: #dadbde70;
+  -webkit-box-shadow: 2px 2px 15px 1px #0a5241;
+  box-shadow: 2px 2px 15px 1px #0a5241;
+  color: #107f65;
+  font-weight: bold;
 }
 @media (min-width: 768px) {
   #secondary-pages-wrapper .header-content-container {
