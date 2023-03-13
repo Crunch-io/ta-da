@@ -8,6 +8,48 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2023.04</title>
+      <link>//crunch.io/release-notes/2023-03-13/</link>
+      <pubDate>Mon, 13 Mar 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-03-13/</guid>
+      <description>Crunch web application Fixed the following: A color assignment was sometimes incorrectly applied in PowerPoint exports when the categories for the analysis had been reordered. The selection of a single column for pairwise-comparison hypothesis testing sometimes caused multiple columns to be shaded as reference columns. Added support for low base warnings and suppression for numeric array analyses. Crunch Automation Added the following new folder script commands: SET command — allows you to change the value of a particular folder setting.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fixed the following&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;A color assignment was sometimes incorrectly applied in PowerPoint exports when the categories for the analysis had been reordered.&lt;/li&gt;
+&lt;li&gt;The selection of a single column for pairwise-comparison hypothesis testing sometimes caused multiple columns to be shaded as reference columns.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Added support for low base warnings and suppression for numeric array analyses.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the following new &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/10343332025101-Folder-commands&#34;&gt;folder script commands&lt;/a&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/13639703101709-SET-command&#34;&gt;SET command&lt;/a&gt; — allows you to change the value of a particular folder setting.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/13640380422157-REMOVE-DIRECT-SHARES-command&#34;&gt;REMOVE DIRECT SHARES command&lt;/a&gt; — allows you to delete all of the existing direct shares from the indicated datasets.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10521651144333-DEFINE-VIEW-command&#34;&gt;DEFINE VIEW command&lt;/a&gt; — allows you to create views from datasets by indicating a selection of variables, variable folders, and a filter to use.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Updated the following &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/360010677071-Dataset-commands&#34;&gt;dataset commands&lt;/a&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/13551320541325-CREATE-TEXT-CASE-command&#34;&gt;CREATE/REPLACE TEXT CASE command&lt;/a&gt; — new command that allows you to create your own text variable, within which you obtain values from multiple sources under different conditions (similar to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360045656352-CREATE-NUMERIC-CASE-command&#34;&gt;CREATE NUMERIC CASE&lt;/a&gt; and &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042039192-CREATE-CATEGORICAL-CASE-command&#34;&gt;CREATE CATEGORICAL CASE&lt;/a&gt; commands).&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042039512-CREATE-MULTIPLE-DICHOTOMY-FROM-command&#34;&gt;CREATE MULTIPLE DICHOTOMY FROM command&lt;/a&gt; — now requires you to create individual variables instead of accepting a multiple input in order to provide better control over the responses’ aliases. The previous version did not allow you to provide user-defined subvariable aliases for the newly created multiple response variables.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360057819011-OVERWRITE-VALUES-command&#34;&gt;OVERWRITE VALUES command&lt;/a&gt; — now replaces all rows in a dataset regardless of the applied exclusion filter.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Created a new article that provides an introduction to the new permissions framework. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/8462144449037-Introduction-to-the-new-permissions-framework&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Updated the help article that provides &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360051387952-Creating-a-Seamless-Login-Experience&#34;&gt;detailed information&lt;/a&gt; on how to create a seamless login experience.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2023.03</title>
       <link>//crunch.io/release-notes/2023-02-27/</link>
       <pubDate>Mon, 27 Feb 2023 10:00:00 -0700</pubDate>

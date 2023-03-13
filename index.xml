@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Mar 2023 11:42:25 +0000</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Mar 2023 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -750,6 +750,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/brand-tracking-demo-sep-2022</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2023.04</title>
+      <link>//crunch.io/release-notes/2023-03-13/</link>
+      <pubDate>Mon, 13 Mar 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-03-13/</guid>
+      <description>Crunch web application Fixed the following: A color assignment was sometimes incorrectly applied in PowerPoint exports when the categories for the analysis had been reordered. The selection of a single column for pairwise-comparison hypothesis testing sometimes caused multiple columns to be shaded as reference columns. Added support for low base warnings and suppression for numeric array analyses. Crunch Automation Added the following new folder script commands: SET command — allows you to change the value of a particular folder setting.</description>
     </item>
     
     <item>
