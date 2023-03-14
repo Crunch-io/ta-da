@@ -272,6 +272,7 @@
         p {
             margin-top: 20px;
             line-height: 22px;
+            font-size: 16px;
         }
 
         .post-card-links {
@@ -461,12 +462,15 @@
     p {
         color: $color-green;
     }
+    img.img-fluid{
+        transform: scale(1.4)
+    }
 
     span {
         color: $color-blue;
         text-transform: uppercase;
-        font-weight: 400;
-        font-size: 12px;
+        font-weight: 700;
+        font-size: 16px;
 
          img {
              fill: $color-blue;
