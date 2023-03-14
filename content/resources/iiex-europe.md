@@ -9,7 +9,7 @@ url = "//info.crunch.io/iiex-amsterdam-2023"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 link = "Book a meeting"
-series = "webinars"
+series = "events"
 icon = "img/icons/event-icon.svg"
 
 +++
