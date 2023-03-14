@@ -461,12 +461,15 @@
     p {
         color: $color-green;
     }
+    img.img-fluid{
+        transform: scale(1.23)
+    }
 
     span {
         color: $color-blue;
         text-transform: uppercase;
         font-weight: 400;
-        font-size: 12px;
+        font-size: 14px;
 
          img {
              fill: $color-blue;

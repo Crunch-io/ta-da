@@ -9,7 +9,7 @@ url = "//info.crunch.io/web-crunch-automation-webinar-march-2023"
 weight = 200
 images = ["/img/icons/illustration_banner.svg"]
 link = "Register now"
-series = "webinars"
+series = "webinar"
 main = "main"
 icon = "img/icons/webinar-icon-white.svg"
 
