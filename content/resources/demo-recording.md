@@ -11,6 +11,6 @@ images = ["/img/crunch-webinar-event.svg"]
 link = "Register now"
 series = "webinars"
 main = "main"
-icon = "img/icons/webinar-icon.svg"
+icon = "img/icons/webinar-icon-white.svg"
 
 +++
