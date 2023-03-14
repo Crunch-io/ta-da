@@ -12957,6 +12957,7 @@ a.btn-crunch-link:hover {
 .post-card .posts p {
   margin-top: 20px;
   line-height: 22px;
+  font-size: 16px;
 }
 .post-card .posts .post-card-links {
   position: absolute;
@@ -13105,11 +13106,14 @@ a.btn-crunch-link:hover {
 .post-card-main p {
   color: #107f65;
 }
+.post-card-main img.img-fluid {
+  transform: scale(1.4);
+}
 .post-card-main span {
   color: #0064a4;
   text-transform: uppercase;
-  font-weight: 400;
-  font-size: 12px;
+  font-weight: 700;
+  font-size: 16px;
 }
 .post-card-main span img {
   fill: #0064a4;
