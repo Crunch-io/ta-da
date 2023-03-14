@@ -11,6 +11,7 @@ images = ["/img/icons/illustration_banner.svg"]
 link = "Register now"
 series = "webinars"
 main = "main"
-icon = "img/icons/webinar-icon-white.svg"
+mainicon = "img/icons/webinar-icon-white.svg"
+icon = "img/icons/webinar-icon.svg"
 
 +++
