@@ -2,13 +2,13 @@
 date = "2023-03-01T11:42:25Z"
 draft = false
 title = "Case Studies:  Take Tracker Analytics Online"
-about = "Thursday, March 23, 10:00am GMT | 2:00pm EST"
+about = " See Crunch.io in action presented by Chris Jones, Senior Director of Product, and Matt Steele, Director of Customer Success"
 schedule = ""
-label = "Webinar"
-url = "//info.crunch.io/web-crunch-automation-webinar-march-2023"
+label = "webinar recording"
+url = "//info.crunch.io/take-tracking-analytics-online"
 weight = 200
 images = ["/img/icons/illustration_banner.svg"]
-link = "Register now"
+link = "Watch now"
 series = "webinars"
 main = "main"
 mainicon = "img/icons/webinar-icon-white.svg"
