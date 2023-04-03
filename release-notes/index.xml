@@ -8,6 +8,39 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2023.05</title>
+      <link>//crunch.io/release-notes/2023-04-03/</link>
+      <pubDate>Mon, 03 Apr 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-04-03/</guid>
+      <description>Crunch web application Fixed the following: The summary row would not change from ‘Unweighted N’ to ‘Weighted N’ (or ‘Both’) when viewing in multitable view. Performance was slow when loading certain multitables. The rendering of numeric variables did not appear correctly when they have a valid count equal to zero. Variable names are now transformed into aliases when creating them though the Crunch web UI — the automatically-generated alias for the variable will no longer be an exact copy of the name of the variable.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fixed the following&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;The summary row would not change from ‘Unweighted N’ to ‘Weighted N’ (or ‘Both’) when viewing in multitable view.&lt;/li&gt;
+&lt;li&gt;Performance was slow when loading certain multitables.&lt;/li&gt;
+&lt;li&gt;The rendering of numeric variables did not appear correctly when they have a valid count equal to zero.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Variable names are now transformed into aliases when creating them though the Crunch web UI — the automatically-generated alias for the variable will no longer be an exact copy of the name of the variable. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/13535334060301-Variable-name-aliases&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sdks-rcrunch-pycrunch-and-scrunch&#34;&gt;SDKs (&lt;code&gt;rCrunch&lt;/code&gt;, &lt;code&gt;pyCrunch&lt;/code&gt;, and &lt;code&gt;sCrunch&lt;/code&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the ability to run Crunch Automation scripts on project folders.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/14055262411021-DROP-EMPTY-FOLDERS-command&#34;&gt;DROP EMPTY FOLDERS command&lt;/a&gt;, which allows you to delete all empty folders in a dataset.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Created a new article that describes &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/14055262411021-DROP-EMPTY-FOLDERS-command&#34;&gt;how to transition away from dataset sharing&lt;/a&gt; to folder-based sharing.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2023.04</title>
       <link>//crunch.io/release-notes/2023-03-13/</link>
       <pubDate>Mon, 13 Mar 2023 10:00:00 -0700</pubDate>

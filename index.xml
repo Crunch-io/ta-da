@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Mar 2023 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Apr 2023 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -755,6 +755,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/brand-tracking-demo-sep-2022</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2023.05</title>
+      <link>//crunch.io/release-notes/2023-04-03/</link>
+      <pubDate>Mon, 03 Apr 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-04-03/</guid>
+      <description>Crunch web application Fixed the following: The summary row would not change from ‘Unweighted N’ to ‘Weighted N’ (or ‘Both’) when viewing in multitable view. Performance was slow when loading certain multitables. The rendering of numeric variables did not appear correctly when they have a valid count equal to zero. Variable names are now transformed into aliases when creating them though the Crunch web UI — the automatically-generated alias for the variable will no longer be an exact copy of the name of the variable.</description>
     </item>
     
     <item>
