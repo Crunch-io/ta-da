@@ -10,7 +10,7 @@ weight = 200
 images = ["/img/icons/illustration_banner.svg"]
 link = "Watch now"
 series = "webinars"
-main = "main"
+main = "webinars"
 mainicon = "img/icons/webinar-icon-white.svg"
 icon = "img/icons/webinar-icon.svg"
 
