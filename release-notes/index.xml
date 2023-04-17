@@ -8,6 +8,44 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2023.06</title>
+      <link>//crunch.io/release-notes/2023-04-17/</link>
+      <pubDate>Mon, 17 Apr 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-04-17/</guid>
+      <description>Crunch web application Fixed the following: Navigation between dashboard tabs was not working correctly. Hidden columns became visible after performing a column sort on a dashboard tile. Qualtrics integrations: Fixed an issue where Qualtrics fields in a loop-and-merge integration were not sequential (i.e., the index in the list of fields did not correspond to the id of the CSV header). Added support for “Authenticator” blocks that Qualtrics added to survey flows.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fixed the following&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Navigation between dashboard tabs was not working correctly.&lt;/li&gt;
+&lt;li&gt;Hidden columns became visible after performing a column sort on a dashboard tile.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Qualtrics &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/360013551691-Qualtrics&#34;&gt;integrations&lt;/a&gt;:&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed an issue where Qualtrics fields in a loop-and-merge integration were not sequential (i.e., the index in the list of fields did not correspond to the &lt;code&gt;id&lt;/code&gt; of the CSV header).&lt;/li&gt;
+&lt;li&gt;Added support for “Authenticator” blocks that Qualtrics added to survey flows.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;API endpoints and API reference&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added new API endpoints that allow you to &lt;a href=&#34;https://crunch.io/api/reference/#get-/users/-user_id-/preferences/&#34;&gt;retrieve&lt;/a&gt; and &lt;a href=&#34;https://crunch.io/api/reference/#patch-/users/-user_id-/preferences/&#34;&gt;modify&lt;/a&gt; the preferences object for users.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed an issue that occurred when executing a &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10521631962381-CREATE-FOLDER-command&#34;&gt;CREATE FOLDER command&lt;/a&gt; on the account level.&lt;/li&gt;
+&lt;li&gt;Added new API instructions on how to run &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10521594535309-Getting-started-with-folder-scripts&#34;&gt;account-level folder scripts&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;CORRECTION (&lt;em&gt;see updated link in the following&lt;/em&gt;): Created a new article that describes &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/14031750497677--Shared-with-me-folder-transitioning-to-folder-sharing&#34;&gt;how to transition&lt;/a&gt; away from dataset sharing to folder-based sharing.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2023.05</title>
       <link>//crunch.io/release-notes/2023-04-03/</link>
       <pubDate>Mon, 03 Apr 2023 10:00:00 -0700</pubDate>
