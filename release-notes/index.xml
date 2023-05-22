@@ -8,6 +8,38 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2023.07</title>
+      <link>//crunch.io/release-notes/2023-05-22/</link>
+      <pubDate>Mon, 22 May 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-05-22/</guid>
+      <description>Crunch web application Added folder location and &amp;lsquo;Move to&amp;rsquo; functionality on the Dataset properties menu. Fixed the following: The ‘Edit’ categories options for a saved-as-a-variable filter was not displaying all the variables in the definition. Publishing a draft dataset was prevented in some cases when the subvariables of a multiple response or categorical array variable had been rearranged. Recodes were not populating correctly within Qualtrics integrations. Crunch Automation Added the ability to add exceptions and VALID | MISSING expressions to the CREATE NUMERIC TALLY command.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added folder location and &amp;lsquo;Move to&amp;rsquo; functionality on the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040059632-General-Dataset-Properties&#34;&gt;Dataset properties&lt;/a&gt; menu.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fixed the following&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;The ‘Edit’ categories options for a saved-as-a-variable filter was not displaying all the variables in the definition.&lt;/li&gt;
+&lt;li&gt;Publishing a draft dataset was prevented in some cases when the subvariables of a multiple response or categorical array variable had been rearranged.&lt;/li&gt;
+&lt;li&gt;Recodes were not populating correctly within &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/360013551691-Qualtrics&#34;&gt;Qualtrics integrations&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the ability to add exceptions and &lt;code&gt;VALID | MISSING&lt;/code&gt; expressions to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360049946672-CREATE-NUMERIC-TALLY-command&#34;&gt;CREATE NUMERIC TALLY command&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Added &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/15191525378445-DELETE-DATASETS-command&#34;&gt;DELETE DATASET&lt;/a&gt;, which is a new folder command that allows you to delete multiple datasets under the current folder.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Created a new help article about how Crunch is &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/15190286100877-Transitioning-to-subdomains-in-Crunch&#34;&gt;rolling out subdomains&lt;/a&gt; in order to log into and see data within Crunch.&lt;/li&gt;
+&lt;li&gt;Added a new help section on &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10491415512461-New-permissions-framework-how-to-share-datasets-in-folders-with-members-in-your-organization#toc1&#34;&gt;how to share a folder with users from the dataset&lt;/a&gt; (folders &amp;amp; folder-based permissions).&lt;/li&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040059632-General-Dataset-Properties&#34;&gt;General Dataset Properties&lt;/a&gt; help article to include new information about how to use the new properties menu to view and move datasets into different folders.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2023.06</title>
       <link>//crunch.io/release-notes/2023-04-17/</link>
       <pubDate>Mon, 17 Apr 2023 10:00:00 -0700</pubDate>

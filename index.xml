@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Apr 2023 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 May 2023 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -746,6 +746,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/quirks-london-2023</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2023.07</title>
+      <link>//crunch.io/release-notes/2023-05-22/</link>
+      <pubDate>Mon, 22 May 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-05-22/</guid>
+      <description>Crunch web application Added folder location and &amp;lsquo;Move to&amp;rsquo; functionality on the Dataset properties menu. Fixed the following: The ‘Edit’ categories options for a saved-as-a-variable filter was not displaying all the variables in the definition. Publishing a draft dataset was prevented in some cases when the subvariables of a multiple response or categorical array variable had been rearranged. Recodes were not populating correctly within Qualtrics integrations. Crunch Automation Added the ability to add exceptions and VALID | MISSING expressions to the CREATE NUMERIC TALLY command.</description>
     </item>
     
     <item>
