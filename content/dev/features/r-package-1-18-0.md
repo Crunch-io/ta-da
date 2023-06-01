@@ -24,7 +24,7 @@ Since the last CRAN release in June (1.17.0), some significant features have bee
 
 Crunch-hosted geographic data can now be set and updated. Use [`geo()`](/r/crunch/reference/geo.html) on a variable to see if there is already associated geographic data. Use the [`addGeoMetadata()`](/r/crunch/reference/addGeoMetadata.html) function to match a text or categorical variable with available geodata based on the contents of the variable and metadata associated with Crunch-hosted geographic data. This function looks at the contents of the variable and the currently available geodata files that are available on Crunch. In most cases, you can set the geographic connection with just
 
-```{r}
+```r
 geo(ds$state) <- addGeoMetadata(ds$state)
 ```
 
@@ -44,7 +44,7 @@ This release adds support for case variables, what the "[Build Categorical Varia
 
 Case variables are useful when you want a categorical variable that is dependent on the contents of other variables. For example, we had two 10 point scores for how likely a respondent was to recommend ACME corp, both unaided and aided, but what we want is an overall net promoter score for ACME corp across both aided and unaided recommendations. We could create this NPS variable simply with a case variable as follows:
 
-```{r}
+```r
 ds_pets$ACME_NPS <- makeCaseVariable(
     Promoter = ds_pets$ACME_unaided >= 9 | ds_pets$ACME_aided >= 9,
     Neutral = ds_pets$ACME_unaided >= 7 | ds_pets$ACME_aided >= 7,
