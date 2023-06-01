@@ -1,6 +1,6 @@
 +++
-date = "2023-05-31T11:38:14+01:00"
-publishdate = "2023-05-31T11:38:14+01:00"
+date = "2023-06-01T10:41:19+01:00"
+publishdate = "2023-06-01T10:41:19+01:00"
 draft = false
 title = "Fix categories to the bottom of lists when sorting"
 news_description = "Now you can ensure that your “Don’t know”, “None of these” etc. answers stay fixed to the end of tables and graphs when sorting. Click here to learn more."
