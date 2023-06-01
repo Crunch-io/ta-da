@@ -21,11 +21,7 @@ As an added bonus feature, you’ll now find that the sort options have two new 
 
 **Here's how the Category Anchoring feature works:**
 
-1. Sort your analysis, either by clicking on a column header of a table in Tables & Graphs mode or by choosing a sort option from the Edit > Categories panel for a saved analysis (deck or dashboard). Sorting *****after***** an analysis has been saved is currently only available for univariate analyses. Likewise, anchoring categories is currently only available for univariate analyses.
-
-{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/sorting-tables-graphs-may-2023-05.png" class="img-fluid ">}}
-
-{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/sorting-tables-graphs-may-2023-03.png" class="img-fluid ">}}
+1. Sort your analysis, either by clicking on a column header of a table in Tables & Graphs mode or by choosing a sort option from the Edit > Categories panel for a saved analysis (deck or dashboard). Sorting *****after***** an analysis has been saved is currently only available for univariate analyses. Likewise, anchoring categories is currently only available for univariate analyses. <br> {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/sorting-tables-graphs-may-2023-05.png" class="img-fluid ">}} <br> {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/sorting-tables-graphs-may-2023-03.png" class="img-fluid ">}}
 
 2. Save your analysis to a deck or dashboard, if it isn’t already.
 3. In the Edit > Categories panel for that saved analysis, you’ll find a new “Fixed to bottom” area at the bottom of the categories list. Simply drag any category you want to fix and as you do so, you’ll find that a “Fix to bottom” drop-zone appears. Drop the category into this drop-zone and it is now going to remain at the bottom of the list, independently of any sorting.
