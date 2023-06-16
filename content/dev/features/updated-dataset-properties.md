@@ -15,7 +15,7 @@ series = "main"
 
 +++
 
-Now dataset editors can access most dataset actions directly from the dataset menu. Additionally we’ve redesigned our dataset properties page.
+Now dataset editors can access most dataset actions directly from the dataset menu. Additionally, we’ve redesigned our dataset properties page.
 
 **New dataset menu**
 
