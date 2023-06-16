@@ -1,6 +1,6 @@
 +++
-date = "2023-06-15T16:43:53+01:00"
-publishdate = "2023-06-15T16:43:53+01:00"
+date = "2023-06-20T16:43:53+01:00"
+publishdate = "2023-06-20T16:43:53+01:00"
 draft = false
 title = "Updated dataset menu and dataset properties"
 news_description = "We’ve updated the design of dataset properties and made many dataset actions available directly from the dataset menu. Click here to learn more."
@@ -15,7 +15,7 @@ series = "main"
 
 +++
 
-Now dataset editors can access most dataset actions directly from the dataset menu. Additionally we’ve redesigned our dataset properties page.
+Now dataset editors can access most dataset actions directly from the dataset menu. Additionally, we’ve redesigned our dataset properties page.
 
 **New dataset menu**
 
