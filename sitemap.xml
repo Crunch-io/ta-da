@@ -41,9 +41,6 @@
     <loc>//crunch.io/knowledge-base/</loc>
     <lastmod>2017-07-18T14:08:35+02:00</lastmod>
   </url><url>
-    <loc>//crunch.io/dev/features/updated-dataset-properties/</loc>
-    <lastmod>2023-06-20T04:26:02+01:00</lastmod>
-  </url><url>
     <loc>//crunch.io/dev/features/fix-categories-when-sorting/</loc>
     <lastmod>2023-06-01T10:41:19+01:00</lastmod>
   </url><url>
@@ -248,25 +245,19 @@
   </url><url>
     <loc>//crunch.io/info.crunch.io/quirks-london-2023</loc>
   </url><url>
-    <loc>//crunch.io/tags/datasets/</loc>
-    <lastmod>2023-06-20T04:26:02+01:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/menu/</loc>
-    <lastmod>2023-06-20T04:26:02+01:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/</loc>
-    <lastmod>2023-06-20T04:26:02+01:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/properties/</loc>
-    <lastmod>2023-06-20T04:26:02+01:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/</loc>
-    <lastmod>2023-06-20T04:26:02+01:00</lastmod>
-  </url><url>
     <loc>//crunch.io/tags/categories/</loc>
     <lastmod>2023-06-01T10:41:19+01:00</lastmod>
   </url><url>
+    <loc>//crunch.io/tags/datasets/</loc>
+    <lastmod>2023-06-01T10:41:19+01:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/</loc>
+    <lastmod>2023-06-01T10:41:19+01:00</lastmod>
+  </url><url>
     <loc>//crunch.io/tags/sort/</loc>
+    <lastmod>2023-06-01T10:41:19+01:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/</loc>
     <lastmod>2023-06-01T10:41:19+01:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2023-05-22/</loc>

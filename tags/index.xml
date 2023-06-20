@@ -6,40 +6,22 @@
     <description>Recent content in Tags on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Jun 2023 04:26:02 +0100</lastBuildDate><atom:link href="//crunch.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>datasets</title>
-      <link>//crunch.io/tags/datasets/</link>
-      <pubDate>Tue, 20 Jun 2023 04:26:02 +0100</pubDate>
-      
-      <guid>//crunch.io/tags/datasets/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>menu</title>
-      <link>//crunch.io/tags/menu/</link>
-      <pubDate>Tue, 20 Jun 2023 04:26:02 +0100</pubDate>
-      
-      <guid>//crunch.io/tags/menu/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>properties</title>
-      <link>//crunch.io/tags/properties/</link>
-      <pubDate>Tue, 20 Jun 2023 04:26:02 +0100</pubDate>
-      
-      <guid>//crunch.io/tags/properties/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Thu, 01 Jun 2023 10:41:19 +0100</lastBuildDate><atom:link href="//crunch.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>categories</title>
       <link>//crunch.io/tags/categories/</link>
       <pubDate>Thu, 01 Jun 2023 10:41:19 +0100</pubDate>
       
       <guid>//crunch.io/tags/categories/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>datasets</title>
+      <link>//crunch.io/tags/datasets/</link>
+      <pubDate>Thu, 01 Jun 2023 10:41:19 +0100</pubDate>
+      
+      <guid>//crunch.io/tags/datasets/</guid>
       <description></description>
     </item>
     
