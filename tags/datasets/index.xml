@@ -6,11 +6,11 @@
     <description>Recent content in datasets on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Jun 2023 14:26:02 +0100</lastBuildDate><atom:link href="//crunch.io/tags/datasets/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Jun 2023 04:26:02 +0100</lastBuildDate><atom:link href="//crunch.io/tags/datasets/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Updated dataset menu and dataset properties</title>
       <link>//crunch.io/dev/features/updated-dataset-properties/</link>
-      <pubDate>Tue, 20 Jun 2023 14:26:02 +0100</pubDate>
+      <pubDate>Tue, 20 Jun 2023 04:26:02 +0100</pubDate>
       
       <guid>//crunch.io/dev/features/updated-dataset-properties/</guid>
       <description>Now dataset editors can access most dataset actions directly from the dataset menu. Additionally, we’ve redesigned our dataset properties page.
