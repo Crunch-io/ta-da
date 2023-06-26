@@ -1,6 +1,6 @@
 +++
-date = "2023-06-01T10:41:19+01:00"
-publishdate = "2023-06-01T10:41:19+01:00"
+date = "2023-06-26T10:41:19+01:00"
+publishdate = "2023-06-26T10:41:19+01:00"
 draft = false
 title = "Fix categories to the bottom of lists when sorting"
 news_description = "Now you can ensure that your “Don’t know”, “None of these” etc. answers stay fixed to the end of tables and graphs when sorting. Click here to learn more."
@@ -9,7 +9,7 @@ weight = 20
 tags = ["datasets", "categories", "sort"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 series = "main"
 
@@ -29,8 +29,6 @@ As an added bonus feature, you’ll now find that the sort options have two new 
 5. If you change your mind about wanting to fix any categories, simply drag them back into the main category list.
 
 {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/sorting-tables-graphs-may-2023-04.gif" class="img-fluid ">}}
-
-This feature is currently available to [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) users.
 
 For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360039306152-Tables-and-charts-with-drag-and-drop#Sorting-Tables-and-Graphs).
 
