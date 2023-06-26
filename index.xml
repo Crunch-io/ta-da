@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Jun 2023 10:41:19 +0100</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Jun 2023 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -755,6 +755,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/quirks-london-2023</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2023.08</title>
+      <link>//crunch.io/release-notes/2023-06-26/</link>
+      <pubDate>Mon, 26 Jun 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-06-26/</guid>
+      <description>Crunch web application Enabled users with ‘Editor’ permissions to add, modify, and remove a PowerPoint template on a folder. Previously, only account admins had permission to manage a PPT template. Removed the ability to directly share datasets that are created in personal folders. Fixed the following: Filter footnotes were not displaying on dashboard tiles. Multitable rendering sometimes failed when a filter was either applied or removed. Deselecting the ‘Display Empty rows/columns’ option was not working when viewing numeric-array variable summary cards.</description>
     </item>
     
     <item>

@@ -245,13 +245,16 @@
   </url><url>
     <loc>//crunch.io/info.crunch.io/quirks-london-2023</loc>
   </url><url>
+    <loc>//crunch.io/</loc>
+    <lastmod>2023-06-26T10:00:00-07:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/release-notes/2023-06-26/</loc>
+    <lastmod>2023-06-26T10:00:00-07:00</lastmod>
+  </url><url>
     <loc>//crunch.io/tags/categories/</loc>
     <lastmod>2023-06-01T10:41:19+01:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/datasets/</loc>
-    <lastmod>2023-06-01T10:41:19+01:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/</loc>
     <lastmod>2023-06-01T10:41:19+01:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/sort/</loc>
