@@ -8,6 +8,35 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2023.09</title>
+      <link>//crunch.io/release-notes/2023-07-31/</link>
+      <pubDate>Mon, 31 Jul 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-07-31/</guid>
+      <description>Crunch web application Fixed the following: It’s now possible to save to the dashboard tray when a table has a numeric array in the row position, a multiple response variable in the column position, and a column has been selected for pairwise-comparison hypothesis testing. An AND condition can now be changed to OR in the filter builder. Issues that occurred when applying or removing a filter in ‘dataset view’ have been fixed.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fixed the following&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;It’s now possible to save to the dashboard tray when a table has a numeric array in the row position, a multiple response variable in the column position, and a column has been selected for pairwise-comparison hypothesis testing.&lt;/li&gt;
+&lt;li&gt;An &lt;code&gt;AND&lt;/code&gt; condition can now be changed to &lt;code&gt;OR&lt;/code&gt; in the filter builder.&lt;/li&gt;
+&lt;li&gt;Issues that occurred when applying or removing a filter in ‘dataset view’ have been fixed.&lt;/li&gt;
+&lt;li&gt;Dataset views now open when clicked from the folder browser..&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Correction to the &lt;a href=&#34;https://crunch.io/release-notes/2023-06-26/&#34;&gt;Release Notes 2023.08&lt;/a&gt;, where it says ‘&lt;em&gt;Removed the ability to directly share datasets that are created in personal folders&lt;/em&gt;’ — this should instead read as “&lt;strong&gt;Stopped creating dataset shares for datasets created in personal folders&lt;/strong&gt;.”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/10343332025101-Folder-commands&#34;&gt;system scripts commands&lt;/a&gt; so that it’s now possible to refer to datasets when they share the same name within the same folder. The command refers to the dataset’s ID, using the &lt;code&gt;DATASET_ID()&lt;/code&gt; function.&lt;/li&gt;
+&lt;li&gt;An issue occurred where duplicated categories were created when using the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042039192-CREATE-CATEGORICAL-CASE-command&#34;&gt;CREATE CATEORICAL CASE command&lt;/a&gt;, which has now been fixed.&lt;/li&gt;
+&lt;li&gt;Added a &lt;code&gt;DISAMBIGUATE&lt;/code&gt; modifier to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10521646996237-MOVE-DATASET-command&#34;&gt;MOVE DATASET&lt;/a&gt; and &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/11309460023565-MOVE-FOLDERS-command&#34;&gt;MOVE FOLDERS&lt;/a&gt; commands,  which allows you to rename moved objects in the destination folder to prevent naming conflicts.&lt;/li&gt;
+&lt;li&gt;Enhanced the &lt;code&gt;SET MISSING&lt;/code&gt; command so that it can now work on Multiple Response variables.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2023.08</title>
       <link>//crunch.io/release-notes/2023-06-26/</link>
       <pubDate>Mon, 26 Jun 2023 10:00:00 -0700</pubDate>
