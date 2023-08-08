@@ -1,6 +1,6 @@
 +++
-date = "2023-06-15T16:43:53+01:00"
-publishdate = "2023-06-15T16:43:53+01:00"
+date = "2023-08-08T15:27:57+01:00"
+publishdate = "2023-08-08T15:27:57+01:00"
 draft = false
 title = "Updated dataset menu and dataset properties"
 news_description = "We’ve updated the design of dataset properties and made many dataset actions available directly from the dataset menu. Click here to learn more."
@@ -21,7 +21,7 @@ Now dataset editors can access most dataset actions directly from the dataset me
 
 When you click the dataset name from within a dataset, you may notice some changes to the dropdown menu:
 
-{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/dataset-properties-announcement-01.png" width=300 class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/ds-properties-august-2023-01.png" width=600 class="img-fluid">}}
 
 Many of the actions that used to be accessed through **Dataset properties** can now be performed directly from this menu. Specifically Export dataset, Append, Join, Organize variables, Exclude cases, and (under **Advanced**), Create draft and View dataset history. The interface for these actions has largely remained unchanged - only the way you select them has changed.
 
