@@ -7,15 +7,15 @@
     <meta name="description" content="Prepare and analyze survey data quickly and easily.">
     <meta name="keywords" content="Crunch, Crunch io, data, datasets, survey, analytics, analysis, technology, insights, research, software">
     <base href="//crunch.io/">
-    <title>Crunch | Insight Platforms Demo Days</title>
+    <title>Crunch | Release 2023.10</title>
 
     <link rel="icon" href="img/favicon.ico">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <meta property="og:title" content="Insight Platforms Demo Days &middot; Online survey data analysis">
+    <meta property="og:title" content="Release 2023.10 &middot; Online survey data analysis">
 <meta property="og:description" content="Prepare and analyze survey data quickly and easily.">
 <meta property="og:type" content="website" >
-<meta property="og:url" content="//crunch.io/info.crunch.io/demo-days-2022">
+<meta property="og:url" content="//crunch.io/release-notes/2023-08-28/">
 <meta property="og:locale" content="en">
 
 
@@ -25,14 +25,15 @@
 
 
 
-  <meta property="og:updated_time" content="2021-12-27T12:20:23-04:00">
+  <meta property="og:updated_time" content="2023-08-28T10:00:00-07:00">
 
 
     <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://crunch.io/img/logo-1200x630.png"/>
 
-<meta name="twitter:title" content="Insight Platforms Demo Days"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Release 2023.10"/>
+<meta name="twitter:description" content="Crunch web application Updated the design of the Dataset Properties menu — it now includes many dataset actions that are available directly from the dataset menu. See the announcement for more information. Fixed the following:
+Opening the rich-text editor to create a new rich-text tile would sometimes display an image from a previous rich-text tile editing session. A variable could not be dragged directly from the sidebar onto an existing variable within the filter builder in order to create a parentheses group."/>
 
     
     <link rel="stylesheet" href="css/main.css">
@@ -51,6 +52,7 @@
   </head>
 
   <body>
+
 
 
 
@@ -137,27 +139,88 @@
     </nav>
 
 
-<div class="container">
-<div id="hero" class="row">
-    <div class="intro-post col">
-        <h1 itemprop="headline">  Insight Platforms Demo Days</h1>
-        
-        <time class="post-time">
-  Published <span datetime="2021-12-27T12:20:23-04:00">27 Dec 2021</span>
+<div id="wrapper">
 
-</time>
-    </div>
-</div>
-<div id="post-box" class="row">
-    <div class="col">
-        <div id="post" itemprop="articleBody">
-            
-        </div><br/>
-        <div>
-        </div>
-    </div>
-</div>
-</div>
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="blog-content">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-8 text-center">
+                                <h1 class="display-5">Release Notes</h1>
+                            </div>
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+
+            <div class="blog-content">
+                    <div class="container spacer-top">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <h2>Release 2023.10</h2>
+                                <p><a href="/release-notes/" style="color: black;">&#8592; Other release notes</a></p>
+                                <hr>
+                                <p></p>
+                                <span>August 28, 2023 </span>
+                            </div>
+                        </div> 
+                </div> 
+            </div> 
+
+            <div class="secondary-content">
+              <div class="container blog-content-mg">
+
+                  <div class="row spacer-bottom">
+                      <div class="col-md-10 offset-md-1">
+                          <h3 id="crunch-web-application">Crunch web application</h3>
+<ul>
+<li>Updated the design of the <a href="https://help.crunch.io/hc/en-us/articles/360040059632-Dataset-Properties">Dataset Properties</a> menu — it now includes many dataset actions that are available directly from the dataset menu. See the <a href="https://crunch.io/dev/features/updated-dataset-properties/">announcement</a> for more information.</li>
+</ul>
+<p><strong>Fixed the following:</strong></p>
+<ul>
+<li>Opening the rich-text editor to create a new rich-text tile would sometimes display an image from a previous rich-text tile editing session.</li>
+<li>A variable could not be dragged directly from the sidebar onto an existing variable within the filter builder in order to create a parentheses group.</li>
+<li>For pairwise-comparison hypothesis testing, an incorrect cell shading was sometimes applied in crosstabs with a numeric array in the row dimension and hidden empty rows/columns.</li>
+<li>The selection of group filters for a dashboard was not working correctly when working with variable summary-card tiles.</li>
+<li>Deck exports for sum and percentage share of sum-numeric array analyses were not working correctly.</li>
+<li>After switching a dataset from weighted to unweighted, tables with a base column would sometimes still render weighted values in that column.</li>
+</ul>
+<h3 id="crunch-automation">Crunch Automation</h3>
+<ul>
+<li><a href="https://help.crunch.io/hc/en-us/articles/11309360322829-REVOKE-Permissions-command">REVOKE</a> folder command — added the ability to remove access to <em>all</em> datasets and projects inside the given path.</li>
+</ul>
+<h3 id="help-desk-and-website-improvements">Help desk and website improvements</h3>
+<ul>
+<li>Made significant updates to the <a href="https://help.crunch.io/hc/en-us/articles/360040059632-General-Dataset-Properties">Dataset Properties</a> help article to describe the recent updates made to various Crunch web app panel pages. See the list of <a href="https://help.crunch.io/hc/en-us/articles/360040059632#dataset-properties-articles">recently updated dataset-properties articles</a> for more information.</li>
+</ul>
+
+                      </div>
+                  </div>
+
+              </div> 
+            </div> 
+
+            <footer class="footer d-flex justify-content-center bg-black">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a class="nav-link active" href="about">About</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="team">Team</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="http://help.crunch.io/">Support</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="http://status.crunch.io/" target="_blank">Status</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="about/privacy">Privacy</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="https://app.crunch.io/">Sign in</a></li>
+                    <li class="list-inline-item"><a class="nav-link" href="contact">Contact us</a></li>
+                </ul>
+            </footer>
+
+        </div> 
+
+    </div> 
+
+</div> 
+
 
 <div class="alert alert-dismissible text-center cookiealert" role="alert">
   <div class="cookiealert-container">

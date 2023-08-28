@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Aug 2023 15:36:05 +0100</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Aug 2023 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -767,6 +767,16 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/quirks-london-2023</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2023.10</title>
+      <link>//crunch.io/release-notes/2023-08-28/</link>
+      <pubDate>Mon, 28 Aug 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-08-28/</guid>
+      <description>Crunch web application Updated the design of the Dataset Properties menu — it now includes many dataset actions that are available directly from the dataset menu. See the announcement for more information. Fixed the following:
+Opening the rich-text editor to create a new rich-text tile would sometimes display an image from a previous rich-text tile editing session. A variable could not be dragged directly from the sidebar onto an existing variable within the filter builder in order to create a parentheses group.</description>
     </item>
     
     <item>

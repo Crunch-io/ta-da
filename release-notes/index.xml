@@ -8,6 +8,38 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2023.10</title>
+      <link>//crunch.io/release-notes/2023-08-28/</link>
+      <pubDate>Mon, 28 Aug 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-08-28/</guid>
+      <description>Crunch web application Updated the design of the Dataset Properties menu — it now includes many dataset actions that are available directly from the dataset menu. See the announcement for more information. Fixed the following:
+Opening the rich-text editor to create a new rich-text tile would sometimes display an image from a previous rich-text tile editing session. A variable could not be dragged directly from the sidebar onto an existing variable within the filter builder in order to create a parentheses group.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the design of the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040059632-Dataset-Properties&#34;&gt;Dataset Properties&lt;/a&gt; menu — it now includes many dataset actions that are available directly from the dataset menu. See the &lt;a href=&#34;https://crunch.io/dev/features/updated-dataset-properties/&#34;&gt;announcement&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Fixed the following:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Opening the rich-text editor to create a new rich-text tile would sometimes display an image from a previous rich-text tile editing session.&lt;/li&gt;
+&lt;li&gt;A variable could not be dragged directly from the sidebar onto an existing variable within the filter builder in order to create a parentheses group.&lt;/li&gt;
+&lt;li&gt;For pairwise-comparison hypothesis testing, an incorrect cell shading was sometimes applied in crosstabs with a numeric array in the row dimension and hidden empty rows/columns.&lt;/li&gt;
+&lt;li&gt;The selection of group filters for a dashboard was not working correctly when working with variable summary-card tiles.&lt;/li&gt;
+&lt;li&gt;Deck exports for sum and percentage share of sum-numeric array analyses were not working correctly.&lt;/li&gt;
+&lt;li&gt;After switching a dataset from weighted to unweighted, tables with a base column would sometimes still render weighted values in that column.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/11309360322829-REVOKE-Permissions-command&#34;&gt;REVOKE&lt;/a&gt; folder command — added the ability to remove access to &lt;em&gt;all&lt;/em&gt; datasets and projects inside the given path.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Made significant updates to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040059632-General-Dataset-Properties&#34;&gt;Dataset Properties&lt;/a&gt; help article to describe the recent updates made to various Crunch web app panel pages. See the list of &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040059632#dataset-properties-articles&#34;&gt;recently updated dataset-properties articles&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2023.09</title>
       <link>//crunch.io/release-notes/2023-07-31/</link>
       <pubDate>Mon, 31 Jul 2023 10:00:00 -0700</pubDate>
