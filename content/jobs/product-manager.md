@@ -45,3 +45,5 @@ We are looking for someone who can help to develop and execute on a customer foc
 **Additional Information**
 
 This is a 100% remote role.
+
+<button class="btn btn-success" onclick="location.href='mailto:product@crunch.io';">Apply now via email to product@crunch.io</button>
