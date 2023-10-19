@@ -32,7 +32,7 @@ These changes will also affect existing visualizations saved to dashboards. In s
 
 ## How to interpret the confidence intervals
 
-{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/Uncertainty_on_graphs.jpg" width=600 class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/Uncertainty_on_graphs.jpg" class="img-fluid">}}
 
 
 - **Look at the Range**: Each bar will have a black vertical line (the point estimate), which sits at the center of the 95% confidence interval. This range is where, given the data at hand, the actual value in the population is expected to fall in 19 out of 20 samples if the survey were repeated.
