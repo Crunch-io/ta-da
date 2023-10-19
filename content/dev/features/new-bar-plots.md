@@ -43,6 +43,8 @@ These changes will also affect existing visualizations saved to dashboards. In s
 
 The upgraded bar plots are now live and available to all users. Simply log in to your Crunch account and view or create any univariate bar plot. You'll find the new bar plots are already enabled, ready to make your data storytelling even more compelling. **Confidence intervals can be turned on using the same asterisk icon in the display controller that you already use for seeing hypothesis test colors on tables.**
 
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/display_controller_sig_test_bar_plots.png" width=600 class="img-fluid">}}
+
 ## **Exporting confidence interval graphs to PowerPoint**
 
 - When exporting a *dashboard*, graphs with confidence intervals enabled will use PowerPoint's native "Error bars" functionality to represent the confidence interval range. They don't look as nice as the Crunch ones but we want to ensure that exported visualizations remain editable, native objects, rather than static images.
