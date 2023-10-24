@@ -8,6 +8,60 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2023.11</title>
+      <link>//crunch.io/release-notes/2023-10-24/</link>
+      <pubDate>Tue, 24 Oct 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-10-24/</guid>
+      <description>Crunch web application Updated the Manage Users panel in Crunch, including a cleaner layout, displaying the dates the user was added and last authenticated, and adding the ability to configure users as clients or organization users. Made significant enhancements to the Bar Plots in Crunch, including a cleaner layout, more readable text, and a new confidence interval display. See the help article for more information. Changed the label for the ‘Edit value’ button to &amp;ldquo;Edit KPI value”.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/20214383713165-Managing-a-user-in-the-Manage-users-panel&#34;&gt;Manage Users&lt;/a&gt; panel in Crunch, including a cleaner layout, displaying the dates the user was added and last authenticated, and adding the ability to configure users as clients or organization users.&lt;/li&gt;
+&lt;li&gt;Made significant enhancements to the &lt;a href=&#34;https://crunch.io/dev/features/new-bar-plots/&#34;&gt;Bar Plots in Crunch&lt;/a&gt;, including a cleaner layout, more readable text, and a new confidence interval display. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/20500101668365-Confidence-intervals-on-graphs&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Changed the label for the ‘Edit value’ button to &amp;ldquo;Edit KPI value”.
+&lt;ul&gt;
+&lt;li&gt;In cases where the user had already established a KPI + comparison value in an earlier session, the Properties panel then reflects the comparison cell selection.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Improved the assignment of the maximum range in the value axis when exporting a PowerPoint stacked bar graph.&lt;/li&gt;
+&lt;li&gt;Enabled data streaming for numeric arrays.&lt;/li&gt;
+&lt;li&gt;Disallowed the ability to create a view with personal variables.&lt;/li&gt;
+&lt;li&gt;Fixed the following:
+&lt;ul&gt;
+&lt;li&gt;A table layout would sometimes render with extraneous line wrapping when selecting the &amp;ldquo;Empty rows/columns&amp;rdquo; option in the display controller.&lt;/li&gt;
+&lt;li&gt;Editing a tile for a time plot was not correctly persisting customizations to the Min and Max ranges or hiding the Title and Subtitle.&lt;/li&gt;
+&lt;li&gt;Tables with many rows would sometimes only display a few. Now, all the rows are displayed (unless hidden).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;sdks-rcrunch-pycrunch-and-scrunch&#34;&gt;SDKs (&lt;code&gt;rCrunch&lt;/code&gt;, &lt;code&gt;pyCrunch&lt;/code&gt;, and &lt;code&gt;sCrunch&lt;/code&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated &lt;code&gt;scrunch&lt;/code&gt; to version version 0.16.0. See the &lt;a href=&#34;https://pypi.org/project/scrunch/&#34;&gt;official page&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Changed how variables are referred to in array. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360041769292#toc4&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;back-endcrunchdb&#34;&gt;Back-end/CrunchDB&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Variable folders specified when creating a dataset from metadata now allow periods, commas, and dollar signs (&lt;code&gt;.&lt;/code&gt;, &lt;code&gt;,&lt;/code&gt;, &lt;code&gt;$&lt;/code&gt;).  Previously, these were replaced with URL-safe strings.  This replacement only occurred during the dataset creation process, as the characters are always allowed for variable folders in other circumstances.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360056505351-Finding-your-starting-point&#34;&gt;getting started help page&lt;/a&gt; so that it now provides quick access to popular articles for new users to Crunch.&lt;/li&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/15190286100877-Workspaces-in-Crunch&#34;&gt;Workspaces in Crunch&lt;/a&gt; help article, which defines workspaces in Crunch and how to use the workspace selector to find your Crunch workspace if you’re not sure where to go.&lt;/li&gt;
+&lt;li&gt;Added new help articles that show you how to use the Manage users panel to &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/20213533659405-Adding-a-user-in-the-Manage-users-panel&#34;&gt;add&lt;/a&gt;, &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/20213533659405-Adding-a-user-in-the-Manage-users-panel&#34;&gt;manage&lt;/a&gt;, or &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/9400918056333--Deleting-or-suspending-a-user-in-the-Manage-users-panel&#34;&gt;delete/suspend&lt;/a&gt; a user.&lt;/li&gt;
+&lt;li&gt;Updated the following help articles with new feature information:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/10238199927565-Exporting-your-selected-analysis-to-PowerPoint&#34;&gt;Exporting your selected analysis to PowerPoint&lt;/a&gt; — Added new information that describes how to export to PowerPoint or Excel.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040498732-Exporting-a-tab-book-to-Excel&#34;&gt;Exporting a tab book&lt;/a&gt; — Updated with the latest information on how to export a tab book in either Excel or CSV format.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2023.10</title>
       <link>//crunch.io/release-notes/2023-08-28/</link>
       <pubDate>Mon, 28 Aug 2023 10:00:00 -0700</pubDate>

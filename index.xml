@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Oct 2023 15:29:45 +0100</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 24 Oct 2023 10:00:00 -0700</lastBuildDate><atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
       <link>//crunch.io/case-studies/universities/</link>
@@ -777,6 +777,15 @@ The Account Executive will be responsible for driving sales of Crunch products w
       
       <guid>//crunch.io/info.crunch.io/quirks-london-2023</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Release 2023.11</title>
+      <link>//crunch.io/release-notes/2023-10-24/</link>
+      <pubDate>Tue, 24 Oct 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-10-24/</guid>
+      <description>Crunch web application Updated the Manage Users panel in Crunch, including a cleaner layout, displaying the dates the user was added and last authenticated, and adding the ability to configure users as clients or organization users. Made significant enhancements to the Bar Plots in Crunch, including a cleaner layout, more readable text, and a new confidence interval display. See the help article for more information. Changed the label for the ‘Edit value’ button to &amp;ldquo;Edit KPI value”.</description>
     </item>
     
     <item>
