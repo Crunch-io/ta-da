@@ -6,34 +6,30 @@
     <description>Recent content in Dashboards on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Feb 2023 10:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/dashboards/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Feb 2023 10:08:35 +0200</lastBuildDate>
+    <atom:link href="//crunch.io/dashboards/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>New feature</title>
       <link>//crunch.io/dashboards/use-simple-scripting/</link>
       <pubDate>Wed, 26 Aug 2020 14:45:58 -0400</pubDate>
-      
       <guid>//crunch.io/dashboards/use-simple-scripting/</guid>
       <description>With a click, generate a script that defines your dashboard
 Duplicate &amp;amp; customize with copy and paste
 Create reusable templates</description>
     </item>
-    
     <item>
       <title>No coding</title>
       <link>//crunch.io/player.vimeo.com/video/452266144</link>
       <pubDate>Wed, 26 Aug 2020 14:45:58 -0400</pubDate>
-      
       <guid>//crunch.io/player.vimeo.com/video/452266144</guid>
       <description>Your client will:
 Filter, slice, dice and find insights
 Export key tables and visualization as editable PowerPoint objects, ready for presentation, all by themselves.</description>
     </item>
-    
     <item>
       <title>The new normal</title>
       <link>//crunch.io/dashboards/the-new-normal/</link>
       <pubDate>Wed, 26 Aug 2020 14:45:58 -0400</pubDate>
-      
       <guid>//crunch.io/dashboards/the-new-normal/</guid>
       <description>Drag and drop, no code needed
 Design &amp;amp; create tables, graphs
@@ -41,6 +37,5 @@ Add filters with a few clicks
 Customize, resize, reorder, brand
 Export as editable PowerPoint slides</description>
     </item>
-    
   </channel>
 </rss>
