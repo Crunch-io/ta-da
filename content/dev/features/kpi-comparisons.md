@@ -55,6 +55,6 @@ KPI comparisons are available now for Early Access users on all Crunch scriptabl
 
 This feature is currently available to [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) users.
 
-For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360039306152-Tables-and-charts-with-drag-and-drop#Sorting-Tables-and-Graphs).
+For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360040045512-How-to-add-a-KPI-tile-to-a-dashboard-Scriptable-Dashboards-).
 
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
