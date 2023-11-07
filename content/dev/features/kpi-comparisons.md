@@ -35,7 +35,7 @@ Adding a KPI comparison is easy and takes just a few clicks in the dashboard til
 
 {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/kpi-comparison-nov-2023-02.png" class="img-fluid">}}
 
-1. [Optional] Update the “Subtitle” field to describe your comparison. Labels like “vs previous wave” work well because they don’t need updating each wave.
+4. [Optional] Update the “Subtitle” field to describe your comparison. Labels like “vs previous wave” work well because they don’t need updating each wave.
 
 That's it! The comparison value will then show below your KPI, automatically calculating the difference.
 
@@ -55,6 +55,6 @@ KPI comparisons are available now for Early Access users on all Crunch scriptabl
 
 This feature is currently available to [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) users.
 
-For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360039306152-Tables-and-charts-with-drag-and-drop#Sorting-Tables-and-Graphs).
+For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360040045512-How-to-add-a-KPI-tile-to-a-dashboard-Scriptable-Dashboard).
 
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
