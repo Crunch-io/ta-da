@@ -35,7 +35,7 @@ Adding a KPI comparison is easy and takes just a few clicks in the dashboard til
 
 {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/kpi-comparison-nov-2023-02.png" class="img-fluid">}}
 
-4. [Optional] Update the “Subtitle” field to describe your comparison. Labels like “vs previous wave” work well because they don’t need updating each wave.
+[Optional] Update the “Subtitle” field to describe your comparison. Labels like “vs previous wave” work well because they don’t need updating each wave.
 
 That's it! The comparison value will then show below your KPI, automatically calculating the difference.
 
