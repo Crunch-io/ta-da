@@ -1,6 +1,6 @@
 +++
-date = "2023-11-07T17:00:41Z"
-publishdate = "2023-11-07T17:00:41Z"
+date = "2023-11-08T18:06:08Z"
+publishdate = "2023-11-08T18:06:08Z"
 draft = false
 title = "Introducing KPI Comparisons: Gain Deeper Insights from Your Dashboards"
 news_description = "Compare KPI Values to Prior Periods Automatically. Click here to learn more."
