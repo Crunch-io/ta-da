@@ -35,7 +35,7 @@ Adding a KPI comparison is easy and takes just a few clicks in the dashboard til
 
 {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/kpi-comparison-nov-2023-02.png" class="img-fluid">}}
 
-4. [Optional] Update the “Subtitle” field to describe your comparison. Labels like “vs previous wave” work well because they don’t need updating each wave.
+[Optional] Update the “Subtitle” field to describe your comparison. Labels like “vs previous wave” work well because they don’t need updating each wave.
 
 That's it! The comparison value will then show below your KPI, automatically calculating the difference.
 
@@ -51,7 +51,7 @@ No more manually editing KPIs each wave!
 
 ## Try It Out Today
 
-KPI comparisons are available now for Early Access users on all Crunch scriptable dashboards. To start enhancing your KPIs, head to the Options tab in dashboard edit tile screen.
+KPI comparisons are available now for Early Access users on all Crunch scriptable dashboards (though not yet on decks). To start enhancing your KPIs, head to the Options tab in dashboard edit tile screen.
 
 This feature is currently available to [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) users.
 
