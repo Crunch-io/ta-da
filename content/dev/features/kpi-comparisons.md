@@ -51,7 +51,7 @@ No more manually editing KPIs each wave!
 
 ### **Try It Out Today**
 
-KPI comparisons are available now for Early Access users on all Crunch scriptable dashboards. To start enhancing your KPIs, head to the Options tab in dashboard edit tile screen.
+KPI comparisons are available now for Early Access users on all Crunch scriptable dashboards (though not yet on decks). To start enhancing your KPIs, head to the Options tab in dashboard edit tile screen.
 
 This feature is currently available to [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) users.
 
