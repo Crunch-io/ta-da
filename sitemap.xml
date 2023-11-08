@@ -41,6 +41,9 @@
     <loc>//crunch.io/knowledge-base/</loc>
     <lastmod>2017-07-18T14:08:35+02:00</lastmod>
   </url><url>
+    <loc>//crunch.io/dev/features/kpi-comparisons/</loc>
+    <lastmod>2023-11-08T18:06:08+00:00</lastmod>
+  </url><url>
     <loc>//crunch.io/dev/features/subtotals-toggle/</loc>
     <lastmod>2023-10-31T16:15:54+00:00</lastmod>
   </url><url>
@@ -257,11 +260,23 @@
   </url><url>
     <loc>//crunch.io/info.crunch.io/quirks-london-2023</loc>
   </url><url>
-    <loc>//crunch.io/</loc>
-    <lastmod>2023-11-03T21:20:44+00:00</lastmod>
-  </url><url>
     <loc>//crunch.io/tags/analyses/</loc>
-    <lastmod>2023-10-31T16:15:54+00:00</lastmod>
+    <lastmod>2023-11-08T18:06:08+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/comparisons/</loc>
+    <lastmod>2023-11-08T18:06:08+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/kpi/</loc>
+    <lastmod>2023-11-08T18:06:08+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/most-recent/</loc>
+    <lastmod>2023-11-08T18:06:08+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/</loc>
+    <lastmod>2023-11-08T18:06:08+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/</loc>
+    <lastmod>2023-11-08T18:06:08+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/graphs/</loc>
     <lastmod>2023-10-31T16:15:54+00:00</lastmod>
@@ -270,9 +285,6 @@
     <lastmod>2023-10-31T16:15:54+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/tables/</loc>
-    <lastmod>2023-10-31T16:15:54+00:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/</loc>
     <lastmod>2023-10-31T16:15:54+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2023-10-24/</loc>
