@@ -8,6 +8,33 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2023.12</title>
+      <link>//crunch.io/release-notes/2023-11-13/</link>
+      <pubDate>Mon, 13 Nov 2023 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2023-11-13/</guid>
+      <description>Crunch web application Released Crunch&amp;rsquo;s new KPI comparisons, which enable you to contextualize current performance by showing changes against relevant benchmarks (e.g. , previous waves), turning raw numbers into actionable insights. See the announcement for more information. Moved the ‘Subtotals-only/Categories-only’ options from the extended display controller, which now allows you to easily toggle between subtotals, categories, or both. See the announcement for more information. Improved the error message (”Something went wrong&amp;quot;) when applying one or more filters to a table that yielded a result with no rows.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Released Crunch&amp;rsquo;s new KPI comparisons, which enable you to contextualize current performance by showing changes against relevant benchmarks (e.g. , previous waves), turning raw numbers into actionable insights. See the &lt;a href=&#34;https://crunch.io/dev/features/kpi-comparisons/&#34;&gt;announcement&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Moved the ‘Subtotals-only/Categories-only’ options from the extended display controller, which now allows you to easily toggle between subtotals, categories, or both. See the &lt;a href=&#34;https://crunch.io/dev/features/subtotals-toggle/&#34;&gt;announcement&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Improved the error message (”&lt;code&gt;Something went wrong&lt;/code&gt;&amp;quot;) when applying one or more filters to a table that yielded a result with no rows. A more accurate “No valid data” message now appears.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fixed the following&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Selecting the Export settings option was yielding a blank page.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added new information about &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040045512-How-to-add-a-KPI-tile-to-a-dashboard-Scriptable-Dashboards-&#34;&gt;how to add a KPI tile to a dashboard&lt;/a&gt;, which now includes instructions about how to display the difference between your current KPI value and a different value of interest from the same table.&lt;/li&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/4416232124813-Graphing-Subtotals-and-Differences&#34;&gt;Graphing Subtotals and Differences&lt;/a&gt; help article with new information about how to toggle between subtotals, categories, or both in tables and graphs.&lt;/li&gt;
+&lt;li&gt;Added &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/9414277417741-Customizing-dashboards-and-dashboard-tiles-Scriptable-Dashboards-&#34;&gt;new information&lt;/a&gt; about how to how to adjust the fixed aspect ratio within univariate bar graphs in your dashboard analyses.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2023.11</title>
       <link>//crunch.io/release-notes/2023-10-24/</link>
       <pubDate>Tue, 24 Oct 2023 10:00:00 -0700</pubDate>

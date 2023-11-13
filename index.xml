@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Nov 2023 18:06:08 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Nov 2023 10:00:00 -0700</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -651,6 +651,13 @@ The Account Executive will be responsible for driving sales of Crunch products w
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>//crunch.io/info.crunch.io/quirks-london-2023</guid>
       <description></description>
+    </item>
+    <item>
+      <title>Release 2023.12</title>
+      <link>//crunch.io/release-notes/2023-11-13/</link>
+      <pubDate>Mon, 13 Nov 2023 10:00:00 -0700</pubDate>
+      <guid>//crunch.io/release-notes/2023-11-13/</guid>
+      <description>Crunch web application Released Crunch&amp;rsquo;s new KPI comparisons, which enable you to contextualize current performance by showing changes against relevant benchmarks (e.g. , previous waves), turning raw numbers into actionable insights. See the announcement for more information. Moved the ‘Subtotals-only/Categories-only’ options from the extended display controller, which now allows you to easily toggle between subtotals, categories, or both. See the announcement for more information. Improved the error message (”Something went wrong&amp;quot;) when applying one or more filters to a table that yielded a result with no rows.</description>
     </item>
     <item>
       <title>Release 2023.11</title>
