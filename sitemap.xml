@@ -41,11 +41,11 @@
     <loc>//crunch.io/knowledge-base/</loc>
     <lastmod>2017-07-18T14:08:35+02:00</lastmod>
   </url><url>
+    <loc>//crunch.io/dev/features/subtotals-toggle/</loc>
+    <lastmod>2023-11-20T16:45:21+00:00</lastmod>
+  </url><url>
     <loc>//crunch.io/dev/features/kpi-comparisons/</loc>
     <lastmod>2023-11-08T18:06:08+00:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/dev/features/subtotals-toggle/</loc>
-    <lastmod>2023-10-31T16:15:54+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/dev/features/new-bar-plots/</loc>
     <lastmod>2023-10-19T15:29:45+01:00</lastmod>
@@ -260,14 +260,26 @@
   </url><url>
     <loc>//crunch.io/info.crunch.io/quirks-london-2023</loc>
   </url><url>
+    <loc>//crunch.io/tags/analyses/</loc>
+    <lastmod>2023-11-20T16:45:21+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/graphs/</loc>
+    <lastmod>2023-11-20T16:45:21+00:00</lastmod>
+  </url><url>
     <loc>//crunch.io/</loc>
-    <lastmod>2023-11-13T10:00:00-07:00</lastmod>
+    <lastmod>2023-11-20T16:45:21+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/subtotals/</loc>
+    <lastmod>2023-11-20T16:45:21+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/tables/</loc>
+    <lastmod>2023-11-20T16:45:21+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/</loc>
+    <lastmod>2023-11-20T16:45:21+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2023-11-13/</loc>
     <lastmod>2023-11-13T10:00:00-07:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/analyses/</loc>
-    <lastmod>2023-11-08T18:06:08+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/comparisons/</loc>
     <lastmod>2023-11-08T18:06:08+00:00</lastmod>
@@ -277,18 +289,6 @@
   </url><url>
     <loc>//crunch.io/tags/most-recent/</loc>
     <lastmod>2023-11-08T18:06:08+00:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/</loc>
-    <lastmod>2023-11-08T18:06:08+00:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/graphs/</loc>
-    <lastmod>2023-10-31T16:15:54+00:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/subtotals/</loc>
-    <lastmod>2023-10-31T16:15:54+00:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/tables/</loc>
-    <lastmod>2023-10-31T16:15:54+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2023-10-24/</loc>
     <lastmod>2023-10-24T10:00:00-07:00</lastmod>
