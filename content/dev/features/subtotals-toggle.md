@@ -1,6 +1,6 @@
 +++
-date = "2023-10-31T16:15:54Z"
-publishdate = "2023-10-31T16:15:54Z"
+date = "2023-11-20T16:45:21Z"
+publishdate = "2023-11-20T16:45:21Z"
 draft = false
 title = "Easily Toggle Between Subtotals, Categories, or Both"
 news_description = "You can now choose from these options via dedicated icons in the main Display Controller panel, making your data viewing and analysis more straightforward and intuitive. Click here to learn more."
@@ -9,7 +9,7 @@ weight = 20
 tags = ["subtotals", "analyses", "tables", "graphs"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 
 +++
@@ -21,8 +21,6 @@ You can now choose from these options via dedicated icons in the main Display Co
 {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/subtotals_toggle.png" class="img-fluid">}}
 
 Click on the desired icon to switch between "Subtotals only", "Categories only", or "Categories and subtotals".
-
-This feature is currently available to [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) users.
 
 For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/4416232124813-Graphing-Subtotals-and-Differences).
 
