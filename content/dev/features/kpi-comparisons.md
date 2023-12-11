@@ -1,6 +1,6 @@
 +++
-date = "2023-11-08T18:06:08Z"
-publishdate = "2023-11-08T18:06:08Z"
+date = "2023-12-11T11:06:08Z"
+publishdate = "2023-12-11T11:06:08Z"
 draft = false
 title = "Introducing KPI Comparisons: Gain Deeper Insights from Your Dashboards"
 news_description = "Compare KPI Values to Prior Periods Automatically. Click here to learn more."
@@ -9,7 +9,7 @@ weight = 20
 tags = ["analyses", "kpi", "comparisons", "most recent"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 
 +++
@@ -50,9 +50,7 @@ No more manually editing KPIs each wave!
 
 ## Try It Out Today
 
-KPI comparisons are available now for Early Access users on all Crunch scriptable dashboards (though not yet on decks). To start enhancing your KPIs, head to the Options tab in dashboard edit tile screen.
-
-This feature is currently available to [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) users.
+KPI comparisons are available now for users on all Crunch scriptable dashboards (though not yet on decks). To start enhancing your KPIs, head to the Options tab in dashboard edit tile screen.
 
 For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360040045512-How-to-add-a-KPI-tile-to-a-dashboard-Scriptable-Dashboards).
 
