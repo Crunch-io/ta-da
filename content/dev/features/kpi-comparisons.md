@@ -50,6 +50,8 @@ No more manually editing KPIs each wave!
 
 ## Try It Out Today
 
+KPI comparisons are available now for users on all Crunch scriptable dashboards (though not yet on decks). To start enhancing your KPIs, head to the Options tab in dashboard edit tile screen.
+
 For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/360040045512-How-to-add-a-KPI-tile-to-a-dashboard-Scriptable-Dashboards).
 
 We’d love your feedback at [support@crunch.io](mailto:support@crunch.io).
