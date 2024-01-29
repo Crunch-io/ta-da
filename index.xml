@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Dec 2023 10:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jan 2024 10:00:00 -0700</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -574,6 +574,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>//crunch.io/info.crunch.io/quirks-london-2023</guid>
       <description></description>
+    </item>
+    <item>
+      <title>Release 2024.01</title>
+      <link>//crunch.io/release-notes/2024-01-29/</link>
+      <pubDate>Mon, 29 Jan 2024 10:00:00 -0700</pubDate>
+      <guid>//crunch.io/release-notes/2024-01-29/</guid>
+      <description>Crunch web application Made the following updates: Test statistics for pairwise hypothesis tests (‘set comparison’ or lettered indicators in exports) of weighted tables now account for the design effect of weights. This makes the tests more conservative by considering the effective sample size instead of the unadjusted unweighted N. When a dataset editor creates a new dashboard via the dataset Automation option, the editor&amp;rsquo;s current container in the tray is now updated to that dashboard.</description>
     </item>
     <item>
       <title>Release 2023.13</title>

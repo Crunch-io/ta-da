@@ -8,6 +8,50 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2024.01</title>
+      <link>//crunch.io/release-notes/2024-01-29/</link>
+      <pubDate>Mon, 29 Jan 2024 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2024-01-29/</guid>
+      <description>Crunch web application Made the following updates: Test statistics for pairwise hypothesis tests (‘set comparison’ or lettered indicators in exports) of weighted tables now account for the design effect of weights. This makes the tests more conservative by considering the effective sample size instead of the unadjusted unweighted N. When a dataset editor creates a new dashboard via the dataset Automation option, the editor&amp;rsquo;s current container in the tray is now updated to that dashboard.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Made the following updates&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Test statistics for pairwise hypothesis tests (‘set comparison’ or lettered indicators in exports) of weighted tables now account for the design effect of weights. This makes the tests more conservative by considering the effective sample size instead of the unadjusted unweighted N.&lt;/li&gt;
+&lt;li&gt;When a dataset editor creates a new dashboard via the dataset Automation option, the editor&amp;rsquo;s current container in the tray is now updated to that dashboard.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fixed the following&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;Deck exports with quotes in the file names are now sanitized instead of failing.&lt;/li&gt;
+&lt;li&gt;When applying a dashboard group filter, a bivariate bar graph tile with a numeric array in the row position would fail to load if both of the following conditions were true: the tile was configured to show empty columns &lt;em&gt;&lt;strong&gt;and&lt;/strong&gt;&lt;/em&gt; applying the filter had yielded one or more empty columns.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Created new user-related system commands, which allow you to perform the following functions:
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/21986428377741-CREATE-USERS-command&#34;&gt;CREATE USERS command&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/21986841356301-ALTER-USERS-command&#34;&gt;ALTER USERS command&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/21987065472909-SUSPEND-USERS-command&#34;&gt;SUSPEND USERS command&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the following Crunch Automation articles (see the complete list &lt;a href=&#34;https://help.crunch.io/hc/en-us/sections/360010564152-Getting-started&#34;&gt;here&lt;/a&gt;):
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/22536937705613-What-is-Crunch-Automation-&#34;&gt;What is Crunch Automation?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360041769292-Writing-Crunch-Automation-declarations&#34;&gt;Writing Crunch Automation declarations&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2023.13</title>
       <link>//crunch.io/release-notes/2023-12-19/</link>
       <pubDate>Tue, 19 Dec 2023 10:00:00 -0700</pubDate>
