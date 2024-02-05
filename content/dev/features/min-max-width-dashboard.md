@@ -1,6 +1,6 @@
 +++
-date = "2023-12-11T12:01:50Z"
-publishdate = "2023-12-11T12:01:50Z"
+date = "2024-02-05T19:04:03Z"
+publishdate = "2024-02-05T19:04:03Z"
 draft = false
 title = "Design with Confidence: Achieve design consistency in dashboards with this new feature"
 news_description = "Our new min & max settings for dashboard widths ensure that you see the dashboard exactly as your users will see it. Click here to learn more."
@@ -9,7 +9,7 @@ weight = 20
 tags = ["dashboards", "analyses", "layout"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 series = "main"
 
@@ -33,7 +33,7 @@ Even better, these controls are now also available for **existing** dashboards, 
 
 ## Try It Out Today
 
-This new constrained and fixed width dashboards setting is available now for [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) users on all Crunch scriptable dashboards. To use it, go to the “New dashboard…” panel for creating a new dashboard or go to dashboard Properties for an existing dashboard. All users will see the impact of the new setting, whether they are Early Access or not.
+This new constrained and fixed width dashboards setting is available now on all Crunch scriptable dashboards. To use it, go to the “New dashboard…” panel for creating a new dashboard or go to dashboard Properties for an existing dashboard.
 
 For full details of this new feature and where to find it, see the [help center](https://help.crunch.io/hc/en-us/articles/22051616032653-Setting-the-width-of-a-dashboard).
 
