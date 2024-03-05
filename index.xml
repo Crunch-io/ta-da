@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Feb 2024 19:18:56 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 05 Mar 2024 10:00:00 -0700</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -574,6 +574,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>//crunch.io/info.crunch.io/quirks-london-2023</guid>
       <description></description>
+    </item>
+    <item>
+      <title>Release 2024.02</title>
+      <link>//crunch.io/release-notes/2024-03-05/</link>
+      <pubDate>Tue, 05 Mar 2024 10:00:00 -0700</pubDate>
+      <guid>//crunch.io/release-notes/2024-03-05/</guid>
+      <description>Crunch web application Added the ability to specify minimum and maximum widths for dashboards (in wide access), enabling a more consistent and visually appealing experience across various screen sizes. See the announcement and help article for more information. Improved the rendering of stacked bar and donut visualizations, which now use a new and improved method (using D3). Users may notice small changes to the layout. Added “Extend row labels” (default off) to the Properties tab, which makes a table use all the available horizontal space to better accommodate long labels.</description>
     </item>
     <item>
       <title>Release 2024.01</title>

@@ -8,6 +8,43 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2024.02</title>
+      <link>//crunch.io/release-notes/2024-03-05/</link>
+      <pubDate>Tue, 05 Mar 2024 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2024-03-05/</guid>
+      <description>Crunch web application Added the ability to specify minimum and maximum widths for dashboards (in wide access), enabling a more consistent and visually appealing experience across various screen sizes. See the announcement and help article for more information. Improved the rendering of stacked bar and donut visualizations, which now use a new and improved method (using D3). Users may notice small changes to the layout. Added “Extend row labels” (default off) to the Properties tab, which makes a table use all the available horizontal space to better accommodate long labels.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the ability to specify minimum and maximum widths for dashboards (in wide access), enabling a more consistent and visually appealing experience across various screen sizes. See the &lt;a href=&#34;https://crunch.io/dev/features/min-max-width-dashboard/&#34;&gt;announcement&lt;/a&gt; and &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/22051616032653-Setting-the-width-of-a-dashboard&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Improved the rendering of stacked bar and donut visualizations, which now use a new and improved method (using D3). Users may notice small changes to the layout.&lt;/li&gt;
+&lt;li&gt;Added “Extend row labels” (default off) to the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/9414277417741#properties-tab&#34;&gt;Properties tab&lt;/a&gt;, which makes a table use all the available horizontal space to better accommodate long labels.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/23985586683917-REDEFINE-MULTIPLE-DICHOTOMY-FROM-CONDITIONS-command&#34;&gt;REDEFINE MULTIPLE DICHOTOMY FROM CONDITIONS command&lt;/a&gt;, which allows you to redefine a variable that was created using the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360056799552-CREATE-MULTIPLE-DICHOTOMY-FROM-CONDITIONS-command&#34;&gt;CREATE MULTIPLE DICHOTOMY FROM CONDITIONS&lt;/a&gt; command.&lt;/li&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042457091-CREATE-FILTER-command&#34;&gt;CREATE FILTER command&lt;/a&gt; so that it now supports a &lt;code&gt;COMPLETE CASES&lt;/code&gt; modifier.&lt;/li&gt;
+&lt;li&gt;Made the following performance improvements:
+&lt;ul&gt;
+&lt;li&gt;Decreased the time it takes to run large scripts.&lt;/li&gt;
+&lt;li&gt;System scripts that take longer to execute now show a progress bar and will no longer time out.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Added additional help information about the various &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/22536937705613#ca-scripts&#34;&gt;types of scripts&lt;/a&gt; you can use with Crunch Automation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;backendcrunchdb&#34;&gt;Backend/CrunchDB&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the error messaging when using the &lt;code&gt;copy-from&lt;/code&gt; operation: if it fails to copy artifacts from one dataset to another, it now properly marks it and provides a reason why it failed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360041300531-Editor-and-Viewer-permissions-on-a-dataset&#34;&gt;help article&lt;/a&gt; that describes the various permissions that Editors and Viewers have on a given dataset.&lt;/li&gt;
+&lt;li&gt;Added new and updated examples within the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360045984071-Recoding-case-level-missing-valid-values-rebasing&#34;&gt;help article&lt;/a&gt; that describes how to recode case-level values to be valid or missing.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2024.01</title>
       <link>//crunch.io/release-notes/2024-01-29/</link>
       <pubDate>Mon, 29 Jan 2024 10:00:00 -0700</pubDate>
