@@ -1,6 +1,6 @@
 +++
-date = "2024-03-14T16:09:45Z"
-publishdate = "2024-03-14T16:09:45Z"
+date = "2024-03-15T09:09:45Z"
+publishdate = "2024-03-15T09:09:45Z"
 draft = false
 title = "Bringing the Enhanced Bar Plot capabilities to Grouped Bar plots"
 news_description = "Our Grouped Bar Plots have been redesigned with a cleaner layout, more easily readable text, and now feature the display of confidence intervals. Click here to learn more."
@@ -11,6 +11,7 @@ categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
 labs_only = false
 no_profiles = true
+series = "main"
 
 +++
 
