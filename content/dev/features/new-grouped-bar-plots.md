@@ -2,7 +2,7 @@
 date = "2024-03-18T10:01:58Z"
 publishdate = "2024-03-18T10:01:58Z"
 draft = false
-title = "Bringing the Enhanced Bar Plot capabilities to Grouped Bar plots"
+title = "Bringing the Enhanced Bar Plot capabilities to Grouped Bar Plots"
 news_description = "With this update, our Grouped Bar Plots will enhance the way you visualize and interpret your survey data. They have been redesigned with a cleaner layout, more easily readable text, and now feature the display of confidence intervals. Click here to learn more."
 description = "With this update, our Grouped Bar Plots will enhance the way you visualize and interpret your survey data. They have been redesigned with a cleaner layout, more easily readable text, and now feature the display of confidence intervals."
 weight = 20
