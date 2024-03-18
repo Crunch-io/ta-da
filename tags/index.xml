@@ -6,13 +6,34 @@
     <description>Recent content in Tags on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Feb 2024 19:18:56 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 Mar 2024 10:01:58 +0000</lastBuildDate>
     <atom:link href="//crunch.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Analyses</title>
       <link>//crunch.io/tags/analyses/</link>
-      <pubDate>Mon, 05 Feb 2024 19:18:56 +0000</pubDate>
+      <pubDate>Mon, 18 Mar 2024 10:01:58 +0000</pubDate>
       <guid>//crunch.io/tags/analyses/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Barplot</title>
+      <link>//crunch.io/tags/barplot/</link>
+      <pubDate>Mon, 18 Mar 2024 10:01:58 +0000</pubDate>
+      <guid>//crunch.io/tags/barplot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Confidence Intervals</title>
+      <link>//crunch.io/tags/confidence-intervals/</link>
+      <pubDate>Mon, 18 Mar 2024 10:01:58 +0000</pubDate>
+      <guid>//crunch.io/tags/confidence-intervals/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Graphs</title>
+      <link>//crunch.io/tags/graphs/</link>
+      <pubDate>Mon, 18 Mar 2024 10:01:58 +0000</pubDate>
+      <guid>//crunch.io/tags/graphs/</guid>
       <description></description>
     </item>
     <item>
@@ -51,13 +72,6 @@
       <description></description>
     </item>
     <item>
-      <title>Graphs</title>
-      <link>//crunch.io/tags/graphs/</link>
-      <pubDate>Mon, 20 Nov 2023 16:45:21 +0000</pubDate>
-      <guid>//crunch.io/tags/graphs/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Subtotals</title>
       <link>//crunch.io/tags/subtotals/</link>
       <pubDate>Mon, 20 Nov 2023 16:45:21 +0000</pubDate>
@@ -69,13 +83,6 @@
       <link>//crunch.io/tags/tables/</link>
       <pubDate>Mon, 20 Nov 2023 16:45:21 +0000</pubDate>
       <guid>//crunch.io/tags/tables/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Confidence Intervals</title>
-      <link>//crunch.io/tags/confidence-intervals/</link>
-      <pubDate>Thu, 19 Oct 2023 15:29:45 +0100</pubDate>
-      <guid>//crunch.io/tags/confidence-intervals/</guid>
       <description></description>
     </item>
     <item>

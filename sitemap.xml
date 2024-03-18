@@ -41,6 +41,9 @@
     <loc>//crunch.io/knowledge-base/</loc>
     <lastmod>2017-07-18T14:08:35+02:00</lastmod>
   </url><url>
+    <loc>//crunch.io/dev/features/new-grouped-bar-plots/</loc>
+    <lastmod>2024-03-18T10:01:58+00:00</lastmod>
+  </url><url>
     <loc>//crunch.io/dev/features/min-max-width-dashboard/</loc>
     <lastmod>2024-02-05T19:18:56+00:00</lastmod>
   </url><url>
@@ -260,22 +263,31 @@
   </url><url>
     <loc>//crunch.io/info.crunch.io/quirks-london-2023</loc>
   </url><url>
+    <loc>//crunch.io/tags/analyses/</loc>
+    <lastmod>2024-03-18T10:01:58+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/barplot/</loc>
+    <lastmod>2024-03-18T10:01:58+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/confidence-intervals/</loc>
+    <lastmod>2024-03-18T10:01:58+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/graphs/</loc>
+    <lastmod>2024-03-18T10:01:58+00:00</lastmod>
+  </url><url>
     <loc>//crunch.io/</loc>
-    <lastmod>2024-03-05T10:00:00-07:00</lastmod>
+    <lastmod>2024-03-18T10:01:58+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/</loc>
+    <lastmod>2024-03-18T10:01:58+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2024-03-05/</loc>
     <lastmod>2024-03-05T10:00:00-07:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/analyses/</loc>
-    <lastmod>2024-02-05T19:18:56+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/dashboards/</loc>
     <lastmod>2024-02-05T19:18:56+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/layout/</loc>
-    <lastmod>2024-02-05T19:18:56+00:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/</loc>
     <lastmod>2024-02-05T19:18:56+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2024-01-29/</loc>
@@ -293,9 +305,6 @@
     <loc>//crunch.io/tags/most-recent/</loc>
     <lastmod>2023-12-11T11:06:08+00:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/graphs/</loc>
-    <lastmod>2023-11-20T16:45:21+00:00</lastmod>
-  </url><url>
     <loc>//crunch.io/tags/subtotals/</loc>
     <lastmod>2023-11-20T16:45:21+00:00</lastmod>
   </url><url>
@@ -307,9 +316,6 @@
   </url><url>
     <loc>//crunch.io/release-notes/2023-10-24/</loc>
     <lastmod>2023-10-24T10:00:00-07:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/confidence-intervals/</loc>
-    <lastmod>2023-10-19T15:29:45+01:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2023-08-28/</loc>
     <lastmod>2023-08-28T10:00:00-07:00</lastmod>
