@@ -1,6 +1,6 @@
 +++
-date = "2024-03-15T09:09:45Z"
-publishdate = "2024-03-15T09:09:45Z"
+date = "2024-03-18T10:05:36Z"
+publishdate = "2024-03-18T10:05:36Z"
 draft = false
 title = "Bringing the Enhanced Bar Plot capabilities to Grouped Bar plots"
 news_description = "Our Grouped Bar Plots have been redesigned with a cleaner layout, more easily readable text, and now feature the display of confidence intervals. Click here to learn more."
