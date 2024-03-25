@@ -8,6 +8,37 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2024.03</title>
+      <link>//crunch.io/release-notes/2024-03-25/</link>
+      <pubDate>Mon, 25 Mar 2024 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2024-03-25/</guid>
+      <description>Crunch web application Made the following improvements: The edit panel for dashboard tiles now supports frequency analyses for text variables that include blank labels. Stacked bars have been added as an available visualization type for numeric-array bivariate analyses. Redesigned Grouped Bar Plots with a cleaner layout, more easily readable text, and the ability to display confidence intervals. Fixed how columns are aligned in the web app and within exports. Previously, multitables using filter columns could sometimes show misaligned rows of results for non-enumerated variable types (text, numeric, and datetime).</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Made the following improvements:
+&lt;ul&gt;
+&lt;li&gt;The edit panel for dashboard tiles now supports frequency analyses for text variables that include blank labels.&lt;/li&gt;
+&lt;li&gt;Stacked bars have been added as an available visualization type for numeric-array bivariate analyses.&lt;/li&gt;
+&lt;li&gt;Redesigned &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/20500101668365-Confidence-intervals-on-graphs&#34;&gt;Grouped Bar Plots&lt;/a&gt; with a cleaner layout, more easily readable text, and the ability to display confidence intervals.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Fixed how columns are aligned in the web app and within exports. Previously, multitables using filter columns could sometimes show misaligned rows of results for non-enumerated variable types (text, numeric, and datetime).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/21987065472909-SUSPEND-UNSUSPEND-USERS-command&#34;&gt;UNSUSPEND USERS command&lt;/a&gt;, which allows you to reactivate suspended users.&lt;/li&gt;
+&lt;li&gt;Adjusted the &lt;code&gt;[]&lt;/code&gt; syntax for subvariables: a &lt;code&gt;subvariable_code&lt;/code&gt; is a regular identifier and cannot use &lt;code&gt;[]&lt;/code&gt; syntax (otherwise, an error occurs). Visit this &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042038132-CHANGE-command&#34;&gt;help article&lt;/a&gt; to view an example.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;backendcrunchdb&#34;&gt;Backend/CrunchDB&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Removed the ability to export datasets to Parquet format (through both the web app and the API) due to compatibility issues with the latest versions of Python. Please contact support if you need assistance with a Parquet export.&lt;/li&gt;
+&lt;li&gt;Added the capability to support ‘Just-in-time’ provisioning so that new users are automatically created in Crunch the first time the user logs into Crunch via OAuth or SAML. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360051387952-Creating-a-Seamless-Login-Experience&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2024.02</title>
       <link>//crunch.io/release-notes/2024-03-05/</link>
       <pubDate>Tue, 05 Mar 2024 10:00:00 -0700</pubDate>
