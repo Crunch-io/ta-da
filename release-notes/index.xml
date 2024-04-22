@@ -8,6 +8,33 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2024.04</title>
+      <link>//crunch.io/release-notes/2024-04-22/</link>
+      <pubDate>Mon, 22 Apr 2024 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2024-04-22/</guid>
+      <description>Crunch web application Added &amp;ldquo;Script&amp;rdquo; as an available option when a user hovers their mouse over a dashboard tile in the tray. This option can be selected in order to view or edit the script for that tile. Enabled mouse-hover responsiveness on Crunch graphs by highlighting the current bar, segment, or line (in early access). See the announcement for more information. Added a data exchange, which is a one-way bridge that allows a dataset owner who uses Crunch to share a view of a dataset with a receiving organization who also uses Crunch.</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added &amp;ldquo;Script&amp;rdquo; as an available option when a user hovers their mouse over a dashboard tile in the tray. This option can be selected in order to view or edit the script for that tile.&lt;/li&gt;
+&lt;li&gt;Enabled mouse-hover responsiveness on Crunch graphs by highlighting the current bar, segment, or line (in early access). See the &lt;a href=&#34;https://crunch.io/dev/features/graph-hover-behavior/&#34;&gt;announcement&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Added a data exchange, which is a one-way bridge that allows a dataset owner who uses Crunch to share a view of a dataset with a receiving organization who also uses Crunch. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/25958080634509-Crunch-data-exchange&#34;&gt;help article&lt;/a&gt; to learn more about how to use a data exchange at Crunch.&lt;/li&gt;
+&lt;li&gt;Made speed improvements when creating and editing filters.&lt;/li&gt;
+&lt;li&gt;Corrected an issue that occurred when working with bar graphs in the ‘Edit’ panel: categories that were moved to the &amp;ldquo;Fixed to bottom&amp;rdquo; section were not appearing on the Colors tab, which has now been fixed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;backendcrunchdb&#34;&gt;Backend/CrunchDB&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Removed the constraint that subvariable codes (&amp;ldquo;aliases&amp;rdquo;) must be unique across the entire dataset. Subvariable codes must still be unique within the same array, and all references to subvariables by their alias are now required to be qualified by the alias of their parent array.&lt;/li&gt;
+&lt;li&gt;Improved dataset locking functionality to reduce any friction.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Created a new article that describes how to create pairwise tests with weighted data. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/23815837424397-Pairwise-tests-with-weighted-data&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2024.03</title>
       <link>//crunch.io/release-notes/2024-03-25/</link>
       <pubDate>Mon, 25 Mar 2024 10:00:00 -0700</pubDate>
