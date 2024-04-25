@@ -1,5 +1,6 @@
 +++
-date = "2024-04-11T15:45:05+01:00"
+date = "2024-04-25T12:00:00+01:00"
+publishdate = "2024-04-25T12:00:00+01:00"
 draft = false
 title = "Bring your graphs to life with new mouse hover behavior"
 news_description = "All our graphs now respond to mouse hover by highlighting the current segment / bar / line. Click here to learn more."
@@ -8,6 +9,7 @@ weight = 20
 tags = ["graphs", "analyses"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
+labs_only = false
 no_profiles = true
 series = "main"
 
