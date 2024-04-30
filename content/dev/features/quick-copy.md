@@ -6,7 +6,7 @@ title = "Quickly grab a copy of the current visualization or tile"
 news_description = "Find yourself wanting to quickly export the current dashboard tile or on-screen visualization to paste into emails or presentations? Now you can export it as an image copied to your clipboard or for download in just two clicks. Click here to learn more."
 description = "Find yourself wanting to quickly export the current dashboard tile or on-screen visualization to paste into emails or presentations? Now you can export it as an image copied to your clipboard or for download in just two clicks."
 weight = 20
-tags = []
+tags = ["analyses", "tables", "graphs"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
 labs_only = true
@@ -52,7 +52,7 @@ Note: A difference for Firefox users - Firefox prevents content being pushed to 
 
 This feature is currently in [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access).
 
-For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/20500101668365-Confidence-intervals-on-graphs).
+For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/26115363807117-Quick-Copy-to-image-or-clipboard).
 
 ## Your Feedback Matters
 
