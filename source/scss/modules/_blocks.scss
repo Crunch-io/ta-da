@@ -67,27 +67,24 @@
 }
 
 .header-banner {
-    background-color: $color-grey-lightest;
+    background-color: $color-blue;
 
     .banner-text {
         padding: 6px;
-        color: $color-blue;
+        color: $color-white;
         margin-bottom: 0;
 
         a {
-            color: $color-blue;
-            margin-left: 10px;
-            font-family: 'Libre Baskerville', serif;
-            font-style: italic;
+            color: $color-white;
 
             &:hover {
-                text-decoration: none;
                 color: $--darker-primary-color;
+                text-decoration: none;
             }
 
             &::after {
                 content: '\27f6';
-                margin-left: 10px;
+                margin-left: 8px;
                 font-style: normal;
             }
         }

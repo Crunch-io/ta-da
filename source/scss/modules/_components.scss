@@ -648,9 +648,9 @@ figure {
         color: $color-blue;
         font-style: normal;
         font-size: 27px;
-        
+
     }
-    
+
     .carousel-item {
         height: 300px;
         img {
@@ -948,4 +948,65 @@ a.carousel-control-next {
 
 #mc_embed_signup div.response {
     padding: 0 !important;
+}
+
+/** Homepage announcement **/
+#announcement {
+    background-color: $color-white;
+    background-image: linear-gradient($color-white, #BDDAED) !important;
+    margin-bottom: 0;
+    height: 380px !important;
+
+    h1 {
+      font-family: ProximaNova, sans-serif;
+      color: $color-off-black;
+      max-width: 830px;
+      margin: auto;
+      margin-bottom: 10px;
+    }
+
+    @include media-breakpoint-only(sm) {
+      h1 {
+        font-size: 2em !important;
+      }
+    }
+
+    .aligned-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-off-black;
+      font-size: 2.5em;
+      font-weight: 100;
+
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+
+        img:first-child {
+          max-width: 250px;
+        }
+
+        img:last-child {
+          max-width: 280px;
+          margin-left: 10px;
+        }
+
+
+        @include media-breakpoint-only(xs) {
+
+        font-size: 1.8em;
+          img:first-child {
+            max-width: 170px;
+          }
+
+          img:last-child {
+            max-width: 200px;
+            margin-left: 6px;
+          }
+        }
+
+    }
+
 }
