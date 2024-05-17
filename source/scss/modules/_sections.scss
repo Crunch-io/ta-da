@@ -338,7 +338,7 @@
             margin-bottom: 50px;
         }
         .post-card-main-green{
-       
+
             background-color: $color-green;
             background-image: linear-gradient( $color-green, $--darker-secondary-color);
             border: 1px solid $color-green;
@@ -362,7 +362,7 @@
 
     }
 
-    
+
 
     @include media-breakpoint-up(md) {
 
@@ -493,6 +493,7 @@
             width: 100%;
 
             th {
+                color: $font-color-off-black;
                 background-color: #E1E9E9;
                 text-align: center;
 
