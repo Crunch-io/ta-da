@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 May 2024 10:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 24 May 2024 16:38:17 +0100</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -364,6 +364,13 @@
       <pubDate>Wed, 06 Mar 2019 19:49:40 +0000</pubDate>
       <guid>//crunch.io/dev/features/dataset-folders/</guid>
       <description>Dataset folders allow you to organize your data hierarchically, similar to a file system as you might see in Windows Explorer or MacOS Finder. Folders make finding, organizing, and sharing data more intuitive.&#xA;Folders can be used to organize large collections of datasets into more manageable units. If your organization imports data from many sources or has a large archive of previously imported data, you can organize them by source, time of import/survey, subject, etc.</description>
+    </item>
+    <item>
+      <title>No Data Left Behind:</title>
+      <link>//crunch.io/info.crunch.io/no-data-left-behind</link>
+      <pubDate>Fri, 24 May 2024 16:38:17 +0100</pubDate>
+      <guid>//crunch.io/info.crunch.io/no-data-left-behind</guid>
+      <description></description>
     </item>
     <item>
       <title>Case Studies:  Take Tracker Analytics Online</title>
