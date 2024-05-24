@@ -80,6 +80,22 @@ a:focus-visible {
     color: $color-white;
 }
 
+.btn-white {
+    background-color: $color-white;
+    border-color: $color-white;
+    @include box_shadow("black");
+    color: $color-blue;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    &:hover {
+        background-color: $--darker-message-color;
+        border-color: $--darker-message-color;
+        color: $color-white;
+        @include box_shadow("purple");
+    }
+}
+
 .a-link {
     font-family: 'Libre Baskerville', serif;
     font-style: italic;
