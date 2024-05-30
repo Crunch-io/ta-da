@@ -65,7 +65,8 @@
         }
 
         .intro-container {
-            margin-top: -60px;
+            background: #F9F9F9;
+            margin-top: -60px !important;
             margin-bottom: 20px;
 
             &.secondary-intro-container {
@@ -955,7 +956,7 @@ a.carousel-control-next {
     background-color: $color-white;
     background-image: linear-gradient($color-white, #BDDAED) !important;
     margin-bottom: 0;
-    height: 380px !important;
+    height: 440px !important;
 
     h1 {
       font-family: ProximaNova, sans-serif;

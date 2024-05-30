@@ -1,7 +1,7 @@
 <div id="wrapper">
 
     <div id="secondary-pages-wrapper">
-        <div class="container-fluid cr-section-grey cr-section-block spacer-top-md-hero">
+        <div class="container-fluid cr-section-grey cr-section-block spacer-top-md-hero" style="border-top:none;">
             {{ range .Site.Pages }}
                 {{ if and (eq .Type "product") (eq .Title "All your data in one place") }}
                 <div class="container">
@@ -26,8 +26,8 @@
         <div class="container-fluid cr-section-block spacer-top-md-hero">
         {{ range .Site.Pages }}
             {{ if and (eq .Type "product") (eq .Title "Powerful online analytics") }}
-        
-            <!-- 
+
+            <!--
             <div class="d-none d-md-block hero-img-right">
                 this element is not visible and does not load the image either.
                 <img src="{{ .Params.gif }}" alt="Powerful online analytics" class="img-fluid add-shadow sp-mb-t rounded" loading="lazy">
