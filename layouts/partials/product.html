@@ -1,18 +1,18 @@
 <div id="wrapper">
 
     <div id="secondary-pages-wrapper">
-        <div class="container-fluid cr-section-grey cr-section-block spacer-top-md-hero">
+        <div class="container-fluid cr-section-grey cr-section-block spacer-top-md-hero" style="border-top:none;">
             {{ range .Site.Pages }}
                 {{ if and (eq .Type "product") (eq .Title "All your data in one place") }}
                 <div class="container">
                     <div class="row spacer share-insights justify-content-center">
-                        <div class="text-center">
+                        <div class="col-sm-12 text-container text-md-center text-sm-left">
                             <h2 class="label">{{ .Params.label }}</h2>
                             <h2 class="secondary-title">
-                                {{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} <br/><span> {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }}</span> {{ end }}
+                                {{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} <span> {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }}</span> {{ end }}
                             </h2>
-                            <div class="col-md-6 m-auto">
-                                <p>{{ .Content }}</p>
+                            <div class="col-sm-12 col-md-6 m-auto p-0">
+                              {{ .Content }}
                             </div>
                         </div>
                     </div>
@@ -26,8 +26,8 @@
         <div class="container-fluid cr-section-block spacer-top-md-hero">
         {{ range .Site.Pages }}
             {{ if and (eq .Type "product") (eq .Title "Powerful online analytics") }}
-        
-            <!-- 
+
+            <!--
             <div class="d-none d-md-block hero-img-right">
                 this element is not visible and does not load the image either.
                 <img src="{{ .Params.gif }}" alt="Powerful online analytics" class="img-fluid add-shadow sp-mb-t rounded" loading="lazy">
@@ -39,7 +39,7 @@
                         <h2 class="label">{{ .Params.label }}</h2>
                         <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} <span>{{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }}</span> {{ end }}</h2>
 
-                        <p>{{ .Content }}</p>
+                        {{ .Content }}
                     </div>
 
                     <div class="col-12 col-md-6 offset-md-1 sp-mb-t my-auto d-none d-md-block">
@@ -116,7 +116,7 @@
                         <h2 class="label">{{ .Params.label }}</h2>
                         <h2 class="secondary-title">{{ with .Params.subtitle }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ end }}</h2>
 
-                        <p>{{ .Content }}</p>
+                        {{ .Content }}
                     </div>
                 </div> <!-- /.row. -->
             </div> <!-- /.container -->
@@ -136,7 +136,7 @@
                         <h2 class="label">{{ .Params.label }}</h2>
                         <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }}<span> {{ index (split . " ") 5 }}</span> {{ index (split . " ") 6 }} <span>{{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }}</span> {{ end }}</h2>
 
-                        <p>{{ .Content }}</p>
+                        {{ .Content }}
 
                     </div>
                 </div> <!-- /.row. -->
