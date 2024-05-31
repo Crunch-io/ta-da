@@ -65,8 +65,7 @@
         }
 
         .intro-container {
-            background: #F9F9F9;
-            margin-top: -60px !important;
+            margin-top: -60px;
             margin-bottom: 20px;
 
             &.secondary-intro-container {
@@ -955,6 +954,7 @@ a.carousel-control-next {
 #announcement {
     background-color: $color-white;
     background-image: linear-gradient($color-white, #BDDAED) !important;
+    padding-top: 100px;
     margin-bottom: 0;
     height: 440px !important;
 
@@ -996,14 +996,12 @@ a.carousel-control-next {
 
 
         @include media-breakpoint-only(xs) {
-
-        font-size: 1.8em;
           img:first-child {
-            max-width: 170px;
+            max-width: 155px;
           }
 
           img:last-child {
-            max-width: 200px;
+            max-width: 185px;
             margin-left: 6px;
           }
         }
