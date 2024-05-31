@@ -1,6 +1,6 @@
 +++
-date = "2024-04-30T12:00:00+01:00"
-publishdate = "2024-04-30T12:00:00+01:00"
+date = "2024-05-30T15:14:17+01:00"
+publishdate = "2024-05-30T15:14:17+01:00"
 draft = false
 title = "Quickly grab a copy of the current visualization or tile"
 news_description = "Find yourself wanting to quickly export the current dashboard tile or on-screen visualization to paste into emails or presentations? Now you can export it as an image copied to your clipboard or for download in just two clicks. Click here to learn more."
@@ -9,7 +9,7 @@ weight = 20
 tags = ["analyses", "tables", "graphs"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 series = "main"
 
@@ -48,9 +48,6 @@ Whether in Tables & Graphs mode, Variable Summaries mode or a dashboard, once yo
 Note: A difference for Firefox users - Firefox prevents content being pushed to the user’s clipboard so only the export as image option is available for Firefox.
 
 ## Try it out today
-
-
-This feature is currently in [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access).
 
 For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/26115363807117-Quick-Copy-to-image-or-clipboard).
 
