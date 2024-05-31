@@ -1009,3 +1009,63 @@ a.carousel-control-next {
     }
 
 }
+
+
+/** Homepage announcement **/
+#faq-announcement {
+    background-color: $color-white;
+    background-image: linear-gradient($color-white, #BDDAED) !important;
+    padding-top: 100px;
+    height: 300px !important;
+
+    h1 {
+      font-family: ProximaNova, sans-serif;
+      color: $color-off-black;
+      max-width: 830px;
+      margin: auto;
+      margin-bottom: 10px;
+    }
+
+    @include media-breakpoint-only(sm) {
+      h1 {
+        font-size: 2em !important;
+      }
+    }
+
+    .aligned-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-off-black;
+      font-size: 2.5em;
+      font-weight: 100;
+
+        img {
+          max-width: 100%;
+          height: auto;
+        }
+
+        img:first-child {
+          max-width: 250px;
+        }
+
+        img:last-child {
+          max-width: 280px;
+          margin-left: 10px;
+        }
+
+
+        @include media-breakpoint-only(xs) {
+          img:first-child {
+            max-width: 155px;
+          }
+
+          img:last-child {
+            max-width: 185px;
+            margin-left: 6px;
+          }
+        }
+
+    }
+
+}

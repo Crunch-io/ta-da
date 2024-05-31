@@ -1,0 +1,62 @@
+{{ partial "head.html" . }}
+
+{{ partial "header.html" . }}
+
+<div id="wrapper">
+
+    <div id="secondary-pages-wrapper">
+        <div class="container-fluid">
+
+            <div class="jobs-content">
+              <div class="jumbotron" id="faq-announcement">
+                  <div class="container">
+                      <div class="row justify-content-md-center">
+                              <div class="col-md-12 text-center">
+                                  <span class="aligned-content">
+                                      <img src="img/crunch_logo.svg" alt="Crunch.io">
+                                      <span>+</span>
+                                      <img src="img/kh_logo.svg" alt="KnowledgeHound">
+                                  </span>
+                                  <h1>Acquisition FAQs</h1>
+                              </div>
+                      </div> <!-- /.row -->
+                  </div> <!-- /.container -->
+              </div> <!-- /.jumbotron -->
+            </div> <!-- /.jobs-content -->
+
+            <div class="secondary-content-wrapper">
+              <div class="container">
+
+                  <div class="row">
+
+                      <div id="accordion-container" class="col-md-12 spacer-xs">
+                            <div class="accordion" id="accordion">
+                            {{ range where .Pages "Params.label" "FAQs" }}
+                              <div class="card">
+                                <div class="card-header" id="{{ .Params.id }}">
+                                  <h2 class="mb-0 card-title float-left">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{ .Params.controls }}" aria-expanded="false" aria-controls="{{ .Params.controls }}">
+                                      {{ .Title }}
+                                    </button>
+                                  </h2>
+                                </div>
+
+                                <div id="{{ .Params.controls }}" class="collapse hide" aria-labelledby="{{ .Params.id }}" data-parent="#accordion">
+                                  <div class="card-body">
+                                    {{ .Content }}
+                                  </div>
+                                </div>
+                              </div>
+                            {{ end }}
+                            </div>
+
+                      </div>
+                  </div>
+
+              </div> <!-- /.container -->
+            </div> <!-- /.secondary-content -->
+
+
+{{ partial "footer-nav.html" . }}
+
+{{ partial "footer.html" . }}
