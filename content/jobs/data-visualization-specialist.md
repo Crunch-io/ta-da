@@ -1,6 +1,6 @@
 +++
 date = "2020-06-29T11:34:00-07:00"
-draft = false
+draft = true
 title = "Data Visualization Specialist"
 team = "product"
 weight = 200

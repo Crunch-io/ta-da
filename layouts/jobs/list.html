@@ -77,27 +77,27 @@
                             {{ end }}
                             </div>
 
-                            <h2 class="label">Product & Design</h2>
-                            <div class="accordion" id="accordion">
-                            {{ range where .Pages "Params.label" "Product & Design" }}
-                              <div class="card">
-                                <div class="card-header" id="{{ .Params.id }}">
-                                  <h2 class="mb-0 card-title float-left">
-                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{ .Params.controls }}" aria-expanded="false" aria-controls="{{ .Params.controls }}">
-                                      {{ .Title }}
-                                    </button>
-                                  </h2>
-                                  <span class="share-icon float-right d-none d-sm-block"><a href="{{ .Permalink }}">Share <img src="img/icons/box_share.svg" alt="Share" width="14" height="14"></a></span>
-                                </div>
+<!--                            <h2 class="label">Product & Design</h2>-->
+<!--                            <div class="accordion" id="accordion">-->
+<!--                            {{ range where .Pages "Params.label" "Product & Design" }}-->
+<!--                              <div class="card">-->
+<!--                                <div class="card-header" id="{{ .Params.id }}">-->
+<!--                                  <h2 class="mb-0 card-title float-left">-->
+<!--                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#{{ .Params.controls }}" aria-expanded="false" aria-controls="{{ .Params.controls }}">-->
+<!--                                      {{ .Title }}-->
+<!--                                    </button>-->
+<!--                                  </h2>-->
+<!--                                  <span class="share-icon float-right d-none d-sm-block"><a href="{{ .Permalink }}">Share <img src="img/icons/box_share.svg" alt="Share" width="14" height="14"></a></span>-->
+<!--                                </div>-->
 
-                                <div id="{{ .Params.controls }}" class="collapse hide" aria-labelledby="{{ .Params.id }}" data-parent="#accordion">
-                                  <div class="card-body">
-                                    {{ .Content }}
-                                  </div>
-                                </div>
-                              </div>
-                            {{ end }}
-                            </div>
+<!--                                <div id="{{ .Params.controls }}" class="collapse hide" aria-labelledby="{{ .Params.id }}" data-parent="#accordion">-->
+<!--                                  <div class="card-body">-->
+<!--                                    {{ .Content }}-->
+<!--                                  </div>-->
+<!--                                </div>-->
+<!--                              </div>-->
+<!--                            {{ end }}-->
+<!--                            </div>-->
 
                             <!-- <h2 class="label">Operations</h2> -->
                             <div class="accordion" id="accordion">
