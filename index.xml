@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Jun 2024 14:25:00 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 31 Jul 2024 11:27:57 +0100</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -56,6 +56,13 @@
       <pubDate>Thu, 26 Dec 2019 18:39:31 -0400</pubDate>
       <guid>//crunch.io/case-studies/yougov/</guid>
       <description>YouGov, whose current brand slogan is “the best panel - the best data - the best tools”, has one of the world’s largest research networks with a proprietary panel of over 17 million individuals in 50 markets. Researchers at YouGov use Crunch.io to perform analysis and deliver data and insights to clients via the Crunch.io web application, CrunchBoxes, and dashboards.&#xA;YouGov uses Crunch.io enterprise-wide for both custom research and Data Products, such as YouGov Profiles, which provides syndicated segmentation and product data for agencies and brands.</description>
+    </item>
+    <item>
+      <title>New graph customizations for dashboard display</title>
+      <link>//crunch.io/dev/features/new-graph-customizations/</link>
+      <pubDate>Wed, 31 Jul 2024 11:27:57 +0100</pubDate>
+      <guid>//crunch.io/dev/features/new-graph-customizations/</guid>
+      <description>How it works When editing a dashboard, you already have access to lots of great customizations via the existing tabs of the “Edit Tile” interface – Properties, Categories and Colors. For most visualization types, you’ll now find a fourth tab – Options.&#xA;The new Options tab The contents of this tab will include most of the following options, though the actual set will vary depending on the visualization type you’re working with.</description>
     </item>
     <item>
       <title>Quickly grab a copy of the current visualization or tile</title>
