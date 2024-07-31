@@ -551,6 +551,13 @@ figure {
             margin-bottom: 15px;
         }
     }
+    
+    &.img-fluid-col-2 {
+        img {
+            max-width: 100%;
+        }
+    }
+
     figcaption h4 {
         margin-top: -15px;
         font-weight: 500;
