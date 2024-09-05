@@ -1,6 +1,6 @@
 +++
-date = "2024-07-31T11:27:57+01:00"
-publishdate = "2024-07-31T11:27:57+01:00"
+date = "2024-09-05T17:12:10+01:00"
+publishdate = "2024-09-05T17:12:10+01:00"
 draft = false
 title = "New graph customizations for dashboard display"
 news_description = "Ever wanted to hide the gridlines or the numeric axis for a cleaner look? Ever wanted to add in confidence bands after saving? Now you can customize your saved visualizations to get the dashboard display you want. Click here to learn more."
@@ -9,7 +9,7 @@ weight = 20
 tags = ["analyses", "dashboard", "graphs"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 series = "main"
 
@@ -144,8 +144,6 @@ In addition to the new customizations available in the Options tab, “Show conf
 {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/show_confidence_bands_checkbox.png" class="img-fluid center">}}
 
 ## Try it out today
-
-This feature is currently available to [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) users.
 
 For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/9414277417741-Customizing-dashboards-and-dashboard-tiles#h_01J3XVABPZWWMTWAJS4RZY23F8).
 
