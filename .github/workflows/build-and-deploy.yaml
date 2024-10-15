@@ -4,7 +4,7 @@ on:
       - dev
       - src
   push:
-    branches:      
+    branches:
       - dev
       - src
 
@@ -35,7 +35,7 @@ jobs:
       - name: Install Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.135.0'
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
