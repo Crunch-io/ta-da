@@ -9,10 +9,10 @@ controls = "one"
 
 +++
 
-**1. Why was KnowledgeHound acquired by Crunch.io?**
+**1. Why was KnowledgeHound acquired?**
 
 This acquisition aims to combine KnowledgeHound’s approachable, intuitive, search-based survey data management capabilities with Crunch.io’s powerful data analysis capabilities. The goal is to provide customers with a more comprehensive and integrated platform for data analysis and insight generation.
 
 **2. When did the acquisition take place?**
 
-KnowledgeHound became a part of Crunch, a YouGov company, in January 2024.
+January 2024.
