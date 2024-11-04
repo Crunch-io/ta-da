@@ -3,7 +3,7 @@ date = "2024-11-04T17:19:06Z"
 draft = false
 title = "Uploading documents"
 subtitle = "Elevate your research findings by adding relevant documentation to your projects"
-
+label = "New feature"
 document_img_1 = "img/documents/document-slide-1.svg"
 document_img_2 = "img/documents/document-slide-2.svg"
 document_img_3 = "img/documents/document-slide-3.svg"
