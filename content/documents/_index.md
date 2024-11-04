@@ -6,6 +6,7 @@ description = "Enhance your research with document uploads."
 images = ["https://crunch.io/img/logo-1200x630.png"]
 video = "https://player.vimeo.com/video/782595767"
 mob_video = "https://player.vimeo.com/video/782595767"
+label = "New feature"
 
 +++
 
