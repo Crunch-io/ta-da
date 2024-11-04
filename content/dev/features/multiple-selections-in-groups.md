@@ -1,5 +1,5 @@
 +++
-date = "2020-09-21T010:47:45-04:00"
+date = "2020-09-21T10:47:45-04:00"
 publishdate = "2020-09-21T16:54:11+0000"
 draft = false
 title = "Combine categories in dashboard filter variables"

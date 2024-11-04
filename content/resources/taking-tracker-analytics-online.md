@@ -1,5 +1,5 @@
 +++
-date = "2022-9-23T12:20:23-04:00"
+date = "2022-09-23T12:20:23-04:00"
 draft = false
 title = "Insights Tech Showcase Brand Tracking"
 about = "See why over 1,000 insights teams and market research firms use Crunch.io to analyze their large-scale tracking studies."

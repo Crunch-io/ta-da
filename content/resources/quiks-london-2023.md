@@ -1,5 +1,5 @@
 +++
-date = "2023-04-15sT12:00:50-04:00"
+date = "2023-04-15T12:00:50-04:00"
 draft = false
 title = "Quirks London"
 about = "Event | May 03-04, 2023"

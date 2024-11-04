@@ -1,5 +1,5 @@
 +++
-date = "2023-04-04sT12:00:48-04:00"
+date = "2023-04-04T12:00:48-04:00"
 
 customdate = "2022-04-04T12:00:48-04:00"
 
@@ -17,4 +17,3 @@ main = "main"
 mainicon = "img/icons/webinar-icon-white.svg"
 icon = "img/icons/webinar-icon.svg"
 +++
-
