@@ -9,9 +9,9 @@ controls = "two"
 
 +++
 
-**3. Will there be any immediate changes to my KnowledgeHound services?**
+**3. Will there be any immediate changes to my Crunch services?**
 
-In the short term, you will continue to use the KnowledgeHound platform and access the KnowledgeHound team as you always have. Any changes to services or platforms will be communicated well in advance.
+The team is reviewing functionality from both platforms and is working to integrate KnowledgeHound features into the Crunch platform in the months ahead.
 
 **4. How will the acquisition affect my current subscription plan and pricing?**
 

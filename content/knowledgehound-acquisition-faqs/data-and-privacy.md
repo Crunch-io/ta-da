@@ -11,8 +11,4 @@ controls = "three"
 
 **5. How will my data be affected by the transition?**
 
-Your data will remain secure and confidential throughout the transition process. KnowledgeHound continues to take data security and privacy seriously and maintains SOC2 Type 2 Certification. Both KnowledgeHound and Crunch.io adhere to strict data protection and privacy policies.
-
-**6. Will I need to migrate my data to a new platform?**
-
-We aim to make the transition as seamless as possible. If and when any data migration is necessary, we will provide ample advanced notice as well as full support to align with all necessary departments before migrating any data.
+Your data will remain secure and confidential in the Crunch platform and we are pursuing SOC2 Type 2 Certification as KnowledgeHound currently maintains certification. Both Crunch and KnowledgeHound adhere to strict data protection and privacy policies.

@@ -10,6 +10,6 @@ controls = "seven"
 
 +++
 
-**12. Will there be training available to help users adapt to any new features or changes?**
+**10. Will there be training available to help users adapt to any new features or changes?**
 
-Yes, we will provide comprehensive training and resources to ensure that all users are comfortable and proficient with any new features or changes that are introduced.
+Yes, we will provide comprehensive training and resources to ensure that all users are comfortable and proficient with any new features or changes that are introduced. Please reach out to your customer success manager to schedule a session.
