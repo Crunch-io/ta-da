@@ -9,10 +9,10 @@ controls = "four"
 
 +++
 
-**7. Who should I contact for KnowledgeHound support during the transition period?**
+**6. Who should I contact for support during the transition period?**
 
-You should continue to contact KnowledgeHound’s support team for any immediate needs. We will inform you of any changes to support contacts or processes as they occur.
+You should continue to contact Crunch’s support team for any immediate needs.
 
-**8. Will the integration of the platforms affect my access to customer service or technical support?**
+**7. Will the integration of the platforms affect my access to customer service or technical support?**
 
 Our commitment to providing exceptional customer service and technical support remains unchanged. We anticipate that the integration will ultimately enhance the support we can offer to our customers.

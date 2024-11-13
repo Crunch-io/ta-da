@@ -9,9 +9,9 @@ controls = "one"
 
 +++
 
-**1. Why was KnowledgeHound acquired?**
+**1. Why was KnowledgeHound acquired by Crunch?**
 
-This acquisition aims to combine KnowledgeHound’s approachable, intuitive, search-based survey data management capabilities with Crunch.io’s powerful data analysis capabilities. The goal is to provide customers with a more comprehensive and integrated platform for data analysis and insight generation.
+This acquisition aims to combine KnowledgeHound’s approachable, intuitive, search-based survey data management capabilities with Crunch’s powerful data analysis capabilities. The goal is to provide customers with a more comprehensive and integrated platform for data analysis and insight generation.
 
 **2. When did the acquisition take place?**
 
