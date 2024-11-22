@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Sep 2024 10:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 04 Nov 2024 17:19:06 +0000</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -609,6 +609,13 @@
       <pubDate>Fri, 12 Oct 2018 14:08:35 +0200</pubDate>
       <guid>//crunch.io/knowledge-base/getting-started/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Reports to:&lt;/strong&gt; VP of Sales&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Work location:&lt;/strong&gt; Remote, United States or Canada&lt;/p&gt;&#xA;&lt;p&gt;The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Uploading documents</title>
+      <link>//crunch.io/documents/upload-documents/</link>
+      <pubDate>Mon, 04 Nov 2024 17:19:06 +0000</pubDate>
+      <guid>//crunch.io/documents/upload-documents/</guid>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Add a detailed PDF or PowerPoint report, an Excel spreadsheet with crucial data points, a Word document with your analysis or even images. &lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Enrich your insights and enhance collaboration on your team. &lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Present a complete picture of your research, making it easier to share, review, and act on your findings. &lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Keep all of your research in one place.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;button type=&#34;button&#34; class=&#34;btn btn-success d-none d-sm-block&#34; onclick=&#34;window.location.href=&#39;https://help.crunch.io/hc/en-us/articles/30692709279245-Working-with-documents-and-media&#39;&#34;&gt;Learn more&lt;/button&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Release 2024.07</title>
