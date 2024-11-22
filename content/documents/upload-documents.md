@@ -19,4 +19,4 @@ document_img_3 = "img/documents/document-slide-3.svg"
 
 * Keep all of your research in one place.
 
-<button type="button" class="btn btn-success d-none d-sm-block" onclick="window.location.href='https://help.crunch.io/'">Learn more</button>
+<button type="button" class="btn btn-success d-none d-sm-block" onclick="window.location.href='https://help.crunch.io/hc/en-us/articles/30692709279245-Working-with-documents-and-media'">Learn more</button>
