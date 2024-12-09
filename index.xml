@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Dec 2024 11:04:23 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Dec 2024 10:00:00 -0700</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -616,6 +616,13 @@
       <pubDate>Fri, 12 Oct 2018 14:08:35 +0200</pubDate>
       <guid>//crunch.io/knowledge-base/getting-started/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Reports to:&lt;/strong&gt; VP of Sales&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Work location:&lt;/strong&gt; Remote, United States or Canada&lt;/p&gt;&#xA;&lt;p&gt;The Account Executive will be responsible for driving sales of Crunch products within an assigned geographical region and market segment. The AE will represent Crunch and manage all aspects of the sales process including: lead management, qualification, evaluation, close and account care and will play an integral role in the success of the overall sales team. This is a quota‐carrying sales position.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release 2024.08</title>
+      <link>//crunch.io/release-notes/2024-12-09/</link>
+      <pubDate>Mon, 09 Dec 2024 10:00:00 -0700</pubDate>
+      <guid>//crunch.io/release-notes/2024-12-09/</guid>
+      <description>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Fixed an issue where viewers of a dataset could not delete their personal variables.&lt;/li&gt;&#xA;&lt;li&gt;Added new functionality that allows you to upload, store, and deliver documents in Crunch folders. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/30692709279245-Working-with-documents-and-media&#34;&gt;new article&lt;/a&gt; and &lt;a href=&#34;https://crunch.io/dev/features/documents/&#34;&gt;announcement&lt;/a&gt; that describes this functionality in more detail.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;API endpoints and API reference&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;When creating datasets/views/forks, the &lt;code&gt;owner&lt;/code&gt; in the request payload can be replaced with &lt;code&gt;project&lt;/code&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Updated the way material variables work in Crunch Automation, which affects how the &lt;code&gt;MATERIAL&lt;/code&gt; keyword is used in &lt;code&gt;CREATE...&lt;/code&gt; commands. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360041769292-Writing-Crunch-Automation-declarations#toc12&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>Uploading documents</title>
