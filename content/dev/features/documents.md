@@ -1,6 +1,6 @@
 +++
-date = "2024-12-04T15:12:57Z"
-publishdate = "2024-12-04T15:12:57Z"
+date = "2024-12-09T11:04:23Z"
+publishdate = "2024-12-09T11:04:23Z"
 draft = false
 title = "Enhance your research with document uploads"
 news_description = "You can now upload documents in Crunch. Click here to learn how to upload your reports & supporting documentation."
