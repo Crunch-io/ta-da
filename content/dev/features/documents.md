@@ -24,7 +24,7 @@ This feature empowers you to present a complete picture of your research, making
 
 ## How it works
 
-Navigate to a folder in Crunch, find Upload Documents in the folder menu, and upload one or more documents. Once uploaded, you can open the documents in Crunch. Users with permission to the folder will be able to see the documents.
+Navigate to a folder in Crunch, find New and select Documents in the folder menu, and upload one or more documents. Once uploaded, you can open the documents in Crunch. Users with permission to the folder will be able to see the documents.
 
 {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/document-example-1.png" width=700 class="img-fluid">}}
 
