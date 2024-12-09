@@ -32,7 +32,7 @@ Navigate to a folder in Crunch, find Upload Documents in the folder menu, and up
 
 ## Try it out today
 
-For full details of this new feature, see the [help center](https://help.crunch.io/).
+For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/30692709279245-Working-with-documents-and-media).
 
 ## Your Feedback Matters
 
