@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Homepage on Online survey data analysis</title>
-    <link>//crunch.io/tags/homepage/</link>
-    <description>Recent content in Homepage on Online survey data analysis</description>
+    <title>Crunch on Online survey data analysis</title>
+    <link>//crunch.io/tags/crunch/</link>
+    <description>Recent content in Crunch on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 23 Jan 2025 14:23:05 +0000</lastBuildDate>
-    <atom:link href="//crunch.io/tags/homepage/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//crunch.io/tags/crunch/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pick up where you left off with the new Crunch homepage</title>
       <link>//crunch.io/dev/features/crunch-homepage/</link>
       <pubDate>Thu, 23 Jan 2025 14:23:05 +0000</pubDate>
       <guid>//crunch.io/dev/features/crunch-homepage/</guid>
       <description>&lt;h2 id=&#34;were-excited-to-bring-you-a-new-home-page-in-crunch&#34;&gt;We’re excited to bring you a new home page in Crunch!&lt;/h2&gt;&#xA;&lt;p&gt;Your home page provides quick access to the most recent datasets and documents you opened in Crunch.&lt;/p&gt;&#xA;&lt;figure class=&#34;img-fluid&#34;&gt;&lt;img src=&#34;https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/crunch-homepage-01.png&#34; width=&#34;700&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;h2 id=&#34;how-it-works&#34;&gt;How it works&lt;/h2&gt;&#xA;&lt;p&gt;Locate the dataset or document you recently accessed and click on the card. The recent activity will update as you open datasets or documents. You can click on the new Home icon at the top of the folder sidebar to return to the home page.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Give a great welcome to your customers by branding and customizing the appearance of folders</title>
-      <link>//crunch.io/dev/features/folder-homepage/</link>
-      <pubDate>Mon, 28 Mar 2022 15:57:46 +0100</pubDate>
-      <guid>//crunch.io/dev/features/folder-homepage/</guid>
-      <description>&lt;p&gt;Crunch’s folders give you the power to organize your datasets and control access.  Now folders can also be a great landing page for new and existing data consumers.&lt;/p&gt;&#xA;&lt;p&gt;Folder Homepages can contain images, formatted text, embedded videos and links to other resources to provide Crunch customization, as well as to aide in navigation to other resources such as terms and conditions. You can tailor the experience for your teammates and clients when they arrive into Crunch.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
