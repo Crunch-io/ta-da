@@ -5,7 +5,7 @@
     <description>Recent content in Feature Announcements on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2025-01-27T23:31:46+00:00</lastBuildDate>
+    <lastBuildDate>2025-01-28T14:07:55+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,10 @@
     <item>
       <title>Pick up where you left off with the new Crunch homepage</title>
       <link>//crunch.io/dev/features/crunch-homepage/</link>
-      <pubDate>2025-01-23T14:23:05+00:00</pubDate>
+      <pubDate>2025-01-28T12:28:59+00:00</pubDate>
       
       <guid>//crunch.io/dev/features/crunch-homepage/</guid>
-      <labsOnly>true</labsOnly>
+      <labsOnly>false</labsOnly>
       <noProfiles>true</noProfiles>
       <pinned>false</pinned>
       <description>Find your recently accessed datasets and documents on the new Crunch homepage. Click here to learn more.</description>
@@ -29,7 +29,7 @@
 &lt;h2 id=&#34;how-it-works&#34;&gt;How it works&lt;/h2&gt;
 &lt;p&gt;Locate the dataset or document you recently accessed and click on the card. The recent activity will update as you open datasets or documents. You can click on the new Home icon at the top of the folder sidebar to return to the home page.&lt;/p&gt;
 &lt;h2 id=&#34;try-it-out-today&#34;&gt;Try it out today&lt;/h2&gt;
-&lt;p&gt;This feature is currently in &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access&#34;&gt;Early Access&lt;/a&gt;. For full details of this new feature, see the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/33367288303629-The-Crunch-homepage&#34;&gt;help center&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For full details of this new feature, see the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/33367288303629-The-Crunch-homepage&#34;&gt;help center&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;your-feedback-matters&#34;&gt;Your feedback matters&lt;/h2&gt;
 &lt;p&gt;As always, we’re eager to hear what you think about these enhancements. Please share your thoughts via &lt;a href=&#34;mailto:support@crunch.io&#34;&gt;support@crunch.io&lt;/a&gt;&lt;/p&gt;
 </content:encoded>
