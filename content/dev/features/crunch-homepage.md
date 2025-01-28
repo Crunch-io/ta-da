@@ -1,6 +1,6 @@
 +++
-date = "2025-01-23T14:23:05Z"
-publishdate = "2025-01-23T14:23:05Z"
+date = "2025-01-28T12:28:59Z"
+publishdate = "2025-01-28T12:28:59Z"
 draft = false
 title = "Pick up where you left off with the new Crunch homepage"
 news_description = "Find your recently accessed datasets and documents on the new Crunch homepage. Click here to learn more."
@@ -9,7 +9,7 @@ weight = 20
 tags = ["homepage", "crunch"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 series = "main"
 
@@ -27,7 +27,7 @@ Locate the dataset or document you recently accessed and click on the card. The 
 
 ## Try it out today
 
-This feature is currently in [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access). For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/33367288303629-The-Crunch-homepage).
+For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/33367288303629-The-Crunch-homepage).
 
 ## Your feedback matters
 
