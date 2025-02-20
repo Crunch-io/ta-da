@@ -27,9 +27,7 @@
                           <h2 class="secondary-title">{{ with .Params.subtitle }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</h2>
                           <p>{{ .Content }}</p>
 
-                          <button class="btn btn-success" onclick="location.href='https://smrtr.io/4F6hw';">Apply now</button>
-                          <!--<a href="mailto:{{ .Params.email }}" class="careers-email"><span> <svg class="email-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.41 17.86"><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M25.22,0H1.2A1.19,1.19,0,0,0,0,1.19V16.66a1.2,1.2,0,0,0,1.2,1.2h24a1.19,1.19,0,0,0,1.19-1.2V1.19A1.19,1.19,0,0,0,25.22,0ZM10.6,8.85,13,10.7a.36.36,0,0,0,.47,0l2.37-1.85,9.29,8.26H1.32ZM1.42.75H25L13.21,9.93Zm15,7.63,9.24-7.21V16.61ZM10,8.38.75,16.61V1.19h0Z"/></g></g></svg> {{ .Params.email }}</span></a>-->
-
+                          <a href="mailto:{{ .Params.email }}" class="careers-email"><span> <svg class="email-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.41 17.86"><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M25.22,0H1.2A1.19,1.19,0,0,0,0,1.19V16.66a1.2,1.2,0,0,0,1.2,1.2h24a1.19,1.19,0,0,0,1.19-1.2V1.19A1.19,1.19,0,0,0,25.22,0ZM10.6,8.85,13,10.7a.36.36,0,0,0,.47,0l2.37-1.85,9.29,8.26H1.32ZM1.42.75H25L13.21,9.93Zm15,7.63,9.24-7.21V16.61ZM10,8.38.75,16.61V1.19h0Z"/></g></g></svg> {{ .Params.email }}</span></a>
                       </div>
 
                       <div id="accordion-container" class="col-md-8 offset-md-1 spacer-xs">
@@ -55,8 +53,8 @@
                             {{ end }}
                             </div>
 
-                            <h2 class="label">Sales, Marketing & Customer Success</h2>
-                            <div class="accordion" id="accordion">
+                            <!-- <h2 class="label">Sales, Marketing & Customer Success</h2> -->
+                            <!-- <div class="accordion" id="accordion">
                             {{ range where .Pages "Params.label" "Sales & Marketing" }}
                               <div class="card">
                                 <div class="card-header" id="{{ .Params.id }}">
@@ -75,7 +73,7 @@
                                 </div>
                               </div>
                             {{ end }}
-                            </div>
+                            </div> -->
 
 <!--                            <h2 class="label">Product & Design</h2>-->
 <!--                            <div class="accordion" id="accordion">-->
@@ -100,7 +98,7 @@
 <!--                            </div>-->
 
                             <!-- <h2 class="label">Operations</h2> -->
-                            <div class="accordion" id="accordion">
+                            <!-- <div class="accordion" id="accordion">
                             {{ range where .Pages "Params.label" "Operations" }}
                               <div class="card">
                                 <div class="card-header" id="{{ .Params.id }}">
@@ -119,7 +117,7 @@
                                 </div>
                               </div>
                             {{ end }}
-                            </div>
+                            </div> -->
                       </div>
                   </div>
 

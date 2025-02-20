@@ -11,6 +11,6 @@ email = "careers@crunch.io"
 
 +++
 
-We are looking for talented and motivated new team members in a variety of roles. 
+We are looking for talented and motivated new team members in a variety of roles.
 
 Our ambitions are bigger than just what is listed. If yours are too, please tell us how you might fit right in!
