@@ -6,7 +6,7 @@ title = "Senior Python Software Engineer, Data Platform"
 weight = 200
 images = ["https://crunch.io/img/logo-1200x630.png"]
 label = "Engineering & Data"
-id = "python-dev"
+id = "senior-python-dev"
 controls = "epython"
 
 +++
