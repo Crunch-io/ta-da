@@ -1,6 +1,6 @@
 +++
-date = "2025-03-04T16:44:26Z"
-publishdate = "2025-03-04T16:44:26Z"
+date = "2025-03-05T09:30:11Z"
+publishdate = "2025-03-05T09:30:11Z"
 draft = false
 title = "Expand dashboard tiles to full-screen view!"
 news_description = "Dive deeper into your data with a distraction-free view on your dashboard. Click here to learn more."
