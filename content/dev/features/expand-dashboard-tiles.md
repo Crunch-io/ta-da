@@ -28,7 +28,7 @@ On any Crunch dashboard, locate a tile and open the menu. Click Expand to open t
 
 ## Try it out today
 
-This feature is currently in Early Access. For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/34267419053197-Viewing-a-dashboard).
+This feature is currently in [Early Access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access). For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/34267419053197-Viewing-a-dashboard).
 
 ## Your feedback matters
 
