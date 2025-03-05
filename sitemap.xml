@@ -44,6 +44,9 @@
     <loc>//crunch.io/knowledge-base/</loc>
     <lastmod>2017-07-18T14:08:35+02:00</lastmod>
   </url><url>
+    <loc>//crunch.io/dev/features/expand-dashboard-tiles/</loc>
+    <lastmod>2025-03-05T09:30:11+00:00</lastmod>
+  </url><url>
     <loc>//crunch.io/dev/features/crunch-homepage/</loc>
     <lastmod>2025-01-28T12:28:59+00:00</lastmod>
   </url><url>
@@ -284,19 +287,22 @@
     <loc>//crunch.io/jobs/software-engineer-python-data-platform/</loc>
     <lastmod>2025-02-20T14:00:00+00:00</lastmod>
   </url><url>
+    <loc>//crunch.io/tags/crunch/</loc>
+    <lastmod>2025-03-05T09:30:11+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/dashboard/</loc>
+    <lastmod>2025-03-05T09:30:11+00:00</lastmod>
+  </url><url>
     <loc>//crunch.io/</loc>
-    <lastmod>2025-02-20T14:00:00+00:00</lastmod>
+    <lastmod>2025-03-05T09:30:11+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/</loc>
+    <lastmod>2025-03-05T09:30:11+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2025-02-03/</loc>
     <lastmod>2025-02-03T10:00:00-07:00</lastmod>
   </url><url>
-    <loc>//crunch.io/tags/crunch/</loc>
-    <lastmod>2025-01-28T12:28:59+00:00</lastmod>
-  </url><url>
     <loc>//crunch.io/tags/homepage/</loc>
-    <lastmod>2025-01-28T12:28:59+00:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/</loc>
     <lastmod>2025-01-28T12:28:59+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2024-12-09/</loc>
@@ -327,9 +333,6 @@
     <lastmod>2024-09-16T10:00:00-07:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/analyses/</loc>
-    <lastmod>2024-09-05T17:12:10+01:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/dashboard/</loc>
     <lastmod>2024-09-05T17:12:10+01:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/graphs/</loc>

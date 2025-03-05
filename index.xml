@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Feb 2025 14:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Mar 2025 09:30:11 +0000</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -56,6 +56,13 @@
       <pubDate>Thu, 26 Dec 2019 18:39:31 -0400</pubDate>
       <guid>//crunch.io/case-studies/yougov/</guid>
       <description>&lt;p&gt;YouGov, whose current brand slogan is “the best panel - the best data - the best tools”, has one of the world’s largest research networks with a proprietary panel of over 17 million individuals in 50 markets. Researchers at YouGov use Crunch.io to perform analysis and deliver data and insights to clients via the Crunch.io web application, CrunchBoxes, and dashboards.&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;highlight&#34;&gt;YouGov uses Crunch.io &lt;span class=&#34;font-italic&#34;&gt;enterprise-wide&lt;/span&gt; for both custom research and Data Products, such as YouGov Profiles,&lt;/span&gt; which provides syndicated segmentation and product data for agencies and brands. Over 14,000 YouGov Profiles users enjoy sub-second query response times, building on-the-fly crosstabs on a survey database, containing over 309,000 rows (respondents) and 300,000 columns (variables).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Expand dashboard tiles to full-screen view!</title>
+      <link>//crunch.io/dev/features/expand-dashboard-tiles/</link>
+      <pubDate>Wed, 05 Mar 2025 09:30:11 +0000</pubDate>
+      <guid>//crunch.io/dev/features/expand-dashboard-tiles/</guid>
+      <description>&lt;p&gt;We’re excited to introduce a new way to interact with your data! You can now expand most dashboard tiles to full-screen size. The update empowers you to explore insights with greater clarity and make data-driven decisions more efficiently.&lt;/p&gt;&#xA;&lt;figure class=&#34;img-fluid&#34;&gt;&lt;img src=&#34;https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/viewing-dashboard-q1-2025.07.png&#34; width=&#34;700&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;h2 id=&#34;how-does-it-work&#34;&gt;How does it work?&lt;/h2&gt;&#xA;&lt;p&gt;On any Crunch dashboard, locate a tile and open the menu. Click Expand to open the tile in full-screen view. Click the Analyze button to analyze the data in Crunch. Once you’re done, close the expanded view to return to your dashboard.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Pick up where you left off with the new Crunch homepage</title>

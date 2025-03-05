@@ -6,13 +6,20 @@
     <description>Recent content in Tags on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Jan 2025 12:28:59 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Mar 2025 09:30:11 +0000</lastBuildDate>
     <atom:link href="//crunch.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Crunch</title>
       <link>//crunch.io/tags/crunch/</link>
-      <pubDate>Tue, 28 Jan 2025 12:28:59 +0000</pubDate>
+      <pubDate>Wed, 05 Mar 2025 09:30:11 +0000</pubDate>
       <guid>//crunch.io/tags/crunch/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dashboard</title>
+      <link>//crunch.io/tags/dashboard/</link>
+      <pubDate>Wed, 05 Mar 2025 09:30:11 +0000</pubDate>
+      <guid>//crunch.io/tags/dashboard/</guid>
       <description></description>
     </item>
     <item>
@@ -62,13 +69,6 @@
       <link>//crunch.io/tags/analyses/</link>
       <pubDate>Thu, 05 Sep 2024 17:12:10 +0100</pubDate>
       <guid>//crunch.io/tags/analyses/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Dashboard</title>
-      <link>//crunch.io/tags/dashboard/</link>
-      <pubDate>Thu, 05 Sep 2024 17:12:10 +0100</pubDate>
-      <guid>//crunch.io/tags/dashboard/</guid>
       <description></description>
     </item>
     <item>

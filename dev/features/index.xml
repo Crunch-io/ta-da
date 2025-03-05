@@ -5,9 +5,37 @@
     <description>Recent content in Feature Announcements on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2025-02-24T15:20:28+00:00</lastBuildDate>
+    <lastBuildDate>2025-03-05T15:55:34+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+    <item>
+      <title>Expand dashboard tiles to full-screen view!</title>
+      <link>//crunch.io/dev/features/expand-dashboard-tiles/</link>
+      <pubDate>2025-03-05T09:30:11+00:00</pubDate>
+      
+      <guid>//crunch.io/dev/features/expand-dashboard-tiles/</guid>
+      <labsOnly>true</labsOnly>
+      <noProfiles>true</noProfiles>
+      <pinned>false</pinned>
+      <description>Dive deeper into your data with a distraction-free view on your dashboard. Click here to learn more.</description>
+      <content:encoded>&lt;p&gt;We’re excited to introduce a new way to interact with your data! You can now expand most dashboard tiles to full-screen size. The update empowers you to explore insights with greater clarity and make data-driven decisions more efficiently.&lt;/p&gt;
+&lt;figure class=&#34;img-fluid&#34;&gt;&lt;img src=&#34;https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/viewing-dashboard-q1-2025.07.png&#34; width=&#34;700&#34;&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;how-does-it-work&#34;&gt;How does it work?&lt;/h2&gt;
+&lt;p&gt;On any Crunch dashboard, locate a tile and open the menu. Click Expand to open the tile in full-screen view. Click the Analyze button to analyze the data in Crunch. Once you’re done, close the expanded view to return to your dashboard.&lt;/p&gt;
+&lt;figure class=&#34;img-fluid&#34;&gt;&lt;img src=&#34;https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/viewing-dashboard-q1-2025.06.png&#34; width=&#34;700&#34;&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;try-it-out-today&#34;&gt;Try it out today&lt;/h2&gt;
+&lt;p&gt;This feature is currently in &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access&#34;&gt;Early Access&lt;/a&gt;. For full details of this new feature, see the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/34267419053197-Viewing-a-dashboard&#34;&gt;help center&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;your-feedback-matters&#34;&gt;Your feedback matters&lt;/h2&gt;
+&lt;p&gt;As always, we’re eager to hear what you think about these enhancements. Feel free to contact &lt;a href=&#34;mailto:support@crunch.io&#34;&gt;support@crunch.io&lt;/a&gt; with questions or feedback.&lt;/p&gt;
+</content:encoded>
+    </item>
     
     
     
