@@ -25,7 +25,7 @@ of the original dataset do not see the changes."><meta property="og:image" conte
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Crunch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.30.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.31.0</span>
       </span>
     </div>
 
@@ -130,7 +130,7 @@ of the original dataset do not see the changes.</p>
 <span>  name <span class="op">=</span> <span class="fu">defaultForkName</span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span>,</span>
 <span>  draft <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span>,</span>
-<span>  project <span class="op">=</span> <span class="fu"><a href="folder.html">folder</a></span><span class="op">(</span><span class="va">dataset</span><span class="op">)</span></span>
+<span>  project <span class="op">=</span> <span class="fu">defaultCrunchProject</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -158,8 +158,9 @@ those with edit permissions? Default is <code>FALSE</code>.</p></dd>
 
 <dt id="arg-project">project<a class="anchor" aria-label="anchor" href="#arg-project"></a></dt>
 <dd><p>A <code>ProjectFolder</code> object, string path that could be passed to <code><a href="cd.html">cd()</a></code>
-relative to the root project, or a URL for a <code>ProjectFolder</code>. Defaults to the same
-folder as the existing dataset.</p></dd>
+relative to the root project, or a URL for a <code>ProjectFolder</code>. If left empty,
+rcrunch will look in <code>envOrOption('crunch.default.project')</code> and error if nothing
+is found.</p></dd>
 
 </dl></div>
     <div id="value">

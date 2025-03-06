@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Crunch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.30.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.31.0</span>
       </span>
     </div>
 
@@ -117,11 +117,12 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.31.0" id="crunch-1310-development-version">crunch 1.31.0 (Development Version)<a class="anchor" aria-label="anchor" href="#crunch-1310-development-version"></a></h2>
-<ul><li><p>Variables can now be created as materialized by default instead of derived, by setting environment variable <code>R_CRUNCH_DEFAULT_DERIVED</code> or option <code>crunch.default.derived</code> to <code>FALSE</code>. See <code><a href="../reference/toVariable.html">?toVariable</a></code> for more information (<a href="https://github.com/Crunch-io/rcrunch/issues/648" class="external-link">#648</a>).</p></li>
+<ul><li><p>Fix for datetimes when running <code>as.data.frame(force = TRUE)</code> (<a href="https://github.com/Crunch-io/rcrunch/issues/666" class="external-link">#666</a>, thanks <a href="https://github.com/rossellhayes" class="external-link">@rossellhayes</a>)</p></li>
+<li><p>The crunchy gadgets have been removed.</p></li>
+<li><p>Variables can now be created as materialized by default instead of derived, by setting environment variable <code>R_CRUNCH_DEFAULT_DERIVED</code> or option <code>crunch.default.derived</code> to <code>FALSE</code>. See <code><a href="../reference/toVariable.html">?toVariable</a></code> for more information (<a href="https://github.com/Crunch-io/rcrunch/issues/648" class="external-link">#648</a>).</p></li>
 <li>
 <p>The concept of a personal folder is being removed from the API imminently. This has a few implications for rcrunch:</p>
-<ul><li><p>All datasets must be created with a project (eg via the <code>project</code> argument of <code><a href="../reference/newDataset.html">newDataset()</a></code>)</p></li>
-<li><p>Dataset forks will be created in the same folder as their parent</p></li>
+<ul><li><p>All datasets must be created with a project (eg via the <code>project</code> argument of <code><a href="../reference/newDataset.html">newDataset()</a></code> or <code><a href="../reference/forkDataset.html">forkDataset()</a></code>)</p></li>
 <li><p>Because loading datasets by name doesn’t work for datasets in projects, it’s not really possible to load a dataset by name without specifying the full project path.</p></li>
 <li><p>To make things easier, it is possible to set a default project path with environment variable <code>R_CRUNCH_DEFAULT_PROJECT</code> or option <code>crunch.default.project</code>. This will be used as the default project folder when creating and loading datasets. Forks will still be put next to parents.</p></li>
 </ul></li>
@@ -343,7 +344,7 @@
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.24.2" id="crunch-1242">crunch 1.24.2<a class="anchor" aria-label="anchor" href="#crunch-1242"></a></h2>
-<ul><li>The RStudio gadgets for <code><a href="../reference/listDatasets.html">listDatasets()</a></code> and <code><a href="../reference/makeArrayGadget.html">makeArrayGadget()</a></code> have been moved to the <a href="https://crunch.io/r/crunchy/" class="external-link"><code>crunchy</code></a> package. Wiring for them, including RStudio add-in configuration, remains here, but you’ll have to install that package to use them.</li>
+<ul><li>The RStudio gadgets for <code><a href="../reference/listDatasets.html">listDatasets()</a></code> and <code>makeArrayGadget()</code> have been moved to the <a href="https://crunch.io/r/crunchy/" class="external-link"><code>crunchy</code></a> package. Wiring for them, including RStudio add-in configuration, remains here, but you’ll have to install that package to use them.</li>
 <li>Minor fixes for backwards compatibility with the old projects API</li>
 <li>Remove code paths that modify the project dataset order, which was removed from the Crunch API.</li>
 <li>List as deprecated many functions that modify variable order, suggesting <code><a href="../reference/mv.html">mv()</a></code> and the other folder operations. These functions will be removed in December 2018.</li>
@@ -408,7 +409,7 @@
 <li>Internal: Added support for <code>alias</code>, <code>description</code>, and <code>notes</code> on <code>VariableTuples</code>
 </li>
 <li>
-<code><a href="../reference/makeArrayGadget.html">makeArrayGadget()</a></code> launches an RStudio gadget to help you build valid categorical arrays and multiple response variables.</li>
+<code>makeArrayGadget()</code> launches an RStudio gadget to help you build valid categorical arrays and multiple response variables.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="1.22.0" id="crunch-1220">crunch 1.22.0<small>2018-05-02</small><a class="anchor" aria-label="anchor" href="#crunch-1220"></a></h2>

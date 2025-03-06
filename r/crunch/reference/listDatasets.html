@@ -25,7 +25,7 @@ additional optional arguments."><meta property="og:image" content="http://crunch
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Crunch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.30.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.31.0</span>
       </span>
     </div>
 
@@ -155,21 +155,13 @@ datasets? Default is FALSE.</p></dd>
 
 
 <dt id="arg-shiny">shiny<a class="anchor" aria-label="anchor" href="#arg-shiny"></a></dt>
-<dd><p>logical: launch a Shiny gadget to help select the right dataset.
-The gadget will return a valid <code><a href="loadDataset.html">loadDataset()</a></code> call which loads the selected
-dataset. The gadget requires RStudio, as well as the <code>crunchy</code> package.</p></dd>
+<dd><p>deprecated, no longer works</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     <p>A character vector of dataset names, each of which would be a valid
 input for <code><a href="loadDataset.html">loadDataset()</a></code></p>
-    </div>
-    <div id="details">
-    <h2>Details</h2>
-    <p>Specifying <code>listDatasets(shiny = TRUE)</code> will, instead of printing dataset
-names, load a Shiny gadget that provides a GUI for navigating the project
-tree to find a dataset, if you're running in RStudio.</p>
     </div>
 
   </div>
