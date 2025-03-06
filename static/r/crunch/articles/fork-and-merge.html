@@ -49,7 +49,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Crunch</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.30.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.31.0</span>
       </span>
     </div>
 
@@ -185,11 +185,12 @@ upload a new dataset to Crunch.</p>
 to update it without affecting their usage. You might also want to
 consult with other analysts or decision makers to make sure that the
 data is accurate before sharing it with clients. To do this you call
-<code><a href="../reference/forkDataset.html">forkDataset()</a></code> to create a copy of the dataset. By default
-the forked dataset will be placed in the same project folder as the
-original, but you can specify a different project folder.</p>
+<code><a href="../reference/forkDataset.html">forkDataset()</a></code> to create a copy of the dataset. The fork is
+placed in a folder following the same logic as new datasets, requiring
+you to specify a project folder unless you have option
+<code>R_CRUNCH_DEFAULT_PROJECT</code> set.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">forked_ds</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/forkDataset.html">forkDataset</a></span><span class="op">(</span><span class="va">ds</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">forked_ds</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/forkDataset.html">forkDataset</a></span><span class="op">(</span><span class="va">ds</span>, project <span class="op">=</span> <span class="st">"examples/rcrunch vignette data"</span><span class="op">)</span></span></code></pre></div>
 <p>You now have a copied dataset which is identical to the original, and
 are free to make changes without fear of disrupting the client’s
 experience. You can add or remove variables, delete records, or change
@@ -263,7 +264,7 @@ upload the second survey wave as its own dataset.</p>
 <p>We then fork the original dataset and append the new wave onto the
 forked dataset.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ds_fork</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/forkDataset.html">forkDataset</a></span><span class="op">(</span><span class="va">ds</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ds_fork</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/forkDataset.html">forkDataset</a></span><span class="op">(</span><span class="va">ds</span>, project <span class="op">=</span> <span class="st">"examples/rcrunch vignette data"</span><span class="op">)</span></span>
 <span><span class="va">ds_fork</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/appendDataset.html">appendDataset</a></span><span class="op">(</span><span class="va">ds_fork</span>, <span class="va">wave2</span><span class="op">)</span></span></code></pre></div>
 <p><code>ds_fork</code> now has twice as many rows as <code>ds</code>
 which we can verify with <code>nrow</code>:</p>
@@ -304,7 +305,7 @@ match up. Merging the data onto a forked dataset again gives us the
 safety to make changes and verify accuracy without affecting
 client-facing data.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ds_fork</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/forkDataset.html">forkDataset</a></span><span class="op">(</span><span class="va">ds</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ds_fork</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/forkDataset.html">forkDataset</a></span><span class="op">(</span><span class="va">ds</span>, project <span class="op">=</span> <span class="st">"examples/rcrunch vignette data"</span><span class="op">)</span></span>
 <span><span class="va">ds_fork</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/merge.html">merge</a></span><span class="op">(</span><span class="va">ds_fork</span>, <span class="va">house_ds</span>, by <span class="op">=</span> <span class="st">"Respondent"</span><span class="op">)</span></span></code></pre></div>
 <p>Before merging the fork back into the original dataset, we can check
 that everything went well with the join.</p>
@@ -312,9 +313,9 @@ that everything went well with the join.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/crtabs.html">crtabs</a></span><span class="op">(</span><span class="op">~</span> <span class="va">TabsSpaces</span> <span class="op">+</span> <span class="va">HouseholdSize</span>, <span class="va">ds_fork</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##           HouseholdSize</span></span>
 <span><span class="co">## TabsSpaces   1   2   3   4   5</span></span>
-<span><span class="co">##     Both   118 122 102 122 122</span></span>
-<span><span class="co">##     Spaces 222 218 260 296 266</span></span>
-<span><span class="co">##     Tabs   276 272 282 278 288</span></span></code></pre>
+<span><span class="co">##     Both   158 124  96 106 102</span></span>
+<span><span class="co">##     Spaces 214 256 282 282 228</span></span>
+<span><span class="co">##     Tabs   318 268 230 272 308</span></span></code></pre>
 <p>And finally once we’re comfortable that everything went as expected
 we can send the data to the client by merging the fork back to the
 original dataset.</p>
@@ -324,7 +325,7 @@ original dataset.</p>
 <pre><code><span><span class="co">## HouseholdSize (numeric)</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span><span class="co">##   1.000   2.000   3.000   3.065   4.000   5.000</span></span></code></pre>
+<span><span class="co">##   1.000   2.000   3.000   2.971   4.000   5.000</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
