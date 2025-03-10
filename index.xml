@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Mar 2025 09:30:11 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Mar 2025 10:00:00 -0700</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -623,6 +623,13 @@
       <pubDate>Thu, 20 Feb 2025 14:00:00 +0000</pubDate>
       <guid>//crunch.io/jobs/software-engineer-python-data-platform/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Reports to&lt;/strong&gt;: Engineering Manager&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Work location&lt;/strong&gt;: Italy, Poland, Romania, Spain (Remote)&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Direct reports&lt;/strong&gt;: 0&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;About YouGov&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;YouGov is a global online research company, offering insight into what the world thinks.&lt;/p&gt;&#xA;&lt;p&gt;We speak daily to our panel of over 24 million registered members to understand opinion and behaviors around the world. We have a strong reputation as a source of accurate data and we’re trusted by the world’s biggest brands to get it right, making us the most quoted market research source in the world.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release 2025.02</title>
+      <link>//crunch.io/release-notes/2025-03-10/</link>
+      <pubDate>Mon, 10 Mar 2025 10:00:00 -0700</pubDate>
+      <guid>//crunch.io/release-notes/2025-03-10/</guid>
+      <description>&lt;h3 id=&#34;crunch-web-application&#34;&gt;&lt;strong&gt;Crunch web application&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Added Terms of Use for SOC2 Type II compliance. All users must log in to the Crunch UI to read and agree to the Terms of Use to continue using Crunch. Crunch has achieved SOC2 Type I compliance and is actively working towards SOC2 Type II compliance.&lt;/li&gt;&#xA;&lt;li&gt;Added the Expand dashboard tile feature to see dashboard tiles in full-screen view. See the &lt;a href=&#34;https://crunch.io/dev/features/expand-dashboard-tiles/&#34;&gt;feature announcement&lt;/a&gt; and &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/34267419053197-Viewing-a-dashboard#toc3&#34;&gt;helpdesk article&lt;/a&gt; for more information.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;&lt;strong&gt;API endpoints and API reference&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;All users who access the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360042695251-How-to-Use-the-Crunch-API&#34;&gt;Crunch API&lt;/a&gt; must log into the Crunch UI to read and accept the Terms of Use to continue using Crunch.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;sdks-rcrunch-pycrunch-and-scrunch&#34;&gt;&lt;strong&gt;SDKs (rCrunch, pyCrunch, and sCrunch)&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Fixed a bug that occurred when running &lt;code&gt;as.data.frame()&lt;/code&gt; on a dataset with array variables with a single subvariable.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>Release 2025.01</title>
