@@ -5,7 +5,7 @@
     <description>Recent content in Feature Announcements on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2025-03-06T02:45:35+00:00</lastBuildDate>
+    <lastBuildDate>2025-03-10T12:10:58+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,7 +17,7 @@
       <pubDate>2025-03-05T09:30:11+00:00</pubDate>
       
       <guid>//crunch.io/dev/features/expand-dashboard-tiles/</guid>
-      <labsOnly>true</labsOnly>
+      <labsOnly>false</labsOnly>
       <noProfiles>true</noProfiles>
       <pinned>false</pinned>
       <description>Dive deeper into your data with a distraction-free view on your dashboard. Click here to learn more.</description>
@@ -31,7 +31,7 @@
 &lt;/figure&gt;
 
 &lt;h2 id=&#34;try-it-out-today&#34;&gt;Try it out today&lt;/h2&gt;
-&lt;p&gt;This feature is currently in &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access&#34;&gt;Early Access&lt;/a&gt;. For full details of this new feature, see the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/34267419053197-Viewing-a-dashboard&#34;&gt;help center&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For full details of this new feature, see the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/34267419053197-Viewing-a-dashboard&#34;&gt;help center&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;your-feedback-matters&#34;&gt;Your feedback matters&lt;/h2&gt;
 &lt;p&gt;As always, we’re eager to hear what you think about these enhancements. Feel free to contact &lt;a href=&#34;mailto:support@crunch.io&#34;&gt;support@crunch.io&lt;/a&gt; with questions or feedback.&lt;/p&gt;
 </content:encoded>
