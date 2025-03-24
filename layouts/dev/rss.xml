@@ -22,6 +22,7 @@
       <guid>{{ .Permalink }}</guid>
       <labsOnly>{{ .Params.labs_only | default false}}</labsOnly>
       <noProfiles>{{ .Params.no_profiles | default false}}</noProfiles>
+      <noYougov>{{ .Params.no_yougov | default false}}</noYougov>
       <pinned>{{ .Params.pinned | default false}}</pinned>
       <description>{{ .Params.news_description | default .Description | emojify | html }}</description>
       <content:encoded>{{ .Content | emojify | html }}</content:encoded>
