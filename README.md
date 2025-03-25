@@ -50,9 +50,10 @@ A version-controlled copy of our zendesk (help center) theme is located in folde
 We want to show different announcement feeds to different users. To do this, we define audience scope limiters as boolean front matter variables. The default for all is `false`, meaning do not restrict showing the post. Currently used variables are:
 
 * labs_only: if `true`, only show to labs users
-* no_profiles: if `true`, show everywhere but profiles.crunch.io
+* no_profiles: if `true`, show everywhere but users of profiles at yougov.crunch.io
+* no_yougov: if `true`, show everywhere but yougov.crunch.io
 
-These combine logically: if both `labs_only` and `no_profiles` are `true`, the news item will only be shown to labs users not at profiles; profiles labs users won't see the announcement.
+These combine logically: if `labs_only`, `no_profiles` and `no_yougov` are `true`, the news item will only be shown to labs users not at profiles or yougov; profiles and yougov labs users won't see the announcement.
 
 Note that this will not affect what is shown on the feature blog: all posts will appear there. The blog website does not know who is logged into the web app or what role they may have there. These flags only govern who is shown what announcements in the app.
 
@@ -128,5 +129,3 @@ news_description = "Decks can now be downloaded directly to PowerPoint. Click he
 date = "2018-09-25T10:20:47-04:00"
 +++
 ```
-
-
