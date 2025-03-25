@@ -1,6 +1,6 @@
 +++
-date = "2025-03-24T11:38:19Z"
-publishdate = "2025-03-24T11:38:19Z"
+date = "2025-03-25T11:36:22Z"
+publishdate = "2025-03-25T11:36:22Z"
 draft = false
 title = "Introducing Crunch AI-powered Search"
 news_description = "Crunch now has an AI-powered variable search to help you explore data faster. Click here to learn more."
