@@ -32,7 +32,7 @@ On any Crunch dashboard, find a tab and click Edit. Click the + menu and select 
 
 {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/ai-summary-tile-03.png" width=200 class="img-fluid">}}
 
-A new dashboard tile will be created at the top of your dashboard. Click the “Generate summary” button to generate an AI summary of the dashboard tab. Press Done to save changes to your dashboard.
+A new dashboard tile will be created at the top of your dashboard. Click the “Generate summary” button to generate an AI summary of the dashboard tab.
 
 {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/ai-summary-tile-04.png" width=700 class="img-fluid">}}
 
