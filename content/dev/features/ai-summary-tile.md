@@ -1,6 +1,6 @@
 +++
-date = "2025-05-09T10:28:00+01:00"
-publishdate = "2025-05-09T10:28:00+01:00"
+date = "2025-05-12T13:33:46+01:00"
+publishdate = "2025-05-12T13:33:46+01:00"
 draft = false
 title = "The era of AI-powered dashboard intelligence has arrived"
 news_description = "Leverage AI to summarize your dashboard’s content. Making it easier than ever to find and communicate the story in the data. Click here to learn more."
