@@ -1,6 +1,6 @@
 +++
-date = "2025-05-28T16:58:27+01:00"
-publishdate = "2025-05-28T16:58:27+01:00"
+date = "2025-05-29T13:58:27+01:00"
+publishdate = "2025-05-29T13:58:27+01:00"
 draft = false
 title = "A new look for folders in Crunch"
 news_description = "We’ve redesigned the folder experience to make it more intuitive, efficient, and visually appealing. Click here to learn more."
@@ -11,7 +11,7 @@ categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
 labs_only = true
 no_profiles = true
-no_yougov = true
+no_yougov = false
 series = "main"
 
 +++
