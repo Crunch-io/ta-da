@@ -1,6 +1,6 @@
 +++
-date = "2025-06-04T13:58:27+01:00"
-publishdate = "2025-06-04T13:58:27+01:00"
+date = "2025-06-05T09:58:27+01:00"
+publishdate = "2025-06-05T09:58:27+01:00"
 draft = false
 title = "A new look for folders in Crunch"
 news_description = "We’ve redesigned the folder experience to make it more intuitive, efficient, and visually appealing. Click here to learn more."
@@ -18,7 +18,7 @@ series = "main"
 
 The refreshed folder view offers a cleaner, more modern interface that makes it easier to navigate and manage your datasets, documents, and subfolders. This streamlined experience helps you stay focused and in control, even as your content grows.
 
-{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/folders-crunch-2025-01.png" width=700 class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/folders-wide-access-01.png" width=700 class="img-fluid">}}
 
 
 - **Fresh look & feel** - A modern, streamlined design that makes navigating your folders easier than ever.
