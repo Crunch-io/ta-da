@@ -1,6 +1,6 @@
 +++
-date = "2025-06-05T09:58:27+01:00"
-publishdate = "2025-06-05T09:58:27+01:00"
+date = "2025-06-09T09:58:27+01:00"
+publishdate = "2025-06-09T09:58:27+01:00"
 draft = false
 title = "A new look for folders in Crunch"
 news_description = "We’ve redesigned the folder experience to make it more intuitive, efficient, and visually appealing. Click here to learn more."
