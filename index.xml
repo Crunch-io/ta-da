@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Jun 2025 09:58:27 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 22 Jul 2025 10:00:00 -0700</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -644,6 +644,13 @@
       <pubDate>Thu, 20 Feb 2025 14:00:00 +0000</pubDate>
       <guid>//crunch.io/jobs/software-engineer-python-data-platform/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Reports to&lt;/strong&gt;: Engineering Manager&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Work location&lt;/strong&gt;: Italy, Poland, Romania, Spain (Remote)&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Direct reports&lt;/strong&gt;: 0&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;About YouGov&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;YouGov is a global online research company, offering insight into what the world thinks.&lt;/p&gt;&#xA;&lt;p&gt;We speak daily to our panel of over 24 million registered members to understand opinion and behaviors around the world. We have a strong reputation as a source of accurate data and we’re trusted by the world’s biggest brands to get it right, making us the most quoted market research source in the world.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release 2025.04</title>
+      <link>//crunch.io/release-notes/2025-07-22/</link>
+      <pubDate>Tue, 22 Jul 2025 10:00:00 -0700</pubDate>
+      <guid>//crunch.io/release-notes/2025-07-22/</guid>
+      <description>&lt;h3 id=&#34;crunch-web-application&#34;&gt;&lt;strong&gt;Crunch web application&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Updated the look of folders in Crunch, which introduces new icons and a filter/card view to make it easier to navigate and manage your data. See the &lt;a href=&#34;https://crunch.io/dev/features/new-folders/&#34;&gt;feature announcement&lt;/a&gt; and &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/36874774287885-Folders-in-Crunch&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;&#xA;&lt;li&gt;Made the following UI improvements:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Updated the folder sidebar.&lt;/li&gt;&#xA;&lt;li&gt;Added a new icon and menu for &lt;em&gt;What’s new&lt;/em&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Replaced the account three-dot menu with two new menus:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360038709152-Getting-support&#34;&gt;Help &amp;amp; support menu&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/20213533659405-Adding-a-user-in-the-Manage-users-panel&#34;&gt;User menu&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;developer-documentation&#34;&gt;&lt;strong&gt;Developer documentation&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Added the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/37946583879693-Crunch-Lakehouse-Developer-Guide&#34;&gt;Crunch Lakehouse Developer Guide&lt;/a&gt; to the help center, which describes in detail how to use the Lakehouse to ingest survey data into Crunch.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
     <item>
       <title>Release 2025.03</title>
