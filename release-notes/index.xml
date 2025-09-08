@@ -8,6 +8,43 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2025.05</title>
+      <link>//crunch.io/release-notes/2025-09-08/</link>
+      <pubDate>Mon, 08 Sep 2025 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2025-09-08/</guid>
+      <description>&lt;h3 id=&#34;crunch-web-application&#34;&gt;&lt;strong&gt;Crunch web application&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Made the following UI improvements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated breadcrumbs and menus on datasets, dashboards, and folders.&lt;/li&gt;
+&lt;li&gt;Added a new default Crunch logo.&lt;/li&gt;
+&lt;li&gt;Moved and updated the lock icon on datasets.&lt;/li&gt;
+&lt;li&gt;Updated the UI for navigating between Variable summaries, Tables &amp;amp; graphs, and Multitables modes.&lt;/li&gt;
+&lt;li&gt;Updated the cards on the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/33367288303629-The-Crunch-homepage&#34;&gt;Crunch homepage&lt;/a&gt; to match cards in folders.&lt;/li&gt;
+&lt;li&gt;Refreshed dashboard tile appearance, including bringing key options &lt;strong&gt;Expand&lt;/strong&gt; and &lt;strong&gt;Edit tile&lt;/strong&gt; to the forefront.&lt;/li&gt;
+&lt;li&gt;Updated dashboard Export UI.&lt;/li&gt;
+&lt;li&gt;Refreshed dashboard filter groups UI.&lt;/li&gt;
+&lt;li&gt;Updated the &lt;strong&gt;Edit script&lt;/strong&gt; UI for dashboards.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Added a new &lt;strong&gt;Organize my variables&lt;/strong&gt; option, which lets a user delete one or more of their personal variables including &lt;em&gt;broken&lt;/em&gt; variables. This had previously been impossible to delete.&lt;/p&gt;</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;&lt;strong&gt;Crunch web application&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Made the following UI improvements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated breadcrumbs and menus on datasets, dashboards, and folders.&lt;/li&gt;
+&lt;li&gt;Added a new default Crunch logo.&lt;/li&gt;
+&lt;li&gt;Moved and updated the lock icon on datasets.&lt;/li&gt;
+&lt;li&gt;Updated the UI for navigating between Variable summaries, Tables &amp;amp; graphs, and Multitables modes.&lt;/li&gt;
+&lt;li&gt;Updated the cards on the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/33367288303629-The-Crunch-homepage&#34;&gt;Crunch homepage&lt;/a&gt; to match cards in folders.&lt;/li&gt;
+&lt;li&gt;Refreshed dashboard tile appearance, including bringing key options &lt;strong&gt;Expand&lt;/strong&gt; and &lt;strong&gt;Edit tile&lt;/strong&gt; to the forefront.&lt;/li&gt;
+&lt;li&gt;Updated dashboard Export UI.&lt;/li&gt;
+&lt;li&gt;Refreshed dashboard filter groups UI.&lt;/li&gt;
+&lt;li&gt;Updated the &lt;strong&gt;Edit script&lt;/strong&gt; UI for dashboards.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Added a new &lt;strong&gt;Organize my variables&lt;/strong&gt; option, which lets a user delete one or more of their personal variables including &lt;em&gt;broken&lt;/em&gt; variables. This had previously been impossible to delete.&lt;/p&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2025.04</title>
       <link>//crunch.io/release-notes/2025-07-22/</link>
       <pubDate>Tue, 22 Jul 2025 10:00:00 -0700</pubDate>

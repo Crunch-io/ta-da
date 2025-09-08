@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Jul 2025 10:00:00 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 08 Sep 2025 10:00:00 -0700</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -644,6 +644,13 @@
       <pubDate>Thu, 20 Feb 2025 14:00:00 +0000</pubDate>
       <guid>//crunch.io/jobs/software-engineer-python-data-platform/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Reports to&lt;/strong&gt;: Engineering Manager&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Work location&lt;/strong&gt;: Italy, Poland, Romania, Spain (Remote)&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Direct reports&lt;/strong&gt;: 0&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;About YouGov&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;YouGov is a global online research company, offering insight into what the world thinks.&lt;/p&gt;&#xA;&lt;p&gt;We speak daily to our panel of over 24 million registered members to understand opinion and behaviors around the world. We have a strong reputation as a source of accurate data and we’re trusted by the world’s biggest brands to get it right, making us the most quoted market research source in the world.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release 2025.05</title>
+      <link>//crunch.io/release-notes/2025-09-08/</link>
+      <pubDate>Mon, 08 Sep 2025 10:00:00 -0700</pubDate>
+      <guid>//crunch.io/release-notes/2025-09-08/</guid>
+      <description>&lt;h3 id=&#34;crunch-web-application&#34;&gt;&lt;strong&gt;Crunch web application&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;p&gt;Made the following UI improvements:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Updated breadcrumbs and menus on datasets, dashboards, and folders.&lt;/li&gt;&#xA;&lt;li&gt;Added a new default Crunch logo.&lt;/li&gt;&#xA;&lt;li&gt;Moved and updated the lock icon on datasets.&lt;/li&gt;&#xA;&lt;li&gt;Updated the UI for navigating between Variable summaries, Tables &amp;amp; graphs, and Multitables modes.&lt;/li&gt;&#xA;&lt;li&gt;Updated the cards on the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/33367288303629-The-Crunch-homepage&#34;&gt;Crunch homepage&lt;/a&gt; to match cards in folders.&lt;/li&gt;&#xA;&lt;li&gt;Refreshed dashboard tile appearance, including bringing key options &lt;strong&gt;Expand&lt;/strong&gt; and &lt;strong&gt;Edit tile&lt;/strong&gt; to the forefront.&lt;/li&gt;&#xA;&lt;li&gt;Updated dashboard Export UI.&lt;/li&gt;&#xA;&lt;li&gt;Refreshed dashboard filter groups UI.&lt;/li&gt;&#xA;&lt;li&gt;Updated the &lt;strong&gt;Edit script&lt;/strong&gt; UI for dashboards.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Added a new &lt;strong&gt;Organize my variables&lt;/strong&gt; option, which lets a user delete one or more of their personal variables including &lt;em&gt;broken&lt;/em&gt; variables. This had previously been impossible to delete.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Release 2025.04</title>
