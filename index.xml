@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Sep 2025 15:53:10 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 28 Oct 2025 10:00:00 -0700</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -644,6 +644,13 @@
       <pubDate>Thu, 20 Feb 2025 14:00:00 +0000</pubDate>
       <guid>//crunch.io/jobs/software-engineer-python-data-platform/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Reports to&lt;/strong&gt;: Engineering Manager&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Work location&lt;/strong&gt;: Italy, Poland, Romania, Spain (Remote)&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Direct reports&lt;/strong&gt;: 0&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;About YouGov&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;YouGov is a global online research company, offering insight into what the world thinks.&lt;/p&gt;&#xA;&lt;p&gt;We speak daily to our panel of over 24 million registered members to understand opinion and behaviors around the world. We have a strong reputation as a source of accurate data and we’re trusted by the world’s biggest brands to get it right, making us the most quoted market research source in the world.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release 2025.06</title>
+      <link>//crunch.io/release-notes/2025-10-28/</link>
+      <pubDate>Tue, 28 Oct 2025 10:00:00 -0700</pubDate>
+      <guid>//crunch.io/release-notes/2025-10-28/</guid>
+      <description>&lt;h3 id=&#34;crunch-web-application&#34;&gt;&lt;strong&gt;Crunch web application&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;p&gt;Made a change to the dataset edit experience. The previous “edit mode” (unlocked icon) became schema edit mode. Changes include:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;When an editor unlocks a dataset (becomes the current editor), they will enter schema edit mode.&lt;/li&gt;&#xA;&lt;li&gt;In schema edit mode, editors can continue to update the dataset schema, build public variables in the UI and run Crunch Automation Scripts.&lt;/li&gt;&#xA;&lt;li&gt;In schema edit mode, access to personal variables (”My Variables” folder) is disabled (grayed out). To view personal variables, the editor will need to lock the dataset. To promote a personal variable to a public variable, the dataset must also be locked first.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Added a fix to prevent Crunch logo from showing before branded logo.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Release 2025.05</title>
