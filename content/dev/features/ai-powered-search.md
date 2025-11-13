@@ -1,6 +1,6 @@
 +++
-date = "2025-11-12T18:48:17Z"
-publishdate = "2025-11-12T18:48:17Z"
+date = "2025-11-13T11:47:40Z"
+publishdate = "2025-11-13T11:47:40Z"
 draft = false
 title = "New & improved search in Crunch "
 news_description = "Smarter AI-powered search, document discovery, and a clean new look – all built to help you find what you need, faste. Click here to learn more."
