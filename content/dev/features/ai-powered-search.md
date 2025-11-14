@@ -1,10 +1,10 @@
 +++
-date = "2025-11-13T11:47:40Z"
-publishdate = "2025-11-13T11:47:40Z"
+date = "2025-11-14T10:41:02Z"
+publishdate = "2025-11-14T10:41:02Z"
 draft = false
-title = "New & improved search in Crunch "
-news_description = "Smarter AI-powered search, document discovery, and a clean new look – all built to help you find what you need, faste. Click here to learn more."
-description = "Smarter AI-powered search, document discovery, and a clean new look – all built to help you find what you need, faster."
+title = "New and improved search in Crunch"
+news_description = "Smarter AI-powered search, document discovery, and a clean new look. All built to help you find what you need, fast. Click here to learn more."
+description = "Smarter AI-powered search, document discovery, and a clean new look. All built to help you find what you need, faster."
 weight = 20
 tags = ["search", "datasets"]
 categories = ["feature"]
@@ -16,13 +16,13 @@ series = "main"
 
 +++
 
-We’ve upgraded your search experience! Our new AI-powered search lets you ask questions in natural language – no more guessing the perfect keyword. Now you can instantly find results traditional search might miss.
+We've upgraded your search experience! Our new AI-powered search lets you ask questions in natural language, no more guessing the perfect keyword. Now you can instantly find results traditional search might miss.
 
-## What’s new
+## What's new
 
 - **AI search:** Understands your intent, not just your words
 - **Document search (New!):** Quickly find and explore your documents right from within Crunch
-- **Clean, modern UI:** Easier to browse and find what you’re looking for
+- **Clean, modern UI:** Easier to browse and find what you're looking for
 - **Open in new tab:** Keep your workflow seamless while exploring insights
 
 Explore smarter search today, and uncover insights faster than ever.
@@ -33,7 +33,7 @@ Try out your new search experience by clicking the AI beta toggle in the search 
 
 {{<figure src="https://player-crunch-io.s3.us-east-1.amazonaws.com/help-crunch-io/screenshots/ai-search-box-beta-nov-2025.png" width=410 class="img-fluid">}}
 
-Type your search query and press enter to see your results using AI search. You can filter for  Variables, Datasets or Documents.
+Type your search query and press enter to see your results using AI search. You can filter for Variables, Datasets or Documents.
 
 {{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/ai-search-nov-2025-05.png" width=600 class="img-fluid">}}
 
@@ -49,4 +49,4 @@ This feature is currently in [early access](https://help.crunch.io/hc/en-us/arti
 
 ## Your feedback matters
 
-As always, we’re constantly evolving our products to make your job easier, and eager to hear what you think about our latest enhancements. For questions or feedback, please contact support@crunch.io.
+As always, we're constantly evolving our products to make your job easier, and eager to hear what you think about our latest enhancements. For questions or feedback, please contact support@crunch.io.
