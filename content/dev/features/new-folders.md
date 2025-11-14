@@ -3,8 +3,8 @@ date = "2025-06-09T09:58:27+01:00"
 publishdate = "2025-06-09T09:58:27+01:00"
 draft = false
 title = "A new look for folders in Crunch"
-news_description = "We’ve redesigned the folder experience to make it more intuitive, efficient, and visually appealing. Click here to learn more."
-description = "We’ve redesigned the folder experience to make it more intuitive, efficient, and visually appealing."
+news_description = "We've redesigned the folder experience to make it more intuitive, efficient, and visually appealing. Click here to learn more."
+description = "We've redesigned the folder experience to make it more intuitive, efficient, and visually appealing."
 weight = 20
 tags = ["folder", "datasets"]
 categories = ["feature"]
@@ -12,7 +12,6 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 labs_only = false
 no_profiles = true
 no_yougov = false
-series = "main"
 
 +++
 
@@ -43,4 +42,4 @@ For full details of this new feature, see the [help center](https://help.crunch.
 
 ## Your feedback matters
 
-As always, we’re eager to hear what you think about these enhancements. Feel free to contact support@crunch.io with questions or feedback.
+As always, we're eager to hear what you think about these enhancements. Feel free to contact support@crunch.io with questions or feedback.
