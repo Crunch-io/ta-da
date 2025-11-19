@@ -1,6 +1,6 @@
 +++
-date = "2025-11-14T10:41:02Z"
-publishdate = "2025-11-14T10:41:02Z"
+date = "2025-11-19T09:46:04Z"
+publishdate = "2025-11-19T09:46:04Z"
 draft = false
 title = "New and improved search in Crunch"
 news_description = "Smarter AI-powered search, document discovery, and a clean new look. All built to help you find what you need, fast. Click here to learn more."
@@ -9,7 +9,7 @@ weight = 20
 tags = ["search", "datasets"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 no_yougov = false
 series = "main"
@@ -45,7 +45,7 @@ You can click on the search result to open the result in the same window, or cli
 
 ## Try it out today
 
-This feature is currently in [early access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access). For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/40867072211469-AI-Powered-Search-in-Crunch).
+For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/40867072211469-AI-Powered-Search-in-Crunch).
 
 ## Your feedback matters
 
