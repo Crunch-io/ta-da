@@ -9,7 +9,7 @@ weight = 20
 tags = ["dashboard", "draft"]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
-labs_only = true
+labs_only = false
 no_profiles = true
 no_yougov = false
 series = "main"
@@ -51,7 +51,7 @@ Add content to your dashboard and make it perfect. When you're ready, you can ea
 
 ## Try it out today
 
-This feature is currently in [early access](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access). For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/9414063249549-How-to-create-a-dashboard).
+For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/9414063249549-How-to-create-a-dashboard).
 
 ## Your feedback matters
 
