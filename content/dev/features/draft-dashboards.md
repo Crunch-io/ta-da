@@ -1,6 +1,6 @@
 +++
-date = "2025-12-02T10:12:20Z"
-publishdate = "2025-12-02T10:12:20Z"
+date = "2025-12-10T10:12:20Z"
+publishdate = "2025-12-10T10:12:20Z"
 draft = false
 title = "Dashboards for everyone"
 news_description = "NEW: Create, customize, & share dashboards, your way."
