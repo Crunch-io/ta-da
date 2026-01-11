@@ -9,9 +9,13 @@ _inputs:
   date:
     type: date
     instance_value: NOW
+    options:
+      timezone: Etc/UTC
   publishdate:
     type: date
     comment: If left empty, it doesn't show in the feature's idnex.
+    options:
+      timezone: Etc/UTC
   description:
     type: textarea
     comment: Shown on the blog post and index pages. Plain text only.
@@ -37,6 +41,12 @@ collections_config:
     icon: new_releases
     name: Feature Announcements
     parser: toml
+    preview:
+      gallery:
+        fit: cover
+        icon: new_releases
+    display:
+      list: true
     sort:
       key: date
       order: desc
