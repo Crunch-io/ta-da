@@ -38,6 +38,7 @@ collections_config:
       key: date
       order: desc
     subtext_key: description
+    date_key: date
     filter:
       exclude:
         - _index.md
