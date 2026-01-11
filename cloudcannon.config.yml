@@ -7,12 +7,12 @@ timezone: Europe/London
 
 _inputs:
   date:
-    type: date
+    type: datetime
     instance_value: NOW
     options:
       timezone: Etc/UTC
   publishdate:
-    type: date
+    type: datetime
     comment: If left empty, it doesn't show in the feature's idnex.
     options:
       timezone: Etc/UTC
@@ -34,6 +34,8 @@ _inputs:
     type: array
     options:
       empty_type: string
+  weight:
+    hidden: true
 
 collections_config:
   features:
@@ -41,20 +43,11 @@ collections_config:
     icon: new_releases
     name: Feature Announcements
     parser: toml
-    preview:
-      gallery:
-        fit: cover
-        icon: new_releases
     display:
       list: true
     sort:
       key: date
       order: desc
-    sort_options:
-      - key: date
-        order: desc
-        label: Date (newest first)
-    sortable: false
     subtext_key: description
     date_key: date
     filter:
