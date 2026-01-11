@@ -42,7 +42,6 @@ collections_config:
     path: content/dev/features
     icon: new_releases
     name: Feature Announcements
-    parser: toml
     display:
       list: true
     sort:
@@ -58,7 +57,7 @@ collections_config:
       - data
     add_options:
       - name: Add Feature
-        schema: feature
+        schema: feature_yaml
     schemas:
-      feature:
-        path: .cloudcannon/schemas/feature.md
+      feature_yaml:
+        path: .cloudcannon/schemas/feature.yaml.md
