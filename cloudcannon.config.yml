@@ -9,6 +9,9 @@ _inputs:
   date:
     type: datetime
     instance_value: NOW
+  publishdate:
+    type: datetime
+    instance_value: NOW
   description:
     type: textarea
     comment: Shown on the blog post and index pages. Plain text only.
