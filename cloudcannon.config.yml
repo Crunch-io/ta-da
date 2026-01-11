@@ -1,6 +1,7 @@
 paths:
   static: static
   uploads: static/uploads
+  uploads_use_relative_path: true
   layouts: layouts
 
 timezone: Europe/London
