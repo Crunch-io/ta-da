@@ -1,6 +1,7 @@
 +++
 _schema = "feature"
-date = 2026-01-11T16:50:37.289Z
+date = 2026-01-11T16:50:00.000Z
+publishdate = 2026-01-11T16:50:00.000Z
 draft = false
 title = "Testing cloudcannon"
 description = ""
