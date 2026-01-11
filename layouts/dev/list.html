@@ -25,7 +25,7 @@
                 </div> <!-- /.jumbotron -->
 
                 <div class="container resources-main">
-                  {{ range where .Pages "Params.series" "main" }}
+                  {{ range first 1 .Pages.ByPublishDate.Reverse }}
                   <div class="row" style="margin-top: -70px;">
                       <div class="col-md-8 post-card-main-content">
                           <div class="post-card post-min-height announcements-main" style="margin-bottom: 0;" onclick="location.href='{{ .Permalink }}'">
@@ -67,7 +67,7 @@
               <div class="container">
 
                   <div class="row">
-                      {{ range .Paginator.Pages.ByPublishDate.Reverse }}
+                      {{ range after 1 .Paginator.Pages.ByPublishDate.Reverse }}
                           <div class="col-md-6 col-lg-4" id="feature-post">
                               <div class="post-card post-min-height-sm" onclick="location.href='{{ .Permalink }}'">
                                   <div class="posts">
