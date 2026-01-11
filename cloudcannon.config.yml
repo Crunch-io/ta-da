@@ -109,3 +109,19 @@ collections_config:
   visualization:
     path: content/visualization
     icon: simulation
+  layouts:
+    path: layouts
+    output: false
+    icon: code
+    disable_add: true
+    disable_add_folder: true
+    _enabled_editors:
+      - source
+  partials:
+    path: layouts/partials
+    output: false
+    icon: code
+    disable_add: true
+    disable_add_folder: true
+    _enabled_editors:
+      - source
