@@ -11,4 +11,4 @@ icon_2 = "img/icons/careers-icon.svg"
 url_1 = "case-studies"
 url_2 = "jobs"
 +++
-Our mission is to empower insights teams and market researchers to collaborate in a secure, online environment with a simple, self-service interface to quickly analyze, visualize, and deliver survey data. Test
+Our mission is to empower insights teams and market researchers to collaborate in a secure, online environment with a simple, self-service interface to quickly analyze, visualize, and deliver survey data.
