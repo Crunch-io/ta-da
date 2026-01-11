@@ -115,6 +115,8 @@ collections_config:
     icon: code
     disable_add: true
     disable_add_folder: true
+    glob:
+      - "**/*.html"
     _enabled_editors:
       - source
   partials:
@@ -123,5 +125,7 @@ collections_config:
     icon: code
     disable_add: true
     disable_add_folder: true
+    glob:
+      - "*.html"
     _enabled_editors:
       - source
