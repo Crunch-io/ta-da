@@ -37,6 +37,10 @@ collections_config:
     sort:
       key: date
       order: desc
+    subtext_key: description
+    filter:
+      exclude:
+        - _index.md
     _enabled_editors:
       - content
       - data
