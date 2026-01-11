@@ -34,6 +34,9 @@ collections_config:
     icon: new_releases
     name: Feature Announcements
     parser: toml
+    sort:
+      key: date
+      order: desc
     _enabled_editors:
       - content
       - data
