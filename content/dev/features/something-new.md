@@ -2,7 +2,7 @@
 _schema = "feature_yaml"
 date = 2026-01-11T17:59:04.000Z
 publishdate = ""
-draft = false
+draft = true
 title = "Something new"
 description = "Something new"
 news_description = "Something new"
