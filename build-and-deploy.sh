@@ -18,7 +18,7 @@ build_site () {
     cd ${HOME}
     npm install --loglevel verbose
     npm run build:scss --loglevel verbose
-    hugo -v
+    hugo --logLevel info
 }
 
 if [ -z "${GITHUB_PULL_REQUEST}" ]; then
