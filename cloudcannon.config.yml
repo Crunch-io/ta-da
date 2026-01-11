@@ -6,6 +6,15 @@ paths:
 timezone: Europe/London
 
 _inputs:
+  date:
+    type: datetime
+    instance_value: NOW
+  description:
+    type: textarea
+    comment: Shown on the blog post and index pages. Plain text only.
+  news_description:
+    type: textarea
+    comment: Shown in the Crunch web app's "What's new" notification panel (via RSS feed). Supports HTML. Typically a "click here to learn more" call-to-action style message.
   tags:
     type: array
     options:
