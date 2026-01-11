@@ -37,6 +37,11 @@ collections_config:
     sort:
       key: date
       order: desc
+    sort_options:
+      - key: date
+        order: desc
+        label: Date (newest first)
+    disable_sort: true
     subtext_key: description
     date_key: date
     filter:
