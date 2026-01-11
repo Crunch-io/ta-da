@@ -5,6 +5,20 @@ paths:
 
 timezone: Europe/London
 
+_inputs:
+  tags:
+    type: array
+    options:
+      empty_type: string
+  categories:
+    type: array
+    options:
+      empty_type: string
+  images:
+    type: array
+    options:
+      empty_type: string
+
 collections_config:
   features:
     path: content/dev/features
