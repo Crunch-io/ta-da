@@ -2,7 +2,7 @@
 _schema: feature_yaml
 date: 2026-01-11T17:30:00Z
 publishdate: 2026-01-11T17:30:00Z
-draft: false
+draft: true
 title: Testing cloud cannon
 description: Testing cloud cannon description
 news_description: 'Testing cloud cannon NEWS description '
