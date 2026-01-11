@@ -1,7 +1,7 @@
 +++
 date = ""
 publishdate = ""
-draft = false
+draft = true
 title = ""
 description = ""
 news_description = ""
@@ -10,7 +10,7 @@ tags = [""]
 categories = ["feature"]
 images = ["https://crunch.io/img/logo-1200x630.png"]
 labs_only = false
-no_profiles = false
-no_yougov = false
+no_profiles = true
+no_yougov = true
 +++
 
