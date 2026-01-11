@@ -11,11 +11,6 @@ _inputs:
     instance_value: NOW
     options:
       timezone: Etc/UTC
-  publishdate:
-    type: datetime
-    comment: If left empty, it doesn't show in the feature's idnex.
-    options:
-      timezone: Etc/UTC
   description:
     type: textarea
     comment: Shown on the blog post and index pages. Plain text only.
