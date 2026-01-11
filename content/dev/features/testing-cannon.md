@@ -1,7 +1,7 @@
 +++
 _schema = "feature"
 date = 2026-01-11T17:15:22.505Z
-publishdate = ""
+publishdate = 2026-01-11T17:15:00.000Z
 draft = false
 title = "Testing cannon"
 description = "Testing cannon"
