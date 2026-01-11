@@ -1,0 +1,111 @@
+paths:
+  static: static
+  uploads: static/uploads
+timezone: Europe/Lisbon
+markdown:
+  engine: commonmark
+  options:
+    gfm: true
+    linkify: false
+    table: false
+    strikethrough: false
+    subscript: false
+    superscript: false
+    heading_ids: false
+    breaks: false
+    xhtml: false
+    attributes: false
+    typographer: false
+    treat_indentation_as_code: true
+_snippets_imports:
+  hugo:
+    exclude:
+      - hugo_instagram
+collections_config:
+  about:
+    path: content/about
+    icon: bolt
+  api:
+    path: content/api
+    icon: api
+  automation:
+    path: content/automation
+    icon: automation
+  blog:
+    path: content/blog
+    icon: event_available
+  blog_automation:
+    path: content/blog/automation
+    icon: automation
+  case_studies:
+    path: content/case-studies
+    icon: amp_stories
+  contact:
+    path: content/contact
+    icon: contacts
+  crunchbox:
+    path: content/crunchbox
+    icon: account_box
+  dashboards:
+    path: content/dashboards
+    icon: dashboard
+  dev:
+    path: content/dev
+    icon: bed
+  diy:
+    path: content/diy
+    icon: dry
+  documents:
+    path: content/documents
+    icon: comment
+  for_insights_teams:
+    path: content/for-insights-teams
+    icon: flight_class
+  jobs:
+    path: content/jobs
+    icon: docs
+  knowledge_base:
+    path: content/knowledge-base
+    icon: comedy_mask
+  knowledgehound_acquisition_faqs:
+    path: content/knowledgehound-acquisition-faqs
+    icon: indeterminate_question_box
+  market_researchers:
+    path: content/market-researchers
+    icon: lab_research
+  marketing:
+    path: content/marketing
+    icon: margin
+  powerful_survey_analytics:
+    path: content/powerful-survey-analytics
+    icon: sports_gymnastics
+  product:
+    path: content/product
+    icon: group
+  profiles:
+    path: content/profiles
+    icon: files
+  r:
+    path: content/r
+    icon: 1k
+  release_notes:
+    path: content/release-notes
+    icon: release_alert
+  request_demo:
+    path: content/request-demo
+    icon: request_page
+  request_demo_email:
+    path: content/request-demo-email
+    icon: request_quote
+  search:
+    path: content/search
+    icon: search
+  team:
+    path: content/team
+    icon: tram
+  tracker_analytics:
+    path: content/tracker-analytics
+    icon: analytics
+  visualization:
+    path: content/visualization
+    icon: simulation
