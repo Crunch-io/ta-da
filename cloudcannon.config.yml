@@ -31,6 +31,8 @@ _inputs:
       empty_type: string
   weight:
     hidden: true
+  publishdate:
+    hidden: true
 
 collections_config:
   features:
@@ -55,4 +57,4 @@ collections_config:
         schema: feature_yaml
     schemas:
       feature_yaml:
-        path: .cloudcannon/schemas/feature.yaml.md
+        path: .cloudcannon/schemas/feature.md
