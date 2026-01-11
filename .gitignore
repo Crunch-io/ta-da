@@ -1,4 +1,6 @@
 static/css/
+public/*
+!public/favicon.ico
 *.orig
 .DS_Store
 node_modules/
