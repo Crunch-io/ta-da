@@ -17,3 +17,5 @@ no_yougov = true
 Something new
 
 Basic
+
+![](https://crunch.io/img/powerful_survey_analytics/tables_and_charts.svg)
