@@ -59,3 +59,4 @@ collections_config:
     schemas:
       feature_yaml:
         path: .cloudcannon/schemas/feature.md
+    default_schema: feature_yaml
