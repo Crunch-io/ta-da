@@ -1,9 +1,9 @@
 +++
 _schema = "feature_yaml"
-date = 2025-12-10T17:59:00.000Z
+date = 2026-01-20T12:10:06.204Z
 publishdate = ""
 draft = false
-title = "Dashboards for everyone"
+title = "Dashboards for everyone NEWISH"
 description = "NEW: Create, customize, & share dashboards, your way."
 news_description = "NEW: Create, customize, & share dashboards, your way."
 weight = 20
