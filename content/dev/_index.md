@@ -9,8 +9,3 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 +++
 
 * [New feature announcements](./dev/features): Check here for what's new and exciting at Crunch
-<<<<<<< HEAD
-
-[comment]: <> (* [The dev blog]&#40;./dev/blog&#41;: Stories from the dev team about how we do things at Crunch)
-=======
->>>>>>> update-resources-page-176770927

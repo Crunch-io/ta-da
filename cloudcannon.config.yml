@@ -1,0 +1,62 @@
+paths:
+  static: static
+  uploads: static/uploads
+  uploads_use_relative_path: true
+  layouts: layouts
+
+timezone: Europe/London
+
+_inputs:
+  date:
+    type: datetime
+    instance_value: NOW
+    options:
+      timezone: Etc/UTC
+  description:
+    type: textarea
+    comment: Shown on the blog post and index pages. Plain text only.
+  news_description:
+    type: textarea
+    comment: Shown in the Crunch web app's "What's new" notification panel (via RSS feed). Supports HTML. Typically a "click here to learn more" call-to-action style message.
+  tags:
+    type: array
+    options:
+      empty_type: string
+  categories:
+    type: array
+    options:
+      empty_type: string
+  images:
+    type: array
+    options:
+      empty_type: string
+  weight:
+    hidden: true
+  publishdate:
+    hidden: true
+
+collections_config:
+  features:
+    path: content/dev/features
+    icon: new_releases
+    name: Feature Announcements
+    display:
+      list: true
+    sort:
+      key: date
+      order: desc
+    subtext_key: description
+    date_key: date
+    filter:
+      exclude:
+        - _index.md
+    _enabled_editors:
+      - content
+      - data
+    add_options:
+      - name: Add Feature
+        schema: feature_yaml
+    schemas:
+      feature_yaml:
+        path: .cloudcannon/schemas/feature.md
+    default_schema: feature_yaml
