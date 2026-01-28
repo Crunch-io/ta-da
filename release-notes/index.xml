@@ -8,6 +8,55 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2026.01</title>
+      <link>//crunch.io/release-notes/2026-01-28/</link>
+      <pubDate>Wed, 28 Jan 2026 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2026-01-28/</guid>
+      <description>&lt;h3 id=&#34;crunch-web-application&#34;&gt;&lt;strong&gt;Crunch web application&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Updated the UI for the variable folder tree:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;New search results by variable folder option. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/33552869343117-AI-Powered-Variable-Search&#34;&gt;AI-Powered Variable Search&lt;/a&gt; helpdesk article to learn more (&lt;em&gt;early access&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;More intuitive feedback form for search results.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Added support for AI-powered search to allow users to search for exact keywords only.  See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/40867072211469-AI-Powered-Search-in-Crunch&#34;&gt;AI-Powered Search in Crunch&lt;/a&gt; article to learn more.&lt;/p&gt;
+&lt;p&gt;Added a new &lt;em&gt;&lt;strong&gt;All&lt;/strong&gt;&lt;/em&gt; tab to give users the ability to search for variables, datasets, and documents in the same place. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/40867072211469-AI-Powered-Search-in-Crunch&#34;&gt;AI-Powered Search in Crunch&lt;/a&gt; helpdesk article to learn more.&lt;/p&gt;</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;&lt;strong&gt;Crunch web application&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Updated the UI for the variable folder tree:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;New search results by variable folder option. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/33552869343117-AI-Powered-Variable-Search&#34;&gt;AI-Powered Variable Search&lt;/a&gt; helpdesk article to learn more (&lt;em&gt;early access&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;More intuitive feedback form for search results.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Added support for AI-powered search to allow users to search for exact keywords only.  See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/40867072211469-AI-Powered-Search-in-Crunch&#34;&gt;AI-Powered Search in Crunch&lt;/a&gt; article to learn more.&lt;/p&gt;
+&lt;p&gt;Added a new &lt;em&gt;&lt;strong&gt;All&lt;/strong&gt;&lt;/em&gt; tab to give users the ability to search for variables, datasets, and documents in the same place. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/40867072211469-AI-Powered-Search-in-Crunch&#34;&gt;AI-Powered Search in Crunch&lt;/a&gt; helpdesk article to learn more.&lt;/p&gt;
+&lt;p&gt;Introduced a more flexible way to create dashboards. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/9414063249549-How-to-create-a-dashboard&#34;&gt;How to create a dashboard&lt;/a&gt; helpdesk article to learn more (&lt;em&gt;now in wide access&lt;/em&gt;).&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Viewers can now create dashboards on any dataset. Viewers can share dashboards with other users on dataset views. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/4405522348301-Dataset-Views&#34;&gt;Dataset Views&lt;/a&gt; helpdesk article to learn more about views.&lt;/li&gt;
+&lt;li&gt;All users can create private draft dashboards that are only visible to them until shared.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;crunch-automation&#34;&gt;&lt;strong&gt;Crunch Automation&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/41678013893005-REORDER-AXES-command&#34;&gt;REORDER AXES command&lt;/a&gt;, which allows you to change the order of aliases within an array variable.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;lakehouse&#34;&gt;&lt;strong&gt;Lakehouse&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Lakehouse exports now support a new optional parameter &lt;code&gt;minimum_revision&lt;/code&gt; , which ensures the export contains data from recent updates that may be still replicating across the system.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://crunch.io/api/reference/#post-/datasources/export/&#34;&gt;Export directly from a datasource or dataset&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lakehouse exports now include public derived variables from the Crunch platform.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://crunch.io/api/reference/#post-/datasources/-datasource_id-/export_data&#34;&gt;Export a datasource&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lakehouse datasets now support variable folders. Variable folder information may be included during ingestion or in exports, and an API is available to retrieve the variable folders for a dataset.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://crunch.io/api/reference/#get-/datasources/-datasource_id-/folders/-version-/&#34;&gt;Get folders for a datasource version&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360040060112-Organizing-Variables&#34;&gt;Organizing variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://crunch.io/api/reference/#post-/datasources/-datasource_id-/import_data/&#34;&gt;Ingest data directly from cloud storage&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2025.07</title>
       <link>//crunch.io/release-notes/2025-12-02/</link>
       <pubDate>Tue, 02 Dec 2025 10:00:00 -0700</pubDate>
