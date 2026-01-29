@@ -42,4 +42,8 @@ Each row contains identifiers for the **row variable, column variables, counts, 
 
 &nbsp;
 
-Read the full API reference.
+Read the full developer guide with examples: [https://help.crunch.io/hc/en-us/articles/43012931204877-Tabulating-Data-on-the-Lakehouse]()
+
+Read the full API reference here \[TODO\]
+
+&nbsp;
