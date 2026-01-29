@@ -14,6 +14,8 @@ labs_only = false
 no_profiles = false
 no_yougov = false
 +++
+A new programmatic way to work with aggregated data.
+
 The Tabulation API provides a programmatic way to work with aggregated data directly, removing the need to process respondent-level data. Built for teams that need survey insights on their terms, this API feeds cross-tabulations directly into your dashboards, data warehouses, and reporting workflows.
 
 ## What is the Tabulation API?
