@@ -4,7 +4,7 @@ date = 2026-01-29T11:52:22.869Z
 publishdate = ""
 draft = false
 title = "Tabulation API"
-description = "The Tabulation API provides a programmatic way to work with aggregated data directly, removing the need to process respondent-level data. Built for teams that need survey insights on their terms, this API feeds cross-tabulations directly into your dashboards, data warehouses, and reporting workflows."
+description = "Turn survey data into pipeline-ready intelligence. The Tabulation API delivers aggregated cross-tabs directly to your warehouses and dashboards."
 news_description = "The Tabulation API provides a programmatic way to work with aggregated data directly, removing the need to process respondent-level data. Built for teams that need survey insights on their terms, this API feeds cross-tabulations directly into your dashboards, data warehouses, and reporting workflows."
 weight = 20
 tags = [ "" ]
@@ -14,8 +14,6 @@ labs_only = false
 no_profiles = false
 no_yougov = false
 +++
-A new programmatic way to work with aggregated data.
-
 The Tabulation API provides a programmatic way to work with aggregated data directly, removing the need to process respondent-level data. Built for teams that need survey insights on their terms, this API feeds cross-tabulations directly into your dashboards, data warehouses, and reporting workflows.
 
 ## What is the Tabulation API?
