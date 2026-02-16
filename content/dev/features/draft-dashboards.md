@@ -26,7 +26,7 @@ We're introducing a more flexible way to create dashboards. Work in private draf
 
 Open a dataset and click the deck/dashboard tray button:
 
-{{</p><p><figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/SD-configure-dataset-dashboard-01.png" width="286" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/SD-configure-dataset-dashboard-01.png" width="286" class="img-fluid">}}
 
 &nbsp;
 
@@ -34,7 +34,7 @@ Open a dataset and click the deck/dashboard tray button:
 
 Once the tray is open, click the tray's header bar to open the menu:
 
-{{</p><figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/SD-configure-dataset-dashboard-02.png" width="395" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/SD-configure-dataset-dashboard-02.png" width="395" class="img-fluid">}}
 
 &nbsp;
 
@@ -42,7 +42,7 @@ Once the tray is open, click the tray's header bar to open the menu:
 
 In the menu that appears, choose New dashboard…
 
-{{</p><figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/SD-configure-dataset-dashboard-03.png" width="385" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/SD-configure-dataset-dashboard-03.png" width="385" class="img-fluid">}}
 
 &nbsp;
 
@@ -50,7 +50,7 @@ In the menu that appears, choose New dashboard…
 
 Name your dashboard and choose 'Only me' to create a private draft dashboard, or 'All dataset users' to instantly share with everyone who has access to the dataset\*. Click 'Create'.
 
-{{</p><figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/set-width-dashboard-dec-2023.png" width="311" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/set-width-dashboard-dec-2023.png" width="311" class="img-fluid">}}
 
 &nbsp;
 
@@ -58,7 +58,7 @@ Name your dashboard and choose 'Only me' to create a private draft dashboard, or
 
 Add content to your dashboard and make it perfect. When you're ready, you can easily change share permissions so everyone can see your masterpiece.
 
-{{</p><figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/SD-configure-dataset-dashboard-05.png" width="825" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/SD-configure-dataset-dashboard-05.png" width="825" class="img-fluid">}}
 
 &nbsp;
 
