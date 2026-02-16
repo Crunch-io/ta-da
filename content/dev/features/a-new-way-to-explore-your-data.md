@@ -16,7 +16,7 @@ no_yougov = true
 +++
 We have reimagined the Variable Summaries experience for Crunch users. Now called **Explore**, this new experience is the primary way to discover and navigate your data.
 
-## Reimagined variable summaries**
+## Reimagined variable summaries
 
 The Explore view tab features a vertical scrolling layout, smoother variable navigation, and clearer labels for folders and variables. These enhancements are designed to help you discover insights faster and navigate even the most complex datasets seamlessly, significantly reducing your time to find valuable information.
 

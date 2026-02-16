@@ -15,7 +15,7 @@ no_yougov = false
 +++
 Our AI summary tile is a powerful dashboard feature that creates a concise summary of all the content within a dashboard tab – giving you and your stakeholders a clear, instant snapshot of key insights.
 
-{{</p><p><figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/ai-summary-tile-01.png" width="700" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/ai-summary-tile-01.png" width="700" class="img-fluid">}}
 
 &nbsp;
 
@@ -32,7 +32,7 @@ With the AI summary tile, you can:
 
 On any Crunch dashboard, find a tab and click Edit. Click the + menu and select ‘AI tab summary’.
 
-{{</p><figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/ai-summary-tile-03.png" width="200" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/ai-summary-tile-03.png" width="200" class="img-fluid">}}
 
 &nbsp;
 
@@ -40,7 +40,7 @@ On any Crunch dashboard, find a tab and click Edit. Click the + menu and select 
 
 A new dashboard tile will be created at the top of your dashboard. Click the “Generate summary” button to generate an AI summary of the dashboard tab.
 
-{{</p><figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/ai-summary-tile-04.png" width="700" class="img-fluid">}}
+{{<figure src="https://player-crunch-io.s3.amazonaws.com/help-crunch-io/screenshots/ai-summary-tile-04.png" width="700" class="img-fluid">}}
 
 &nbsp;
 
