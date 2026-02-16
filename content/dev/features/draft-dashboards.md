@@ -12,7 +12,6 @@ images = [ "https://crunch.io/img/logo-1200x630.png" ]
 labs_only = false
 no_profiles = true
 no_yougov = false
-series = "main"
 +++
 We're introducing a more flexible way to create dashboards. Work in private drafts that give you space for experimentation before sharing with stakeholders, using our new draft and build feature. Whenever your new dashboard is ready, share instantly with stakeholders, on your terms.
 
