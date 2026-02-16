@@ -16,13 +16,13 @@ no_yougov = true
 +++
 We have reimagined the Variable Summaries experience for Crunch users. Now called **Explore**, this new experience is the primary way to discover and navigate your data.
 
-#### **Reimagined variable summaries**
+## Reimagined variable summaries**
 
 The Explore view tab features a vertical scrolling layout, smoother variable navigation, and clearer labels for folders and variables. These enhancements are designed to help you discover insights faster and navigate even the most complex datasets seamlessly, significantly reducing your time to find valuable information.
 
 We’ve also improved the filter bar to refine your focus.
 
-#### **How it Works**
+## How it Works
 
 When you open a dataset in Crunch, you will be taken directly to the new Explore tab. From here, you can:
 
@@ -31,8 +31,10 @@ When you open a dataset in Crunch, you will be taken directly to the new Explore
 * **Tile highlighting:** Visual cues that help you focus on specific variables as you scan through the dataset.
 * **Refine your view:** Use the improved filter bar to focus on specific segments of your data instantly.
 
-**Try it out today**
+## Try it out today
 
 This feature is currently in [early access.](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/360040498412-Browsing-Data).
 
-**Your feedback matters**<br>As always, we’re constantly evolving our products to make your job easier, and eager to hear what you think about our latest enhancements. For questions or feedback, please contact [support@crunch.io](mailto:support@crunch.io).
+## Your feedback matters
+
+As always, we’re constantly evolving our products to make your job easier, and eager to hear what you think about our latest enhancements. For questions or feedback, please contact [support@crunch.io](mailto:support@crunch.io).
