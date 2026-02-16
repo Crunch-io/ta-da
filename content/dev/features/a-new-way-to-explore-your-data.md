@@ -31,7 +31,7 @@ When you open a dataset in Crunch, you will be taken directly to the new Explore
 * **Tile highlighting:** Visual cues that help you focus on specific variables as you scan through the dataset.
 * **Refine your view:** Use the improved filter bar to focus on specific segments of your data instantly.
 
-![](https://player-crunch-io.s3.us-east-1.amazonaws.com/help-crunch-io/screenshots/explore-view-tab-full-panel-02-2026.png)
+<img src="https://player-crunch-io.s3.us-east-1.amazonaws.com/help-crunch-io/screenshots/explore-view-tab-full-panel-02-2026.png" width="600" />
 
 ## Try it out today
 
