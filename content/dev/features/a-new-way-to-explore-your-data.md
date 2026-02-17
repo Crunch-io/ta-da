@@ -32,6 +32,8 @@ When you open a dataset in Crunch, you will be taken directly to the new Explore
 
 <img class="img-fluid" src="https://player-crunch-io.s3.us-east-1.amazonaws.com/help-crunch-io/screenshots/explore-view-tab-full-panel-02-2026.png" />
 
+&nbsp;
+
 ## Try it out today
 
 This feature is currently in [early access.](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/360040498412-Browsing-Data).
