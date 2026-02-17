@@ -1,0 +1,43 @@
++++
+_schema = "feature_yaml"
+date = 2026-02-17T17:18:32.601Z
+publishdate = ""
+draft = true
+title = ""
+description = ""
+news_description = ""
+weight = 20
+tags = [ "" ]
+categories = [ "feature" ]
+images = [ "https://crunch.io/img/logo-1200x630.png" ]
+labs_only = false
+no_profiles = true
+no_yougov = true
++++
+We have reimagined the Variable Summaries experience for Crunch users. Now called **Explore**, this new experience is the primary way to discover and navigate your data.
+
+## Reimagined variable summaries
+
+The Explore view tab features a vertical scrolling layout, smoother variable navigation, and clearer labels for folders and variables. These enhancements are designed to help you discover insights faster and navigate even the most complex datasets seamlessly, significantly reducing your time to find valuable information.
+
+## How it Works
+
+When you open a dataset in Crunch, you will be taken directly to the new Explore tab. From here, you can:
+
+* **Scroll vertically:** Quickly scan through variables to get a high-level view of your data.
+* **Navigate with precision:** Use the new variable folder structure and tile highlighting to move between sections and keep your analysis focused.
+* **Tile highlighting:** Visual cues that help you focus on specific variables as you scan through the dataset.
+
+  &nbsp;
+
+<img class="img-fluid" src="https://player-crunch-io.s3.us-east-1.amazonaws.com/help-crunch-io/screenshots/explore-view-tab-full-panel-02-2026.png" />
+
+&nbsp;
+
+## Try it out today
+
+This feature is currently in [early access.](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/43511673039117-Browsing-Data-in-Explore-Mode).
+
+## Your feedback matters
+
+As always, we’re constantly evolving our products to make your job easier, and eager to hear what you think about our latest enhancements. For questions or feedback, please contact [support@crunch.io](mailto:support@crunch.io).
