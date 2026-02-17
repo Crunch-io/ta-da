@@ -12,7 +12,7 @@ categories = [ "feature" ]
 images = [ "https://crunch.io/img/logo-1200x630.png" ]
 labs_only = true
 no_profiles = true
-no_yougov = true
+no_yougov = false
 +++
 We have reimagined the Variable Summaries experience for Crunch users. Now called **Explore**, this new experience is the primary way to discover and navigate your data.
 
