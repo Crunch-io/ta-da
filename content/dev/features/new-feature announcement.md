@@ -1,16 +1,16 @@
 +++
 _schema = "feature_yaml"
-date = 2026-02-17T17:18:32.601Z
+date = 2026-02-17T11:00:00.000Z
 publishdate = ""
 draft = true
-title = ""
-description = ""
-news_description = ""
+title = "A new way to explore your data"
+description = "We've improved the Variable summaries experience for a more intuitive and efficient view of your data."
+news_description = "We've improved the Variable summaries experience for a more intuitive and efficient view of your data."
 weight = 20
-tags = [ "" ]
+tags = [ "toplines", "datasets" ]
 categories = [ "feature" ]
 images = [ "https://crunch.io/img/logo-1200x630.png" ]
-labs_only = false
+labs_only = true
 no_profiles = true
 no_yougov = true
 +++
