@@ -1,8 +1,8 @@
 +++
 _schema = "feature_yaml"
-date = 2026-03-04T11:00:00.000Z
+date = 2026-03-04T10:00:00.000Z
 publishdate = ""
-draft = true
+draft = false
 title = "A new way to explore your data"
 description = "We've improved the Variable summaries experience for a more intuitive and efficient view of your data."
 news_description = "We've improved the Variable summaries experience for a more intuitive and efficient view of your data."
