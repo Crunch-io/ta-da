@@ -308,6 +308,9 @@
     <loc>//crunch.io/</loc>
     <lastmod>2026-03-04T14:30:32+00:00</lastmod>
   </url><url>
+    <loc>//crunch.io/tags/crunch/</loc>
+    <lastmod>2026-03-04T10:00:00+00:00</lastmod>
+  </url><url>
     <loc>//crunch.io/tags/datasets/</loc>
     <lastmod>2026-03-04T10:00:00+00:00</lastmod>
   </url><url>
@@ -346,9 +349,6 @@
   </url><url>
     <loc>//crunch.io/release-notes/2025-05-19/</loc>
     <lastmod>2025-05-20T10:00:00-07:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/crunch/</loc>
-    <lastmod>2025-05-12T13:33:46+01:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/2025-03-10/</loc>
     <lastmod>2025-03-10T10:00:00-07:00</lastmod>
