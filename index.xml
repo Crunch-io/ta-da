@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Mar 2026 10:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 05 Mar 2026 10:00:00 -0700</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -665,6 +665,13 @@
       <pubDate>Thu, 20 Feb 2025 14:00:00 +0000</pubDate>
       <guid>//crunch.io/jobs/software-engineer-python-data-platform/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Reports to&lt;/strong&gt;: Engineering Manager&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Work location&lt;/strong&gt;: Italy, Poland, Romania, Spain (Remote)&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Direct reports&lt;/strong&gt;: 0&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;About YouGov&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;YouGov is a global online research company, offering insight into what the world thinks.&lt;/p&gt;&#xA;&lt;p&gt;We speak daily to our panel of over 24 million registered members to understand opinion and behaviors around the world. We have a strong reputation as a source of accurate data and we’re trusted by the world’s biggest brands to get it right, making us the most quoted market research source in the world.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Release 2026.02</title>
+      <link>//crunch.io/release-notes/2026-03-05/</link>
+      <pubDate>Thu, 05 Mar 2026 10:00:00 -0700</pubDate>
+      <guid>//crunch.io/release-notes/2026-03-05/</guid>
+      <description>&lt;h3 id=&#34;crunch-web-application&#34;&gt;&lt;strong&gt;Crunch web application&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The following features are now available in &lt;em&gt;wide access&lt;/em&gt;:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The new variable sidebar&lt;/li&gt;&#xA;&lt;li&gt;The filter bar refresh&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Added an &lt;strong&gt;Explore&lt;/strong&gt; tab, which &lt;a href=&#34;https://crunch.io/dev/features/new-way-to-explore-data/&#34;&gt;displays a summary&lt;/a&gt; of every variable in your dataset — the individual tiles now provide an instant top-line visualization of the data (in &lt;em&gt;early access&lt;/em&gt;). See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/43511673039117-Browsing-Data-in-Explore-Mode&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;&#xA;&lt;li&gt;Unified navigation header and refined dashboard navigation for improved consistency.&lt;/li&gt;&#xA;&lt;li&gt;Added support to include subvariables in search results by folder with the AI-Powered Variable Search. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/33552869343117#avail-subvar&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;&lt;strong&gt;API endpoints and API reference&lt;/strong&gt;&lt;/h3&gt;&#xA;&lt;p&gt;Deprecated the following API endpoints:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Release 2026.01</title>

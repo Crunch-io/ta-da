@@ -8,6 +8,58 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 20 Jan 2021 14:08:35 +0200</lastBuildDate><atom:link href="//crunch.io/release-notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Release 2026.02</title>
+      <link>//crunch.io/release-notes/2026-03-05/</link>
+      <pubDate>Thu, 05 Mar 2026 10:00:00 -0700</pubDate>
+      
+      <guid>//crunch.io/release-notes/2026-03-05/</guid>
+      <description>&lt;h3 id=&#34;crunch-web-application&#34;&gt;&lt;strong&gt;Crunch web application&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The following features are now available in &lt;em&gt;wide access&lt;/em&gt;:
+&lt;ul&gt;
+&lt;li&gt;The new variable sidebar&lt;/li&gt;
+&lt;li&gt;The filter bar refresh&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Added an &lt;strong&gt;Explore&lt;/strong&gt; tab, which &lt;a href=&#34;https://crunch.io/dev/features/new-way-to-explore-data/&#34;&gt;displays a summary&lt;/a&gt; of every variable in your dataset — the individual tiles now provide an instant top-line visualization of the data (in &lt;em&gt;early access&lt;/em&gt;). See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/43511673039117-Browsing-Data-in-Explore-Mode&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Unified navigation header and refined dashboard navigation for improved consistency.&lt;/li&gt;
+&lt;li&gt;Added support to include subvariables in search results by folder with the AI-Powered Variable Search. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/33552869343117#avail-subvar&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;&lt;strong&gt;API endpoints and API reference&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Deprecated the following API endpoints:&lt;/p&gt;</description>
+      <content:encoded>&lt;h3 id=&#34;crunch-web-application&#34;&gt;&lt;strong&gt;Crunch web application&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The following features are now available in &lt;em&gt;wide access&lt;/em&gt;:
+&lt;ul&gt;
+&lt;li&gt;The new variable sidebar&lt;/li&gt;
+&lt;li&gt;The filter bar refresh&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Added an &lt;strong&gt;Explore&lt;/strong&gt; tab, which &lt;a href=&#34;https://crunch.io/dev/features/new-way-to-explore-data/&#34;&gt;displays a summary&lt;/a&gt; of every variable in your dataset — the individual tiles now provide an instant top-line visualization of the data (in &lt;em&gt;early access&lt;/em&gt;). See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/43511673039117-Browsing-Data-in-Explore-Mode&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;li&gt;Unified navigation header and refined dashboard navigation for improved consistency.&lt;/li&gt;
+&lt;li&gt;Added support to include subvariables in search results by folder with the AI-Powered Variable Search. See the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/33552869343117#avail-subvar&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;api-endpoints-and-api-reference&#34;&gt;&lt;strong&gt;API endpoints and API reference&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Deprecated the following API endpoints:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://crunch.io/api/reference/#get-/datasets/-dataset_id-/users/&#34;&gt;List users with dataset access&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://crunch.io/api/reference/#get-/dashboards/-dashboard_id-/users/&#34;&gt;List all users with dashboard access&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;lakehouse&#34;&gt;&lt;strong&gt;Lakehouse&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;Added a &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/43108717800461-Tabulation-API&#34;&gt;Tabulation API&lt;/a&gt; which is a flexible export interface for aggregated survey data, providing:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Asynchronous batch cross-tabulations&lt;/strong&gt; with any combination of row and column variables.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Row-level filtering&lt;/strong&gt; using a declarative syntax.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Long-form output&lt;/strong&gt; designed for ingestion into reporting pipelines.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;backendcrunchdb&#34;&gt;&lt;strong&gt;Backend/CrunchDB&lt;/strong&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated the &lt;code&gt;copy_from&lt;/code&gt; command so that it no longer supports the ability to copy dataset shares.&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+    </item>
+    
+    <item>
       <title>Release 2026.01</title>
       <link>//crunch.io/release-notes/2026-01-28/</link>
       <pubDate>Wed, 28 Jan 2026 10:00:00 -0700</pubDate>
