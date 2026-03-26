@@ -60,3 +60,28 @@ collections_config:
       feature_yaml:
         path: .cloudcannon/schemas/feature.md
     default_schema: feature_yaml
+  release_notes:
+    path: content/release-notes
+    icon: history
+    name: Release Notes
+    display:
+      list: true
+    sort:
+      key: date
+      order: desc
+    subtext_key: title
+    date_key: date
+    filter:
+      exclude:
+        - _index.md
+        - README.md
+    _enabled_editors:
+      - content
+      - data
+    add_options:
+      - name: Add Release Note
+        schema: release_note
+    schemas:
+      release_note:
+        path: .cloudcannon/schemas/release-note.md
+    default_schema: release_note
