@@ -16,7 +16,11 @@ no_yougov = true
 +++
 ## What is Explore Mode?
 
-Explore Mode replaces the Variable Summaries tab with a fully redesigned experience built for speed and clarity. You can now:
+Explore Mode replaces the Variable Summaries tab with a fully redesigned experience built for speed and clarity.
+
+![](../../../uploads/image.png)
+
+You can now:
 
 * **Scroll vertically**: Quickly scan through variables to get a high-level view of your data.
 * **Navigate with precision**: Use the new variable folder structure and tile highlighting to move between sections and keep your analysis focused.
