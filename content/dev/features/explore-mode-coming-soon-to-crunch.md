@@ -14,7 +14,7 @@ labs_only = false
 no_profiles = true
 no_yougov = true
 +++
-## **What is Explore Mode?**
+## What is Explore Mode?
 
 Explore Mode replaces the Variable Summaries tab with a fully redesigned experience built for speed and clarity. You can now:
 
@@ -23,19 +23,19 @@ Explore Mode replaces the Variable Summaries tab with a fully redesigned experie
 * **Refine your view**: Use the improved filter bar to focus on specific segments of your data instantly.
 * **Dig deeper with Analyse:** Use Explore as a starting point for deeper analysis — navigate directly to Tables and Graphs mode to move seamlessly from exploration to full analysis.
 
-## **Why Explore Mode?**
+## Why Explore Mode?
 
 Getting oriented in a new dataset has traditionally been a time-consuming process. Explore Mode is designed to reduce that friction, enabling researchers and marketers to spend less time locating variables and more time generating insight.
 
-## **What's coming next?**
+## What's coming next?
 
 Explore Mode is the first step in a broader effort to modernise and unify Crunch. Our next milestone is merging Tables & Graphs and Multi-tables together into a single, unified Analysis Mode, making it easier to move from exploration to full analysis without switching contexts.
 
-## **Want to learn more?**
+## Want to learn more?
 
-* [Browsing Data in Explore Mode](https://help.crunch.io/hc/en-us/articles/43511673039117-Browsing-Data-in-Explore-Mode)
+For full details of this new feature, see the <a href="https://help.crunch.io/hc/en-us/articles/43511673039117-Browsing-Data-in-Explore-Mode" title="browsing data in explore mode" target="_blank" rel="noopener">help center</a>.
 
-**Your feedback matters**
+## Your feedback matters
 
 As always, we’re constantly evolving our products to make your job easier, and we’re eager to hear what you think about our latest enhancements. For questions or feedback, please contact support@crunch.io.
 
