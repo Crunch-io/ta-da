@@ -14,8 +14,6 @@ labs_only = false
 no_profiles = true
 no_yougov = true
 +++
-Starting ***Monday, May 11th at 9am EST***, Explore Mode will be available to all Crunch users.
-
 **What is Explore Mode?**
 
 Explore Mode replaces the Variable Summaries tab with a fully redesigned experience built for speed and clarity. You can now:
