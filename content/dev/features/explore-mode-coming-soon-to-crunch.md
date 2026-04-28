@@ -1,6 +1,6 @@
 +++
 _schema = "feature_yaml"
-date = 2026-04-28T18:23:46.000Z
+date = 2026-04-28T14:00:00.000Z
 publishdate = ""
 draft = false
 title = "Explore Mode coming soon to Crunch!"
