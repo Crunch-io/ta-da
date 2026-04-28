@@ -18,16 +18,14 @@ no_yougov = true
 
 Explore Mode replaces the Variable Summaries tab with a fully redesigned experience built for speed and clarity.
 
-<img class="img-fluid" src="https://player-crunch-io.s3.us-east-1.amazonaws.com/help-crunch-io/screenshots/explore-view-tab-full-panel-02-2026.png" />
-
-&nbsp;
-
 You can now:
 
 * **Scroll vertically**: Quickly scan through variables to get a high-level view of your data.
 * **Navigate with precision**: Use the new variable folder structure and tile highlighting to move between sections and keep your analysis focused.
 * **Refine your view**: Use the improved filter bar to focus on specific segments of your data instantly.
 * **Dig deeper with Analyse:** Use Explore as a starting point for deeper analysis — navigate directly to Tables and Graphs mode to move seamlessly from exploration to full analysis.
+
+<img class="img-fluid" src="https://player-crunch-io.s3.us-east-1.amazonaws.com/help-crunch-io/screenshots/explore-view-tab-full-panel-02-2026.png" />
 
 ## Why Explore Mode?
 
