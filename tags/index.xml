@@ -9,17 +9,24 @@
     <lastBuildDate>Tue, 28 Apr 2026 18:23:46 +0000</lastBuildDate>
     <atom:link href="//crunch.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>New-Explore-Mode</title>
-      <link>//crunch.io/tags/new-explore-mode/</link>
+      <title>Crunch</title>
+      <link>//crunch.io/tags/crunch/</link>
       <pubDate>Tue, 28 Apr 2026 18:23:46 +0000</pubDate>
-      <guid>//crunch.io/tags/new-explore-mode/</guid>
+      <guid>//crunch.io/tags/crunch/</guid>
       <description></description>
     </item>
     <item>
-      <title>Crunch</title>
-      <link>//crunch.io/tags/crunch/</link>
-      <pubDate>Wed, 04 Mar 2026 10:00:00 +0000</pubDate>
-      <guid>//crunch.io/tags/crunch/</guid>
+      <title>Dataset</title>
+      <link>//crunch.io/tags/dataset/</link>
+      <pubDate>Tue, 28 Apr 2026 18:23:46 +0000</pubDate>
+      <guid>//crunch.io/tags/dataset/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Toplines</title>
+      <link>//crunch.io/tags/toplines/</link>
+      <pubDate>Tue, 28 Apr 2026 18:23:46 +0000</pubDate>
+      <guid>//crunch.io/tags/toplines/</guid>
       <description></description>
     </item>
     <item>
@@ -27,13 +34,6 @@
       <link>//crunch.io/tags/datasets/</link>
       <pubDate>Wed, 04 Mar 2026 10:00:00 +0000</pubDate>
       <guid>//crunch.io/tags/datasets/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Toplines</title>
-      <link>//crunch.io/tags/toplines/</link>
-      <pubDate>Wed, 04 Mar 2026 10:00:00 +0000</pubDate>
-      <guid>//crunch.io/tags/toplines/</guid>
       <description></description>
     </item>
     <item>
