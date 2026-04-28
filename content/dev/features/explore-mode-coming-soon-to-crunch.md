@@ -18,7 +18,7 @@ no_yougov = true
 
 Explore Mode replaces the Variable Summaries tab with a fully redesigned experience built for speed and clarity.
 
-![](../../../uploads/explore-view-tab-full-panel-02-2026.png)
+![](https://player-crunch-io.s3.us-east-1.amazonaws.com/help-crunch-io/screenshots/explore-view-tab-full-panel-02-2026.png)
 
 You can now:
 
