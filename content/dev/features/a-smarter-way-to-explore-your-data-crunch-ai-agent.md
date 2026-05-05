@@ -20,13 +20,13 @@ labs_only = false
 no_profiles = true
 no_yougov = false
 +++
-# Benefits
+## Benefits
 
 * **Natural language exploration** - Ask questions conversationally and get immediate insights without filters or manual analysis.
 * **Faster decision-making** - Reduce your time spent digging through datasets and jump straight to actionable insight.
 * **Accessible for all users** - Empowers anyone, regardless of technical skill, to work confidently with Crunch data.
 
-# **How does it work?**
+## How does it work?
 
 Open any dataset and click on the **AI Agent** button at the top of the page.
 
@@ -42,11 +42,11 @@ The AI Agent will respond to your question. Typical responses include a summary,
 
 Responses will always cite the variable(s) and/or filter(s) where the answer is found.
 
-**Try it out today**
+## Try it out today
 
 For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/44646135976461-Crunch-AI-Agent).
 
-**Your feedback matters**
+## Your feedback matters
 
 As always, we’re constantly evolving our products to make your job easier, and eager to hear what you think about our latest enhancements. For questions or feedback, please contact [support@crunch.io](mailto:support@crunch.io).
 
