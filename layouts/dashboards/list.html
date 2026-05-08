@@ -118,7 +118,7 @@
             </div> <!-- /.container -->
             {{ end }}
             {{ end }}
-            
+
         </div> <!-- /.container fluid -->
 
 
@@ -126,22 +126,22 @@
             <div class="container-fluid ">
                 {{ range .Site.Pages }}
                 {{ if and (eq .Type "dashboards") (eq .Title "New feature") }}
-    
+
                 <div class="container">
                     <div class="row spacer share-insights">
                         <div class="col-12 col-md-5 order-0 order-md-0 offset-md-1">
-                            <h2 class="new-label">{{ .Params.label }}</h2>
+                            <!-- <h2 class="new-label">{{ .Params.label }}</h2> -->
                             <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }}
                                 {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} <br/> {{ index (split . " ") 3 }} <span>{{ index
                                 (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split .
                                 " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} </span>{{ end }}</h2>
-    
+
                             <p>{{ .Content }}</p>
-    
+
                             <!-- <button type="button" class="btn btn-success d-none d-sm-block"
                                 onclick="window.location.href='/request-demo'">Learn more</button> -->
                         </div>
-    
+
                         <div class="col-12 col-md-6 order-1 order-md-1  \ sp-mb-t my-auto">
                             <div id="carouselScript" class="carousel slide cr-carousel sp-mb-t" data-ride="carousel">
                                 <ol class="carousel-indicators">
@@ -191,12 +191,12 @@
                                 </a>
                             </div> <!-- carouselCaptions -->
                         </div> <!-- /.col-12 .col-md-6. -->
-    
+
                     </div> <!-- /.row -->
                 </div> <!-- /.container -->
                 {{ end }}
                 {{ end }}
-                
+
             </div> <!-- /.container fluid -->
 
         <div id="no-coding">
@@ -219,7 +219,7 @@
 
                                 <div class="posts">
                                     <h4 class="post-title">
-                                        {{ with .Params.video_title }} 
+                                        {{ with .Params.video_title }}
                                         {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }}<br/>{{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{end}}</h4>
                                     <!-- <h4 class="post-title">{{ .Params.video_title }}</h4> -->
 
@@ -239,7 +239,7 @@
                         </div>
 
                         <div class="col-12 col-md-6 order-1 order-md-0 sp-mb-t mt-5  mt-sm-0 ">
-                            <h2 class="new-label-video">{{ .Params.label }}</h2>
+                            <!-- <h2 class="new-label-video">{{ .Params.label }}</h2> -->
                             <div class="post-card-video post-min-height video-btn" data-toggle="modal"
                                 data-src="{{ .Params.url_2 }}" data-target="#myModal">
 
@@ -264,7 +264,7 @@
                             </div>
                         </div>
 
-                       
+
                     </div> <!-- /.row. -->
                 </div> <!-- /.container -->
                 {{ end }}
