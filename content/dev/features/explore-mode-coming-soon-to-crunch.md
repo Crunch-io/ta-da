@@ -1,13 +1,13 @@
 +++
 _schema = "feature_yaml"
-date = 2026-04-27T10:28:00.000Z
+date = 2026-04-28T14:00:00.000Z
 publishdate = ""
 draft = false
-title = "Explore Mode coming soon to Crunch!     "
+title = "Explore Mode coming soon to Crunch!"
 description = "Starting May 11th, Explore Mode will be available to all Crunch users."
 news_description = "Starting May 11th, Explore Mode will be available to all Crunch users."
 weight = 20
-tags = [ "new-explore-mode" ]
+tags = [ "toplines", "dataset", "crunch" ]
 categories = [ "new-explore-mode" ]
 images = [ "https://crunch.io/img/logo-1200x630.png" ]
 labs_only = false
@@ -18,18 +18,14 @@ no_yougov = true
 
 Explore Mode replaces the Variable Summaries tab with a fully redesigned experience built for speed and clarity.
 
-&nbsp;
-
-<img class="img-fluid" src="https://player-crunch-io.s3.us-east-1.amazonaws.com/help-crunch-io/screenshots/explore-view-tab-full-panel-02-2026.png" />
-
-&nbsp;
-
 You can now:
 
 * **Scroll vertically**: Quickly scan through variables to get a high-level view of your data.
 * **Navigate with precision**: Use the new variable folder structure and tile highlighting to move between sections and keep your analysis focused.
 * **Refine your view**: Use the improved filter bar to focus on specific segments of your data instantly.
 * **Dig deeper with Analyse:** Use Explore as a starting point for deeper analysis — navigate directly to Tables and Graphs mode to move seamlessly from exploration to full analysis.
+
+<img class="img-fluid" src="https://player-crunch-io.s3.us-east-1.amazonaws.com/help-crunch-io/screenshots/explore-view-tab-full-panel-02-2026.png" />
 
 ## Why Explore Mode?
 
@@ -46,5 +42,3 @@ For full details of this new feature, see the <a href="https://help.crunch.io/hc
 ## Your feedback matters
 
 As always, we’re constantly evolving our products to make your job easier, and we’re eager to hear what you think about our latest enhancements. For questions or feedback, please contact support@crunch.io.
-
-<br>

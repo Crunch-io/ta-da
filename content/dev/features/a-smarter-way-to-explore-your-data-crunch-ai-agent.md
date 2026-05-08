@@ -1,6 +1,6 @@
 +++
 _schema = "feature_yaml"
-date = 2026-05-05T18:52:00.000Z
+date = 2026-05-07T11:25:20.672Z
 publishdate = ""
 draft = false
 title = "A smarter way to explore your data: Crunch AI Agent "
@@ -10,9 +10,10 @@ weight = 20
 tags = [
   "Artificial Intelligence",
   "AI Agent",
-  "Smart insights",
-  "Natural language",
-  "Survey"
+  "smart insights",
+  "survey",
+  "crunch",
+  "yougov"
 ]
 categories = [ "feature" ]
 images = [ "https://crunch.io/img/logo-1200x630.png" ]
@@ -30,15 +31,15 @@ no_yougov = false
 
 Open any dataset and click on the **AI Agent** button at the top of the page.
 
-![Header](https://crunch.zendesk.com/guide-media/01KN05S8QS70DV6E9ACGAYASDW)
+![Header](https://help.crunch.io/hc/article_attachments/44712918860045)
 
-<br>The chat interface will open. You can ask questions about your dataset using natural language. Type your question and press enter.
+The chat interface will open. You can ask questions about your dataset using natural language. Type your question and press enter.
 
-![Crunch AI Agent](https://crunch.zendesk.com/guide-media/01KMR350ZFACXR433RBKC1NHAF)
+![Crunch AI Agent](https://help.crunch.io/hc/article_attachments/44646717028237)
 
 The AI Agent will respond to your question. Typical responses include a summary, one or more text-based tables, and a list of variables used to answer your question. You can continue asking questions to refine the response or to dig deeper.
 
-![AI Agent with tabs](https://crunch.zendesk.com/guide-media/01KMR2KQZ1EZ0VAEVQ4TA1TGAV)
+![AI Agent with tabs](https://help.crunch.io/hc/article_attachments/44646534274573)
 
 Responses will always cite the variable(s) and/or filter(s) where the answer is found.
 
@@ -50,4 +51,4 @@ For full details of this new feature, see the [help center](https://help.crunch.
 
 As always, we’re constantly evolving our products to make your job easier, and eager to hear what you think about our latest enhancements. For questions or feedback, please contact [support@crunch.io](mailto:support@crunch.io).
 
-<br>
+&nbsp;
