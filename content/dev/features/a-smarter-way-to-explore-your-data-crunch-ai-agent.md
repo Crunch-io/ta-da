@@ -49,4 +49,4 @@ For full details of this new feature, see the [help center](https://help.crunch.
 
 ## Your feedback matters
 
-As always, we’re constantly evolving our products to make your job easier, and eager to hear what you think about our latest enhancements. For questions or feedback, please contact [support@crunch.io](mailto:support@crunch.io).
+As always, we're constantly evolving our products to make your job easier, and eager to hear what you think about our latest enhancements. For questions or feedback, please contact [support@crunch.io](mailto:support@crunch.io).
