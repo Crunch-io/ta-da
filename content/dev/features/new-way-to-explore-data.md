@@ -39,7 +39,7 @@ When you open a dataset in Crunch, you will be taken directly to the new Explore
 
 ## Try it out today
 
-This feature is currently in [early access.](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/43511673039117-Browsing-Data-in-Explore-Mode).
+For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/43511673039117-Browsing-Data-in-Explore-Mode).
 
 ## Your feedback matters
 
