@@ -1,11 +1,11 @@
 +++
 _schema = "feature_yaml"
 date = 2026-05-07T11:25:00.000Z
-publishdate = "2026-05-07T11:25:00.000Z"
-draft = true
-title = "A smarter way to explore your data: Crunch AI Agent "
-description = "Our new Crunch AI Agent lets users ask questions in plain language and get instant, accurate answers from data in Crunch. It transforms complex datasets into effortless conversational insights, with no analysis expertise needed. "
-news_description = "Our new Crunch AI Agent lets users ask questions in plain language and get instant, accurate answers from data in Crunch. It transforms complex datasets into effortless conversational insights, with no analysis expertise needed. "
+publishdate = ""
+draft = false
+title = "A smarter way to explore your data: Crunch AI Agent"
+description = "Our new Crunch AI Agent lets users ask questions in plain language and get instant, accurate answers from data in Crunch. It transforms complex datasets into effortless conversational insights, with no analysis expertise needed."
+news_description = "Our new Crunch AI Agent lets users ask questions in plain language and get instant, accurate answers from data in Crunch. It transforms complex datasets into effortless conversational insights, with no analysis expertise needed."
 weight = 20
 tags = [
   "Artificial Intelligence",
