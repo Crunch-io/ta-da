@@ -1,6 +1,6 @@
 +++
 _schema = "feature_yaml"
-date = 2026-03-04T10:00:00.000Z
+date = 2026-05-11T09:00:00.000Z
 publishdate = ""
 draft = false
 title = "A new way to explore your data"
@@ -10,7 +10,7 @@ weight = 20
 tags = [ "toplines", "datasets", "crunch" ]
 categories = [ "feature" ]
 images = [ "https://crunch.io/img/logo-1200x630.png" ]
-labs_only = true
+labs_only = false
 no_profiles = true
 no_yougov = false
 +++
@@ -39,7 +39,7 @@ When you open a dataset in Crunch, you will be taken directly to the new Explore
 
 ## Try it out today
 
-This feature is currently in [early access.](https://help.crunch.io/hc/en-us/articles/360040465331-How-to-enable-early-access) For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/43511673039117-Browsing-Data-in-Explore-Mode).
+For full details of this new feature, see the [help center](https://help.crunch.io/hc/en-us/articles/43511673039117-Browsing-Data-in-Explore-Mode).
 
 ## Your feedback matters
 
