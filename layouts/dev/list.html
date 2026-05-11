@@ -67,7 +67,7 @@
               <div class="container">
 
                   <div class="row">
-                      {{ range after 1 .Paginator.Pages.ByPublishDate.Reverse }}
+                      {{ range after 0 .Paginator.Pages.ByPublishDate.Reverse }}
                           <div class="col-md-6 col-lg-4" id="feature-post">
                               <div class="post-card post-min-height-sm" onclick="location.href='{{ .Permalink }}'">
                                   <div class="posts">
