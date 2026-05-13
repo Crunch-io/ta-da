@@ -2,7 +2,7 @@
 _schema = "release_note"
 date = 2026-05-13T13:46:10.687Z
 publishdate = ""
-draft = true
+draft = false
 title = "Release 2026.04"
 images = [ "https://crunch.io/img/logo-1200x630.png" ]
 +++
