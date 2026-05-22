@@ -17,3 +17,4 @@ carousel_img_3 = "img/market_researchers/scripting.svg"
 * Analyze with drag-and-drop and sub-second response.
 * Instantly change chart types, helping you quickly identify your story in the data.
 * Automate with scripting.
+* Co-locate documents with data

@@ -9,7 +9,7 @@
                         <div class="col-sm-12 text-container text-md-center text-sm-left">
                             <h2 class="label">{{ .Params.label }}</h2>
                             <h2 class="secondary-title">
-                                {{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} <span> {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }}</span> {{ end }}
+                                {{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} <span>{{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }}</span> {{ end }}
                             </h2>
                             <div class="col-sm-12 col-md-6 m-auto p-0">
                               {{ .Content }}
