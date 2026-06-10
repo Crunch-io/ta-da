@@ -85,13 +85,18 @@
     .about-content {
         color: $color-white;
 
+        h1 {
+          font-size: 2em;
+          font-weight: 700;
+        }
+
         .jumbotron {
-            background-image: linear-gradient( $color-blue, $--darker-primary-color);
+            background-image: linear-gradient($--darker-primary-color, $color-blue);
         }
 
         @include media-breakpoint-down(sm) {
             .jumbotron {
-                background-image: linear-gradient( $color-blue, $--darker-primary-color);
+                background-image: linear-gradient($--darker-primary-color, $color-blue);
             }
         }
 
@@ -188,6 +193,11 @@
     .team-content {
         color: $color-white;
 
+        h1 {
+          font-size: 2em;
+          font-weight: 700;
+        }
+
         .jumbotron {
             background-image: linear-gradient( $color-blue, $--darker-primary-color);
             height: 485px;
@@ -215,9 +225,8 @@
 
                 .lead-title {
                     h3 {
-                        font-size: 16px;
-                        color: $color-blue;
-                        font-family: 'Libre Baskerville', serif;
+                        color: $color-off-black;
+                        font-weight: 600;
                     }
 
                 }
@@ -246,7 +255,7 @@
             .figure {
                 background-color: $color-grey-lightest;
                 margin: 1rem;
-                border-radius: 2px 2px 0 0;
+                border-radius: 4px 4px 0 0;
 
                 p {
                     color: $color-off-black;
@@ -258,20 +267,19 @@
                 }
 
                 h3 {
-                    font-size: 16px;
-                    color: $color-blue;
-                    font-family: 'Libre Baskerville', serif;
+                    color: $color-off-black;
+                    font-weight: 600;
                 }
 
                 img {
-                    border-radius: 2px 2px 0 0;
+                    border-radius: 4px 4px 0 0;
                 }
             }
 
             .figure-caption {
                 text-align: left;
                 padding: 18px 18px 0 18px;
-                border-radius: 0 0 2px 2px;
+                border-radius: 0 0 4px 4px;
                 border: 1px solid $color-grey-normal;
                 margin-top: 0;
             }
@@ -291,6 +299,11 @@
     // Jobs content
     .jobs-content {
         color: $color-white;
+
+        h1 {
+          font-size: 2em;
+          font-weight: 700;
+        }
 
         .jumbotron {
             background-color: $color-blue;
@@ -321,10 +334,14 @@
     .resources-content {
         color: $color-white;
 
+        h1 {
+          font-size: 2em;
+          font-weight: 700;
+        }
+
         .jumbotron {
             background-color: $color-green;
             background-image: linear-gradient( $color-green, $--darker-secondary-color);
-            height: 315px;
         }
 
         .jumbotron-green {
@@ -350,8 +367,8 @@
 
             p,
             .post-title {
-              font-family: 'ProximaNova', sans-serif;
-              font-weight: 800;
+              font-family: 'graphik', sans-serif;
+              font-weight: 700;
               color: $color-white !important;
             }
 
@@ -398,6 +415,11 @@
     // Blog content
     .blog-content {
         color: $color-off-black;
+
+        h1 {
+          font-size: 1.8em;
+          font-weight: 600;
+        }
 
         &.page-summary {
             margin: 20px 10px;
@@ -559,7 +581,7 @@
         }
 
         h1 {
-            font-family: ProximaNova, sans-serif;
+            font-family: graphik, sans-serif;
             line-height: 1.5em;
         }
 
@@ -852,7 +874,7 @@
             margin-top: 100px;
 
             a {
-                font-family: 'ProximaNova', sans-serif;
+                font-family: 'graphik', sans-serif;
                 color: $color-blue;
             }
         }
@@ -916,7 +938,7 @@
 
     .jumbotron {
         h1 {
-            font-family: ProximaNova, sans-serif;
+            font-family: graphik, sans-serif;
             font-size: 18px;
             margin-bottom: 20px;
             font-weight: 700;
@@ -924,8 +946,7 @@
     }
 
     h2 {
-        color: $color-blue;
-        font-family: 'Libre Baskerville', serif;
+        font-weight: 500;
         font-size: 16px;
         padding-top: 2px;
     }
