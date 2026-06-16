@@ -440,14 +440,12 @@
         }
 
         .date {
-            font-family: 'Libre Baskerville', serif;
-            font-style: italic;
             font-size: .8em;
         }
 
         .title {
-            font-family: 'Libre Baskerville', serif;
             font-size: 2em;
+            font-weight: 600;
             color: $color-blue;
             margin-top: 20px;
             margin-bottom: 30px;
@@ -460,7 +458,7 @@
 
 
         .blog-description {
-            font-weight: 700;
+            font-weight: 500;
             font-size: 1.5em;
             line-height: 1.1em;
         }
@@ -487,7 +485,6 @@
     .privacy-policy {
         h1 {
             color: $color-green;
-            font-family: 'Libre Baskerville', serif;
             text-align: center;
             font-size: 28px;
 
@@ -502,7 +499,7 @@
         span {
             text-transform: uppercase;
             font-size: 14px;
-            font-weight: 700;
+            font-weight: 600;
         }
     }
 
@@ -518,7 +515,7 @@
 
         h3 {
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         a {
