@@ -92,8 +92,8 @@
 }
 
 .headline {
-    font-family: 'Libre Baskerville', serif;
     color: $color-blue;
+    font-weight: 600;
     font-size: 27px;
     max-width: 750px;
     line-height: 36px;
@@ -104,7 +104,6 @@
 }
 
 .highlight {
-    font-family: 'Libre Baskerville', serif;
     color: $color-blue;
     font-size: 18px;
 }
