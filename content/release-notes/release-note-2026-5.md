@@ -1,6 +1,6 @@
 +++
 _schema = "release_note"
-date = 2026-06-24T12:33:37.431Z
+date = 2026-06-24T12:33:37.000Z
 publishdate = ""
 draft = false
 title = "Release note 2026.5"
@@ -17,7 +17,7 @@ images = [ "https://crunch.io/img/logo-1200x630.png" ]
   * Variables are now links in the agent response and open variables in Explore mode in a new tab.
   * Resolved an issue where the agent incorrectly stated it can perform tasks that are currently out of scope.
 * Sharing and collaboration improvements:
-  * Shared decks and dashboards now require users to enter Edit mode before making changes, with a notification explaining that edits will affect all users.
+  * Shared decks and dashboards now enable users to enter Edit mode to make multiple changes in one session, with a notification explaining that edits will affect all users.
   * Shared artifacts now enforce sharing requirements: personal variables, filters, and analyses cannot be added to shared artifacts, multitables, or decks unless they have been shared first.
 
 ### **API endpoints and API reference**
