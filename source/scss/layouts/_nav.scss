@@ -1,5 +1,6 @@
 .navbar {
     background-color: $color-white;
+    font-weight: 500;
 
     .container {
         max-width: 1450px;
@@ -44,10 +45,9 @@
             border:1px solid rgba(0, 0, 0, 0.15);
             padding: 0 0 0.5rem;
             transition: all 0.2s ease-out;
-            
+
             .dropdown-item {
-                font-size: 14.5px;
-                font-weight: 300;
+                font-size: 14px;
                 transition: all 0.2s ease-out;
 
                 &:hover,
@@ -115,7 +115,7 @@
     li.nav-item.mb-2.mb-sm-0.ml-remove-on-mobile{
         margin-left:0px;
     }
-    
+
 
 }
 
@@ -159,8 +159,6 @@
 
     .page-link {
         color: $color-blue;
-        font-family: 'Libre Baskerville', serif;
-        font-style: italic;
         border: 0;
         border-radius: 0;
 

@@ -16,7 +16,7 @@
                     <div class="container">
                         <div class="row justify-content-md-center">
                             <div class="col-md-12 header-content-container">
-                                <h1 style="font-size: 2.5em; line-height: 1em;">{{ with .Title }} <i>{{ index (split . " ") 0 }}</i> {{ index (split . " ") 1 }} {{ end }}</h1>
+                                <h1 style="font-size: 2.5em; line-height: 1em;">{{ .Title }}</h1>
                                 <p>{{ .Content }}</p>
                             </div>
                         </div> <!-- /.row -->
@@ -30,7 +30,7 @@
                       <div class="col-md-8 post-card-main-content">
                           <div class="post-card post-min-height announcements-main" style="margin-bottom: 0;" onclick="location.href='{{ .Permalink }}'">
                               <div class="posts">
-                                  <h1 class="post-title">{{ with .Title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }}  {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} {{ index (split . " ") 8 }} {{ index (split . " ") 9 }} {{ index (split . " ") 10 }} {{ index (split . " ") 11 }} {{ index (split . " ") 12 }} {{ end }}</h1>
+                                  <h1 class="post-title">{{ .Title }}</h1>
                                   <p style="color: #444; margin-bottom: 98px">{{ .Params.description }}</p>
                                   <span>{{ .Params.eventdate }}</span>
 
@@ -94,18 +94,6 @@
               </div> <!-- /.container -->
             </div> <!-- /.secondary-content -->
 
-            <div class="footer-content">
-                <div class="jumbotron">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h1>Learn about <span>our team</span></h1>
-                                <a href="team" aria-label="Our team" class="btn btn-link">Our team &#10230;</a>
-                            </div>
-                        </div> <!-- /.row. -->
-                    </div> <!-- /.container -->
-                </div> <!-- /.jumbotron -->
-            </div>
 
 {{ partial "footer-nav.html" . }}
 
