@@ -36,9 +36,9 @@ This notice sets out:
 
 The following section provides information about specific jurisdictions:
 
-* **CA residents:** if you are a California resident, please see our California Privacy Notice below.
-* **CO, CT, DE, IA, MD, MN, MT, NE, NH, NJ, OR, TN, TX, UT, and VA Residents:** if you are a resident of Colorado, Connecticut, Delaware, Iowa, Maryland, Minnesota, Montana, Nebraska, New Hampshire, New Jersey, Oregon, Tennessee, Texas, Utah, or Virginia, please see our CO, CT, DE, IA, MD, MN, MT, NE, NH, OR, TN, TX, UT, and VA Privacy Notice below.
-* **NV Residents:** if you are a resident of Nevada, please see our Nevada Privacy Notice below.
+* <u>**CA residents:**</u> if you are a California resident, please see our California Privacy Notice below.
+* <u>**CO, CT, DE, IA, MD, MN, MT, NE, NH, NJ, OR, TN, TX, UT, and VA Residents:**</u> if you are a resident of Colorado, Connecticut, Delaware, Iowa, Maryland, Minnesota, Montana, Nebraska, New Hampshire, New Jersey, Oregon, Tennessee, Texas, Utah, or Virginia, please see our CO, CT, DE, IA, MD, MN, MT, NE, NH, OR, TN, TX, UT, and VA Privacy Notice below.
+* <u>**NV Residents:**</u> if you are a resident of Nevada, please see our Nevada Privacy Notice below.
 
 
 ## Personal data we collect
@@ -412,16 +412,15 @@ You have the right to lodge a complaint with a data protection regulator where y
 
 ## Specific jurisdictions
 
-**A. California Privacy Notice**
-
-Definitions
+<u>**A. California Privacy Notice**</u></br>
+<u>Definitions</u>
 
 * **Personal information.** This is information that identifies, relates to, describes, is reasonably capable of being associated with, or could reasonably be linked, directly or indirectly, to you or your household.
 * **Sensitive personal information.** This is information such as your social security number, driver’s license number, state identification card, passport number, account log-in and password, financial account and password, debit or credit card number and access code, precise geolocation information, race, ethnic origin, religious or philosophical beliefs, union membership, the content of your mail, email or texts other than those communications you have with us, genetic data, biometric information, health information, or information that concerns your sex life or sexual orientation.
 * **Sell, sale, or sold.** This means the selling, renting, releasing, disclosing, disseminating, making available, transferring, or otherwise communicating orally, in writing, or other means, your personal information to a third party for money or other valuable consideration.
 * **Share, shared, or sharing.** This means the sharing, renting, releasing, disclosing, disseminating, making available, transferring, or otherwise communicating orally, in writing, or other means, your personal information to a third party for cross-context behavioral advertising, whether for monetary or other valuable consideration.
 
-Legal rights
+<u>Legal rights</u>
 
 You have the following legal rights under California law with respect to your personal information. To exercise these rights, you can e-mail us at your.rights@yougov.com or submitting a request [here](https://yougov.zendesk.com/hc/en-us/requests/new).
 
@@ -431,44 +430,43 @@ You have the following legal rights under California law with respect to your pe
 * **Right to Opt-Out of the Sale or Sharing of Personal Information.** Certain of our online tracking technologies may be considered a “sale” or a “share” of your information to third parties under the CCPA. Visitors to our Sites can therefore opt- out of being tracked by these technologies by opting out via the cookie banner available on the Sites. We have no actual knowledge that we sell the personal information of California residents who are under 16 years of age. You may also opt- out by using an opt-out preference signal, such as the Global Privacy Control (GPC) on your browser. To download and use a browser supporting the GPC, you may click here. If you choose the GPC signal, you will need to turn it on for each supported browser or browser extension you use.
 * **Right to Non-Discrimination.** You have a right to exercise the above rights without being discriminated against under the CCPA.
 
-Notice of Collection
+<u>Notice of Collection</u>
 * To learn more about the categories of personal information we collect about California residents, please see the Personal data we collect section above.
 * For more information about how we use those categories of personal information, please see the How and why we use personal data section above.
 * For more information about how we disclose categories of personal information, and the categories of third parties with whom we disclose such information, please the
 see the Who we may share your personal data with section above.
 * To learn more about how long we keep your information, please see the How long we’ll keep your data section above.
 
-Notice of Disclosure for a Business Purpose
+<u>Notice of Disclosure for a Business Purpose</u>
 
 To learn more about the categories personal information we have disclosed for a business purpose, and the categories of third parties with whom we’ve disclosed such information, please see the Who we may share your personal data with section above.
 
-Notice of Sale or Sharing of Personal Information
+<u>Notice of Sale or Sharing of Personal Information</u>
 
 Certain of our online tracking technologies may be considered a “sale” or a “share” of your information to third parties under California law. The categories of personal information we may “sell” or “share” in these circumstances includes your IP address, persistent online identifiers, ad identifiers, similar information about your devices and browsers, and information about your engagement with our Sites and certain communications. We have no actual knowledge that we sell the personal information of California residents who are under 16 years of age.
 
-Notice of Use of Sensitive Information
+<u>Notice of Use of Sensitive Information</u>
 
 We do not use sensitive personal information for purposes other than those permitted under California law.
 
-California’s “Shine In The Light” Law
+<u>California’s “Shine In The Light” Law</u>
 
 If you are a California resident, you have the right to request information from us once per calendar year regarding the customer information we share with third parties for the third parties’ direct marketing purposes. To request this information, please send an email to your.rights@yougov.com with “California Shine The Light” in the subject line and in the body of your message. We will provide the requested information to you via an email response.
 
-California’s “Eraser Button” Law
+<u>California’s “Eraser Button” Law</u>
 
 If you are a California resident under 18 years old and a registered user of the Sites, you can request that we remove content or information that you have posted to Sites. Fulfillment of the request may not ensure complete or comprehensive removal (e.g., if the content or information has been reposted by another user). To request removal of content or information, please send an email with “California Eraser Request” to your.rights@yougov.com.
 
-**B. CO, CT, DE, IA, MD, MN, NT, NE, NH, OR, TN, TX, UT, and VA Privacy Notice**
-
-Applicable State Laws
+<u>**B. CO, CT, DE, IA, MD, MN, NT, NE, NH, OR, TN, TX, UT, and VA Privacy Notice**</u></br>
+<u>Applicable State Laws</u>
 
 These disclosures apply to residents of Colorado, Connecticut, Delaware, Iowa, Maryland, Minnesota, Montana, Nebraska, New Hampshire, New Jersey, Oregon, Tennessee, Texas, Utah, and Virginia.
 
-Notice of Collection
+<u>Notice of Collection</u>
 
 To learn more about the categories of personal information we collect about you and how we use it, please see the Personal data we collect and How and why we use personal data sections above. To learn more about the categories of third parties with whom we may share your personal information, please see the Who we may share your personal data with section above.
 
-Your Rights
+<u>Your Rights</u>
 
 To exercise these rights, you can e-mail us at your.rights@yougov.com or submitting a request [here](https://yougov.zendesk.com/hc/en-us/requests/new).
 
@@ -478,9 +476,8 @@ To exercise these rights, you can e-mail us at your.rights@yougov.com or submitt
 * **Right to Opt-Out of the Sale or Targeted Advertising.** Certain of our online tracking technologies may be considered a “sale” or “targeted advertising” to third parties under applicable law. Visitors to our Sites can therefore opt-out of being tracked by these technologies by opting out via the cookie banner available on the Sites. Where applicable, you may also opt-out by using an opt-out preference signal, such as the Global Privacy Control (GPC) on your browser. To download and use a browser supporting the GPC, you may click here. If you choose the GPC signal, you will need to turn it on for each supported browser or browser extension you use.
 * **Right to Appeal.** Depending on the state in which you live, you may have a right to appeal a denial of the above requests.
 
-**C. Nevada Privacy Notice**
-
-Sale of Personal Information
+<u>**C. Nevada Privacy Notice**</u></br>
+<u>Sale of Personal Information</u>
 
 If you are a Nevada resident, you have the right to submit a request directing us not to make any sale of your personal information. We do not sell personal information as defined under Nevada law. You may nonetheless send us a request to opt-out of the future sale of your personal information to your.rights@yougov.com and putting “Nevada Privacy Opt-Out” in the subject line. We will provide the requested information to you via an email response.
 
