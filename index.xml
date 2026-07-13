@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Jun 2026 13:50:16 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 15:16:49 +0100</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -672,6 +672,13 @@
       <pubDate>Thu, 20 Feb 2025 14:00:00 +0000</pubDate>
       <guid>//crunch.io/jobs/software-engineer-python-data-platform/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Reports to&lt;/strong&gt;: Engineering Manager&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Work location&lt;/strong&gt;: Italy, Poland, Romania, Spain (Remote)&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Direct reports&lt;/strong&gt;: 0&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;About YouGov&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;YouGov is a global online research company, offering insight into what the world thinks.&lt;/p&gt;&#xA;&lt;p&gt;We speak daily to our panel of over 24 million registered members to understand opinion and behaviors around the world. We have a strong reputation as a source of accurate data and we’re trusted by the world’s biggest brands to get it right, making us the most quoted market research source in the world.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Privacy Policy and Cookies Notice</title>
+      <link>//crunch.io/about/privacy/</link>
+      <pubDate>Mon, 13 Jul 2026 15:16:49 +0100</pubDate>
+      <guid>//crunch.io/about/privacy/</guid>
+      <description>&lt;h3 id=&#34;effective-july-13th-2026&#34;&gt;Effective: July 13th, 2026&lt;/h3&gt;&#xA;&lt;p&gt;Protecting your privacy is very important to us. Crunch and KnowledgeHound are part of YouGov Group. YouGov operates as a group of companies, where each company controls the data provided to it by visitors to its websites and users of its services.&lt;/p&gt;&#xA;&lt;p&gt;Crunch Cloud Analytics LLC (“Crunch”, “We”, “Us”, or “Our”) is the controller of your personal data, and we use our privacy and cookies notice to explain our practices regarding our collection and use of information that we receive through the online analytic services provided at &lt;a href=&#34;http://www.crunch.io&#34;&gt;www.crunch.io&lt;/a&gt;, &lt;a href=&#34;http://www.knowledgehound.com&#34;&gt;www.knowledgehound.com&lt;/a&gt;, and other related websites designated by Crunch (“Services”).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Release note 2026.5</title>
@@ -1491,13 +1498,6 @@
       <pubDate>Mon, 10 Aug 2020 16:37:03 -0400</pubDate>
       <guid>//crunch.io/powerful-survey-analytics/tool/</guid>
       <description>&lt;p&gt;Unlike generic BI tools, Crunch.io handles:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Weighting&lt;/li&gt;&#xA;&lt;li&gt;Missingness&lt;/li&gt;&#xA;&lt;li&gt;Stats testing&lt;/li&gt;&#xA;&lt;li&gt;Multiple response questions&lt;/li&gt;&#xA;&lt;li&gt;Advanced analytics&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>Privacy Policy and Cookies Notice</title>
-      <link>//crunch.io/about/privacy/</link>
-      <pubDate>Sun, 31 May 2020 17:09:26 -0400</pubDate>
-      <guid>//crunch.io/about/privacy/</guid>
-      <description>&lt;h3 id=&#34;last-updated-may-31st-2020&#34;&gt;Last Updated: May 31st, 2020&lt;/h3&gt;&#xA;&lt;p&gt;Protecting your privacy is very important to us at Crunch Cloud Analytics LLC (“Crunch”, “We”, “Us”, or “Our”), and we use our privacy and cookies notice to explain our practices regarding our collection and use of information that we receive through the online analytic services provided at &lt;a href=&#34;http://www.crunch.io&#34;&gt;www.crunch.io&lt;/a&gt;, and other related websites designated by Crunch (“Services”). This privacy and cookies notice applies to only those websites, services and applications included within our Services where this privacy notice is posted, and does not apply to any third-party websites, services or applications, even if they are accessible through our Services.&lt;/p&gt;</description>
     </item>
     <item>
       <title>PowerPoint Deck Exports</title>
