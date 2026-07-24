@@ -6,8 +6,15 @@
     <description>Recent content in About on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Jul 2026 15:16:49 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jul 2026 17:12:32 +0100</lastBuildDate>
     <atom:link href="//crunch.io/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Terms of Service</title>
+      <link>//crunch.io/about/terms-of-service/</link>
+      <pubDate>Fri, 24 Jul 2026 17:12:32 +0100</pubDate>
+      <guid>//crunch.io/about/terms-of-service/</guid>
+      <description>&lt;h3 id=&#34;last-updated-july-24th-2026&#34;&gt;Last Updated: July 24th, 2026&lt;/h3&gt;&#xA;&lt;p&gt;Crunch Cloud Analytics, LLC (“&lt;strong&gt;Crunch&lt;/strong&gt;”) provides use of its online web-based analytics technologies specified in the applicable order form (collectively, “&lt;strong&gt;Subscription Services&lt;/strong&gt;”) to the Customer (as defined in the order form) subject to the following Terms of Service (“&lt;strong&gt;Terms&lt;/strong&gt;”).&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;1. PURCHASED SUBSCRIPTION SERVICES&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;1.1 &lt;strong&gt;Provision of Purchased Subscription Services&lt;/strong&gt;. Crunch will make any purchased Subscription Services available to the Customer pursuant to these Terms and the relevant order form, statement of work or similar document incorporating these Terms (the “&lt;strong&gt;Order Form&lt;/strong&gt;”) during the term set out in the Order Form, including any renewal periods (the “&lt;strong&gt;Subscription Term&lt;/strong&gt;”). Each Order Form and the Terms together constitute an “&lt;strong&gt;Agreement&lt;/strong&gt;”. The Customer agrees that its purchase of Subscription Services is neither contingent on the delivery of any future functionality or features nor dependent on any oral or written public comments made by Crunch regarding future functionality or features. The Customer’s use of the Subscription Services includes the right to access all functionality available in the purchased Subscription Services as of the effective date of this Agreement or such other date specified in the Order Form.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Privacy Policy and Cookies Notice</title>
       <link>//crunch.io/about/privacy/</link>
@@ -21,13 +28,6 @@
       <pubDate>Tue, 25 Jun 2024 14:25:00 +0100</pubDate>
       <guid>//crunch.io/about/service-level-agreement/</guid>
       <description>&lt;p&gt;This Service Level Agreement (the “&lt;strong&gt;SLA&lt;/strong&gt;”) sets forth the parties’ service level obligations with respect to the Subscription Services provided by Crunch Cloud Analytics, LLC (“&lt;strong&gt;Crunch&lt;/strong&gt;”) to [insert customer name] (“&lt;strong&gt;Customer&lt;/strong&gt;”) pursuant to the Order Form(s) and Agreement by and between Crunch and Customer dated as of [insert effective date]. Unless otherwise defined in this SLA, capitalized terms used herein will have the meanings ascribed to them in the Agreement or Order Form.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Terms of Service</title>
-      <link>//crunch.io/about/terms-of-service/</link>
-      <pubDate>Thu, 16 May 2024 15:15:33 +0100</pubDate>
-      <guid>//crunch.io/about/terms-of-service/</guid>
-      <description>&lt;h3 id=&#34;last-updated-may-16th-2024&#34;&gt;Last Updated: May 16th, 2024&lt;/h3&gt;&#xA;&lt;p&gt;Crunch Cloud Analytics, LLC (“&lt;strong&gt;Crunch&lt;/strong&gt;”) provides use of its online web-based analytics technologies specified in the applicable order form (collectively, “&lt;strong&gt;Subscription Services&lt;/strong&gt;”) to you subject to the following Terms of Service (“&lt;strong&gt;Terms&lt;/strong&gt;”). In addition, when using the Subscription Services, Customer shall be subject to the End User Terms (where applicable) and the Privacy Policy referred to in the Order Form. All such guidelines, rules or terms are hereby incorporated by reference into the Terms.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Our mission</title>

@@ -6,7 +6,7 @@
     <description>Recent content on Online survey data analysis</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Jul 2026 15:16:49 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 24 Jul 2026 17:12:32 +0100</lastBuildDate>
     <atom:link href="//crunch.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Universities</title>
@@ -674,6 +674,13 @@
       <description>&lt;p&gt;&lt;strong&gt;Reports to&lt;/strong&gt;: Engineering Manager&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Work location&lt;/strong&gt;: Italy, Poland, Romania, Spain (Remote)&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Direct reports&lt;/strong&gt;: 0&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;About YouGov&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;YouGov is a global online research company, offering insight into what the world thinks.&lt;/p&gt;&#xA;&lt;p&gt;We speak daily to our panel of over 24 million registered members to understand opinion and behaviors around the world. We have a strong reputation as a source of accurate data and we’re trusted by the world’s biggest brands to get it right, making us the most quoted market research source in the world.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Terms of Service</title>
+      <link>//crunch.io/about/terms-of-service/</link>
+      <pubDate>Fri, 24 Jul 2026 17:12:32 +0100</pubDate>
+      <guid>//crunch.io/about/terms-of-service/</guid>
+      <description>&lt;h3 id=&#34;last-updated-july-24th-2026&#34;&gt;Last Updated: July 24th, 2026&lt;/h3&gt;&#xA;&lt;p&gt;Crunch Cloud Analytics, LLC (“&lt;strong&gt;Crunch&lt;/strong&gt;”) provides use of its online web-based analytics technologies specified in the applicable order form (collectively, “&lt;strong&gt;Subscription Services&lt;/strong&gt;”) to the Customer (as defined in the order form) subject to the following Terms of Service (“&lt;strong&gt;Terms&lt;/strong&gt;”).&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;1. PURCHASED SUBSCRIPTION SERVICES&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;1.1 &lt;strong&gt;Provision of Purchased Subscription Services&lt;/strong&gt;. Crunch will make any purchased Subscription Services available to the Customer pursuant to these Terms and the relevant order form, statement of work or similar document incorporating these Terms (the “&lt;strong&gt;Order Form&lt;/strong&gt;”) during the term set out in the Order Form, including any renewal periods (the “&lt;strong&gt;Subscription Term&lt;/strong&gt;”). Each Order Form and the Terms together constitute an “&lt;strong&gt;Agreement&lt;/strong&gt;”. The Customer agrees that its purchase of Subscription Services is neither contingent on the delivery of any future functionality or features nor dependent on any oral or written public comments made by Crunch regarding future functionality or features. The Customer’s use of the Subscription Services includes the right to access all functionality available in the purchased Subscription Services as of the effective date of this Agreement or such other date specified in the Order Form.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Privacy Policy and Cookies Notice</title>
       <link>//crunch.io/about/privacy/</link>
       <pubDate>Mon, 13 Jul 2026 15:16:49 +0100</pubDate>
@@ -805,13 +812,6 @@
       <pubDate>Mon, 20 May 2024 10:00:00 -0700</pubDate>
       <guid>//crunch.io/release-notes/2024-05-20/</guid>
       <description>&lt;h3 id=&#34;crunch-web-application&#34;&gt;Crunch web application&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Mouse-hover responsiveness on Crunch graphs is now in wide access. See the &lt;a href=&#34;https://crunch.io/dev/features/graph-hover-behavior/&#34;&gt;announcement&lt;/a&gt; for more information.&lt;/li&gt;&#xA;&lt;li&gt;Enabled the ability to quickly export a copy of the current dashboard tile or on-screen visualization, which you can then share with others. See the &lt;a href=&#34;https://crunch.io/dev/features/quick-copy/&#34;&gt;announcement&lt;/a&gt; and &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/26115363807117-Quick-Copy-to-image-or-clipboard&#34;&gt;help article&lt;/a&gt; for more information.&lt;/li&gt;&#xA;&lt;li&gt;Fixed an issue that occurred when working with scorecards: the asterisk that enables the  display of hypothesis testing results is now rendering correctly in the display controller.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;crunch-automation&#34;&gt;Crunch Automation&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Adjusted the syntax when referring to subvariables: Crunch Automation scripts now return an error message if any command refers to the same subvariable code within different arrays without using the square bracket (&lt;code&gt;[]&lt;/code&gt;) syntax.&lt;/li&gt;&#xA;&lt;li&gt;Made speed improvements when using the &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360056799552-CREATE-MULTIPLE-DICHOTOMY-FROM-CONDITIONS-command&#34;&gt;CREATE MULTIPLE DICHOTOMY FROM CONDITIONS&lt;/a&gt; command.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;help-desk-and-website-improvements&#34;&gt;Help desk and website improvements&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Updated the following Crunch Automation articles with new information:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/22536937705613-What-is-Crunch-Automation&#34;&gt;What is Crunch Automation?&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/360041769292-Writing-Crunch-Automation-declarations&#34;&gt;Writing Crunch Automation declarations&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>Terms of Service</title>
-      <link>//crunch.io/about/terms-of-service/</link>
-      <pubDate>Thu, 16 May 2024 15:15:33 +0100</pubDate>
-      <guid>//crunch.io/about/terms-of-service/</guid>
-      <description>&lt;h3 id=&#34;last-updated-may-16th-2024&#34;&gt;Last Updated: May 16th, 2024&lt;/h3&gt;&#xA;&lt;p&gt;Crunch Cloud Analytics, LLC (“&lt;strong&gt;Crunch&lt;/strong&gt;”) provides use of its online web-based analytics technologies specified in the applicable order form (collectively, “&lt;strong&gt;Subscription Services&lt;/strong&gt;”) to you subject to the following Terms of Service (“&lt;strong&gt;Terms&lt;/strong&gt;”). In addition, when using the Subscription Services, Customer shall be subject to the End User Terms (where applicable) and the Privacy Policy referred to in the Order Form. All such guidelines, rules or terms are hereby incorporated by reference into the Terms.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Release 2024.04</title>
