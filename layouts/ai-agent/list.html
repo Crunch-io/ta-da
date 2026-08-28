@@ -10,7 +10,7 @@
                 <div class="container">
                     <div class="row justify-content-md-center">
                             <div class="col-md-5 text-center">
-                                <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ end }}</h1>
+                                <h1>{{ .Params.title }}</h1>
                                 <h2>{{ .Description }}</h2>
                             </div>
                     </div> <!-- /.row -->
@@ -29,7 +29,7 @@
                 <div class="row spacer share-insights">
                     <div class="col-12 col-md-5 order-1 order-md-0">
                         <h2 class="new-label">{{ .Params.label }}</h2>
-                        <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ index (split . " ") 3 }} {{ index (split . " ") 4 }} {{ index (split . " ") 5 }} {{ index (split . " ") 6 }} {{ index (split . " ") 7 }} <span>{{ index (split . " ") 8 }} {{ index (split . " ") 9 }}</span> {{ end }}</h2>
+                        <h2 class="secondary-title">{{ .Params.subtitle }}</h2>
 
                         <p>{{ .Content }}</p>
 

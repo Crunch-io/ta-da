@@ -12,7 +12,7 @@
                     <div class="container">
                         <div class="row justify-content-md-center">
                             <div class="col-md-12 header-content-container">
-                                <h1 class="display-4">{{ with .Params.title }} <span>{{ index (split . " ") 0 }}</span> {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} {{ end }}</h1>
+                                <h1 class="display-4">{{ .Params.title }}</h1>
                             </div>
 
                             <div class="col-md-12">

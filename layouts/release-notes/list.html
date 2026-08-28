@@ -27,7 +27,7 @@
                       <div class="col-md-6 col-lg-4 subscribe-release-notes">
                           {{ partial "subscribe-release-notes" . }}
                       </div>
-                     
+
                       {{ range (.Paginator 11).Pages.ByPublishDate.Reverse }}
                           <div class="col-md-6 col-lg-4">
                               <div class="post-card post-min-height" onclick="location.href='{{ .Permalink }}'">
@@ -46,19 +46,6 @@
 
               </div> <!-- /.container -->
             </div> <!-- /.secondary-content -->
-
-            <div class="footer-content">
-                <div class="jumbotron">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h1>Learn about <span>our team</span></h1>
-                                <a href="team" class="btn btn-link">Our team &#10230;</a>
-                            </div>
-                        </div> <!-- /.row. -->
-                    </div> <!-- /.container -->
-                </div> <!-- /.jumbotron -->
-            </div>
 
 {{ partial "footer-nav.html" . }}
 
