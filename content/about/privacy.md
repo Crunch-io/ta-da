@@ -343,6 +343,10 @@ Email tracking
 
 Some of the emails we send to you may contain a ‘web beacon pixel’ or tracked links which allows us to identify when you have opened the email and to verify which links contained in the email you have accessed. We use this information to determine which parts of our emails are of most interest to you. You can delete the pixel by deleting the email.
 
+## Text messaging opt-in data
+
+We will not share or sell your text messaging opt-in data, consent, or related personal information with any third parties, unless required by law.
+
 ## Your rights
 
 You have certain rights in relation to the personal data that we hold about you, which are designed to give you more choice and control over your personal data. These rights are explained below.
