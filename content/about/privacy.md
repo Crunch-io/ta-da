@@ -7,7 +7,7 @@ images = ["https://crunch.io/img/logo-1200x630.png"]
 
 +++
 
-### Effective: July 13th, 2026
+### Effective: September 29th, 2026
 
 Protecting your privacy is very important to us. Crunch and KnowledgeHound are part of YouGov Group. YouGov operates as a group of companies, where each company controls the data provided to it by visitors to its websites and users of its services.
 
