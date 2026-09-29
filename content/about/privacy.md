@@ -1,5 +1,5 @@
 +++
-date = "2026-07-13T15:16:49+01:00"
+date = "2026-09-29T15:16:49+01:00"
 draft = false
 title = "Privacy Policy and Cookies Notice"
 images = ["https://crunch.io/img/logo-1200x630.png"]
