@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>//crunch.io/support/sms-registration/</loc>
+    <lastmod>2026-09-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>//crunch.io/knowledgehound-acquisition-faqs/</loc>
     <lastmod>2024-05-31T15:58:45+01:00</lastmod>
   </url><url>
@@ -309,7 +312,10 @@
     <lastmod>2025-02-20T14:00:00+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/</loc>
-    <lastmod>2026-09-29T15:16:49+01:00</lastmod>
+    <lastmod>2026-09-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/support/</loc>
+    <lastmod>2026-09-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/about/privacy/</loc>
     <lastmod>2026-09-29T15:16:49+01:00</lastmod>
