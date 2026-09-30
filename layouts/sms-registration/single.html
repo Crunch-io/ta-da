@@ -119,7 +119,10 @@
 
         btn.disabled = true;
         // Same-origin: handler is served under crunch.io/sms-optin via the prod-app ALB.
-        fetch('/sms-optin/submit', {
+        // The form is served from crunch.io (GitHub Pages); the handler lives on
+        // the prod ALB, reachable at team.crunch.io. This is a cross-origin POST,
+        // so the handler must allow the https://crunch.io origin (CORS).
+        fetch('https://team.crunch.io/sms-optin/submit', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
