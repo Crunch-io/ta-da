@@ -13,7 +13,7 @@ layout = "single"
 At Crunch, we conduct surveys to understand public opinion on politics, current
 affairs, and social issues. Sign up below to receive SMS invitations to our
 polls and make your voice heard. Please see our
-[Privacy Policy](https://crunch.io/en-us/about/terms/privacy) for more
+[Privacy Policy](https://crunch.io/about/privacy/) for more
 information.
 
 **Text messaging opt-in data**
