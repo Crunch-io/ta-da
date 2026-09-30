@@ -270,7 +270,10 @@ personal information with any third parties, unless required by law.</p>
 
         btn.disabled = true;
         
-        fetch('/sms-optin/submit', {
+        
+        
+        
+        fetch('https://team.crunch.io/sms-optin/submit', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
