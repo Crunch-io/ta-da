@@ -24,7 +24,7 @@ The new **Analyze Mode** combines both into one streamlined workflow.
 
 We are also introducing a new way to navigate between Explore Mode, Analyze Mode, Dashboards, and the AI Agent via a toolbar:
 
-![](../../../uploads/screenshot-2026-10-15-at-7-59-20-pm.png)
+![](../../../uploads/screenshot-2026-10-15-at-8-18-33-pm.png)
 
 ## Benefits of Analyze Mode
 
