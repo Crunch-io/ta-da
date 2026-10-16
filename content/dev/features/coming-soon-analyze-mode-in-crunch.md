@@ -1,6 +1,6 @@
 +++
 _schema = "feature_yaml"
-date = 2026-10-15T23:56:16Z
+date = 2026-10-15T23:56:00Z
 publishdate = ""
 draft = true
 title = "Coming Soon: Analyze Mode in Crunch"
