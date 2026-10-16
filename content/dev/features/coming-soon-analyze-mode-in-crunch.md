@@ -4,7 +4,7 @@ date = 2026-10-15T23:56:00Z
 publishdate = ""
 draft = false
 title = "Coming Soon: Analyze Mode in Crunch"
-description = ""
+description = "Analyze Mode will be available to all early access users starting Wednesday, October 21st."
 news_description = "Analyze Mode brings Tables & Graphs and Multitables functionality together in a single, unified workspace. "
 weight = 20
 tags = [ "" ]
@@ -14,8 +14,6 @@ labs_only = false
 no_profiles = true
 no_yougov = true
 +++
-Analyze Mode will be available to all **early access** users starting Wednesday, October 21st.
-
 Analyze Mode brings Tables & Graphs and Multitables functionality together in a single, unified workspace. Instead of switching between separate tabs, you'll find everything you need to build your analysis in one place.
 
 ## What’s changing?
