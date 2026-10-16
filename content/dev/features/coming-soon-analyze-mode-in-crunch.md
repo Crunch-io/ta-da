@@ -2,7 +2,7 @@
 _schema = "feature_yaml"
 date = 2026-10-15T23:56:00Z
 publishdate = ""
-draft = true
+draft = false
 title = "Coming Soon: Analyze Mode in Crunch"
 description = ""
 news_description = "Analyze Mode brings Tables & Graphs and Multitables functionality together in a single, unified workspace. "
