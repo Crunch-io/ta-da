@@ -16,11 +16,9 @@ no_yougov = true
 +++
 Analyze Mode brings Tables & Graphs and Multitables functionality together in a single, unified workspace. Instead of switching between separate tabs, you'll find everything you need to build your analysis in one place.
 
-## What’s changing?
+## What’s new?
 
-Until now, analysis in Crunch was split across two modes: **Tables & Graphs** for building bivariate tables and charts, and **Multitables** for building multivariate tables and tab books.
-
-The new **Analyze Mode** combines both into one streamlined workflow.
+Analysis in Crunch was split across two modes: **Tables & Graphs** for building bivariate tables and charts, and **Multitables** for building multivariate tables and tab books. Now, he have launched a new **Analyze Mode** combines both into one streamlined workflow.
 
 We are also introducing a new way to navigate between Explore Mode, Analyze Mode, Dashboards, and the AI Agent via a toolbar:
 
