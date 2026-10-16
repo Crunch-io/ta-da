@@ -1,21 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i');
 
 h1 {
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'graphik', sans-serif;
     font-size: 2em;
-
-    span {
-        font-style: italic;
-    }
 }
 
 h2 {
     font-size: 1.5em;
 
     &.secondary-title {
-        font-family: 'Libre Baskerville', serif;
+        font-family: 'graphik', sans-serif;
         font-size: 1.8em;
-        color: $color-green;
+        font-weight:600;
 
         span {
             font-style: italic;
@@ -30,6 +26,10 @@ h3 {
 
 h4 {
     font-size: 1.2em;
+}
+
+strong {
+  font-weight: 600;
 }
 
 .img-caption {
@@ -55,9 +55,8 @@ h4 {
     align-items: center;
     text-align: center;
     transform: rotate(-24deg) translate(-71px,-9px);
-    font-family: "Libre Baskerville", serif;
-    font-style: italic;
     font-size: 14px;
+    font-weight: 600;
   }
 .new-label-video {
     background: #0062a6;
@@ -84,17 +83,14 @@ h4 {
 
 
 .label {
-    color: $font-color-off-black;
-    font-weight: 700;
+    color: $color-grey-darker;
+    font-weight: 600;
     margin-bottom: 30px;
-    text-transform: uppercase;
     font-size: 14px;
 }
 
 .emphasis {
     color: $color-blue;
-    font-style: italic;
-    font-family: 'Libre Baskerville', serif;
     margin-bottom: 40px;
 }
 

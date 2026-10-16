@@ -10,7 +10,7 @@
                 <div class="container">
                     <div class="row justify-content-md-center">
                             <div class="col-md-12 text-center">
-                                <h1>{{ with .Params.title }} {{ index (split . " ") 0 }} <span>{{ index (split . " ") 1 }}</span> {{ end }}</h1>
+                                <h1>{{ .Params.title }}</h1>
                                 <h2>{{ .Description }}</h2>
                             </div>
                     </div> <!-- /.row -->
@@ -39,7 +39,7 @@
             <div class="container">
                 <div class="row spacer-bottom text-center">
                     <div class="col-md-8 offset-md-2">
-                        <h2 class="secondary-title">The <span>easiest and quickest</span> way for anyone with zero training to <span>slice and dice</span> survey data</h2>
+                        <h2 class="secondary-title">The easiest and quickest way for anyone with zero training to slice and dice survey data</h2>
                         <p>Create with just a few clicks. Instantly embed in a webpage.</p>
                         <button type="button" class="btn btn-success" onclick="window.location.href='/request-demo'">Learn more</button>
                     </div>
@@ -49,7 +49,7 @@
             <div class="container">
                 <div class="row spacer share-insights">
                     <div class="col-12 col-md-5 order-0 order-md-0">
-                        <h2 class="secondary-title">{{ with .Params.subtitle }} {{ index (split . " ") 0 }} {{ index (split . " ") 1 }} {{ index (split . " ") 2 }} <br><span>{{ index (split . " ") 3 }}</span> {{ index (split . " ") 4 }} {{ end }}</h2>
+                        <h2 class="secondary-title">{{ .Params.subtitle }}</h2>
 
                         <p>{{ .Content }}</p>
 

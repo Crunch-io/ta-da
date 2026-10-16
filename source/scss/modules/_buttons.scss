@@ -5,7 +5,7 @@ a:focus-visible {
 
 .btn {
     padding: 10px 50px;
-    border-radius: 2px;
+    border-radius: 4px;
 
     &:focus, &.focus{
         box-shadow: 0 0 0rem rgb(0 123 255 / 0%);
@@ -49,15 +49,16 @@ a:focus-visible {
 }
 
 .btn-tertiary {
-    background-color: $--lighter-primary-color;
-    border-color: $--lighter-primary-color;
+    background-color: $color-white;
+    border-color: $color-blue;
     color: $color-blue;
     @include box_shadow("blue");
+    font-weight: 500;
 
     &:hover {
-        background-color: $--light-primary-color;
-        border-color: $--light-primary-color;
-        color: $color-blue;
+        background-color: $--darker-primary-color;
+        border-color: $color-blue;
+        color: $color-white;
     }
 }
 

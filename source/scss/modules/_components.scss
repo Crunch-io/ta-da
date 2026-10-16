@@ -9,8 +9,10 @@
         color: $color-white;
 
         h1 {
-            font-size: 2.5em;
-            line-height: 1.4em;
+            font-size: 2em;
+            margin-top:20px;
+            font-weight: 700;
+            // line-height: 2.5em;
         }
 
         h2 {
@@ -37,12 +39,12 @@
 
         .jumbotron-secondary-pages {
             background-color: $color-green;
-            background-image: linear-gradient( $color-green, $--darker-secondary-color);
+            background-image: linear-gradient($--darker-secondary-color, $color-green);
             margin-bottom: 0;
             height: 325px;
 
             h2 {
-                font-family: 'ProximaNova', sans-serif;
+                font-family: 'graphik', sans-serif;
                 font-size: 20px;
                 font-style: normal;
             }
@@ -252,11 +254,11 @@
     min-height: 450px;
     padding: 20px;
     margin-bottom: 30px;
-    background-color: $color-grey-lightest;
+    background-color: $color-white;
     @include vp-transition(all .1s ease-in-out);
     cursor: pointer;
-    border-radius: 2px;
-    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    border: 1px solid $color-grey-lighter;
 
     &:hover {
         box-shadow: 2px 2px 15px 2px rgba(0,0,0,0.1);
@@ -265,8 +267,7 @@
 
     .posts {
         .post-title {
-            font-family: 'Libre Baskerville', serif;
-            color: $color-blue;
+          font-weight:600;
         }
 
         p {
@@ -282,10 +283,9 @@
             width: 80%;
 
             .post-label {
-                text-transform: uppercase;
                 font-size: 12px;
                 margin-top: 2px;
-                font-weight: 400;
+                font-weight: 500;
 
                 img {
                     margin-right: 10px;
@@ -306,8 +306,6 @@
             .post-url {
                 a {
                     display: block;
-                    font-family: 'Libre Baskerville', serif;
-                    font-style: italic;
                     color: $color-off-black;
 
                     &:hover {
@@ -375,9 +373,9 @@
 
     .posts {
         .post-title {
-            font-family: 'Libre Baskerville', serif;
-            color: $color-blue;
+            color: $color-off-black;
             padding: 0 20px 0 20px;
+            font-weight:500;
         }
 
         p {
@@ -395,9 +393,8 @@
 
             .post-label {
                 flex: 1;
-                text-transform: uppercase;
                 font-size: 12px;
-                font-weight: 400;
+                font-weight: 500;
 
                 img {
                     margin-right: 10px;
@@ -508,28 +505,22 @@
     min-height: 230px;
 
     span {
-        font-weight: 700;
         color: $color-off-black;
     }
 
     a {
         color: $color-off-black;
-        font-family: 'Libre Baskerville', serif;
-        font-style: italic;
     }
 }
 
 .announcements-main {
     span {
-        font-weight: 700;
         color: $color-off-black;
         font-size: 14px;
     }
 
     a {
         color: $color-off-black;
-        font-family: 'Libre Baskerville', serif;
-        font-style: italic;
         font-size: 14px;
     }
 }
@@ -769,10 +760,9 @@ a.carousel-control-next {
 
             .card-title {
                 position: relative;
-                font-family: 'Libre Baskerville', serif;
 
                 button {
-                    color: $color-blue;
+                    color: $color-off-black;
 
                     &:hover {
                         color: $--darker-primary-color;
@@ -885,9 +875,7 @@ a.carousel-control-next {
             }
 
             #mc_embed_signup_scroll h2 {
-                font-family: 'Libre Baskerville', serif;
-                font-weight: 100;
-                font-size: 22px;
+                font-size: 18px;
             }
         }
     }
@@ -911,9 +899,7 @@ a.carousel-control-next {
             }
 
             #mc_embed_signup_scroll h2 {
-                font-family: 'Libre Baskerville', serif;
-                font-weight: 100;
-                font-size: 20px;
+                font-size: 18px;
                 color: $color-white;
             }
 
@@ -959,14 +945,14 @@ a.carousel-control-next {
 /** Homepage announcement **/
 #announcement {
     background-color: $color-white;
-    background-image: linear-gradient($color-white, #BDDAED) !important;
+    background-image: linear-gradient( $--darker-primary-color, $color-blue) !important;
     padding-top: 100px;
     margin-bottom: 0;
-    height: 440px !important;
+    height: 360px !important;
 
     h1 {
-      font-family: ProximaNova, sans-serif;
-      color: $color-off-black;
+      font-family: graphik, sans-serif;
+      color: $color-white;
       max-width: 830px;
       margin: auto;
       margin-bottom: 10px;
@@ -1025,7 +1011,7 @@ a.carousel-control-next {
     height: 300px !important;
 
     h1 {
-      font-family: ProximaNova, sans-serif;
+      font-family: graphik, sans-serif;
       color: $color-off-black;
       max-width: 830px;
       margin: auto;
@@ -1044,7 +1030,7 @@ a.carousel-control-next {
       justify-content: center;
       color: $color-off-black;
       font-size: 2.5em;
-      font-weight: 100;
+      font-weight: 400;
 
         img {
           max-width: 100%;
