@@ -30,13 +30,9 @@ We are also introducing a new way to navigate between Explore Mode, Analyze Mode
 * **Less switching, more analyzing:** Spend your time on the data, not on navigating between modes.
 * **Easier to find what you need:** Whether you're new to Crunch or a seasoned user, the tools you need are quicker to find.
 
-&nbsp;
-
 ## What this means for existing users
 
 Nothing you rely on is going away. Your saved analyses and core Crunch functionality remain exactly where you need them. Analyze Mode just rethinks the analysis experience. Whether you're building a single table or a deck or dashboard for stakeholders, Analyze Mode gives your analyses’ a single home.
-
-&nbsp;
 
 ## FAQs
 
