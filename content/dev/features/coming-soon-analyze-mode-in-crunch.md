@@ -22,7 +22,7 @@ Analysis in Crunch was split across two modes: **Tables & Graphs** for building 
 
 We are also introducing a new way to navigate between Explore Mode, Analyze Mode, Dashboards, and the AI Agent via a toolbar:
 
-![](../../../static/uploads/analyzemode.png)
+![](/uploads/analyzemode.png)
 
 ## Benefits of Analyze Mode
 
