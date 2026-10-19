@@ -38,7 +38,7 @@ Nothing you rely on is going away. Your saved analyses and core Crunch functiona
 
 **What is Analyze Mode?**
 
-Analyze Mode is the new experience that combines Tables & Graphs and Multitables into a single workspace.
+* Analyze Mode is the new experience that combines Tables & Graphs and Multitables into a single workspace.
 
 **Is any functionality being removed?**
 
@@ -47,6 +47,8 @@ Analyze Mode is the new experience that combines Tables & Graphs and Multitables
 **Will my existing saved analyses still work?**
 
 * Yes, all of your previously saved banners can now be found by clicking on the carat icon in the “add columns” config bar. You can also save new banner sets for later use.
+
+  &nbsp;
 
 ## Your Feedback Matters
 
