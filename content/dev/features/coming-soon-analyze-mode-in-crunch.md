@@ -14,7 +14,7 @@ labs_only = true
 no_profiles = true
 no_yougov = true
 +++
-Analyze Mode brings Tables & Graphs and Multitables functionality together in a single, unified workspace. Instead of switching between separate tabs, you'll find everything you need to build your analysis in one place.
+Analyze Mode will bring Tables & Graphs and Multitables functionality together in a single, unified workspace. Instead of switching between separate tabs, you'll find everything you need to build your analysis in one place.
 
 ## What’s new?
 
@@ -27,18 +27,18 @@ We are also introducing a new way to navigate between Explore Mode, Analyze Mode
 ## Benefits of Analyze Mode
 
 * **One workspace:** Build tables, create charts, and work with multitables, all from the same place.
-* **Less switching, more analyzing:** Spend your time on the data, not on navigating between modes.
+* **Less switching, more analysis:** Spend your time on the data, not on navigating between modes.
 * **Easier to find what you need:** Whether you're new to Crunch or a seasoned user, the tools you need are quicker to find.
 
 ## What this means for existing users
 
-Nothing you rely on is going away. Your saved analyses and core Crunch functionality remain exactly where you need them. Analyze Mode just rethinks the analysis experience. Whether you're building a single table or a deck or dashboard for stakeholders, Analyze Mode gives your analyses’ a single home.
+Nothing you rely on is going away. Your saved analyses and core Crunch functionality remain exactly where you need them. Analyze Mode reimagines the analysis experience. Whether you're building a single table or a deck or dashboard for stakeholders, Analyze Mode gives your analyses a single home.
 
 ## FAQs
 
 **What is Analyze Mode?**
 
-* Analyze is the new mode that combines Tables & Graphs and Multitables functionality into a single experience.
+Analyze Mode is the new experience that combines Tables & Graphs and Multitables into a single workspace.
 
 **Is any functionality being removed?**
 
@@ -50,4 +50,4 @@ Nothing you rely on is going away. Your saved analyses and core Crunch functiona
 
 ## Your Feedback Matters
 
-We are constantly evolving our products to make your job easier and are eager to hear what you think about our latest enhancements. For questions or feedback, please contact support@crunch.io
+We are constantly evolving our products to make your job easier and are eager to hear what you think about our latest enhancements. For questions or feedback, please contact [support@crunch.io](mailto:support@crunch.io)
