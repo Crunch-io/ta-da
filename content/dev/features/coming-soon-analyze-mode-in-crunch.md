@@ -46,7 +46,7 @@ Nothing you rely on is going away. Your saved analyses and core Crunch functiona
 
 **Will my existing saved analyses still work?**
 
-* Yes, all of your previously saved banners can now be found by clicking on the carat icon in the “add columns” config bar. You can also save new banner sets for later use.
+* Yes, all of your previously saved banners can now be found by clicking on the caret icon in the “add columns” config bar. You can also save new banner sets for later use.
 
   &nbsp;
 
