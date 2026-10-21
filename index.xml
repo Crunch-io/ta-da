@@ -58,7 +58,7 @@
       <description>&lt;p&gt;YouGov, whose current brand slogan is “the best panel - the best data - the best tools”, has one of the world’s largest research networks with a proprietary panel of over 17 million individuals in 50 markets. Researchers at YouGov use Crunch.io to perform analysis and deliver data and insights to clients via the Crunch.io web application, CrunchBoxes, and dashboards.&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;highlight&#34;&gt;YouGov uses Crunch.io &lt;span class=&#34;font-italic&#34;&gt;enterprise-wide&lt;/span&gt; for both custom research and Data Products, such as YouGov Profiles,&lt;/span&gt; which provides syndicated segmentation and product data for agencies and brands. Over 14,000 YouGov Profiles users enjoy sub-second query response times, building on-the-fly crosstabs on a survey database, containing over 309,000 rows (respondents) and 300,000 columns (variables).&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Coming Soon: Analyze Mode in Crunch</title>
+      <title>Introducing Analyze Mode in Crunch</title>
       <link>//crunch.io/dev/features/coming-soon-analyze-mode-in-crunch/</link>
       <pubDate>Sun, 18 Oct 2026 22:17:54 +0000</pubDate>
       <guid>//crunch.io/dev/features/coming-soon-analyze-mode-in-crunch/</guid>
