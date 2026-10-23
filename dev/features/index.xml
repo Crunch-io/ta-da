@@ -5,7 +5,7 @@
     <description>Recent content in Feature Announcements on Online survey data analysis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>2026-10-21T17:11:51+00:00</lastBuildDate>
+    <lastBuildDate>2026-10-23T14:32:36+00:00</lastBuildDate>
     
         <atom:link href="//crunch.io/dev/features/index.xml" rel="self" type="application/rss+xml" />
     
@@ -49,8 +49,15 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Will my existing saved analyses still work?&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
+&lt;li&gt;Yes, all of your previously saved banners can now be found by clicking on the caret icon in the “add columns” config bar. You can also save new banner sets for later use.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Is there any documentation I could reference?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Yes, all of your previously saved banners can now be found by clicking on the caret icon in the “add columns” config bar. You can also save new banner sets for later use.&lt;/p&gt;
+&lt;p&gt;Multitables in Analyze Mode: &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/49828763408397-Multitables-in-Analyze-Mode &#34; title=&#34;Multitables in Analyze Mode&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/49828763408397-Multitables-in-Analyze-Mode&#34;&gt;https://help.crunch.io/hc/en-us/articles/49828763408397-Multitables-in-Analyze-Mode&lt;/a&gt; &lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Exporting a tab book in Analyze Mode:&lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/49830709262221-Exporting-a-tab-book-in-Analyze-Mode&#34; title=&#34;Exporting a tab book in Analyze Mode&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt; &lt;a href=&#34;https://help.crunch.io/hc/en-us/articles/49830709262221-Exporting-a-tab-book-in-Analyze-Mode&#34;&gt;https://help.crunch.io/hc/en-us/articles/49830709262221-Exporting-a-tab-book-in-Analyze-Mode&lt;/a&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt; &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
