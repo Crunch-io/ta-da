@@ -54,6 +54,11 @@ Nothing you rely on is going away. Your saved analyses and core Crunch functiona
 
 * Yes, all of your previously saved banners can now be found by clicking on the caret icon in the “add columns” config bar. You can also save new banner sets for later use.
 
+**Is there any documentation I could reference?**
+
+* Multitables in Analyze Mode: <a href="https://help.crunch.io/hc/en-us/articles/49828763408397-Multitables-in-Analyze-Mode " title="Multitables in Analyze Mode" target="_blank" rel="noopener">https://help.crunch.io/hc/en-us/articles/49828763408397-Multitables-in-Analyze-Mode </a>
+* Exporting a tab book in Analyze Mode:<a href="https://help.crunch.io/hc/en-us/articles/49830709262221-Exporting-a-tab-book-in-Analyze-Mode" title="Exporting a tab book in Analyze Mode" target="_blank" rel="noopener"> https://help.crunch.io/hc/en-us/articles/49830709262221-Exporting-a-tab-book-in-Analyze-Mode</a>
+
   &nbsp;
 
 ## Your Feedback Matters
