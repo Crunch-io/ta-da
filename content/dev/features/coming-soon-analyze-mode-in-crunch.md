@@ -1,16 +1,16 @@
 +++
 _schema = "feature_yaml"
-date = 2026-10-18T22:17:54Z
+date = 2026-10-28T22:17:00Z
 publishdate = ""
 draft = false
 title = "Introducing Analyze Mode in Crunch"
-description = "Analyze Mode will be available to all early access users starting Wednesday, October 21st."
+description = "Analyze Mode will be available to all Crunch users starting Wednesday, November 4th. "
 news_description = "Analyze Mode brings Tables & Graphs and Multitables functionality together in a single, unified workspace. "
 weight = 20
 tags = [ "" ]
 categories = [ "feature" ]
 images = [ "https://crunch.io/img/logo-1200x630.png" ]
-labs_only = true
+labs_only = false
 no_profiles = true
 no_yougov = true
 +++
