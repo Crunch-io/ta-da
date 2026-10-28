@@ -12,7 +12,7 @@ categories = [ "feature" ]
 images = [ "https://crunch.io/img/logo-1200x630.png" ]
 labs_only = false
 no_profiles = true
-no_yougov = true
+no_yougov = false
 +++
 Analyze Mode will bring Tables & Graphs and Multitables functionality together in a single, unified workspace. Instead of switching between separate tabs, you'll find everything you need to build your analysis in one place.
 
