@@ -2,7 +2,7 @@
 _schema = "feature_yaml"
 date = 2026-10-29T09:38:27Z
 publishdate = ""
-draft = true
+draft = false
 title = "Turn open ends into insight: Coding Open Ends in Crunch"
 description = "Open-ended questions often tell you the most, but coding them by hand is slow. Now, you can turn open text variables into categories in a few clicks, without leaving Crunch. "
 news_description = "Open-ended questions often tell you the most, but coding them by hand is slow. Now, you can turn open text variables into categories in a few clicks, without leaving Crunch. "
