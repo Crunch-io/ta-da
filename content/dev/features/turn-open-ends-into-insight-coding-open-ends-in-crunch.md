@@ -24,15 +24,15 @@ no_yougov = false
 
 Open a dataset and find the open text variable you want to code. Select Categorize responses from the variable menu.
 
-![](https://help.crunch.io/hc/article_attachments/49912670951053)
+![Menu](https://help.crunch.io/hc/article_attachments/49992303089037)
 
 Choose to generate new categories or apply an existing taxonomy. If you generate new ones Crunch generates suggested themes and codes each response. If you use an existing taxonomy, responses are coded into the categories you’ve already defined.
 
-![Categorize](../../../uploads/categorize-responses-34pct.png)
+![Categorize](https://help.crunch.io/hc/article_attachments/49992308078861)
 
 Review the results, refine the categories as needed, and save. The coded variable is then ready to use in tables, charts and filters like any other categorical variable.
 
-![Edit](../../../uploads/edit-categories-34pct.png)
+![](https://help.crunch.io/hc/article_attachments/49992308080525 "Edit")
 
 &nbsp;
 
