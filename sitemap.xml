@@ -47,6 +47,9 @@
     <loc>//crunch.io/knowledge-base/</loc>
     <lastmod>2017-07-18T14:08:35+02:00</lastmod>
   </url><url>
+    <loc>//crunch.io/dev/features/turn-open-ends-into-insight-coding-open-ends-in-crunch/</loc>
+    <lastmod>2026-10-29T12:32:29+00:00</lastmod>
+  </url><url>
     <loc>//crunch.io/dev/features/coming-soon-analyze-mode-in-crunch/</loc>
     <lastmod>2026-10-28T10:30:00+00:00</lastmod>
   </url><url>
@@ -314,7 +317,19 @@
     <loc>//crunch.io/jobs/software-engineer-python-data-platform/</loc>
     <lastmod>2025-02-20T14:00:00+00:00</lastmod>
   </url><url>
+    <loc>//crunch.io/tags/coding-text-variables/</loc>
+    <lastmod>2026-10-29T12:32:29+00:00</lastmod>
+  </url><url>
     <loc>//crunch.io/</loc>
+    <lastmod>2026-10-29T12:32:29+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/open-ends/</loc>
+    <lastmod>2026-10-29T12:32:29+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/</loc>
+    <lastmod>2026-10-29T12:32:29+00:00</lastmod>
+  </url><url>
+    <loc>//crunch.io/tags/verbatim/</loc>
     <lastmod>2026-10-29T12:32:29+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/release-notes/release-note-2026-7/</loc>
@@ -342,9 +357,6 @@
     <lastmod>2026-05-11T07:00:00+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/datasets/</loc>
-    <lastmod>2026-05-11T07:00:00+00:00</lastmod>
-  </url><url>
-    <loc>//crunch.io/tags/</loc>
     <lastmod>2026-05-11T07:00:00+00:00</lastmod>
   </url><url>
     <loc>//crunch.io/tags/toplines/</loc>
