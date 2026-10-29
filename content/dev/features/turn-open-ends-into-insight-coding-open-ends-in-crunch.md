@@ -24,7 +24,7 @@ no_yougov = false
 
 Open a dataset and find the open text variable you want to code. Select Categorize responses from the variable menu.
 
-![Menu](../../../uploads/categorize-menu-half.png)
+![](../../../uploads/image-4.png)
 
 Choose to generate new categories or apply an existing taxonomy. If you generate new ones Crunch generates suggested themes and codes each response. If you use an existing taxonomy, responses are coded into the categories you’ve already defined.
 
